@@ -83,8 +83,8 @@ public enum CurrentSkills{
                 passiveB3 = new Summoner();
                 branchA = new MageActive();
                 active1 = new SummonRat();
-                //active2 = new SummonCrab();
-                active2 = new Spark();
+                active2 = new SummonCrab();
+                //active2 = new Spark();
                 active3 = new SummonSkeleton();
                 break;
 
