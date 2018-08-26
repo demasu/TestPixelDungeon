@@ -28,7 +28,7 @@ import com.watabou.input.Keys;
 import com.watabou.input.Touchscreen;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.pixeldungeonskills.VersionNewsInfo;
+import com.demasu.testpixeldungeon.VersionNewsInfo;
 import com.watabou.utils.BitmapCache;
 import com.watabou.utils.SystemTime;
 
