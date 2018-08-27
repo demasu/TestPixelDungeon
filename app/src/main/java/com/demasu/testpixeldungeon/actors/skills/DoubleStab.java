@@ -7,7 +7,6 @@ import com.demasu.testpixeldungeon.ui.StatusPane;
 
 public class DoubleStab extends ActiveSkill2{
 
-
     {
         name = "Double Stab";
         castText = "Got 'em'";
