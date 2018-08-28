@@ -122,7 +122,7 @@ public class Arrow extends MissileWeapon {
 
         Ballistica.distance = Math.min(Ballistica.distance, Level.distance(Dungeon.hero.pos, cell));
 
-        ArrayList<Char> chars = new ArrayList<Char>();
+        ArrayList<Char> chars = new ArrayList<>();
 
         for (int i = 1; i < Ballistica.distance + 1; i++) {
 

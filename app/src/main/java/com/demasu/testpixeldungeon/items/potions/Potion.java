@@ -97,7 +97,7 @@ public class Potion extends Item {
 
     @SuppressWarnings("unchecked")
     public static void initColors() {
-        handler = new ItemStatusHandler<Potion>((Class<? extends Potion>[]) potions, colors, images, 1);
+        handler = new ItemStatusHandler<>((Class<? extends Potion>[]) potions, colors, images, 1);
     }
 
     public static void save(Bundle bundle) {
@@ -106,7 +106,7 @@ public class Potion extends Item {
 
     @SuppressWarnings("unchecked")
     public static void restore(Bundle bundle) {
-        handler = new ItemStatusHandler<Potion>((Class<? extends Potion>[]) potions, colors, images, bundle);
+        handler = new ItemStatusHandler<>((Class<? extends Potion>[]) potions, colors, images, bundle);
     }
 
     public Potion() {

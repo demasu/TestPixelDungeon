@@ -28,7 +28,7 @@ import android.view.MotionEvent;
 
 public class Touchscreen {
 
-    public static Signal<Touch> event = new Signal<Touch>(true);
+    public static Signal<Touch> event = new Signal<>(true);
 
     @SuppressLint("UseSparseArrays")
     public static HashMap<Integer, Touch> pointers = new HashMap<>();

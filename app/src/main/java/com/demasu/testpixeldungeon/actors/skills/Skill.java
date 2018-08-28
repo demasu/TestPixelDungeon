@@ -130,7 +130,7 @@ public class Skill {
     }
 
     public ArrayList<String> actions(Hero hero) {
-        return new ArrayList<String>();
+        return new ArrayList<>();
     }
 
     public void execute(Hero hero, String action) {

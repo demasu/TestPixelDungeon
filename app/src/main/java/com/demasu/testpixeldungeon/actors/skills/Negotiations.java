@@ -35,7 +35,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<String>();
+        ArrayList<String> actions = new ArrayList<>();
         if (hero.hiredMerc == null) {
             if (hero.heroClass != HeroClass.WARRIOR)
                 actions.add(TXT_HIRE_BRUTE);
@@ -65,7 +65,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
             for (int nu = 0; nu < 1; nu++) {
                 int newPos = hero.pos;
                 if (Actor.findChar(newPos) != null) {
-                    ArrayList<Integer> candidates = new ArrayList<Integer>();
+                    ArrayList<Integer> candidates = new ArrayList<>();
                     boolean[] passable = Level.passable;
 
                     for (int n : Level.NEIGHBOURS4) {

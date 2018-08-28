@@ -525,7 +525,7 @@ public class WndMercs extends WndTabbed {
                         } else {
 
                             //Dungeon.hero.checkMerc = true;
-                            ArrayList<Integer> respawnPoints = new ArrayList<Integer>();
+                            ArrayList<Integer> respawnPoints = new ArrayList<>();
                             for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
                                 int p = Dungeon.hero.pos + Level.NEIGHBOURS8[i];
                                 if (Actor.findChar(p) == null && (Level.passable[p] || Level.avoid[p])) {

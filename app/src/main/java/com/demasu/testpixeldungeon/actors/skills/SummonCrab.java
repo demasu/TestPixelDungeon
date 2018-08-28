@@ -30,7 +30,7 @@ public class SummonCrab extends ActiveSkill2 {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<String>();
+        ArrayList<String> actions = new ArrayList<>();
         if (level > 0 && hero.MP >= getManaCost())
             actions.add(AC_SUMMON);
         return actions;
@@ -43,7 +43,7 @@ public class SummonCrab extends ActiveSkill2 {
             for (int nu = 0; nu < 1; nu++) {
                 int newPos = hero.pos;
                 if (Actor.findChar(newPos) != null) {
-                    ArrayList<Integer> candidates = new ArrayList<Integer>();
+                    ArrayList<Integer> candidates = new ArrayList<>();
                     boolean[] passable = Level.passable;
 
                     for (int n : Level.NEIGHBOURS4) {

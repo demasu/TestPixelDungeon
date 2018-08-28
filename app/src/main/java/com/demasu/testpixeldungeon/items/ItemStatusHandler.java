@@ -37,12 +37,12 @@ public class ItemStatusHandler<T extends Item> {
 
         this.items = items;
 
-        this.images = new HashMap<Class<? extends T>, Integer>();
-        this.labels = new HashMap<Class<? extends T>, String>();
-        known = new HashSet<Class<? extends T>>();
+        this.images = new HashMap<>();
+        this.labels = new HashMap<>();
+        known = new HashSet<>();
 
-        ArrayList<String> labelsLeft = new ArrayList<String>(Arrays.asList(allLabels));
-        ArrayList<Integer> imagesLeft = new ArrayList<Integer>(Arrays.asList(allImages));
+        ArrayList<String> labelsLeft = new ArrayList<>(Arrays.asList(allLabels));
+        ArrayList<Integer> imagesLeft = new ArrayList<>(Arrays.asList(allImages));
 
         for (int i = 0; i < items.length - exclude; i++) {
 
@@ -71,12 +71,12 @@ public class ItemStatusHandler<T extends Item> {
 
         this.items = items;
 
-        this.images = new HashMap<Class<? extends T>, Integer>();
-        this.labels = new HashMap<Class<? extends T>, String>();
-        known = new HashSet<Class<? extends T>>();
+        this.images = new HashMap<>();
+        this.labels = new HashMap<>();
+        known = new HashSet<>();
 
-        ArrayList<String> labelsLeft = new ArrayList<String>(Arrays.asList(allLabels));
-        ArrayList<Integer> imagesLeft = new ArrayList<Integer>(Arrays.asList(allImages));
+        ArrayList<String> labelsLeft = new ArrayList<>(Arrays.asList(allLabels));
+        ArrayList<Integer> imagesLeft = new ArrayList<>(Arrays.asList(allImages));
 
         for (Class<? extends T> item : items) {
 
@@ -94,9 +94,9 @@ public class ItemStatusHandler<T extends Item> {
 
         this.items = items;
 
-        this.images = new HashMap<Class<? extends T>, Integer>();
-        this.labels = new HashMap<Class<? extends T>, String>();
-        known = new HashSet<Class<? extends T>>();
+        this.images = new HashMap<>();
+        this.labels = new HashMap<>();
+        known = new HashSet<>();
 
         restore(bundle, labels, images);
     }
@@ -116,8 +116,8 @@ public class ItemStatusHandler<T extends Item> {
 
     private void restore(Bundle bundle, String[] allLabels, Integer[] allImages) {
 
-        ArrayList<String> labelsLeft = new ArrayList<String>(Arrays.asList(allLabels));
-        ArrayList<Integer> imagesLeft = new ArrayList<Integer>(Arrays.asList(allImages));
+        ArrayList<String> labelsLeft = new ArrayList<>(Arrays.asList(allLabels));
+        ArrayList<Integer> imagesLeft = new ArrayList<>(Arrays.asList(allImages));
 
         for (Class<? extends T> item : items) {
 
@@ -182,7 +182,7 @@ public class ItemStatusHandler<T extends Item> {
     }
 
     public HashSet<Class<? extends T>> unknown() {
-        HashSet<Class<? extends T>> result = new HashSet<Class<? extends T>>();
+        HashSet<Class<? extends T>> result = new HashSet<>();
         for (Class<? extends T> i : items) {
             if (!known.contains(i)) {
                 result.add(i);

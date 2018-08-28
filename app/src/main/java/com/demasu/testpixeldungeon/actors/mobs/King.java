@@ -214,7 +214,7 @@ public class King extends Mob {
                         "as a bonus.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<>();
 
     static {
         RESISTANCES.add(ToxicGas.class);
@@ -228,7 +228,7 @@ public class King extends Mob {
         return RESISTANCES;
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
     static {
         IMMUNITIES.add(Paralysis.class);
@@ -321,7 +321,7 @@ public class King extends Mob {
                             "They appear as skeletons with a stunning amount of facial hair.";
         }
 
-        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
         static {
             IMMUNITIES.add(Death.class);

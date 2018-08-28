@@ -76,7 +76,7 @@ public class Heap implements Bundlable {
 
     public ItemSprite sprite;
 
-    public LinkedList<Item> items = new LinkedList<Item>();
+    public LinkedList<Item> items = new LinkedList<>();
 
     public int image() {
         switch (type) {
@@ -380,7 +380,7 @@ public class Heap implements Bundlable {
         // This works
         Collection<Bundlable> tmp = bundle.getCollection(ITEMS);
 
-        items = new LinkedList<Item>();
+        items = new LinkedList<>();
 
         for (Bundlable item : tmp) {
             items.add((Item) item);

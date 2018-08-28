@@ -35,7 +35,7 @@ public class TextureCache {
     @SuppressLint("StaticFieldLeak")
     public static Context context;
 
-    private static HashMap<Object, SmartTexture> all = new HashMap<Object, SmartTexture>();
+    private static HashMap<Object, SmartTexture> all = new HashMap<>();
 
     // No dithering, no scaling, 32 bits per pixel
     private static BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();

@@ -39,7 +39,7 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
             new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
 
     protected HashMap<Object, Integer> ids =
-            new HashMap<Object, Integer>();
+            new HashMap<>();
 
     private boolean enabled = true;
 
@@ -65,7 +65,7 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
         }
     }
 
-    private LinkedList<String> loadingQueue = new LinkedList<String>();
+    private LinkedList<String> loadingQueue = new LinkedList<>();
 
     public void load(String... assets) {
         Collections.addAll(loadingQueue, assets);

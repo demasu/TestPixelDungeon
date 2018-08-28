@@ -118,7 +118,7 @@ public class Ghost extends NPC {
                         "spot of faint light with a sorrowful face.";
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
     static {
         IMMUNITIES.add(Paralysis.class);

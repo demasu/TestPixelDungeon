@@ -26,7 +26,7 @@ public class SpiritArmor extends PassiveSkillA3 {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<String>();
+        ArrayList<String> actions = new ArrayList<>();
         if (!active && level > 0)
             actions.add(AC_ACTIVATE);
         else if (level > 0)

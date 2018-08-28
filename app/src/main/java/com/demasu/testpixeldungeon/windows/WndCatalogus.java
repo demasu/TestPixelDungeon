@@ -51,7 +51,7 @@ public class WndCatalogus extends WndTabbed {
     private BitmapText txtTitle;
     private ScrollPane list;
 
-    private ArrayList<ListItem> items = new ArrayList<WndCatalogus.ListItem>();
+    private ArrayList<ListItem> items = new ArrayList<>();
 
     private static boolean showPotions = true;
 

@@ -147,7 +147,7 @@ public abstract class Char extends Actor {
 
     public int viewDistance = 8;
 
-    private HashSet<Buff> buffs = new HashSet<Buff>();
+    private HashSet<Buff> buffs = new HashSet<>();
 
     public String getDeathScream() {
         if (this instanceof Hero)
@@ -483,7 +483,7 @@ public abstract class Char extends Actor {
 
     @SuppressWarnings("unchecked")
     public <T extends Buff> HashSet<T> buffs(Class<T> c) {
-        HashSet<T> filtered = new HashSet<T>();
+        HashSet<T> filtered = new HashSet<>();
         for (Buff b : buffs) {
             if (c.isInstance(b)) {
                 filtered.add((T) b);
@@ -688,7 +688,7 @@ public abstract class Char extends Actor {
         next();
     }
 
-    private static final HashSet<Class<?>> EMPTY = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> EMPTY = new HashSet<>();
 
     public HashSet<Class<?>> resistances() {
         return EMPTY;

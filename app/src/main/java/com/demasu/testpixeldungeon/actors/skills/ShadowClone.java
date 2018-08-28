@@ -30,7 +30,7 @@ public class ShadowClone extends ActiveSkill3 {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<String>();
+        ArrayList<String> actions = new ArrayList<>();
         if (level > 0 && hero.MP >= getManaCost())
             actions.add(AC_CAST);
         return actions;
@@ -39,7 +39,7 @@ public class ShadowClone extends ActiveSkill3 {
     @Override
     public void execute(Hero hero, String action) {
         if (action == Skill.AC_CAST) {
-            ArrayList<Integer> respawnPoints = new ArrayList<Integer>();
+            ArrayList<Integer> respawnPoints = new ArrayList<>();
 
             for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
                 int p = hero.pos + Level.NEIGHBOURS8[i];

@@ -504,7 +504,7 @@ public class ColdGirl extends Mob {
         Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, speakText);
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<>();
 
     static {
 
@@ -598,7 +598,7 @@ public class ColdGirl extends Mob {
         return RESISTANCES;
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
     static {
         IMMUNITIES.add(Frost.class);
@@ -671,7 +671,7 @@ public class ColdGirl extends Mob {
     }
 
     public void spawnMinions() {
-        ArrayList<Integer> spawnPoints = new ArrayList<Integer>();
+        ArrayList<Integer> spawnPoints = new ArrayList<>();
 
         for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
             int p = pos + Level.NEIGHBOURS8[i];

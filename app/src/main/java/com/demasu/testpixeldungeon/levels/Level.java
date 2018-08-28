@@ -133,7 +133,7 @@ public abstract class Level implements Bundlable {
     public HashMap<Class<? extends Blob>, Blob> blobs;
     public SparseArray<Plant> plants;
 
-    protected ArrayList<Item> itemsToSpawn = new ArrayList<Item>();
+    protected ArrayList<Item> itemsToSpawn = new ArrayList<>();
 
     public int color1 = 0x004400;
     public int color2 = 0x88CC44;
@@ -162,10 +162,10 @@ public abstract class Level implements Bundlable {
         mapped = new boolean[LENGTH];
         Arrays.fill(mapped, false);
 
-        mobs = new HashSet<Mob>();
-        heaps = new SparseArray<Heap>();
-        blobs = new HashMap<Class<? extends Blob>, Blob>();
-        plants = new SparseArray<Plant>();
+        mobs = new HashSet<>();
+        heaps = new SparseArray<>();
+        blobs = new HashMap<>();
+        plants = new SparseArray<>();
 
         if (!Dungeon.bossLevel()) {
             addItemToSpawn(new Arrow().random());
@@ -237,10 +237,10 @@ public abstract class Level implements Bundlable {
     @Override
     public void restoreFromBundle(Bundle bundle) {
 
-        mobs = new HashSet<Mob>();
-        heaps = new SparseArray<Heap>();
-        blobs = new HashMap<Class<? extends Blob>, Blob>();
-        plants = new SparseArray<Plant>();
+        mobs = new HashSet<>();
+        heaps = new SparseArray<>();
+        blobs = new HashMap<>();
+        plants = new SparseArray<>();
 
         map = bundle.getIntArray(MAP);
         visited = bundle.getBooleanArray(VISITED);
@@ -420,7 +420,7 @@ public abstract class Level implements Bundlable {
                     for (int nu = 0; nu < 1; nu++) {
                         int newPos = Dungeon.hero.pos;
                         if (Actor.findChar(newPos) != null) {
-                            ArrayList<Integer> candidates = new ArrayList<Integer>();
+                            ArrayList<Integer> candidates = new ArrayList<>();
                             boolean[] passable = Level.passable;
 
                             for (int n : Level.NEIGHBOURS4) {

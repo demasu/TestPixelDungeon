@@ -85,7 +85,7 @@ public class NecroBlade extends MeleeWeapon {
 
                 int newPos = hero.pos;
                 if (Actor.findChar(newPos) != null) {
-                    ArrayList<Integer> candidates = new ArrayList<Integer>();
+                    ArrayList<Integer> candidates = new ArrayList<>();
                     boolean[] passable = Level.passable;
 
                     for (int n : Level.NEIGHBOURS4) {
