@@ -138,6 +138,7 @@ public class NoosaScript extends Script {
     }
 
 
+    @SuppressWarnings("SameReturnValue")
     private String shader() {
         return SHADER;
     }
