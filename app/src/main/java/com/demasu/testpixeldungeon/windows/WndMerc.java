@@ -97,8 +97,6 @@ public class WndMerc extends WndTabbed {
         super();
 
         this.listener = listener;
-        this.mode = mode;
-        this.title = title;
 
         Mode lastMode = mode;
 
