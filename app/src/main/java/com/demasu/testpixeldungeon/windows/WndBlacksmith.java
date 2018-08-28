@@ -145,8 +145,6 @@ public class WndBlacksmith extends Window {
                     Sample.INSTANCE.play(Assets.SND_CLICK);
                 }
 
-                ;
-
                 @Override
                 protected void onTouchUp() {
                     bg.resetColor();
@@ -163,8 +161,6 @@ public class WndBlacksmith extends Window {
         protected void onClick() {
         }
 
-        ;
-
         @Override
         protected void layout() {
             super.layout();
@@ -175,8 +171,6 @@ public class WndBlacksmith extends Window {
 
             slot.setRect(x + 2, y + 2, width - 4, height - 4);
         }
-
-        ;
 
         public void item(Item item) {
             slot.item(this.item = item);

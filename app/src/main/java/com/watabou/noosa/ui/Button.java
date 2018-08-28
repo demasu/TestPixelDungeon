@@ -43,15 +43,11 @@ public class Button extends Component {
                 Button.this.onTouchDown();
             }
 
-            ;
-
             @Override
             protected void onTouchUp(Touch touch) {
                 pressed = false;
                 Button.this.onTouchUp();
             }
-
-            ;
 
             @Override
             protected void onClick(Touch touch) {
@@ -60,7 +56,6 @@ public class Button extends Component {
                 }
             }
 
-            ;
         };
         add(hotArea);
     }
@@ -89,23 +84,15 @@ public class Button extends Component {
     protected void onTouchDown() {
     }
 
-    ;
-
     protected void onTouchUp() {
     }
-
-    ;
 
     protected void onClick() {
     }
 
-    ;
-
     protected boolean onLongClick() {
         return false;
     }
-
-    ;
 
     @Override
     protected void layout() {

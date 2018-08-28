@@ -24,7 +24,7 @@ import com.watabou.utils.Bundle;
 
 public class Journal {
 
-    public static enum Feature {
+    public enum Feature {
         WELL_OF_HEALTH("Well of Health"),
         WELL_OF_AWARENESS("Well of Awareness"),
         WELL_OF_TRANSMUTATION("Well of Transmutation"),
@@ -40,12 +40,10 @@ public class Journal {
 
         public String desc;
 
-        private Feature(String desc) {
+        Feature(String desc) {
             this.desc = desc;
         }
     }
-
-    ;
 
     public static class Record implements Comparable<Record>, Bundlable {
 

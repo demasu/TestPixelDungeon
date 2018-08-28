@@ -48,7 +48,6 @@ public class MobSprite extends CharSprite {
                     parent.erase(this);
                 }
 
-                ;
             });
         }
     }
@@ -64,8 +63,6 @@ public class MobSprite extends CharSprite {
                 MobSprite.this.killAndErase();
                 parent.erase(this);
             }
-
-            ;
 
             @Override
             protected void updateValues(float progress) {

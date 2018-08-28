@@ -19,10 +19,12 @@ package com.watabou.input;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import android.util.SparseArray;
 
 import com.watabou.utils.PointF;
 import com.watabou.utils.Signal;
 
+import android.annotation.SuppressLint;
 import android.view.MotionEvent;
 
 public class Touchscreen {

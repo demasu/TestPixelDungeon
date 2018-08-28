@@ -140,7 +140,6 @@ public class Ghost extends NPC {
                 parent.erase(this);
             }
 
-            ;
         });
 
         b.pos = a.pos;
@@ -158,7 +157,7 @@ public class Ghost extends NPC {
 
             public QuestHandler handler;
 
-            private Type(QuestHandler handler) {
+            Type(QuestHandler handler) {
                 this.handler = handler;
             }
         }
@@ -275,7 +274,7 @@ public class Ghost extends NPC {
                 for (int i = 0; i < 4; i++) {
                     Item another;
                     do {
-                        another = (Weapon) Generator.random(Generator.Category.WEAPON);
+                        another = Generator.random(Generator.Category.WEAPON);
                     } while (another instanceof MissileWeapon);
 
                     if (weapon == null || another.level() > weapon.level()) {
@@ -460,7 +459,6 @@ public class Ghost extends NPC {
                         }
                     }
 
-                    ;
                 });
 
                 Journal.add(Journal.Feature.GHOST);

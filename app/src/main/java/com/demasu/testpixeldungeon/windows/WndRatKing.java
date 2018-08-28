@@ -36,7 +36,7 @@ import com.demasu.testpixeldungeon.utils.Utils;
 
 public class WndRatKing extends WndTabbed {
 
-    public static enum Mode {
+    public enum Mode {
         NORMAL,
         CHAMPIONS,
         HERO
@@ -113,7 +113,6 @@ public class WndRatKing extends WndTabbed {
                 @Override
                 protected void onClick() {
                     Dungeon.currentDifficulty.changeChampionOffset(1);
-                    ;
                     updateEnabled();
                 }
             };
@@ -418,7 +417,7 @@ public class WndRatKing extends WndTabbed {
             txtInfo.y = titlebar.bottom() + GAP;
             add(txtInfo);
 
-            resize(100, (int) txtInfo.y + (int) txtInfo.height() + (int) GAP);
+            resize(100, (int) txtInfo.y + (int) txtInfo.height() + GAP);
         }
     }
 }

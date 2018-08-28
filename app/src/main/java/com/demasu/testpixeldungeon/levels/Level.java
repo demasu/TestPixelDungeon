@@ -83,14 +83,12 @@ import com.watabou.utils.SparseArray;
 
 public abstract class Level implements Bundlable {
 
-    public static enum Feeling {
+    public enum Feeling {
         NONE,
         CHASM,
         WATER,
         GRASS
     }
-
-    ;
 
     public static final int WIDTH = 32;
     public static final int HEIGHT = 32;
@@ -914,7 +912,7 @@ public abstract class Level implements Bundlable {
             }
         }
 
-        if ((sighted && sense > 1) || !sighted) {
+        if (!sighted || sense > 1) {
 
             int ax = Math.max(0, cx - sense);
             int bx = Math.min(cx + sense, WIDTH - 1);

@@ -74,7 +74,6 @@ public class WndSkill extends Window {
                         }
                     }
 
-                    ;
                 };
                 btn.setSize(Math.max(BUTTON_WIDTH, btn.reqWidth()), BUTTON_HEIGHT);
                 if (x + btn.width() > WIDTH) {

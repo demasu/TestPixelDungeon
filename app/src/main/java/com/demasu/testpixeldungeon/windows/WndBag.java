@@ -55,7 +55,7 @@ import com.watabou.utils.GameMath;
 
 public class WndBag extends WndTabbed {
 
-    public static enum Mode {
+    public enum Mode {
         ALL,
         UNIDENTIFED,
         UPGRADEABLE,
@@ -426,13 +426,9 @@ public class WndBag extends WndTabbed {
             Sample.INSTANCE.play(Assets.SND_CLICK, 0.7f, 0.7f, 1.2f);
         }
 
-        ;
-
         protected void onTouchUp() {
             bg.brightness(1.0f);
         }
-
-        ;
 
         @Override
         protected void onClick() {

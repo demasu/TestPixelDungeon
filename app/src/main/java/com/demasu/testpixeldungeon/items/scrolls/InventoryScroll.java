@@ -65,7 +65,6 @@ public abstract class InventoryScroll extends Scroll {
             public void onBackPressed() {
             }
 
-            ;
         });
     }
 

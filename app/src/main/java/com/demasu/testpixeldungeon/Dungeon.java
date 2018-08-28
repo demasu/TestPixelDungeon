@@ -17,6 +17,7 @@
  */
 package com.demasu.testpixeldungeon;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import java.io.IOException;
@@ -219,11 +220,7 @@ public class Dungeon {
         if (depth % ColdGirl.FROST_DEPTH > Statistics.deepestFloor) {
             Statistics.deepestFloor = depth;
 
-            if (Statistics.qualifiedForNoKilling) {
-                Statistics.completedWithNoKilling = true;
-            } else {
-                Statistics.completedWithNoKilling = false;
-            }
+            Statistics.completedWithNoKilling = Statistics.qualifiedForNoKilling;
         }
 
         Arrays.fill(visible, false);
@@ -357,7 +354,7 @@ public class Dungeon {
 
     public static void dropToChasm(Item item) {
         int depth = Dungeon.depth + 1;
-        ArrayList<Item> dropped = (ArrayList<Item>) Dungeon.droppedItems.get(depth);
+        ArrayList<Item> dropped = Dungeon.droppedItems.get(depth);
         if (dropped == null) {
             Dungeon.droppedItems.put(depth, dropped = new ArrayList<Item>());
         }
@@ -444,7 +441,8 @@ public class Dungeon {
         }
     }
 
-    public static void saveGame(String fileName) throws IOException {
+    @SuppressLint("DefaultLocale")
+    public static void saveGame(String fileName) {
         try {
             Bundle bundle = new Bundle();
 
@@ -537,6 +535,7 @@ public class Dungeon {
         loadGame(fileName, false);
     }
 
+    @SuppressLint("DefaultLocale")
     public static void loadGame(String fileName, boolean fullLoad) throws IOException {
 
         Bundle bundle = gameBundle(fileName);

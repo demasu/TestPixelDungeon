@@ -75,5 +75,4 @@ public class MysteryMeat extends Food {
         return 5 * quantity;
     }
 
-    ;
 }

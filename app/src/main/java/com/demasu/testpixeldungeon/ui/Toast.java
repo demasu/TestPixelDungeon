@@ -53,7 +53,6 @@ public class Toast extends Component {
                 onClose();
             }
 
-            ;
         };
         add(close);
         text = PixelScene.createMultiline(8);
@@ -85,5 +84,4 @@ public class Toast extends Component {
     protected void onClose() {
     }
 
-    ;
 }

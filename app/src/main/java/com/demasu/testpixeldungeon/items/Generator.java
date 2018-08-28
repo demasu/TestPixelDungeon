@@ -38,7 +38,7 @@ import com.watabou.utils.Random;
 
 public class Generator {
 
-    public static enum Category {
+    public enum Category {
         WEAPON(15, Weapon.class),
         ARMOR(10, Armor.class),
         POTION(50, Potion.class),
@@ -56,7 +56,7 @@ public class Generator {
         public float prob;
         public Class<? extends Item> superClass;
 
-        private Category(float prob, Class<? extends Item> superClass) {
+        Category(float prob, Class<? extends Item> superClass) {
             this.prob = prob;
             this.superClass = superClass;
         }
@@ -71,8 +71,6 @@ public class Generator {
             return item instanceof Bag ? Integer.MAX_VALUE : Integer.MAX_VALUE - 1;
         }
     }
-
-    ;
 
     private static HashMap<Category, Float> categoryProbs = new HashMap<Generator.Category, Float>();
 
@@ -242,7 +240,7 @@ public class Generator {
     public static Item random(Class<? extends Item> cl) {
         try {
 
-            return ((Item) cl.newInstance()).random();
+            return cl.newInstance().random();
 
         } catch (Exception e) {
 

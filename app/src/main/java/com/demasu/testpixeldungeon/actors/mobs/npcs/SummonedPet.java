@@ -24,7 +24,7 @@ import java.util.HashSet;
  */
 public class SummonedPet extends NPC {
 
-    public static enum PET_TYPES {
+    public enum PET_TYPES {
         RAT("Rat"), CRAB("Crab"), SKELETON("Skeleton"), SKELETON_ARCHER("Skeleton Archer"), SPECIAL("Special");
         public String type = "Rat";
 
