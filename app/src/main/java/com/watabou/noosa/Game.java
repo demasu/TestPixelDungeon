@@ -162,6 +162,7 @@ public abstract class Game extends Activity implements GLSurfaceView.Renderer, V
         Sample.INSTANCE.reset();
     }
 
+    @SuppressWarnings("SameReturnValue")
     @SuppressLint({"Recycle", "ClickableViewAccessibility"})
     @Override
     public boolean onTouch(View view, MotionEvent event) {
