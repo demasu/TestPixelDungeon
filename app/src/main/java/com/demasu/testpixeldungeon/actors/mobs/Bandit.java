@@ -27,34 +27,34 @@ import com.demasu.testpixeldungeon.sprites.BanditSprite;
 import com.watabou.utils.Random;
 
 public class Bandit extends Thief {
-	
-	public Item item;
-	
-	{
-		name = "crazy bandit";
-		spriteClass = BanditSprite.class;
+
+    public Item item;
+
+    {
+        name = "crazy bandit";
+        spriteClass = BanditSprite.class;
 
         name = Dungeon.currentDifficulty.mobPrefix() + name;
         HT *= Dungeon.currentDifficulty.mobHPModifier();
         HP = HT;
-	}
-	
-	@Override
-	protected boolean steal( Hero hero ) {
-		if (super.steal( hero )) {
-			
-			Buff.prolong( hero, Blindness.class, Random.Int( 5, 12 ) );
-			Dungeon.observe();
-			
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	@Override
-	public void die( Object cause ) {
-		super.die( cause );
-		Badges.validateRare( this );
-	}
+    }
+
+    @Override
+    protected boolean steal(Hero hero) {
+        if (super.steal(hero)) {
+
+            Buff.prolong(hero, Blindness.class, Random.Int(5, 12));
+            Dungeon.observe();
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void die(Object cause) {
+        super.die(cause);
+        Badges.validateRare(this);
+    }
 }

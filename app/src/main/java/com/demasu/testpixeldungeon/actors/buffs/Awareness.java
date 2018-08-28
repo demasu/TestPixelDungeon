@@ -21,11 +21,11 @@ import com.demasu.testpixeldungeon.Dungeon;
 
 public class Awareness extends FlavourBuff {
 
-	public static final float DURATION = 2f;
+    public static final float DURATION = 2f;
 
-	@Override
-	public void detach() {
-		super.detach();
-		Dungeon.observe();
-	}
+    @Override
+    public void detach() {
+        super.detach();
+        Dungeon.observe();
+    }
 }

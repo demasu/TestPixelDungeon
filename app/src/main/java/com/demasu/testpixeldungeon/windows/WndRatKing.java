@@ -44,22 +44,20 @@ public class WndRatKing extends WndTabbed {
 
     public Mode mode = Mode.NORMAL;
 
-	private static final String TXT_PLUS = "+";
-	private static final String TXT_MINUS = "-";
-	private static final String TXT_CHAMPION_CHANCE = "Champions: %s";
+    private static final String TXT_PLUS = "+";
+    private static final String TXT_MINUS = "-";
+    private static final String TXT_CHAMPION_CHANCE = "Champions: %s";
 
 
+    private static final String TXT_TRUE_KING_TITLE = "A King.. I Think";
 
 
-	private static final String TXT_TRUE_KING_TITLE	= "A King.. I Think";
+    private static final int WIDTH = 112;
+    private static final int BTN_HEIGHT = 20;
+    private static final int GAP = 2;
 
-
-	private static final int WIDTH		= 112;
-	private static final int BTN_HEIGHT	= 20;
-	private static final int GAP 		= 2;
-
-	private RedButton btnZoomOut;
-	private RedButton btnZoomIn;
+    private RedButton btnZoomOut;
+    private RedButton btnZoomIn;
     private RedButton btnChamps;
 
     private RedButton btMobHP;
@@ -67,16 +65,16 @@ public class WndRatKing extends WndTabbed {
     private RedButton btMobDef;
     private RedButton btDayNight;
 
-    protected static final int TAB_WIDTH	= 25;
+    protected static final int TAB_WIDTH = 25;
 
     public static int maxHeight = 0;
 
-	public WndRatKing(Mode mode) {
-		super();
+    public WndRatKing(Mode mode) {
+        super();
 
         this.mode = mode;
 
-        if(mode == Mode.NORMAL) {
+        if (mode == Mode.NORMAL) {
             Component titlebar = new IconTitle(Icons.RAT_KING.get(), TXT_TRUE_KING_TITLE);
             titlebar.setRect(0, 0, WIDTH, 0);
             add(titlebar);
@@ -85,19 +83,18 @@ public class WndRatKing extends WndTabbed {
                     + "You question my command? I will prove to you my strength.\n \n"
                     + "The inhabitants of this dungeon, all of them.. rodents or not so blessed... even you follow my command and can be molded by my will.\n"
                     + "\n \nNow tell me what to do...";
-            BitmapTextMultiline txtInfo = PixelScene.createMultiline( description, 6 );
+            BitmapTextMultiline txtInfo = PixelScene.createMultiline(description, 6);
             txtInfo.maxWidth = WIDTH;
             txtInfo.measure();
             txtInfo.x = titlebar.left();
             txtInfo.y = titlebar.bottom() + GAP;
-            add( txtInfo );
+            add(txtInfo);
 
-            if(maxHeight < (int) txtInfo.y + (int)txtInfo.height() )
-                maxHeight = (int) txtInfo.y + (int)txtInfo.height();
+            if (maxHeight < (int) txtInfo.y + (int) txtInfo.height())
+                maxHeight = (int) txtInfo.y + (int) txtInfo.height();
 
             resize(WIDTH, maxHeight);
-        }
-        else if(mode == Mode.CHAMPIONS) {
+        } else if (mode == Mode.CHAMPIONS) {
             CheckBox btnImmersive = null;
 
 
@@ -125,8 +122,8 @@ public class WndRatKing extends WndTabbed {
             btnChamps = new RedButton((String.format(TXT_CHAMPION_CHANCE, (Dungeon.currentDifficulty.championChance() * 10 + "%")))) {
                 @Override
                 protected void onClick() {
-                    if(Difficulties.canDisableChampions == false)
-                        parent.add(new previewInformation(Icons.get(Icons.CHAMP_HALO), "Disable Champions",  "Please consider donating to unlock disabling specific types of champions."));
+                    if (Difficulties.canDisableChampions == false)
+                        parent.add(new previewInformation(Icons.get(Icons.CHAMP_HALO), "Disable Champions", "Please consider donating to unlock disabling specific types of champions."));
                 }
             };
 
@@ -139,7 +136,7 @@ public class WndRatKing extends WndTabbed {
                 @Override
                 protected void onClick() {
                     super.onClick();
-                    if(!Dungeon.currentDifficulty.disableChampion(Champ.CHAMP_CHIEF, checked()))
+                    if (!Dungeon.currentDifficulty.disableChampion(Champ.CHAMP_CHIEF, checked()))
                         checked(false);
                 }
             };
@@ -151,7 +148,7 @@ public class WndRatKing extends WndTabbed {
                 @Override
                 protected void onClick() {
                     super.onClick();
-                    if(!Dungeon.currentDifficulty.disableChampion(Champ.CHAMP_VAMPERIC, checked()))
+                    if (!Dungeon.currentDifficulty.disableChampion(Champ.CHAMP_VAMPERIC, checked()))
                         checked(false);
                 }
             };
@@ -164,7 +161,7 @@ public class WndRatKing extends WndTabbed {
                 @Override
                 protected void onClick() {
                     super.onClick();
-                    if(!Dungeon.currentDifficulty.disableChampion(Champ.CHAMP_CURSED, checked()))
+                    if (!Dungeon.currentDifficulty.disableChampion(Champ.CHAMP_CURSED, checked()))
                         checked(false);
                 }
             };
@@ -176,7 +173,7 @@ public class WndRatKing extends WndTabbed {
                 @Override
                 protected void onClick() {
                     super.onClick();
-                    if(!Dungeon.currentDifficulty.disableChampion(Champ.CHAMP_FOUL, checked()))
+                    if (!Dungeon.currentDifficulty.disableChampion(Champ.CHAMP_FOUL, checked()))
                         checked(false);
                 }
             };
@@ -185,23 +182,20 @@ public class WndRatKing extends WndTabbed {
             btnFoul.checked(Dungeon.currentDifficulty.disableChampion(Champ.CHAMP_FOUL));
             add(btnFoul);
 
-            if(Difficulties.canDisableChampions == false)
-            {
+            if (Difficulties.canDisableChampions == false) {
                 btnFoul.enable(false);
                 btnChief.enable(false);
                 btnVamp.enable(false);
                 btnCursed.enable(false);
             }
 
-            if(maxHeight < (int) btnFoul.bottom() )
+            if (maxHeight < (int) btnFoul.bottom())
                 maxHeight = (int) btnFoul.bottom();
 
             resize(WIDTH, maxHeight);
 
-        }
-        else if(mode == Mode.HERO) {
+        } else if (mode == Mode.HERO) {
             CheckBox btnImmersive = null;
-
 
 
             btnChamps = new RedButton((String.format("Mobs Information"))) {
@@ -247,7 +241,7 @@ public class WndRatKing extends WndTabbed {
                     Dungeon.currentDifficulty.changeDamageOffset(-0.1f);
                     updateMobStats();
                 }
-            }.setRect(0,  btMobHP.bottom() + GAP, w, BTN_HEIGHT));
+            }.setRect(0, btMobHP.bottom() + GAP, w, BTN_HEIGHT));
 
             add(new RedButton(TXT_PLUS) {
                 @Override
@@ -255,7 +249,7 @@ public class WndRatKing extends WndTabbed {
                     Dungeon.currentDifficulty.changeDamageOffset(0.1f);
                     updateMobStats();
                 }
-            }.setRect(WIDTH - w,  btMobHP.bottom() + GAP, w, BTN_HEIGHT));
+            }.setRect(WIDTH - w, btMobHP.bottom() + GAP, w, BTN_HEIGHT));
 
             btMobAtt = new RedButton("ATT: 100" + "%") {
                 @Override
@@ -263,7 +257,7 @@ public class WndRatKing extends WndTabbed {
 
                 }
             };
-            add(btMobAtt.setRect(w, btMobHP.bottom()  + GAP, WIDTH - 2 * w, BTN_HEIGHT));
+            add(btMobAtt.setRect(w, btMobHP.bottom() + GAP, WIDTH - 2 * w, BTN_HEIGHT));
 
             add(new RedButton(TXT_MINUS) {
                 @Override
@@ -271,7 +265,7 @@ public class WndRatKing extends WndTabbed {
                     Dungeon.currentDifficulty.changeDefenceOffset(0.1f);
                     updateMobStats();
                 }
-            }.setRect(0,  btMobAtt.bottom() + GAP, w, BTN_HEIGHT));
+            }.setRect(0, btMobAtt.bottom() + GAP, w, BTN_HEIGHT));
 
             add(new RedButton(TXT_PLUS) {
                 @Override
@@ -279,7 +273,7 @@ public class WndRatKing extends WndTabbed {
                     Dungeon.currentDifficulty.changeDefenceOffset(-0.1f);
                     updateMobStats();
                 }
-            }.setRect(WIDTH - w,  btMobAtt.bottom() + GAP, w, BTN_HEIGHT));
+            }.setRect(WIDTH - w, btMobAtt.bottom() + GAP, w, BTN_HEIGHT));
 
             btMobDef = new RedButton("Def: 100" + "%") {
                 @Override
@@ -288,7 +282,7 @@ public class WndRatKing extends WndTabbed {
                 }
             };
 
-            add(btMobDef.setRect(w, btMobAtt.bottom()  + GAP, WIDTH - 2 * w, BTN_HEIGHT));
+            add(btMobDef.setRect(w, btMobAtt.bottom() + GAP, WIDTH - 2 * w, BTN_HEIGHT));
 
             add(new RedButton(TXT_MINUS) {
                 @Override
@@ -296,7 +290,7 @@ public class WndRatKing extends WndTabbed {
                     Dungeon.currentDifficulty.ToggleNight(false);
                     updateMobStats();
                 }
-            }.setRect(0,  btMobDef.bottom() + GAP, w, BTN_HEIGHT));
+            }.setRect(0, btMobDef.bottom() + GAP, w, BTN_HEIGHT));
 
             add(new RedButton(TXT_PLUS) {
                 @Override
@@ -304,7 +298,7 @@ public class WndRatKing extends WndTabbed {
                     Dungeon.currentDifficulty.ToggleNight(true);
                     updateMobStats();
                 }
-            }.setRect(WIDTH - w,  btMobDef.bottom() + GAP, w, BTN_HEIGHT));
+            }.setRect(WIDTH - w, btMobDef.bottom() + GAP, w, BTN_HEIGHT));
 
             btDayNight = new RedButton("DAY NIGHT") {
                 @Override
@@ -312,9 +306,9 @@ public class WndRatKing extends WndTabbed {
 
                 }
             };
-            add(btDayNight.setRect(w, btMobDef.bottom()  + GAP, WIDTH - 2 * w, BTN_HEIGHT));
+            add(btDayNight.setRect(w, btMobDef.bottom() + GAP, WIDTH - 2 * w, BTN_HEIGHT));
 
-            if(maxHeight < (int) btDayNight.bottom() )
+            if (maxHeight < (int) btDayNight.bottom())
                 maxHeight = (int) btDayNight.bottom();
 
             resize(WIDTH, maxHeight);
@@ -339,30 +333,28 @@ public class WndRatKing extends WndTabbed {
         add(tabHero);
 
         tabHero.select(mode == Mode.HERO);
-	}
+    }
 
     @Override
-    protected void onClick( Tab tab ) {
-        parent.add(new WndRatKing(((StatsControl)tab).mode));
+    protected void onClick(Tab tab) {
+        parent.add(new WndRatKing(((StatsControl) tab).mode));
         hide();
     }
 
-	
-	private void updateEnabled() {
-		float zoom = Camera.main.zoom;
-		btnZoomIn.enable( zoom < PixelScene.maxZoom );
-		btnZoomOut.enable( zoom > PixelScene.minZoom );
-        btnChamps.text(String.format(TXT_CHAMPION_CHANCE, (Dungeon.currentDifficulty.championChance() * 10 + "%")));
-	}
 
-    private void updateMobStats()
-    {
-        btMobHP.text(String.format("HP: %s", ((int)(Dungeon.currentDifficulty.mobHPModifier() * 100) + "%")));
-        btMobAtt.text(String.format("ATT: %s", ((int)(Dungeon.currentDifficulty.damageModifier() * 100) + "%")));
-        btMobDef.text(String.format("Def: %s", ((int)((2 - Dungeon.currentDifficulty.mobDefenceModifier()) * 100) + "%")));
+    private void updateEnabled() {
+        float zoom = Camera.main.zoom;
+        btnZoomIn.enable(zoom < PixelScene.maxZoom);
+        btnZoomOut.enable(zoom > PixelScene.minZoom);
+        btnChamps.text(String.format(TXT_CHAMPION_CHANCE, (Dungeon.currentDifficulty.championChance() * 10 + "%")));
+    }
+
+    private void updateMobStats() {
+        btMobHP.text(String.format("HP: %s", ((int) (Dungeon.currentDifficulty.mobHPModifier() * 100) + "%")));
+        btMobAtt.text(String.format("ATT: %s", ((int) (Dungeon.currentDifficulty.damageModifier() * 100) + "%")));
+        btMobDef.text(String.format("Def: %s", ((int) ((2 - Dungeon.currentDifficulty.mobDefenceModifier()) * 100) + "%")));
         btDayNight.text(Dungeon.currentDifficulty.GetToggleNightDesc());
     }
-	
 
 
     private class StatsControl extends Tab {
@@ -374,23 +366,23 @@ public class WndRatKing extends WndTabbed {
             super();
             this.mode = mode;
             icon = Icons.get(getIcon());
-            add( icon );
+            add(icon);
 
         }
 
-        public Icons getIcon()
-        {
-            switch (mode)
-            {
-                case CHAMPIONS: return Icons.CHAMP_HALO;
-                case HERO: return Icons.MOB;
+        public Icons getIcon() {
+            switch (mode) {
+                case CHAMPIONS:
+                    return Icons.CHAMP_HALO;
+                case HERO:
+                    return Icons.MOB;
             }
-           return Icons.RAT_KING;
+            return Icons.RAT_KING;
         }
 
         @Override
-        protected void select( boolean value ) {
-            super.select( value );
+        protected void select(boolean value) {
+            super.select(value);
             icon.am = selected ? 1.0f : 0.6f;
         }
 
@@ -398,37 +390,35 @@ public class WndRatKing extends WndTabbed {
         protected void layout() {
             super.layout();
 
-            icon.copy( icon );
+            icon.copy(icon);
             icon.x = x + (width - icon.width) / 2;
             icon.y = y + (height - icon.height) / 2 - 2 - (selected ? 0 : 1);
             if (!selected && icon.y < y + CUT) {
                 RectF frame = icon.frame();
-                frame.top += (y  - icon.y) / icon.texture.height;
-                icon.frame( frame );
+                frame.top += (y - icon.y) / icon.texture.height;
+                icon.frame(frame);
                 icon.y = y;
             }
         }
     }
 
-    private class previewInformation extends Window
-    {
-        public previewInformation(Image image, String title, String description)
-        {
+    private class previewInformation extends Window {
+        public previewInformation(Image image, String title, String description) {
 
             IconTitle titlebar = new IconTitle();
-            titlebar.icon( image);
-            titlebar.label( Utils.capitalize(title), TITLE_COLOR );
-            titlebar.setRect( 0, 0, WIDTH - GAP, 0 );
-            add( titlebar );
+            titlebar.icon(image);
+            titlebar.label(Utils.capitalize(title), TITLE_COLOR);
+            titlebar.setRect(0, 0, WIDTH - GAP, 0);
+            add(titlebar);
 
-            BitmapTextMultiline txtInfo = PixelScene.createMultiline( description, 6 );
+            BitmapTextMultiline txtInfo = PixelScene.createMultiline(description, 6);
             txtInfo.maxWidth = WIDTH - GAP * 2;
             txtInfo.measure();
             txtInfo.x = titlebar.left();
             txtInfo.y = titlebar.bottom() + GAP;
-            add( txtInfo );
+            add(txtInfo);
 
-            resize( 100, (int) txtInfo.y + (int) txtInfo.height() + (int)GAP);
+            resize(100, (int) txtInfo.y + (int) txtInfo.height() + (int) GAP);
         }
     }
 }

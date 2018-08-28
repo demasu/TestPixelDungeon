@@ -21,10 +21,10 @@ import com.demasu.testpixeldungeon.ui.Icons;
 
 public class WndWelcome extends WndTitledMessage {
 
-	private static final String TXT_TITLE =  "Welcome";
+    private static final String TXT_TITLE = "Welcome";
 
-	public WndWelcome(String message) {
-		super( Icons.SKILLS.get(), TXT_TITLE, message );
-	}
+    public WndWelcome(String message) {
+        super(Icons.SKILLS.get(), TXT_TITLE, message);
+    }
 
 }

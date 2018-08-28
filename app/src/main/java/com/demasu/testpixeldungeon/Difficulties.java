@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public enum Difficulties {
 
-    NORMAL( 0 ), EASY( 1 ), HARD( 2 ), HELL( 3 ), SUICIDE( 4 ) , JUSTKILLME( 5 );
+    NORMAL(0), EASY(1), HARD(2), HELL(3), SUICIDE(4), JUSTKILLME(5);
 
 
     private int difficulty;
@@ -24,11 +24,12 @@ public enum Difficulties {
     public float defenceOffset = 0;
 
     public enum isNightOverwrite {DEFAULT, ALWAYS_DAY, ALWAYS_NIGHT}
+
     public isNightOverwrite isNight = isNightOverwrite.DEFAULT;
 
     private ArrayList<Integer> disabledChampions = new ArrayList<>();
 
-    private Difficulties( int difficulty ) {
+    private Difficulties(int difficulty) {
         this.difficulty = difficulty;
         championOffset = 0;
         hpOffset = 0;
@@ -138,24 +139,18 @@ public enum Difficulties {
         return "";
     }
 
-    public static String description(int difficulty)
-    {
+    public static String description(int difficulty) {
         try {
             return Difficulties.values()[difficulty].description();
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             return ""; // Invalid difficulty
         }
     }
 
-    public static String title(int difficulty)
-    {
+    public static String title(int difficulty) {
         try {
             return Difficulties.values()[difficulty].title();
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             return ""; // Invalid difficulty
         }
     }
@@ -183,8 +178,7 @@ public enum Difficulties {
         return 0;
     }
 
-    public float damageModifier()
-    {
+    public float damageModifier() {
         return naturalDamageModifier() + attOffset;
     }
 
@@ -286,9 +280,7 @@ public enum Difficulties {
     }
 
 
-
-    public int difficultyHPLevelPenalty()
-    {
+    public int difficultyHPLevelPenalty() {
         switch (this) {
             case EASY:
             case NORMAL:
@@ -304,8 +296,7 @@ public enum Difficulties {
         return 0;
     }
 
-    public int difficultyHPStartPenalty()
-    {
+    public int difficultyHPStartPenalty() {
         switch (this) {
             case EASY:
             case NORMAL:
@@ -321,8 +312,7 @@ public enum Difficulties {
         return 0;
     }
 
-    public void difficultyStartItemBonus()
-    {
+    public void difficultyStartItemBonus() {
         switch (this) {
             case EASY:
                 new PotionOfHealing().identify().collect();
@@ -334,8 +324,7 @@ public enum Difficulties {
     }
 
 
-    public void reset()
-    {
+    public void reset() {
         championOffset = 0;
         defenceOffset = 0;
         hpOffset = 0;
@@ -343,65 +332,57 @@ public enum Difficulties {
         disabledChampions.clear();
     }
 
-    public void changeDefenceOffset(float change)
-    {
+    public void changeDefenceOffset(float change) {
         defenceOffset += change;
-        if(mobDefenceModifier() > naturalMobDefenceModifier())
+        if (mobDefenceModifier() > naturalMobDefenceModifier())
             defenceOffset = 0;
-        if(mobDefenceModifier() < 0.1f)
+        if (mobDefenceModifier() < 0.1f)
             defenceOffset = 0.1f - naturalMobDefenceModifier();
     }
 
-    public void changeChampionOffset(int change)
-    {
+    public void changeChampionOffset(int change) {
         championOffset += change;
-        if(championChance() < championChanceNatural())
+        if (championChance() < championChanceNatural())
             championOffset = 0;
-        if(championChance() > 10)
+        if (championChance() > 10)
             championOffset = 10 - championChanceNatural();
     }
 
-    public void changeHPOffset(float change)
-    {
+    public void changeHPOffset(float change) {
         hpOffset += change;
-        if(mobHPModifier() < naturalMobHPModifier())
+        if (mobHPModifier() < naturalMobHPModifier())
             hpOffset = 0;
-        if(mobHPModifier() > 2f)
+        if (mobHPModifier() > 2f)
             hpOffset = 2f - naturalMobHPModifier();
     }
 
-    public void changeDamageOffset(float change)
-    {
+    public void changeDamageOffset(float change) {
         attOffset += change;
-        if(damageModifier() < naturalDamageModifier())
+        if (damageModifier() < naturalDamageModifier())
             attOffset = 0;
-        if(damageModifier() > 2f)
+        if (damageModifier() > 2f)
             attOffset = 2f - naturalDamageModifier();
     }
 
-    public boolean disableChampion(int champType)
-    {
+    public boolean disableChampion(int champType) {
         return disabledChampions.contains(champType);
     }
 
-    public boolean disableChampion(int champType, boolean disable)
-    {
-        if(disable && disabledChampions.size() == 3)
+    public boolean disableChampion(int champType, boolean disable) {
+        if (disable && disabledChampions.size() == 3)
             return false;
 
-        if(disable && disableChampion(champType) == false)
+        if (disable && disableChampion(champType) == false)
             disabledChampions.add(champType);
 
-        if(!disable && disableChampion(champType))
+        if (!disable && disableChampion(champType))
             disabledChampions.remove((Object) champType);
 
         return true;
     }
 
-    public void ToggleNight()
-    {
-        switch(isNight)
-        {
+    public void ToggleNight() {
+        switch (isNight) {
             case ALWAYS_DAY:
                 isNight = isNightOverwrite.ALWAYS_NIGHT;
                 break;
@@ -414,9 +395,8 @@ public enum Difficulties {
         }
     }
 
-    public void ToggleNight(boolean harder)
-    {
-        if(harder) {
+    public void ToggleNight(boolean harder) {
+        if (harder) {
             switch (isNight) {
                 case DEFAULT:
                     isNight = isNightOverwrite.ALWAYS_NIGHT;
@@ -425,9 +405,7 @@ public enum Difficulties {
                     isNight = isNightOverwrite.DEFAULT;
                     break;
             }
-        }
-        else
-        {
+        } else {
             switch (isNight) {
                 case DEFAULT:
                     isNight = isNightOverwrite.ALWAYS_DAY;
@@ -439,10 +417,8 @@ public enum Difficulties {
         }
     }
 
-    public String GetToggleNightDesc()
-    {
-        switch(isNight)
-        {
+    public String GetToggleNightDesc() {
+        switch (isNight) {
             case ALWAYS_DAY:
                 return "Always Day";
             case ALWAYS_NIGHT:
@@ -452,16 +428,18 @@ public enum Difficulties {
         }
         return "error";
     }
-    public static int getNormalizedDifficulty(int diff)
-    {
+
+    public static int getNormalizedDifficulty(int diff) {
         return diff == 0 ? 1 : (diff == 1 ? 0 : diff);
     }
 
-    static  String join (String delim, String ... data) {
+    static String join(String delim, String... data) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < data.length; i++) {
             sb.append(data[i]);
-            if (i >= data.length-1) {break;}
+            if (i >= data.length - 1) {
+                break;
+            }
             sb.append(delim);
         }
         return sb.toString();

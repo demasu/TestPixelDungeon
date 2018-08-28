@@ -25,8 +25,8 @@ import com.watabou.utils.Random;
 
 public class Champ extends Buff {
 
-    private static final String TYPE		= "type";
-    private static final String BONUS_APPLIED		= "bonusApplied";
+    private static final String TYPE = "type";
+    private static final String BONUS_APPLIED = "bonusApplied";
 
     public static final int CHAMP_CHIEF = 1;
     public static final int CHAMP_CURSED = 2;
@@ -35,21 +35,21 @@ public class Champ extends Buff {
 
     public int type = Random.Int(1, 5);
 
-    private  boolean bonusApplied = false;
+    private boolean bonusApplied = false;
 
-    private  boolean haloApplied = false;
+    private boolean haloApplied = false;
 
     @Override
-    public void storeInBundle( Bundle bundle ) {
-        super.storeInBundle( bundle );
-        bundle.put( TYPE, type );
-        bundle.put( BONUS_APPLIED, bonusApplied );
+    public void storeInBundle(Bundle bundle) {
+        super.storeInBundle(bundle);
+        bundle.put(TYPE, type);
+        bundle.put(BONUS_APPLIED, bonusApplied);
 
     }
 
     @Override
-    public void restoreFromBundle( Bundle bundle ) {
-        super.restoreFromBundle( bundle );
+    public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle(bundle);
         type = bundle.getInt(TYPE);
         bonusApplied = bundle.getBoolean(BONUS_APPLIED);
     }
@@ -57,32 +57,29 @@ public class Champ extends Buff {
     @Override
     public boolean act() {
 
-        if(bonusApplied == false)
-        {
+        if (bonusApplied == false) {
 
             bonusApplied = true;
             haloApplied = true;
-            do
-            {
+            do {
                 type = Random.Int(1, 5);
-                if(type == 5)
+                if (type == 5)
                     type = 4;
             }
-            while(Dungeon.currentDifficulty.disableChampion(type) == true);
+            while (Dungeon.currentDifficulty.disableChampion(type) == true);
 
             this.target.champ = type;
 
-            switch(type)
-            {
-                case 5: type = CHAMP_VAMPERIC;
+            switch (type) {
+                case 5:
+                    type = CHAMP_VAMPERIC;
                 case CHAMP_VAMPERIC: //red
                     this.target.name = "Vampiric " + this.target.name;
                     this.target.HT *= 1.5;
                     this.target.HP = this.target.HT;
-                    ((Mob)this.target).defenseSkill *= 1.1;
-                    if(target.sprite != null)
-                    {
-                        if(target.sprite.champRedHalo == null)
+                    ((Mob) this.target).defenseSkill *= 1.1;
+                    if (target.sprite != null) {
+                        if (target.sprite.champRedHalo == null)
                             target.sprite.add(CharSprite.State.CHAMPRED);
                     }
                     break;
@@ -90,10 +87,9 @@ public class Champ extends Buff {
                     this.target.name = "Chief " + this.target.name;
                     this.target.HT *= 2;
                     this.target.HP = this.target.HT;
-                    ((Mob)this.target).defenseSkill *= 1.3;
-                    if(target.sprite != null)
-                    {
-                        if(target.sprite.champWhiteHalo == null)
+                    ((Mob) this.target).defenseSkill *= 1.3;
+                    if (target.sprite != null) {
+                        if (target.sprite.champWhiteHalo == null)
                             target.sprite.add(CharSprite.State.CHAMPWHITE);
                     }
                     break;
@@ -101,10 +97,9 @@ public class Champ extends Buff {
                     this.target.name = "Cursed " + this.target.name;
                     this.target.HT *= 1.5;
                     this.target.HP = this.target.HT;
-                    ((Mob)this.target).defenseSkill *= 1.15;
-                    if(target.sprite != null)
-                    {
-                        if(target.sprite.champBlackHalo == null)
+                    ((Mob) this.target).defenseSkill *= 1.15;
+                    if (target.sprite != null) {
+                        if (target.sprite.champBlackHalo == null)
                             target.sprite.add(CharSprite.State.CHAMPBLACK);
                     }
                     break;
@@ -112,53 +107,45 @@ public class Champ extends Buff {
                     this.target.name = "Foul " + this.target.name;
                     this.target.HT *= 1.5;
                     this.target.HP = this.target.HT;
-                    ((Mob)this.target).defenseSkill *= 1.2;
-                    if(target.sprite != null)
-                    {
-                        if(target.sprite.champYellowHalo == null)
+                    ((Mob) this.target).defenseSkill *= 1.2;
+                    if (target.sprite != null) {
+                        if (target.sprite.champYellowHalo == null)
                             target.sprite.add(CharSprite.State.CHAMPYELLOW);
                     }
                     break;
 
             }
-        }
-        else if (haloApplied == false)
-        {
+        } else if (haloApplied == false) {
             haloApplied = true;
-            switch(type)
-            {
+            switch (type) {
                 case CHAMP_VAMPERIC: //red
                     this.target.name = "Vampiric " + this.target.name;
-                    ((Mob)this.target).defenseSkill *= 1.1;
-                    if(target.sprite != null)
-                    {
-                        if(target.sprite.champRedHalo == null)
+                    ((Mob) this.target).defenseSkill *= 1.1;
+                    if (target.sprite != null) {
+                        if (target.sprite.champRedHalo == null)
                             target.sprite.add(CharSprite.State.CHAMPRED);
                     }
                     break;
                 case CHAMP_CHIEF: //white
                     this.target.name = "Chief " + this.target.name;
-                    ((Mob)this.target).defenseSkill *= 1.3;
-                    if(target.sprite != null)
-                    {
-                        if(target.sprite.champWhiteHalo == null)
+                    ((Mob) this.target).defenseSkill *= 1.3;
+                    if (target.sprite != null) {
+                        if (target.sprite.champWhiteHalo == null)
                             target.sprite.add(CharSprite.State.CHAMPWHITE);
                     }
                     break;
                 case CHAMP_CURSED: //black
                     this.target.name = "Cursed " + this.target.name;
-                    ((Mob)this.target).defenseSkill *= 1.15;
-                    if(target.sprite != null)
-                    {
-                        if(target.sprite.champBlackHalo == null)
+                    ((Mob) this.target).defenseSkill *= 1.15;
+                    if (target.sprite != null) {
+                        if (target.sprite.champBlackHalo == null)
                             target.sprite.add(CharSprite.State.CHAMPBLACK);
                     }
                     break;
                 case CHAMP_FOUL: //yellow
-                    ((Mob)this.target).defenseSkill *= 1.2;
-                    if(target.sprite != null)
-                    {
-                        if(target.sprite.champYellowHalo == null)
+                    ((Mob) this.target).defenseSkill *= 1.2;
+                    if (target.sprite != null) {
+                        if (target.sprite.champYellowHalo == null)
                             target.sprite.add(CharSprite.State.CHAMPYELLOW);
                     }
                     break;
@@ -166,9 +153,8 @@ public class Champ extends Buff {
             }
         }
 
-        spend( TICK );
+        spend(TICK);
         if (target.isAlive()) {
-
 
 
         } else {
