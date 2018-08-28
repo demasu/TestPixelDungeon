@@ -403,6 +403,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
         }
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     public void showAlert() {
         if (emo instanceof EmoIcon.Alert) {
 

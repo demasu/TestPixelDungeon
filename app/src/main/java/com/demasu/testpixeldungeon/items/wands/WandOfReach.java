@@ -28,6 +28,7 @@ import com.demasu.testpixeldungeon.items.Dewdrop;
 import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.potions.Potion;
+import com.demasu.testpixeldungeon.items.potions.PotionOfMight;
 import com.demasu.testpixeldungeon.items.potions.PotionOfStrength;
 import com.demasu.testpixeldungeon.items.scrolls.Scroll;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfUpgrade;

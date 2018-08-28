@@ -61,6 +61,7 @@ import com.demasu.testpixeldungeon.effects.particles.PoisonParticle;
 import com.demasu.testpixeldungeon.items.weapon.melee.DualSwords;
 import com.demasu.testpixeldungeon.items.weapon.melee.NecroBlade;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Shuriken;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.Terrain;

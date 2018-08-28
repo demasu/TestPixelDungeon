@@ -160,7 +160,6 @@ public class Group extends Gizmo {
         if (index != -1) {
             members.set(index, null);
             g.parent = null;
-        } else {
         }
     }
 
@@ -169,7 +168,6 @@ public class Group extends Gizmo {
         if (members.remove(g)) {
             length--;
             g.parent = null;
-        } else {
         }
     }
 
@@ -248,7 +246,6 @@ public class Group extends Gizmo {
         if (members.contains(g)) {
             members.remove(g);
             members.add(g);
-        } else {
         }
     }
 
@@ -256,7 +253,6 @@ public class Group extends Gizmo {
         if (members.contains(g)) {
             members.remove(g);
             members.add(0, g);
-        } else {
         }
     }
 }
