@@ -50,6 +50,7 @@ public class PointF {
     }
 
     public PointF clone() {
+        PointF pointF = (PointF) super.clone();
         return new PointF(this);
     }
 

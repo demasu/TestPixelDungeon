@@ -125,6 +125,7 @@ public class MovieClip extends Image {
         }
 
         public Animation clone() {
+            Animation animation = (Animation) super.clone();
             return new Animation(Math.round(1 / delay), looped).frames(frames);
         }
     }
