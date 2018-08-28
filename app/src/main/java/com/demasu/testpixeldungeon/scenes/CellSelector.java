@@ -20,7 +20,7 @@ package com.demasu.testpixeldungeon.scenes;
 import com.watabou.input.Touchscreen.Touch;
 import com.watabou.noosa.TouchArea;
 import com.demasu.testpixeldungeon.DungeonTilemap;
-import com.demasu.testpixeldungeon.PixelDungeon;
+import com.demasu.testpixeldungeon.TestPixelDungeon;
 import com.watabou.utils.GameMath;
 import com.watabou.utils.PointF;
 

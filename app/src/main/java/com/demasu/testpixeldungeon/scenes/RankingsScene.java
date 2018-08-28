@@ -24,7 +24,7 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.ui.Button;
 import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.PixelDungeon;
+import com.demasu.testpixeldungeon.TestPixelDungeon;
 import com.demasu.testpixeldungeon.Rankings;
 import com.demasu.testpixeldungeon.effects.Flare;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;

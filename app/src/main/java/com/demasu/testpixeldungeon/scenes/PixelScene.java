@@ -32,7 +32,7 @@ import com.watabou.noosa.Scene;
 import com.watabou.noosa.Visual;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
-import com.demasu.testpixeldungeon.PixelDungeon;
+import com.demasu.testpixeldungeon.TestPixelDungeon;
 import com.demasu.testpixeldungeon.effects.BadgeBanner;
 import com.watabou.utils.BitmapCache;
 

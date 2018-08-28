@@ -28,7 +28,7 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.ui.Button;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
-import com.demasu.testpixeldungeon.PixelDungeon;
+import com.demasu.testpixeldungeon.TestPixelDungeon;
 import com.demasu.testpixeldungeon.effects.BadgeBanner;
 import com.demasu.testpixeldungeon.ui.Archs;
 import com.demasu.testpixeldungeon.ui.ExitButton;

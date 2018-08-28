@@ -17,7 +17,7 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import com.demasu.testpixeldungeon.PixelDungeon;
+import com.demasu.testpixeldungeon.TestPixelDungeon;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.NPC;
 import com.demasu.testpixeldungeon.ui.HighlightedText;
 import com.demasu.testpixeldungeon.ui.RedButton;

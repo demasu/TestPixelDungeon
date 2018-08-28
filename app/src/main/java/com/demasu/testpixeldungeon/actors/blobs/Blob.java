@@ -20,7 +20,7 @@ package com.demasu.testpixeldungeon.actors.blobs;
 import java.util.Arrays;
 
 import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.PixelDungeon;
+import com.demasu.testpixeldungeon.TestPixelDungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.effects.BlobEmitter;
 import com.demasu.testpixeldungeon.levels.Level;

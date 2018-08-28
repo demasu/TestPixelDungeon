@@ -18,7 +18,7 @@
 package com.demasu.testpixeldungeon.windows;
 
 import com.watabou.noosa.BitmapTextMultiline;
-import com.demasu.testpixeldungeon.PixelDungeon;
+import com.demasu.testpixeldungeon.TestPixelDungeon;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.Window;
 

@@ -33,7 +33,7 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.scenes.TitleScene;
 
-public class PixelDungeon extends Game {
+public class TestPixelDungeon extends Game {
 	
 	public PixelDungeon() {
 		super( TitleScene.class );

@@ -32,7 +32,7 @@ import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Difficulties;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.GamesInProgress;
-import com.demasu.testpixeldungeon.PixelDungeon;
+import com.demasu.testpixeldungeon.TestPixelDungeon;
 import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.demasu.testpixeldungeon.effects.BannerSprites;
 import com.demasu.testpixeldungeon.effects.BannerSprites.Type;
