@@ -93,7 +93,6 @@ public class WndCatalogus extends WndTabbed {
                         updateList();
                     }
 
-                    ;
                 },
                 new LabeledTab(TXT_SCROLLS) {
                     protected void select(boolean value) {
@@ -102,7 +101,6 @@ public class WndCatalogus extends WndTabbed {
                         updateList();
                     }
 
-                    ;
                 }
         };
         for (Tab tab : tabs) {

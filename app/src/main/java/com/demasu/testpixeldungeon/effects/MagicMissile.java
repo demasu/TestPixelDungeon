@@ -190,7 +190,6 @@ public class MagicMissile extends Emitter {
                 return true;
             }
 
-            ;
         };
 
         public MagicParticle() {
@@ -264,7 +263,6 @@ public class MagicMissile extends Emitter {
                 return true;
             }
 
-            ;
         };
 
         public WhiteParticle() {
@@ -307,7 +305,6 @@ public class MagicMissile extends Emitter {
                 return true;
             }
 
-            ;
         };
 
         public SlowParticle() {
@@ -379,7 +376,6 @@ public class MagicMissile extends Emitter {
                 return true;
             }
 
-            ;
         };
 
         public ColdParticle() {

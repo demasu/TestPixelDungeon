@@ -80,7 +80,6 @@ public class WandOfMagicCasting extends Wand {
 
     public enum CAST_TYPES {DARK_BOLT, DOMINANCE, SOUL_SPARK, SPARK}
 
-    ;
     public CAST_TYPES casting = CAST_TYPES.DARK_BOLT;
 
     protected static CellSelector.Listener zapper = new CellSelector.Listener() {

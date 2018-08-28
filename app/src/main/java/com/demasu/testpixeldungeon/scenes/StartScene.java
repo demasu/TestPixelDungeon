@@ -576,7 +576,6 @@ public class StartScene extends PixelScene {
                                 Icons.CHALLENGE_ON : Icons.CHALLENGE_OFF));
                     }
 
-                    ;
                 });
             } else {
                 StartScene.this.add(new WndMessage(TXT_WIN_THE_GAME));

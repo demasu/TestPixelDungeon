@@ -140,7 +140,6 @@ public class Potion extends Item {
                                 }
                             }
 
-                            ;
                         }
                 );
 
@@ -176,7 +175,6 @@ public class Potion extends Item {
                             }
                         }
 
-                        ;
                     }
             );
 

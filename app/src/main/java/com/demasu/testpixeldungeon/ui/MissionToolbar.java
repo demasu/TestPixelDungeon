@@ -92,14 +92,11 @@ public class MissionToolbar extends Component {
                 Dungeon.hero.rest(false);
             }
 
-            ;
-
             protected boolean onLongClick() {
                 Dungeon.hero.rest(true);
                 return true;
             }
 
-            ;
         });
 
         add(btnSkill = new Tool(20, 7, 20, 25) {
@@ -108,14 +105,11 @@ public class MissionToolbar extends Component {
                 GameScene.show(new WndSkills(null, null));
             }
 
-            ;
-
             protected boolean onLongClick() {
                 GameScene.show(new WndSkills(null, null));
                 return true;
             }
 
-            ;
         });
 
 
@@ -125,14 +119,11 @@ public class MissionToolbar extends Component {
                 Dungeon.hero.heroSkills.showLastUsed();
             }
 
-            ;
-
             protected boolean onLongClick() {
                 Dungeon.hero.heroSkills.showLastUsed();
                 return true;
             }
 
-            ;
         });
 
         add(btnMerc = new Tool(252, 7, 20, 25) {
@@ -142,14 +133,11 @@ public class MissionToolbar extends Component {
 
             }
 
-            ;
-
             protected boolean onLongClick() {
                 Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "I don't trust mercs");
                 return true;
             }
 
-            ;
         });
 
 
@@ -194,8 +182,6 @@ public class MissionToolbar extends Component {
                 return true;
             }
 
-            ;
-
             @Override
             protected void createChildren() {
                 super.createChildren();
@@ -203,15 +189,12 @@ public class MissionToolbar extends Component {
                 add(gold);
             }
 
-            ;
-
             @Override
             protected void layout() {
                 super.layout();
                 gold.fill(this);
             }
 
-            ;
         });
 
         add(btnQuick1 = new QuickslotTool(83, 7, 22, 25, true));

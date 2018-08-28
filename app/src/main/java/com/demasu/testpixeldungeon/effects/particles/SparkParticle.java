@@ -35,7 +35,6 @@ public class SparkParticle extends PixelParticle {
             return true;
         }
 
-        ;
     };
 
     public SparkParticle() {

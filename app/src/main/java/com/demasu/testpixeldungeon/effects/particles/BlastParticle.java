@@ -35,7 +35,6 @@ public class BlastParticle extends PixelParticle.Shrinking {
             return true;
         }
 
-        ;
     };
 
     public BlastParticle() {

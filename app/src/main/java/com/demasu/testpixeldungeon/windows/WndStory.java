@@ -74,8 +74,6 @@ public class WndStory extends Window {
                         "Very few adventurers have ever descended this far...");
     }
 
-    ;
-
     private BitmapTextMultiline tf;
 
     private float delay;

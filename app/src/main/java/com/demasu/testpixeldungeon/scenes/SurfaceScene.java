@@ -138,7 +138,6 @@ public class SurfaceScene extends PixelScene {
                 pet.jump();
             }
 
-            ;
         });
 
         for (int i = 0; i < nPatches; i++) {

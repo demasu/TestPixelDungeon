@@ -68,22 +68,16 @@ public class RedButton extends Button {
         }
     }
 
-    ;
-
     @Override
     protected void onTouchDown() {
         bg.brightness(1.2f);
         Sample.INSTANCE.play(Assets.SND_CLICK);
     }
 
-    ;
-
     @Override
     protected void onTouchUp() {
         bg.resetColor();
     }
-
-    ;
 
     public void enable(boolean value) {
         active = value;

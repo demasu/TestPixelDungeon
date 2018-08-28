@@ -163,7 +163,6 @@ public class Armor extends EquipableItem {
                 inscribe();
             }
         }
-        ;
 
         STR--;
 

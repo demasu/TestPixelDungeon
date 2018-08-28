@@ -34,7 +34,6 @@ public class ElmoParticle extends PixelParticle.Shrinking {
             return true;
         }
 
-        ;
     };
 
     public ElmoParticle() {
