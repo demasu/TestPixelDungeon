@@ -48,7 +48,6 @@ public class Point {
     }
 
     public Point clone() {
-        Point point = (Point) super.clone();
         return new Point(this);
     }
 
