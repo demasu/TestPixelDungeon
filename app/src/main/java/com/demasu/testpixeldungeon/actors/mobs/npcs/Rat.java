@@ -24,7 +24,7 @@ import java.util.HashSet;
 
 /* Retired class, use SummonedPet.java*/
 @SuppressWarnings("FieldCanBeLocal")
-public abstract class Rat extends NPC {
+abstract class Rat extends NPC {
 
     {
         name = "Summoned Rat";

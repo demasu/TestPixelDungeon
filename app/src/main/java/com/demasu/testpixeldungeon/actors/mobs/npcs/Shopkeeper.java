@@ -55,7 +55,7 @@ public class Shopkeeper extends NPC {
         flee();
     }
 
-    void flee() {
+    private void flee() {
         for (Heap heap : Dungeon.level.heaps.values()) {
             if (heap.type == Heap.Type.FOR_SALE) {
                 CellEmitter.get(heap.pos).burst(ElmoParticle.FACTORY, 4);

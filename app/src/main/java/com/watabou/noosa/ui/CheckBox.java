@@ -17,7 +17,7 @@
 
 package com.watabou.noosa.ui;
 
-public class CheckBox extends Button {
+class CheckBox extends Button {
 
     private boolean checked;
 
