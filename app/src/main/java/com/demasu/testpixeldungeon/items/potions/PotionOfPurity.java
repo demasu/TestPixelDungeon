@@ -56,9 +56,8 @@ public class PotionOfPurity extends Potion {
                 Dungeon.level.blobs.get(ParalyticGas.class)
         };
 
-        for (int j = 0; j < blobs.length; j++) {
+        for (Blob blob : blobs) {
 
-            Blob blob = blobs[j];
             if (blob == null) {
                 continue;
             }

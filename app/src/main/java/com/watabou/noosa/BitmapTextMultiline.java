@@ -68,13 +68,12 @@ public class BitmapTextMultiline extends BitmapText {
         // Current character (used in masking)
         int pos = 0;
 
-        for (int i = 0; i < paragraphs.length; i++) {
+        for (String paragraph : paragraphs) {
 
-            String[] words = WORD.split(paragraphs[i]);
+            String[] words = WORD.split(paragraph);
 
-            for (int j = 0; j < words.length; j++) {
+            for (String word : words) {
 
-                String word = words[j];
                 if (word.length() == 0) {
                     // This case is possible when there are
                     // several spaces coming along
@@ -164,9 +163,9 @@ public class BitmapTextMultiline extends BitmapText {
 
         String paragraphs[] = PARAGRAPH.split(text);
 
-        for (int i = 0; i < paragraphs.length; i++) {
+        for (String paragraph : paragraphs) {
 
-            String[] words = WORD.split(paragraphs[i]);
+            String[] words = WORD.split(paragraph);
 
             for (int j = 0; j < words.length; j++) {
 
@@ -286,13 +285,12 @@ public class BitmapTextMultiline extends BitmapText {
 
             String paragraphs[] = PARAGRAPH.split(text);
 
-            for (int i = 0; i < paragraphs.length; i++) {
+            for (String paragraph : paragraphs) {
 
-                String[] words = WORD.split(paragraphs[i]);
+                String[] words = WORD.split(paragraph);
 
-                for (int j = 0; j < words.length; j++) {
+                for (String word : words) {
 
-                    String word = words[j];
                     if (word.length() == 0) {
                         continue;
                     }

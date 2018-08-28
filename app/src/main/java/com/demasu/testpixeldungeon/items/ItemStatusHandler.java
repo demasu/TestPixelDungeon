@@ -78,9 +78,7 @@ public class ItemStatusHandler<T extends Item> {
         ArrayList<String> labelsLeft = new ArrayList<String>(Arrays.asList(allLabels));
         ArrayList<Integer> imagesLeft = new ArrayList<Integer>(Arrays.asList(allImages));
 
-        for (int i = 0; i < items.length; i++) {
-
-            Class<? extends T> item = items[i];
+        for (Class<? extends T> item : items) {
 
             int index = Random.Int(labelsLeft.size());
 
@@ -108,11 +106,11 @@ public class ItemStatusHandler<T extends Item> {
     private static final String PFX_KNOWN = "_known";
 
     public void save(Bundle bundle) {
-        for (int i = 0; i < items.length; i++) {
-            String itemName = items[i].toString();
-            bundle.put(itemName + PFX_IMAGE, images.get(items[i]));
-            bundle.put(itemName + PFX_LABEL, labels.get(items[i]));
-            bundle.put(itemName + PFX_KNOWN, known.contains(items[i]));
+        for (Class<? extends T> item : items) {
+            String itemName = item.toString();
+            bundle.put(itemName + PFX_IMAGE, images.get(item));
+            bundle.put(itemName + PFX_LABEL, labels.get(item));
+            bundle.put(itemName + PFX_KNOWN, known.contains(item));
         }
     }
 
@@ -121,9 +119,8 @@ public class ItemStatusHandler<T extends Item> {
         ArrayList<String> labelsLeft = new ArrayList<String>(Arrays.asList(allLabels));
         ArrayList<Integer> imagesLeft = new ArrayList<Integer>(Arrays.asList(allImages));
 
-        for (int i = 0; i < items.length; i++) {
+        for (Class<? extends T> item : items) {
 
-            Class<? extends T> item = items[i];
             String itemName = item.toString();
 
             if (bundle.contains(itemName + PFX_LABEL)) {
@@ -171,9 +168,9 @@ public class ItemStatusHandler<T extends Item> {
         known.add((Class<? extends T>) item.getClass());
 
         if (known.size() == items.length - 1) {
-            for (int i = 0; i < items.length; i++) {
-                if (!known.contains(items[i])) {
-                    known.add(items[i]);
+            for (Class<? extends T> item1 : items) {
+                if (!known.contains(item1)) {
+                    known.add(item1);
                     break;
                 }
             }

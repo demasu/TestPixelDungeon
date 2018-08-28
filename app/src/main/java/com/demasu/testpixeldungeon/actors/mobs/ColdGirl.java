@@ -379,8 +379,7 @@ public class ColdGirl extends Mob {
                     pos + 1 - Level.WIDTH,
                     pos + 1 + Level.WIDTH
             };
-            for (int i = 0; i < cells.length; i++) {
-                int cell = cells[i];
+            for (int cell : cells) {
                 Char ch = Actor.findChar(cell);
                 if (ch != null && ch != this && ch != Dungeon.hero && !(ch instanceof HiredMerc) && ch.HP > 0) {
                     trollMinion(ch);

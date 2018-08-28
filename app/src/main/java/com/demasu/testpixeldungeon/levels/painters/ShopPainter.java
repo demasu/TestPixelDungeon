@@ -69,10 +69,10 @@ public class ShopPainter extends Painter {
         if (range.length > maxItems) // too many items in shop, have to drop some
             skip = range.length - maxItems;
         int pos = xy2p(room, room.entrance()) + (per - range.length) / 2;
-        for (int i = 0; i < range.length; i++) {
+        for (Item aRange : range) {
 
             if (skip > 0) {
-                if (range[i] instanceof Ankh == false && range[i] instanceof Bag == false) {
+                if (aRange instanceof Ankh == false && aRange instanceof Bag == false) {
                     skip--;
                     continue; // Shop can't fit item and it's not important
                 }
@@ -87,7 +87,7 @@ public class ShopPainter extends Painter {
             }
 
 
-            level.drop(range[i], cell).type = Heap.Type.FOR_SALE;
+            level.drop(aRange, cell).type = Heap.Type.FOR_SALE;
 
             pos++;
         }

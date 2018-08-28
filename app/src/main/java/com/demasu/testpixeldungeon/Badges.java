@@ -184,9 +184,9 @@ public class Badges {
         HashSet<Badge> badges = new HashSet<Badge>();
 
         String[] names = bundle.getStringArray(BADGES);
-        for (int i = 0; i < names.length; i++) {
+        for (String name : names) {
             try {
-                badges.add(Badge.valueOf(names[i]));
+                badges.add(Badge.valueOf(name));
             } catch (Exception ignored) {
             }
         }

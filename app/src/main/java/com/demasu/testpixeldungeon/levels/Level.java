@@ -569,8 +569,8 @@ public abstract class Level implements Bundlable {
 
         } else {
             boolean flood = false;
-            for (int j = 0; j < NEIGHBOURS4.length; j++) {
-                if (water[pos + NEIGHBOURS4[j]]) {
+            for (int aNEIGHBOURS4 : NEIGHBOURS4) {
+                if (water[pos + aNEIGHBOURS4]) {
                     flood = true;
                     break;
                 }
@@ -588,8 +588,8 @@ public abstract class Level implements Bundlable {
 
             boolean d = false;
 
-            for (int j = 0; j < NEIGHBOURS9.length; j++) {
-                int n = i + NEIGHBOURS9[j];
+            for (int aNEIGHBOURS91 : NEIGHBOURS9) {
+                int n = i + aNEIGHBOURS91;
                 if (n >= 0 && n < LENGTH && map[n] != Terrain.WALL && map[n] != Terrain.WALL_DECO) {
                     d = true;
                     break;
@@ -599,8 +599,8 @@ public abstract class Level implements Bundlable {
             if (d) {
                 d = false;
 
-                for (int j = 0; j < NEIGHBOURS9.length; j++) {
-                    int n = i + NEIGHBOURS9[j];
+                for (int aNEIGHBOURS9 : NEIGHBOURS9) {
+                    int n = i + aNEIGHBOURS9;
                     if (n >= 0 && n < LENGTH && !pit[n]) {
                         d = true;
                         break;

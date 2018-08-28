@@ -74,8 +74,8 @@ public class HallsLevel extends RegularLevel {
             if (map[i] == Terrain.EMPTY) {
 
                 int count = 0;
-                for (int j = 0; j < NEIGHBOURS8.length; j++) {
-                    if ((Terrain.flags[map[i + NEIGHBOURS8[j]]] & Terrain.PASSABLE) > 0) {
+                for (int aNEIGHBOURS8 : NEIGHBOURS8) {
+                    if ((Terrain.flags[map[i + aNEIGHBOURS8]] & Terrain.PASSABLE) > 0) {
                         count++;
                     }
                 }
