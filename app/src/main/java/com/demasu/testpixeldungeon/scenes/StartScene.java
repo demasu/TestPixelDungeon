@@ -78,7 +78,7 @@ public class StartScene extends PixelScene {
     private static final float WIDTH_L = 224;
     private static final float HEIGHT_L = 124;
 
-    private static HashMap<HeroClass, ClassShield> shields = new HashMap<>();
+    private static final HashMap<HeroClass, ClassShield> shields = new HashMap<>();
 
     private float buttonX;
     private float buttonY;
@@ -434,7 +434,7 @@ public class StartScene extends PixelScene {
         private static final int HEIGHT = 28;
         private static final int SCALE = 2;
 
-        private HeroClass cl;
+        private final HeroClass cl;
 
         private Image avatar;
         private BitmapText name;
@@ -442,8 +442,8 @@ public class StartScene extends PixelScene {
 
         private float brightness;
 
-        private int normal;
-        private int highlighted;
+        private final int normal;
+        private final int highlighted;
 
         ClassShield(HeroClass cl) {
             super();

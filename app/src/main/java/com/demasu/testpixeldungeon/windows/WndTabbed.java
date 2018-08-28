@@ -32,7 +32,7 @@ import com.demasu.testpixeldungeon.ui.Window;
 
 public class WndTabbed extends Window {
 
-    ArrayList<Tab> tabs = new ArrayList<>();
+    final ArrayList<Tab> tabs = new ArrayList<>();
     private Tab selected;
 
     WndTabbed() {

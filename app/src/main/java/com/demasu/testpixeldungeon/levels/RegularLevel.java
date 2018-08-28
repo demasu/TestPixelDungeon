@@ -344,8 +344,9 @@ public abstract class RegularLevel extends Level {
         return new float[]{1, 1, 1, 1, 1, 1, 1, 1};
     }
 
+    @SuppressWarnings("CanBeFinal")
     int minRoomSize = 7;
-    private int maxRoomSize = 9;
+    private final int maxRoomSize = 9;
 
     private void split(Rect rect) {
 

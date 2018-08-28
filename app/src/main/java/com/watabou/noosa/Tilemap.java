@@ -28,21 +28,21 @@ import android.graphics.RectF;
 
 public class Tilemap extends Visual {
 
-    protected SmartTexture texture;
-    protected TextureFilm tileset;
+    protected final SmartTexture texture;
+    protected final TextureFilm tileset;
 
     private int[] data;
     private int mapWidth;
     private int mapHeight;
     private int size;
 
-    private float cellW;
-    private float cellH;
+    private final float cellW;
+    private final float cellH;
 
-    private float[] vertices;
+    private final float[] vertices;
     private FloatBuffer quads;
 
-    public Rect updated;
+    public final Rect updated;
 
     protected Tilemap(Object tx, TextureFilm tileset) {
 

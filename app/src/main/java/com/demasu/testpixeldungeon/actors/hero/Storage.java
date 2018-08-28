@@ -30,7 +30,7 @@ public class Storage implements Iterable<Item> {
 
     private static final int BACKPACK_SIZE = 5;
 
-    public Bag backpack;
+    public final Bag backpack;
 
 
     public Storage(Hero owner) {

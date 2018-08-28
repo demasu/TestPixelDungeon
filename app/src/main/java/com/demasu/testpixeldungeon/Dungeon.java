@@ -103,7 +103,7 @@ public class Dungeon {
     public static HashSet<Integer> chapters;
 
     // Hero's field of view
-    public static boolean[] visible = new boolean[Level.LENGTH];
+    public static final boolean[] visible = new boolean[Level.LENGTH];
 
     public static boolean nightMode;
 
@@ -699,7 +699,7 @@ public class Dungeon {
         GameScene.afterObserve();
     }
 
-    public static boolean[] passable = new boolean[Level.LENGTH];
+    public static final boolean[] passable = new boolean[Level.LENGTH];
 
     public static int findPath(Char ch, int from, int to, boolean pass[], boolean[] visible) {
 

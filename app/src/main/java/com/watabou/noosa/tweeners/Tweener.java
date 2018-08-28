@@ -22,9 +22,9 @@ import com.watabou.noosa.Gizmo;
 
 abstract public class Tweener extends Gizmo {
 
-    private Gizmo target;
+    private final Gizmo target;
 
-    private float interval;
+    private final float interval;
     private float elapsed;
 
     public Listener listener;

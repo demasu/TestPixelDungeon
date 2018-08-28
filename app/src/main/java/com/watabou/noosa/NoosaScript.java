@@ -29,13 +29,13 @@ import com.watabou.glwrap.Uniform;
 
 public class NoosaScript extends Script {
 
-    private Uniform uCamera;
-    public Uniform uModel;
-    private Uniform uTex;
-    private Uniform uColorM;
-    private Uniform uColorA;
-    private Attribute aXY;
-    private Attribute aUV;
+    private final Uniform uCamera;
+    public final Uniform uModel;
+    private final Uniform uTex;
+    private final Uniform uColorM;
+    private final Uniform uColorA;
+    private final Attribute aXY;
+    private final Attribute aUV;
 
     private Camera lastCamera;
 

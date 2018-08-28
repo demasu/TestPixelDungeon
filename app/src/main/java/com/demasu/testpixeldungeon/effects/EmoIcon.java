@@ -31,7 +31,7 @@ public class EmoIcon extends Image {
 
     private boolean growing = true;
 
-    private CharSprite owner;
+    private final CharSprite owner;
 
     EmoIcon(CharSprite owner) {
         super();

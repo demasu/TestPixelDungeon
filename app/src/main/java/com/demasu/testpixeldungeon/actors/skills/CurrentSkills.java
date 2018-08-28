@@ -37,7 +37,7 @@ public enum CurrentSkills {
 
     private boolean skillUnlocked = false;
 
-    public static Negotiations mercMenu = new Negotiations();
+    public static final Negotiations mercMenu = new Negotiations();
 
     CurrentSkills() {
     }

@@ -27,7 +27,7 @@ public class Framebuffer {
 
     public static final Framebuffer system = new Framebuffer();
 
-    private int id;
+    private final int id;
 
     private Framebuffer() {
         int[] buffers = new int[1];

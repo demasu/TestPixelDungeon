@@ -32,7 +32,7 @@ public class BitmapTextMultiline extends BitmapText {
     private static final Pattern PARAGRAPH = Pattern.compile("\n");
     private static final Pattern WORD = Pattern.compile("\\s+");
 
-    private float spaceSize;
+    private final float spaceSize;
 
     public int nLines = 0;
 
@@ -260,7 +260,7 @@ public class BitmapTextMultiline extends BitmapText {
         private StringBuilder curLine;
         private float curLineWidth;
 
-        private PointF metrics = new PointF();
+        private final PointF metrics = new PointF();
 
         private void newLine(String str, float width) {
             BitmapText txt = new BitmapText(curLine.toString(), font);

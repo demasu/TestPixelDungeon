@@ -86,7 +86,7 @@ public abstract class Char extends Actor {
 
     public boolean screams = true;
 
-    private String[] MOB_DEATH_SCREAMS = {
+    private final String[] MOB_DEATH_SCREAMS = {
             "...",
             "I will haunt your dreams...",
             "Too strong...",
@@ -96,7 +96,7 @@ public abstract class Char extends Actor {
             "I will be avenged..."
     };
 
-    private String[] RAT_DEATH_SCREAMS = {
+    private final String[] RAT_DEATH_SCREAMS = {
             "The Rat King will be victorious!",
             "The Rat King will avenge me!",
             "The Rat King shall prevail!",
@@ -106,7 +106,7 @@ public abstract class Char extends Actor {
             "The world is ours... all of its cheese too..."
     };
 
-    private String[] HERO_DEATH_SCREAM = {
+    private final String[] HERO_DEATH_SCREAM = {
             "Ouch!",
             "My face...",
             "I have failed",
@@ -114,13 +114,13 @@ public abstract class Char extends Actor {
             "Nerf it..."
     };
 
-    private String[] PET_FAREWELL = {
+    private final String[] PET_FAREWELL = {
             "Farewell...",
             "I have failed you...",
             "I just wanted some love..."
     };
 
-    private String[] MERC_FAREWELL = {
+    private final String[] MERC_FAREWELL = {
             "I didn't sign up for this...",
             "I want a raise..."
     };
@@ -146,7 +146,7 @@ public abstract class Char extends Actor {
 
     public int viewDistance = 8;
 
-    private HashSet<Buff> buffs = new HashSet<>();
+    private final HashSet<Buff> buffs = new HashSet<>();
 
     private String getDeathScream() {
         if (this instanceof Hero)

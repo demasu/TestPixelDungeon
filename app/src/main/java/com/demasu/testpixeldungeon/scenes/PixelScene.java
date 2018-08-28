@@ -272,9 +272,9 @@ public class PixelScene extends Scene {
 
     protected static class Fader extends ColorBlock {
 
-        private static float FADE_TIME = 1f;
+        private static final float FADE_TIME = 1f;
 
-        private boolean light;
+        private final boolean light;
 
         private float time;
 

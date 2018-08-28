@@ -175,8 +175,8 @@ public class Hero extends Char {
     public boolean restoreHealth = false;
 
     public MissileWeapon rangedWeapon = null;
-    public Belongings belongings;
-    public Storage storage;
+    public final Belongings belongings;
+    public final Storage storage;
 
     public int STR;
     public boolean weakened = false;
@@ -192,7 +192,7 @@ public class Hero extends Char {
 
 
     private ArrayList<Mob> visibleEnemies;
-    public static WandOfMagicCasting haxWand = new WandOfMagicCasting();
+    public static final WandOfMagicCasting haxWand = new WandOfMagicCasting();
 
     public Hero() {
         super();

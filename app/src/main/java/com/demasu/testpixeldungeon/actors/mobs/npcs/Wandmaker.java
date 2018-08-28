@@ -110,7 +110,7 @@ public class Wandmaker extends NPC {
         enum Type {
             ILLEGAL(null), BERRY(berryQuest), DUST(dustQuest), FISH(fishQuest);
 
-            QuestHandler handler;
+            final QuestHandler handler;
 
             Type(QuestHandler handler) {
                 this.handler = handler;

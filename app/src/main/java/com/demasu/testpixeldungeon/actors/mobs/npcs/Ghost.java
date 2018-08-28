@@ -156,7 +156,7 @@ public class Ghost extends NPC {
         enum Type {
             ILLEGAL(null), ROSE(roseQuest), RAT(ratQuest), CURSE(curseQuest);
 
-            QuestHandler handler;
+            final QuestHandler handler;
 
             Type(QuestHandler handler) {
                 this.handler = handler;

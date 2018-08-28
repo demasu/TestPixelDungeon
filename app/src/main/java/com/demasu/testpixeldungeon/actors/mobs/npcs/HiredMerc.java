@@ -48,7 +48,7 @@ public class HiredMerc extends NPC {
 
     public enum MERC_TYPES {
         Brute("Brute"), Wizard("Wizard"), Thief("Thief"), Archer("Archer"), ArcherMaiden("ArcherMaiden");
-        String type;
+        final String type;
 
         MERC_TYPES(String type) {
             this.type = type;
@@ -260,7 +260,7 @@ public class HiredMerc extends NPC {
         }
     }
 
-    public static boolean archerMaidenUnlocked = false;
+    public static final boolean archerMaidenUnlocked = false;
     public static final String MAIDEN_UNLOCK_BY = "Please consider donating to unlock this feature.";
     public static final int COST_RATE = 15;
 

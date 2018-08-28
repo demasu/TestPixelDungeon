@@ -71,16 +71,16 @@ public class WndStorage extends WndTabbed {
 
     private static final int TITLE_HEIGHT = 12;
 
-    private Listener listener;
-    private WndStorage.Mode mode;
+    private final Listener listener;
+    private final WndStorage.Mode mode;
 
-    private int nCols;
+    private final int nCols;
 
     private int count;
     private int col;
     private int row;
 
-    private boolean noDegrade = !PixelDungeon.itemDeg();
+    private final boolean noDegrade = !PixelDungeon.itemDeg();
 
     public WndStorage(Storage bag, Listener listener, Mode mode, String title) {
 
@@ -174,9 +174,9 @@ public class WndStorage extends WndTabbed {
 
     private class BagTab extends Tab {
 
-        private Image icon;
+        private final Image icon;
 
-        private Bag bag;
+        private final Bag bag;
 
         public BagTab(Bag bag) {
             super();
@@ -250,7 +250,7 @@ public class WndStorage extends WndTabbed {
 
         private static final int NBARS = 3;
 
-        private Item item;
+        private final Item item;
         private ColorBlock bg;
 
         private ColorBlock durability[];

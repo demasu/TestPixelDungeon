@@ -157,7 +157,7 @@ public class SewerLevel extends RegularLevel {
 
     private static class Sink extends Emitter {
 
-        private int pos;
+        private final int pos;
         private float rippleDelay = 0;
 
         private static final Emitter.Factory factory = new Factory() {

@@ -73,6 +73,7 @@ public abstract class Wand extends KindOfWeapon {
 
     private int usagesToKnow = USAGES_TO_KNOW;
 
+    @SuppressWarnings("CanBeFinal")
     boolean hitChars = true;
 
     private static final Class<?>[] wands = {
@@ -409,7 +410,7 @@ public abstract class Wand extends KindOfWeapon {
         curChargeKnown = bundle.getBoolean(CUR_CHARGE_KNOWN);
     }
 
-    private static CellSelector.Listener zapper = new CellSelector.Listener() {
+    private static final CellSelector.Listener zapper = new CellSelector.Listener() {
 
         @Override
         public void onSelect(Integer target) {

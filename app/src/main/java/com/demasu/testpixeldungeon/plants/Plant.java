@@ -43,8 +43,10 @@ import com.watabou.utils.Random;
 
 public class Plant implements Bundlable {
 
+    @SuppressWarnings("CanBeFinal")
     public String plantName;
 
+    @SuppressWarnings("CanBeFinal")
     public int image;
     public int pos;
 

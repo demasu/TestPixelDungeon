@@ -477,12 +477,12 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 
     private static class JumpTweener extends Tweener {
 
-        Visual visual;
+        final Visual visual;
 
-        PointF start;
-        PointF end;
+        final PointF start;
+        final PointF end;
 
-        float height;
+        final float height;
 
         JumpTweener(Visual visual, PointF pos, float height, float time) {
             super(visual, time);

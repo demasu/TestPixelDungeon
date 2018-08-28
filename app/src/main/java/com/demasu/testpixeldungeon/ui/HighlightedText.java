@@ -7,8 +7,8 @@ import com.watabou.utils.Highlighter;
 
 public class HighlightedText extends Component {
 
-    private BitmapTextMultiline normal;
-    private BitmapTextMultiline highlighted;
+    private final BitmapTextMultiline normal;
+    private final BitmapTextMultiline highlighted;
 
     protected int nColor = 0xFFFFFF;
     protected int hColor = 0xFFFF44;

@@ -38,8 +38,8 @@ public class Window extends Group implements Signal.Listener<Key> {
     protected int width;
     protected int height;
 
-    private TouchArea blocker;
-    protected ShadowBox shadow;
+    private final TouchArea blocker;
+    protected final ShadowBox shadow;
     protected NinePatch chrome;
 
     public static final int TITLE_COLOR = 0xFFFF44;

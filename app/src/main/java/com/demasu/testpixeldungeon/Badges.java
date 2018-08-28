@@ -146,10 +146,10 @@ public class Badges {
         CHAMPION("Challenge won", 39, true),
         SUPPORTER("Thanks for your support!", 31, true);
 
-        boolean meta;
+        final boolean meta;
 
-        public String description;
-        public int image;
+        public final String description;
+        public final int image;
 
         Badge(String description, int image) {
             this(description, image, false);

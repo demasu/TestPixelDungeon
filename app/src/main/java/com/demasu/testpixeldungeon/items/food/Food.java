@@ -38,7 +38,9 @@ public class Food extends Item {
 
     static final String AC_EAT = "EAT";
 
+    @SuppressWarnings("CanBeFinal")
     float energy = Hunger.HUNGRY;
+    @SuppressWarnings("CanBeFinal")
     String message = "That food tasted delicious!";
 
     {

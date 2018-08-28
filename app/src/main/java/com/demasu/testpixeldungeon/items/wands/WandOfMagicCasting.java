@@ -77,7 +77,7 @@ public class WandOfMagicCasting extends Wand {
 
     private CAST_TYPES casting = CAST_TYPES.DARK_BOLT;
 
-    private static CellSelector.Listener zapper = new CellSelector.Listener() {
+    private static final CellSelector.Listener zapper = new CellSelector.Listener() {
 
         @Override
         public void onSelect(Integer target) {

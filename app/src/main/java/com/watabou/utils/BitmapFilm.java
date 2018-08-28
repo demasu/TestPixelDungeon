@@ -24,9 +24,9 @@ import android.graphics.Rect;
 
 class BitmapFilm {
 
-    private Bitmap bitmap;
+    private final Bitmap bitmap;
 
-    private HashMap<Object, Rect> frames = new HashMap<>();
+    private final HashMap<Object, Rect> frames = new HashMap<>();
 
     public BitmapFilm(Bitmap bitmap) {
         this.bitmap = bitmap;

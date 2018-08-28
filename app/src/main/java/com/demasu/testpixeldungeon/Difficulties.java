@@ -12,19 +12,19 @@ public enum Difficulties {
     NORMAL(0), EASY(1), HARD(2), HELL(3), SUICIDE(4), JUSTKILLME(5);
 
 
-    public static boolean canDisableChampions = false;
+    public static final boolean canDisableChampions = false;
 
     private int championOffset;
     private float hpOffset;
     private float attOffset;
-    private float defOffset;
+    private final float defOffset;
     private float defenceOffset = 0;
 
     public enum isNightOverwrite {DEFAULT, ALWAYS_DAY, ALWAYS_NIGHT}
 
     public isNightOverwrite isNight = isNightOverwrite.DEFAULT;
 
-    private ArrayList<Integer> disabledChampions = new ArrayList<>();
+    private final ArrayList<Integer> disabledChampions = new ArrayList<>();
 
     Difficulties(int difficulty) {
         championOffset = 0;

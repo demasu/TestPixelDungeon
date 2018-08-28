@@ -26,7 +26,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class ChampWhiteHalo extends Halo {
 
-    private CharSprite target;
+    private final CharSprite target;
 
     private float phase = 0;
 

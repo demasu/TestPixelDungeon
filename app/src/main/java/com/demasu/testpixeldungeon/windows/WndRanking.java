@@ -59,7 +59,7 @@ public class WndRanking extends WndTabbed {
     private Thread thread;
     private String error = null;
 
-    private Image busy;
+    private final Image busy;
 
     public WndRanking(final String gameFile) {
 
@@ -127,7 +127,7 @@ public class WndRanking extends WndTabbed {
 
     private class RankingTab extends LabeledTab {
 
-        private Group page;
+        private final Group page;
 
         RankingTab(String label, Group page) {
             super(label);
@@ -348,7 +348,7 @@ public class WndRanking extends WndTabbed {
 
         static final int SIZE = 26;
 
-        Item item;
+        final Item item;
 
         ItemSlot slot;
         private ColorBlock bg;

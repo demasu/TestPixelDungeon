@@ -61,11 +61,14 @@ public abstract class Mob extends Char {
     private static final String TXT_EXP = "%+dEXP";
     private static final String TXT_EXP_CHAMP = "%+dEXP (Champion killed!)";
 
-    public AiState SLEEPEING = new Sleeping();
-    public AiState HUNTING = new Hunting();
+    public final AiState SLEEPEING = new Sleeping();
+    public final AiState HUNTING = new Hunting();
+
+    @SuppressWarnings("CanBeFinal")
     public AiState WANDERING = new Wandering();
+    @SuppressWarnings("CanBeFinal")
     AiState FLEEING = new Fleeing();
-    protected AiState PASSIVE = new Passive();
+    protected final AiState PASSIVE = new Passive();
     public AiState state = SLEEPEING;
 
     public Class<? extends CharSprite> spriteClass;
@@ -75,6 +78,8 @@ public abstract class Mob extends Char {
     public int defenseSkill = 0;
 
     protected int EXP = 1;
+
+    @SuppressWarnings("CanBeFinal")
     int maxLvl = 30;
 
     protected Char enemy;
@@ -88,6 +93,7 @@ public abstract class Mob extends Char {
     private static final String STATE = "state";
     private static final String TARGET = "target";
 
+    @SuppressWarnings("CanBeFinal")
     int range = 0;
 
     @Override
@@ -413,7 +419,9 @@ public abstract class Mob extends Char {
         }
     }
 
+    @SuppressWarnings("CanBeFinal")
     Object loot = null;
+    @SuppressWarnings("CanBeFinal")
     float lootChance = 0;
 
     @SuppressWarnings("unchecked")

@@ -26,6 +26,7 @@ public class Skill {
 
     private static final String SKILL_LEVEL = "LEVEL";
 
+    @SuppressWarnings("CanBeFinal")
     String tag = "";
 
     public static final int MAX_LEVEL = 3;
@@ -36,10 +37,15 @@ public class Skill {
 
     static final float TIME_TO_USE = 1f;
 
+    @SuppressWarnings("CanBeFinal")
     public String name = "Skill";
     String castText = "";
     public int level = 0;
+
+    @SuppressWarnings("CanBeFinal")
     int tier = 1;
+
+    @SuppressWarnings("CanBeFinal")
     int mana = 0;
     public int image = 0;
 

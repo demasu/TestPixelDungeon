@@ -52,10 +52,10 @@ public class WndSkills extends WndTabbed {
 
     private static final int TITLE_HEIGHT = 12;
 
-    private Listener listener;
-    private String title;
+    private final Listener listener;
+    private final String title;
 
-    private int nCols;
+    private final int nCols;
 
     private int count;
     private int col;
@@ -155,9 +155,9 @@ public class WndSkills extends WndTabbed {
 
     private class BagTab extends Tab {
 
-        private Image icon;
+        private final Image icon;
 
-        private Bag bag;
+        private final Bag bag;
 
         public BagTab(Bag bag) {
             super();
@@ -220,10 +220,10 @@ public class WndSkills extends WndTabbed {
         private static final int EQUIPPED = 0xFF63665B;
 
 
-        private Skill skill;
+        private final Skill skill;
         private ColorBlock bg;
 
-        private ColorBlock durability[];
+        private final ColorBlock[] durability;
 
         SkillButton(Skill skill) {
 

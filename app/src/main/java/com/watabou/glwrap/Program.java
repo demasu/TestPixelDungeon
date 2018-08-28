@@ -21,7 +21,7 @@ import android.opengl.GLES20;
 
 public class Program {
 
-    private int handle;
+    private final int handle;
 
     protected Program() {
         handle = GLES20.glCreateProgram();

@@ -79,7 +79,7 @@ public class WndMerc extends WndTabbed {
 
     protected static final int TITLE_HEIGHT = 12;
 
-    private Listener listener;
+    private final Listener listener;
     private WndMerc.Mode mode;
     private String title;
 
@@ -176,9 +176,9 @@ public class WndMerc extends WndTabbed {
 
     private class BagTab extends Tab {
 
-        private Image icon;
+        private final Image icon;
 
-        private Bag bag;
+        private final Bag bag;
 
         public BagTab(Bag bag) {
             super();
@@ -252,12 +252,12 @@ public class WndMerc extends WndTabbed {
 
         private static final int NBARS = 3;
 
-        private Item item;
+        private final Item item;
         private ColorBlock bg;
 
         private ColorBlock durability[];
 
-        boolean holdOnly;
+        final boolean holdOnly;
 
         ItemButton(Item item, boolean holdOnly) {
 
@@ -388,10 +388,10 @@ public class WndMerc extends WndTabbed {
         private static final int EQUIPPED = 0xFF63665B;
 
 
-        private Skill skill;
+        private final Skill skill;
         private ColorBlock bg;
 
-        private ColorBlock durability[];
+        private final ColorBlock[] durability;
 
         SkillButton(Skill skill) {
 

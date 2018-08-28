@@ -398,7 +398,7 @@ public class MovieLevel extends Level {
 
         SkelEnemy skeleton1, skeleton2, skeleton3, skeleton4, skeleton5, skeleton6, skeleton7;
 
-        ArrayList<WraithEnemy> listWraiths = new ArrayList<>();
+        final ArrayList<WraithEnemy> listWraiths = new ArrayList<>();
 
         @Override
         public boolean act() {

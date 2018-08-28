@@ -53,8 +53,8 @@ public class Generator {
         Class<?>[] classes;
         float[] probs;
 
-        float prob;
-        Class<? extends Item> superClass;
+        final float prob;
+        final Class<? extends Item> superClass;
 
         Category(float prob, Class<? extends Item> superClass) {
             this.prob = prob;
@@ -72,7 +72,7 @@ public class Generator {
         }
     }
 
-    private static HashMap<Category, Float> categoryProbs = new HashMap<>();
+    private static final HashMap<Category, Float> categoryProbs = new HashMap<>();
 
     static {
 

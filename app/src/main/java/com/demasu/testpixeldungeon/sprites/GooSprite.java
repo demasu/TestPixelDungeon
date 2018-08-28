@@ -27,7 +27,7 @@ import com.watabou.utils.Random;
 
 public class GooSprite extends MobSprite {
 
-    private Animation pump;
+    private final Animation pump;
 
     private Emitter spray;
 

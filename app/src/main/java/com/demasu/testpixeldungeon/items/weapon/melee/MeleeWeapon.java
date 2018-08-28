@@ -25,7 +25,7 @@ import com.watabou.utils.Random;
 
 public class MeleeWeapon extends Weapon {
 
-    private int tier;
+    private final int tier;
 
     MeleeWeapon(int tier, float acu, float dly) {
         super();

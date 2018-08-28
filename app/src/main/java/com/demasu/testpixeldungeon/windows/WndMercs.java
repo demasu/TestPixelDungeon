@@ -65,7 +65,7 @@ public class WndMercs extends WndTabbed {
     }
 
     private float pos;
-    private float GAP = 2;
+    private final float GAP = 2;
 
     private static final int WIDTH_P = 120;
     private static final int WIDTH_L = 144;
@@ -763,7 +763,7 @@ public class WndMercs extends WndTabbed {
 
         private Image icon;
 
-        Mode mode;
+        final Mode mode;
 
         MercenaryTab(Mode mode) {
             super();
@@ -821,8 +821,8 @@ public class WndMercs extends WndTabbed {
 
         private static final int GAP = 2;
 
-        private SkillSprite image;
-        private BitmapText title;
+        private final SkillSprite image;
+        private final BitmapText title;
 
 
         public MercenaryTitle(int image, String name) {
