@@ -105,6 +105,7 @@ public class WandOfReach extends Wand {
         Item item = heap.pickUp();
         if (item.doPickUp(curUser)) {
 
+            //noinspection StatementWithEmptyBody
             if (item instanceof Dewdrop) {
                 // Do nothing
             } else {

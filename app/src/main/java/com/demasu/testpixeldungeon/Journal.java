@@ -17,6 +17,8 @@
  */
 package com.demasu.testpixeldungeon;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 
 import com.watabou.utils.Bundlable;
@@ -62,7 +64,7 @@ public class Journal {
         }
 
         @Override
-        public int compareTo(Record another) {
+        public int compareTo(@NonNull Record another) {
             return another.depth - depth;
         }
 

@@ -17,6 +17,8 @@
  */
 package com.demasu.testpixeldungeon.actors.hero;
 
+import android.support.annotation.NonNull;
+
 import java.util.Iterator;
 
 import com.demasu.testpixeldungeon.Badges;
@@ -197,7 +199,8 @@ public class Belongings implements Iterable<Item> {
                 if (((Key) item).depth == depth) {
                     item.detachAll(backpack);
                 }
-            } else if (item.unique) {
+            } else //noinspection StatementWithEmptyBody
+                if (item.unique) {
                 // Keep unique items
             } else if (!item.isEquipped(owner)) {
                 item.detachAll(backpack);
@@ -261,6 +264,7 @@ public class Belongings implements Iterable<Item> {
         return count;
     }
 
+    @NonNull
     @Override
     public Iterator<Item> iterator() {
         return new ItemIterator();

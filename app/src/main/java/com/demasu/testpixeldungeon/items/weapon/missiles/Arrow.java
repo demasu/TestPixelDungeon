@@ -137,6 +137,7 @@ public class Arrow extends MissileWeapon {
         GLog.i(chars.size() + " targets");
         boolean hitOne = false;
         for (Char ch : chars) {
+            //noinspection StatementWithEmptyBody
             if (!curUser.shootThrough(ch, this)) {
 
             } else

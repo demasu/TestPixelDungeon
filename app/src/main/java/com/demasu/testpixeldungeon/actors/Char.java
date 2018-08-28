@@ -305,6 +305,7 @@ public abstract class Char extends Actor {
             if (!enemy.isAlive() && visibleFight) {
                 if (enemy == Dungeon.hero) {
 
+                    //noinspection StatementWithEmptyBody
                     if (Dungeon.hero.killerGlyph != null) {
 
                         // FIXME

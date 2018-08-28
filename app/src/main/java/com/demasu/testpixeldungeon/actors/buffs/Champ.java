@@ -152,6 +152,7 @@ public class Champ extends Buff {
         }
 
         spend(TICK);
+        //noinspection StatementWithEmptyBody
         if (target.isAlive()) {
 
 

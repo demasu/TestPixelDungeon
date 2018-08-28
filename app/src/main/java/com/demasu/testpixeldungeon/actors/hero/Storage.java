@@ -17,6 +17,8 @@
  */
 package com.demasu.testpixeldungeon.actors.hero;
 
+import android.support.annotation.NonNull;
+
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.bags.Bag;
 //import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
@@ -56,6 +58,7 @@ public class Storage implements Iterable<Item> {
 
     }
 
+    @NonNull
     @Override
     public Iterator<Item> iterator() {
         return new ItemIterator();

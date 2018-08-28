@@ -17,6 +17,8 @@
  */
 package com.demasu.testpixeldungeon.items.bags;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -147,6 +149,7 @@ public class Bag extends Item implements Iterable<Item> {
         return false;
     }
 
+    @NonNull
     @Override
     public Iterator<Item> iterator() {
         return new ItemIterator();

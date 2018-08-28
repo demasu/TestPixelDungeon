@@ -234,6 +234,7 @@ public abstract class RegularLevel extends Level {
         for (Room r : rooms) {
             if (r.type == Type.NULL) {
                 int connections = r.connected.size();
+                //noinspection StatementWithEmptyBody
                 if (connections == 0) {
 
                 } else if (Random.Int(connections * connections) == 0) {

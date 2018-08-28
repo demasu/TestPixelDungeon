@@ -76,6 +76,7 @@ public class WellWater extends Blob {
 
             if (newItem != null) {
 
+                //noinspection StatementWithEmptyBody
                 if (newItem == oldItem) {
 
                 } else if (oldItem.quantity() > 1) {

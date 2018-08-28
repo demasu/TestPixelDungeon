@@ -553,6 +553,7 @@ public class ColdGirl extends Mob {
             if (!enemy.isAlive() && visibleFight) {
                 if (enemy == Dungeon.hero) {
 
+                    //noinspection StatementWithEmptyBody
                     if (Dungeon.hero.killerGlyph != null) {
 
                         // FIXME

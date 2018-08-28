@@ -286,6 +286,7 @@ public class BitmapText extends Visual {
             for (int i = 0; i < length; i++) {
 
                 char ch = chars.charAt(i);
+                //noinspection StatementWithEmptyBody
                 if (ch == ' ') {
                 } else {
 

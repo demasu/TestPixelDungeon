@@ -47,9 +47,8 @@ public class StandardPainter extends Painter {
                             return;
                         }
                         break;
-                    } else {
-                        // Burned room
-                    }
+                    }  // Burned room
+
                 case 1:
                     if (Dungeon.depth > 1) {
                         paintBurned(level, room);
@@ -75,9 +74,8 @@ public class StandardPainter extends Painter {
                             return;
                         }
                         break;
-                    } else {
-                        // Fissure
-                    }
+                    }  // Fissure
+
                 case 5:
                     if (!Dungeon.bossLevel() && !Dungeon.bossLevel(Dungeon.depth + 1) &&
                             Math.min(room.width(), room.height()) >= 5) {

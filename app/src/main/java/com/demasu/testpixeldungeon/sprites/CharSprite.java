@@ -385,6 +385,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
     }
 
     public void showSleep() {
+        //noinspection StatementWithEmptyBody
         if (emo instanceof EmoIcon.Sleep) {
 
         } else {

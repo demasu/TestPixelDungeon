@@ -928,9 +928,6 @@ public class FirstWave extends Level {
                         skeleton6.sprite.move(skeleton6.pos, skeleton6.pos - WIDTH);
                         //skeleton7.sprite.move(skeleton7.pos, skeleton7.pos - 2 * WIDTH);
                     }
-                    if (counter == 125) {
-                        //skeleton4.sprite.die();
-                    }
                     if (counter == 160) {
                         //skeleton1.sprite.move(skeleton1.pos, skeleton1.pos - 3 * WIDTH);
                         skeleton3.sprite.move(skeleton3.pos, skeleton3.pos - 3 * WIDTH);

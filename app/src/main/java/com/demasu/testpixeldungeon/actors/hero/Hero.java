@@ -723,6 +723,7 @@ public class Hero extends Char {
                 Item item = heap.pickUp();
                 if (item.doPickUp(this)) {
 
+                    //noinspection StatementWithEmptyBody
                     if (item instanceof Dewdrop) {
                         // Do nothing
                     } else {

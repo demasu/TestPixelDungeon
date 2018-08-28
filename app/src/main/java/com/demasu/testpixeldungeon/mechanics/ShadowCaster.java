@@ -91,6 +91,7 @@ public final class ShadowCaster {
 
                     int pos = y * WIDTH + x;
 
+                    //noinspection StatementWithEmptyBody
                     if (obs.isBlocked(a0) && obs.isBlocked(a1) && obs.isBlocked(a2)) {
                         // Do nothing
                     } else {
