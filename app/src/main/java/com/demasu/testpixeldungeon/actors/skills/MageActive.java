@@ -18,7 +18,7 @@ public class MageActive extends BranchSkill {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<String>();
+        ArrayList<String> actions = new ArrayList<>();
         if (canUpgrade())
             actions.add(AC_ADVANCE);
         return actions;

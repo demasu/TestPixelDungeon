@@ -32,7 +32,7 @@ import com.demasu.testpixeldungeon.windows.WndBadge;
 
 public class BadgesList extends ScrollPane {
 
-    private ArrayList<ListItem> items = new ArrayList<ListItem>();
+    private final ArrayList<ListItem> items = new ArrayList<>();
 
     public BadgesList(boolean global) {
         super(new Component());
@@ -78,12 +78,12 @@ public class BadgesList extends ScrollPane {
 
         private static final float HEIGHT = 20;
 
-        private Badges.Badge badge;
+        private final Badges.Badge badge;
 
         private Image icon;
         private BitmapText label;
 
-        public ListItem(Badges.Badge badge) {
+        ListItem(Badges.Badge badge) {
             super();
 
             this.badge = badge;
@@ -109,7 +109,7 @@ public class BadgesList extends ScrollPane {
             label.y = PixelScene.align(y + (height - label.baseLine()) / 2);
         }
 
-        public boolean onClick(float x, float y) {
+        boolean onClick(float x, float y) {
             if (inside(x, y)) {
                 Sample.INSTANCE.play(Assets.SND_CLICK, 0.7f, 0.7f, 1.2f);
                 Game.scene().add(new WndBadge(badge));

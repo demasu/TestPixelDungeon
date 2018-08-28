@@ -53,8 +53,6 @@ public class RankingsScene extends PixelScene {
 
     private static final float GAP = 4;
 
-    private Archs archs;
-
     @Override
     public void create() {
 
@@ -68,7 +66,7 @@ public class RankingsScene extends PixelScene {
         int w = Camera.main.width;
         int h = Camera.main.height;
 
-        archs = new Archs();
+        Archs archs = new Archs();
         archs.setSize(w, h);
         add(archs);
 
@@ -146,7 +144,7 @@ public class RankingsScene extends PixelScene {
         PixelDungeon.switchNoFade(TitleScene.class);
     }
 
-    public static class Record extends Button {
+    protected static class Record extends Button {
 
         private static final float GAP = 4;
 
@@ -155,7 +153,7 @@ public class RankingsScene extends PixelScene {
         private static final int FLARE_WIN = 0x888866;
         private static final int FLARE_LOSE = 0x666666;
 
-        private Rankings.Record rec;
+        private final Rankings.Record rec;
 
         private ItemSprite shield;
         private Flare flare;
@@ -163,7 +161,7 @@ public class RankingsScene extends PixelScene {
         private BitmapTextMultiline desc;
         private Image classIcon;
 
-        public Record(int pos, boolean latest, Rankings.Record rec) {
+        Record(int pos, boolean latest, Rankings.Record rec) {
             super();
 
             this.rec = rec;

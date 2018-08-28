@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -29,21 +30,22 @@ public class BitmapCache {
 
     private static final String DEFAULT = "__default";
 
-    private static HashMap<String, Layer> layers = new HashMap<String, BitmapCache.Layer>();
+    private static final HashMap<String, Layer> layers = new HashMap<>();
 
-    private static BitmapFactory.Options opts = new BitmapFactory.Options();
+    private static final BitmapFactory.Options opts = new BitmapFactory.Options();
 
     static {
         opts.inDither = false;
     }
 
-    public static Context context;
+    @SuppressLint("StaticFieldLeak")
+	public static Context context;
 
     public static Bitmap get(String assetName) {
         return get(DEFAULT, assetName);
     }
 
-    public static Bitmap get(String layerName, String assetName) {
+    private static Bitmap get(String layerName, String assetName) {
 
         Layer layer;
         if (!layers.containsKey(layerName)) {
@@ -73,7 +75,7 @@ public class BitmapCache {
         return get(DEFAULT, resID);
     }
 
-    public static Bitmap get(String layerName, int resID) {
+    private static Bitmap get(String layerName, int resID) {
 
         Layer layer;
         if (!layers.containsKey(layerName)) {

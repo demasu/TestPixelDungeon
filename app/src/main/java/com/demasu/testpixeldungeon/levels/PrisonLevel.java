@@ -164,9 +164,9 @@ public class PrisonLevel extends RegularLevel {
 
     private static class Torch extends Emitter {
 
-        private int pos;
+        private final int pos;
 
-        public Torch(int pos) {
+        Torch(int pos) {
             super();
 
             this.pos = pos;

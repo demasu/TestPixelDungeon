@@ -27,7 +27,7 @@ import com.watabou.utils.Bundle;
 
 public class Alchemy extends Blob {
 
-    protected int pos;
+    private int pos;
 
     @Override
     public void restoreFromBundle(Bundle bundle) {

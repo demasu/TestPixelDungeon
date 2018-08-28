@@ -17,7 +17,7 @@
 
 package com.watabou.noosa;
 
-public interface Resizable {
+interface Resizable {
 
     void size(float width, float height);
 

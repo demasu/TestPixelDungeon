@@ -21,10 +21,10 @@ import java.util.ArrayList;
 public class Negotiations extends BranchSkill { // Not actually a skill but best way to do it
 
 
-    public static final String TXT_HIRE_BRUTE = "Brute";
-    public static final String TXT_HIRE_THIEF = "Thief";
-    public static final String TXT_HIRE_WIZARD = "Wizard";
-    public static final String TXT_HIRE_ARCHER = "Archer";
+    private static final String TXT_HIRE_BRUTE = "Brute";
+    private static final String TXT_HIRE_THIEF = "Thief";
+    private static final String TXT_HIRE_WIZARD = "Wizard";
+    private static final String TXT_HIRE_ARCHER = "Archer";
     public static final String TXT_HIRE_ARCHER_MAIDEN = "Archer-Maiden";
 
 
@@ -35,7 +35,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<String>();
+        ArrayList<String> actions = new ArrayList<>();
         if (hero.hiredMerc == null) {
             if (hero.heroClass != HeroClass.WARRIOR)
                 actions.add(TXT_HIRE_BRUTE);
@@ -65,7 +65,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
             for (int nu = 0; nu < 1; nu++) {
                 int newPos = hero.pos;
                 if (Actor.findChar(newPos) != null) {
-                    ArrayList<Integer> candidates = new ArrayList<Integer>();
+                    ArrayList<Integer> candidates = new ArrayList<>();
                     boolean[] passable = Level.passable;
 
                     for (int n : Level.NEIGHBOURS4) {
@@ -76,12 +76,17 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                     }
                     newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
                     if (newPos != -1) {
-                        if (action == TXT_HIRE_ARCHER_MAIDEN)
-                            hero.hiredMerc = new HiredMerc(HiredMerc.MERC_TYPES.ArcherMaiden);
-                        else if (action == TXT_HIRE_ARCHER)
-                            hero.hiredMerc = new HiredMerc(HiredMerc.MERC_TYPES.Archer);
-                        else
-                            hero.hiredMerc = action == TXT_HIRE_BRUTE ? new HiredMerc(HiredMerc.MERC_TYPES.Brute) : (action == TXT_HIRE_THIEF ? new HiredMerc(HiredMerc.MERC_TYPES.Thief) : new HiredMerc(HiredMerc.MERC_TYPES.Wizard));
+                        switch (action) {
+                            case TXT_HIRE_ARCHER_MAIDEN:
+                                hero.hiredMerc = new HiredMerc(HiredMerc.MERC_TYPES.ArcherMaiden);
+                                break;
+                            case TXT_HIRE_ARCHER:
+                                hero.hiredMerc = new HiredMerc(HiredMerc.MERC_TYPES.Archer);
+                                break;
+                            default:
+                                hero.hiredMerc = action == TXT_HIRE_BRUTE ? new HiredMerc(HiredMerc.MERC_TYPES.Brute) : (action == TXT_HIRE_THIEF ? new HiredMerc(HiredMerc.MERC_TYPES.Thief) : new HiredMerc(HiredMerc.MERC_TYPES.Wizard));
+                                break;
+                        }
                         hero.hiredMerc.spawn(Dungeon.hero.lvl);
                         hero.hiredMerc.pos = newPos;
                         GameScene.add(hero.hiredMerc);
@@ -93,7 +98,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                 }
             }
 
-            if (spawned == true) {
+            if (spawned) {
                 Dungeon.gold -= getGoldCost();
                 GLog.p(" " + action + " hired for " + getGoldCost() + " gold! ");
             }
@@ -122,11 +127,11 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
         }
     }
 
-    public int getGoldCost() {
-        return Dungeon.hero.lvl * 0;
+    private int getGoldCost() {
+        return 0;
     }
 
-    public String getHireText() {
+    private String getHireText() {
         return "\nHiring a level " + Dungeon.hero.lvl + " merc costs " + getGoldCost() + " gold.";
     }
 

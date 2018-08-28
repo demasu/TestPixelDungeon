@@ -68,7 +68,7 @@ public class Toolbar extends Component {
 
     private boolean lastEnabled = true;
 
-    public static boolean tapAgainToSearch = false;
+    private static boolean tapAgainToSearch = false;
 
     private static Toolbar instance;
 
@@ -174,7 +174,7 @@ public class Toolbar extends Component {
         add(btnInfoSearch = new Tool(107, 7, 20, 25) {
             @Override
             protected void onClick() {
-                if (tapAgainToSearch == false) {
+                if (!tapAgainToSearch) {
                     GameScene.selectCell(informer);
                 } else {
                     Dungeon.hero.search(true);
@@ -283,7 +283,7 @@ public class Toolbar extends Component {
         instance.layout();
     }
 
-    private static CellSelector.Listener informer = new CellSelector.Listener() {
+    private static final CellSelector.Listener informer = new CellSelector.Listener() {
         @Override
         public void onSelect(Integer cell) {
 
@@ -343,9 +343,9 @@ public class Toolbar extends Component {
 
         private static final int BGCOLOR = 0x7B8073;
 
-        protected Image base;
+        Image base;
 
-        public Tool(int x, int y, int width, int height) {
+        Tool(int x, int y, int width, int height) {
             super();
 
             base.frame(x, y, width, height);
@@ -384,7 +384,7 @@ public class Toolbar extends Component {
             }
         }
 
-        public void enable(boolean value) {
+        void enable(boolean value) {
             if (value != active) {
                 if (value) {
                     base.resetColor();
@@ -400,7 +400,7 @@ public class Toolbar extends Component {
 
         private QuickSlot slot;
 
-        public QuickslotTool(int x, int y, int width, int height, boolean primary) {
+        QuickslotTool(int x, int y, int width, int height, boolean primary) {
             super(x, y, width, height);
             if (primary) {
                 slot.primary();
@@ -439,7 +439,7 @@ public class Toolbar extends Component {
         private float dstY;
         private float left;
 
-        public PickedUpItem() {
+        PickedUpItem() {
             super();
 
             originToCenter();
@@ -449,7 +449,7 @@ public class Toolbar extends Component {
                             false;
         }
 
-        public void reset(Item item, float dstX, float dstY) {
+        void reset(Item item, float dstX, float dstY) {
             view(item.image(), item.glowing());
 
             active =

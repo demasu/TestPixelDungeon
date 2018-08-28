@@ -61,31 +61,26 @@ public class WndStorage extends WndTabbed {
         SEED
     }
 
-    protected static final int COLS_P = 4;
-    protected static final int COLS_L = 6;
+    private static final int COLS_P = 4;
+    private static final int COLS_L = 6;
 
-    protected static final int SLOT_SIZE = 28;
-    protected static final int SLOT_MARGIN = 1;
+    private static final int SLOT_SIZE = 28;
+    private static final int SLOT_MARGIN = 1;
 
     protected static final int TAB_WIDTH = 25;
 
-    protected static final int TITLE_HEIGHT = 12;
+    private static final int TITLE_HEIGHT = 12;
 
-    private Listener listener;
-    private WndStorage.Mode mode;
-    private String title;
+    private final Listener listener;
+    private final WndStorage.Mode mode;
 
-    private int nCols;
-    private int nRows;
+    private final int nCols;
 
-    protected int count;
-    protected int col;
-    protected int row;
+    private int count;
+    private int col;
+    private int row;
 
-    private static Mode lastMode;
-    private static Storage lastBag;
-
-    public boolean noDegrade = !PixelDungeon.itemDeg();
+    private final boolean noDegrade = !PixelDungeon.itemDeg();
 
     public WndStorage(Storage bag, Listener listener, Mode mode, String title) {
 
@@ -93,13 +88,13 @@ public class WndStorage extends WndTabbed {
 
         this.listener = listener;
         this.mode = mode;
-        this.title = title;
+        String title1 = title;
 
-        lastMode = mode;
-        lastBag = bag;
+        Mode lastMode = mode;
+        Storage lastBag = bag;
 
         nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
-        nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
+        int nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
 
         int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
         int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);
@@ -118,7 +113,7 @@ public class WndStorage extends WndTabbed {
     }
 
 
-    protected void placeItems(Storage container) {
+    private void placeItems(Storage container) {
 
 
         boolean backpack = (container == Dungeon.hero.storage);
@@ -140,7 +135,7 @@ public class WndStorage extends WndTabbed {
 
     }
 
-    protected void placeItem(final Item item) {
+    private void placeItem(final Item item) {
 
         int x = col * (SLOT_SIZE + SLOT_MARGIN);
         int y = TITLE_HEIGHT + row * (SLOT_SIZE + SLOT_MARGIN);
@@ -183,9 +178,9 @@ public class WndStorage extends WndTabbed {
 
     private class BagTab extends Tab {
 
-        private Image icon;
+        private final Image icon;
 
-        private Bag bag;
+        private final Bag bag;
 
         public BagTab(Bag bag) {
             super();
@@ -259,12 +254,12 @@ public class WndStorage extends WndTabbed {
 
         private static final int NBARS = 3;
 
-        private Item item;
+        private final Item item;
         private ColorBlock bg;
 
         private ColorBlock durability[];
 
-        public ItemButton(Item item) {
+        ItemButton(Item item) {
 
             super(item);
 
@@ -289,7 +284,7 @@ public class WndStorage extends WndTabbed {
             bg.x = x;
             bg.y = y;
 
-            if (noDegrade == true)
+            if (noDegrade)
                 durability = null; // no durability
 
             if (durability != null) {
@@ -371,7 +366,7 @@ public class WndStorage extends WndTabbed {
         }
     }
 
-    public interface Listener {
+    interface Listener {
         void onSelect(Item item);
     }
 }

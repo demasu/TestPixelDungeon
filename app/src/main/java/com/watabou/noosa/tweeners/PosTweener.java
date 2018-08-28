@@ -22,10 +22,10 @@ import com.watabou.utils.PointF;
 
 public class PosTweener extends Tweener {
 
-    public Visual visual;
+    private final Visual visual;
 
-    public PointF start;
-    public PointF end;
+    private final PointF start;
+    private final PointF end;
 
     public PosTweener(Visual visual, PointF pos, float time) {
         super(visual, time);

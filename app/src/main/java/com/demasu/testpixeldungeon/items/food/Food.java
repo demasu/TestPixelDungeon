@@ -36,10 +36,10 @@ public class Food extends Item {
 
     private static final float TIME_TO_EAT = 3f;
 
-    public static final String AC_EAT = "EAT";
+    static final String AC_EAT = "EAT";
 
-    public float energy = Hunger.HUNGRY;
-    public String message = "That food tasted delicious!";
+    final float energy = Hunger.HUNGRY;
+    final String message = "That food tasted delicious!";
 
     {
         stackable = true;

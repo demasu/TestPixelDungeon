@@ -22,11 +22,11 @@ import java.util.HashMap;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
-public class BitmapFilm {
+class BitmapFilm {
 
-    public Bitmap bitmap;
+    private final Bitmap bitmap;
 
-    protected HashMap<Object, Rect> frames = new HashMap<Object, Rect>();
+    private final HashMap<Object, Rect> frames = new HashMap<Object, Rect>();
 
     public BitmapFilm(Bitmap bitmap) {
         this.bitmap = bitmap;
@@ -37,7 +37,7 @@ public class BitmapFilm {
         this(bitmap, width, bitmap.getHeight());
     }
 
-    public BitmapFilm(Bitmap bitmap, int width, int height) {
+    private BitmapFilm(Bitmap bitmap, int width, int height) {
         this.bitmap = bitmap;
         int cols = bitmap.getWidth() / width;
         int rows = bitmap.getHeight() / height;
@@ -49,7 +49,7 @@ public class BitmapFilm {
         }
     }
 
-    public void add(Object id, Rect rect) {
+    private void add(Object id, Rect rect) {
         frames.put(id, rect);
     }
 

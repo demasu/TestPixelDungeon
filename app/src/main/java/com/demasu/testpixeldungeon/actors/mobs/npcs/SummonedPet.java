@@ -3,7 +3,6 @@ package com.demasu.testpixeldungeon.actors.mobs.npcs;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Poison;
-import com.demasu.testpixeldungeon.actors.mobs.Eye;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.mechanics.Ballistica;
@@ -26,17 +25,17 @@ public class SummonedPet extends NPC {
 
     public enum PET_TYPES {
         RAT("Rat"), CRAB("Crab"), SKELETON("Skeleton"), SKELETON_ARCHER("Skeleton Archer"), SPECIAL("Special");
-        public String type = "Rat";
+        String type = "Rat";
 
         PET_TYPES(String type) {
             this.type = type;
         }
 
-        public String getName() {
+        String getName() {
             return "Summoned " + type;
         }
 
-        public int getHealth(int level) {
+        int getHealth(int level) {
             switch (this) {
                 case RAT:
                     return 7 + level;
@@ -50,7 +49,7 @@ public class SummonedPet extends NPC {
             return 1;
         }
 
-        public int getDamage(int level) {
+        int getDamage(int level) {
             switch (this) {
                 case RAT:
                     return Random.NormalIntRange(1, 5) + level;
@@ -63,7 +62,7 @@ public class SummonedPet extends NPC {
             return 1;
         }
 
-        public int getDefence(int level) {
+        int getDefence(int level) {
             switch (this) {
                 case RAT:
                     return level;
@@ -76,7 +75,7 @@ public class SummonedPet extends NPC {
             return 1;
         }
 
-        public String getDescription() {
+        String getDescription() {
             switch (this) {
                 case RAT:
                     return "Summoned rats will protect their master mage.";
@@ -90,7 +89,7 @@ public class SummonedPet extends NPC {
             return "";
         }
 
-        public Class<? extends CharSprite> getSprite() {
+        Class<? extends CharSprite> getSprite() {
             switch (this) {
                 case RAT:
                     return RatSprite.class;
@@ -104,25 +103,25 @@ public class SummonedPet extends NPC {
         }
     }
 
-    public static final int SUMMONED_PETS_LIMIT = 3;
-    public static final int DEGRADE_RATE = 15;
+    private static final int SUMMONED_PETS_LIMIT = 3;
+    private static final int DEGRADE_RATE = 15;
 
     public static int summonedPets = 0;
 
-    public PET_TYPES petType = PET_TYPES.RAT;
+    private PET_TYPES petType = PET_TYPES.RAT;
 
 
-    public int degradeCounter = 1;
+    private int degradeCounter = 1;
 
-    public int range = 1;
+    private int range = 1;
 
-    public static final String PET_TYPE = "pettype";
-    public static final String NAME = "name";
-    public static final String SKILL = "skill";
-    public static final String SPRITE = "sprite";
-    public static final String MAX_HEALTH = "maxhealth";
-    public static final String HEALTH = "health";
-    public static final String RANGE = "range";
+    private static final String PET_TYPE = "pettype";
+    private static final String NAME = "name";
+    private static final String SKILL = "skill";
+    private static final String SPRITE = "sprite";
+    private static final String MAX_HEALTH = "maxhealth";
+    private static final String HEALTH = "health";
+    private static final String RANGE = "range";
 
 
     {
@@ -261,7 +260,7 @@ public class SummonedPet extends NPC {
     @Override
     protected boolean act() {
 
-        if (MissionScene.scenePause == true) {
+        if (MissionScene.scenePause) {
             spend(1f);
             next();
             return false;
@@ -288,7 +287,7 @@ public class SummonedPet extends NPC {
     protected Char chooseEnemy() {
 
         if (enemy == null || !enemy.isAlive()) {
-            HashSet<Mob> enemies = new HashSet<Mob>();
+            HashSet<Mob> enemies = new HashSet<>();
             for (Mob mob : Dungeon.level.mobs) {
                 if (mob.hostile && Level.fieldOfView[mob.pos]) {
                     enemies.add(mob);
@@ -310,7 +309,7 @@ public class SummonedPet extends NPC {
                 petType.getDescription();
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
     static {
         IMMUNITIES.add(Poison.class);

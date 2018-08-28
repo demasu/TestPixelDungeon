@@ -27,8 +27,8 @@ import com.demasu.testpixeldungeon.windows.WndOptions;
 
 public abstract class InventoryScroll extends Scroll {
 
-    protected String inventoryTitle = "Select an item";
-    protected WndBag.Mode mode = WndBag.Mode.ALL;
+    final String inventoryTitle = "Select an item";
+    final WndBag.Mode mode = WndBag.Mode.ALL;
 
     private static final String TXT_WARNING = "Do you really want to cancel this scroll usage? It will be consumed anyway.";
     private static final String TXT_YES = "Yes, I'm positive";
@@ -70,8 +70,8 @@ public abstract class InventoryScroll extends Scroll {
 
     protected abstract void onItemSelected(Item item);
 
-    protected static boolean identifiedByUse = false;
-    protected static WndBag.Listener itemSelector = new WndBag.Listener() {
+    private static boolean identifiedByUse = false;
+    private static final WndBag.Listener itemSelector = new WndBag.Listener() {
         @Override
         public void onSelect(Item item) {
             if (item != null) {

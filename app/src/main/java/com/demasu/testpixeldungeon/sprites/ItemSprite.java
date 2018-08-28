@@ -44,9 +44,9 @@ public class ItemSprite extends MovieClip {
 
     private static final float DROP_INTERVAL = 0.4f;
 
-    protected static TextureFilm film;
+    private static TextureFilm film;
 
-    public Heap heap;
+    private Heap heap;
 
     private Glowing glowing;
     private float phase;
@@ -72,7 +72,7 @@ public class ItemSprite extends MovieClip {
         view(image, glowing);
     }
 
-    public void originToCenter() {
+    protected void originToCenter() {
         origin.set(SIZE / 2);
     }
 
@@ -97,7 +97,7 @@ public class ItemSprite extends MovieClip {
         heap = null;
     }
 
-    public PointF worldToCamera(int cell) {
+    private PointF worldToCamera(int cell) {
         final int csize = DungeonTilemap.SIZE;
 
         return new PointF(
@@ -106,7 +106,7 @@ public class ItemSprite extends MovieClip {
         );
     }
 
-    public void place(int p) {
+    private void place(int p) {
         point(worldToCamera(p));
     }
 
@@ -143,12 +143,11 @@ public class ItemSprite extends MovieClip {
         }
     }
 
-    public ItemSprite view(int image, Glowing glowing) {
+    public void view(int image, Glowing glowing) {
         frame(film.get(image));
         if ((this.glowing = glowing) == null) {
             resetColor();
         }
-        return this;
     }
 
     @Override
@@ -213,17 +212,17 @@ public class ItemSprite extends MovieClip {
 
         public static final Glowing WHITE = new Glowing(0xFFFFFF, 0.6f);
 
-        public int color;
-        public float red;
-        public float green;
-        public float blue;
-        public float period;
+        public final int color;
+        final float red;
+        final float green;
+        final float blue;
+        final float period;
 
         public Glowing(int color) {
             this(color, 1f);
         }
 
-        public Glowing(int color, float period) {
+        Glowing(int color, float period) {
 
             this.color = color;
 

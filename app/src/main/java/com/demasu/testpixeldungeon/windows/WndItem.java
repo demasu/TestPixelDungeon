@@ -28,7 +28,7 @@ import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.Utils;
 
-public class WndItem extends Window {
+class WndItem extends Window {
 
     private static final float BUTTON_WIDTH = 36;
     private static final float BUTTON_HEIGHT = 16;

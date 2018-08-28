@@ -118,7 +118,7 @@ public class Ghost extends NPC {
                         "spot of faint light with a sorrowful face.";
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
     static {
         IMMUNITIES.add(Paralysis.class);
@@ -155,7 +155,7 @@ public class Ghost extends NPC {
         enum Type {
             ILLEGAL(null), ROSE(roseQuest), RAT(ratQuest), CURSE(curseQuest);
 
-            public QuestHandler handler;
+            final QuestHandler handler;
 
             Type(QuestHandler handler) {
                 this.handler = handler;
@@ -333,9 +333,9 @@ public class Ghost extends NPC {
 
     abstract public static class QuestHandler {
 
-        abstract public void interact(Ghost ghost);
+        protected abstract void interact(Ghost ghost);
 
-        protected void relocate(Ghost ghost) {
+        void relocate(Ghost ghost) {
             int newPos = -1;
             for (int i = 0; i < 10; i++) {
                 newPos = Dungeon.level.randomRespawnCell();

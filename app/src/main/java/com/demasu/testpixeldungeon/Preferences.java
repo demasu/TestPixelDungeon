@@ -50,8 +50,8 @@ enum Preferences {
         return prefs;
     }
 
-    int getInt(String key, int defValue) {
-        return get().getInt(key, defValue);
+    int getInt(String key) {
+        return get().getInt(key, 0);
     }
 
     boolean getBoolean(String key, boolean defValue) {

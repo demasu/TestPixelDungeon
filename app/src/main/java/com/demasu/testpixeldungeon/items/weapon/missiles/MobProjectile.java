@@ -32,7 +32,7 @@ public class MobProjectile extends MissileWeapon {
         this(1);
     }
 
-    public MobProjectile(int number) {
+    private MobProjectile(int number) {
         super();
         quantity = number;
     }

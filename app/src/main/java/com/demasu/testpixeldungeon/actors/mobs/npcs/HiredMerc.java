@@ -48,13 +48,13 @@ public class HiredMerc extends NPC {
 
     public enum MERC_TYPES {
         Brute("Brute"), Wizard("Wizard"), Thief("Thief"), Archer("Archer"), ArcherMaiden("ArcherMaiden");
-        public String type = "Brute";
+        String type = "Brute";
 
         MERC_TYPES(String type) {
             this.type = type;
         }
 
-        public String getName() {
+        String getName() {
             return type;
         }
 
@@ -75,17 +75,17 @@ public class HiredMerc extends NPC {
             return 1;
         }
 
-        public int getDamage(int level) {
+        int getDamage(int level) {
             if (this == ArcherMaiden || this == Archer)
                 return getDamageRanged(level);
             return getStrength(level) > 10 ? Random.IntRange(1, getStrength(level) - 9) : 1;
         }
 
-        public int getDamageRanged(int level) {
+        int getDamageRanged(int level) {
             return getStrength(level) > 3 ? Random.IntRange(1, getStrength(level) - 3) : 1;
         }
 
-        public int getDefence(int level) {
+        int getDefence(int level) {
             switch (this) {
                 case Brute:
                     return 2 * level;
@@ -118,7 +118,7 @@ public class HiredMerc extends NPC {
         }
 
 
-        public float speedModifier() {
+        float speedModifier() {
             switch (this) {
                 case Brute:
                     return 0.7f;
@@ -156,6 +156,7 @@ public class HiredMerc extends NPC {
             return ItemSpriteSheet.WEAPON;
         }
 
+        @SuppressWarnings("SameReturnValue")
         public int getArmorPlaceHolder() {
             return ItemSpriteSheet.ARMOR;
         }
@@ -250,7 +251,7 @@ public class HiredMerc extends NPC {
             return 0;
         }
 
-        public int getSpecialSkillTime() {
+        int getSpecialSkillTime() {
             switch (this) {
                 case Wizard:
                     return 100;
@@ -259,20 +260,20 @@ public class HiredMerc extends NPC {
         }
     }
 
-    public static boolean archerMaidenUnlocked = false;
+    public static final boolean archerMaidenUnlocked = false;
     public static final String MAIDEN_UNLOCK_BY = "Please consider donating to unlock this feature.";
     public static final int COST_RATE = 15;
 
-    public static final String TXT_LEVEL_UP = "Stronger by the second...";
-    public static final String TXT_CANT_EQUIP = "Too heavy for me Sir";
+    private static final String TXT_LEVEL_UP = "Stronger by the second...";
+    private static final String TXT_CANT_EQUIP = "Too heavy for me Sir";
 
     public MERC_TYPES mercType = MERC_TYPES.Brute;
 
 
-    public int rangedAttackCooldown = 0;
-    public static final int RANGED_COOLDOWN = 5;
+    private int rangedAttackCooldown = 0;
+    private static final int RANGED_COOLDOWN = 5;
 
-    public int skillCounter = 90;
+    private int skillCounter = 90;
 
     public Skill skill = null;
     public Skill skillb = null;
@@ -300,13 +301,13 @@ public class HiredMerc extends NPC {
         state = WANDERING;
     }
 
-    public int level;
+    protected int level;
 
     private static final String LEVEL = "level";
     private static final String WEAPON = "weapon";
     private static final String ARMOR = "armor";
 
-    public HiredMerc() {
+    protected HiredMerc() {
 
     }
 
@@ -322,7 +323,7 @@ public class HiredMerc extends NPC {
         unEquipWeapon();
         weapon = item;
 
-        if (canEquip(weapon) == false) {
+        if (!canEquip(weapon)) {
             unEquipWeapon();
             sprite.showStatus(CharSprite.NEGATIVE, TXT_CANT_EQUIP);
         }
@@ -338,7 +339,7 @@ public class HiredMerc extends NPC {
     public void equipArmor(Item item) {
         unEquipArmor();
         armor = item;
-        if (canEquip(armor) == false) {
+        if (!canEquip(armor)) {
             unEquipArmor();
             sprite.showStatus(CharSprite.NEGATIVE, TXT_CANT_EQUIP);
         } else
@@ -374,12 +375,10 @@ public class HiredMerc extends NPC {
         return ((Armor) armor).tier;
     }
 
-    public boolean canEquip(Item item) {
+    private boolean canEquip(Item item) {
         if (item instanceof Weapon)
             return mercType.getStrength(level) >= ((Weapon) item).STR;
-        if (item instanceof Armor)
-            return mercType.getStrength(level) >= ((Armor) item).STR;
-        return false;
+        return item instanceof Armor && mercType.getStrength(level) >= ((Armor) item).STR;
     }
 
 
@@ -570,7 +569,7 @@ public class HiredMerc extends NPC {
 
         rangedAttackCooldown++;
 
-        if (hackFix == false) {
+        if (!hackFix) {
             ((MercSprite) super.sprite).updateArmor();
             hackFix = true;
         }
@@ -615,7 +614,7 @@ public class HiredMerc extends NPC {
     protected Char chooseEnemy() {
 
         if (enemy == null || !enemy.isAlive()) {
-            HashSet<Mob> enemies = new HashSet<Mob>();
+            HashSet<Mob> enemies = new HashSet<>();
             for (Mob mob : Dungeon.level.mobs) {
                 if (mob.hostile && Level.fieldOfView[mob.pos]) {
                     enemies.add(mob);
@@ -637,7 +636,7 @@ public class HiredMerc extends NPC {
                 mercType.getDescription();
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
     static {
         IMMUNITIES.add(Poison.class);

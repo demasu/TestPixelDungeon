@@ -19,7 +19,6 @@ package com.demasu.testpixeldungeon.actors.buffs;
 
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.hero.HeroClass;
-import com.demasu.testpixeldungeon.items.rings.RingOfMending;
 
 public class ManaRegeneration extends Buff {
 

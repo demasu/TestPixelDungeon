@@ -54,11 +54,11 @@ public class WndHero extends WndTabbed {
     private static final int WIDTH = 100;
     private static final int TAB_WIDTH = 40;
 
-    private StatsTab stats;
-    private BuffsTab buffs;
+    private final StatsTab stats;
+    private final BuffsTab buffs;
 
-    private SmartTexture icons;
-    private TextureFilm film;
+    private final SmartTexture icons;
+    private final TextureFilm film;
 
     public WndHero() {
 
@@ -106,7 +106,7 @@ public class WndHero extends WndTabbed {
 
         private float pos;
 
-        public StatsTab() {
+        StatsTab() {
 
             Hero hero = Dungeon.hero;
 
@@ -174,7 +174,7 @@ public class WndHero extends WndTabbed {
             statSlot(label, Integer.toString(value));
         }
 
-        public float height() {
+        float height() {
             return pos;
         }
     }
@@ -185,7 +185,7 @@ public class WndHero extends WndTabbed {
 
         private float pos;
 
-        public BuffsTab() {
+        BuffsTab() {
             for (Buff buff : Dungeon.hero.buffs()) {
                 buffSlot(buff);
             }
@@ -211,7 +211,7 @@ public class WndHero extends WndTabbed {
             }
         }
 
-        public float height() {
+        float height() {
             return pos;
         }
     }

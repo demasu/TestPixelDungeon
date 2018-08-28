@@ -35,10 +35,7 @@ public class WndClass extends WndTabbed {
 
     private static final int TAB_WIDTH = 50;
 
-    private HeroClass cl;
-
-    private PerksTab tabPerks;
-    private MasteryTab tabMastery;
+    private final HeroClass cl;
 
     public WndClass(HeroClass cl) {
 
@@ -46,7 +43,7 @@ public class WndClass extends WndTabbed {
 
         this.cl = cl;
 
-        tabPerks = new PerksTab();
+        PerksTab tabPerks = new PerksTab();
         add(tabPerks);
 
         Tab tab = new RankingTab(Utils.capitalize(cl.title()), tabPerks);
@@ -54,7 +51,7 @@ public class WndClass extends WndTabbed {
         add(tab);
 
         if (Badges.isUnlocked(cl.masteryBadge())) {
-            tabMastery = new MasteryTab();
+            MasteryTab tabMastery = new MasteryTab();
             add(tabMastery);
 
             tab = new RankingTab(TXT_MASTERY, tabMastery);
@@ -73,9 +70,9 @@ public class WndClass extends WndTabbed {
 
     private class RankingTab extends LabeledTab {
 
-        private Group page;
+        private final Group page;
 
-        public RankingTab(String label, Group page) {
+        RankingTab(String label, Group page) {
             super(label);
             this.page = page;
         }
@@ -96,10 +93,10 @@ public class WndClass extends WndTabbed {
 
         private static final String DOT = "\u007F";
 
-        public float height;
-        public float width;
+        final float height;
+        float width;
 
-        public PerksTab() {
+        PerksTab() {
             super();
 
             float dotWidth = 0;
@@ -145,10 +142,10 @@ public class WndClass extends WndTabbed {
 
         private static final int MARGIN = 4;
 
-        public float height;
-        public float width;
+        final float height;
+        final float width;
 
-        public MasteryTab() {
+        MasteryTab() {
             super();
 
             String message = null;

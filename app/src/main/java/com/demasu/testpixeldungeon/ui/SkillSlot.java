@@ -32,15 +32,15 @@ public class SkillSlot extends Button {
     private static final float ENABLED = 1.0f;
     private static final float DISABLED = 0.3f;
 
-    protected SkillSprite icon;
-    protected BitmapText activeText;
+    private SkillSprite icon;
+    private BitmapText activeText;
 
 
-    public SkillSlot() {
+    protected SkillSlot() {
         super();
     }
 
-    public SkillSlot(Skill skill) {
+    protected SkillSlot(Skill skill) {
         this();
         if (skill == null) {
 

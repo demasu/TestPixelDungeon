@@ -5,8 +5,6 @@ import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.ui.StatusPane;
 
-import java.util.ArrayList;
-
 /**
  * Created by Moussa on 20-Jan-17.
  */
@@ -44,7 +42,7 @@ public class Smash extends ActiveSkill1 {
 
     @Override
     public float damageModifier() {
-        if (active == false || Dungeon.hero.MP < getManaCost())
+        if (!active || Dungeon.hero.MP < getManaCost())
             return 1f;
         else {
             castTextYell();

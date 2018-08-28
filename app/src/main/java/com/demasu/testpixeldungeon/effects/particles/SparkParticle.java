@@ -37,7 +37,7 @@ public class SparkParticle extends PixelParticle {
 
     };
 
-    public SparkParticle() {
+    private SparkParticle() {
         super();
 
         size(2);
@@ -45,7 +45,7 @@ public class SparkParticle extends PixelParticle {
         acc.set(0, +50);
     }
 
-    public void reset(float x, float y) {
+    private void reset(float x, float y) {
         revive();
 
         this.x = x;

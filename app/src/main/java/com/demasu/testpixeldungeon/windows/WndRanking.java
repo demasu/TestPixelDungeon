@@ -59,7 +59,7 @@ public class WndRanking extends WndTabbed {
     private Thread thread;
     private String error = null;
 
-    private Image busy;
+    private final Image busy;
 
     public WndRanking(final String gameFile) {
 
@@ -127,9 +127,9 @@ public class WndRanking extends WndTabbed {
 
     private class RankingTab extends LabeledTab {
 
-        private Group page;
+        private final Group page;
 
-        public RankingTab(String label, Group page) {
+        RankingTab(String label, Group page) {
             super(label);
             this.page = page;
         }
@@ -166,7 +166,7 @@ public class WndRanking extends WndTabbed {
 
         private static final String TXT_DIFF = "Difficulty";
 
-        public StatsTab() {
+        StatsTab() {
             super();
 
             if (Dungeon.hero == null) {
@@ -245,7 +245,7 @@ public class WndRanking extends WndTabbed {
         private int count;
         private float pos;
 
-        public ItemsTab() {
+        ItemsTab() {
             super();
 
             if (Dungeon.hero == null) {
@@ -323,7 +323,7 @@ public class WndRanking extends WndTabbed {
 
     private class BadgesTab extends Group {
 
-        public BadgesTab() {
+        BadgesTab() {
             super();
 
             if (Dungeon.hero == null) {
@@ -345,14 +345,14 @@ public class WndRanking extends WndTabbed {
 
     private class ItemButton extends Button {
 
-        public static final int SIZE = 26;
+        static final int SIZE = 26;
 
-        protected Item item;
+        final Item item;
 
-        protected ItemSlot slot;
+        ItemSlot slot;
         private ColorBlock bg;
 
-        public ItemButton(Item item) {
+        ItemButton(Item item) {
 
             super();
 
@@ -409,7 +409,7 @@ public class WndRanking extends WndTabbed {
     private class LabelledItemButton extends ItemButton {
         private BitmapText name;
 
-        public LabelledItemButton(Item item) {
+        LabelledItemButton(Item item) {
             super(item);
         }
 

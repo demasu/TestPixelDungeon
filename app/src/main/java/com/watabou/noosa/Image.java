@@ -28,15 +28,15 @@ import com.watabou.glwrap.Quad;
 public class Image extends Visual {
 
     public SmartTexture texture;
-    protected RectF frame;
+    private RectF frame;
 
     public boolean flipHorizontal;
-    public boolean flipVertical;
+    private boolean flipVertical;
 
-    protected float[] vertices;
-    protected FloatBuffer verticesBuffer;
+    final float[] vertices;
+    private final FloatBuffer verticesBuffer;
 
-    protected boolean dirty;
+    boolean dirty;
 
     public Image() {
         super(0, 0, 0, 0);
@@ -94,7 +94,7 @@ public class Image extends Visual {
         updateVertices();
     }
 
-    protected void updateFrame() {
+    void updateFrame() {
 
         if (flipHorizontal) {
             vertices[2] = frame.right;
@@ -123,7 +123,7 @@ public class Image extends Visual {
         dirty = true;
     }
 
-    protected void updateVertices() {
+    void updateVertices() {
 
         vertices[0] = 0;
         vertices[1] = 0;

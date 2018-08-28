@@ -27,18 +27,18 @@ import android.opengl.GLUtils;
 
 public class Texture {
 
-    public static final int NEAREST = GLES20.GL_NEAREST;
+    protected static final int NEAREST = GLES20.GL_NEAREST;
     public static final int LINEAR = GLES20.GL_LINEAR;
 
     public static final int REPEAT = GLES20.GL_REPEAT;
     public static final int MIRROR = GLES20.GL_MIRRORED_REPEAT;
-    public static final int CLAMP = GLES20.GL_CLAMP_TO_EDGE;
+    protected static final int CLAMP = GLES20.GL_CLAMP_TO_EDGE;
 
     public int id;
 
-    public boolean premultiplied = false;
+    private boolean premultiplied = false;
 
-    public Texture() {
+    protected Texture() {
         int[] ids = new int[1];
         GLES20.glGenTextures(1, ids, 0);
         id = ids[0];
@@ -101,7 +101,7 @@ public class Texture {
                 imageBuffer);
     }
 
-    public void pixels(int w, int h, byte[] pixels) {
+    private void pixels(int w, int h, byte[] pixels) {
 
         bind();
 
@@ -127,7 +127,7 @@ public class Texture {
 
     // If getConfig returns null (unsupported format?), GLUtils.texImage2D works
     // incorrectly. In this case we need to load pixels manually
-    public void handMade(Bitmap bitmap, boolean recode) {
+	protected void handMade(Bitmap bitmap, boolean recode) {
 
         int w = bitmap.getWidth();
         int h = bitmap.getHeight();

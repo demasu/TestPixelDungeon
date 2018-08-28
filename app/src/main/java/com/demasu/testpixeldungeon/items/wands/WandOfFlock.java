@@ -113,7 +113,7 @@ public class WandOfFlock extends Wand {
             spriteClass = SheepSprite.class;
         }
 
-        public float lifespan;
+        float lifespan;
 
         private boolean initialized = false;
 

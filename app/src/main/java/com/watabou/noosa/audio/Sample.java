@@ -18,6 +18,7 @@
 package com.watabou.noosa.audio;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -32,13 +33,13 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
 
     INSTANCE;
 
-    public static final int MAX_STREAMS = 8;
+    private static final int MAX_STREAMS = 8;
 
-    protected SoundPool pool =
+    private SoundPool pool =
             new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
 
-    protected HashMap<Object, Integer> ids =
-            new HashMap<Object, Integer>();
+    private final HashMap<Object, Integer> ids =
+            new HashMap<>();
 
     private boolean enabled = true;
 
@@ -64,12 +65,10 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
         }
     }
 
-    private LinkedList<String> loadingQueue = new LinkedList<String>();
+    private final LinkedList<String> loadingQueue = new LinkedList<>();
 
     public void load(String... assets) {
-        for (String asset : assets) {
-            loadingQueue.add(asset);
-        }
+        Collections.addAll(loadingQueue, assets);
         loadNext();
     }
 
@@ -110,12 +109,12 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
         }
     }
 
-    public int play(Object id) {
-        return play(id, 1, 1, 1);
+    public void play(Object id) {
+        play(id, 1, 1, 1);
     }
 
-    public int play(Object id, float volume) {
-        return play(id, volume, volume, 1);
+    public void play(Object id, float volume) {
+        play(id, volume, volume, 1);
     }
 
     public int play(Object id, float leftVolume, float rightVolume, float rate) {

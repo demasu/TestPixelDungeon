@@ -105,7 +105,6 @@ import com.demasu.testpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.demasu.testpixeldungeon.levels.Level;
-import com.demasu.testpixeldungeon.levels.MovieLevel;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.levels.features.AlchemyPot;
 import com.demasu.testpixeldungeon.levels.features.Chasm;
@@ -159,8 +158,8 @@ public class Hero extends Char {
 
     public HiredMerc hiredMerc = null;
 
-    protected int attackSkill = 10;
-    protected int defenseSkill = 5;
+    int attackSkill = 10;
+    int defenseSkill = 5;
 
     public boolean ready = false;
 
@@ -176,13 +175,13 @@ public class Hero extends Char {
     public boolean restoreHealth = false;
 
     public MissileWeapon rangedWeapon = null;
-    public Belongings belongings;
-    public Storage storage;
+    public final Belongings belongings;
+    public final Storage storage;
 
     public int STR;
     public boolean weakened = false;
 
-    public float awareness;
+    private float awareness;
 
     public int lvl = 1;
     public int exp = 0;
@@ -193,7 +192,7 @@ public class Hero extends Char {
 
 
     private ArrayList<Mob> visibleEnemies;
-    public static WandOfMagicCasting haxWand = new WandOfMagicCasting();
+    public static final WandOfMagicCasting haxWand = new WandOfMagicCasting();
 
     public Hero() {
         super();
@@ -206,7 +205,7 @@ public class Hero extends Char {
         belongings = new Belongings(this);
         storage = new Storage(this);
 
-        visibleEnemies = new ArrayList<Mob>();
+        visibleEnemies = new ArrayList<>();
     }
 
     public int STR() {
@@ -363,9 +362,8 @@ public class Hero extends Char {
     public boolean shootThrough(Char enemy, MissileWeapon wep) {
 
         rangedWeapon = wep;
-        boolean result = attack(enemy);
 
-        return result;
+        return attack(enemy);
     }
 
     @Override
@@ -492,7 +490,7 @@ public class Hero extends Char {
     }
 
     @Override
-    public boolean act() {
+    protected boolean act() {
 
         super.act();
 
@@ -1104,7 +1102,7 @@ public class Hero extends Char {
     }
 
     private void checkVisibleMobs() {
-        ArrayList<Mob> visible = new ArrayList<Mob>();
+        ArrayList<Mob> visible = new ArrayList<>();
 
         boolean newMob = false;
 
@@ -1443,7 +1441,7 @@ public class Hero extends Char {
 
         int pos = Dungeon.hero.pos;
 
-        ArrayList<Integer> passable = new ArrayList<Integer>();
+        ArrayList<Integer> passable = new ArrayList<>();
         for (Integer ofs : Level.NEIGHBOURS8) {
             int cell = pos + ofs;
             if ((Level.passable[cell] || Level.avoid[cell]) && Dungeon.level.heaps.get(cell) == null) {
@@ -1452,7 +1450,7 @@ public class Hero extends Char {
         }
         Collections.shuffle(passable);
 
-        ArrayList<Item> items = new ArrayList<Item>(Dungeon.hero.belongings.backpack.items);
+        ArrayList<Item> items = new ArrayList<>(Dungeon.hero.belongings.backpack.items);
         for (Integer cell : passable) {
             if (items.isEmpty()) {
                 break;
@@ -1495,7 +1493,7 @@ public class Hero extends Char {
         super.onMotionComplete();
     }
 
-    public void onAttackCompleteKeepAction() {
+    private void onAttackCompleteKeepAction() {
 
         AttackIndicator.target(enemy);
 
@@ -1560,7 +1558,7 @@ public class Hero extends Char {
         super.onOperateComplete();
     }
 
-    public boolean search(boolean intentional) {
+    public void search(boolean intentional) {
 
         boolean smthFound = false;
 
@@ -1654,7 +1652,6 @@ public class Hero extends Char {
             interrupt();
         }
 
-        return smthFound;
     }
 
     public void resurrect(int resetLevel) {

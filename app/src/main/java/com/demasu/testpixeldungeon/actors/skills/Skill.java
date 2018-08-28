@@ -14,18 +14,18 @@ import java.util.ArrayList;
  */
 public class Skill {
 
-    public static final String AC_ADVANCE = "Advance";
-    public static final String AC_ACTIVATE = "Activate";
-    public static final String AC_DEACTIVATE = "Deactivate";
+    static final String AC_ADVANCE = "Advance";
+    static final String AC_ACTIVATE = "Activate";
+    static final String AC_DEACTIVATE = "Deactivate";
 
-    public static final String AC_SUMMON = "Summon";
-    public static final String AC_CAST = "Cast";
+    static final String AC_SUMMON = "Summon";
+    static final String AC_CAST = "Cast";
 
-    public static final String FAIL_ADVANCE = "You do not have enough skill points to advance in this branch.";
+    private static final String FAIL_ADVANCE = "You do not have enough skill points to advance in this branch.";
 
-    public static final String SKILL_LEVEL = "LEVEL";
+    private static final String SKILL_LEVEL = "LEVEL";
 
-    public String tag = "";
+    final String tag = "";
 
     public static final int MAX_LEVEL = 3;
 
@@ -33,35 +33,33 @@ public class Skill {
 
     public static int availableSkill = STARTING_SKILL;
 
-    public static final float TIME_TO_USE = 1f;
+    static final float TIME_TO_USE = 1f;
 
-    public String name = "Skill";
-    public String castText = "";
+    public final String name = "Skill";
+    String castText = "";
     public int level = 0;
-    public int tier = 1;
-    public int mana = 0;
+    final int tier = 1;
+    final int mana = 0;
     public int image = 0;
 
     public boolean active = false;
 
     public boolean multiTargetActive = false;
 
-    public boolean requestUpgrade() {
+    public void requestUpgrade() {
         if (availableSkill >= tier && level < MAX_LEVEL) {
             if (upgrade()) {
                 level++;
                 availableSkill -= tier;
                 // WndStory.showStory("You have gained a level in " + name);
-                return true;
             }
         } else {
             WndStory.showStory(FAIL_ADVANCE);
         }
 
-        return false;
     }
 
-    protected boolean upgrade() {
+    boolean upgrade() {
         return false;
     }
 
@@ -130,8 +128,7 @@ public class Skill {
     }
 
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<String>();
-        return actions;
+        return new ArrayList<String>();
     }
 
     public void execute(Hero hero, String action) {
@@ -158,7 +155,7 @@ public class Skill {
         return false;
     }
 
-    public String costUpgradeInfo() {
+    String costUpgradeInfo() {
         return name + " is at level " + level + ".\n"
                 + (level < Skill.MAX_LEVEL ? "It costs " + upgradeCost() + " skill points to advance in " + name + "." : name + " is maxed out.")
                 + (level > 0 && mana > 0 ? "\nUsing " + name + " costs " + getManaCost() + " mana." : "");

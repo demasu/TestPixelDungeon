@@ -176,14 +176,14 @@ public class TitleScene extends PixelScene {
 
     private static class DashboardItem extends Button {
 
-        public static final float SIZE = 48;
+        static final float SIZE = 48;
 
         private static final int IMAGE_SIZE = 32;
 
         private Image image;
         private BitmapText label;
 
-        public DashboardItem(String text, int index) {
+        DashboardItem(String text, int index) {
             super();
 
             image.frame(image.texture.uvRect(index * IMAGE_SIZE, 0, (index + 1) * IMAGE_SIZE, IMAGE_SIZE));

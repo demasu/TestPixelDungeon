@@ -19,6 +19,7 @@ package com.watabou.gltextures;
 
 import java.util.HashMap;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,12 +32,13 @@ import com.watabou.glwrap.Texture;
 
 public class TextureCache {
 
+    @SuppressLint("StaticFieldLeak")
     public static Context context;
 
-    private static HashMap<Object, SmartTexture> all = new HashMap<Object, SmartTexture>();
+    private static final HashMap<Object, SmartTexture> all = new HashMap<>();
 
     // No dithering, no scaling, 32 bits per pixel
-    private static BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+    private static final BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
 
     static {
         bitmapOptions.inScaled = false;
@@ -124,7 +126,7 @@ public class TextureCache {
         }
     }
 
-    public static Bitmap getBitmap(Object src) {
+    private static Bitmap getBitmap(Object src) {
 
         try {
             if (src instanceof Integer) {

@@ -29,10 +29,10 @@ public class BitmapTextMultiline extends BitmapText {
 
     public int maxWidth = Integer.MAX_VALUE;
 
-    protected static final Pattern PARAGRAPH = Pattern.compile("\n");
-    protected static final Pattern WORD = Pattern.compile("\\s+");
+    private static final Pattern PARAGRAPH = Pattern.compile("\n");
+    private static final Pattern WORD = Pattern.compile("\\s+");
 
-    protected float spaceSize;
+    private final float spaceSize;
 
     public int nLines = 0;
 
@@ -68,13 +68,12 @@ public class BitmapTextMultiline extends BitmapText {
         // Current character (used in masking)
         int pos = 0;
 
-        for (int i = 0; i < paragraphs.length; i++) {
+        for (String paragraph : paragraphs) {
 
-            String[] words = WORD.split(paragraphs[i]);
+            String[] words = WORD.split(paragraph);
 
-            for (int j = 0; j < words.length; j++) {
+            for (String word : words) {
 
-                String word = words[j];
                 if (word.length() == 0) {
                     // This case is possible when there are
                     // several spaces coming along
@@ -164,9 +163,9 @@ public class BitmapTextMultiline extends BitmapText {
 
         String paragraphs[] = PARAGRAPH.split(text);
 
-        for (int i = 0; i < paragraphs.length; i++) {
+        for (String paragraph : paragraphs) {
 
-            String[] words = WORD.split(paragraphs[i]);
+            String[] words = WORD.split(paragraph);
 
             for (int j = 0; j < words.length; j++) {
 
@@ -198,18 +197,18 @@ public class BitmapTextMultiline extends BitmapText {
 
     private class SymbolWriter {
 
-        public float width = 0;
-        public float height = 0;
+        float width = 0;
+        float height = 0;
 
-        public int nLines = 0;
+        int nLines = 0;
 
-        public float lineWidth = 0;
-        public float lineHeight = 0;
+        float lineWidth = 0;
+        float lineHeight = 0;
 
-        public float x = 0;
-        public float y = 0;
+        float x = 0;
+        float y = 0;
 
-        public void addSymbol(float w, float h) {
+        void addSymbol(float w, float h) {
             if (lineWidth > 0 && lineWidth + font.tracking + w > maxWidth / scale.x) {
                 newLine(w, h);
             } else {
@@ -223,7 +222,7 @@ public class BitmapTextMultiline extends BitmapText {
             }
         }
 
-        public void addSpace(float w) {
+        void addSpace(float w) {
             if (lineWidth > 0 && lineWidth + font.tracking + w > maxWidth / scale.x) {
                 newLine(0, 0);
             } else {
@@ -233,7 +232,7 @@ public class BitmapTextMultiline extends BitmapText {
             }
         }
 
-        public void newLine(float w, float h) {
+        void newLine(float w, float h) {
 
             height += lineHeight;
             if (width < lineWidth) {
@@ -249,7 +248,7 @@ public class BitmapTextMultiline extends BitmapText {
             nLines++;
         }
 
-        public int nLines() {
+        int nLines() {
             return x == 0 ? nLines : nLines + 1;
         }
     }
@@ -261,7 +260,7 @@ public class BitmapTextMultiline extends BitmapText {
         private StringBuilder curLine;
         private float curLineWidth;
 
-        private PointF metrics = new PointF();
+        private final PointF metrics = new PointF();
 
         private void newLine(String str, float width) {
             BitmapText txt = new BitmapText(curLine.toString(), font);
@@ -279,20 +278,19 @@ public class BitmapTextMultiline extends BitmapText {
 
         public ArrayList<BitmapText> split() {
 
-            lines = new ArrayList<BitmapText>();
+            lines = new ArrayList<>();
 
             curLine = new StringBuilder();
             curLineWidth = 0;
 
             String paragraphs[] = PARAGRAPH.split(text);
 
-            for (int i = 0; i < paragraphs.length; i++) {
+            for (String paragraph : paragraphs) {
 
-                String[] words = WORD.split(paragraphs[i]);
+                String[] words = WORD.split(paragraph);
 
-                for (int j = 0; j < words.length; j++) {
+                for (String word : words) {
 
-                    String word = words[j];
                     if (word.length() == 0) {
                         continue;
                     }

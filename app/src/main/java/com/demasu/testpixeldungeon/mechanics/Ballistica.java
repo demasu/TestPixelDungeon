@@ -24,7 +24,7 @@ import com.demasu.testpixeldungeon.levels.Level;
 
 public class Ballistica {
 
-    public static int[] trace = new int[Math.max(Level.WIDTH, Level.HEIGHT)];
+    public static final int[] trace = new int[Math.max(Level.WIDTH, Level.HEIGHT)];
     public static int distance;
 
     public static int cast(int from, int to, boolean magic, boolean hitChars) {

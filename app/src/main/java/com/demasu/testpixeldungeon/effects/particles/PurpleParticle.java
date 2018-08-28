@@ -45,13 +45,13 @@ public class PurpleParticle extends PixelParticle {
         }
     };
 
-    public PurpleParticle() {
+    private PurpleParticle() {
         super();
 
         lifespan = 0.5f;
     }
 
-    public void reset(float x, float y) {
+    private void reset(float x, float y) {
         revive();
 
         this.x = x;
@@ -62,7 +62,7 @@ public class PurpleParticle extends PixelParticle {
         left = lifespan;
     }
 
-    public void resetBurst(float x, float y) {
+    private void resetBurst(float x, float y) {
         revive();
 
         this.x = x;

@@ -8,9 +8,9 @@ public class Highlighter {
     private static final Pattern HIGHLIGHTER = Pattern.compile("_(.*?)_");
     private static final Pattern STRIPPER = Pattern.compile("[ \n]");
 
-    public String text;
+    public final String text;
 
-    public boolean[] mask;
+    public final boolean[] mask;
 
     public Highlighter(String text) {
 
@@ -51,8 +51,8 @@ public class Highlighter {
     }
 
     public boolean isHighlighted() {
-        for (int i = 0; i < mask.length; i++) {
-            if (mask[i]) {
+        for (boolean aMask : mask) {
+            if (aMask) {
                 return true;
             }
         }

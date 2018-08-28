@@ -58,7 +58,6 @@ import com.demasu.testpixeldungeon.actors.mobs.npcs.Shopkeeper;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.SummonedPet;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.particles.PoisonParticle;
-import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.weapon.melee.DualSwords;
 import com.demasu.testpixeldungeon.items.weapon.melee.NecroBlade;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
@@ -88,7 +87,7 @@ public abstract class Char extends Actor {
 
     public boolean screams = true;
 
-    private String[] MOB_DEATH_SCREAMS = {
+    private final String[] MOB_DEATH_SCREAMS = {
             "...",
             "I will haunt your dreams...",
             "Too strong...",
@@ -98,7 +97,7 @@ public abstract class Char extends Actor {
             "I will be avenged..."
     };
 
-    private String[] RAT_DEATH_SCREAMS = {
+    private final String[] RAT_DEATH_SCREAMS = {
             "The Rat King will be victorious!",
             "The Rat King will avenge me!",
             "The Rat King shall prevail!",
@@ -108,7 +107,7 @@ public abstract class Char extends Actor {
             "The world is ours... all of its cheese too..."
     };
 
-    private String[] HERO_DEATH_SCREAM = {
+    private final String[] HERO_DEATH_SCREAM = {
             "Ouch!",
             "My face...",
             "I have failed",
@@ -116,13 +115,13 @@ public abstract class Char extends Actor {
             "Nerf it..."
     };
 
-    private String[] PET_FAREWELL = {
+    private final String[] PET_FAREWELL = {
             "Farewell...",
             "I have failed you...",
             "I just wanted some love..."
     };
 
-    private String[] MERC_FAREWELL = {
+    private final String[] MERC_FAREWELL = {
             "I didn't sign up for this...",
             "I want a raise..."
     };
@@ -148,9 +147,9 @@ public abstract class Char extends Actor {
 
     public int viewDistance = 8;
 
-    private HashSet<Buff> buffs = new HashSet<Buff>();
+    private final HashSet<Buff> buffs = new HashSet<>();
 
-    public String getDeathScream() {
+    private String getDeathScream() {
         if (this instanceof Hero)
             return HERO_DEATH_SCREAM[Random.IntRange(0, HERO_DEATH_SCREAM.length - 1)];
         if (this instanceof Rat)
@@ -286,7 +285,7 @@ public abstract class Char extends Actor {
 
             if (this instanceof Hero && ((Hero) this).rangedWeapon == null && ((Hero) this).belongings.weapon instanceof DualSwords) {
                 if (enemy.isAlive()) {
-                    if (((DualSwords) ((Hero) this).belongings.weapon).secondHit == false) {
+                    if (!((DualSwords) ((Hero) this).belongings.weapon).secondHit) {
                         ((DualSwords) ((Hero) this).belongings.weapon).secondHit = true;
                         attack(enemy);
                     } else
@@ -296,7 +295,7 @@ public abstract class Char extends Actor {
             }
 
             if (this instanceof Hero && ((Hero) this).rangedWeapon == null && ((Hero) this).belongings.weapon instanceof NecroBlade) {
-                if (enemy.isAlive() == false) {
+                if (!enemy.isAlive()) {
                     ((NecroBlade) Dungeon.hero.belongings.weapon).updateCharge(enemy.HT > 22 ? (int) Math.floor(enemy.HT / 22) : 1);
                     GLog.p("NecroBlade absored a portion of " + enemy.name + "'s life energy.");
 
@@ -349,17 +348,16 @@ public abstract class Char extends Actor {
         }
     }
 
-    public static boolean hit(Char attacker, Char defender, boolean magic) {
+    protected static boolean hit(Char attacker, Char defender, boolean magic) {
         float acuRoll = Random.Float(attacker.attackSkill(defender));
         float defRoll = Random.Float(defender.defenseSkill(attacker));
 
-        if (defender instanceof Hero && Level.distance(attacker.pos, defender.pos) > 1 && ((Hero) defender).heroSkills.passiveA3.dodgeChance()) // <--- Huntress Awareness if present
-            return false;
+        // <--- Huntress Awareness if present
+        return (!(defender instanceof Hero) || Level.distance(attacker.pos, defender.pos) <= 1 || !((Hero) defender).heroSkills.passiveA3.dodgeChance()) && (magic ? acuRoll * 2 : acuRoll) >= defRoll;
 
-        return (magic ? acuRoll * 2 : acuRoll) >= defRoll;
     }
 
-    public int attackSkill(Char target) {
+    protected int attackSkill(Char target) {
         return 0;
     }
 
@@ -485,7 +483,7 @@ public abstract class Char extends Actor {
 
     @SuppressWarnings("unchecked")
     public <T extends Buff> HashSet<T> buffs(Class<T> c) {
-        HashSet<T> filtered = new HashSet<T>();
+        HashSet<T> filtered = new HashSet<>();
         for (Buff b : buffs) {
             if (c.isInstance(b)) {
                 filtered.add((T) b);
@@ -504,7 +502,7 @@ public abstract class Char extends Actor {
         return null;
     }
 
-    public boolean isCharmedBy(Char ch) {
+    protected boolean isCharmedBy(Char ch) {
         int chID = ch.id();
         for (Buff b : buffs) {
             if (b instanceof Charm && ((Charm) b).object == chID) {
@@ -673,7 +671,7 @@ public abstract class Char extends Actor {
         }
     }
 
-    public int distance(Char other) {
+    protected int distance(Char other) {
         return Level.distance(pos, other.pos);
     }
 
@@ -689,7 +687,7 @@ public abstract class Char extends Actor {
         next();
     }
 
-    private static final HashSet<Class<?>> EMPTY = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> EMPTY = new HashSet<>();
 
     public HashSet<Class<?>> resistances() {
         return EMPTY;

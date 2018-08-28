@@ -50,11 +50,11 @@ public class Generator {
         GOLD(50, Gold.class),
         MISC(5, Item.class);
 
-        public Class<?>[] classes;
-        public float[] probs;
+        Class<?>[] classes;
+        float[] probs;
 
-        public float prob;
-        public Class<? extends Item> superClass;
+        final float prob;
+        final Class<? extends Item> superClass;
 
         Category(float prob, Class<? extends Item> superClass) {
             this.prob = prob;
@@ -72,7 +72,7 @@ public class Generator {
         }
     }
 
-    private static HashMap<Category, Float> categoryProbs = new HashMap<Generator.Category, Float>();
+    private static final HashMap<Category, Float> categoryProbs = new HashMap<>();
 
     static {
 
@@ -249,7 +249,7 @@ public class Generator {
         }
     }
 
-    public static Armor randomArmor() throws Exception {
+    private static Armor randomArmor() throws Exception {
 
         int curStr = Hero.STARTING_STR + Dungeon.potionOfStrength;
 
@@ -264,7 +264,7 @@ public class Generator {
         return Math.abs(curStr - a1.STR) < Math.abs(curStr - a2.STR) ? a1 : a2;
     }
 
-    public static Weapon randomWeapon() throws Exception {
+    private static Weapon randomWeapon() throws Exception {
 
         int curStr = Hero.STARTING_STR + Dungeon.potionOfStrength;
 

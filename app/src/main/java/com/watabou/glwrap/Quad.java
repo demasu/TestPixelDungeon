@@ -27,7 +27,7 @@ public class Quad {
     // 0---1
     // | \ |
     // 3---2
-    public static final short[] VALUES = {0, 1, 2, 0, 2, 3};
+    private static final short[] VALUES = {0, 1, 2, 0, 2, 3};
 
     public static final int SIZE = VALUES.length;
 
@@ -64,10 +64,10 @@ public class Quad {
             int pos = 0;
             int limit = size * 4;
             for (int ofs = 0; ofs < limit; ofs += 4) {
-                values[pos++] = (short) (ofs + 0);
+                values[pos++] = (short) (ofs);
                 values[pos++] = (short) (ofs + 1);
                 values[pos++] = (short) (ofs + 2);
-                values[pos++] = (short) (ofs + 0);
+                values[pos++] = (short) (ofs);
                 values[pos++] = (short) (ofs + 2);
                 values[pos++] = (short) (ofs + 3);
             }

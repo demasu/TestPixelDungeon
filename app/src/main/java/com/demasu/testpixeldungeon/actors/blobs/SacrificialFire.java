@@ -46,7 +46,7 @@ public class SacrificialFire extends Blob {
     private static final String TXT_UNWORTHY = "\"Your sacrifice is unworthy...\" ";
     private static final String TXT_REWARD = "\"Your sacrifice is worthy and so you are!\" ";
 
-    protected int pos;
+    private int pos;
 
     @Override
     public void restoreFromBundle(Bundle bundle) {
@@ -90,7 +90,7 @@ public class SacrificialFire extends Blob {
         emitter.pour(SacrificialParticle.FACTORY, 0.04f);
     }
 
-    public static void sacrifice(Char ch) {
+    private static void sacrifice(Char ch) {
 
         Wound.hit(ch);
 
@@ -133,7 +133,7 @@ public class SacrificialFire extends Blob {
 
     public static class Marked extends FlavourBuff {
 
-        public static final float DURATION = 5f;
+        static final float DURATION = 5f;
 
         @Override
         public int icon() {

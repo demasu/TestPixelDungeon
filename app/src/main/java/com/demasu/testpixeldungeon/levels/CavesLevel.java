@@ -230,11 +230,11 @@ public class CavesLevel extends RegularLevel {
 
     private static class Vein extends Group {
 
-        private int pos;
+        private final int pos;
 
         private float delay;
 
-        public Vein(int pos) {
+        Vein(int pos) {
             super();
 
             this.pos = pos;
@@ -264,7 +264,7 @@ public class CavesLevel extends RegularLevel {
 
     public static final class Sparkle extends PixelParticle {
 
-        public void reset(float x, float y) {
+        void reset(float x, float y) {
             revive();
 
             this.x = x;

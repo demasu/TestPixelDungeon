@@ -27,22 +27,22 @@ import com.watabou.utils.Random;
 
 public class ItemStatusHandler<T extends Item> {
 
-    private Class<? extends T>[] items;
+    private final Class<? extends T>[] items;
 
-    private HashMap<Class<? extends T>, Integer> images;
-    private HashMap<Class<? extends T>, String> labels;
-    private HashSet<Class<? extends T>> known;
+    private final HashMap<Class<? extends T>, Integer> images;
+    private final HashMap<Class<? extends T>, String> labels;
+    private final HashSet<Class<? extends T>> known;
 
     public ItemStatusHandler(Class<? extends T>[] items, String[] allLabels, Integer[] allImages, int exclude) {
 
         this.items = items;
 
-        this.images = new HashMap<Class<? extends T>, Integer>();
-        this.labels = new HashMap<Class<? extends T>, String>();
-        known = new HashSet<Class<? extends T>>();
+        this.images = new HashMap<>();
+        this.labels = new HashMap<>();
+        known = new HashSet<>();
 
-        ArrayList<String> labelsLeft = new ArrayList<String>(Arrays.asList(allLabels));
-        ArrayList<Integer> imagesLeft = new ArrayList<Integer>(Arrays.asList(allImages));
+        ArrayList<String> labelsLeft = new ArrayList<>(Arrays.asList(allLabels));
+        ArrayList<Integer> imagesLeft = new ArrayList<>(Arrays.asList(allImages));
 
         for (int i = 0; i < items.length - exclude; i++) {
 
@@ -71,16 +71,14 @@ public class ItemStatusHandler<T extends Item> {
 
         this.items = items;
 
-        this.images = new HashMap<Class<? extends T>, Integer>();
-        this.labels = new HashMap<Class<? extends T>, String>();
-        known = new HashSet<Class<? extends T>>();
+        this.images = new HashMap<>();
+        this.labels = new HashMap<>();
+        known = new HashSet<>();
 
-        ArrayList<String> labelsLeft = new ArrayList<String>(Arrays.asList(allLabels));
-        ArrayList<Integer> imagesLeft = new ArrayList<Integer>(Arrays.asList(allImages));
+        ArrayList<String> labelsLeft = new ArrayList<>(Arrays.asList(allLabels));
+        ArrayList<Integer> imagesLeft = new ArrayList<>(Arrays.asList(allImages));
 
-        for (int i = 0; i < items.length; i++) {
-
-            Class<? extends T> item = items[i];
+        for (Class<? extends T> item : items) {
 
             int index = Random.Int(labelsLeft.size());
 
@@ -96,9 +94,9 @@ public class ItemStatusHandler<T extends Item> {
 
         this.items = items;
 
-        this.images = new HashMap<Class<? extends T>, Integer>();
-        this.labels = new HashMap<Class<? extends T>, String>();
-        known = new HashSet<Class<? extends T>>();
+        this.images = new HashMap<>();
+        this.labels = new HashMap<>();
+        known = new HashSet<>();
 
         restore(bundle, labels, images);
     }
@@ -108,22 +106,21 @@ public class ItemStatusHandler<T extends Item> {
     private static final String PFX_KNOWN = "_known";
 
     public void save(Bundle bundle) {
-        for (int i = 0; i < items.length; i++) {
-            String itemName = items[i].toString();
-            bundle.put(itemName + PFX_IMAGE, images.get(items[i]));
-            bundle.put(itemName + PFX_LABEL, labels.get(items[i]));
-            bundle.put(itemName + PFX_KNOWN, known.contains(items[i]));
+        for (Class<? extends T> item : items) {
+            String itemName = item.toString();
+            bundle.put(itemName + PFX_IMAGE, images.get(item));
+            bundle.put(itemName + PFX_LABEL, labels.get(item));
+            bundle.put(itemName + PFX_KNOWN, known.contains(item));
         }
     }
 
     private void restore(Bundle bundle, String[] allLabels, Integer[] allImages) {
 
-        ArrayList<String> labelsLeft = new ArrayList<String>(Arrays.asList(allLabels));
-        ArrayList<Integer> imagesLeft = new ArrayList<Integer>(Arrays.asList(allImages));
+        ArrayList<String> labelsLeft = new ArrayList<>(Arrays.asList(allLabels));
+        ArrayList<Integer> imagesLeft = new ArrayList<>(Arrays.asList(allImages));
 
-        for (int i = 0; i < items.length; i++) {
+        for (Class<? extends T> item : items) {
 
-            Class<? extends T> item = items[i];
             String itemName = item.toString();
 
             if (bundle.contains(itemName + PFX_LABEL)) {
@@ -171,9 +168,9 @@ public class ItemStatusHandler<T extends Item> {
         known.add((Class<? extends T>) item.getClass());
 
         if (known.size() == items.length - 1) {
-            for (int i = 0; i < items.length; i++) {
-                if (!known.contains(items[i])) {
-                    known.add(items[i]);
+            for (Class<? extends T> item1 : items) {
+                if (!known.contains(item1)) {
+                    known.add(item1);
                     break;
                 }
             }
@@ -185,7 +182,7 @@ public class ItemStatusHandler<T extends Item> {
     }
 
     public HashSet<Class<? extends T>> unknown() {
-        HashSet<Class<? extends T>> result = new HashSet<Class<? extends T>>();
+        HashSet<Class<? extends T>> result = new HashSet<>();
         for (Class<? extends T> i : items) {
             if (!known.contains(i)) {
                 result.add(i);

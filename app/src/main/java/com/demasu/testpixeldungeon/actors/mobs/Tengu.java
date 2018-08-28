@@ -186,7 +186,7 @@ public class Tengu extends Mob {
                         "These assassins are noted for extensive use of shuriken and traps.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<>();
 
     static {
         RESISTANCES.add(ToxicGas.class);

@@ -24,14 +24,14 @@ import com.demasu.testpixeldungeon.Chrome;
 
 public class Tag extends Button {
 
-    private float r;
-    private float g;
-    private float b;
-    protected NinePatch bg;
+    private final float r;
+    private final float g;
+    private final float b;
+    NinePatch bg;
 
-    protected float lightness = 0;
+    private float lightness = 0;
 
-    public Tag(int color) {
+    Tag(int color) {
         super();
 
         this.r = (color >> 16) / 255f;
@@ -58,7 +58,7 @@ public class Tag extends Button {
         bg.size(width, height);
     }
 
-    public void flash() {
+    void flash() {
         lightness = 1f;
     }
 

@@ -51,7 +51,7 @@ public class SpellSprite extends Image {
     private float duration;
     private float passed;
 
-    private static HashMap<Char, SpellSprite> all = new HashMap<Char, SpellSprite>();
+    private static final HashMap<Char, SpellSprite> all = new HashMap<>();
 
     public SpellSprite() {
         super(Assets.SPELL_ICONS);
@@ -61,7 +61,7 @@ public class SpellSprite extends Image {
         }
     }
 
-    public void reset(int index) {
+    private void reset(int index) {
         frame(film.get(index));
         origin.set(width / 2, height / 2);
 

@@ -28,23 +28,23 @@ import android.graphics.RectF;
 
 public class Tilemap extends Visual {
 
-    protected SmartTexture texture;
-    protected TextureFilm tileset;
+    protected final SmartTexture texture;
+    protected final TextureFilm tileset;
 
-    protected int[] data;
-    protected int mapWidth;
-    protected int mapHeight;
-    protected int size;
+    private int[] data;
+    private int mapWidth;
+    private int mapHeight;
+    private int size;
 
-    private float cellW;
-    private float cellH;
+    private final float cellW;
+    private final float cellH;
 
-    protected float[] vertices;
-    protected FloatBuffer quads;
+    private final float[] vertices;
+    private FloatBuffer quads;
 
-    public Rect updated;
+    public final Rect updated;
 
-    public Tilemap(Object tx, TextureFilm tileset) {
+    protected Tilemap(Object tx, TextureFilm tileset) {
 
         super(0, 0, 0, 0);
 
@@ -60,7 +60,7 @@ public class Tilemap extends Visual {
         updated = new Rect();
     }
 
-    public void map(int[] data, int cols) {
+    protected void map(int[] data, int cols) {
 
         this.data = data;
 
@@ -76,7 +76,7 @@ public class Tilemap extends Visual {
         updated.set(0, 0, mapWidth, mapHeight);
     }
 
-    protected void updateVertices() {
+    private void updateVertices() {
 
         float y1 = cellH * updated.top;
         float y2 = y1 + cellH;

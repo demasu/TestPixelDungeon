@@ -17,13 +17,10 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import android.util.Log;
-
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.Actor;
-import com.demasu.testpixeldungeon.actors.mobs.Mob;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.SummonedPet;
 import com.demasu.testpixeldungeon.effects.Pushing;
 import com.demasu.testpixeldungeon.levels.Level;
@@ -31,7 +28,6 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.sprites.RatSprite;
-import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
@@ -46,9 +42,10 @@ public class SoulCrystalFilled extends Item {
         quantity = 1;
     }
 
-    public Class<? extends CharSprite> minionSprite;
-    public int HT, defenceSkill;
-    public String captured;
+    private Class<? extends CharSprite> minionSprite;
+    private int HT;
+    private int defenceSkill;
+    private String captured;
 
     public SoulCrystalFilled() {
         this(RatSprite.class, 5, 1, "Rat");
@@ -78,7 +75,7 @@ public class SoulCrystalFilled extends Item {
 
         int newPos = pos;
         if (Actor.findChar(pos) != null) {
-            ArrayList<Integer> candidates = new ArrayList<Integer>();
+            ArrayList<Integer> candidates = new ArrayList<>();
             boolean[] passable = Level.passable;
 
             for (int n : Level.NEIGHBOURS4) {
@@ -146,10 +143,8 @@ public class SoulCrystalFilled extends Item {
     @Override
     public String info() {
 
-        StringBuilder info = new StringBuilder(desc());
 
-
-        return info.toString();
+        return desc();
     }
 
     @Override

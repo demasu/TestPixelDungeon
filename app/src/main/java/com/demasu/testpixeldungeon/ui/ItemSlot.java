@@ -38,10 +38,10 @@ public class ItemSlot extends Button {
     private static final float ENABLED = 1.0f;
     private static final float DISABLED = 0.3f;
 
-    protected ItemSprite icon;
-    protected BitmapText topLeft;
+    ItemSprite icon;
+    private BitmapText topLeft;
     protected BitmapText topRight;
-    protected BitmapText bottomRight;
+    private BitmapText bottomRight;
 
     private static final String TXT_STRENGTH = ":%d";
     private static final String TXT_TYPICAL_STR = "%d?";
@@ -79,7 +79,7 @@ public class ItemSlot extends Button {
         super();
     }
 
-    public ItemSlot(Item item) {
+    protected ItemSlot(Item item) {
         this();
         item(item);
     }

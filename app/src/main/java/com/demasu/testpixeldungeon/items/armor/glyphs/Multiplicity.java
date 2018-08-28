@@ -36,7 +36,7 @@ public class Multiplicity extends Glyph {
 
     private static final String TXT_MULTIPLICITY = "%s of multiplicity";
 
-    private static ItemSprite.Glowing PINK = new ItemSprite.Glowing(0xCCAA88);
+    private static final ItemSprite.Glowing PINK = new ItemSprite.Glowing(0xCCAA88);
 
     @Override
     public int proc(Armor armor, Char attacker, Char defender, int damage) {
@@ -45,7 +45,7 @@ public class Multiplicity extends Glyph {
 
         if (Random.Int(level / 2 + 6) >= 5) {
 
-            ArrayList<Integer> respawnPoints = new ArrayList<Integer>();
+            ArrayList<Integer> respawnPoints = new ArrayList<>();
 
             for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
                 int p = defender.pos + Level.NEIGHBOURS8[i];

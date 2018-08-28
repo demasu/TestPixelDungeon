@@ -29,24 +29,24 @@ import com.watabou.utils.Random;
 
 public class Emitter extends Group {
 
-    protected boolean lightMode = false;
+    private boolean lightMode = false;
 
     public float x;
     public float y;
-    public float width;
-    public float height;
+    protected float width;
+    protected float height;
 
-    protected Visual target;
+    Visual target;
 
-    protected float interval;
-    protected int quantity;
+    private float interval;
+    private int quantity;
 
     public boolean on = false;
 
     public boolean autoKill = true;
 
-    protected int count;
-    protected float time;
+    private int count;
+    private float time;
 
     protected Factory factory;
 

@@ -19,23 +19,21 @@ package com.watabou.input;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import android.util.SparseArray;
 
 import com.watabou.utils.PointF;
 import com.watabou.utils.Signal;
 
-import android.annotation.SuppressLint;
 import android.view.MotionEvent;
 
 public class Touchscreen {
 
-    public static Signal<Touch> event = new Signal<Touch>(true);
+    public static final Signal<Touch> event = new Signal<>(true);
 
-    public static HashMap<Integer, Touch> pointers = new HashMap<Integer, Touch>();
+    private static final HashMap<Integer, Touch> pointers = new HashMap<>();
 
     public static float x;
     public static float y;
-    public static boolean touched;
+    private static boolean touched;
 
     public static void processTouchEvents(ArrayList<MotionEvent> events) {
 
@@ -86,11 +84,11 @@ public class Touchscreen {
 
     public static class Touch {
 
-        public PointF start;
-        public PointF current;
+        public final PointF start;
+        public final PointF current;
         public boolean down;
 
-        public Touch(MotionEvent e, int index) {
+        Touch(MotionEvent e, int index) {
 
             float x = e.getX(index);
             float y = e.getY(index);
@@ -101,11 +99,11 @@ public class Touchscreen {
             down = true;
         }
 
-        public void update(MotionEvent e, int index) {
+        void update(MotionEvent e, int index) {
             current.set(e.getX(index), e.getY(index));
         }
 
-        public Touch up() {
+        Touch up() {
             down = false;
             return this;
         }

@@ -27,7 +27,6 @@ import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
-import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.Pushing;
 import com.demasu.testpixeldungeon.effects.Speck;
@@ -50,7 +49,7 @@ public class Mimic extends Mob {
         spriteClass = MimicSprite.class;
     }
 
-    public ArrayList<Item> items;
+    private ArrayList<Item> items;
 
     private static final String LEVEL = "level";
     private static final String ITEMS = "items";
@@ -73,7 +72,7 @@ public class Mimic extends Mob {
         // This works
         Collection<Bundlable> tmp = bundle.getCollection(ITEMS);
 
-        items = new ArrayList<Item>();
+        items = new ArrayList<>();
 
         for (Bundlable item : tmp) {
             items.add((Item) item);
@@ -103,7 +102,7 @@ public class Mimic extends Mob {
         return super.attackProc(enemy, damage);
     }
 
-    public void adjustStats(int level) {
+    private void adjustStats(int level) {
         this.level = level;
 
         HT = (3 + level) * 4;
@@ -141,7 +140,7 @@ public class Mimic extends Mob {
     public static Mimic spawnAt(int pos, List<Item> items) {
         Char ch = Actor.findChar(pos);
         if (ch != null) {
-            ArrayList<Integer> candidates = new ArrayList<Integer>();
+            ArrayList<Integer> candidates = new ArrayList<>();
             for (int n : Level.NEIGHBOURS8) {
                 int cell = pos + n;
                 if ((Level.passable[cell] || Level.avoid[cell]) && Actor.findChar(cell) == null) {
@@ -165,7 +164,7 @@ public class Mimic extends Mob {
         }
 
         Mimic m = new Mimic();
-        m.items = new ArrayList<Item>(items);
+        m.items = new ArrayList<>(items);
         m.adjustStats(Dungeon.depth);
         m.HP = m.HT;
         m.pos = pos;
@@ -182,7 +181,7 @@ public class Mimic extends Mob {
         return m;
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
     static {
         IMMUNITIES.add(ScrollOfPsionicBlast.class);

@@ -42,9 +42,9 @@ import com.watabou.utils.Random;
 
 public class Plant implements Bundlable {
 
-    public String plantName;
+    public final String plantName;
 
-    public int image;
+    public final int image;
     public int pos;
 
     public PlantSprite sprite;
@@ -94,7 +94,7 @@ public class Plant implements Bundlable {
 
     public static class Seed extends Item {
 
-        public static final String AC_PLANT = "PLANT";
+        static final String AC_PLANT = "PLANT";
 
         private static final String TXT_INFO = "Throw this seed to the place where you want to grow %s.\n\n%s";
 
@@ -105,8 +105,8 @@ public class Plant implements Bundlable {
             defaultAction = AC_THROW;
         }
 
-        protected Class<? extends Plant> plantClass;
-        protected String plantName;
+        Class<? extends Plant> plantClass;
+        String plantName;
 
         public Class<? extends Item> alchemyClass;
 

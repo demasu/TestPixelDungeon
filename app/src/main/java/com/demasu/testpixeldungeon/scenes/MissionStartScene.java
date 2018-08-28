@@ -31,7 +31,6 @@ import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Difficulties;
 import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.GamesInProgress;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.demasu.testpixeldungeon.effects.BannerSprites;
@@ -42,7 +41,6 @@ import com.demasu.testpixeldungeon.ui.ExitButton;
 import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.ResumeButton;
-import com.demasu.testpixeldungeon.utils.Utils;
 import com.demasu.testpixeldungeon.windows.WndChallenges;
 import com.demasu.testpixeldungeon.windows.WndClass;
 import com.demasu.testpixeldungeon.windows.WndMessage;
@@ -78,7 +76,7 @@ public class MissionStartScene extends PixelScene {
     private static final float WIDTH_L = 224;
     private static final float HEIGHT_L = 124;
 
-    private static HashMap<HeroClass, ClassShield> shields = new HashMap<HeroClass, ClassShield>();
+    private static final HashMap<HeroClass, ClassShield> shields = new HashMap<>();
 
     private float buttonX;
     private float buttonY;
@@ -86,10 +84,9 @@ public class MissionStartScene extends PixelScene {
     private GameButton btnLoad;
     private GameButton btnNewGame;
 
-    private boolean huntressUnlocked;
     private Group unlock;
 
-    public static HeroClass curClass;
+    private static HeroClass curClass;
 
     @Override
     public void create() {
@@ -206,6 +203,7 @@ public class MissionStartScene extends PixelScene {
         unlock = new Group();
         add(unlock);
 
+        boolean huntressUnlocked;
         if (!(huntressUnlocked = Badges.isUnlocked(Badges.Badge.BOSS_SLAIN_3))) {
 
             BitmapTextMultiline text = PixelScene.createMultiline(TXT_UNLOCK, 9);
@@ -308,23 +306,14 @@ public class MissionStartScene extends PixelScene {
         }
         shields.get(curClass = cl).highlight(true);
 
-        if (true) {
-
-            unlock.visible = false;
+        unlock.visible = false;
 
 
-            btnNewGame.visible = true;
-            btnNewGame.secondary(null, false);
-            btnNewGame.setRect(buttonX, buttonY, Camera.main.width - buttonX * 2, BUTTON_HEIGHT);
+        btnNewGame.visible = true;
+        btnNewGame.secondary(null, false);
+        btnNewGame.setRect(buttonX, buttonY, Camera.main.width - buttonX * 2, BUTTON_HEIGHT);
 
 
-        } else {
-
-            unlock.visible = true;
-
-            btnNewGame.visible = false;
-
-        }
     }
 
     private void startNewGame(int diff) {
@@ -356,7 +345,7 @@ public class MissionStartScene extends PixelScene {
 
         private BitmapText secondary;
 
-        public GameButton(String primary) {
+        GameButton(String primary) {
             super(primary);
 
             this.secondary.text(null);
@@ -384,7 +373,7 @@ public class MissionStartScene extends PixelScene {
             }
         }
 
-        public void secondary(String text, boolean highlighted) {
+        void secondary(String text, boolean highlighted) {
             secondary.text(text);
             secondary.measure();
 
@@ -406,7 +395,7 @@ public class MissionStartScene extends PixelScene {
         private static final int HEIGHT = 28;
         private static final int SCALE = 2;
 
-        private HeroClass cl;
+        private final HeroClass cl;
 
         private Image avatar;
         private BitmapText name;
@@ -414,10 +403,10 @@ public class MissionStartScene extends PixelScene {
 
         private float brightness;
 
-        private int normal;
-        private int highlighted;
+        private final int normal;
+        private final int highlighted;
 
-        public ClassShield(HeroClass cl) {
+        ClassShield(HeroClass cl) {
             super();
 
             this.cl = cl;
@@ -487,7 +476,7 @@ public class MissionStartScene extends PixelScene {
             }
         }
 
-        public void highlight(boolean value) {
+        void highlight(boolean value) {
             if (value) {
                 brightness = 1.0f;
                 name.hardlight(highlighted);
@@ -508,7 +497,7 @@ public class MissionStartScene extends PixelScene {
 
         private Image image;
 
-        public ChallengeButton() {
+        ChallengeButton() {
             super();
 
             width = image.width;

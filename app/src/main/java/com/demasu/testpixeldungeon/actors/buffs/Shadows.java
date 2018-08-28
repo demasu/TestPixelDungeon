@@ -26,7 +26,7 @@ import com.watabou.utils.Bundle;
 
 public class Shadows extends Invisibility {
 
-    protected float left;
+    private float left;
 
     private static final String LEFT = "left";
 

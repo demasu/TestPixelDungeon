@@ -74,8 +74,8 @@ public class HallsLevel extends RegularLevel {
             if (map[i] == Terrain.EMPTY) {
 
                 int count = 0;
-                for (int j = 0; j < NEIGHBOURS8.length; j++) {
-                    if ((Terrain.flags[map[i + NEIGHBOURS8[j]]] & Terrain.PASSABLE) > 0) {
+                for (int aNEIGHBOURS8 : NEIGHBOURS8) {
+                    if ((Terrain.flags[map[i + aNEIGHBOURS8]] & Terrain.PASSABLE) > 0) {
                         count++;
                     }
                 }
@@ -150,11 +150,11 @@ public class HallsLevel extends RegularLevel {
 
     private static class Stream extends Group {
 
-        private int pos;
+        private final int pos;
 
         private float delay;
 
-        public Stream(int pos) {
+        Stream(int pos) {
             super();
 
             this.pos = pos;
@@ -191,7 +191,7 @@ public class HallsLevel extends RegularLevel {
 
     public static class FireParticle extends PixelParticle.Shrinking {
 
-        public FireParticle() {
+        FireParticle() {
             super();
 
             color(0xEE7722);
@@ -200,7 +200,7 @@ public class HallsLevel extends RegularLevel {
             acc.set(0, +80);
         }
 
-        public void reset(float x, float y) {
+        void reset(float x, float y) {
             revive();
 
             this.x = x;

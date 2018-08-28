@@ -39,16 +39,16 @@ public class WindParticle extends PixelParticle {
     private static float angle = Random.Float(PointF.PI2);
     private static PointF speed = new PointF().polar(angle, 5);
 
-    private float size;
+    private final float size;
 
-    public WindParticle() {
+    private WindParticle() {
         super();
 
         lifespan = Random.Float(1, 2);
         scale.set(size = Random.Float(3));
     }
 
-    public void reset(float x, float y) {
+    private void reset(float x, float y) {
         revive();
 
         left = lifespan;
@@ -75,10 +75,10 @@ public class WindParticle extends PixelParticle {
 
     public static class Wind extends Group {
 
-        private int pos;
+        private final int pos;
 
-        private float x;
-        private float y;
+        private final float x;
+        private final float y;
 
         private float delay;
 

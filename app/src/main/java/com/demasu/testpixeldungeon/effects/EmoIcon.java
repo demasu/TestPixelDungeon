@@ -26,14 +26,14 @@ import com.watabou.utils.Random;
 
 public class EmoIcon extends Image {
 
-    protected float maxSize = 2;
-    protected float timeScale = 1;
+    float maxSize = 2;
+    float timeScale = 1;
 
-    protected boolean growing = true;
+    private boolean growing = true;
 
-    protected CharSprite owner;
+    private final CharSprite owner;
 
-    public EmoIcon(CharSprite owner) {
+    EmoIcon(CharSprite owner) {
         super();
 
         this.owner = owner;

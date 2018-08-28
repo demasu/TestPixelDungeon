@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import android.util.Log;
-
 import java.io.FileNotFoundException;
 
 import com.watabou.noosa.BitmapText;
@@ -33,11 +31,9 @@ import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.items.Generator;
 import com.demasu.testpixeldungeon.levels.Campaigns.FirstWave;
-import com.demasu.testpixeldungeon.levels.FrostLevel;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.MovieLevel;
 import com.demasu.testpixeldungeon.ui.GameLog;
-import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.windows.WndError;
 import com.demasu.testpixeldungeon.windows.WndStory;
 
@@ -232,13 +228,19 @@ public class InterlevelScene extends PixelScene {
                     Music.INSTANCE.volume(p);
                 }
                 if ((timeLeft -= Game.elapsed) <= 0) {
-                    if (mode == Mode.MOVIE || mode == Mode.MISSION)
-                        //Game.switchScene( TitleScene.class );
-                        Game.switchScene(MissionScene.class);
-                    else if (mode == Mode.MOVIE_OUT)
-                        Game.switchScene(TitleScene.class);
-                    else
-                        Game.switchScene(GameScene.class);
+                    switch (mode) {
+                        case MOVIE:
+                        case MISSION:
+                            //Game.switchScene( TitleScene.class );
+                            Game.switchScene(MissionScene.class);
+                            break;
+                        case MOVIE_OUT:
+                            Game.switchScene(TitleScene.class);
+                            break;
+                        default:
+                            Game.switchScene(GameScene.class);
+                            break;
+                    }
                 }
                 break;
 

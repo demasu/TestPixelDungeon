@@ -25,9 +25,9 @@ import com.watabou.utils.Random;
 
 public class MeleeWeapon extends Weapon {
 
-    private int tier;
+    private final int tier;
 
-    public MeleeWeapon(int tier, float acu, float dly) {
+    MeleeWeapon(int tier, float acu, float dly) {
         super();
 
         this.tier = tier;
@@ -38,11 +38,11 @@ public class MeleeWeapon extends Weapon {
         STR = typicalSTR();
     }
 
-    protected int min0() {
+    private int min0() {
         return tier;
     }
 
-    protected int max0() {
+    int max0() {
         return (int) ((tier * tier - tier + 10) / ACU * DLY);
     }
 
@@ -66,8 +66,8 @@ public class MeleeWeapon extends Weapon {
         return super.upgrade(enchant);
     }
 
-    public Item safeUpgrade() {
-        return upgrade(enchantment != null);
+    void safeUpgrade() {
+        upgrade(enchantment != null);
     }
 
     @Override
@@ -94,26 +94,24 @@ public class MeleeWeapon extends Weapon {
                         "degraded") :
                 "";
         info.append(p);
-        info.append("This " + name + " is " + Utils.indefinite(quality));
-        info.append(" tier-" + tier + " melee weapon. ");
+        info.append("This ").append(name).append(" is ").append(Utils.indefinite(quality));
+        info.append(" tier-").append(tier).append(" melee weapon. ");
 
         if (levelKnown) {
             int min = min();
             int max = max();
-            info.append("Its average damage is " + (min + (max - min) / 2) + " points per hit. ");
+            info.append("Its average damage is ").append(min + (max - min) / 2).append(" points per hit. ");
         } else {
             int min = min0();
             int max = max0();
-            info.append(
-                    "Its typical average damage is " + (min + (max - min) / 2) + " points per hit " +
-                            "and usually it requires " + typicalSTR() + " points of strength. ");
+            info.append("Its typical average damage is ").append(min + (max - min) / 2).append(" points per hit ").append("and usually it requires ").append(typicalSTR()).append(" points of strength. ");
             if (typicalSTR() > Dungeon.hero.STR()) {
                 info.append("Probably this weapon is too heavy for you. ");
             }
         }
 
         if (DLY != 1f) {
-            info.append("This is a rather " + (DLY < 1f ? "fast" : "slow"));
+            info.append("This is a rather ").append(DLY < 1f ? "fast" : "slow");
             if (ACU != 1f) {
                 if ((ACU > 1f) == (DLY < 1f)) {
                     info.append(" and ");
@@ -124,7 +122,7 @@ public class MeleeWeapon extends Weapon {
             }
             info.append(" weapon. ");
         } else if (ACU != 1f) {
-            info.append("This is a rather " + (ACU > 1f ? "accurate" : "inaccurate") + " weapon. ");
+            info.append("This is a rather ").append(ACU > 1f ? "accurate" : "inaccurate").append(" weapon. ");
         }
         switch (imbue) {
             case SPEED:
@@ -143,28 +141,23 @@ public class MeleeWeapon extends Weapon {
         if (levelKnown && Dungeon.hero.belongings.backpack.items.contains(this)) {
             if (STR() > Dungeon.hero.STR()) {
                 info.append(p);
-                info.append(
-                        "Because of your inadequate strength the accuracy and speed " +
-                                "of your attack with this " + name + " is decreased.");
+                info.append("Because of your inadequate strength the accuracy and speed " + "of your attack with this ").append(name).append(" is decreased.");
             }
             if (STR() < Dungeon.hero.STR()) {
                 info.append(p);
-                info.append(
-                        "Because of your excess strength the damage " +
-                                "of your attack with this " + name + " is increased.");
+                info.append("Because of your excess strength the damage " + "of your attack with this ").append(name).append(" is increased.");
             }
         }
 
         if (isEquipped(Dungeon.hero)) {
             info.append(p);
             if (this instanceof MeleeWeapon && Dungeon.hero.heroSkills.passiveA1 != null && Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus() > 0) // <--- Warrior Mastery if present
-                info.append("Your mastery of melee weapons makes it easier to use this weapon (+ " + Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus() + " levels)\n");
-            info.append("You hold the " + name + " at the ready" +
-                    (cursed ? ", and because it is cursed, you are powerless to let go." : "."));
+                info.append("Your mastery of melee weapons makes it easier to use this weapon (+ ").append(Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus()).append(" levels)\n");
+            info.append("You hold the ").append(name).append(" at the ready").append(cursed ? ", and because it is cursed, you are powerless to let go." : ".");
         } else {
             if (cursedKnown && cursed) {
                 info.append(p);
-                info.append("You can feel a malevolent magic lurking within " + name + ".");
+                info.append("You can feel a malevolent magic lurking within ").append(name).append(".");
             }
         }
 

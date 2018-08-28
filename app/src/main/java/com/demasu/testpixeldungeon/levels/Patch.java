@@ -19,7 +19,7 @@ package com.demasu.testpixeldungeon.levels;
 
 import com.watabou.utils.Random;
 
-public class Patch {
+class Patch {
 
     private static boolean[] cur = new boolean[Level.LENGTH];
     private static boolean[] off = new boolean[Level.LENGTH];
@@ -65,9 +65,7 @@ public class Patch {
                         count++;
                     }
 
-                    if (!off[pos] && count >= 5) {
-                        cur[pos] = true;
-                    } else cur[pos] = off[pos] && count >= 4;
+                    cur[pos] = !off[pos] && count >= 5 || off[pos] && count >= 4;
                 }
             }
 

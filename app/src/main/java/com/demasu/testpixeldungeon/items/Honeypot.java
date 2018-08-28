@@ -35,7 +35,7 @@ import com.watabou.utils.Random;
 
 public class Honeypot extends Item {
 
-    public static final String AC_SHATTER = "SHATTER";
+    private static final String AC_SHATTER = "SHATTER";
 
     {
         name = "honeypot";
@@ -84,7 +84,7 @@ public class Honeypot extends Item {
 
         int newPos = pos;
         if (Actor.findChar(pos) != null) {
-            ArrayList<Integer> candidates = new ArrayList<Integer>();
+            ArrayList<Integer> candidates = new ArrayList<>();
             boolean[] passable = Level.passable;
 
             for (int n : Level.NEIGHBOURS4) {

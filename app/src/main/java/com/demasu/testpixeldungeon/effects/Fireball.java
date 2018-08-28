@@ -121,14 +121,14 @@ public class Fireball extends Component {
 
     public static class Flame extends Image {
 
-        private static float LIFESPAN = 1f;
+        private static final float LIFESPAN = 1f;
 
-        private static float SPEED = -40f;
-        private static float ACC = -20f;
+        private static final float SPEED = -40f;
+        private static final float ACC = -20f;
 
         private float timeLeft;
 
-        public Flame() {
+        Flame() {
 
             super(Assets.FIREBALL);
 
@@ -137,7 +137,7 @@ public class Fireball extends Component {
             acc.set(0, ACC);
         }
 
-        public void reset() {
+        void reset() {
             revive();
             timeLeft = LIFESPAN;
             speed.set(0, SPEED);

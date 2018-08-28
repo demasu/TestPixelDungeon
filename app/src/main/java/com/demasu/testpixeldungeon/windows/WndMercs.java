@@ -19,40 +19,22 @@ package com.demasu.testpixeldungeon.windows;
 
 import android.graphics.RectF;
 
-import com.watabou.gltextures.TextureCache;
 import com.watabou.input.Touchscreen;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.ColorBlock;
-import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.TouchArea;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
-import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.hero.HeroClass;
-import com.demasu.testpixeldungeon.actors.hero.Storage;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
-import com.demasu.testpixeldungeon.actors.skills.BranchSkill;
-import com.demasu.testpixeldungeon.actors.skills.Skill;
-import com.demasu.testpixeldungeon.items.Gold;
-import com.demasu.testpixeldungeon.items.Item;
-import com.demasu.testpixeldungeon.items.armor.Armor;
 import com.demasu.testpixeldungeon.items.armor.ClothArmor;
 import com.demasu.testpixeldungeon.items.armor.LeatherArmor;
-import com.demasu.testpixeldungeon.items.bags.Bag;
-import com.demasu.testpixeldungeon.items.bags.Keyring;
-import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
-import com.demasu.testpixeldungeon.items.bags.SeedPouch;
-import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.items.food.ChargrilledMeat;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 import com.demasu.testpixeldungeon.items.wands.WandOfBlink;
-import com.demasu.testpixeldungeon.items.weapon.Weapon;
 import com.demasu.testpixeldungeon.items.weapon.melee.Dagger;
 import com.demasu.testpixeldungeon.items.weapon.melee.Knuckles;
 import com.demasu.testpixeldungeon.items.weapon.melee.Mace;
@@ -61,15 +43,11 @@ import com.demasu.testpixeldungeon.items.weapon.missiles.FrostBow;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
-import com.demasu.testpixeldungeon.sprites.HeroSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;
-import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.sprites.MercSprite;
 import com.demasu.testpixeldungeon.sprites.SkillSprite;
 import com.demasu.testpixeldungeon.ui.Icons;
-import com.demasu.testpixeldungeon.ui.ItemSlot;
 import com.demasu.testpixeldungeon.ui.RedButton;
-import com.demasu.testpixeldungeon.ui.SkillSlot;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.Utils;
 
@@ -86,13 +64,13 @@ public class WndMercs extends WndTabbed {
         ARCHERMAIDEN
     }
 
-    float pos = 5;
-    float GAP = 2;
+    private float pos = 5;
+    private final float GAP = 2;
 
     private static final int WIDTH_P = 120;
     private static final int WIDTH_L = 144;
 
-    protected static final int TAB_WIDTH = 25;
+    private static final int TAB_WIDTH = 25;
 
     private static final String TXT_TITLE = "Hire A Mercenary";
 
@@ -108,7 +86,7 @@ public class WndMercs extends WndTabbed {
 
     private static final String TXT_NO_GOLD = "Insufficient Gold";
 
-    public static int maxHeight = 0;
+    private static int maxHeight = 0;
 
     public WndMercs(final Mode mode) {
         super();
@@ -190,344 +168,355 @@ public class WndMercs extends WndTabbed {
             pos = equipment.y + equipment.height() + GAP;
 
 
-            if (mode == Mode.BRUTE) {
-                final Image imageWeapon = new ItemSprite(new Mace());
-                add(imageWeapon);
-
-                imageWeapon.x = 0;
-                imageWeapon.y = pos;
-
-                TouchArea hotArea_imageWeapon = new TouchArea(imageWeapon) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageWeapon);
-                        parent.add(new previewInformation(tmp, "Mace", "A Brute favorite.."));
-                    }
-                };
-                add(hotArea_imageWeapon);
-
-
-                final Image imageArmor = new ItemSprite(new LeatherArmor());
-                add(imageArmor);
-
-                imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
-                imageArmor.y = pos;
-
-                TouchArea hotArea_imageArmo = new TouchArea(imageArmor) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageArmor);
-                        parent.add(new previewInformation(tmp, "Leather Armor", "Leather Armor provides basic protection"));
-                    }
-                };
-                add(hotArea_imageArmo);
-
-                final Image image = new ItemSprite(new ChargrilledMeat());
-                add(image);
-
-                image.x = imageArmor.x + imageArmor.width() + GAP;
-                image.y = pos + 2;
-
-                TouchArea hotArea_image = new TouchArea(image) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(image);
-                        parent.add(new previewInformation(tmp, "Meat", "These Brutes are always hungry..."));
-                    }
-                };
-                add(hotArea_image);
-
-                final Image imageSkill = new SkillSprite(3);
-                add(imageSkill);
-
-                imageSkill.x = image.x + image.width() + GAP;
-                imageSkill.y = pos;
-
-                TouchArea hotArea_imageSkill = new TouchArea(imageSkill) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageSkill);
-                        parent.add(new previewInformation(tmp, "Toughness", "Brutes are physically strong. They take less damage than what others would have."));
-                    }
-                };
-                add(hotArea_imageSkill);
-
-                pos = image.y + image.height() + GAP * 3;
-            } else if (mode == Mode.WIZARD) {
-                final Image imageWeapon = new ItemSprite(new Knuckles());
-                add(imageWeapon);
-
-                imageWeapon.x = 0;
-                imageWeapon.y = pos + 2;
-
-                TouchArea hotArea_imageWeapon = new TouchArea(imageWeapon) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageWeapon);
-                        parent.add(new previewInformation(tmp, "Knuckles", "A weak weapon."));
-                    }
-                };
-                add(hotArea_imageWeapon);
-
-
-                final Image imageArmor = new ItemSprite(new ClothArmor());
-                add(imageArmor);
-
-                imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
-                imageArmor.y = pos + 2;
-
-                TouchArea hotArea_imageArmo = new TouchArea(imageArmor) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageArmor);
-                        parent.add(new previewInformation(tmp, "Cloths", "Basic cloths."));
-                    }
-                };
-                add(hotArea_imageArmo);
-
-                final Image image = new ItemSprite(new PotionOfHealing());
-                add(image);
-
-                image.x = imageArmor.x + imageArmor.width() + GAP;
-                image.y = pos + 2;
-
-                TouchArea hotArea_image = new TouchArea(image) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(image);
-                        parent.add(new previewInformation(tmp, "Healing Potion", "A Healing Potion."));
-                    }
-                };
-                add(hotArea_image);
-
-                final Image imageSkill = new SkillSprite(41);
-                add(imageSkill);
-
-                imageSkill.x = image.x + image.width() + GAP;
-                imageSkill.y = pos;
-
-                TouchArea hotArea_imageSkill = new TouchArea(imageSkill) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageSkill);
-                        parent.add(new previewInformation(tmp, "Summon Rat", "The wizard summons rats to fight for him."));
-                    }
-                };
-                add(hotArea_imageSkill);
-
-                pos = image.y + image.height() + GAP * 3;
-            } else if (mode == Mode.THIEF) {
-                final Image imageWeapon = new ItemSprite(new Dagger());
-                add(imageWeapon);
-
-                imageWeapon.x = 0;
-                imageWeapon.y = pos + 1;
-
-                TouchArea hotArea_imageWeapon = new TouchArea(imageWeapon) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageWeapon);
-                        parent.add(new previewInformation(tmp, "Dagger", "A basic dagger."));
-                    }
-                };
-                add(hotArea_imageWeapon);
-
-
-                final Image imageArmor = new ItemSprite(new ClothArmor());
-                add(imageArmor);
-
-                imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
-                imageArmor.y = pos + 2;
-
-                TouchArea hotArea_imageArmo = new TouchArea(imageArmor) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageArmor);
-                        parent.add(new previewInformation(tmp, "Cloths", "Basic cloths."));
-                    }
-                };
-                add(hotArea_imageArmo);
-
-                final Image image = new ItemSprite(new PotionOfHealing());
-                add(image);
-
-                image.x = imageArmor.x + imageArmor.width() + GAP;
-                image.y = pos + 2;
-
-                TouchArea hotArea_image = new TouchArea(image) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(image);
-                        parent.add(new previewInformation(tmp, "Healing Potion", "A Healing Potion."));
-                    }
-                };
-                add(hotArea_image);
-
-                final Image imageSkill = new SkillSprite(57);
-                add(imageSkill);
-
-                imageSkill.x = image.x + image.width() + GAP;
-                imageSkill.y = pos;
-
-                TouchArea hotArea_imageSkill = new TouchArea(imageSkill) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageSkill);
-                        parent.add(new previewInformation(tmp, "Venom", "Thieves have a small chance of poisoning enemies in combat."));
-                    }
-                };
-                add(hotArea_imageSkill);
-
-                pos = image.y + image.height() + GAP * 3;
-            } else if (mode == Mode.ARCHER) {
-                final Image imageWeapon = new ItemSprite(new Bow());
-                add(imageWeapon);
-
-                imageWeapon.x = 0;
-                imageWeapon.y = pos + 1;
-
-                TouchArea hotArea_imageWeapon = new TouchArea(imageWeapon) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageWeapon);
-                        parent.add(new previewInformation(tmp, "Bow", "A basic bow."));
-                    }
-                };
-                add(hotArea_imageWeapon);
-
-
-                final Image imageArmor = new ItemSprite(new ClothArmor());
-                add(imageArmor);
-
-                imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
-                imageArmor.y = pos + 2;
-
-                TouchArea hotArea_imageArmo = new TouchArea(imageArmor) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageArmor);
-                        parent.add(new previewInformation(tmp, "Cloths", "Basic cloths."));
-                    }
-                };
-                add(hotArea_imageArmo);
-
-                final Image image = new ItemSprite(new PotionOfHealing());
-                add(image);
-
-                image.x = imageArmor.x + imageArmor.width() + GAP;
-                image.y = pos + 2;
-
-                TouchArea hotArea_image = new TouchArea(image) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(image);
-                        parent.add(new previewInformation(tmp, "Healing Potion", "A Healing Potion."));
-                    }
-                };
-                add(hotArea_image);
-
-                final Image imageSkill = new SkillSprite(82);
-                add(imageSkill);
-
-                imageSkill.x = image.x + image.width();
-                imageSkill.y = pos + 1;
-
-                TouchArea hotArea_imageSkill = new TouchArea(imageSkill) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageSkill);
-                        parent.add(new previewInformation(tmp, "Knee Shot", "High accuracy and knowledge in body anatomy allow the archer to hit weak spots crippling targets."));
-                    }
-                };
-                add(hotArea_imageSkill);
-
-                pos = image.y + image.height() + GAP * 3;
-            } else if (mode == Mode.ARCHERMAIDEN) {
-                final Image imageWeapon = new ItemSprite(new FrostBow());
-                add(imageWeapon);
-
-                imageWeapon.x = 0;
-                imageWeapon.y = pos + 1;
-
-                TouchArea hotArea_imageWeapon = new TouchArea(imageWeapon) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageWeapon);
-                        parent.add(new previewInformation(tmp, "FrostBow", "A bow imbued with magic. It can freeze targets on occasion."));
-                    }
-                };
-                add(hotArea_imageWeapon);
-
-
-                final Image image = new ItemSprite(new PotionOfHealing());
-                add(image);
-
-                image.x = imageWeapon.x + imageWeapon.width() + GAP;
-                image.y = pos + 2;
-
-                TouchArea hotArea_image = new TouchArea(image) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(image);
-                        parent.add(new previewInformation(tmp, "Healing Potion", "A Healing Potion."));
-                    }
-                };
-                add(hotArea_image);
-
-                final Image imageSkill = new SkillSprite(82);
-                add(imageSkill);
-
-                imageSkill.x = image.x + image.width();
-                imageSkill.y = pos + 1;
-
-                TouchArea hotArea_imageSkill = new TouchArea(imageSkill) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageSkill);
-                        parent.add(new previewInformation(tmp, "Knee Shot", "High accuracy and knowledge in body anatomy allow the archer maiden to hit weak spots crippling targets."));
-                    }
-                };
-                add(hotArea_imageSkill);
-
-                final Image imageSkillB = new SkillSprite(106);
-                add(imageSkillB);
-
-                imageSkillB.x = imageSkill.x + imageSkill.width() + GAP;
-                imageSkillB.y = pos + 1;
-
-                TouchArea hotArea_imageSkillB = new TouchArea(imageSkillB) {
-                    @Override
-                    protected void onClick(Touchscreen.Touch touch) {
-                        Image tmp = new Image();
-                        tmp.copy(imageSkillB);
-                        parent.add(new previewInformation(tmp, "Keen Eye", "Can shoot through friendly units without harming them."));
-                    }
-                };
-                add(hotArea_imageSkillB);
-
-                pos = image.y + image.height() + GAP * 3;
+            switch (mode) {
+                case BRUTE: {
+                    final Image imageWeapon = new ItemSprite(new Mace());
+                    add(imageWeapon);
+
+                    imageWeapon.x = 0;
+                    imageWeapon.y = pos;
+
+                    TouchArea hotArea_imageWeapon = new TouchArea(imageWeapon) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageWeapon);
+                            parent.add(new previewInformation(tmp, "Mace", "A Brute favorite.."));
+                        }
+                    };
+                    add(hotArea_imageWeapon);
+
+
+                    final Image imageArmor = new ItemSprite(new LeatherArmor());
+                    add(imageArmor);
+
+                    imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
+                    imageArmor.y = pos;
+
+                    TouchArea hotArea_imageArmo = new TouchArea(imageArmor) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageArmor);
+                            parent.add(new previewInformation(tmp, "Leather Armor", "Leather Armor provides basic protection"));
+                        }
+                    };
+                    add(hotArea_imageArmo);
+
+                    final Image image = new ItemSprite(new ChargrilledMeat());
+                    add(image);
+
+                    image.x = imageArmor.x + imageArmor.width() + GAP;
+                    image.y = pos + 2;
+
+                    TouchArea hotArea_image = new TouchArea(image) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(image);
+                            parent.add(new previewInformation(tmp, "Meat", "These Brutes are always hungry..."));
+                        }
+                    };
+                    add(hotArea_image);
+
+                    final Image imageSkill = new SkillSprite(3);
+                    add(imageSkill);
+
+                    imageSkill.x = image.x + image.width() + GAP;
+                    imageSkill.y = pos;
+
+                    TouchArea hotArea_imageSkill = new TouchArea(imageSkill) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageSkill);
+                            parent.add(new previewInformation(tmp, "Toughness", "Brutes are physically strong. They take less damage than what others would have."));
+                        }
+                    };
+                    add(hotArea_imageSkill);
+
+                    pos = image.y + image.height() + GAP * 3;
+                    break;
+                }
+                case WIZARD: {
+                    final Image imageWeapon = new ItemSprite(new Knuckles());
+                    add(imageWeapon);
+
+                    imageWeapon.x = 0;
+                    imageWeapon.y = pos + 2;
+
+                    TouchArea hotArea_imageWeapon = new TouchArea(imageWeapon) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageWeapon);
+                            parent.add(new previewInformation(tmp, "Knuckles", "A weak weapon."));
+                        }
+                    };
+                    add(hotArea_imageWeapon);
+
+
+                    final Image imageArmor = new ItemSprite(new ClothArmor());
+                    add(imageArmor);
+
+                    imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
+                    imageArmor.y = pos + 2;
+
+                    TouchArea hotArea_imageArmo = new TouchArea(imageArmor) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageArmor);
+                            parent.add(new previewInformation(tmp, "Cloths", "Basic cloths."));
+                        }
+                    };
+                    add(hotArea_imageArmo);
+
+                    final Image image = new ItemSprite(new PotionOfHealing());
+                    add(image);
+
+                    image.x = imageArmor.x + imageArmor.width() + GAP;
+                    image.y = pos + 2;
+
+                    TouchArea hotArea_image = new TouchArea(image) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(image);
+                            parent.add(new previewInformation(tmp, "Healing Potion", "A Healing Potion."));
+                        }
+                    };
+                    add(hotArea_image);
+
+                    final Image imageSkill = new SkillSprite(41);
+                    add(imageSkill);
+
+                    imageSkill.x = image.x + image.width() + GAP;
+                    imageSkill.y = pos;
+
+                    TouchArea hotArea_imageSkill = new TouchArea(imageSkill) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageSkill);
+                            parent.add(new previewInformation(tmp, "Summon Rat", "The wizard summons rats to fight for him."));
+                        }
+                    };
+                    add(hotArea_imageSkill);
+
+                    pos = image.y + image.height() + GAP * 3;
+                    break;
+                }
+                case THIEF: {
+                    final Image imageWeapon = new ItemSprite(new Dagger());
+                    add(imageWeapon);
+
+                    imageWeapon.x = 0;
+                    imageWeapon.y = pos + 1;
+
+                    TouchArea hotArea_imageWeapon = new TouchArea(imageWeapon) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageWeapon);
+                            parent.add(new previewInformation(tmp, "Dagger", "A basic dagger."));
+                        }
+                    };
+                    add(hotArea_imageWeapon);
+
+
+                    final Image imageArmor = new ItemSprite(new ClothArmor());
+                    add(imageArmor);
+
+                    imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
+                    imageArmor.y = pos + 2;
+
+                    TouchArea hotArea_imageArmo = new TouchArea(imageArmor) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageArmor);
+                            parent.add(new previewInformation(tmp, "Cloths", "Basic cloths."));
+                        }
+                    };
+                    add(hotArea_imageArmo);
+
+                    final Image image = new ItemSprite(new PotionOfHealing());
+                    add(image);
+
+                    image.x = imageArmor.x + imageArmor.width() + GAP;
+                    image.y = pos + 2;
+
+                    TouchArea hotArea_image = new TouchArea(image) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(image);
+                            parent.add(new previewInformation(tmp, "Healing Potion", "A Healing Potion."));
+                        }
+                    };
+                    add(hotArea_image);
+
+                    final Image imageSkill = new SkillSprite(57);
+                    add(imageSkill);
+
+                    imageSkill.x = image.x + image.width() + GAP;
+                    imageSkill.y = pos;
+
+                    TouchArea hotArea_imageSkill = new TouchArea(imageSkill) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageSkill);
+                            parent.add(new previewInformation(tmp, "Venom", "Thieves have a small chance of poisoning enemies in combat."));
+                        }
+                    };
+                    add(hotArea_imageSkill);
+
+                    pos = image.y + image.height() + GAP * 3;
+                    break;
+                }
+                case ARCHER: {
+                    final Image imageWeapon = new ItemSprite(new Bow());
+                    add(imageWeapon);
+
+                    imageWeapon.x = 0;
+                    imageWeapon.y = pos + 1;
+
+                    TouchArea hotArea_imageWeapon = new TouchArea(imageWeapon) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageWeapon);
+                            parent.add(new previewInformation(tmp, "Bow", "A basic bow."));
+                        }
+                    };
+                    add(hotArea_imageWeapon);
+
+
+                    final Image imageArmor = new ItemSprite(new ClothArmor());
+                    add(imageArmor);
+
+                    imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
+                    imageArmor.y = pos + 2;
+
+                    TouchArea hotArea_imageArmo = new TouchArea(imageArmor) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageArmor);
+                            parent.add(new previewInformation(tmp, "Cloths", "Basic cloths."));
+                        }
+                    };
+                    add(hotArea_imageArmo);
+
+                    final Image image = new ItemSprite(new PotionOfHealing());
+                    add(image);
+
+                    image.x = imageArmor.x + imageArmor.width() + GAP;
+                    image.y = pos + 2;
+
+                    TouchArea hotArea_image = new TouchArea(image) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(image);
+                            parent.add(new previewInformation(tmp, "Healing Potion", "A Healing Potion."));
+                        }
+                    };
+                    add(hotArea_image);
+
+                    final Image imageSkill = new SkillSprite(82);
+                    add(imageSkill);
+
+                    imageSkill.x = image.x + image.width();
+                    imageSkill.y = pos + 1;
+
+                    TouchArea hotArea_imageSkill = new TouchArea(imageSkill) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageSkill);
+                            parent.add(new previewInformation(tmp, "Knee Shot", "High accuracy and knowledge in body anatomy allow the archer to hit weak spots crippling targets."));
+                        }
+                    };
+                    add(hotArea_imageSkill);
+
+                    pos = image.y + image.height() + GAP * 3;
+                    break;
+                }
+                case ARCHERMAIDEN: {
+                    final Image imageWeapon = new ItemSprite(new FrostBow());
+                    add(imageWeapon);
+
+                    imageWeapon.x = 0;
+                    imageWeapon.y = pos + 1;
+
+                    TouchArea hotArea_imageWeapon = new TouchArea(imageWeapon) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageWeapon);
+                            parent.add(new previewInformation(tmp, "FrostBow", "A bow imbued with magic. It can freeze targets on occasion."));
+                        }
+                    };
+                    add(hotArea_imageWeapon);
+
+
+                    final Image image = new ItemSprite(new PotionOfHealing());
+                    add(image);
+
+                    image.x = imageWeapon.x + imageWeapon.width() + GAP;
+                    image.y = pos + 2;
+
+                    TouchArea hotArea_image = new TouchArea(image) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(image);
+                            parent.add(new previewInformation(tmp, "Healing Potion", "A Healing Potion."));
+                        }
+                    };
+                    add(hotArea_image);
+
+                    final Image imageSkill = new SkillSprite(82);
+                    add(imageSkill);
+
+                    imageSkill.x = image.x + image.width();
+                    imageSkill.y = pos + 1;
+
+                    TouchArea hotArea_imageSkill = new TouchArea(imageSkill) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageSkill);
+                            parent.add(new previewInformation(tmp, "Knee Shot", "High accuracy and knowledge in body anatomy allow the archer maiden to hit weak spots crippling targets."));
+                        }
+                    };
+                    add(hotArea_imageSkill);
+
+                    final Image imageSkillB = new SkillSprite(106);
+                    add(imageSkillB);
+
+                    imageSkillB.x = imageSkill.x + imageSkill.width() + GAP;
+                    imageSkillB.y = pos + 1;
+
+                    TouchArea hotArea_imageSkillB = new TouchArea(imageSkillB) {
+                        @Override
+                        protected void onClick(Touchscreen.Touch touch) {
+                            Image tmp = new Image();
+                            tmp.copy(imageSkillB);
+                            parent.add(new previewInformation(tmp, "Keen Eye", "Can shoot through friendly units without harming them."));
+                        }
+                    };
+                    add(hotArea_imageSkillB);
+
+                    pos = image.y + image.height() + GAP * 3;
+                    break;
+                }
             }
 
-            if (mode != Mode.ARCHERMAIDEN || HiredMerc.archerMaidenUnlocked == true) {
+            if (mode != Mode.ARCHERMAIDEN || HiredMerc.archerMaidenUnlocked) {
                 RedButton btnHire = new RedButton("Hire " + getName(mode) + " For " + getGoldCost(mode) + " gold") {
                     @Override
                     protected void onClick() {
@@ -536,7 +525,7 @@ public class WndMercs extends WndTabbed {
                         } else {
 
                             //Dungeon.hero.checkMerc = true;
-                            ArrayList<Integer> respawnPoints = new ArrayList<Integer>();
+                            ArrayList<Integer> respawnPoints = new ArrayList<>();
                             for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
                                 int p = Dungeon.hero.pos + Level.NEIGHBOURS8[i];
                                 if (Actor.findChar(p) == null && (Level.passable[p] || Level.avoid[p])) {
@@ -776,7 +765,7 @@ public class WndMercs extends WndTabbed {
 
         Mode mode = Mode.BRUTE;
 
-        public MercenaryTab(Mode mode) {
+        MercenaryTab(Mode mode) {
             super();
 
             this.mode = mode;
@@ -832,8 +821,8 @@ public class WndMercs extends WndTabbed {
 
         private static final int GAP = 2;
 
-        private SkillSprite image;
-        private BitmapText title;
+        private final SkillSprite image;
+        private final BitmapText title;
 
 
         public MercenaryTitle(int image, String name) {
@@ -865,7 +854,7 @@ public class WndMercs extends WndTabbed {
     }
 
     private class previewInformation extends Window {
-        public previewInformation(Image image, String title, String description) {
+        previewInformation(Image image, String title, String description) {
 
             IconTitle titlebar = new IconTitle();
             titlebar.icon(image);

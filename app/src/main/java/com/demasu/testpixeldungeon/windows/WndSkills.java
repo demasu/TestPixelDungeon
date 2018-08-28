@@ -35,7 +35,6 @@ import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
-import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.SkillSlot;
 import com.demasu.testpixeldungeon.utils.Utils;
@@ -46,22 +45,21 @@ public class WndSkills extends WndTabbed {
     protected static final int COLS_P = 4;
     protected static final int COLS_L = 6;
 
-    protected static final int SLOT_SIZE = 28;
-    protected static final int SLOT_MARGIN = 1;
+    private static final int SLOT_SIZE = 28;
+    private static final int SLOT_MARGIN = 1;
 
     protected static final int TAB_WIDTH = 25;
 
-    protected static final int TITLE_HEIGHT = 12;
+    private static final int TITLE_HEIGHT = 12;
 
-    private Listener listener;
-    private String title;
+    private final Listener listener;
+    private final String title;
 
-    private int nCols;
-    private int nRows;
+    private final int nCols;
 
-    protected int count;
-    protected int col;
-    protected int row;
+    private int count;
+    private int col;
+    private int row;
 
 
     public boolean noDegrade = PixelDungeon.itemDeg();
@@ -75,7 +73,7 @@ public class WndSkills extends WndTabbed {
 
 
         nCols = 4;
-        nRows = 3;
+        int nRows = 3;
 
         int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
         int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);
@@ -94,7 +92,7 @@ public class WndSkills extends WndTabbed {
     }
 
 
-    protected void placeSkills() {
+    private void placeSkills() {
 
 
         placeSkill(Dungeon.hero.heroSkills.branchPA, true);
@@ -114,7 +112,7 @@ public class WndSkills extends WndTabbed {
 
     }
 
-    protected void placeSkill(final Skill skill, boolean showBackground) {
+    private void placeSkill(final Skill skill, boolean showBackground) {
 
         int x = col * (SLOT_SIZE + SLOT_MARGIN);
         int y = TITLE_HEIGHT + row * (SLOT_SIZE + SLOT_MARGIN);
@@ -157,9 +155,9 @@ public class WndSkills extends WndTabbed {
 
     private class BagTab extends Tab {
 
-        private Image icon;
+        private final Image icon;
 
-        private Bag bag;
+        private final Bag bag;
 
         public BagTab(Bag bag) {
             super();
@@ -222,12 +220,12 @@ public class WndSkills extends WndTabbed {
         private static final int EQUIPPED = 0xFF63665B;
 
 
-        private Skill skill;
+        private final Skill skill;
         private ColorBlock bg;
 
-        private ColorBlock durability[];
+        private final ColorBlock[] durability;
 
-        public SkillButton(Skill skill) {
+        SkillButton(Skill skill) {
 
             super(skill);
 
@@ -309,7 +307,7 @@ public class WndSkills extends WndTabbed {
         }
     }
 
-    public interface Listener {
+    interface Listener {
         void onSelect(Skill skill);
     }
 }

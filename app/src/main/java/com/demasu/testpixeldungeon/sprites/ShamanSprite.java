@@ -24,7 +24,7 @@ import com.demasu.testpixeldungeon.effects.Lightning;
 
 public class ShamanSprite extends MobSprite {
 
-    private int[] points = new int[2];
+    private final int[] points = new int[2];
 
     public ShamanSprite() {
         super();

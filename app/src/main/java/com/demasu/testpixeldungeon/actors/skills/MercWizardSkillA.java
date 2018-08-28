@@ -28,8 +28,7 @@ public class MercWizardSkillA extends SummonRat {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<String>();
-        return actions;
+        return new ArrayList<String>();
     }
 
 
@@ -39,7 +38,7 @@ public class MercWizardSkillA extends SummonRat {
         for (int nu = 0; nu < 1; nu++) {
             int newPos = Dungeon.hero.hiredMerc.pos;
             if (Actor.findChar(newPos) != null) {
-                ArrayList<Integer> candidates = new ArrayList<Integer>();
+                ArrayList<Integer> candidates = new ArrayList<>();
                 boolean[] passable = Level.passable;
 
                 for (int n : Level.NEIGHBOURS4) {
@@ -62,7 +61,7 @@ public class MercWizardSkillA extends SummonRat {
             }
         }
 
-        if (spawned == true) {
+        if (spawned) {
             castTextYell();
         }
     }

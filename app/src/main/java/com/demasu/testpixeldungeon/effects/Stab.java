@@ -50,7 +50,7 @@ public class Stab extends ItemSprite implements Tweener.Listener {
     private float duration;
     private float passed;
 
-    public Stab(Item item) {
+    private Stab(Item item) {
         super(item.image(), null);
         originToCenter();
 

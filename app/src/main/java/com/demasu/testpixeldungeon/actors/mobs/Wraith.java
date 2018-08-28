@@ -73,7 +73,7 @@ public class Wraith extends Mob {
         return 10 + level;
     }
 
-    public void adjustStats(int level) {
+    private void adjustStats(int level) {
         this.level = level;
         defenseSkill = attackSkill(null) * 5;
         enemySeen = true;
@@ -126,7 +126,7 @@ public class Wraith extends Mob {
         }
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
     static {
         IMMUNITIES.add(Death.class);

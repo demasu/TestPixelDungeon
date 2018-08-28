@@ -78,7 +78,7 @@ public class StartScene extends PixelScene {
     private static final float WIDTH_L = 224;
     private static final float HEIGHT_L = 124;
 
-    private static HashMap<HeroClass, ClassShield> shields = new HashMap<HeroClass, ClassShield>();
+    private static final HashMap<HeroClass, ClassShield> shields = new HashMap<>();
 
     private float buttonX;
     private float buttonY;
@@ -384,7 +384,7 @@ public class StartScene extends PixelScene {
 
         private BitmapText secondary;
 
-        public GameButton(String primary) {
+        GameButton(String primary) {
             super(primary);
 
             this.secondary.text(null);
@@ -412,7 +412,7 @@ public class StartScene extends PixelScene {
             }
         }
 
-        public void secondary(String text, boolean highlighted) {
+        void secondary(String text, boolean highlighted) {
             secondary.text(text);
             secondary.measure();
 
@@ -434,7 +434,7 @@ public class StartScene extends PixelScene {
         private static final int HEIGHT = 28;
         private static final int SCALE = 2;
 
-        private HeroClass cl;
+        private final HeroClass cl;
 
         private Image avatar;
         private BitmapText name;
@@ -442,10 +442,10 @@ public class StartScene extends PixelScene {
 
         private float brightness;
 
-        private int normal;
-        private int highlighted;
+        private final int normal;
+        private final int highlighted;
 
-        public ClassShield(HeroClass cl) {
+        ClassShield(HeroClass cl) {
             super();
 
             this.cl = cl;
@@ -518,7 +518,7 @@ public class StartScene extends PixelScene {
             }
         }
 
-        public void highlight(boolean value) {
+        void highlight(boolean value) {
             if (value) {
                 brightness = 1.0f;
                 name.hardlight(highlighted);
@@ -539,7 +539,7 @@ public class StartScene extends PixelScene {
 
         private Image image;
 
-        public ChallengeButton() {
+        ChallengeButton() {
             super();
 
             width = image.width;

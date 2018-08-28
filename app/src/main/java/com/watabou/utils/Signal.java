@@ -21,11 +21,11 @@ import java.util.LinkedList;
 
 public class Signal<T> {
 
-    private LinkedList<Listener<T>> listeners = new LinkedList<Signal.Listener<T>>();
+    private final LinkedList<Listener<T>> listeners = new LinkedList<>();
 
     private boolean canceled;
 
-    private boolean stackMode;
+    private final boolean stackMode;
 
     public Signal() {
         this(false);
@@ -68,9 +68,7 @@ public class Signal<T> {
         Listener<T>[] list = listeners.toArray(new Listener[0]);
 
         canceled = false;
-        for (int i = 0; i < list.length; i++) {
-
-            Listener<T> listener = list[i];
+        for (Listener<T> listener : list) {
 
             if (listeners.contains(listener)) {
                 listener.onSignal(t);

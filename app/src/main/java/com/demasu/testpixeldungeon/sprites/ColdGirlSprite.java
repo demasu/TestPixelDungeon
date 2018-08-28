@@ -19,21 +19,20 @@ package com.demasu.testpixeldungeon.sprites;
 
 import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.effects.ArcherMaidenHalo;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 
 public class ColdGirlSprite extends MobSprite {
 
-    protected static final int FRAME_WIDTH = 12;
-    protected static final int FRAME_HEIGHT = 15;
+    static final int FRAME_WIDTH = 12;
+    static final int FRAME_HEIGHT = 15;
 
-    protected static final int RUN_FRAMERATE = 20;
+    static final int RUN_FRAMERATE = 20;
 
-    public ArcherMaidenHalo halo = null;
-    public boolean hasHalo = false;
+    private ArcherMaidenHalo halo = null;
+    private boolean hasHalo = false;
 
-    public boolean isSister = false;
+    boolean isSister = false;
 
 
     public ColdGirlSprite() {

@@ -73,9 +73,9 @@ public class BuffIndicator extends Component {
     private SmartTexture texture;
     private TextureFilm film;
 
-    private SparseArray<Image> icons = new SparseArray<Image>();
+    private SparseArray<Image> icons = new SparseArray<>();
 
-    private Char ch;
+    private final Char ch;
 
     public BuffIndicator(Char ch) {
         super();
@@ -105,7 +105,7 @@ public class BuffIndicator extends Component {
     protected void layout() {
         clear();
 
-        SparseArray<Image> newIcons = new SparseArray<Image>();
+        SparseArray<Image> newIcons = new SparseArray<>();
 
         for (Buff buff : ch.buffs()) {
             int icon = buff.icon();

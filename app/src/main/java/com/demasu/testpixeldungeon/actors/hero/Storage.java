@@ -17,34 +17,22 @@
  */
 package com.demasu.testpixeldungeon.actors.hero;
 
-import com.demasu.testpixeldungeon.Badges;
-import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.items.Item;
-import com.demasu.testpixeldungeon.items.KindOfWeapon;
-import com.demasu.testpixeldungeon.items.armor.Armor;
 import com.demasu.testpixeldungeon.items.bags.Bag;
-import com.demasu.testpixeldungeon.items.keys.IronKey;
-import com.demasu.testpixeldungeon.items.keys.Key;
-import com.demasu.testpixeldungeon.items.rings.Ring;
-import com.demasu.testpixeldungeon.items.scrolls.ScrollOfRemoveCurse;
-import com.demasu.testpixeldungeon.items.wands.Wand;
 //import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.Random;
 
 import java.util.Iterator;
 
 public class Storage implements Iterable<Item> {
 
-    public static final int BACKPACK_SIZE = 5;
+    private static final int BACKPACK_SIZE = 5;
 
-    private Hero owner;
-
-    public Bag backpack;
+    public final Bag backpack;
 
 
     public Storage(Hero owner) {
-        this.owner = owner;
+        Hero owner1 = owner;
 
         backpack = new Bag() {{
             name = "Storage";

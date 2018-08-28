@@ -27,9 +27,9 @@ public class IceBlock extends Gizmo {
 
     private float phase;
 
-    private CharSprite target;
+    private final CharSprite target;
 
-    public IceBlock(CharSprite target) {
+    private IceBlock(CharSprite target) {
         super();
 
         this.target = target;

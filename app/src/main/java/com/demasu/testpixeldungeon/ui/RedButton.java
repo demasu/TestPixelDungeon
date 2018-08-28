@@ -28,9 +28,9 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 
 public class RedButton extends Button {
 
-    protected NinePatch bg;
+    private NinePatch bg;
     protected BitmapText text;
-    protected Image icon;
+    Image icon;
 
     public RedButton(String label) {
         super();

@@ -21,7 +21,7 @@ import com.watabou.gltextures.TextureCache;
 
 public class PseudoPixel extends Image {
 
-    public PseudoPixel() {
+    protected PseudoPixel() {
         super(TextureCache.createSolid(0xFFFFFFFF));
     }
 
@@ -38,7 +38,7 @@ public class PseudoPixel extends Image {
         scale.set(w, h);
     }
 
-    public void size(float value) {
+    protected void size(float value) {
         scale.set(value);
     }
 }

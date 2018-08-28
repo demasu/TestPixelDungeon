@@ -50,7 +50,7 @@ public class Ring extends EquipableItem {
             "You can only wear two rings at a time. " +
                     "Unequip one of your equipped rings.";
 
-    protected Buff buff;
+    private Buff buff;
 
     private static final Class<?>[] rings = {
             RingOfMending.class,
@@ -90,7 +90,7 @@ public class Ring extends EquipableItem {
 
     @SuppressWarnings("unchecked")
     public static void initGems() {
-        handler = new ItemStatusHandler<Ring>((Class<? extends Ring>[]) rings, gems, images);
+        handler = new ItemStatusHandler<>((Class<? extends Ring>[]) rings, gems, images);
     }
 
     public static void save(Bundle bundle) {
@@ -99,7 +99,7 @@ public class Ring extends EquipableItem {
 
     @SuppressWarnings("unchecked")
     public static void restore(Bundle bundle) {
-        handler = new ItemStatusHandler<Ring>((Class<? extends Ring>[]) rings, gems, images, bundle);
+        handler = new ItemStatusHandler<>((Class<? extends Ring>[]) rings, gems, images, bundle);
     }
 
     public Ring() {
@@ -245,7 +245,7 @@ public class Ring extends EquipableItem {
         return handler.isKnown(this);
     }
 
-    protected void setKnown() {
+    private void setKnown() {
         if (!isKnown()) {
             handler.know(this);
         }
@@ -323,7 +323,7 @@ public class Ring extends EquipableItem {
         return considerState(80);
     }
 
-    protected RingBuff buff() {
+    RingBuff buff() {
         return null;
     }
 
@@ -347,7 +347,7 @@ public class Ring extends EquipableItem {
 
         private static final String TXT_KNOWN = "This is a %s";
 
-        public int level;
+        public final int level;
 
         public RingBuff() {
             level = Ring.this.effectiveLevel();

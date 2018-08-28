@@ -110,7 +110,7 @@ public class Wandmaker extends NPC {
         enum Type {
             ILLEGAL(null), BERRY(berryQuest), DUST(dustQuest), FISH(fishQuest);
 
-            public QuestHandler handler;
+            final QuestHandler handler;
 
             Type(QuestHandler handler) {
                 this.handler = handler;
@@ -265,10 +265,10 @@ public class Wandmaker extends NPC {
 
     abstract public static class QuestHandler {
 
-        protected String txtQuest1;
-        protected String txtQuest2;
+        String txtQuest1;
+        String txtQuest2;
 
-        public void interact(Wandmaker wandmaker) {
+        void interact(Wandmaker wandmaker) {
             if (Quest.given) {
 
                 Item item = checkItem();
@@ -337,7 +337,7 @@ public class Wandmaker extends NPC {
 
         @Override
         protected void placeItem() {
-            ArrayList<Heap> candidates = new ArrayList<Heap>();
+            ArrayList<Heap> candidates = new ArrayList<>();
             for (Heap heap : Dungeon.level.heaps.values()) {
                 if (heap.type == Heap.Type.SKELETON && !Dungeon.visible[heap.pos]) {
                     candidates.add(heap);

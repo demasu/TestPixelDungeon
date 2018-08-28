@@ -50,8 +50,8 @@ public class AboutScene extends PixelScene {
     private static final String LNK_SPD = "https://github.com/bilbolPrime/SPD";
     private static final String LNK_SPD_WIKI = "http://pixeldungeon.wikia.com";
 
-    float GAP = 2;
-    float pos = 0f;
+    private final float GAP = 2;
+    private float pos = 0f;
 
     @Override
     public void create() {

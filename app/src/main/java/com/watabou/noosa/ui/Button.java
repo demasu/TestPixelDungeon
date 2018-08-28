@@ -23,14 +23,14 @@ import com.watabou.noosa.TouchArea;
 
 public class Button extends Component {
 
-    public static float longClick = 1f;
+    private static final float longClick = 1f;
 
-    protected TouchArea hotArea;
+    private TouchArea hotArea;
 
-    protected boolean pressed;
-    protected float pressTime;
+    private boolean pressed;
+    private float pressTime;
 
-    protected boolean processed;
+    private boolean processed;
 
     @Override
     protected void createChildren() {

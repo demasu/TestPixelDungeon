@@ -21,9 +21,9 @@ import android.opengl.GLES20;
 
 public class Program {
 
-    private int handle;
+    private final int handle;
 
-    public Program() {
+    protected Program() {
         handle = GLES20.glCreateProgram();
     }
 
@@ -31,11 +31,11 @@ public class Program {
         return handle;
     }
 
-    public void attach(Shader shader) {
+    protected void attach(Shader shader) {
         GLES20.glAttachShader(handle, shader.handle());
     }
 
-    public void link() {
+    protected void link() {
         GLES20.glLinkProgram(handle);
 
         int[] status = new int[1];
@@ -45,11 +45,11 @@ public class Program {
         }
     }
 
-    public Attribute attribute(String name) {
+    protected Attribute attribute(String name) {
         return new Attribute(GLES20.glGetAttribLocation(handle, name));
     }
 
-    public Uniform uniform(String name) {
+    protected Uniform uniform(String name) {
         return new Uniform(GLES20.glGetUniformLocation(handle, name));
     }
 

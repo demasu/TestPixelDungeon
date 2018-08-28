@@ -28,7 +28,7 @@ public class Spark extends ActiveSkill3 {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<String>();
+        ArrayList<String> actions = new ArrayList<>();
         if (level > 0 && hero.MP >= getManaCost())
             actions.add(AC_CAST);
         return actions;

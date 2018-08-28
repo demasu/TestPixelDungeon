@@ -20,7 +20,6 @@ package com.demasu.testpixeldungeon.windows;
 import android.graphics.RectF;
 
 import com.watabou.gltextures.TextureCache;
-import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.BitmapTextMultiline;
 import com.watabou.noosa.ColorBlock;
 import com.watabou.noosa.Image;
@@ -32,7 +31,6 @@ import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.hero.Storage;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.actors.skills.BranchSkill;
-import com.demasu.testpixeldungeon.actors.skills.Endurance;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.items.Gold;
 import com.demasu.testpixeldungeon.items.Item;
@@ -43,12 +41,8 @@ import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
-import com.demasu.testpixeldungeon.items.wands.Wand;
 import com.demasu.testpixeldungeon.items.weapon.Weapon;
-import com.demasu.testpixeldungeon.items.weapon.melee.MeleeWeapon;
-import com.demasu.testpixeldungeon.items.weapon.missiles.Boomerang;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
-import com.demasu.testpixeldungeon.plants.Plant.Seed;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.sprites.HeroSprite;
@@ -75,29 +69,23 @@ public class WndMerc extends WndTabbed {
         SEED
     }
 
-    protected static final int COLS_P = 4;
-    protected static final int COLS_L = 6;
+    private static final int COLS_P = 4;
+    private static final int COLS_L = 6;
 
-    protected static final int SLOT_SIZE = 28;
-    protected static final int SLOT_MARGIN = 1;
+    private static final int SLOT_SIZE = 28;
+    private static final int SLOT_MARGIN = 1;
 
     protected static final int TAB_WIDTH = 25;
 
     protected static final int TITLE_HEIGHT = 12;
 
-    private Listener listener;
+    private final Listener listener;
     private WndMerc.Mode mode;
     private String title;
-
-    private int nCols;
-    private int nRows;
 
     protected int count;
     protected int col;
     protected int row;
-
-    private static Mode lastMode;
-    private static Storage lastBag;
 
     private static final int WIDTH = 120;
 
@@ -112,11 +100,11 @@ public class WndMerc extends WndTabbed {
         this.mode = mode;
         this.title = title;
 
-        lastMode = mode;
-        lastBag = bag;
+        Mode lastMode = mode;
+        Storage lastBag = bag;
 
-        nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
-        nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
+        int nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
+        int nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
 
         int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
         int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);
@@ -191,9 +179,9 @@ public class WndMerc extends WndTabbed {
 
     private class BagTab extends Tab {
 
-        private Image icon;
+        private final Image icon;
 
-        private Bag bag;
+        private final Bag bag;
 
         public BagTab(Bag bag) {
             super();
@@ -245,7 +233,7 @@ public class WndMerc extends WndTabbed {
             name = null;
         }
 
-        public Placeholder(int image) {
+        Placeholder(int image) {
             this.image = image;
         }
 
@@ -267,14 +255,14 @@ public class WndMerc extends WndTabbed {
 
         private static final int NBARS = 3;
 
-        private Item item;
+        private final Item item;
         private ColorBlock bg;
 
         private ColorBlock durability[];
 
-        public boolean holdOnly = false;
+        boolean holdOnly = false;
 
-        public ItemButton(Item item, boolean holdOnly) {
+        ItemButton(Item item, boolean holdOnly) {
 
             super(item);
 
@@ -368,14 +356,14 @@ public class WndMerc extends WndTabbed {
         @Override
         public void onSelect(Item item) {
             if (item != null) {
-                if (item instanceof Weapon && holdOnly == false) {
+                if (item instanceof Weapon && !holdOnly) {
                     if (Dungeon.hero.belongings.weapon == item) {
                         Dungeon.hero.belongings.weapon = null;
                     } else {
                         item.detach(Dungeon.hero.belongings.backpack);
                     }
                     Dungeon.hero.hiredMerc.equipWeapon(item);
-                } else if (item instanceof Armor && holdOnly == false) {
+                } else if (item instanceof Armor && !holdOnly) {
                     if (Dungeon.hero.belongings.armor == item) {
                         Dungeon.hero.belongings.armor = null;
                     } else {
@@ -403,12 +391,12 @@ public class WndMerc extends WndTabbed {
         private static final int EQUIPPED = 0xFF63665B;
 
 
-        private Skill skill;
+        private final Skill skill;
         private ColorBlock bg;
 
-        private ColorBlock durability[];
+        private final ColorBlock[] durability;
 
-        public SkillButton(Skill skill) {
+        SkillButton(Skill skill) {
 
             super(skill);
 
@@ -491,7 +479,7 @@ public class WndMerc extends WndTabbed {
         }
     }
 
-    public interface Listener {
+    interface Listener {
         void onSelect(Item item);
     }
 }

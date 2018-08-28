@@ -21,10 +21,8 @@ import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.SkinnedBlock;
-import com.watabou.noosa.Visual;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.particles.Emitter;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -36,14 +34,7 @@ import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.blobs.Blob;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
-import com.demasu.testpixeldungeon.effects.BannerSprites;
-import com.demasu.testpixeldungeon.effects.BlobEmitter;
-import com.demasu.testpixeldungeon.effects.EmoIcon;
 import com.demasu.testpixeldungeon.effects.Flare;
-import com.demasu.testpixeldungeon.effects.FloatingText;
-import com.demasu.testpixeldungeon.effects.Ripple;
-import com.demasu.testpixeldungeon.effects.SpellSprite;
-import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.potions.Potion;
 import com.demasu.testpixeldungeon.items.wands.WandOfBlink;
@@ -52,40 +43,27 @@ import com.demasu.testpixeldungeon.levels.MovieLevel;
 import com.demasu.testpixeldungeon.levels.RegularLevel;
 import com.demasu.testpixeldungeon.levels.features.Chasm;
 import com.demasu.testpixeldungeon.plants.Plant;
-import com.demasu.testpixeldungeon.sprites.CharSprite;
-import com.demasu.testpixeldungeon.sprites.DiscardedItemSprite;
-import com.demasu.testpixeldungeon.sprites.HeroSprite;
-import com.demasu.testpixeldungeon.sprites.ItemSprite;
 import com.demasu.testpixeldungeon.sprites.LegendSprite;
-import com.demasu.testpixeldungeon.sprites.PlantSprite;
 import com.demasu.testpixeldungeon.ui.AttackIndicator;
-import com.demasu.testpixeldungeon.ui.Banner;
 import com.demasu.testpixeldungeon.ui.BusyIndicator;
 import com.demasu.testpixeldungeon.ui.GameLog;
 import com.demasu.testpixeldungeon.ui.HealthIndicator;
 import com.demasu.testpixeldungeon.ui.MissionStatusPane;
 import com.demasu.testpixeldungeon.ui.MissionToolbar;
-import com.demasu.testpixeldungeon.ui.QuickSlot;
-import com.demasu.testpixeldungeon.ui.StatusPane;
-import com.demasu.testpixeldungeon.ui.Toast;
-import com.demasu.testpixeldungeon.ui.Toolbar;
-import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.GLog;
-import com.demasu.testpixeldungeon.windows.WndBag;
 import com.demasu.testpixeldungeon.windows.WndBag.Mode;
 import com.demasu.testpixeldungeon.windows.WndGame;
 import com.demasu.testpixeldungeon.windows.WndStory;
 import com.watabou.utils.Random;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MissionScene extends GameScene {
 
 
-    public LegendSprite hero;
+    private LegendSprite hero;
     public static boolean scenePause = false;
-    protected MissionToolbar toolbar;
+    private MissionToolbar toolbar;
 
 
     @Override
@@ -230,7 +208,7 @@ public class MissionScene extends GameScene {
                 switch (Dungeon.depth) {
                     case 1:
                         WndStory.showChapter(WndStory.ID_SEWERS);
-                        if (PixelDungeon.itemDeg() == false)
+                        if (!PixelDungeon.itemDeg())
                             WndStory.showStory(TXT_WARN_DEGRADATION);
                         break;
                     case 6:

@@ -62,22 +62,22 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
         BURNING, LEVITATING, INVISIBLE, PARALYSED, FROZEN, ILLUMINATED, CHAMPRED, CHAMPBLACK, CHAMPWHITE, CHAMPYELLOW, ARCHERMAIDEN
     }
 
-    protected Animation idle;
-    protected Animation run;
-    protected Animation attack;
-    protected Animation operate;
-    protected Animation zap;
-    protected Animation die;
+    Animation idle;
+    Animation run;
+    Animation attack;
+    Animation operate;
+    Animation zap;
+    Animation die;
 
-    protected Callback animCallback;
+    Callback animCallback;
 
-    protected Tweener motion;
+    private Tweener motion;
 
-    protected Emitter burning;
-    protected Emitter levitation;
+    private Emitter burning;
+    private Emitter levitation;
 
-    protected IceBlock iceBlock;
-    protected TorchHalo halo;
+    private IceBlock iceBlock;
+    private TorchHalo halo;
 
     public ChampRedHalo champRedHalo;
     public ChampYellowHalo champYellowHalo;
@@ -85,20 +85,20 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
     public ChampWhiteHalo champWhiteHalo;
     public ArcherMaidenHalo archerMaidenHalo;
 
-    protected EmoIcon emo;
+    private EmoIcon emo;
 
     private Tweener jumpTweener;
     private Callback jumpCallback;
 
     private float flashTime = 0;
 
-    protected boolean sleeping = false;
+    boolean sleeping = false;
 
-    public Char ch;
+    Char ch;
 
     public boolean isMoving = false;
 
-    public CharSprite() {
+    CharSprite() {
         super();
         listener = this;
     }
@@ -382,7 +382,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
         }
     }
 
-    public void showSleep() {
+    private void showSleep() {
         if (emo instanceof EmoIcon.Sleep) {
 
         } else {
@@ -393,7 +393,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
         }
     }
 
-    public void hideSleep() {
+    private void hideSleep() {
         if (emo instanceof EmoIcon.Sleep) {
             emo.killAndErase();
             emo = null;
@@ -473,14 +473,14 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 
     private static class JumpTweener extends Tweener {
 
-        public Visual visual;
+        final Visual visual;
 
-        public PointF start;
-        public PointF end;
+        final PointF start;
+        final PointF end;
 
-        public float height;
+        final float height;
 
-        public JumpTweener(Visual visual, PointF pos, float height, float time) {
+        JumpTweener(Visual visual, PointF pos, float height, float time) {
             super(visual, time);
 
             this.visual = visual;

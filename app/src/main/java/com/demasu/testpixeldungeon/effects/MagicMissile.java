@@ -44,11 +44,11 @@ public class MagicMissile extends Emitter {
     private float sy;
     private float time;
 
-    public void reset(int from, int to, Callback callback) {
+    private void reset(int from, int to, Callback callback) {
         reset(from, to, SPEED, callback);
     }
 
-    public void reset(int from, int to, float velocity, Callback callback) {
+    private void reset(int from, int to, float velocity, Callback callback) {
         this.callback = callback;
 
         revive();
@@ -68,7 +68,7 @@ public class MagicMissile extends Emitter {
         time = d.length() / velocity;
     }
 
-    public void size(float size) {
+    private void size(float size) {
         x -= size / 2;
         y -= size / 2;
         width = height = size;
@@ -179,7 +179,7 @@ public class MagicMissile extends Emitter {
 
     public static class MagicParticle extends PixelParticle {
 
-        public static final Emitter.Factory FACTORY = new Factory() {
+        static final Emitter.Factory FACTORY = new Factory() {
             @Override
             public void emit(Emitter emitter, int index, float x, float y) {
                 ((MagicParticle) emitter.recycle(MagicParticle.class)).reset(x, y);
@@ -192,7 +192,7 @@ public class MagicMissile extends Emitter {
 
         };
 
-        public MagicParticle() {
+        MagicParticle() {
             super();
 
             color(0x88CCFF);
@@ -201,7 +201,7 @@ public class MagicMissile extends Emitter {
             speed.set(Random.Float(-10, +10), Random.Float(-10, +10));
         }
 
-        public void reset(float x, float y) {
+        void reset(float x, float y) {
             revive();
 
             this.x = x;
@@ -218,16 +218,16 @@ public class MagicMissile extends Emitter {
         }
     }
 
-    public static class EarthParticle extends PixelParticle.Shrinking {
+    static class EarthParticle extends PixelParticle.Shrinking {
 
-        public static final Emitter.Factory FACTORY = new Factory() {
+        static final Emitter.Factory FACTORY = new Factory() {
             @Override
             public void emit(Emitter emitter, int index, float x, float y) {
                 ((EarthParticle) emitter.recycle(EarthParticle.class)).reset(x, y);
             }
         };
 
-        public EarthParticle() {
+        EarthParticle() {
             super();
 
             lifespan = 0.5f;
@@ -237,7 +237,7 @@ public class MagicMissile extends Emitter {
             acc.set(0, +40);
         }
 
-        public void reset(float x, float y) {
+        void reset(float x, float y) {
             revive();
 
             this.x = x;
@@ -252,7 +252,7 @@ public class MagicMissile extends Emitter {
 
     public static class WhiteParticle extends PixelParticle {
 
-        public static final Emitter.Factory FACTORY = new Factory() {
+        static final Emitter.Factory FACTORY = new Factory() {
             @Override
             public void emit(Emitter emitter, int index, float x, float y) {
                 ((WhiteParticle) emitter.recycle(WhiteParticle.class)).reset(x, y);
@@ -265,7 +265,7 @@ public class MagicMissile extends Emitter {
 
         };
 
-        public WhiteParticle() {
+        WhiteParticle() {
             super();
 
             lifespan = 0.4f;
@@ -273,7 +273,7 @@ public class MagicMissile extends Emitter {
             am = 0.5f;
         }
 
-        public void reset(float x, float y) {
+        void reset(float x, float y) {
             revive();
 
             this.x = x;
@@ -294,7 +294,7 @@ public class MagicMissile extends Emitter {
 
         private Emitter emitter;
 
-        public static final Emitter.Factory FACTORY = new Factory() {
+        static final Emitter.Factory FACTORY = new Factory() {
             @Override
             public void emit(Emitter emitter, int index, float x, float y) {
                 ((SlowParticle) emitter.recycle(SlowParticle.class)).reset(x, y, emitter);
@@ -307,7 +307,7 @@ public class MagicMissile extends Emitter {
 
         };
 
-        public SlowParticle() {
+        SlowParticle() {
             super();
 
             lifespan = 0.6f;
@@ -316,7 +316,7 @@ public class MagicMissile extends Emitter {
             size(2);
         }
 
-        public void reset(float x, float y, Emitter emitter) {
+        void reset(float x, float y, Emitter emitter) {
             revive();
 
             this.x = x;
@@ -340,14 +340,14 @@ public class MagicMissile extends Emitter {
 
     public static class ForceParticle extends Shrinking {
 
-        public static final Emitter.Factory FACTORY = new Factory() {
+        static final Emitter.Factory FACTORY = new Factory() {
             @Override
             public void emit(Emitter emitter, int index, float x, float y) {
                 ((ForceParticle) emitter.recycle(ForceParticle.class)).reset(index, x, y);
             }
         };
 
-        public void reset(int index, float x, float y) {
+        void reset(int index, float x, float y) {
             super.reset(x, y, 0xFFFFFF, 8, 0.5f);
 
             speed.polar(PointF.PI2 / 8 * index, 12);
@@ -365,7 +365,7 @@ public class MagicMissile extends Emitter {
 
     public static class ColdParticle extends PixelParticle.Shrinking {
 
-        public static final Emitter.Factory FACTORY = new Factory() {
+        static final Emitter.Factory FACTORY = new Factory() {
             @Override
             public void emit(Emitter emitter, int index, float x, float y) {
                 ((ColdParticle) emitter.recycle(ColdParticle.class)).reset(x, y);
@@ -378,7 +378,7 @@ public class MagicMissile extends Emitter {
 
         };
 
-        public ColdParticle() {
+        ColdParticle() {
             super();
 
             lifespan = 0.6f;
@@ -386,7 +386,7 @@ public class MagicMissile extends Emitter {
             color(0x2244FF);
         }
 
-        public void reset(float x, float y) {
+        void reset(float x, float y) {
             revive();
 
             this.x = x;

@@ -19,7 +19,6 @@ package com.demasu.testpixeldungeon.items.weapon.melee;
 
 import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.actors.Actor;
-import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.Skeleton;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
@@ -37,16 +36,16 @@ import java.util.ArrayList;
 
 public class NecroBlade extends MeleeWeapon {
 
-    public static final String AC_HEAL = "Heal";
-    public static final String AC_SUMMON = "Summon";
-    public static final String AC_UPGRADE = "Consume";
+    private static final String AC_HEAL = "Heal";
+    private static final String AC_SUMMON = "Summon";
+    private static final String AC_UPGRADE = "Consume";
 
     {
         name = "necroblade";
         image = ItemSpriteSheet.NecroBlade5;
     }
 
-    public int charge = 100;
+    private int charge = 100;
 
     public NecroBlade() {
         super(1, 0.7f, 1f);
@@ -67,64 +66,69 @@ public class NecroBlade extends MeleeWeapon {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action.equals(AC_HEAL)) {
+        switch (action) {
+            case AC_HEAL:
 
-            hero.HP += hero.HT * 0.35;
-            if (hero.HP > hero.HT)
-                hero.HP = hero.HT;
-            GLog.p("NecroBlade heals " + ((int) (hero.HT * 0.35)) + " HP");
-            updateCharge(-25);
+                hero.HP += hero.HT * 0.35;
+                if (hero.HP > hero.HT)
+                    hero.HP = hero.HT;
+                GLog.p("NecroBlade heals " + ((int) (hero.HT * 0.35)) + " HP");
+                updateCharge(-25);
 
-            CellEmitter.center(hero.pos).burst(Speck.factory(Speck.HEALING), 1);
-            // CellEmitter.center(hero.pos).burst(ShadowParticle.UP, Random.IntRange(1, 2));
-
-
-        } else if (action.equals(AC_SUMMON)) {
+                CellEmitter.center(hero.pos).burst(Speck.factory(Speck.HEALING), 1);
+                // CellEmitter.center(hero.pos).burst(ShadowParticle.UP, Random.IntRange(1, 2));
 
 
-            int newPos = hero.pos;
-            if (Actor.findChar(newPos) != null) {
-                ArrayList<Integer> candidates = new ArrayList<Integer>();
-                boolean[] passable = Level.passable;
+                break;
+            case AC_SUMMON:
 
-                for (int n : Level.NEIGHBOURS4) {
-                    int c = hero.pos + n;
-                    if (passable[c] && Actor.findChar(c) == null) {
-                        candidates.add(c);
+
+                int newPos = hero.pos;
+                if (Actor.findChar(newPos) != null) {
+                    ArrayList<Integer> candidates = new ArrayList<>();
+                    boolean[] passable = Level.passable;
+
+                    for (int n : Level.NEIGHBOURS4) {
+                        int c = hero.pos + n;
+                        if (passable[c] && Actor.findChar(c) == null) {
+                            candidates.add(c);
+                        }
                     }
+                    newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
                 }
-                newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
-            }
-            if (newPos != -1) {
+                if (newPos != -1) {
 
-                updateCharge(-55);
-                Skeleton skel = new Skeleton();
-                int skelLevel = this.level() > 1 ? 1 + this.level() : 1;
-                if (skelLevel > 7) ;
-                skelLevel = 7;
-                skel.spawn(skelLevel);
-                skel.HP = skel.HT;
-                skel.pos = newPos;
+                    updateCharge(-55);
+                    Skeleton skel = new Skeleton();
+                    int skelLevel = this.level() > 1 ? 1 + this.level() : 1;
+                    if (skelLevel > 7) ;
+                    skelLevel = 7;
+                    skel.spawn(skelLevel);
+                    skel.HP = skel.HT;
+                    skel.pos = newPos;
 
-                GameScene.add(skel);
-                Actor.addDelayed(new Pushing(skel, hero.pos, newPos), -1);
+                    GameScene.add(skel);
+                    Actor.addDelayed(new Pushing(skel, hero.pos, newPos), -1);
 
-                skel.sprite.alpha(0);
-                skel.sprite.parent.add(new AlphaTweener(skel.sprite, 1, 0.15f));
-                CellEmitter.center(newPos).burst(ShadowParticle.UP, Random.IntRange(3, 5));
-                GLog.p("NecroBlade summoned a skeleton");
-            } else {
-                GLog.i("No place to summon");
-            }
+                    skel.sprite.alpha(0);
+                    skel.sprite.parent.add(new AlphaTweener(skel.sprite, 1, 0.15f));
+                    CellEmitter.center(newPos).burst(ShadowParticle.UP, Random.IntRange(3, 5));
+                    GLog.p("NecroBlade summoned a skeleton");
+                } else {
+                    GLog.i("No place to summon");
+                }
 
-        } else if (action.equals(AC_UPGRADE)) {
-            updateCharge(-100);
-            this.upgrade(1);
-            GLog.p("NecroBlade consumed the souls within. It looks much better now.");
-        } else {
+                break;
+            case AC_UPGRADE:
+                updateCharge(-100);
+                this.upgrade(1);
+                GLog.p("NecroBlade consumed the souls within. It looks much better now.");
+                break;
+            default:
 
-            super.execute(hero, action);
+                super.execute(hero, action);
 
+                break;
         }
     }
 
