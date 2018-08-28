@@ -4,6 +4,7 @@ package com.demasu.testpixeldungeon.actors.skills;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 20-Jan-17.
@@ -33,7 +34,7 @@ public class SoulFury extends ActiveSkill3 {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == Skill.AC_CAST) {
+        if (Objects.equals(action, Skill.AC_CAST)) {
             getManaCost();
         }
     }
