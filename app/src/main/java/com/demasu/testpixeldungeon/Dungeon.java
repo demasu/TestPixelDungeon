@@ -442,7 +442,7 @@ public class Dungeon {
         }
     }
 
-    public static void saveGame(String fileName) throws IOException {
+    public static void saveGame(String fileName) {
         try {
             Bundle bundle = new Bundle();
 

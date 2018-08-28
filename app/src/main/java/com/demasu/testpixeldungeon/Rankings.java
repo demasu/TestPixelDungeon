@@ -60,12 +60,8 @@ public enum Rankings {
         rec.score = score(win);
 
         String gameFile = Utils.format(DETAILS_FILE, SystemTime.now);
-        try {
-            Dungeon.saveGame(gameFile);
-            rec.gameFile = gameFile;
-        } catch (IOException e) {
-            rec.gameFile = "";
-        }
+        Dungeon.saveGame(gameFile);
+        rec.gameFile = gameFile;
 
         records.add(rec);
 
