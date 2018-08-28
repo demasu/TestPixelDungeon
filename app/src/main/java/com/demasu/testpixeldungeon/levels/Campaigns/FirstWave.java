@@ -462,7 +462,7 @@ public class FirstWave extends Level {
 
         @Override
         public boolean act() {
-            if (MissionScene.scenePause == true) {
+            if (MissionScene.scenePause) {
                 spend(1f);
                 next();
                 return false;
@@ -476,7 +476,7 @@ public class FirstWave extends Level {
             FirstWave.this.enemyAI.enemyCount--;
             FirstWave.this.enemyAI.enemyKilled++;
             dropLoot();
-            if (FirstWave.this.enemyAI.enemyCount < 1 && FirstWave.this.enemyAI.spawnEnemies == false) {
+            if (FirstWave.this.enemyAI.enemyCount < 1 && !FirstWave.this.enemyAI.spawnEnemies) {
                 FirstWave.this.maestro.endScenario();
             }
         }
@@ -527,10 +527,10 @@ public class FirstWave extends Level {
                 sprite.visible = false;
             }
 
-            if (internalClock > Maestro.END_MOVIE + 50 && MissionScene.scenePause == false) {
+            if (internalClock > Maestro.END_MOVIE + 50 && !MissionScene.scenePause) {
                 if (internalClock - lastAction > INTER_ACTION_TIME) {
                     lastAction = internalClock;
-                    if (enemyCount < ENEMY_COUNT_LIMIT && spawnEnemies == true) {
+                    if (enemyCount < ENEMY_COUNT_LIMIT && spawnEnemies) {
                         enemyCount++;
                         HostileSkeleton tmp = new HostileSkeleton();
                         tmp.pos = getSpawnLocation();
@@ -563,10 +563,10 @@ public class FirstWave extends Level {
                     }
                 }
 
-                if (enemyKilled > 15 && temariAdded == false) {
+                if (enemyKilled > 15 && !temariAdded) {
                     //noinspection unchecked
                     for (Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone()) {
-                        if (mob.hostile == true || mob instanceof SummonedPet) {
+                        if (mob.hostile || mob instanceof SummonedPet) {
                             mob.die(null);
                             continue;
                         }
@@ -576,10 +576,10 @@ public class FirstWave extends Level {
                     FirstWave.this.maestro.nextPhase();
                 }
 
-                if (enemyKilled > 30 && generalAdded == false) {
+                if (enemyKilled > 30 && !generalAdded) {
                     //noinspection unchecked
                     for (Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone()) {
-                        if (mob.hostile == true || mob instanceof SummonedPet) {
+                        if (mob.hostile || mob instanceof SummonedPet) {
                             mob.die(null);
                             continue;
                         }
@@ -630,7 +630,7 @@ public class FirstWave extends Level {
 
         @Override
         public boolean act() {
-            if (MissionScene.scenePause == true) {
+            if (MissionScene.scenePause) {
                 spend(1f);
                 next();
                 return false;
@@ -683,7 +683,7 @@ public class FirstWave extends Level {
 
         @Override
         public boolean act() {
-            if (MissionScene.scenePause == true) {
+            if (MissionScene.scenePause) {
                 spend(1f);
                 next();
                 return false;
@@ -737,7 +737,7 @@ public class FirstWave extends Level {
 
         @Override
         public boolean act() {
-            if (MissionScene.scenePause == true) {
+            if (MissionScene.scenePause) {
                 spend(1f);
                 next();
                 return false;
@@ -809,7 +809,7 @@ public class FirstWave extends Level {
             MissionScene.scenePause = true;
             //noinspection unchecked
             for (Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone()) {
-                if (mob.hostile == true || mob instanceof SummonedPet) {
+                if (mob.hostile || mob instanceof SummonedPet) {
                     mob.die(null);
                     continue;
                 }
@@ -907,7 +907,7 @@ public class FirstWave extends Level {
                         sprite.visible = false;
                         Dungeon.hero.sprite.visible = false;
                         centerOfAttention = vanguard;
-                    } else if (MissionScene.scenePause == true) {
+                    } else if (MissionScene.scenePause) {
                         Camera.main.target = centerOfAttention.sprite;
                     }
 
@@ -1237,7 +1237,7 @@ public class FirstWave extends Level {
                     break;
             }
 
-            if (MissionScene.scenePause == true)
+            if (MissionScene.scenePause)
                 Camera.main.target = centerOfAttention.sprite;
             next();
             return true;

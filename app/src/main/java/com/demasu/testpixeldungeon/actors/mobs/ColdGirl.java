@@ -140,7 +140,7 @@ public class ColdGirl extends Mob {
     @Override
     public int attackProc(Char enemy, int damage) {
 
-        if (Level.adjacent(pos, enemy.pos) == true && damage < HP)  // Curse
+        if (Level.adjacent(pos, enemy.pos) && damage < HP)  // Curse
         {
             if (firstDamage) {
                 speak("I have to feel your pain too?!");
@@ -150,7 +150,7 @@ public class ColdGirl extends Mob {
             damage(damage, this);
         }
 
-        if (damage < enemy.HP && Random.Int(5) < 2 && (((ColdGirlAI) ColdGirl.this.state).aiStatus == SUPER_HUNTING) && Level.adjacent(pos, enemy.pos) == true) {
+        if (damage < enemy.HP && Random.Int(5) < 2 && (((ColdGirlAI) ColdGirl.this.state).aiStatus == SUPER_HUNTING) && Level.adjacent(pos, enemy.pos)) {
             ArrayList<Integer> skelSpawns = new ArrayList<>();
             for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
                 int ofs = Level.NEIGHBOURS8[i];
@@ -206,7 +206,7 @@ public class ColdGirl extends Mob {
                 enemy.sprite.bloodBurstA(sprite.center(), enemy.HP);
                 speak("Are you done yet?!");
                 hostile = false;
-                if (Level.adjacent(pos, enemy.pos) == true)  // Knockback
+                if (Level.adjacent(pos, enemy.pos))  // Knockback
                 {
                     for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
                         int ofs = Level.NEIGHBOURS8[i];
@@ -268,7 +268,7 @@ public class ColdGirl extends Mob {
         }
 
 
-        if (Level.adjacent(pos, enemy.pos) == false)  // Space-Swap
+        if (!Level.adjacent(pos, enemy.pos))  // Space-Swap
         {
             if (skillCharge > 0) {
                 int tmpPos = pos;
@@ -309,7 +309,7 @@ public class ColdGirl extends Mob {
                 do {
                     throwAt = pos + 3 * Level.NEIGHBOURS8[Random.Int(Level.NEIGHBOURS8.length - 1)];
                 }
-                while (throwAt < 0 || throwAt > Level.passable.length || Level.passable[throwAt] == false);
+                while (throwAt < 0 || throwAt > Level.passable.length || !Level.passable[throwAt]);
 
 
                 final int throwAtFinal = throwAt;
@@ -334,7 +334,7 @@ public class ColdGirl extends Mob {
     }
 
     private void trollMinion(Char minion) {
-        if (Level.adjacent(pos, minion.pos) == true)  // Knockback
+        if (Level.adjacent(pos, minion.pos))  // Knockback
         {
             for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
                 int ofs = Level.NEIGHBOURS8[i];
@@ -386,7 +386,7 @@ public class ColdGirl extends Mob {
                 }
             }
             Sample.INSTANCE.play(Assets.SND_BLAST);
-            if (Level.adjacent(pos, enemy.pos) == true)  // Knockback
+            if (Level.adjacent(pos, enemy.pos))  // Knockback
             {
                 for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
                     int ofs = Level.NEIGHBOURS8[i];
@@ -422,7 +422,7 @@ public class ColdGirl extends Mob {
             HT = 10000;
             HP = 10000;
             defenseSkill = 1000;
-            if (Level.adjacent(pos, enemy.pos) == true)  // Knockback
+            if (Level.adjacent(pos, enemy.pos))  // Knockback
             {
                 for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
                     int ofs = Level.NEIGHBOURS8[i];

@@ -41,7 +41,7 @@ public class Fletching extends Buff {
 
             GLog.p("Fletched an arrow!");
             Arrow arrow = new Arrow();
-            if (arrow.collect() == false)
+            if (!arrow.collect())
                 Dungeon.level.drop(arrow, hero.pos).sprite.drop();
 
 

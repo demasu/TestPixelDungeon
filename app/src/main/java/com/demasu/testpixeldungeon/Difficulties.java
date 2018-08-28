@@ -370,7 +370,7 @@ public enum Difficulties {
         if (disable && disabledChampions.size() == 3)
             return false;
 
-        if (disable && disableChampion(champType) == false)
+        if (disable && !disableChampion(champType))
             disabledChampions.add(champType);
 
         if (!disable && disableChampion(champType))

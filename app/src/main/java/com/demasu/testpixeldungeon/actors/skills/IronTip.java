@@ -17,7 +17,7 @@ public class IronTip extends PassiveSkillB3 {
 
     @Override
     public int passThroughTargets(boolean shout) {
-        if (shout == false)
+        if (!shout)
             return level;
 
         if (level > 0 && Random.Int(level + 1) > 0) {

@@ -286,7 +286,7 @@ public abstract class Char extends Actor {
 
             if (this instanceof Hero && ((Hero) this).rangedWeapon == null && ((Hero) this).belongings.weapon instanceof DualSwords) {
                 if (enemy.isAlive()) {
-                    if (((DualSwords) ((Hero) this).belongings.weapon).secondHit == false) {
+                    if (!((DualSwords) ((Hero) this).belongings.weapon).secondHit) {
                         ((DualSwords) ((Hero) this).belongings.weapon).secondHit = true;
                         attack(enemy);
                     } else
@@ -296,7 +296,7 @@ public abstract class Char extends Actor {
             }
 
             if (this instanceof Hero && ((Hero) this).rangedWeapon == null && ((Hero) this).belongings.weapon instanceof NecroBlade) {
-                if (enemy.isAlive() == false) {
+                if (!enemy.isAlive()) {
                     ((NecroBlade) Dungeon.hero.belongings.weapon).updateCharge(enemy.HT > 22 ? (int) Math.floor(enemy.HT / 22) : 1);
                     GLog.p("NecroBlade absored a portion of " + enemy.name + "'s life energy.");
 

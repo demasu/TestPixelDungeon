@@ -120,10 +120,10 @@ public class Bow extends MissileWeapon {
         actions.remove(AC_THROW);
         actions.remove(AC_EQUIP);
         if (Dungeon.hero.belongings.bow != this) {
-            if (actions.contains(AC_EQUIP) == false)
+            if (!actions.contains(AC_EQUIP))
                 actions.add(AC_EQUIP);
         } else {
-            if (actions.contains(AC_UNEQUIP) == false)
+            if (!actions.contains(AC_UNEQUIP))
                 actions.add(AC_UNEQUIP);
         }
 

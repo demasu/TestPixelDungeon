@@ -538,7 +538,7 @@ public class WndMercs extends WndTabbed {
                 }
             }
 
-            if (mode != Mode.ARCHERMAIDEN || HiredMerc.archerMaidenUnlocked == true) {
+            if (mode != Mode.ARCHERMAIDEN || HiredMerc.archerMaidenUnlocked) {
                 RedButton btnHire = new RedButton("Hire " + getName(mode) + " For " + getGoldCost(mode) + " gold") {
                     @Override
                     protected void onClick() {

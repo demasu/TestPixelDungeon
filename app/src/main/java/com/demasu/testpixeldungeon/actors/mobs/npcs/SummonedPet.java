@@ -262,7 +262,7 @@ public class SummonedPet extends NPC {
     @Override
     protected boolean act() {
 
-        if (MissionScene.scenePause == true) {
+        if (MissionScene.scenePause) {
             spend(1f);
             next();
             return false;

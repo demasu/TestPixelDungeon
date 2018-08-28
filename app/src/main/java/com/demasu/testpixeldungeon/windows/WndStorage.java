@@ -280,7 +280,7 @@ public class WndStorage extends WndTabbed {
             bg.x = x;
             bg.y = y;
 
-            if (noDegrade == true)
+            if (noDegrade)
                 durability = null; // no durability
 
             if (durability != null) {

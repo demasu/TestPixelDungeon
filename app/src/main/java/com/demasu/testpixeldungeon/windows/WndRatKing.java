@@ -124,7 +124,7 @@ public class WndRatKing extends WndTabbed {
                 btnChamps = new RedButton((String.format(TXT_CHAMPION_CHANCE, (Dungeon.currentDifficulty.championChance() * 10 + "%")))) {
                     @Override
                     protected void onClick() {
-                        if (Difficulties.canDisableChampions == false)
+                        if (!Difficulties.canDisableChampions)
                             parent.add(new previewInformation(Icons.get(Icons.CHAMP_HALO), "Disable Champions", "Please consider donating to unlock disabling specific types of champions."));
                     }
                 };
@@ -184,7 +184,7 @@ public class WndRatKing extends WndTabbed {
                 btnFoul.checked(Dungeon.currentDifficulty.disableChampion(Champ.CHAMP_FOUL));
                 add(btnFoul);
 
-                if (Difficulties.canDisableChampions == false) {
+                if (!Difficulties.canDisableChampions) {
                     btnFoul.enable(false);
                     btnChief.enable(false);
                     btnVamp.enable(false);

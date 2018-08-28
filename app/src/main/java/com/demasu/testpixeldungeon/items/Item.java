@@ -345,7 +345,7 @@ public class Item implements Bundlable {
 
     public void use() {
 
-        if (noDegrade == true) // No degrade
+        if (noDegrade) // No degrade
             return;
 
         if (level > 0 && !isBroken()) {
