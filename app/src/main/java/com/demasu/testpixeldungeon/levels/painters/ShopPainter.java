@@ -72,7 +72,7 @@ public class ShopPainter extends Painter {
         for (Item aRange : range) {
 
             if (skip > 0) {
-                if (aRange instanceof Ankh == false && aRange instanceof Bag == false) {
+                if (!(aRange instanceof Ankh) && !(aRange instanceof Bag)) {
                     skip--;
                     continue; // Shop can't fit item and it's not important
                 }
