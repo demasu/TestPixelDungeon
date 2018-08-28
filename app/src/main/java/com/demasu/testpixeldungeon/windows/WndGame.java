@@ -21,7 +21,7 @@ import java.io.IOException;
 
 import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.TestPixelDungeon;
+import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.hero.Legend;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.InterlevelScene;

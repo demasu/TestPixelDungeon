@@ -30,7 +30,7 @@ import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.FogOfWar;
-import com.demasu.testpixeldungeon.TestPixelDungeon;
+import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.Statistics;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.blobs.Blob;

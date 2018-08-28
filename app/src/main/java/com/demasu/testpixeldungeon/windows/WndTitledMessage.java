@@ -19,7 +19,7 @@ package com.demasu.testpixeldungeon.windows;
 
 import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.TestPixelDungeon;
+import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.ui.HighlightedText;
 import com.demasu.testpixeldungeon.ui.Window;
 

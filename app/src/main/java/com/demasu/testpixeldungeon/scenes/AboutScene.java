@@ -26,7 +26,7 @@ import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.TouchArea;
-import com.demasu.testpixeldungeon.TestPixelDungeon;
+import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.effects.Flare;
 import com.demasu.testpixeldungeon.ui.Archs;
 import com.demasu.testpixeldungeon.ui.ExitButton;

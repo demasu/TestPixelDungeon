@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.TestPixelDungeon;
+import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.potions.Potion;
 import com.demasu.testpixeldungeon.items.scrolls.Scroll;

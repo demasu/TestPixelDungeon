@@ -25,7 +25,7 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Component;
 import com.demasu.testpixeldungeon.Difficulties;
 import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.TestPixelDungeon;
+import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.buffs.Champ;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.CheckBox;

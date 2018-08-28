@@ -25,7 +25,7 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.TestPixelDungeon;
+import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.skills.BranchSkill;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.items.bags.Bag;
