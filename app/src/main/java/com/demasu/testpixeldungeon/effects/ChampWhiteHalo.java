@@ -32,7 +32,7 @@ public class ChampWhiteHalo extends Halo {
 
     static final int RED = 0xb70202;
     static final int YELLOW = 0xe4ff00;
-    static final int WHITE = 0xffffff;
+    private static final int WHITE = 0xffffff;
     static final int BLACK = 0x000000;
 
 

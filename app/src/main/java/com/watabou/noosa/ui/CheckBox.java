@@ -19,13 +19,13 @@ package com.watabou.noosa.ui;
 
 public class CheckBox extends Button {
 
-    protected boolean checked;
+    private boolean checked;
 
     public boolean checked() {
         return checked;
     }
 
-    public void checked(boolean value) {
+    private void checked(boolean value) {
         if (checked != value) {
             checked = value;
             updateState();
@@ -33,7 +33,7 @@ public class CheckBox extends Button {
     }
 
     @SuppressWarnings("EmptyMethod")
-    protected void updateState() {
+    private void updateState() {
 
     }
 
@@ -44,6 +44,6 @@ public class CheckBox extends Button {
     }
 
     @SuppressWarnings("EmptyMethod")
-    protected void onChange() {
+    private void onChange() {
     }
 }

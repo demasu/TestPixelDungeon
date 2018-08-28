@@ -154,7 +154,7 @@ public class HallsLevel extends RegularLevel {
 
         private float delay;
 
-        public Stream(int pos) {
+        Stream(int pos) {
             super();
 
             this.pos = pos;
@@ -191,7 +191,7 @@ public class HallsLevel extends RegularLevel {
 
     public static class FireParticle extends PixelParticle.Shrinking {
 
-        public FireParticle() {
+        FireParticle() {
             super();
 
             color(0xEE7722);
@@ -200,7 +200,7 @@ public class HallsLevel extends RegularLevel {
             acc.set(0, +80);
         }
 
-        public void reset(float x, float y) {
+        void reset(float x, float y) {
             revive();
 
             this.x = x;

@@ -28,9 +28,9 @@ public class Toast extends Component {
     private static final float MARGIN_HOR = 2;
     private static final float MARGIN_VER = 2;
 
-    protected NinePatch bg;
-    protected SimpleButton close;
-    protected BitmapTextMultiline text;
+    private NinePatch bg;
+    private SimpleButton close;
+    private BitmapTextMultiline text;
 
     public Toast(String text) {
         super();
@@ -75,7 +75,7 @@ public class Toast extends Component {
         PixelScene.align(text);
     }
 
-    public void text(String txt) {
+    private void text(String txt) {
         text.text(txt);
         text.measure();
     }

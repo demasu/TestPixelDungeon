@@ -33,12 +33,12 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
 
     INSTANCE;
 
-    public static final int MAX_STREAMS = 8;
+    private static final int MAX_STREAMS = 8;
 
-    protected SoundPool pool =
+    private SoundPool pool =
             new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
 
-    protected HashMap<Object, Integer> ids =
+    private HashMap<Object, Integer> ids =
             new HashMap<>();
 
     private boolean enabled = true;

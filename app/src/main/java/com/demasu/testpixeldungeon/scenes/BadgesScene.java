@@ -127,7 +127,7 @@ public class BadgesScene extends PixelScene {
 
         private Image icon;
 
-        public BadgeButton(Badges.Badge badge) {
+        BadgeButton(Badges.Badge badge) {
             super();
 
             this.badge = badge;

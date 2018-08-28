@@ -154,7 +154,7 @@ public class WndCatalogus extends WndTabbed {
         private ItemSprite sprite;
         private BitmapText label;
 
-        public ListItem(Class<? extends Item> cl) {
+        ListItem(Class<? extends Item> cl) {
             super();
 
             try {
@@ -189,7 +189,7 @@ public class WndCatalogus extends WndTabbed {
             label.y = PixelScene.align(y + (height - label.baseLine()) / 2);
         }
 
-        public boolean onClick(float x, float y) {
+        boolean onClick(float x, float y) {
             if (identified && inside(x, y)) {
                 GameScene.show(new WndInfoItem(item));
                 return true;

@@ -61,7 +61,7 @@ public class SpellSprite extends Image {
         }
     }
 
-    public void reset(int index) {
+    private void reset(int index) {
         frame(film.get(index));
         origin.set(width / 2, height / 2);
 

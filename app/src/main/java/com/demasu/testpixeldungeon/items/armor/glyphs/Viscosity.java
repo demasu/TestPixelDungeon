@@ -78,7 +78,7 @@ public class Viscosity extends Glyph {
 
     public static class DeferedDamage extends Buff {
 
-        protected int damage = 0;
+        int damage = 0;
 
         private static final String DAMAGE = "damage";
 
@@ -105,7 +105,7 @@ public class Viscosity extends Glyph {
             }
         }
 
-        public void prolong(int damage) {
+        void prolong(int damage) {
             this.damage += damage;
         }
 

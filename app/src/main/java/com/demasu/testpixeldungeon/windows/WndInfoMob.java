@@ -48,7 +48,7 @@ public class WndInfoMob extends WndTitledMessage {
         private HealthBar health;
         private BuffIndicator buffs;
 
-        public MobTitle(Mob mob) {
+        MobTitle(Mob mob) {
 
             name = PixelScene.createText(Utils.capitalize(mob.name), 9);
             name.hardlight(TITLE_COLOR);

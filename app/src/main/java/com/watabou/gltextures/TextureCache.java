@@ -127,7 +127,7 @@ public class TextureCache {
         }
     }
 
-    public static Bitmap getBitmap(Object src) {
+    private static Bitmap getBitmap(Object src) {
 
         try {
             if (src instanceof Integer) {

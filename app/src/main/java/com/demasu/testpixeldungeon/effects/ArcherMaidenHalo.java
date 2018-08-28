@@ -33,7 +33,7 @@ public class ArcherMaidenHalo extends Halo {
     static final int RED = 0xb70202;
     static final int YELLOW = 0xe4ff00;
     static final int BLUE = 0x2c04ac;
-    static final int WHITE = 0xffffff;
+    private static final int WHITE = 0xffffff;
     static final int BLACK = 0x000000;
 
 

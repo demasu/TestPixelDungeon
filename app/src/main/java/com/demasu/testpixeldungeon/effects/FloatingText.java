@@ -75,7 +75,7 @@ public class FloatingText extends BitmapText {
         super.destroy();
     }
 
-    public void reset(float x, float y, String text, int color) {
+    private void reset(float x, float y, String text, int color) {
 
         revive();
 

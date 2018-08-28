@@ -23,8 +23,8 @@ public class AlphaTweener extends Tweener {
 
     public Visual image;
 
-    public float start;
-    public float delta;
+    private float start;
+    private float delta;
 
     public AlphaTweener(Visual image, float alpha, float time) {
         super(image, time);

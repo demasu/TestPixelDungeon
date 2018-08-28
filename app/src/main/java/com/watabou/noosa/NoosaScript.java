@@ -29,17 +29,17 @@ import com.watabou.glwrap.Uniform;
 
 public class NoosaScript extends Script {
 
-    public Uniform uCamera;
+    private Uniform uCamera;
     public Uniform uModel;
-    public Uniform uTex;
-    public Uniform uColorM;
-    public Uniform uColorA;
-    public Attribute aXY;
-    public Attribute aUV;
+    private Uniform uTex;
+    private Uniform uColorM;
+    private Uniform uColorA;
+    private Attribute aXY;
+    private Attribute aUV;
 
     private Camera lastCamera;
 
-    public NoosaScript() {
+    private NoosaScript() {
 
         super();
         compile(shader());
@@ -138,7 +138,7 @@ public class NoosaScript extends Script {
     }
 
 
-    protected String shader() {
+    private String shader() {
         return SHADER;
     }
 

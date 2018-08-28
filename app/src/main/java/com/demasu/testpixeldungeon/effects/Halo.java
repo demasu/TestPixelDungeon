@@ -32,9 +32,9 @@ public class Halo extends Image {
     protected static final int RADIUS = 64;
 
     protected float radius = RADIUS;
-    protected float brightness = 1;
+    float brightness = 1;
 
-    public Halo() {
+    protected Halo() {
         super();
 
         if (!TextureCache.contains(CACHE_KEY)) {
@@ -68,7 +68,7 @@ public class Halo extends Image {
         return this;
     }
 
-    public void radius(float value) {
+    private void radius(float value) {
         scale.set((this.radius = value) / RADIUS);
     }
 }

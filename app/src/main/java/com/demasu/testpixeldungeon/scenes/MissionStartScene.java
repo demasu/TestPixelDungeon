@@ -86,7 +86,7 @@ public class MissionStartScene extends PixelScene {
 
     private Group unlock;
 
-    public static HeroClass curClass;
+    private static HeroClass curClass;
 
     @Override
     public void create() {
@@ -340,7 +340,7 @@ public class MissionStartScene extends PixelScene {
 
         private BitmapText secondary;
 
-        public GameButton(String primary) {
+        GameButton(String primary) {
             super(primary);
 
             this.secondary.text(null);
@@ -368,7 +368,7 @@ public class MissionStartScene extends PixelScene {
             }
         }
 
-        public void secondary(String text, boolean highlighted) {
+        void secondary(String text, boolean highlighted) {
             secondary.text(text);
             secondary.measure();
 
@@ -401,7 +401,7 @@ public class MissionStartScene extends PixelScene {
         private int normal;
         private int highlighted;
 
-        public ClassShield(HeroClass cl) {
+        ClassShield(HeroClass cl) {
             super();
 
             this.cl = cl;
@@ -471,7 +471,7 @@ public class MissionStartScene extends PixelScene {
             }
         }
 
-        public void highlight(boolean value) {
+        void highlight(boolean value) {
             if (value) {
                 brightness = 1.0f;
                 name.hardlight(highlighted);
@@ -492,7 +492,7 @@ public class MissionStartScene extends PixelScene {
 
         private Image image;
 
-        public ChallengeButton() {
+        ChallengeButton() {
             super();
 
             width = image.width;

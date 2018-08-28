@@ -33,7 +33,7 @@ import com.watabou.utils.Bundle;
 
 public class Bag extends Item implements Iterable<Item> {
 
-    public static final String AC_OPEN = "OPEN";
+    private static final String AC_OPEN = "OPEN";
 
     {
         image = 11;

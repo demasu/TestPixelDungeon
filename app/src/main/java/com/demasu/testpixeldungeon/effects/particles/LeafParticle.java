@@ -48,14 +48,14 @@ public class LeafParticle extends PixelParticle.Shrinking {
         }
     };
 
-    public LeafParticle() {
+    private LeafParticle() {
         super();
 
         lifespan = 1.2f;
         acc.set(0, 25);
     }
 
-    public void reset(float x, float y) {
+    private void reset(float x, float y) {
         revive();
 
         this.x = x;

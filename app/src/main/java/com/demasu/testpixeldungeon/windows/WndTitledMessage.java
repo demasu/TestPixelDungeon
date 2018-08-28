@@ -23,20 +23,20 @@ import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.ui.HighlightedText;
 import com.demasu.testpixeldungeon.ui.Window;
 
-public class WndTitledMessage extends Window {
+class WndTitledMessage extends Window {
 
     private static final int WIDTH_P = 120;
     private static final int WIDTH_L = 144;
 
     private static final int GAP = 2;
 
-    public WndTitledMessage(Image icon, String title, String message) {
+    WndTitledMessage(Image icon, String title, String message) {
 
         this(new IconTitle(icon, title), message);
 
     }
 
-    public WndTitledMessage(Component titlebar, String message) {
+    WndTitledMessage(Component titlebar, String message) {
 
         super();
 

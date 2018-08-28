@@ -144,7 +144,7 @@ public class RankingsScene extends PixelScene {
         PixelDungeon.switchNoFade(TitleScene.class);
     }
 
-    public static class Record extends Button {
+    protected static class Record extends Button {
 
         private static final float GAP = 4;
 
@@ -161,7 +161,7 @@ public class RankingsScene extends PixelScene {
         private BitmapTextMultiline desc;
         private Image classIcon;
 
-        public Record(int pos, boolean latest, Rankings.Record rec) {
+        Record(int pos, boolean latest, Rankings.Record rec) {
             super();
 
             this.rec = rec;

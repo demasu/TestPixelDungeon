@@ -70,8 +70,8 @@ public class FirstWave extends Level {
         Arrays.fill(fieldOfView, true);
     }
 
-    public Maestro maestro;
-    public EnemyAI enemyAI;
+    private Maestro maestro;
+    private EnemyAI enemyAI;
 
     private static final int ROOM_LEFT = WIDTH / 2 - 2;
     private static final int ROOM_RIGHT = WIDTH / 2 + 2;
@@ -297,7 +297,7 @@ public class FirstWave extends Level {
             screams = false;
         }
 
-        public Char tmp = null;
+        Char tmp = null;
 
         @Override
         public void onAttackComplete() {
@@ -470,25 +470,25 @@ public class FirstWave extends Level {
 
     public class EnemyAI extends Mob {
 
-        public int enemyCount = 0;
-        public int enemyKilled = 0;
-        public int internalClock = 0;
-        public int lastAction = 0;
+        int enemyCount = 0;
+        int enemyKilled = 0;
+        int internalClock = 0;
+        int lastAction = 0;
 
-        public final int INTER_ACTION_TIME = 10;
-        public final int ENEMY_COUNT_LIMIT = 10;
+        final int INTER_ACTION_TIME = 10;
+        final int ENEMY_COUNT_LIMIT = 10;
 
         {
             hostile = false;
             spriteClass = RatSprite.class;
         }
 
-        public boolean temariAdded = false;
-        public boolean generalAdded = false;
+        boolean temariAdded = false;
+        boolean generalAdded = false;
 
-        public boolean spawnEnemies = true;
+        boolean spawnEnemies = true;
 
-        public void finalWave() {
+        void finalWave() {
             spawnEnemies = false;
             for (int i = 0; i < 20; i++) {
                 HostileSkeleton tmp = new HostileSkeleton();
@@ -609,7 +609,7 @@ public class FirstWave extends Level {
             return super.act();
         }
 
-        public void initStats() {
+        void initStats() {
             HP = HT = 40;
             level = 10;
             mercType.setSkills(this);
@@ -638,7 +638,7 @@ public class FirstWave extends Level {
             screams = false;
         }
 
-        public boolean hasHalo = false;
+        boolean hasHalo = false;
 
         @Override
         public boolean act() {
@@ -651,7 +651,7 @@ public class FirstWave extends Level {
             return super.act();
         }
 
-        public void initStats() {
+        void initStats() {
             HP = HT = 100;
             level = 100;
             mercType.setSkills(this);
@@ -660,7 +660,7 @@ public class FirstWave extends Level {
             defenseSkill = 50;
         }
 
-        public void haloUp() {
+        void haloUp() {
 
             if (hasHalo)
                 return;
@@ -675,7 +675,7 @@ public class FirstWave extends Level {
             speak("I cannot fail");
         }
 
-        public void speak(String say) {
+        void speak(String say) {
             sprite.showStatus(CharSprite.NEUTRAL, say);
         }
 
@@ -692,7 +692,7 @@ public class FirstWave extends Level {
             screams = false;
         }
 
-        public boolean hasHalo = false;
+        boolean hasHalo = false;
 
         @Override
         public boolean act() {
@@ -705,7 +705,7 @@ public class FirstWave extends Level {
             return super.act();
         }
 
-        public void initStats() {
+        void initStats() {
             HP = HT = 100;
             level = 100;
             mercType.setSkills(this);
@@ -713,7 +713,7 @@ public class FirstWave extends Level {
             defenseSkill = 30;
         }
 
-        public void haloUp() {
+        void haloUp() {
             if (hasHalo)
                 return;
             hasHalo = true;
@@ -727,7 +727,7 @@ public class FirstWave extends Level {
             speak("You enjoying this Hatsune?");
         }
 
-        public void speak(String say) {
+        void speak(String say) {
             sprite.showStatus(CharSprite.NEUTRAL, say);
         }
 
@@ -760,11 +760,11 @@ public class FirstWave extends Level {
 
         ArrayList<WraithEnemy> listWraiths = new ArrayList<>();
 
-        public void setCenterOfAttention(Char who) {
+        void setCenterOfAttention(Char who) {
             centerOfAttention = who;
         }
 
-        public void endScenario() {
+        void endScenario() {
             MissionScene.scenePause = true;
             //noinspection unchecked
             for (Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone()) {
@@ -1199,7 +1199,7 @@ public class FirstWave extends Level {
             return true;
         }
 
-        public void nextPhase() {
+        void nextPhase() {
             if (phase == 0) {
 
                 temari = new Temari();

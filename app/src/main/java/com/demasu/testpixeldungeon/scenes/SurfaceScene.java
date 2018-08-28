@@ -193,7 +193,7 @@ public class SurfaceScene extends PixelScene {
         private SmartTexture texture;
         private FloatBuffer verticesBuffer;
 
-        public Sky(boolean dayTime) {
+        Sky(boolean dayTime) {
             super(0, 0, 1, 1);
 
             texture = new Gradient(dayTime ? day : night);
@@ -252,7 +252,7 @@ public class SurfaceScene extends PixelScene {
 
         private static int lastIndex = -1;
 
-        public Cloud(float y, boolean dayTime) {
+        Cloud(float y, boolean dayTime) {
             super(Assets.SURFACE);
 
             int index;
@@ -304,7 +304,7 @@ public class SurfaceScene extends PixelScene {
         private static final int WIDTH = 24;
         private static final int HEIGHT = 28;
 
-        public Avatar(HeroClass cl) {
+        Avatar(HeroClass cl) {
             super(Assets.AVATARS);
             frame(new TextureFilm(texture, WIDTH, HEIGHT).get(cl.ordinal()));
         }
@@ -315,7 +315,7 @@ public class SurfaceScene extends PixelScene {
         private Animation idle;
         private Animation jump;
 
-        public Pet() {
+        Pet() {
             super(Assets.PET);
 
             TextureFilm frames = new TextureFilm(texture, 16, 16);
@@ -331,7 +331,7 @@ public class SurfaceScene extends PixelScene {
             play(idle);
         }
 
-        public void jump() {
+        void jump() {
             play(jump);
         }
 
@@ -345,8 +345,8 @@ public class SurfaceScene extends PixelScene {
 
     private static class GrassPatch extends Image {
 
-        public static final int WIDTH = 16;
-        public static final int HEIGHT = 14;
+        static final int WIDTH = 16;
+        static final int HEIGHT = 14;
 
         private float tx;
         private float ty;
@@ -356,7 +356,7 @@ public class SurfaceScene extends PixelScene {
 
         private boolean forward;
 
-        public GrassPatch(float tx, float ty, boolean forward) {
+        GrassPatch(float tx, float ty, boolean forward) {
 
             super(Assets.SURFACE);
 

@@ -38,7 +38,7 @@ import com.watabou.utils.Random;
 
 public class WandOfMagicMissile extends Wand {
 
-    public static final String AC_DISENCHANT = "DISENCHANT";
+    private static final String AC_DISENCHANT = "DISENCHANT";
 
     private static final String TXT_SELECT_WAND = "Select a wand to upgrade";
 

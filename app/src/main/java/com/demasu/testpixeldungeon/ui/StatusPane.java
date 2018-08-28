@@ -309,7 +309,7 @@ public class StatusPane extends Component {
 
         private Image image;
 
-        public MenuButton() {
+        MenuButton() {
             super();
 
             width = image.width + 4;

@@ -43,7 +43,7 @@ public class Enchanting extends ItemSprite {
     private float duration;
     private float passed;
 
-    public Enchanting(Item item) {
+    private Enchanting(Item item) {
         super(item.image(), null);
         originToCenter();
 

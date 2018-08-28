@@ -24,7 +24,7 @@ import com.demasu.testpixeldungeon.utils.GLog;
 
 public class Combo extends Buff {
 
-    public int count = 0;
+    private int count = 0;
 
     @Override
     public int icon() {

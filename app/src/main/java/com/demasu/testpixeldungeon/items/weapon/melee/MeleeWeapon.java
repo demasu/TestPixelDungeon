@@ -27,7 +27,7 @@ public class MeleeWeapon extends Weapon {
 
     private int tier;
 
-    public MeleeWeapon(int tier, float acu, float dly) {
+    MeleeWeapon(int tier, float acu, float dly) {
         super();
 
         this.tier = tier;
@@ -38,11 +38,11 @@ public class MeleeWeapon extends Weapon {
         STR = typicalSTR();
     }
 
-    protected int min0() {
+    private int min0() {
         return tier;
     }
 
-    protected int max0() {
+    int max0() {
         return (int) ((tier * tier - tier + 10) / ACU * DLY);
     }
 
@@ -66,7 +66,7 @@ public class MeleeWeapon extends Weapon {
         return super.upgrade(enchant);
     }
 
-    public void safeUpgrade() {
+    void safeUpgrade() {
         upgrade(enchantment != null);
     }
 

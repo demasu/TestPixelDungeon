@@ -28,8 +28,8 @@ public abstract class EquipableItem extends Item {
 
     private static final String TXT_UNEQUIP_CURSED = "You can't remove cursed %s!";
 
-    public static final String AC_EQUIP = "EQUIP";
-    public static final String AC_UNEQUIP = "UNEQUIP";
+    protected static final String AC_EQUIP = "EQUIP";
+    protected static final String AC_UNEQUIP = "UNEQUIP";
 
     @Override
     public void execute(Hero hero, String action) {
@@ -74,7 +74,7 @@ public abstract class EquipableItem extends Item {
         return 1;
     }
 
-    public abstract boolean doEquip(Hero hero);
+    protected abstract boolean doEquip(Hero hero);
 
     public boolean doUnequip(Hero hero, boolean collect, boolean single) {
 

@@ -74,7 +74,7 @@ public class WndClass extends WndTabbed {
 
         private Group page;
 
-        public RankingTab(String label, Group page) {
+        RankingTab(String label, Group page) {
             super(label);
             this.page = page;
         }
@@ -95,10 +95,10 @@ public class WndClass extends WndTabbed {
 
         private static final String DOT = "\u007F";
 
-        public float height;
-        public float width;
+        float height;
+        float width;
 
-        public PerksTab() {
+        PerksTab() {
             super();
 
             float dotWidth = 0;
@@ -144,10 +144,10 @@ public class WndClass extends WndTabbed {
 
         private static final int MARGIN = 4;
 
-        public float height;
-        public float width;
+        float height;
+        float width;
 
-        public MasteryTab() {
+        MasteryTab() {
             super();
 
             String message = null;

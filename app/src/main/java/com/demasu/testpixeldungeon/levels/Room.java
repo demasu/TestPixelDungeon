@@ -39,7 +39,7 @@ public class Room extends Rect implements Graph.Node, Bundlable {
     public HashMap<Room, Door> connected = new HashMap<>();
 
     public int distance;
-    public int price = 1;
+    private int price = 1;
 
     public enum Type {
         NULL(null),

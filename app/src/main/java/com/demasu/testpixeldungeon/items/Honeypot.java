@@ -35,7 +35,7 @@ import com.watabou.utils.Random;
 
 public class Honeypot extends Item {
 
-    public static final String AC_SHATTER = "SHATTER";
+    private static final String AC_SHATTER = "SHATTER";
 
     {
         name = "honeypot";

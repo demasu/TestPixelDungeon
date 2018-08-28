@@ -25,17 +25,17 @@ public class SummonedPet extends NPC {
 
     public enum PET_TYPES {
         RAT("Rat"), CRAB("Crab"), SKELETON("Skeleton"), SKELETON_ARCHER("Skeleton Archer"), SPECIAL("Special");
-        public String type;
+        String type;
 
         PET_TYPES(String type) {
             this.type = type;
         }
 
-        public String getName() {
+        String getName() {
             return "Summoned " + type;
         }
 
-        public int getHealth(int level) {
+        int getHealth(int level) {
             switch (this) {
                 case RAT:
                     return 7 + level;
@@ -49,7 +49,7 @@ public class SummonedPet extends NPC {
             return 1;
         }
 
-        public int getDamage(int level) {
+        int getDamage(int level) {
             switch (this) {
                 case RAT:
                     return Random.NormalIntRange(1, 5) + level;
@@ -62,7 +62,7 @@ public class SummonedPet extends NPC {
             return 1;
         }
 
-        public int getDefence(int level) {
+        int getDefence(int level) {
             switch (this) {
                 case RAT:
                     return level;
@@ -75,7 +75,7 @@ public class SummonedPet extends NPC {
             return 1;
         }
 
-        public String getDescription() {
+        String getDescription() {
             switch (this) {
                 case RAT:
                     return "Summoned rats will protect their master mage.";
@@ -89,7 +89,7 @@ public class SummonedPet extends NPC {
             return "";
         }
 
-        public Class<? extends CharSprite> getSprite() {
+        Class<? extends CharSprite> getSprite() {
             switch (this) {
                 case RAT:
                     return RatSprite.class;
@@ -103,25 +103,25 @@ public class SummonedPet extends NPC {
         }
     }
 
-    public static final int SUMMONED_PETS_LIMIT = 3;
-    public static final int DEGRADE_RATE = 15;
+    private static final int SUMMONED_PETS_LIMIT = 3;
+    private static final int DEGRADE_RATE = 15;
 
     public static int summonedPets = 0;
 
-    public PET_TYPES petType = PET_TYPES.RAT;
+    private PET_TYPES petType = PET_TYPES.RAT;
 
 
-    public int degradeCounter = 1;
+    private int degradeCounter = 1;
 
-    public int range = 1;
+    private int range = 1;
 
-    public static final String PET_TYPE = "pettype";
-    public static final String NAME = "name";
-    public static final String SKILL = "skill";
-    public static final String SPRITE = "sprite";
-    public static final String MAX_HEALTH = "maxhealth";
-    public static final String HEALTH = "health";
-    public static final String RANGE = "range";
+    private static final String PET_TYPE = "pettype";
+    private static final String NAME = "name";
+    private static final String SKILL = "skill";
+    private static final String SPRITE = "sprite";
+    private static final String MAX_HEALTH = "maxhealth";
+    private static final String HEALTH = "health";
+    private static final String RANGE = "range";
 
 
     {

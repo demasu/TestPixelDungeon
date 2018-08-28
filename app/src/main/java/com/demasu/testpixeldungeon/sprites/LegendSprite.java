@@ -10,8 +10,8 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 public class LegendSprite extends HeroSprite {
 
 
-    public ArcherMaidenHalo halo = null;
-    public boolean hasHalo = false;
+    private ArcherMaidenHalo halo = null;
+    private boolean hasHalo = false;
 
     public void haloUp() {
         if (hasHalo)

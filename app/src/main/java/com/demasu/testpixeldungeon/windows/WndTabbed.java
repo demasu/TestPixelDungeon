@@ -32,14 +32,14 @@ import com.demasu.testpixeldungeon.ui.Window;
 
 public class WndTabbed extends Window {
 
-    protected ArrayList<Tab> tabs = new ArrayList<>();
-    protected Tab selected;
+    ArrayList<Tab> tabs = new ArrayList<>();
+    private Tab selected;
 
-    public WndTabbed() {
+    WndTabbed() {
         super(0, 0, Objects.requireNonNull(Chrome.get(Chrome.Type.TAB_SET)));
     }
 
-    protected void add(Tab tab) {
+    void add(Tab tab) {
 
         tab.setPos(tabs.size() == 0 ?
                 -chrome.marginLeft() + 1 :
@@ -51,11 +51,11 @@ public class WndTabbed extends Window {
 
     }
 
-    public void select(int index) {
+    void select(int index) {
         select(tabs.get(index));
     }
 
-    public void select(Tab tab) {
+    private void select(Tab tab) {
         if (tab != selected) {
             for (Tab t : tabs) {
                 if (t == selected) {
@@ -101,21 +101,21 @@ public class WndTabbed extends Window {
         }
     }
 
-    protected int tabHeight() {
+    int tabHeight() {
         return 25;
     }
 
-    protected void onClick(Tab tab) {
+    void onClick(Tab tab) {
         select(tab);
     }
 
     protected class Tab extends Button {
 
-        protected final int CUT = 5;
+        final int CUT = 5;
 
-        protected boolean selected;
+        boolean selected;
 
-        protected NinePatch bg;
+        NinePatch bg;
 
         @Override
         protected void layout() {
@@ -128,7 +128,7 @@ public class WndTabbed extends Window {
             }
         }
 
-        protected void select(boolean value) {
+        void select(boolean value) {
 
             active = !(selected = value);
 

@@ -70,13 +70,13 @@ public class Item implements Bundlable {
 
     private static final float DURABILITY_WARNING_LEVEL = 1 / 6f;
 
-    protected static final float TIME_TO_THROW = 1.0f;
-    protected static final float TIME_TO_PICK_UP = 1.0f;
-    protected static final float TIME_TO_DROP = 0.5f;
+    static final float TIME_TO_THROW = 1.0f;
+    static final float TIME_TO_PICK_UP = 1.0f;
+    private static final float TIME_TO_DROP = 0.5f;
 
-    public static final String AC_DROP = "DROP";
+    private static final String AC_DROP = "DROP";
     public static final String AC_THROW = "THROW";
-    public static final String AC_STORE = "STORE";
+    private static final String AC_STORE = "STORE";
     public static final String AC_STORE_TAKE = "STORETAKE";
 
     public String defaultAction;
@@ -88,7 +88,7 @@ public class Item implements Bundlable {
     public boolean stackable = false;
     protected int quantity = 1;
 
-    public boolean noDegrade = PixelDungeon.itemDeg();
+    private boolean noDegrade = PixelDungeon.itemDeg();
 
     public int level = 0;
     private int durability = maxDurability();
@@ -129,7 +129,7 @@ public class Item implements Bundlable {
         }
     }
 
-    public void doDrop(Hero hero) {
+    void doDrop(Hero hero) {
         hero.spendAndNext(TIME_TO_DROP);
         Dungeon.level.drop(detachAll(hero.belongings.backpack), hero.pos).sprite.drop(hero.pos);
     }
@@ -167,12 +167,12 @@ public class Item implements Bundlable {
         }
     }
 
-    public void doTakeStorage(Hero hero) {
+    private void doTakeStorage(Hero hero) {
         hero.spendAndNext(TIME_TO_DROP);
         Dungeon.level.drop(detachAll(hero.storage.backpack), hero.pos).sprite.drop(hero.pos);
     }
 
-    public void doAddStorage(Hero hero) {
+    private void doAddStorage(Hero hero) {
         if (collect(hero.storage.backpack)) {
             hero.spendAndNext(TIME_TO_DROP);
             detachAll(hero.belongings.backpack);
@@ -397,7 +397,7 @@ public class Item implements Bundlable {
         return durability;
     }
 
-    public int maxDurability(int lvl) {
+    protected int maxDurability(int lvl) {
         return 1;
     }
 
@@ -479,7 +479,7 @@ public class Item implements Bundlable {
         return desc();
     }
 
-    public String desc() {
+    protected String desc() {
         return "";
     }
 
@@ -495,7 +495,7 @@ public class Item implements Bundlable {
         return 0;
     }
 
-    public int considerState(int price) {
+    protected int considerState(int price) {
         if (cursed && cursedKnown) {
             price /= 2;
         }
@@ -672,7 +672,7 @@ public class Item implements Bundlable {
                 });
     }
 
-    public void castSPD(final Hero user, int dst, int skip) {
+    protected void castSPD(final Hero user, int dst, int skip) {
 
         final int cell = Ballistica.cast(user.pos, dst, skip);
         user.sprite.zap(cell);
@@ -718,7 +718,7 @@ public class Item implements Bundlable {
 
     protected static Hero curUser = null;
     protected static Item curItem = null;
-    protected static CellSelector.Listener thrower = new CellSelector.Listener() {
+    private static CellSelector.Listener thrower = new CellSelector.Listener() {
         @Override
         public void onSelect(Integer target) {
             if (target != null) {

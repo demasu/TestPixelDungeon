@@ -45,7 +45,7 @@ public class BitmapCache {
         return get(DEFAULT, assetName);
     }
 
-    public static Bitmap get(String layerName, String assetName) {
+    private static Bitmap get(String layerName, String assetName) {
 
         Layer layer;
         if (!layers.containsKey(layerName)) {
@@ -75,7 +75,7 @@ public class BitmapCache {
         return get(DEFAULT, resID);
     }
 
-    public static Bitmap get(String layerName, int resID) {
+    private static Bitmap get(String layerName, int resID) {
 
         Layer layer;
         if (!layers.containsKey(layerName)) {

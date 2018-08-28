@@ -49,7 +49,7 @@ public class Mimic extends Mob {
         spriteClass = MimicSprite.class;
     }
 
-    public ArrayList<Item> items;
+    private ArrayList<Item> items;
 
     private static final String LEVEL = "level";
     private static final String ITEMS = "items";
@@ -86,7 +86,7 @@ public class Mimic extends Mob {
     }
 
     @Override
-    public int attackSkill(Char target) {
+    protected int attackSkill(Char target) {
         return 9 + level;
     }
 
@@ -102,7 +102,7 @@ public class Mimic extends Mob {
         return super.attackProc(enemy, damage);
     }
 
-    public void adjustStats(int level) {
+    private void adjustStats(int level) {
         this.level = level;
 
         HT = (3 + level) * 4;

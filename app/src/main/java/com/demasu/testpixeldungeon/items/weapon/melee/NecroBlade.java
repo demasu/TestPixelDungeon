@@ -36,16 +36,16 @@ import java.util.ArrayList;
 
 public class NecroBlade extends MeleeWeapon {
 
-    public static final String AC_HEAL = "Heal";
-    public static final String AC_SUMMON = "Summon";
-    public static final String AC_UPGRADE = "Consume";
+    private static final String AC_HEAL = "Heal";
+    private static final String AC_SUMMON = "Summon";
+    private static final String AC_UPGRADE = "Consume";
 
     {
         name = "necroblade";
         image = ItemSpriteSheet.NecroBlade5;
     }
 
-    public int charge = 100;
+    private int charge = 100;
 
     public NecroBlade() {
         super(1, 0.7f, 1f);

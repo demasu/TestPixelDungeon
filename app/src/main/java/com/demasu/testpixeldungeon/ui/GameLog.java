@@ -140,10 +140,10 @@ public class GameLog extends Component implements Signal.Listener<String> {
     }
 
     private static class Entry {
-        public String text;
-        public int color;
+        String text;
+        int color;
 
-        public Entry(String text, int color) {
+        Entry(String text, int color) {
             this.text = text;
             this.color = color;
         }

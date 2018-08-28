@@ -31,7 +31,7 @@ public class SmokeParticle extends PixelParticle {
         }
     };
 
-    public SmokeParticle() {
+    private SmokeParticle() {
         super();
 
         color(0x222222);
@@ -39,7 +39,7 @@ public class SmokeParticle extends PixelParticle {
         acc.set(0, -40);
     }
 
-    public void reset(float x, float y) {
+    private void reset(float x, float y) {
         revive();
 
         this.x = x;

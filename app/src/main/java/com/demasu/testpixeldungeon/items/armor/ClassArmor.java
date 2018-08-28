@@ -37,7 +37,7 @@ abstract public class ClassArmor extends Armor {
         defaultAction = special();
     }
 
-    public ClassArmor() {
+    ClassArmor() {
         super(6);
     }
 
@@ -112,9 +112,9 @@ abstract public class ClassArmor extends Armor {
         }
     }
 
-    abstract public String special();
+    protected abstract String special();
 
-    abstract public void doSpecial();
+    protected abstract void doSpecial();
 
     @Override
     public int DR() {

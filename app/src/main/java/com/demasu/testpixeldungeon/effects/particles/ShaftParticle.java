@@ -36,14 +36,14 @@ public class ShaftParticle extends PixelParticle {
         }
     };
 
-    public ShaftParticle() {
+    private ShaftParticle() {
         super();
 
         lifespan = 1.2f;
         speed.set(0, -6);
     }
 
-    public void reset(float x, float y) {
+    private void reset(float x, float y) {
         revive();
 
         this.x = x;

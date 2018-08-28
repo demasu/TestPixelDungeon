@@ -42,9 +42,9 @@ import com.watabou.utils.Callback;
 
 public class Pickaxe extends Weapon {
 
-    public static final String AC_MINE = "MINE";
+    private static final String AC_MINE = "MINE";
 
-    public static final float TIME_TO_MINE = 2;
+    private static final float TIME_TO_MINE = 2;
 
     private static final String TXT_NO_VEIN = "There is no dark gold vein near you to mine";
 

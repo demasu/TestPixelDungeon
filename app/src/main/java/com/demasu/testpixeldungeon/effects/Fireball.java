@@ -128,7 +128,7 @@ public class Fireball extends Component {
 
         private float timeLeft;
 
-        public Flame() {
+        Flame() {
 
             super(Assets.FIREBALL);
 
@@ -137,7 +137,7 @@ public class Fireball extends Component {
             acc.set(0, ACC);
         }
 
-        public void reset() {
+        void reset() {
             revive();
             timeLeft = LIFESPAN;
             speed.set(0, SPEED);

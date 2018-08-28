@@ -22,10 +22,10 @@ import com.watabou.utils.PointF;
 
 public class ScaleTweener extends Tweener {
 
-    public Visual visual;
+    private Visual visual;
 
-    public PointF start;
-    public PointF end;
+    private PointF start;
+    private PointF end;
 
     public ScaleTweener(Visual visual, PointF scale, float time) {
         super(visual, time);

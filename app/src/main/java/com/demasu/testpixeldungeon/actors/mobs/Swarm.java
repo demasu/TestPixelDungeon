@@ -55,7 +55,7 @@ public class Swarm extends Mob {
 
     private static final float SPLIT_DELAY = 1f;
 
-    int generation = 0;
+    private int generation = 0;
 
     private static final String GENERATION = "generation";
 

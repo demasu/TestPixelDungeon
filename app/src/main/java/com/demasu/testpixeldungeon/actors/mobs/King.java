@@ -242,7 +242,7 @@ public class King extends Mob {
 
     public static class Undead extends Mob {
 
-        public static int count = 0;
+        static int count = 0;
 
         {
             name = "undead dwarf";

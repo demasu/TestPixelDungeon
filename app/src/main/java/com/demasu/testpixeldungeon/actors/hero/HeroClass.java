@@ -64,7 +64,7 @@ public enum HeroClass {
         this.title = title;
     }
 
-    public static final String[] WAR_PERKS = {
+    private static final String[] WAR_PERKS = {
             "Warriors start with 11 points of Strength.",
             "Warriors start with a unique short sword. This sword can be later \"reforged\" to upgrade another melee weapon.",
             "Warriors are less proficient with missile weapons.",
@@ -72,7 +72,7 @@ public enum HeroClass {
             "Potions of Strength are identified from the beginning.",
     };
 
-    public static final String[] MAG_PERKS = {
+    private static final String[] MAG_PERKS = {
             "Mages start with a unique Wand of Magic Missile. This wand can be later \"disenchanted\" to upgrade another wand.",
             "Mages recharge their wands faster.",
             "When eaten, any piece of food restores 1 charge for all wands in the inventory.",
@@ -81,7 +81,7 @@ public enum HeroClass {
             "Master of magic."
     };
 
-    public static final String[] ROG_PERKS = {
+    private static final String[] ROG_PERKS = {
             "Rogues start with a Ring of Shadows+1.",
             "Rogues identify a type of a ring on equipping it.",
             "Rogues are proficient with light armor, dodging better while wearing one.",
@@ -90,7 +90,7 @@ public enum HeroClass {
             "Scrolls of Magic Mapping are identified from the beginning."
     };
 
-    public static final String[] HUN_PERKS = {
+    private static final String[] HUN_PERKS = {
             "Huntresses start with 15 points of Health.",
             "Huntresses start with a unique upgradeable boomerang.",
             "Huntresses are proficient with missile weapons and get a damage bonus for excessive strength when using them.",
@@ -98,7 +98,7 @@ public enum HeroClass {
             "Huntresses sense neighbouring monsters even if they are hidden behind obstacles."
     };
 
-    public static final String[] LEGEND_PERKS = {
+    private static final String[] LEGEND_PERKS = {
             "Hatsune is believed to be a descendant of an Avatar who broke the rules and interacted with mortals.",
             "She is best known for leading the failed defence of the town of Boonamai.",
             "She is the first to give birth to twin daughters instead of one. A first in a lineage of over 10 generations.",

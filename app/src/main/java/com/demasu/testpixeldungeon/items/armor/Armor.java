@@ -54,7 +54,7 @@ public class Armor extends EquipableItem {
 
     private int hitsToKnow = HITS_TO_KNOW;
 
-    public Glyph glyph;
+    Glyph glyph;
 
     public Armor(int tier) {
 
@@ -152,7 +152,7 @@ public class Armor extends EquipableItem {
         return upgrade(false);
     }
 
-    public Item upgrade(boolean inscribe) {
+    private Item upgrade(boolean inscribe) {
 
         if (glyph != null) {
             if (!inscribe && Random.Int(level()) > 0) {
@@ -286,7 +286,7 @@ public class Armor extends EquipableItem {
         return 7 + tier * 2;
     }
 
-    public int typicalDR() {
+    private int typicalDR() {
         return tier * 2;
     }
 
@@ -299,7 +299,7 @@ public class Armor extends EquipableItem {
         return considerState(price);
     }
 
-    public void inscribe(Glyph glyph) {
+    void inscribe(Glyph glyph) {
         this.glyph = glyph;
     }
 
@@ -332,9 +332,9 @@ public class Armor extends EquipableItem {
 
         private static final float[] chances = new float[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
-        public abstract int proc(Armor armor, Char attacker, Char defender, int damage);
+        protected abstract int proc(Armor armor, Char attacker, Char defender, int damage);
 
-        public String name(String armorName) {
+        protected String name(String armorName) {
             return armorName;
         }
 
@@ -346,11 +346,11 @@ public class Armor extends EquipableItem {
         public void storeInBundle(Bundle bundle) {
         }
 
-        public ItemSprite.Glowing glowing() {
+        protected ItemSprite.Glowing glowing() {
             return ItemSprite.Glowing.WHITE;
         }
 
-        public void checkOwner(Char owner) {
+        protected void checkOwner(Char owner) {
             if (!owner.isAlive() && owner instanceof Hero) {
 
                 ((Hero) owner).killerGlyph = this;
@@ -361,7 +361,7 @@ public class Armor extends EquipableItem {
         }
 
         @SuppressWarnings("unchecked")
-        public static Glyph random() {
+        static Glyph random() {
             try {
                 return ((Class<Glyph>) glyphs[Random.chances(chances)]).newInstance();
             } catch (Exception e) {

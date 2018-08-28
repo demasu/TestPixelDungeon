@@ -79,7 +79,7 @@ public class WndJournal extends Window {
 
         private Image icon;
 
-        public ListItem(Journal.Feature f, int d) {
+        ListItem(Journal.Feature f, int d) {
             super();
 
             feature.text(f.desc);

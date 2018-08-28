@@ -65,7 +65,7 @@ public class MissionToolbar extends Component {
 
     private boolean lastEnabled = true;
 
-    public static boolean tapAgainToSearch = false;
+    private static boolean tapAgainToSearch = false;
 
     private static MissionToolbar instance;
 
@@ -323,9 +323,9 @@ public class MissionToolbar extends Component {
 
         private static final int BGCOLOR = 0x7B8073;
 
-        protected Image base;
+        Image base;
 
-        public Tool(int x, int y, int width, int height) {
+        Tool(int x, int y, int width, int height) {
             super();
 
             base.frame(x, y, width, height);
@@ -364,7 +364,7 @@ public class MissionToolbar extends Component {
             }
         }
 
-        public void enable(boolean value) {
+        void enable(boolean value) {
             if (value != active) {
                 if (value) {
                     base.resetColor();
@@ -380,7 +380,7 @@ public class MissionToolbar extends Component {
 
         private QuickSlot slot;
 
-        public QuickslotTool(int x, int y, int width, int height, boolean primary) {
+        QuickslotTool(int x, int y, int width, int height, boolean primary) {
             super(x, y, width, height);
             if (primary) {
                 slot.primary();
@@ -419,7 +419,7 @@ public class MissionToolbar extends Component {
         private float dstY;
         private float left;
 
-        public PickedUpItem() {
+        PickedUpItem() {
             super();
 
             originToCenter();
@@ -429,7 +429,7 @@ public class MissionToolbar extends Component {
                             false;
         }
 
-        public void reset(Item item, float dstX, float dstY) {
+        void reset(Item item, float dstX, float dstY) {
             view(item.image(), item.glowing());
 
             active =

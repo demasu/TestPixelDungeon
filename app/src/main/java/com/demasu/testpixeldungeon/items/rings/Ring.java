@@ -50,7 +50,7 @@ public class Ring extends EquipableItem {
             "You can only wear two rings at a time. " +
                     "Unequip one of your equipped rings.";
 
-    protected Buff buff;
+    private Buff buff;
 
     private static final Class<?>[] rings = {
             RingOfMending.class,
@@ -245,7 +245,7 @@ public class Ring extends EquipableItem {
         return handler.isKnown(this);
     }
 
-    protected void setKnown() {
+    private void setKnown() {
         if (!isKnown()) {
             handler.know(this);
         }
@@ -323,7 +323,7 @@ public class Ring extends EquipableItem {
         return considerState(80);
     }
 
-    protected RingBuff buff() {
+    RingBuff buff() {
         return null;
     }
 

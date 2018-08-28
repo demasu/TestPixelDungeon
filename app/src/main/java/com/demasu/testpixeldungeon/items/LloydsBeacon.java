@@ -52,10 +52,10 @@ public class LloydsBeacon extends Item {
     private static final String TXT_SET =
             "\n\nThis beacon was set somewhere on the level %d of Pixel Dungeon.";
 
-    public static final float TIME_TO_USE = 1;
+    private static final float TIME_TO_USE = 1;
 
-    public static final String AC_SET = "SET";
-    public static final String AC_RETURN = "RETURN";
+    private static final String AC_SET = "SET";
+    private static final String AC_RETURN = "RETURN";
 
     private int returnDepth = -1;
     private int returnPos;
@@ -155,7 +155,7 @@ public class LloydsBeacon extends Item {
         }
     }
 
-    public void reset() {
+    private void reset() {
         returnDepth = -1;
     }
 

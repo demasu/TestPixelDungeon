@@ -57,7 +57,7 @@ public class MovieLevel extends Level {
         Arrays.fill(fieldOfView, true);
     }
 
-    public Maestro maestro;
+    private Maestro maestro;
 
 
     private static final int ROOM_LEFT = WIDTH / 2 - 2;
@@ -257,7 +257,7 @@ public class MovieLevel extends Level {
             hostile = false;
         }
 
-        public Char tmp = null;
+        Char tmp = null;
 
         @Override
         public void onAttackComplete() {

@@ -62,7 +62,7 @@ public abstract class Actor implements Bundlable {
     protected void onAdd() {
     }
 
-    protected void onRemove() {
+    void onRemove() {
     }
 
     private static final String TIME = "time";

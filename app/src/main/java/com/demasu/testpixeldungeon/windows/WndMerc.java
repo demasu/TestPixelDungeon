@@ -69,11 +69,11 @@ public class WndMerc extends WndTabbed {
         SEED
     }
 
-    protected static final int COLS_P = 4;
-    protected static final int COLS_L = 6;
+    private static final int COLS_P = 4;
+    private static final int COLS_L = 6;
 
-    protected static final int SLOT_SIZE = 28;
-    protected static final int SLOT_MARGIN = 1;
+    private static final int SLOT_SIZE = 28;
+    private static final int SLOT_MARGIN = 1;
 
     protected static final int TAB_WIDTH = 25;
 
@@ -230,7 +230,7 @@ public class WndMerc extends WndTabbed {
             name = null;
         }
 
-        public Placeholder(int image) {
+        Placeholder(int image) {
             this.image = image;
         }
 
@@ -257,9 +257,9 @@ public class WndMerc extends WndTabbed {
 
         private ColorBlock durability[];
 
-        public boolean holdOnly;
+        boolean holdOnly;
 
-        public ItemButton(Item item, boolean holdOnly) {
+        ItemButton(Item item, boolean holdOnly) {
 
             super(item);
 
@@ -393,7 +393,7 @@ public class WndMerc extends WndTabbed {
 
         private ColorBlock durability[];
 
-        public SkillButton(Skill skill) {
+        SkillButton(Skill skill) {
 
             super(skill);
 
@@ -476,7 +476,7 @@ public class WndMerc extends WndTabbed {
         }
     }
 
-    public interface Listener {
+    interface Listener {
         void onSelect(Item item);
     }
 }

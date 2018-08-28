@@ -61,9 +61,9 @@ import java.util.ArrayList;
 public class MissionScene extends GameScene {
 
 
-    public LegendSprite hero;
+    private LegendSprite hero;
     public static boolean scenePause = false;
-    protected MissionToolbar toolbar;
+    private MissionToolbar toolbar;
 
 
     @Override

@@ -79,7 +79,7 @@ public class WarriorArmor extends ClassArmor {
                         "a targeted location, slamming down to stun all neighbouring enemies.";
     }
 
-    protected static CellSelector.Listener leaper = new CellSelector.Listener() {
+    private static CellSelector.Listener leaper = new CellSelector.Listener() {
 
         @Override
         public void onSelect(Integer target) {

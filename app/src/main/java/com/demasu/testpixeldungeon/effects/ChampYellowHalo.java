@@ -31,7 +31,7 @@ public class ChampYellowHalo extends Halo {
     private float phase = 0;
 
     static final int RED = 0xb70202;
-    static final int YELLOW = 0xe4ff00;
+    private static final int YELLOW = 0xe4ff00;
     static final int WHITE = 0xffffff;
     static final int BLACK = 0x000000;
 

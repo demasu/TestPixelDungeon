@@ -71,7 +71,7 @@ public class PlantSprite extends Image {
         time = DELAY;
     }
 
-    public void reset(int image) {
+    private void reset(int image) {
         frame(frames.get(image));
     }
 

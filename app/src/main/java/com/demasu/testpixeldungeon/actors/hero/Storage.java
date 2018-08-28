@@ -28,7 +28,7 @@ import java.util.Iterator;
 
 public class Storage implements Iterable<Item> {
 
-    public static final int BACKPACK_SIZE = 5;
+    private static final int BACKPACK_SIZE = 5;
 
     public Bag backpack;
 

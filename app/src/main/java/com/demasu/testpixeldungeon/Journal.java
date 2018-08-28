@@ -58,7 +58,7 @@ public class Journal {
         public Record() {
         }
 
-        public Record(Feature feature, int depth) {
+        Record(Feature feature, int depth) {
             this.feature = feature;
             this.depth = depth;
         }

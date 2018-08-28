@@ -27,23 +27,23 @@ import android.graphics.RectF;
 
 public class NinePatch extends Visual {
 
-    public SmartTexture texture;
+    protected SmartTexture texture;
 
-    protected float[] vertices;
-    protected FloatBuffer verticesBuffer;
+    private float[] vertices;
+    private FloatBuffer verticesBuffer;
 
-    protected RectF outterF;
-    protected RectF innerF;
+    private RectF outterF;
+    private RectF innerF;
 
-    protected int marginLeft;
-    protected int marginRight;
-    protected int marginTop;
-    protected int marginBottom;
+    private int marginLeft;
+    private int marginRight;
+    private int marginTop;
+    private int marginBottom;
 
-    protected float nWidth;
-    protected float nHeight;
+    private float nWidth;
+    private float nHeight;
 
-    public NinePatch(Object tx, int margin) {
+    protected NinePatch(Object tx, int margin) {
         this(tx, margin, margin, margin, margin);
     }
 
@@ -79,7 +79,7 @@ public class NinePatch extends Visual {
         updateVertices();
     }
 
-    protected void updateVertices() {
+    private void updateVertices() {
 
         verticesBuffer.position(0);
 

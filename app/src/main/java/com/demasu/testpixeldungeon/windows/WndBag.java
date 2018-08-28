@@ -71,15 +71,15 @@ public class WndBag extends WndTabbed {
         BRUTE_HOLD
     }
 
-    protected static final int COLS_P = 4;
-    protected static final int COLS_L = 6;
+    private static final int COLS_P = 4;
+    private static final int COLS_L = 6;
 
-    protected static final int SLOT_SIZE = 28;
-    protected static final int SLOT_MARGIN = 1;
+    private static final int SLOT_SIZE = 28;
+    private static final int SLOT_MARGIN = 1;
 
-    protected static final int TAB_WIDTH = 25;
+    private static final int TAB_WIDTH = 25;
 
-    protected static final int TITLE_HEIGHT = 12;
+    private static final int TITLE_HEIGHT = 12;
 
     private Listener listener;
     private WndBag.Mode mode;
@@ -88,14 +88,14 @@ public class WndBag extends WndTabbed {
     private int nCols;
     private int nRows;
 
-    protected int count;
-    protected int col;
-    protected int row;
+    private int count;
+    private int col;
+    private int row;
 
     private static Mode lastMode;
     private static Bag lastBag;
 
-    public boolean noDegrade = PixelDungeon.itemDeg();
+    private boolean noDegrade = PixelDungeon.itemDeg();
 
     public WndBag(Bag bag, Listener listener, Mode mode, String title) {
 
@@ -165,7 +165,7 @@ public class WndBag extends WndTabbed {
                 new WndBag(Dungeon.hero.belongings.backpack, listener, mode, title);
     }
 
-    protected void placeItems(Bag container) {
+    private void placeItems(Bag container) {
 
         // Equipped items
         Belongings stuff = Dungeon.hero.belongings;
@@ -200,7 +200,7 @@ public class WndBag extends WndTabbed {
         }
     }
 
-    protected void placeItem(final Item item) {
+    private void placeItem(final Item item) {
 
         int x = col * (SLOT_SIZE + SLOT_MARGIN);
         int y = TITLE_HEIGHT + row * (SLOT_SIZE + SLOT_MARGIN);
@@ -247,7 +247,7 @@ public class WndBag extends WndTabbed {
 
         private Bag bag;
 
-        public BagTab(Bag bag) {
+        BagTab(Bag bag) {
             super();
 
             this.bag = bag;
@@ -297,7 +297,7 @@ public class WndBag extends WndTabbed {
             name = null;
         }
 
-        public Placeholder(int image) {
+        Placeholder(int image) {
             this.image = image;
         }
 
@@ -324,7 +324,7 @@ public class WndBag extends WndTabbed {
 
         private ColorBlock durability[];
 
-        public ItemButton(Item item) {
+        ItemButton(Item item) {
 
             super(item);
 

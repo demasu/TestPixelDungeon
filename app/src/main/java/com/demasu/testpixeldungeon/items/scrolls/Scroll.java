@@ -34,9 +34,9 @@ public abstract class Scroll extends Item {
 
     private static final String TXT_BLINDED = "You can't read a scroll while blinded";
 
-    public static final String AC_READ = "READ";
+    private static final String AC_READ = "READ";
 
-    protected static final float TIME_TO_READ = 1f;
+    static final float TIME_TO_READ = 1f;
 
     private static final Class<?>[] scrolls = {
             ScrollOfIdentify.class,
@@ -139,7 +139,7 @@ public abstract class Scroll extends Item {
 
     abstract protected void doRead();
 
-    protected void readAnimation() {
+    void readAnimation() {
         curUser.spend(TIME_TO_READ);
         curUser.busy();
         ((HeroSprite) curUser.sprite).read();

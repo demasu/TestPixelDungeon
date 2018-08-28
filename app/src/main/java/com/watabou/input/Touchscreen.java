@@ -31,11 +31,11 @@ public class Touchscreen {
     public static Signal<Touch> event = new Signal<>(true);
 
     @SuppressLint("UseSparseArrays")
-    public static HashMap<Integer, Touch> pointers = new HashMap<>();
+    private static HashMap<Integer, Touch> pointers = new HashMap<>();
 
     public static float x;
     public static float y;
-    public static boolean touched;
+    private static boolean touched;
 
     public static void processTouchEvents(ArrayList<MotionEvent> events) {
 
@@ -90,7 +90,7 @@ public class Touchscreen {
         public PointF current;
         public boolean down;
 
-        public Touch(MotionEvent e, int index) {
+        Touch(MotionEvent e, int index) {
 
             float x = e.getX(index);
             float y = e.getY(index);
@@ -101,11 +101,11 @@ public class Touchscreen {
             down = true;
         }
 
-        public void update(MotionEvent e, int index) {
+        void update(MotionEvent e, int index) {
             current.set(e.getX(index), e.getY(index));
         }
 
-        public Touch up() {
+        Touch up() {
             down = false;
             return this;
         }

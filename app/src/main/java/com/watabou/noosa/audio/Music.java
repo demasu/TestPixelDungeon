@@ -102,7 +102,7 @@ public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnError
         }
     }
 
-    public void stop() {
+    private void stop() {
         if (player != null) {
             player.stop();
             player.release();
@@ -116,7 +116,7 @@ public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnError
         }
     }
 
-    public boolean isPlaying() {
+    private boolean isPlaying() {
         return player != null && player.isPlaying();
     }
 

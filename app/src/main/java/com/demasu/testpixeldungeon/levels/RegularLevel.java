@@ -44,12 +44,12 @@ import com.watabou.utils.Rect;
 
 public abstract class RegularLevel extends Level {
 
-    protected HashSet<Room> rooms;
+    HashSet<Room> rooms;
 
-    protected Room roomEntrance;
-    protected Room roomExit;
+    Room roomEntrance;
+    Room roomExit;
 
-    protected ArrayList<Room.Type> specials;
+    private ArrayList<Room.Type> specials;
 
     public int secretDoors;
 
@@ -150,7 +150,7 @@ public abstract class RegularLevel extends Level {
         return true;
     }
 
-    protected boolean initRooms() {
+    boolean initRooms() {
         rooms = new HashSet<>();
         split(new Rect(0, 0, WIDTH - 1, HEIGHT - 1));
 
@@ -168,7 +168,7 @@ public abstract class RegularLevel extends Level {
         return true;
     }
 
-    protected void assignRoomType() {
+    void assignRoomType() {
 
         int specialRooms = 0;
 
@@ -255,7 +255,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    protected void paintWater() {
+    void paintWater() {
         boolean[] lake = water();
         for (int i = 0; i < LENGTH; i++) {
             if (map[i] == Terrain.EMPTY && lake[i]) {
@@ -264,7 +264,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    protected void paintGrass() {
+    void paintGrass() {
         boolean[] grass = grass();
 
         if (feeling == Feeling.GRASS) {
@@ -296,7 +296,7 @@ public abstract class RegularLevel extends Level {
 
     protected abstract boolean[] grass();
 
-    protected void placeTraps() {
+    void placeTraps() {
 
         int nTraps = nTraps();
         float[] trapChances = trapChances();
@@ -336,18 +336,18 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    protected int nTraps() {
+    int nTraps() {
         return Dungeon.depth <= 1 ? 0 : Random.Int(1, rooms.size() + Dungeon.depth);
     }
 
-    protected float[] trapChances() {
+    private float[] trapChances() {
         return new float[]{1, 1, 1, 1, 1, 1, 1, 1};
     }
 
-    protected int minRoomSize = 7;
-    protected int maxRoomSize = 9;
+    int minRoomSize = 7;
+    private int maxRoomSize = 9;
 
-    protected void split(Rect rect) {
+    private void split(Rect rect) {
 
         int w = rect.width();
         int h = rect.height();
@@ -383,7 +383,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    protected void paint() {
+    void paint() {
 
         for (Room r : rooms) {
             if (r.type != Type.NULL) {
@@ -423,7 +423,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    protected void paintDoors(Room r) {
+    void paintDoors(Room r) {
         for (Room n : r.connected.keySet()) {
 
             if (joinRooms(r, n)) {
@@ -468,7 +468,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    protected boolean joinRooms(Room r, Room n) {
+    private boolean joinRooms(Room r, Room n) {
 
         if (r.type != Room.Type.STANDARD || n.type != Room.Type.STANDARD) {
             return false;
@@ -630,7 +630,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    protected Room randomRoom(Room.Type type, int tries) {
+    private Room randomRoom(Room.Type type, int tries) {
         for (int i = 0; i < tries; i++) {
             Room room = Random.element(rooms);
             if (Objects.requireNonNull(room).type == type) {
@@ -650,7 +650,7 @@ public abstract class RegularLevel extends Level {
         return null;
     }
 
-    protected int randomDropCell() {
+    private int randomDropCell() {
         while (true) {
             Room room = randomRoom(Room.Type.STANDARD, 1);
             if (room != null) {

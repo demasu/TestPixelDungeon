@@ -41,7 +41,7 @@ public class WndRatKing extends WndTabbed {
         HERO
     }
 
-    public Mode mode;
+    private Mode mode;
 
     private static final String TXT_PLUS = "+";
     private static final String TXT_MINUS = "-";
@@ -64,9 +64,9 @@ public class WndRatKing extends WndTabbed {
     private RedButton btMobDef;
     private RedButton btDayNight;
 
-    protected static final int TAB_WIDTH = 25;
+    private static final int TAB_WIDTH = 25;
 
-    public static int maxHeight = 0;
+    private static int maxHeight = 0;
 
     public WndRatKing(Mode mode) {
         super();
@@ -346,7 +346,7 @@ public class WndRatKing extends WndTabbed {
         private Image icon;
         Mode mode;
 
-        public StatsControl(Mode mode) {
+        StatsControl(Mode mode) {
             super();
             this.mode = mode;
             icon = Icons.get(getIcon());
@@ -354,7 +354,7 @@ public class WndRatKing extends WndTabbed {
 
         }
 
-        public Icons getIcon() {
+        Icons getIcon() {
             switch (mode) {
                 case CHAMPIONS:
                     return Icons.CHAMP_HALO;
@@ -387,7 +387,7 @@ public class WndRatKing extends WndTabbed {
     }
 
     private class previewInformation extends Window {
-        public previewInformation(Image image, String title, String description) {
+        previewInformation(Image image, String title, String description) {
 
             IconTitle titlebar = new IconTitle();
             titlebar.icon(image);

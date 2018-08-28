@@ -19,7 +19,7 @@ package com.demasu.testpixeldungeon.levels;
 
 import com.watabou.utils.Random;
 
-public class Patch {
+class Patch {
 
     private static boolean[] cur = new boolean[Level.LENGTH];
     private static boolean[] off = new boolean[Level.LENGTH];

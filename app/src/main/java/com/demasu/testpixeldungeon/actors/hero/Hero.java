@@ -158,8 +158,8 @@ public class Hero extends Char {
 
     public HiredMerc hiredMerc = null;
 
-    protected int attackSkill = 10;
-    protected int defenseSkill = 5;
+    int attackSkill = 10;
+    int defenseSkill = 5;
 
     public boolean ready = false;
 
@@ -181,7 +181,7 @@ public class Hero extends Char {
     public int STR;
     public boolean weakened = false;
 
-    public float awareness;
+    private float awareness;
 
     public int lvl = 1;
     public int exp = 0;
@@ -491,7 +491,7 @@ public class Hero extends Char {
     }
 
     @Override
-    public boolean act() {
+    protected boolean act() {
 
         super.act();
 
@@ -1494,7 +1494,7 @@ public class Hero extends Char {
         super.onMotionComplete();
     }
 
-    public void onAttackCompleteKeepAction() {
+    private void onAttackCompleteKeepAction() {
 
         AttackIndicator.target(enemy);
 

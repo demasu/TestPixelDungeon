@@ -205,7 +205,7 @@ public class Yog extends Mob {
             state = WANDERING;
         }
 
-        public RottingFist() {
+        RottingFist() {
             super();
             fistsCount++;
         }

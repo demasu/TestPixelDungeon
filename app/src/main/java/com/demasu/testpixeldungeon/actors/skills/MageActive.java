@@ -40,15 +40,15 @@ public class MageActive extends BranchSkill {
                 + (canUpgrade() ? "Next advancement will cost you " + nextUpgradeCost() + " skill point.\n" : "You can no longer advance in this line");
     }
 
-    protected int totalSpent() {
+    private int totalSpent() {
         return Dungeon.hero.heroSkills.totalSpent(CurrentSkills.BRANCHES.ACTIVE);
     }
 
-    protected int nextUpgradeCost() {
+    private int nextUpgradeCost() {
         return Dungeon.hero.heroSkills.nextUpgradeCost(CurrentSkills.BRANCHES.ACTIVE);
     }
 
-    protected boolean canUpgrade() {
+    private boolean canUpgrade() {
         return Dungeon.hero.heroSkills.canUpgrade(CurrentSkills.BRANCHES.ACTIVE);
     }
 }

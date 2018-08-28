@@ -71,34 +71,34 @@ public class ColdGirl extends Mob {
         champ = 1;
     }
 
-    public boolean isSister = false;
+    private boolean isSister = false;
 
     private static final String TXT_SMB_MISSED = "%s %s %s's attack";
     public static final String TXT_DEATH = "Killed in the ice cave";
 
     public static final int PASSIVE = 0;
-    public static final int HUNTING = 1;
-    public static final int SUPER_HUNTING = 2;
-    public static final int GOD_MODE = 3;
+    private static final int HUNTING = 1;
+    private static final int SUPER_HUNTING = 2;
+    private static final int GOD_MODE = 3;
     public static final int DONE_MODE = 4;
 
-    public static final int DISCUSSION_STEP = 10;
+    private static final int DISCUSSION_STEP = 10;
 
-    public static final int DISCUSSION_DEAD = 1000;
+    private static final int DISCUSSION_DEAD = 1000;
 
-    public int discussionProgress = 0;
+    private int discussionProgress = 0;
 
-    public boolean firstSwap = true;
-    public boolean firstDamage = true;
-    public boolean firstComplaint = true;
-    public boolean firstTroll = true;
-    public boolean firstFetch = true;
+    private boolean firstSwap = true;
+    private boolean firstDamage = true;
+    private boolean firstComplaint = true;
+    private boolean firstTroll = true;
+    private boolean firstFetch = true;
 
     public static final int FROST_DEPTH = 1000;
 
     public static int cameFrom = 1;
     public static int cameFromPos = 1;
-    public int skillCharge = 5;
+    private int skillCharge = 5;
 
 
     public void turnToSis() {
@@ -486,11 +486,11 @@ public class ColdGirl extends Mob {
         cameFromPos = bundle.getInt(CAME_FROM_POS);
     }
 
-    public void speak(String speakText) {
+    private void speak(String speakText) {
         this.sprite.showStatus(CharSprite.NEUTRAL, speakText);
     }
 
-    public void heroSpeak(String speakText) {
+    private void heroSpeak(String speakText) {
         Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, speakText);
     }
 
@@ -661,7 +661,7 @@ public class ColdGirl extends Mob {
         }
     }
 
-    public void spawnMinions() {
+    private void spawnMinions() {
         ArrayList<Integer> spawnPoints = new ArrayList<>();
 
         for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {

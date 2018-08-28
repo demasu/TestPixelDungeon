@@ -39,9 +39,9 @@ public class ScrollOfWipeOut extends Scroll {
 
     private static final String TXT_BLINDED = "You can't read a scroll while blinded";
 
-    public static final String AC_READ = "READ";
+    private static final String AC_READ = "READ";
 
-    protected static final float TIME_TO_READ = 1f;
+    private static final float TIME_TO_READ = 1f;
 
     {
         name = "Scroll of Wipe Out";

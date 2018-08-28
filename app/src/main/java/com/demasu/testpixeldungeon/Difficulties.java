@@ -15,10 +15,10 @@ public enum Difficulties {
     public static boolean canDisableChampions = false;
 
     private int championOffset;
-    public float hpOffset;
-    public float attOffset;
-    public float defOffset;
-    public float defenceOffset = 0;
+    private float hpOffset;
+    private float attOffset;
+    private float defOffset;
+    private float defenceOffset = 0;
 
     public enum isNightOverwrite {DEFAULT, ALWAYS_DAY, ALWAYS_NIGHT}
 
@@ -34,7 +34,7 @@ public enum Difficulties {
         disabledChampions.clear();
     }
 
-    public static final String[] EASY_DESC = {
+    private static final String[] EASY_DESC = {
             "- Start with 2 extra rations.",
             "- Start with 2 potions of healing.",
             "- Start with 200 Gold.",
@@ -42,18 +42,18 @@ public enum Difficulties {
             "- Champion spawn rate set to 10%."
     };
 
-    public static final String[] NORMAL_DESC = {
+    private static final String[] NORMAL_DESC = {
             "- Mobs are standard.",
             "- Champion spawn rate set to 20%."
     };
 
-    public static final String[] HARD_DESC = {
+    private static final String[] HARD_DESC = {
             "- Potion of healing heals 75% max hp.",
             "- Mobs are Strong, do 10% extra damage, take 10% less damage and have 20% more HP.",
             "- Champion spawn rate set to 30%."
     };
 
-    public static final String[] HELL_DESC = {
+    private static final String[] HELL_DESC = {
             "- Potion of healing heals 50% max hp.",
             "- Mobs are Immortal, do 25% more damage, take 20% less damage and have 35% more HP.",
             "- Champion spawn rate set to 40%.",
@@ -61,7 +61,7 @@ public enum Difficulties {
             "- Hero gains 1 less maxHP on leveling."
     };
 
-    public static final String[] SUICIDE_DESC = {
+    private static final String[] SUICIDE_DESC = {
             "- Potion of healing heals 25% max hp.",
             "- Mobs are Godlike, do 45% more damage, take 30% less damage and have 60% more HP.",
             "- Champion spawn rate set to 50%.",
@@ -69,7 +69,7 @@ public enum Difficulties {
             "- Hero gains 3 less maxHP on leveling."
     };
 
-    public static final String[] JUST_KILL_ME_DESC = {
+    private static final String[] JUST_KILL_ME_DESC = {
             "- Potion of healing heals 10% max hp.",
             "- Mobs are Deities, do 60% more damage, take 40% less damage and have 75% more HP.",
             "- Champion spawn rate set to 100%.",
@@ -97,7 +97,7 @@ public enum Difficulties {
         return "";
     }
 
-    public String description() {
+    private String description() {
 
         switch (this) {
             case EASY:
@@ -155,7 +155,7 @@ public enum Difficulties {
         return championChanceNatural() + championOffset;
     }
 
-    public int championChanceNatural() {
+    private int championChanceNatural() {
 
         switch (this) {
             case EASY:
@@ -178,7 +178,7 @@ public enum Difficulties {
         return naturalDamageModifier() + attOffset;
     }
 
-    public float naturalDamageModifier() {
+    private float naturalDamageModifier() {
 
         switch (this) {
             case EASY:
@@ -203,7 +203,7 @@ public enum Difficulties {
         return naturalMobDefenceModifier() + defenceOffset;
     }
 
-    public float naturalMobDefenceModifier() { // dmg *= this
+    private float naturalMobDefenceModifier() { // dmg *= this
 
         switch (this) {
             case EASY:
@@ -227,7 +227,7 @@ public enum Difficulties {
         return naturalMobHPModifier() + hpOffset;
     }
 
-    public float naturalMobHPModifier() {
+    private float naturalMobHPModifier() {
 
         switch (this) {
             case EASY:

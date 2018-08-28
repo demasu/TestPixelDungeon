@@ -30,7 +30,7 @@ import com.demasu.testpixeldungeon.utils.Utils;
 
 import java.util.Objects;
 
-public class WndItem extends Window {
+class WndItem extends Window {
 
     private static final float BUTTON_WIDTH = 36;
     private static final float BUTTON_HEIGHT = 16;

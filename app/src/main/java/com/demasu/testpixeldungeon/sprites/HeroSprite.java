@@ -32,15 +32,15 @@ import com.watabou.utils.Callback;
 
 public class HeroSprite extends CharSprite {
 
-    protected static final int FRAME_WIDTH = 12;
-    protected static final int FRAME_HEIGHT = 15;
+    static final int FRAME_WIDTH = 12;
+    static final int FRAME_HEIGHT = 15;
 
-    protected static final int RUN_FRAMERATE = 20;
+    static final int RUN_FRAMERATE = 20;
 
-    protected static TextureFilm tiers;
+    private static TextureFilm tiers;
 
-    protected Animation fly;
-    protected Animation read;
+    Animation fly;
+    Animation read;
 
     public HeroSprite() {
         super();

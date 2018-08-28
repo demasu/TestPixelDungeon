@@ -51,7 +51,7 @@ public class PoisonParticle extends PixelParticle {
 
     };
 
-    public PoisonParticle() {
+    private PoisonParticle() {
         super();
 
         lifespan = 0.6f;
@@ -59,7 +59,7 @@ public class PoisonParticle extends PixelParticle {
         acc.set(0, +30);
     }
 
-    public void resetMissile(float x, float y) {
+    private void resetMissile(float x, float y) {
         revive();
 
         this.x = x;
@@ -70,7 +70,7 @@ public class PoisonParticle extends PixelParticle {
         speed.polar(-Random.Float(3.1415926f), Random.Float(6));
     }
 
-    public void resetSplash(float x, float y) {
+    private void resetSplash(float x, float y) {
         revive();
 
         this.x = x;

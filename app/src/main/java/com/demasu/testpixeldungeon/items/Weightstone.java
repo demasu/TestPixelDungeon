@@ -123,7 +123,7 @@ public class Weightstone extends Item {
         }
     };
 
-    public class WndBalance extends Window {
+    class WndBalance extends Window {
 
         private static final String TXT_CHOICE = "How would you like to balance your %s?";
 
@@ -136,7 +136,7 @@ public class Weightstone extends Item {
         private static final int BUTTON_WIDTH = WIDTH - MARGIN * 2;
         private static final int BUTTON_HEIGHT = 20;
 
-        public WndBalance(final Weapon weapon) {
+        WndBalance(final Weapon weapon) {
             super();
 
             IconTitle titlebar = new IconTitle(weapon);

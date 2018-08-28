@@ -64,7 +64,7 @@ public class SimpleButton extends Component {
         image.y = y;
     }
 
-    protected void onClick() {
+    void onClick() {
     }
 
 }

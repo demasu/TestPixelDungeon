@@ -345,7 +345,7 @@ public class Heap implements Bundlable {
         Sample.INSTANCE.play(Assets.SND_BURNING);
     }
 
-    public static void evaporateFX(int pos) {
+    private static void evaporateFX(int pos) {
         CellEmitter.get(pos).burst(Speck.factory(Speck.STEAM), 5);
     }
 

@@ -26,7 +26,7 @@ public class Shader {
 
     private int handle;
 
-    public Shader(int type) {
+    private Shader(int type) {
         handle = GLES20.glCreateShader(type);
     }
 
@@ -34,11 +34,11 @@ public class Shader {
         return handle;
     }
 
-    public void source(String src) {
+    private void source(String src) {
         GLES20.glShaderSource(handle, src);
     }
 
-    public void compile() {
+    private void compile() {
         GLES20.glCompileShader(handle);
 
         int[] status = new int[1];

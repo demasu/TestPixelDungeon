@@ -37,14 +37,14 @@ public class BlastParticle extends PixelParticle.Shrinking {
 
     };
 
-    public BlastParticle() {
+    private BlastParticle() {
         super();
 
         color(0xEE7722);
         acc.set(0, +50);
     }
 
-    public void reset(float x, float y) {
+    private void reset(float x, float y) {
         revive();
 
         this.x = x;

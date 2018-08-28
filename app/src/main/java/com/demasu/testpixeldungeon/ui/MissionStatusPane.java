@@ -52,8 +52,8 @@ public class MissionStatusPane extends Component {
     private Image mp;
     private Image exp;
 
-    public static float takingDamage = 0;
-    public static float manaDropping = 0;
+    private static float takingDamage = 0;
+    private static float manaDropping = 0;
 
     private int takingDamageCooldownCounter = 0;
     private int manaDroppingCooldownCounter = 0;
@@ -265,7 +265,7 @@ public class MissionStatusPane extends Component {
 
         private Image image;
 
-        public MenuButton() {
+        MenuButton() {
             super();
 
             width = image.width + 4;

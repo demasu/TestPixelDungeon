@@ -103,7 +103,7 @@ public class FogOfWar extends Image {
 
     private class FogTexture extends SmartTexture {
 
-        public FogTexture() {
+        FogTexture() {
             super(Bitmap.createBitmap(width2, height2, Bitmap.Config.ARGB_8888));
             filter(Texture.LINEAR, Texture.LINEAR);
             TextureCache.add(FogOfWar.class, this);

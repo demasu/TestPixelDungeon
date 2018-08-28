@@ -166,7 +166,7 @@ public class PrisonLevel extends RegularLevel {
 
         private int pos;
 
-        public Torch(int pos) {
+        Torch(int pos) {
             super();
 
             this.pos = pos;

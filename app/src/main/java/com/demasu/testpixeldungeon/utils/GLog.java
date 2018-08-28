@@ -23,7 +23,7 @@ import android.util.Log;
 
 public class GLog {
 
-    public static final String TAG = "GAME";
+    private static final String TAG = "GAME";
 
     public static final String POSITIVE = "++ ";
     public static final String NEGATIVE = "-- ";

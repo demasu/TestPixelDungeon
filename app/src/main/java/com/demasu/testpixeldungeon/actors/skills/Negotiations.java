@@ -22,10 +22,10 @@ import java.util.Objects;
 public class Negotiations extends BranchSkill { // Not actually a skill but best way to do it
 
 
-    public static final String TXT_HIRE_BRUTE = "Brute";
-    public static final String TXT_HIRE_THIEF = "Thief";
-    public static final String TXT_HIRE_WIZARD = "Wizard";
-    public static final String TXT_HIRE_ARCHER = "Archer";
+    private static final String TXT_HIRE_BRUTE = "Brute";
+    private static final String TXT_HIRE_THIEF = "Thief";
+    private static final String TXT_HIRE_WIZARD = "Wizard";
+    private static final String TXT_HIRE_ARCHER = "Archer";
     public static final String TXT_HIRE_ARCHER_MAIDEN = "Archer-Maiden";
 
 
@@ -126,11 +126,11 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
     }
 
     @SuppressWarnings("SameReturnValue")
-    public int getGoldCost() {
+    private int getGoldCost() {
         return 0;
     }
 
-    public String getHireText() {
+    private String getHireText() {
         return "\nHiring a level " + Dungeon.hero.lvl + " merc costs " + getGoldCost() + " gold.";
     }
 

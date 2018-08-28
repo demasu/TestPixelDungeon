@@ -34,7 +34,7 @@ import com.watabou.utils.Random;
 
 public class Monk extends Mob {
 
-    public static final String TXT_DISARM = "%s has knocked the %s from your hands!";
+    private static final String TXT_DISARM = "%s has knocked the %s from your hands!";
 
     {
         name = "dwarf monk";

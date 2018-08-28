@@ -52,7 +52,7 @@ public class PotionOfHealing extends Potion {
         hero.sprite.emitter().start(Speck.factory(Speck.HEALING), 0.4f, 4);
     }
 
-    public static void heal(Hero hero, int limit) {
+    private static void heal(Hero hero, int limit) {
 
         hero.HP += hero.HT * limit / 100;
 

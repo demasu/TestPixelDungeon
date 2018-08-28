@@ -80,7 +80,7 @@ public class WandmakerSprite extends MobSprite {
 
         private float phase;
 
-        public Shield() {
+        Shield() {
 
             super(14, 0xBBAACC, 1f);
 
@@ -117,7 +117,7 @@ public class WandmakerSprite extends MobSprite {
             GLES20.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
         }
 
-        public void putOut() {
+        void putOut() {
             phase = 0.999f;
         }
     }

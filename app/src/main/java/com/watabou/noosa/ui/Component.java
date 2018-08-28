@@ -56,7 +56,7 @@ public class Component extends Group {
         return this;
     }
 
-    public boolean inside(float x, float y) {
+    protected boolean inside(float x, float y) {
         return x >= this.x && y >= this.y && x < this.x + width && y < this.y + height;
     }
 

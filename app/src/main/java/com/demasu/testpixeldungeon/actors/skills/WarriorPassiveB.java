@@ -44,11 +44,11 @@ public class WarriorPassiveB extends BranchSkill {
         return Dungeon.hero.heroSkills.totalSpent(CurrentSkills.BRANCHES.PASSIVEB);
     }
 
-    protected int nextUpgradeCost() {
+    private int nextUpgradeCost() {
         return Dungeon.hero.heroSkills.nextUpgradeCost(CurrentSkills.BRANCHES.PASSIVEB);
     }
 
-    protected boolean canUpgrade() {
+    private boolean canUpgrade() {
         return Dungeon.hero.heroSkills.canUpgrade(CurrentSkills.BRANCHES.PASSIVEB);
     }
 }

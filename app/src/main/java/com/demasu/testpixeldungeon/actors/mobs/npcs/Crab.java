@@ -60,7 +60,7 @@ public class Crab extends NPC {
         spawn(bundle.getInt(LEVEL));
     }
 
-    public void spawn(int level) {
+    private void spawn(int level) {
         this.level = level;
 
         HT = (3 + level) * 2;

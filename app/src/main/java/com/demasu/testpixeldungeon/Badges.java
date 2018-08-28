@@ -146,7 +146,7 @@ public class Badges {
         CHAMPION("Challenge won", 39, true),
         SUPPORTER("Thanks for your support!", 31, true);
 
-        public boolean meta;
+        boolean meta;
 
         public String description;
         public int image;
@@ -504,7 +504,7 @@ public class Badges {
         }
     }
 
-    public static void validateAllItemsIdentified() {
+    private static void validateAllItemsIdentified() {
         if (!global.contains(Badge.ALL_ITEMS_IDENTIFIED) &&
                 global.contains(Badge.ALL_POTIONS_IDENTIFIED) &&
                 global.contains(Badge.ALL_SCROLLS_IDENTIFIED) &&

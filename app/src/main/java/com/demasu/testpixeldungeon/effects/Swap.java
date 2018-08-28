@@ -99,7 +99,7 @@ public class Swap extends Actor {
         private PointF end;
         private float passed;
 
-        public Effect(CharSprite sprite, int from, int to) {
+        Effect(CharSprite sprite, int from, int to) {
             super(0, 0, 0, 0);
 
             this.sprite = sprite;

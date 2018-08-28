@@ -535,7 +535,7 @@ public class Dungeon {
         loadGame(fileName, false);
     }
 
-    public static void loadGame(String fileName, boolean fullLoad) throws IOException {
+    private static void loadGame(String fileName, boolean fullLoad) throws IOException {
 
         Bundle bundle = gameBundle(fileName);
 

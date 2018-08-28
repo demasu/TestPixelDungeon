@@ -65,7 +65,7 @@ abstract public class MissileWeapon extends Weapon {
         }
     }
 
-    protected void miss(int cell) {
+    void miss(int cell) {
         super.onThrow(cell);
     }
 

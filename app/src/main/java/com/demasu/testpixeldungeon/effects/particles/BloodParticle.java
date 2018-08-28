@@ -30,7 +30,7 @@ public class BloodParticle extends PixelParticle.Shrinking {
         }
     };
 
-    public BloodParticle() {
+    private BloodParticle() {
         super();
 
         color(0xCC0000);
@@ -39,7 +39,7 @@ public class BloodParticle extends PixelParticle.Shrinking {
         acc.set(0, +40);
     }
 
-    public void reset(float x, float y) {
+    private void reset(float x, float y) {
         revive();
 
         this.x = x;

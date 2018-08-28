@@ -83,14 +83,14 @@ public class GooSprite extends MobSprite {
 
     public static class GooParticle extends PixelParticle.Shrinking {
 
-        public static final Emitter.Factory FACTORY = new Factory() {
+        static final Emitter.Factory FACTORY = new Factory() {
             @Override
             public void emit(Emitter emitter, int index, float x, float y) {
                 ((GooParticle) emitter.recycle(GooParticle.class)).reset(x, y);
             }
         };
 
-        public GooParticle() {
+        GooParticle() {
             super();
 
             color(0x000000);
@@ -99,7 +99,7 @@ public class GooSprite extends MobSprite {
             acc.set(0, +50);
         }
 
-        public void reset(float x, float y) {
+        void reset(float x, float y) {
             revive();
 
             this.x = x;

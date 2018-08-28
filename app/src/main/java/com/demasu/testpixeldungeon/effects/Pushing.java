@@ -62,7 +62,7 @@ public class Pushing extends Actor {
 
         private float delay;
 
-        public Effect() {
+        Effect() {
             super(0, 0, 0, 0);
 
             point(sprite.worldToCamera(from));

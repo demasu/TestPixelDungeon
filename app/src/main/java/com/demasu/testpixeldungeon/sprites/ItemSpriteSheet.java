@@ -183,7 +183,7 @@ public class ItemSpriteSheet {
 
 
     // Skillful Pixel Dungeon Items
-    public static final int SPD_OFFSET = 136;
+    private static final int SPD_OFFSET = 136;
     public static final int EMPTY_BOW = SPD_OFFSET;
     public static final int Bow = SPD_OFFSET + 1;
     public static final int ForstBow = SPD_OFFSET + 2;

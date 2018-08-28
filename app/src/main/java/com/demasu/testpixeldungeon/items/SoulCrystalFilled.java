@@ -42,9 +42,10 @@ public class SoulCrystalFilled extends Item {
         quantity = 1;
     }
 
-    public Class<? extends CharSprite> minionSprite;
-    public int HT, defenceSkill;
-    public String captured;
+    private Class<? extends CharSprite> minionSprite;
+    private int HT;
+    private int defenceSkill;
+    private String captured;
 
     public SoulCrystalFilled() {
         this(RatSprite.class, 5, 1, "Rat");

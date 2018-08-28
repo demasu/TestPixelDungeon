@@ -64,13 +64,13 @@ public class WndMercs extends WndTabbed {
         ARCHERMAIDEN
     }
 
-    float pos;
-    float GAP = 2;
+    private float pos;
+    private float GAP = 2;
 
     private static final int WIDTH_P = 120;
     private static final int WIDTH_L = 144;
 
-    protected static final int TAB_WIDTH = 25;
+    private static final int TAB_WIDTH = 25;
 
     private static final String TXT_TITLE = "Hire A Mercenary";
 
@@ -86,7 +86,7 @@ public class WndMercs extends WndTabbed {
 
     private static final String TXT_NO_GOLD = "Insufficient Gold";
 
-    public static int maxHeight = 0;
+    private static int maxHeight = 0;
 
     public WndMercs(final Mode mode) {
         super();
@@ -765,7 +765,7 @@ public class WndMercs extends WndTabbed {
 
         Mode mode;
 
-        public MercenaryTab(Mode mode) {
+        MercenaryTab(Mode mode) {
             super();
 
             this.mode = mode;
@@ -854,7 +854,7 @@ public class WndMercs extends WndTabbed {
     }
 
     private class previewInformation extends Window {
-        public previewInformation(Image image, String title, String description) {
+        previewInformation(Image image, String title, String description) {
 
             IconTitle titlebar = new IconTitle();
             titlebar.icon(image);
