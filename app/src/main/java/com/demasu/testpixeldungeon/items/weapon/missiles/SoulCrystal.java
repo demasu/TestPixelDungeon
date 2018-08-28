@@ -62,7 +62,7 @@ public class SoulCrystal extends MissileWeapon {
     }
 
     @Override
-    public String desc() {
+    protected String desc() {
         return
                 "A magical crystal capable of capturing soul essence. Throw this at a weak or weakened foe and capture his spirit.";
     }

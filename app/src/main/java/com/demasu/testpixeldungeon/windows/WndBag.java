@@ -237,7 +237,7 @@ public class WndBag extends WndTabbed {
     }
 
     @Override
-    protected int tabHeight() {
+    int tabHeight() {
         return 20;
     }
 
@@ -257,7 +257,7 @@ public class WndBag extends WndTabbed {
         }
 
         @Override
-        protected void select(boolean value) {
+        void select(boolean value) {
             super.select(value);
             icon.am = selected ? 1.0f : 0.6f;
         }

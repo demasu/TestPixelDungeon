@@ -90,7 +90,7 @@ public class Armor extends EquipableItem {
     }
 
     @Override
-    public boolean doEquip(Hero hero) {
+    protected boolean doEquip(Hero hero) {
 
         detach(hero.belongings.backpack);
 

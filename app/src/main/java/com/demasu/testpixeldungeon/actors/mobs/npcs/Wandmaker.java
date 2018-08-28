@@ -263,7 +263,7 @@ public class Wandmaker extends NPC {
         }
     }
 
-    abstract public static class QuestHandler {
+    abstract static class QuestHandler {
 
         String txtQuest1;
         String txtQuest2;

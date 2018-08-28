@@ -86,7 +86,7 @@ public class Bow extends MissileWeapon {
 
 
     @Override
-    public String desc() {
+    protected String desc() {
         return
                 "A basic bow used to fire arrows and bomb arrows.";
     }

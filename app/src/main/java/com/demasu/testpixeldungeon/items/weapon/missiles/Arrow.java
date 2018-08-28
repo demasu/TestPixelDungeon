@@ -155,7 +155,7 @@ public class Arrow extends MissileWeapon {
     }
 
     @Override
-    public String desc() {
+    protected String desc() {
         return
                 "Arrows are more powerful and accurate than darts, but they require an equipped bow.";
     }

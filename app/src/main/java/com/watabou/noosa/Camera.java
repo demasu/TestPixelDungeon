@@ -120,7 +120,7 @@ public class Camera extends Gizmo {
     }
 
     @Override
-    public void destroy() {
+    void destroy() {
         target = null;
         matrix = null;
     }

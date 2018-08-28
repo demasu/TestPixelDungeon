@@ -70,7 +70,7 @@ public class WndTabbed extends Window {
     }
 
     @Override
-    public void resize(int w, int h) {
+    protected void resize(int w, int h) {
         // -> super.resize(...)
         this.width = w;
         this.height = h;
@@ -183,7 +183,7 @@ public class WndTabbed extends Window {
         }
 
         @Override
-        protected void select(boolean value) {
+        void select(boolean value) {
             super.select(value);
             btLabel.am = selected ? 1.0f : 0.6f;
         }

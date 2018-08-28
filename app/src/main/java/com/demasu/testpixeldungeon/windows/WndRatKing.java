@@ -365,7 +365,7 @@ public class WndRatKing extends WndTabbed {
         }
 
         @Override
-        protected void select(boolean value) {
+        void select(boolean value) {
             super.select(value);
             icon.am = selected ? 1.0f : 0.6f;
         }

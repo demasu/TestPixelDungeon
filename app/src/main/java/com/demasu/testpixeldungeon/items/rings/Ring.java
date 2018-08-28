@@ -120,7 +120,7 @@ public class Ring extends EquipableItem {
     }
 
     @Override
-    public boolean doEquip(final Hero hero) {
+    protected boolean doEquip(final Hero hero) {
 
         if (hero.belongings.ring1 != null && hero.belongings.ring2 != null) {
 
@@ -267,7 +267,7 @@ public class Ring extends EquipableItem {
     }
 
     @Override
-    public String desc() {
+    protected String desc() {
         return
                 "This metal band is adorned with a large " + gem + " gem " +
                         "that glitters in the darkness. Who knows what effect it has when worn?";

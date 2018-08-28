@@ -51,7 +51,7 @@ public class SkinnedBlock extends Image {
     }
 
     @Override
-    protected void updateFrame() {
+    void updateFrame() {
 
         if (autoAdjust) {
             while (offsetX > texture.width) {

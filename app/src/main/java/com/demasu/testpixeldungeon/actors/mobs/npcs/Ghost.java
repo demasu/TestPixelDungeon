@@ -332,7 +332,7 @@ public class Ghost extends NPC {
         }
     }
 
-    abstract public static class QuestHandler {
+    abstract static class QuestHandler {
 
         protected abstract void interact(Ghost ghost);
 
