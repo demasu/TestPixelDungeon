@@ -823,8 +823,9 @@ public class FirstWave extends Level {
 
         @Override
         public boolean act() {
-            if (phase == 0) {
-                if (counter == 0) {
+            switch (phase) {
+                case 0:
+                    if (counter == 0) {
                 /*
                 actress = new MovieGirl();
                 actress.pos = (HEIGHT + 1) * WIDTH / 2;
@@ -832,403 +833,409 @@ public class FirstWave extends Level {
 
                 */
 
-                    Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 13 + 8);
-                    Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 13 + 9);
+                        Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 13 + 8);
+                        Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 13 + 9);
 
-                    Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 18 + 8);
-                    Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 18 + 9);
+                        Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 18 + 8);
+                        Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 18 + 9);
 
-                    Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 13 + 23);
-                    Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 13 + 24);
+                        Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 13 + 23);
+                        Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 13 + 24);
 
-                    Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 18 + 23);
-                    Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 18 + 24);
-
-
-                    actress2 = new MovieMaiden();
-                    actress2.pos = (HEIGHT + 1) * WIDTH / 2 - WIDTH * 3;
-                    MissionScene.add(actress2);
-                    //actress2.turnToSis();
+                        Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 18 + 23);
+                        Dungeon.level.plant(new Sungrass.Seed(), WIDTH * 18 + 24);
 
 
-                    vanguard = new VanguardWarrior();
-                    vanguard.pos = (HEIGHT + 1) * WIDTH / 2 - WIDTH - WIDTH;
-                    MissionScene.add(vanguard);
-
-                    soldier1 = new SoldierWarrior();
-                    soldier1.pos = (HEIGHT + 1) * WIDTH / 2 - 2 - WIDTH;
-                    MissionScene.add(soldier1);
-
-                    soldier2 = new SoldierWarrior();
-                    soldier2.pos = (HEIGHT + 1) * WIDTH / 2 - 1 - WIDTH;
-                    MissionScene.add(soldier2);
-
-                    soldier3 = new SoldierWarrior();
-                    soldier3.pos = (HEIGHT + 1) * WIDTH / 2 - WIDTH;
-                    MissionScene.add(soldier3);
-
-                    soldier4 = new SoldierWarrior();
-                    soldier4.pos = (HEIGHT + 1) * WIDTH / 2 + 1 - WIDTH;
-                    MissionScene.add(soldier4);
-
-                    soldier5 = new SoldierWarrior();
-                    soldier5.pos = (HEIGHT + 1) * WIDTH / 2 + 2 - WIDTH;
-                    MissionScene.add(soldier5);
-
-                    //  skeleton1 = new SkelEnemy();
-                    //  skeleton1.pos = (HEIGHT + 1) * WIDTH / 2 - 3 + 3 * WIDTH;
-                    //  MissionScene.add(skeleton1);
-
-                    skeleton2 = new SkelEnemy();
-                    skeleton2.pos = (HEIGHT + 1) * WIDTH / 2 - 2 + 2 * WIDTH;
-                    MissionScene.add(skeleton2);
-
-                    skeleton3 = new SkelEnemy();
-                    skeleton3.pos = (HEIGHT + 1) * WIDTH / 2 - 1 + 3 * WIDTH;
-                    MissionScene.add(skeleton3);
-
-                    skeleton4 = new SkelEnemy();
-                    skeleton4.pos = (HEIGHT + 1) * WIDTH / 2 + 3 * WIDTH;
-                    MissionScene.add(skeleton4);
-
-                    skeleton5 = new SkelEnemy();
-                    skeleton5.pos = (HEIGHT + 1) * WIDTH / 2 + 1 + 3 * WIDTH;
-                    MissionScene.add(skeleton5);
-
-                    skeleton6 = new SkelEnemy();
-                    skeleton6.pos = (HEIGHT + 1) * WIDTH / 2 + 2 + 2 * WIDTH;
-                    MissionScene.add(skeleton6);
-
-                    //  skeleton7 = new SkelEnemy();
-                    //  skeleton7.pos = (HEIGHT + 1) * WIDTH / 2 + 3 + 3 * WIDTH;
-                    //  MissionScene.add(skeleton7);
-
-                    sprite.visible = false;
-                    Dungeon.hero.sprite.visible = false;
-                    centerOfAttention = vanguard;
-                } else if (MissionScene.scenePause == true) {
-                    Camera.main.target = centerOfAttention.sprite;
-                }
+                        actress2 = new MovieMaiden();
+                        actress2.pos = (HEIGHT + 1) * WIDTH / 2 - WIDTH * 3;
+                        MissionScene.add(actress2);
+                        //actress2.turnToSis();
 
 
-                if (counter == 100) {
-                    soldier1.sprite.showStatus(CharSprite.NEUTRAL, "Too many!");
-                    soldier5.sprite.showStatus(CharSprite.NEUTRAL, "Mommy...");
-                    // skeleton1.sprite.move(skeleton1.pos, skeleton1.pos - WIDTH);
-                    skeleton3.sprite.move(skeleton3.pos, skeleton3.pos - WIDTH);
-                    skeleton5.sprite.move(skeleton5.pos, skeleton5.pos - WIDTH);
-                    // skeleton7.sprite.move(skeleton7.pos, skeleton7.pos - WIDTH);
+                        vanguard = new VanguardWarrior();
+                        vanguard.pos = (HEIGHT + 1) * WIDTH / 2 - WIDTH - WIDTH;
+                        MissionScene.add(vanguard);
 
-                    actress2.tmp = skeleton4;
-                    actress2.sprite.attack(skeleton4.pos);
-                }
-                if (counter == 140) {
-                    vanguard.sprite.showStatus(CharSprite.NEUTRAL, "Hold the line!");
-                    // skeleton1.sprite.move(skeleton1.pos, skeleton1.pos - 2 * WIDTH);
-                    skeleton3.sprite.move(skeleton3.pos, skeleton3.pos - 2 * WIDTH);
-                    skeleton5.sprite.move(skeleton5.pos, skeleton5.pos - 2 * WIDTH);
-                    skeleton2.sprite.move(skeleton2.pos, skeleton2.pos - WIDTH);
-                    skeleton6.sprite.move(skeleton6.pos, skeleton6.pos - WIDTH);
-                    //skeleton7.sprite.move(skeleton7.pos, skeleton7.pos - 2 * WIDTH);
-                }
-                if (counter == 125) {
-                    //skeleton4.sprite.die();
-                }
-                if (counter == 160) {
-                    //skeleton1.sprite.move(skeleton1.pos, skeleton1.pos - 3 * WIDTH);
-                    skeleton3.sprite.move(skeleton3.pos, skeleton3.pos - 3 * WIDTH);
-                    skeleton5.sprite.move(skeleton5.pos, skeleton5.pos - 3 * WIDTH);
-                    skeleton2.sprite.move(skeleton2.pos, skeleton2.pos - 2 * WIDTH);
-                    skeleton6.sprite.move(skeleton6.pos, skeleton6.pos - 2 * WIDTH);
-                    // skeleton7.sprite.move(skeleton7.pos, skeleton7.pos - 3 * WIDTH);
-                }
-                if (counter == 180) {
-                    //  skeleton1.pos = skeleton1.pos - 3 * WIDTH;
-                    // skeleton1.sprite.attack(skeleton1.pos - WIDTH);
-                    soldier1.die(null);
-                    soldier1.sprite.bloodBurstA(sprite.center(), 10);
-                    Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
-                    soldier3.sprite.attack(soldier3.pos + WIDTH);
-                    skeleton2.die(null);
-                    Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
+                        soldier1 = new SoldierWarrior();
+                        soldier1.pos = (HEIGHT + 1) * WIDTH / 2 - 2 - WIDTH;
+                        MissionScene.add(soldier1);
 
-                }
-                if (counter == 200) {
-                    // skeleton1.sprite.move(skeleton1.pos, skeleton1.pos - WIDTH + 1);
-                    // skeleton1.pos = skeleton1.pos - WIDTH + 1;
-                    vanguard.sprite.move(vanguard.pos, vanguard.pos - 2 + WIDTH);
-                    vanguard.pos = vanguard.pos - 2 + WIDTH;
-                }
-                if (counter == 220) {
-                    //skeleton1.sprite.die();
-                    //Actor.addDelayed(new Pushing(skeleton1, skeleton1.pos, skeleton1.pos + WIDTH - 1), -1);
-                    Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
-                    //  skeleton7.pos = skeleton7.pos - 3 * WIDTH;
-                    //  skeleton7.sprite.attack(soldier5.pos);
-                    skeleton6.pos = skeleton6.pos - 2 * WIDTH;
-                    soldier5.sprite.attack(skeleton6.pos);
-                    skeleton6.die(null);
-                    soldier5.die(null);
-                    soldier5.sprite.bloodBurstA(sprite.center(), 10);
-                    Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
-                    Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
-                }
-                if (counter == 240) {
-                    // actress2.sprite.attack(skeleton7.pos);
-                    // actress2.tmp = skeleton7;
-                    vanguard.sprite.idle();
-                    vanguard.sprite.showStatus(CharSprite.NEUTRAL, "Do not fail!");
-                    skeleton2.pos = skeleton2.pos - 2 * WIDTH;
-                    soldier3.sprite.attack(skeleton2.pos);
-                    skeleton2.die(null);
-                    actress2.sprite.attack(skeleton5.pos - 3 * WIDTH);
-                    actress2.tmp = skeleton5;
-                }
+                        soldier2 = new SoldierWarrior();
+                        soldier2.pos = (HEIGHT + 1) * WIDTH / 2 - 1 - WIDTH;
+                        MissionScene.add(soldier2);
 
-                if (counter == 260) {
-                    //skeleton7.sprite.die();
-                    skeleton3.pos = skeleton3.pos - 3 * WIDTH;
-                    vanguard.sprite.attack(skeleton3.pos);
-                    Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
-                    skeleton3.die(null);
-                }
+                        soldier3 = new SoldierWarrior();
+                        soldier3.pos = (HEIGHT + 1) * WIDTH / 2 - WIDTH;
+                        MissionScene.add(soldier3);
 
-                if (counter == 280) {
-                    WraithEnemy tmp = new WraithEnemy();
-                    Sample.INSTANCE.play(Assets.SND_GHOST);
-                    tmp.pos = actress2.pos;
-                    MissionScene.add(tmp);
-                    tmp.sprite.emitter().burst(ShadowParticle.CURSE, 5);
-                    soldier4.sprite.showStatus(CharSprite.NEUTRAL, "She was possessed!");
-                    actress2.die(null);
-                    listWraiths.add(tmp);
-                }
+                        soldier4 = new SoldierWarrior();
+                        soldier4.pos = (HEIGHT + 1) * WIDTH / 2 + 1 - WIDTH;
+                        MissionScene.add(soldier4);
 
-                //if (counter == 200)
-                // actress.sprite.showStatus(CharSprite.NEUTRAL, "I have better hair");
-                if (counter == 320) {
-                    for (int i = -1; i < 4; i++) {
+                        soldier5 = new SoldierWarrior();
+                        soldier5.pos = (HEIGHT + 1) * WIDTH / 2 + 2 - WIDTH;
+                        MissionScene.add(soldier5);
+
+                        //  skeleton1 = new SkelEnemy();
+                        //  skeleton1.pos = (HEIGHT + 1) * WIDTH / 2 - 3 + 3 * WIDTH;
+                        //  MissionScene.add(skeleton1);
+
+                        skeleton2 = new SkelEnemy();
+                        skeleton2.pos = (HEIGHT + 1) * WIDTH / 2 - 2 + 2 * WIDTH;
+                        MissionScene.add(skeleton2);
+
+                        skeleton3 = new SkelEnemy();
+                        skeleton3.pos = (HEIGHT + 1) * WIDTH / 2 - 1 + 3 * WIDTH;
+                        MissionScene.add(skeleton3);
+
+                        skeleton4 = new SkelEnemy();
+                        skeleton4.pos = (HEIGHT + 1) * WIDTH / 2 + 3 * WIDTH;
+                        MissionScene.add(skeleton4);
+
+                        skeleton5 = new SkelEnemy();
+                        skeleton5.pos = (HEIGHT + 1) * WIDTH / 2 + 1 + 3 * WIDTH;
+                        MissionScene.add(skeleton5);
+
+                        skeleton6 = new SkelEnemy();
+                        skeleton6.pos = (HEIGHT + 1) * WIDTH / 2 + 2 + 2 * WIDTH;
+                        MissionScene.add(skeleton6);
+
+                        //  skeleton7 = new SkelEnemy();
+                        //  skeleton7.pos = (HEIGHT + 1) * WIDTH / 2 + 3 + 3 * WIDTH;
+                        //  MissionScene.add(skeleton7);
+
+                        sprite.visible = false;
+                        Dungeon.hero.sprite.visible = false;
+                        centerOfAttention = vanguard;
+                    } else if (MissionScene.scenePause == true) {
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+
+                    if (counter == 100) {
+                        soldier1.sprite.showStatus(CharSprite.NEUTRAL, "Too many!");
+                        soldier5.sprite.showStatus(CharSprite.NEUTRAL, "Mommy...");
+                        // skeleton1.sprite.move(skeleton1.pos, skeleton1.pos - WIDTH);
+                        skeleton3.sprite.move(skeleton3.pos, skeleton3.pos - WIDTH);
+                        skeleton5.sprite.move(skeleton5.pos, skeleton5.pos - WIDTH);
+                        // skeleton7.sprite.move(skeleton7.pos, skeleton7.pos - WIDTH);
+
+                        actress2.tmp = skeleton4;
+                        actress2.sprite.attack(skeleton4.pos);
+                    }
+                    if (counter == 140) {
+                        vanguard.sprite.showStatus(CharSprite.NEUTRAL, "Hold the line!");
+                        // skeleton1.sprite.move(skeleton1.pos, skeleton1.pos - 2 * WIDTH);
+                        skeleton3.sprite.move(skeleton3.pos, skeleton3.pos - 2 * WIDTH);
+                        skeleton5.sprite.move(skeleton5.pos, skeleton5.pos - 2 * WIDTH);
+                        skeleton2.sprite.move(skeleton2.pos, skeleton2.pos - WIDTH);
+                        skeleton6.sprite.move(skeleton6.pos, skeleton6.pos - WIDTH);
+                        //skeleton7.sprite.move(skeleton7.pos, skeleton7.pos - 2 * WIDTH);
+                    }
+                    if (counter == 125) {
+                        //skeleton4.sprite.die();
+                    }
+                    if (counter == 160) {
+                        //skeleton1.sprite.move(skeleton1.pos, skeleton1.pos - 3 * WIDTH);
+                        skeleton3.sprite.move(skeleton3.pos, skeleton3.pos - 3 * WIDTH);
+                        skeleton5.sprite.move(skeleton5.pos, skeleton5.pos - 3 * WIDTH);
+                        skeleton2.sprite.move(skeleton2.pos, skeleton2.pos - 2 * WIDTH);
+                        skeleton6.sprite.move(skeleton6.pos, skeleton6.pos - 2 * WIDTH);
+                        // skeleton7.sprite.move(skeleton7.pos, skeleton7.pos - 3 * WIDTH);
+                    }
+                    if (counter == 180) {
+                        //  skeleton1.pos = skeleton1.pos - 3 * WIDTH;
+                        // skeleton1.sprite.attack(skeleton1.pos - WIDTH);
+                        soldier1.die(null);
+                        soldier1.sprite.bloodBurstA(sprite.center(), 10);
+                        Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
+                        soldier3.sprite.attack(soldier3.pos + WIDTH);
+                        skeleton2.die(null);
+                        Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
+
+                    }
+                    if (counter == 200) {
+                        // skeleton1.sprite.move(skeleton1.pos, skeleton1.pos - WIDTH + 1);
+                        // skeleton1.pos = skeleton1.pos - WIDTH + 1;
+                        vanguard.sprite.move(vanguard.pos, vanguard.pos - 2 + WIDTH);
+                        vanguard.pos = vanguard.pos - 2 + WIDTH;
+                    }
+                    if (counter == 220) {
+                        //skeleton1.sprite.die();
+                        //Actor.addDelayed(new Pushing(skeleton1, skeleton1.pos, skeleton1.pos + WIDTH - 1), -1);
+                        Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
+                        //  skeleton7.pos = skeleton7.pos - 3 * WIDTH;
+                        //  skeleton7.sprite.attack(soldier5.pos);
+                        skeleton6.pos = skeleton6.pos - 2 * WIDTH;
+                        soldier5.sprite.attack(skeleton6.pos);
+                        skeleton6.die(null);
+                        soldier5.die(null);
+                        soldier5.sprite.bloodBurstA(sprite.center(), 10);
+                        Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
+                        Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
+                    }
+                    if (counter == 240) {
+                        // actress2.sprite.attack(skeleton7.pos);
+                        // actress2.tmp = skeleton7;
+                        vanguard.sprite.idle();
+                        vanguard.sprite.showStatus(CharSprite.NEUTRAL, "Do not fail!");
+                        skeleton2.pos = skeleton2.pos - 2 * WIDTH;
+                        soldier3.sprite.attack(skeleton2.pos);
+                        skeleton2.die(null);
+                        actress2.sprite.attack(skeleton5.pos - 3 * WIDTH);
+                        actress2.tmp = skeleton5;
+                    }
+
+                    if (counter == 260) {
+                        //skeleton7.sprite.die();
+                        skeleton3.pos = skeleton3.pos - 3 * WIDTH;
+                        vanguard.sprite.attack(skeleton3.pos);
+                        Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
+                        skeleton3.die(null);
+                    }
+
+                    if (counter == 280) {
                         WraithEnemy tmp = new WraithEnemy();
                         Sample.INSTANCE.play(Assets.SND_GHOST);
-                        do {
-                            tmp.pos = vanguard.pos - WIDTH - Random.Int(3) * WIDTH + i;
-                        } while (tmp.pos == ((HEIGHT + 1) * WIDTH / 2));
-
+                        tmp.pos = actress2.pos;
                         MissionScene.add(tmp);
                         tmp.sprite.emitter().burst(ShadowParticle.CURSE, 5);
-                        listWraiths.add(tmp);
-
-                        tmp = new WraithEnemy();
-                        Sample.INSTANCE.play(Assets.SND_GHOST);
-                        do {
-                            tmp.pos = vanguard.pos + WIDTH + Random.Int(3) * WIDTH + i;
-                        } while (tmp.pos == ((HEIGHT + 1) * WIDTH / 2));
-
-                        MissionScene.add(tmp);
-                        tmp.sprite.emitter().burst(ShadowParticle.CURSE, 5);
-
+                        soldier4.sprite.showStatus(CharSprite.NEUTRAL, "She was possessed!");
+                        actress2.die(null);
                         listWraiths.add(tmp);
                     }
-                    soldier3.sprite.showStatus(CharSprite.NEUTRAL, "Too many!");
-                    //actress.sprite.attack(pos - 1);
-                    // Sample.INSTANCE.play( Assets.SND_HIT, 1, 1, Random.Float( 0.8f, 1.25f ) );
-                }
 
-                if (counter == 340) {
-                    vanguard.sprite.showStatus(CharSprite.NEUTRAL, "It's been an ho...");
-                }
-                if (counter == 350) {
-                    //  GameScene.flash( 0x0042ff );
-                    centerOfAttention = Dungeon.hero;
-                    Camera.main.target = Dungeon.hero.sprite;
-                    Dungeon.hero.sprite.visible = true;
-                    Dungeon.hero.sprite.emitter().burst(ShadowParticle.CURSE, 5);
-                    Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "A bit dramatic are we not now?");
-                }
-                if (counter == 400) {
-                    soldier3.sprite.showStatus(CharSprite.NEUTRAL, "We're saved!");
-                }
-                if (counter == 470) {
-                    vanguard.sprite.showStatus(CharSprite.NEUTRAL, "There's too man..");
-                }
-                if (counter == 540) {
-                    Camera.main.shake(5, 0.07f * (30));
-                    //   GameScene.flash( 0x0042ff );
-                    ((LegendSprite) Dungeon.hero.sprite).haloUp();
-                    for (int i = 0; i < listWraiths.size(); i++)
-                        listWraiths.get(i).die(null);
-                    // skeleton7.die(null);
-                }
-                if (counter == 600) {
-                    Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "Fall back to the city");
-                }
-                if (counter == 670) {
-                    vanguard.sprite.showStatus(CharSprite.NEUTRAL, "As you command");
-                }
-                if (counter == 700) {
-                    vanguard.sprite.move(vanguard.pos, vanguard.pos - WIDTH);
-                    soldier3.sprite.move(soldier3.pos, soldier3.pos - WIDTH);
-                    soldier4.sprite.move(soldier4.pos, soldier4.pos - WIDTH);
-                    soldier2.sprite.move(soldier2.pos, soldier2.pos - WIDTH);
-                }
+                    //if (counter == 200)
+                    // actress.sprite.showStatus(CharSprite.NEUTRAL, "I have better hair");
+                    if (counter == 320) {
+                        for (int i = -1; i < 4; i++) {
+                            WraithEnemy tmp = new WraithEnemy();
+                            Sample.INSTANCE.play(Assets.SND_GHOST);
+                            do {
+                                tmp.pos = vanguard.pos - WIDTH - Random.Int(3) * WIDTH + i;
+                            } while (tmp.pos == ((HEIGHT + 1) * WIDTH / 2));
 
+                            MissionScene.add(tmp);
+                            tmp.sprite.emitter().burst(ShadowParticle.CURSE, 5);
+                            listWraiths.add(tmp);
 
-                // if (counter == 600)
-                //  actress.sprite.showStatus(CharSprite.NEUTRAL, "This is a private conversation.. go away");
+                            tmp = new WraithEnemy();
+                            Sample.INSTANCE.play(Assets.SND_GHOST);
+                            do {
+                                tmp.pos = vanguard.pos + WIDTH + Random.Int(3) * WIDTH + i;
+                            } while (tmp.pos == ((HEIGHT + 1) * WIDTH / 2));
 
+                            MissionScene.add(tmp);
+                            tmp.sprite.emitter().burst(ShadowParticle.CURSE, 5);
 
-                if (counter == END_MOVIE) {
-                    MissionScene.scenePause = false;
-                    vanguard.sprite.visible = false;
-                    vanguard.die(null);
-                    soldier3.sprite.visible = false;
-                    soldier4.sprite.visible = false;
-                    soldier2.sprite.visible = false;
-                    soldier3.die(null);
-                    soldier4.die(null);
-                    soldier2.die(null);
-                    //Dungeon.observe();
-                }
-
-                counter++;
-                if (counter < 300)
-                    spend(1f);
-                else if (counter < 330)
-                    spend(6f);
-                else if (counter < 470)
-                    spend(2f);
-                else
-                    spend(1f);
-            } else if (phase == 1) {
-                if (counter == 40) {
-                    temari.speak("Ka-Ching!");
-                }
-
-                if (counter == 80) {
-                    Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "I am broke.. go away");
-                }
-                if (counter == 150) {
-                    temari.speak("Liar!");
-                }
-                if (counter == 200) {
-                    Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "Fine.. just you");
-                }
-                if (counter == 250) {
-                    temari.speak("Hah.. why anyone else?");
-                    MissionScene.scenePause = false;
-                }
-
-                counter++;
-                spend(1f);
-            } else if (phase == 2) {
-                if (counter == 10) {
-                    general.speak("I brought volunteers");
-                    centerOfAttention = general;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-                if (counter == 30) {
-                    Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "I said fall back to the city...");
-                    centerOfAttention = Dungeon.hero;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-                if (counter == 60) {
-                    general.speak("This is our fight too");
-                    centerOfAttention = general;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-                if (counter == 90) {
-                    Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "Can they even fight?");
-                    centerOfAttention = Dungeon.hero;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-                if (counter == 120) {
-                    temari.speak("Ouch...");
-                    centerOfAttention = temari;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-
-                if (counter == 150) {
-                    general.speak("...");
-                    centerOfAttention = general;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-                if (counter == 180) {
-                    general.speak("Move out!");
-                    centerOfAttention = general;
-                    Camera.main.target = centerOfAttention.sprite;
-                    MissionScene.scenePause = false;
-                    FirstWave.this.enemyAI.finalWave();
-                }
-
-                counter++;
-                spend(1f);
-
-            } else if (phase == 3) {
-                if (counter == 10) {
-                    general.speak("Not bad eh?");
-                    centerOfAttention = general;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-                if (counter == 30) {
-                    Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "If you say so");
-                    centerOfAttention = Dungeon.hero;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-                if (counter == 60) {
-                    general.speak("Some fell... show respect Hatsune");
-                    centerOfAttention = general;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-                if (counter == 90) {
-                    Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "Because you brought them!");
-                    centerOfAttention = Dungeon.hero;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-                if (counter == 120) {
-                    temari.speak("Down girl");
-                    centerOfAttention = temari;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-
-                if (counter == 150) {
-                    general.speak("The council will discuss this");
-                    centerOfAttention = general;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-                if (counter == 180) {
-                    Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "I'll be with my daughters if needed");
-                    centerOfAttention = Dungeon.hero;
-                    Camera.main.target = centerOfAttention.sprite;
-                }
-
-                if (counter == 230) {
-                    GameScene.show(new PersistentWndOptions("Victory!", "The first wave has been repelled!", "Exit Scenario") {
-                        @Override
-                        protected void onSelect(int index) {
-                            Game.switchScene(MissionStartScene.class);
-                            Music.INSTANCE.play(Assets.THEME, true);
-                            Music.INSTANCE.volume(1f);
+                            listWraiths.add(tmp);
                         }
-                    });
-                }
+                        soldier3.sprite.showStatus(CharSprite.NEUTRAL, "Too many!");
+                        //actress.sprite.attack(pos - 1);
+                        // Sample.INSTANCE.play( Assets.SND_HIT, 1, 1, Random.Float( 0.8f, 1.25f ) );
+                    }
 
-                counter++;
-                spend(1f);
+                    if (counter == 340) {
+                        vanguard.sprite.showStatus(CharSprite.NEUTRAL, "It's been an ho...");
+                    }
+                    if (counter == 350) {
+                        //  GameScene.flash( 0x0042ff );
+                        centerOfAttention = Dungeon.hero;
+                        Camera.main.target = Dungeon.hero.sprite;
+                        Dungeon.hero.sprite.visible = true;
+                        Dungeon.hero.sprite.emitter().burst(ShadowParticle.CURSE, 5);
+                        Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "A bit dramatic are we not now?");
+                    }
+                    if (counter == 400) {
+                        soldier3.sprite.showStatus(CharSprite.NEUTRAL, "We're saved!");
+                    }
+                    if (counter == 470) {
+                        vanguard.sprite.showStatus(CharSprite.NEUTRAL, "There's too man..");
+                    }
+                    if (counter == 540) {
+                        Camera.main.shake(5, 0.07f * (30));
+                        //   GameScene.flash( 0x0042ff );
+                        ((LegendSprite) Dungeon.hero.sprite).haloUp();
+                        for (int i = 0; i < listWraiths.size(); i++)
+                            listWraiths.get(i).die(null);
+                        // skeleton7.die(null);
+                    }
+                    if (counter == 600) {
+                        Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "Fall back to the city");
+                    }
+                    if (counter == 670) {
+                        vanguard.sprite.showStatus(CharSprite.NEUTRAL, "As you command");
+                    }
+                    if (counter == 700) {
+                        vanguard.sprite.move(vanguard.pos, vanguard.pos - WIDTH);
+                        soldier3.sprite.move(soldier3.pos, soldier3.pos - WIDTH);
+                        soldier4.sprite.move(soldier4.pos, soldier4.pos - WIDTH);
+                        soldier2.sprite.move(soldier2.pos, soldier2.pos - WIDTH);
+                    }
 
-            } else
-                spend(1f);
+
+                    // if (counter == 600)
+                    //  actress.sprite.showStatus(CharSprite.NEUTRAL, "This is a private conversation.. go away");
+
+
+                    if (counter == END_MOVIE) {
+                        MissionScene.scenePause = false;
+                        vanguard.sprite.visible = false;
+                        vanguard.die(null);
+                        soldier3.sprite.visible = false;
+                        soldier4.sprite.visible = false;
+                        soldier2.sprite.visible = false;
+                        soldier3.die(null);
+                        soldier4.die(null);
+                        soldier2.die(null);
+                        //Dungeon.observe();
+                    }
+
+                    counter++;
+                    if (counter < 300)
+                        spend(1f);
+                    else if (counter < 330)
+                        spend(6f);
+                    else if (counter < 470)
+                        spend(2f);
+                    else
+                        spend(1f);
+                    break;
+                case 1:
+                    if (counter == 40) {
+                        temari.speak("Ka-Ching!");
+                    }
+
+                    if (counter == 80) {
+                        Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "I am broke.. go away");
+                    }
+                    if (counter == 150) {
+                        temari.speak("Liar!");
+                    }
+                    if (counter == 200) {
+                        Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "Fine.. just you");
+                    }
+                    if (counter == 250) {
+                        temari.speak("Hah.. why anyone else?");
+                        MissionScene.scenePause = false;
+                    }
+
+                    counter++;
+                    spend(1f);
+                    break;
+                case 2:
+                    if (counter == 10) {
+                        general.speak("I brought volunteers");
+                        centerOfAttention = general;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+                    if (counter == 30) {
+                        Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "I said fall back to the city...");
+                        centerOfAttention = Dungeon.hero;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+                    if (counter == 60) {
+                        general.speak("This is our fight too");
+                        centerOfAttention = general;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+                    if (counter == 90) {
+                        Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "Can they even fight?");
+                        centerOfAttention = Dungeon.hero;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+                    if (counter == 120) {
+                        temari.speak("Ouch...");
+                        centerOfAttention = temari;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+
+                    if (counter == 150) {
+                        general.speak("...");
+                        centerOfAttention = general;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+                    if (counter == 180) {
+                        general.speak("Move out!");
+                        centerOfAttention = general;
+                        Camera.main.target = centerOfAttention.sprite;
+                        MissionScene.scenePause = false;
+                        FirstWave.this.enemyAI.finalWave();
+                    }
+
+                    counter++;
+                    spend(1f);
+
+                    break;
+                case 3:
+                    if (counter == 10) {
+                        general.speak("Not bad eh?");
+                        centerOfAttention = general;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+                    if (counter == 30) {
+                        Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "If you say so");
+                        centerOfAttention = Dungeon.hero;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+                    if (counter == 60) {
+                        general.speak("Some fell... show respect Hatsune");
+                        centerOfAttention = general;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+                    if (counter == 90) {
+                        Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "Because you brought them!");
+                        centerOfAttention = Dungeon.hero;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+                    if (counter == 120) {
+                        temari.speak("Down girl");
+                        centerOfAttention = temari;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+
+                    if (counter == 150) {
+                        general.speak("The council will discuss this");
+                        centerOfAttention = general;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+                    if (counter == 180) {
+                        Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "I'll be with my daughters if needed");
+                        centerOfAttention = Dungeon.hero;
+                        Camera.main.target = centerOfAttention.sprite;
+                    }
+
+                    if (counter == 230) {
+                        GameScene.show(new PersistentWndOptions("Victory!", "The first wave has been repelled!", "Exit Scenario") {
+                            @Override
+                            protected void onSelect(int index) {
+                                Game.switchScene(MissionStartScene.class);
+                                Music.INSTANCE.play(Assets.THEME, true);
+                                Music.INSTANCE.volume(1f);
+                            }
+                        });
+                    }
+
+                    counter++;
+                    spend(1f);
+
+                    break;
+                default:
+                    spend(1f);
+                    break;
+            }
 
             if (MissionScene.scenePause == true)
                 Camera.main.target = centerOfAttention.sprite;

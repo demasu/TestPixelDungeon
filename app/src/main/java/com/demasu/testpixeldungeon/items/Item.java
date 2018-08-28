@@ -142,22 +142,27 @@ public class Item implements Bundlable {
         curUser = hero;
         curItem = this;
 
-        if (action.equals(AC_DROP)) {
+        switch (action) {
+            case AC_DROP:
 
-            doDrop(hero);
+                doDrop(hero);
 
-        } else if (action.equals(AC_THROW)) {
+                break;
+            case AC_THROW:
 
-            doThrow(hero);
+                doThrow(hero);
 
-        } else if (action.equals(AC_STORE)) {
+                break;
+            case AC_STORE:
 
-            doAddStorage(hero);
+                doAddStorage(hero);
 
-        } else if (action.equals(AC_STORE_TAKE)) {
+                break;
+            case AC_STORE_TAKE:
 
-            doTakeStorage(hero);
+                doTakeStorage(hero);
 
+                break;
         }
     }
 

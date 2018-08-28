@@ -76,12 +76,17 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                     }
                     newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
                     if (newPos != -1) {
-                        if (action == TXT_HIRE_ARCHER_MAIDEN)
-                            hero.hiredMerc = new HiredMerc(HiredMerc.MERC_TYPES.ArcherMaiden);
-                        else if (action == TXT_HIRE_ARCHER)
-                            hero.hiredMerc = new HiredMerc(HiredMerc.MERC_TYPES.Archer);
-                        else
-                            hero.hiredMerc = action == TXT_HIRE_BRUTE ? new HiredMerc(HiredMerc.MERC_TYPES.Brute) : (action == TXT_HIRE_THIEF ? new HiredMerc(HiredMerc.MERC_TYPES.Thief) : new HiredMerc(HiredMerc.MERC_TYPES.Wizard));
+                        switch (action) {
+                            case TXT_HIRE_ARCHER_MAIDEN:
+                                hero.hiredMerc = new HiredMerc(HiredMerc.MERC_TYPES.ArcherMaiden);
+                                break;
+                            case TXT_HIRE_ARCHER:
+                                hero.hiredMerc = new HiredMerc(HiredMerc.MERC_TYPES.Archer);
+                                break;
+                            default:
+                                hero.hiredMerc = action == TXT_HIRE_BRUTE ? new HiredMerc(HiredMerc.MERC_TYPES.Brute) : (action == TXT_HIRE_THIEF ? new HiredMerc(HiredMerc.MERC_TYPES.Thief) : new HiredMerc(HiredMerc.MERC_TYPES.Wizard));
+                                break;
+                        }
                         hero.hiredMerc.spawn(Dungeon.hero.lvl);
                         hero.hiredMerc.pos = newPos;
                         GameScene.add(hero.hiredMerc);

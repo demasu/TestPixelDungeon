@@ -791,96 +791,98 @@ public class ColdGirl extends Mob {
 
         @Override
         public boolean act(boolean enemyInFOV, boolean justAlerted) {
-            if (aiStatus == PASSIVE || aiStatus == DONE_MODE) {
-                enemySeen = false;
-                spend(TICK);
-                sprite.idle();
-                target = -1;
-                return true;
-            } else if (aiStatus == HUNTING) {
-                enemySeen = enemyInFOV;
-                if (enemyInFOV && canAttack(enemy)) {
+            switch (aiStatus) {
+                case PASSIVE:
+                case DONE_MODE:
+                    enemySeen = false;
+                    spend(TICK);
+                    sprite.idle();
+                    target = -1;
+                    return true;
+                case HUNTING:
+                    enemySeen = enemyInFOV;
+                    if (enemyInFOV && canAttack(enemy)) {
 
-                    return doAttack(enemy);
-
-                } else {
-
-                    if (enemyInFOV) {
-                        target = enemy.pos;
-                    }
-
-                    int oldPos = pos;
-                    if (target != -1 && getCloser(target)) {
-
-                        spend(1 / speed());
-                        return moveSprite(oldPos, pos);
+                        return doAttack(enemy);
 
                     } else {
 
-                        spend(TICK);
-                        //aiStatus = PASSIVE;
-                        //state = WANDERING;
-                        //target = Dungeon.level.randomDestination();
-                        sprite.idle();
-                        return true;
+                        if (enemyInFOV) {
+                            target = enemy.pos;
+                        }
+
+                        int oldPos = pos;
+                        if (target != -1 && getCloser(target)) {
+
+                            spend(1 / speed());
+                            return moveSprite(oldPos, pos);
+
+                        } else {
+
+                            spend(TICK);
+                            //aiStatus = PASSIVE;
+                            //state = WANDERING;
+                            //target = Dungeon.level.randomDestination();
+                            sprite.idle();
+                            return true;
+                        }
                     }
-                }
-            } else if (aiStatus == SUPER_HUNTING) {
-                enemySeen = enemyInFOV;
-                if (enemyInFOV && canAttack(enemy)) {
+                case SUPER_HUNTING:
+                    enemySeen = enemyInFOV;
+                    if (enemyInFOV && canAttack(enemy)) {
 
-                    return doAttack(enemy);
-
-                } else {
-
-                    if (enemyInFOV) {
-                        target = enemy.pos;
-                    }
-
-                    int oldPos = pos;
-                    if (target != -1 && getCloser(target)) {
-
-                        spend(1 / speed());
-                        return moveSprite(oldPos, pos);
+                        return doAttack(enemy);
 
                     } else {
 
-                        spend(TICK);
-                        //aiStatus = PASSIVE;
-                        //state = WANDERING;
-                        //target = Dungeon.level.randomDestination();
-                        sprite.idle();
-                        return true;
+                        if (enemyInFOV) {
+                            target = enemy.pos;
+                        }
+
+                        int oldPos = pos;
+                        if (target != -1 && getCloser(target)) {
+
+                            spend(1 / speed());
+                            return moveSprite(oldPos, pos);
+
+                        } else {
+
+                            spend(TICK);
+                            //aiStatus = PASSIVE;
+                            //state = WANDERING;
+                            //target = Dungeon.level.randomDestination();
+                            sprite.idle();
+                            return true;
+                        }
                     }
-                }
-            } else if (aiStatus == GOD_MODE) {
-                enemySeen = enemyInFOV;
-                if (enemyInFOV && canAttack(enemy)) {
+                case GOD_MODE:
+                    enemySeen = enemyInFOV;
+                    if (enemyInFOV && canAttack(enemy)) {
 
-                    return doAttack(enemy);
-
-                } else {
-
-                    if (enemyInFOV) {
-                        target = enemy.pos;
-                    }
-
-                    int oldPos = pos;
-                    if (target != -1 && getCloser(target)) {
-
-                        spend(1 / speed());
-                        return moveSprite(oldPos, pos);
+                        return doAttack(enemy);
 
                     } else {
 
-                        spend(TICK);
-                        //aiStatus = PASSIVE;
-                        //state = WANDERING;
-                        //target = Dungeon.level.randomDestination();
-                        sprite.idle();
-                        return true;
+                        if (enemyInFOV) {
+                            target = enemy.pos;
+                        }
+
+                        int oldPos = pos;
+                        if (target != -1 && getCloser(target)) {
+
+                            spend(1 / speed());
+                            return moveSprite(oldPos, pos);
+
+                        } else {
+
+                            spend(TICK);
+                            //aiStatus = PASSIVE;
+                            //state = WANDERING;
+                            //target = Dungeon.level.randomDestination();
+                            sprite.idle();
+                            return true;
+                        }
                     }
-                }
             }
             spend(TICK); // Avoid getting stuck
             return true;
@@ -888,14 +890,16 @@ public class ColdGirl extends Mob {
 
         @Override
         public String status() {
-            if (aiStatus == PASSIVE)
-                return Utils.format("The %s seems passive.\n You can tell she is cold but she shows no physical signs of it.", name);
-            else if (aiStatus == HUNTING)
-                return Utils.format("The %s seems upset.\n She may be young but she looks dangerous.", name);
-            else if (aiStatus == SUPER_HUNTING)
-                return Utils.format("The %s seems very dangerous.\n Something is not right about her.", name);
-            else
-                return Utils.format("The %s seems non-human.\n Taunting her was a bad idea", name);
+            switch (aiStatus) {
+                case PASSIVE:
+                    return Utils.format("The %s seems passive.\n You can tell she is cold but she shows no physical signs of it.", name);
+                case HUNTING:
+                    return Utils.format("The %s seems upset.\n She may be young but she looks dangerous.", name);
+                case SUPER_HUNTING:
+                    return Utils.format("The %s seems very dangerous.\n Something is not right about her.", name);
+                default:
+                    return Utils.format("The %s seems non-human.\n Taunting her was a bad idea", name);
+            }
         }
     }
 }

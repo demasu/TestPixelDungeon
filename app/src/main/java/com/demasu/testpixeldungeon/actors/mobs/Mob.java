@@ -115,16 +115,22 @@ public abstract class Mob extends Char {
         super.restoreFromBundle(bundle);
 
         String state = bundle.getString(STATE);
-        if (state.equals(Sleeping.TAG)) {
-            this.state = SLEEPEING;
-        } else if (state.equals(Wandering.TAG)) {
-            this.state = WANDERING;
-        } else if (state.equals(Hunting.TAG)) {
-            this.state = HUNTING;
-        } else if (state.equals(Fleeing.TAG)) {
-            this.state = FLEEING;
-        } else if (state.equals(Passive.TAG)) {
-            this.state = PASSIVE;
+        switch (state) {
+            case Sleeping.TAG:
+                this.state = SLEEPEING;
+                break;
+            case Wandering.TAG:
+                this.state = WANDERING;
+                break;
+            case Hunting.TAG:
+                this.state = HUNTING;
+                break;
+            case Fleeing.TAG:
+                this.state = FLEEING;
+                break;
+            case Passive.TAG:
+                this.state = PASSIVE;
+                break;
         }
 
         target = bundle.getInt(TARGET);
@@ -455,17 +461,21 @@ public abstract class Mob extends Char {
 
         try {
             if (champ != -1) {
-                if (champ == Champ.CHAMP_VAMPERIC) {
-                    int reg = Math.min(damage, HT - HP);
+                switch (champ) {
+                    case Champ.CHAMP_VAMPERIC:
+                        int reg = Math.min(damage, HT - HP);
 
-                    if (reg > 0) {
-                        HP += reg;
-                        sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-                    }
-                } else if (champ == Champ.CHAMP_CURSED) {
-                    Buff.affect(enemy, Weakness.class, 5);
-                } else if (champ == Champ.CHAMP_FOUL) {
-                    Buff.affect(enemy, Poison.class).set(5);
+                        if (reg > 0) {
+                            HP += reg;
+                            sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+                        }
+                        break;
+                    case Champ.CHAMP_CURSED:
+                        Buff.affect(enemy, Weakness.class, 5);
+                        break;
+                    case Champ.CHAMP_FOUL:
+                        Buff.affect(enemy, Poison.class).set(5);
+                        break;
                 }
             }
         } catch (Exception ex) {

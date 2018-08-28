@@ -114,39 +114,43 @@ public class LloydsBeacon extends Item {
             }
         }
 
-        if (action == AC_SET) {
+        switch (action) {
+            case AC_SET:
 
-            returnDepth = Dungeon.depth;
-            returnPos = hero.pos;
+                returnDepth = Dungeon.depth;
+                returnPos = hero.pos;
 
-            hero.spend(LloydsBeacon.TIME_TO_USE);
-            hero.busy();
+                hero.spend(LloydsBeacon.TIME_TO_USE);
+                hero.busy();
 
-            hero.sprite.operate(hero.pos);
-            Sample.INSTANCE.play(Assets.SND_BEACON);
+                hero.sprite.operate(hero.pos);
+                Sample.INSTANCE.play(Assets.SND_BEACON);
 
-            GLog.i(TXT_RETURN);
+                GLog.i(TXT_RETURN);
 
-        } else if (action == AC_RETURN) {
+                break;
+            case AC_RETURN:
 
-            if (returnDepth == Dungeon.depth) {
-                reset();
-                WandOfBlink.appear(hero, returnPos);
-                Dungeon.level.press(returnPos, hero);
-                Dungeon.observe();
-            } else {
-                InterlevelScene.mode = InterlevelScene.Mode.RETURN;
-                InterlevelScene.returnDepth = returnDepth;
-                InterlevelScene.returnPos = returnPos;
-                reset();
-                Game.switchScene(InterlevelScene.class);
-            }
+                if (returnDepth == Dungeon.depth) {
+                    reset();
+                    WandOfBlink.appear(hero, returnPos);
+                    Dungeon.level.press(returnPos, hero);
+                    Dungeon.observe();
+                } else {
+                    InterlevelScene.mode = InterlevelScene.Mode.RETURN;
+                    InterlevelScene.returnDepth = returnDepth;
+                    InterlevelScene.returnPos = returnPos;
+                    reset();
+                    Game.switchScene(InterlevelScene.class);
+                }
 
 
-        } else {
+                break;
+            default:
 
-            super.execute(hero, action);
+                super.execute(hero, action);
 
+                break;
         }
     }
 
