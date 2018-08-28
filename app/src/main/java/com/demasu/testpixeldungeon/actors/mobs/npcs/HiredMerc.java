@@ -374,6 +374,7 @@ public class HiredMerc extends NPC {
         return ((Armor) armor).tier;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean canEquip(Item item) {
         if (item instanceof Weapon)
             return mercType.getStrength(level) >= ((Weapon) item).STR;
