@@ -564,6 +564,7 @@ public class FirstWave extends Level {
                 }
 
                 if (enemyKilled > 15 && temariAdded == false) {
+                    //noinspection unchecked
                     for (Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone()) {
                         if (mob.hostile == true || mob instanceof SummonedPet) {
                             mob.die(null);
@@ -576,6 +577,7 @@ public class FirstWave extends Level {
                 }
 
                 if (enemyKilled > 30 && generalAdded == false) {
+                    //noinspection unchecked
                     for (Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone()) {
                         if (mob.hostile == true || mob instanceof SummonedPet) {
                             mob.die(null);
@@ -807,6 +809,7 @@ public class FirstWave extends Level {
 
         public void endScenario() {
             MissionScene.scenePause = true;
+            //noinspection unchecked
             for (Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone()) {
                 if (mob.hostile == true || mob instanceof SummonedPet) {
                     mob.die(null);

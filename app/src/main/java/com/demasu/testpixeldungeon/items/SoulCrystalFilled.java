@@ -131,6 +131,7 @@ public class SoulCrystalFilled extends Item {
         defenceSkill = bundle.getInt(DEFENCE_SKILL);
         captured = bundle.getString(CAPTURED_NAME);
         try {
+            //noinspection unchecked
             minionSprite = (Class<? extends CharSprite>) Class.forName(bundle.getString(SPRITE));
         } catch (Exception ex) {
             minionSprite = RatSprite.class;

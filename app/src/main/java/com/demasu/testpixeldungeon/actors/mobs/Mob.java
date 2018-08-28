@@ -427,6 +427,7 @@ public abstract class Mob extends Char {
 
             } else if (loot instanceof Class<?>) {
 
+                //noinspection unchecked
                 item = Generator.random((Class<? extends Item>) loot);
 
             } else {
