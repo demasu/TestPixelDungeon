@@ -27,14 +27,14 @@ import com.demasu.testpixeldungeon.utils.Utils;
 
 public class ImpShopkeeper extends Shopkeeper {
 
-    private static final String TXT_GREETINGS = "Hello, friend!";
+    // --Commented out by Inspection (8/28/18, 6:22 PM):private static final String TXT_GREETINGS = "Hello, friend!";
 
     {
         name = "ambitious imp";
         spriteClass = ImpSprite.class;
     }
 
-    private boolean seenBefore = false;
+    // --Commented out by Inspection (8/28/18, 6:22 PM):private boolean seenBefore = false;
 
 // --Commented out by Inspection START (8/28/18, 6:19 PM):
 //    @Override

@@ -30,6 +30,7 @@ import com.watabou.utils.Random;
 import java.util.HashSet;
 
 /* Retired class, use SummonedPet.java*/
+@SuppressWarnings("unused")
 public abstract class Crab extends NPC {
 
     {

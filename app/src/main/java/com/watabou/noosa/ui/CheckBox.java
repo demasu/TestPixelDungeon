@@ -21,9 +21,11 @@ public class CheckBox extends Button {
 
     private boolean checked;
 
-    public boolean checked() {
-        return checked;
-    }
+// --Commented out by Inspection START (8/28/18, 6:26 PM):
+//    public boolean checked() {
+//        return checked;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:26 PM)
 
     private void checked(boolean value) {
         if (checked != value) {
@@ -37,11 +39,13 @@ public class CheckBox extends Button {
 
     }
 
-    @Override
-    protected void onClick() {
-        checked(!checked);
-        onChange();
-    }
+// --Commented out by Inspection START (8/28/18, 6:26 PM):
+//    @Override
+//    protected void onClick() {
+//        checked(!checked);
+//        onChange();
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:26 PM)
 
     @SuppressWarnings("EmptyMethod")
     private void onChange() {

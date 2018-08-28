@@ -40,6 +40,7 @@ import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+@SuppressWarnings("ALL")
 public class SacrificialFire extends Blob {
 
     private static final String TXT_WORTHY = "\"Your sacrifice is worthy...\" ";
@@ -48,33 +49,37 @@ public class SacrificialFire extends Blob {
 
     private int pos;
 
-    @Override
-    public void restoreFromBundle(Bundle bundle) {
-        super.restoreFromBundle(bundle);
+// --Commented out by Inspection START (8/28/18, 6:23 PM):
+//    @Override
+//    public void restoreFromBundle(Bundle bundle) {
+//        super.restoreFromBundle(bundle);
+//
+//        for (int i = 0; i < LENGTH; i++) {
+//            if (cur[i] > 0) {
+//                pos = i;
+//                break;
+//            }
+//        }
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:23 PM)
 
-        for (int i = 0; i < LENGTH; i++) {
-            if (cur[i] > 0) {
-                pos = i;
-                break;
-            }
-        }
-    }
-
-    @Override
-    protected void evolve() {
-        volume = off[pos] = cur[pos];
-        Char ch = Actor.findChar(pos);
-        if (ch != null) {
-            if (Dungeon.visible[pos] && ch.buff(Marked.class) == null) {
-                ch.sprite.emitter().burst(SacrificialParticle.FACTORY, 20);
-                Sample.INSTANCE.play(Assets.SND_BURNING);
-            }
-            Buff.prolong(ch, Marked.class, Marked.DURATION);
-        }
-        if (Dungeon.visible[pos]) {
-            Journal.add(Feature.SACRIFICIAL_FIRE);
-        }
-    }
+// --Commented out by Inspection START (8/28/18, 6:23 PM):
+//    @Override
+//    protected void evolve() {
+//        volume = off[pos] = cur[pos];
+//        Char ch = Actor.findChar(pos);
+//        if (ch != null) {
+//            if (Dungeon.visible[pos] && ch.buff(Marked.class) == null) {
+//                ch.sprite.emitter().burst(SacrificialParticle.FACTORY, 20);
+//                Sample.INSTANCE.play(Assets.SND_BURNING);
+//            }
+//            Buff.prolong(ch, Marked.class, Marked.DURATION);
+//        }
+//        if (Dungeon.visible[pos]) {
+//            Journal.add(Feature.SACRIFICIAL_FIRE);
+//        }
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:23 PM)
 
     @Override
     public void seed(int cell, int amount) {
@@ -83,12 +88,14 @@ public class SacrificialFire extends Blob {
         volume = cur[pos] = amount;
     }
 
-    @Override
-    public void use(BlobEmitter emitter) {
-        super.use(emitter);
-
-        emitter.pour(SacrificialParticle.FACTORY, 0.04f);
-    }
+// --Commented out by Inspection START (8/28/18, 6:23 PM):
+//    @Override
+//    public void use(BlobEmitter emitter) {
+//        super.use(emitter);
+//
+//        emitter.pour(SacrificialParticle.FACTORY, 0.04f);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:23 PM)
 
     private static void sacrifice(Char ch) {
 
@@ -126,32 +133,38 @@ public class SacrificialFire extends Blob {
         }
     }
 
-    @Override
-    public String tileDesc() {
-        return "Sacrificial fire burns here. Every creature touched by this fire is marked as an offering for the spirits of the dungeon.";
-    }
+// --Commented out by Inspection START (8/28/18, 6:23 PM):
+//    @Override
+//    public String tileDesc() {
+//        return "Sacrificial fire burns here. Every creature touched by this fire is marked as an offering for the spirits of the dungeon.";
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:23 PM)
 
     public static class Marked extends FlavourBuff {
 
         static final float DURATION = 5f;
 
-        @Override
-        public int icon() {
-            return BuffIndicator.SACRIFICE;
-        }
+// --Commented out by Inspection START (8/28/18, 6:23 PM):
+//        @Override
+//        public int icon() {
+//            return BuffIndicator.SACRIFICE;
+//        }
+// --Commented out by Inspection STOP (8/28/18, 6:23 PM)
 
         @Override
         public String toString() {
             return "Marked for sacrifice";
         }
 
-        @Override
-        public void detach() {
-            if (!target.isAlive()) {
-                sacrifice(target);
-            }
-            super.detach();
-        }
+// --Commented out by Inspection START (8/28/18, 6:23 PM):
+//        @Override
+//        public void detach() {
+//            if (!target.isAlive()) {
+//                sacrifice(target);
+//            }
+//            super.detach();
+//        }
+// --Commented out by Inspection STOP (8/28/18, 6:23 PM)
     }
 
 }

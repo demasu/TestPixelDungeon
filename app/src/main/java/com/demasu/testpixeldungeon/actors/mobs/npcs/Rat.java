@@ -17,19 +17,13 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs.npcs;
 
-import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Poison;
-import com.demasu.testpixeldungeon.actors.mobs.Mob;
-import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.sprites.RatSprite;
-import com.demasu.testpixeldungeon.utils.Utils;
-import com.watabou.utils.Bundle;
-import com.watabou.utils.Random;
 
 import java.util.HashSet;
 
 /* Retired class, use SummonedPet.java*/
+@SuppressWarnings("FieldCanBeLocal")
 public abstract class Rat extends NPC {
 
     {
