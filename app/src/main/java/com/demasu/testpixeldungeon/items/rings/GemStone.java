@@ -116,7 +116,7 @@ public class GemStone extends Ring {
     }
 
     @Override
-    public String desc() {
+    protected String desc() {
         return isKnown() ?
                 "The Gemstone is a unique artifact capable of storing life energy for later use." +
                         " Although it does not damage the wearer, it drains away any rejuvenation his body possesses." +
