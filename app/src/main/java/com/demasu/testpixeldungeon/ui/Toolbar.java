@@ -84,7 +84,7 @@ public class Toolbar extends Component {
     @Override
     protected void createChildren() {
 
-        add(btnWait = new Tool(0, 7, 20, 25) {
+        add(btnWait = new Tool(0, 20) {
             @Override
             protected void onClick() {
                 Dungeon.hero.rest(false);
@@ -97,7 +97,7 @@ public class Toolbar extends Component {
 
         });
 
-        add(btnSkill = new Tool(20, 7, 20, 25) {
+        add(btnSkill = new Tool(20, 20) {
             @Override
             protected void onClick() {
                 GameScene.show(new WndSkills(null, null));
@@ -111,7 +111,7 @@ public class Toolbar extends Component {
         });
 
 
-        add(btnKing = new Tool(135, 7, 21, 25) {
+        add(btnKing = new Tool(135, 21) {
             @Override
             protected void onClick() {
                 GameScene.show(new WndRatKing(WndRatKing.Mode.NORMAL));
@@ -125,7 +125,7 @@ public class Toolbar extends Component {
         });
 
 
-        add(btnLastUsed = new Tool(40, 7, 20, 25) {
+        add(btnLastUsed = new Tool(40, 20) {
             @Override
             protected void onClick() {
                 Dungeon.hero.heroSkills.showLastUsed();
@@ -138,7 +138,7 @@ public class Toolbar extends Component {
 
         });
 
-        add(btnMerc = new Tool(252, 7, 20, 25) {
+        add(btnMerc = new Tool(252, 20) {
             @Override
             protected void onClick() {
                 if (Dungeon.hero.hiredMerc == null) {
@@ -171,7 +171,7 @@ public class Toolbar extends Component {
 		} );
 
         */
-        add(btnInfoSearch = new Tool(107, 7, 20, 25) {
+        add(btnInfoSearch = new Tool(107, 20) {
             @Override
             protected void onClick() {
                 if (!tapAgainToSearch) {
@@ -189,7 +189,7 @@ public class Toolbar extends Component {
             }
         });
 
-        add(btnInventory = new Tool(60, 7, 23, 25) {
+        add(btnInventory = new Tool(60, 23) {
             private GoldIndicator gold;
 
             @Override
@@ -345,13 +345,14 @@ public class Toolbar extends Component {
 
         Image base;
 
-        Tool(int x, int y, int width, int height) {
+        //There were two other variables in commit 6832ea116027 and earlier
+        Tool(int x, int width) {
             super();
 
-            base.frame(x, y, width, height);
+            base.frame(x, 7, width, 25);
 
             this.width = width;
-            this.height = height;
+            this.height = 25;
         }
 
         @Override
@@ -402,7 +403,7 @@ public class Toolbar extends Component {
 
         // This was all variables in commit 6832ea116027 and earlier
         QuickslotTool(boolean primary) {
-            super(83, 7, 22, 25);
+            super(83, 22);
             if (primary) {
                 slot.primary();
             } else {

@@ -81,7 +81,7 @@ public class MissionToolbar extends Component {
     @Override
     protected void createChildren() {
 
-        add(btnWait = new Tool(0, 7, 20, 25) {
+        add(btnWait = new Tool(0, 20) {
             @Override
             protected void onClick() {
                 Dungeon.hero.rest(false);
@@ -94,7 +94,7 @@ public class MissionToolbar extends Component {
 
         });
 
-        add(btnSkill = new Tool(20, 7, 20, 25) {
+        add(btnSkill = new Tool(20, 20) {
             @Override
             protected void onClick() {
                 GameScene.show(new WndSkills(null, null));
@@ -108,7 +108,7 @@ public class MissionToolbar extends Component {
         });
 
 
-        add(btnLastUsed = new Tool(40, 7, 20, 25) {
+        add(btnLastUsed = new Tool(40, 20) {
             @Override
             protected void onClick() {
                 Dungeon.hero.heroSkills.showLastUsed();
@@ -121,7 +121,7 @@ public class MissionToolbar extends Component {
 
         });
 
-        add(btnMerc = new Tool(252, 7, 20, 25) {
+        add(btnMerc = new Tool(252, 20) {
             @Override
             protected void onClick() {
                 Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "I don't trust mercs");
@@ -146,7 +146,7 @@ public class MissionToolbar extends Component {
 		} );
 
         */
-        add(btnInfoSearch = new Tool(107, 7, 20, 25) {
+        add(btnInfoSearch = new Tool(107, 20) {
             @Override
             protected void onClick() {
                 if (!tapAgainToSearch) {
@@ -164,7 +164,7 @@ public class MissionToolbar extends Component {
             }
         });
 
-        add(btnInventory = new Tool(60, 7, 23, 25) {
+        add(btnInventory = new Tool(60, 23) {
             private GoldIndicator gold;
 
             @Override
@@ -325,13 +325,14 @@ public class MissionToolbar extends Component {
 
         Image base;
 
-        Tool(int x, int y, int width, int height) {
+        //There were two other variables here in commit 6832ea116027 and earlier
+        Tool(int x, int width) {
             super();
 
-            base.frame(x, y, width, height);
+            base.frame(x, 7, width, 25);
 
             this.width = width;
-            this.height = height;
+            this.height = 25;
         }
 
         @Override
@@ -382,7 +383,7 @@ public class MissionToolbar extends Component {
 
         //These were variables in commit 6832ea116027 and earlier
         QuickslotTool(boolean primary) {
-            super(83, 7, 22, 25);
+            super(83, 22);
             if (primary) {
                 slot.primary();
             } else {
