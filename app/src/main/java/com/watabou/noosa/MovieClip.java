@@ -23,18 +23,18 @@ public class MovieClip extends Image {
 
     protected Animation curAnim;
     protected int curFrame;
-    protected float frameTimer;
-    protected boolean finished;
+    private float frameTimer;
+    private boolean finished;
 
     public boolean paused = false;
 
-    public Listener listener;
+    protected Listener listener;
 
-    public MovieClip() {
+    protected MovieClip() {
         super();
     }
 
-    public MovieClip(Object tx) {
+    protected MovieClip(Object tx) {
         super(tx);
     }
 
@@ -46,7 +46,7 @@ public class MovieClip extends Image {
         }
     }
 
-    protected void updateAnimation() {
+    private void updateAnimation() {
         if (curAnim != null && curAnim.delay > 0 && (curAnim.looped || !finished)) {
 
             int lastFrame = curFrame;
@@ -79,7 +79,7 @@ public class MovieClip extends Image {
         }
     }
 
-    public void play(Animation anim) {
+    protected void play(Animation anim) {
         play(anim, false);
     }
 
@@ -100,6 +100,7 @@ public class MovieClip extends Image {
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static class Animation {
 
         public float delay;

@@ -25,10 +25,10 @@ import com.demasu.testpixeldungeon.Assets;
 
 public class SkillSprite extends MovieClip {
 
-    public static final int SIZE = 16;
+    private static final int SIZE = 16;
 
 
-    protected static TextureFilm film;
+    private static TextureFilm film;
 
 
     public SkillSprite() {

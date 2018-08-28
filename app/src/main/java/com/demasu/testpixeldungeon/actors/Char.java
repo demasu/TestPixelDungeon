@@ -148,7 +148,7 @@ public abstract class Char extends Actor {
 
     private HashSet<Buff> buffs = new HashSet<>();
 
-    public String getDeathScream() {
+    private String getDeathScream() {
         if (this instanceof Hero)
             return HERO_DEATH_SCREAM[Random.IntRange(0, HERO_DEATH_SCREAM.length - 1)];
         if (this instanceof Rat)
@@ -348,7 +348,7 @@ public abstract class Char extends Actor {
         }
     }
 
-    public static boolean hit(Char attacker, Char defender, boolean magic) {
+    protected static boolean hit(Char attacker, Char defender, boolean magic) {
         float acuRoll = Random.Float(attacker.attackSkill(defender));
         float defRoll = Random.Float(defender.defenseSkill());
 
@@ -357,7 +357,7 @@ public abstract class Char extends Actor {
 
     }
 
-    public int attackSkill(Char target) {
+    protected int attackSkill(Char target) {
         return 0;
     }
 
@@ -503,7 +503,7 @@ public abstract class Char extends Actor {
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    public boolean isCharmedBy(Char ch) {
+    protected boolean isCharmedBy(Char ch) {
         int chID = ch.id();
         for (Buff b : buffs) {
             if (b instanceof Charm && ((Charm) b).object == chID) {
@@ -674,7 +674,7 @@ public abstract class Char extends Actor {
         }
     }
 
-    public int distance(Char other) {
+    protected int distance(Char other) {
         return Level.distance(pos, other.pos);
     }
 

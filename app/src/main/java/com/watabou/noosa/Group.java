@@ -19,6 +19,7 @@ package com.watabou.noosa;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("WeakerAccess")
 public class Group extends Gizmo {
 
     protected ArrayList<Gizmo> members;

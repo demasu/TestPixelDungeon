@@ -15,18 +15,18 @@ import java.util.Objects;
  */
 public class Skill {
 
-    public static final String AC_ADVANCE = "Advance";
-    public static final String AC_ACTIVATE = "Activate";
-    public static final String AC_DEACTIVATE = "Deactivate";
+    static final String AC_ADVANCE = "Advance";
+    static final String AC_ACTIVATE = "Activate";
+    static final String AC_DEACTIVATE = "Deactivate";
 
-    public static final String AC_SUMMON = "Summon";
-    public static final String AC_CAST = "Cast";
+    static final String AC_SUMMON = "Summon";
+    static final String AC_CAST = "Cast";
 
-    public static final String FAIL_ADVANCE = "You do not have enough skill points to advance in this branch.";
+    private static final String FAIL_ADVANCE = "You do not have enough skill points to advance in this branch.";
 
-    public static final String SKILL_LEVEL = "LEVEL";
+    private static final String SKILL_LEVEL = "LEVEL";
 
-    public String tag = "";
+    String tag = "";
 
     public static final int MAX_LEVEL = 3;
 
@@ -34,13 +34,13 @@ public class Skill {
 
     public static int availableSkill = STARTING_SKILL;
 
-    public static final float TIME_TO_USE = 1f;
+    static final float TIME_TO_USE = 1f;
 
     public String name = "Skill";
-    public String castText = "";
+    String castText = "";
     public int level = 0;
-    public int tier = 1;
-    public int mana = 0;
+    int tier = 1;
+    int mana = 0;
     public int image = 0;
 
     public boolean active = false;
@@ -60,7 +60,7 @@ public class Skill {
 
     }
 
-    protected boolean upgrade() {
+    boolean upgrade() {
         return false;
     }
 
@@ -164,7 +164,7 @@ public class Skill {
 //    }
 // --Commented out by Inspection STOP (8/28/18, 4:56 PM)
 
-    public String costUpgradeInfo() {
+    String costUpgradeInfo() {
         return name + " is at level " + level + ".\n"
                 + (level < Skill.MAX_LEVEL ? "It costs " + upgradeCost() + " skill points to advance in " + name + "." : name + " is maxed out.")
                 + (level > 0 && mana > 0 ? "\nUsing " + name + " costs " + getManaCost() + " mana." : "");

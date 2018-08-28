@@ -15,8 +15,8 @@ public enum CurrentSkills {
 
     public enum BRANCHES {PASSIVEA, PASSIVEB, ACTIVE}
 
-    public static final String TYPE = "TYPE";
-    public static final String UNLOCKED = "unlocked";
+    private static final String TYPE = "TYPE";
+    private static final String UNLOCKED = "unlocked";
 
     public Skill branchPA = null;
     public Skill passiveA1 = null;
@@ -35,7 +35,7 @@ public enum CurrentSkills {
 
     public Skill lastUsed = null;
 
-    public boolean skillUnlocked = false;
+    private boolean skillUnlocked = false;
 
     public static Negotiations mercMenu = new Negotiations();
 
