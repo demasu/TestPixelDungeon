@@ -74,10 +74,8 @@ public class SoulCrystal extends MissileWeapon {
     @Override
     public String info() {
 
-        StringBuilder info = new StringBuilder(desc());
 
-
-        return info.toString();
+        return desc();
     }
 
 

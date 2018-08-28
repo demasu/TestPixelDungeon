@@ -147,10 +147,8 @@ public class SoulCrystalFilled extends Item {
     @Override
     public String info() {
 
-        StringBuilder info = new StringBuilder(desc());
 
-
-        return info.toString();
+        return desc();
     }
 
     @Override

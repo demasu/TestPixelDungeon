@@ -148,10 +148,8 @@ public class Bow extends MissileWeapon {
     @Override
     public String info() {
 
-        StringBuilder info = new StringBuilder(desc());
 
-
-        return info.toString();
+        return desc();
     }
 
     public void bowSpecial(Char target) {

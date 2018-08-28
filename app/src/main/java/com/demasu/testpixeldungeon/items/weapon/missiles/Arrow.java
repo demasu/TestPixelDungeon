@@ -202,10 +202,8 @@ public class Arrow extends MissileWeapon {
     @Override
     public String info() {
 
-        StringBuilder info = new StringBuilder(desc());
 
-
-        return info.toString();
+        return desc();
     }
 
 }
