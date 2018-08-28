@@ -125,6 +125,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
         }
     }
 
+    @SuppressWarnings("SameReturnValue")
     public int getGoldCost() {
         return 0;
     }
