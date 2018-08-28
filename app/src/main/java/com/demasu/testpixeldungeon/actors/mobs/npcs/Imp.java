@@ -28,7 +28,6 @@ import com.demasu.testpixeldungeon.items.Generator;
 import com.demasu.testpixeldungeon.items.quest.DwarfToken;
 import com.demasu.testpixeldungeon.items.rings.Ring;
 import com.demasu.testpixeldungeon.levels.CityLevel;
-import com.demasu.testpixeldungeon.levels.Room;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ImpSprite;
 import com.demasu.testpixeldungeon.utils.Utils;
@@ -210,7 +209,7 @@ public class Imp extends NPC {
             }
         }
 
-        public static void spawn(CityLevel level, Room room) {
+        public static void spawn(CityLevel level) {
             if (!spawned && Dungeon.depth > 16 && Random.Int(20 - Dungeon.depth) == 0) {
 
                 Imp npc = new Imp();

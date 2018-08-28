@@ -30,7 +30,7 @@ import com.watabou.utils.Random;
 import java.util.HashSet;
 
 /* Retired class, use SummonedPet.java*/
-public class Rat extends NPC {
+public abstract class Rat extends NPC {
 
     {
         name = "Summoned Rat";
@@ -38,7 +38,7 @@ public class Rat extends NPC {
 
         viewDistance = 4;
 
-        WANDERING = new Wandering();
+        //WANDERING = new Wandering();
 
         flying = false;
         state = WANDERING;
@@ -48,17 +48,21 @@ public class Rat extends NPC {
 
     private static final String LEVEL = "level";
 
-    @Override
-    public void storeInBundle(Bundle bundle) {
-        super.storeInBundle(bundle);
-        bundle.put(LEVEL, level);
-    }
+// --Commented out by Inspection START (8/28/18, 6:17 PM):
+//    @Override
+//    public void storeInBundle(Bundle bundle) {
+//        super.storeInBundle(bundle);
+//        bundle.put(LEVEL, level);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:17 PM)
 
-    @Override
-    public void restoreFromBundle(Bundle bundle) {
-        super.restoreFromBundle(bundle);
-        spawn(bundle.getInt(LEVEL));
-    }
+// --Commented out by Inspection START (8/28/18, 6:17 PM):
+//    @Override
+//    public void restoreFromBundle(Bundle bundle) {
+//        super.restoreFromBundle(bundle);
+//        spawn(bundle.getInt(LEVEL));
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:17 PM)
 
     private void spawn(int level) {
         this.level = level;
@@ -67,74 +71,88 @@ public class Rat extends NPC {
         defenseSkill = 1 + level;
     }
 
-    @Override
-    public int attackSkill(Char target) {
-        return defenseSkill;
-    }
+// --Commented out by Inspection START (8/28/18, 6:17 PM):
+//    @Override
+//    public int attackSkill(Char target) {
+//        return defenseSkill;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:17 PM)
 
-    @Override
-    public int damageRoll() {
-        return Random.NormalIntRange(HT / 10, HT / 4);
-    }
+// --Commented out by Inspection START (8/28/18, 6:17 PM):
+//    @Override
+//    public int damageRoll() {
+//        return Random.NormalIntRange(HT / 10, HT / 4);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:17 PM)
 
-    @Override
-    public int attackProc(Char enemy, int damage) {
-        if (enemy instanceof Mob) {
-            ((Mob) enemy).aggro(this);
-        }
-        return damage;
-    }
+// --Commented out by Inspection START (8/28/18, 6:17 PM):
+//    @Override
+//    public int attackProc(Char enemy, int damage) {
+//        if (enemy instanceof Mob) {
+//            ((Mob) enemy).aggro(this);
+//        }
+//        return damage;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:17 PM)
 
-    @Override
-    protected boolean act() {
-        HP--;
-        if (HP <= 0) {
-            die(null);
-            return true;
-        } else {
-            return super.act();
-        }
-    }
+// --Commented out by Inspection START (8/28/18, 6:17 PM):
+//    @Override
+//    protected boolean act() {
+//        HP--;
+//        if (HP <= 0) {
+//            die(null);
+//            return true;
+//        } else {
+//            return super.act();
+//        }
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:17 PM)
 
-    protected Char chooseEnemy() {
+// --Commented out by Inspection START (8/28/18, 6:17 PM):
+//    protected Char chooseEnemy() {
+//
+//        if (enemy == null || !enemy.isAlive()) {
+//            HashSet<Mob> enemies = new HashSet<>();
+//            for (Mob mob : Dungeon.level.mobs) {
+//                if (mob.hostile && Level.fieldOfView[mob.pos]) {
+//                    enemies.add(mob);
+//                }
+//            }
+//
+//            return enemies.size() > 0 ? Random.element(enemies) : null;
+//
+//        } else {
+//
+//            return enemy;
+//
+//        }
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:17 PM)
 
-        if (enemy == null || !enemy.isAlive()) {
-            HashSet<Mob> enemies = new HashSet<>();
-            for (Mob mob : Dungeon.level.mobs) {
-                if (mob.hostile && Level.fieldOfView[mob.pos]) {
-                    enemies.add(mob);
-                }
-            }
+// --Commented out by Inspection START (8/28/18, 6:17 PM):
+//    @Override
+//    public String description() {
+//        return
+//                "Summoned rats will protect their master mage.";
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:17 PM)
 
-            return enemies.size() > 0 ? Random.element(enemies) : null;
-
-        } else {
-
-            return enemy;
-
-        }
-    }
-
-    @Override
-    public String description() {
-        return
-                "Summoned rats will protect their master mage.";
-    }
-
-    @Override
-    public void interact() {
-
-        int curPos = pos;
-
-        moveSprite(pos, Dungeon.hero.pos);
-        move(Dungeon.hero.pos);
-
-        Dungeon.hero.sprite.move(Dungeon.hero.pos, curPos);
-        Dungeon.hero.move(curPos);
-
-        Dungeon.hero.spend(1 / Dungeon.hero.speed());
-        Dungeon.hero.busy();
-    }
+// --Commented out by Inspection START (8/28/18, 6:17 PM):
+//    @Override
+//    public void interact() {
+//
+//        int curPos = pos;
+//
+//        moveSprite(pos, Dungeon.hero.pos);
+//        move(Dungeon.hero.pos);
+//
+//        Dungeon.hero.sprite.move(Dungeon.hero.pos, curPos);
+//        Dungeon.hero.move(curPos);
+//
+//        Dungeon.hero.spend(1 / Dungeon.hero.speed());
+//        Dungeon.hero.busy();
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:17 PM)
 
     private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
@@ -142,42 +160,48 @@ public class Rat extends NPC {
         IMMUNITIES.add(Poison.class);
     }
 
-    @Override
-    public HashSet<Class<?>> immunities() {
-        return IMMUNITIES;
-    }
+// --Commented out by Inspection START (8/28/18, 6:18 PM):
+//    @Override
+//    public HashSet<Class<?>> immunities() {
+//        return IMMUNITIES;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:18 PM)
 
-    private class Wandering implements AiState {
+    private abstract class Wandering implements AiState {
 
-        @Override
-        public boolean act(boolean enemyInFOV, boolean justAlerted) {
-            if (enemyInFOV) {
+// --Commented out by Inspection START (8/28/18, 6:18 PM):
+//        @Override
+//        public boolean act(boolean enemyInFOV, boolean justAlerted) {
+//            if (enemyInFOV) {
+//
+//                enemySeen = true;
+//
+//                notice();
+//                state = HUNTING;
+//                target = enemy.pos;
+//
+//            } else {
+//
+//                enemySeen = false;
+//
+//                int oldPos = pos;
+//                if (getCloser(Dungeon.hero.pos)) {
+//                    spend(1 / speed());
+//                    return moveSprite(oldPos, pos);
+//                } else {
+//                    spend(TICK);
+//                }
+//
+//            }
+//            return true;
+//        }
+// --Commented out by Inspection STOP (8/28/18, 6:18 PM)
 
-                enemySeen = true;
-
-                notice();
-                state = HUNTING;
-                target = enemy.pos;
-
-            } else {
-
-                enemySeen = false;
-
-                int oldPos = pos;
-                if (getCloser(Dungeon.hero.pos)) {
-                    spend(1 / speed());
-                    return moveSprite(oldPos, pos);
-                } else {
-                    spend(TICK);
-                }
-
-            }
-            return true;
-        }
-
-        @Override
-        public String status() {
-            return Utils.format("This %s is wandering", name);
-        }
+// --Commented out by Inspection START (8/28/18, 6:18 PM):
+//        @Override
+//        public String status() {
+//            return Utils.format("This %s is wandering", name);
+//        }
+// --Commented out by Inspection STOP (8/28/18, 6:18 PM)
     }
 }
