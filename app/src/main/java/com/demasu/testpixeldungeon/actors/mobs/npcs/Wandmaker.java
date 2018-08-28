@@ -379,7 +379,7 @@ public class Wandmaker extends NPC {
 
         @Override
         protected void placeItem() {
-            Heap heap = null;
+            Heap heap;
             for (int i = 0; i < 100; i++) {
                 int pos = Random.Int(Level.LENGTH);
                 if (Level.water[pos]) {
