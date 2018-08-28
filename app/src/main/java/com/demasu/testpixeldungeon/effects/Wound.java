@@ -62,6 +62,7 @@ public class Wound extends Image {
         hit(ch, 0);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static void hit(Char ch, float angle) {
         Wound w = (Wound) ch.sprite.parent.recycle(Wound.class);
         ch.sprite.parent.bringToFront(w);
@@ -73,6 +74,7 @@ public class Wound extends Image {
         hit(pos, 0);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static void hit(int pos, float angle) {
         Group parent = Dungeon.hero.sprite.parent;
         Wound w = (Wound) parent.recycle(Wound.class);

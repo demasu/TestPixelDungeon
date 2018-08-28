@@ -38,15 +38,16 @@ public class SmartTexture extends Texture {
     public Atlas atlas;
 
     public SmartTexture(Bitmap bitmap) {
-        this(bitmap, NEAREST, CLAMP);
+        this(bitmap, CLAMP);
     }
 
-    private SmartTexture(Bitmap bitmap, int filtering, int wrapping) {
+    @SuppressWarnings("SameParameterValue")
+    private SmartTexture(Bitmap bitmap, int wrapping) {
 
         super();
 
         bitmap(bitmap);
-        filter(filtering, filtering);
+        filter(Texture.NEAREST, Texture.NEAREST);
         wrap(wrapping, wrapping);
 
     }
@@ -66,11 +67,12 @@ public class SmartTexture extends Texture {
         bitmap(bitmap, false);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void bitmap(Bitmap bitmap, boolean premultiplied) {
         if (premultiplied) {
             super.bitmap(bitmap);
         } else {
-            handMade(bitmap, true);
+            handMade(bitmap);
         }
 
         this.bitmap = bitmap;

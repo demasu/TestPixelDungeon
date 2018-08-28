@@ -123,7 +123,7 @@ public class WndRatKing extends WndTabbed {
                     @Override
                     protected void onClick() {
                         if (!Difficulties.canDisableChampions)
-                            parent.add(new previewInformation(Icons.get(Icons.CHAMP_HALO), "Disable Champions", "Please consider donating to unlock disabling specific types of champions."));
+                            parent.add(new previewInformation(Icons.get(Icons.CHAMP_HALO)));
                     }
                 };
 
@@ -387,15 +387,16 @@ public class WndRatKing extends WndTabbed {
     }
 
     private class previewInformation extends Window {
-        previewInformation(Image image, String title, String description) {
+        //These were variables in commit 6832ea116027 and earlier
+        previewInformation(Image image) {
 
             IconTitle titlebar = new IconTitle();
             titlebar.icon(image);
-            titlebar.label(Utils.capitalize(title), TITLE_COLOR);
+            titlebar.label(Utils.capitalize("Disable Champions"), TITLE_COLOR);
             titlebar.setRect(0, 0, WIDTH - GAP, 0);
             add(titlebar);
 
-            BitmapTextMultiline txtInfo = PixelScene.createMultiline(description, 6);
+            BitmapTextMultiline txtInfo = PixelScene.createMultiline("Please consider donating to unlock disabling specific types of champions.", 6);
             txtInfo.maxWidth = WIDTH - GAP * 2;
             txtInfo.measure();
             txtInfo.x = titlebar.left();

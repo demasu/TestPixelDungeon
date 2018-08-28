@@ -45,6 +45,7 @@ public class BitmapCache {
         return get(DEFAULT, assetName);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static Bitmap get(String layerName, String assetName) {
 
         Layer layer;
@@ -75,6 +76,7 @@ public class BitmapCache {
         return get(DEFAULT, resID);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static Bitmap get(String layerName, int resID) {
 
         Layer layer;

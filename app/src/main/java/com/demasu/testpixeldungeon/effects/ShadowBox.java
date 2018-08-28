@@ -19,14 +19,13 @@ package com.demasu.testpixeldungeon.effects;
 
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.noosa.NinePatch;
-import com.demasu.testpixeldungeon.Assets;
 
 public class ShadowBox extends NinePatch {
 
     private static final float SIZE = 16;
 
     public ShadowBox() {
-        super(Assets.SHADOW, 1);
+        super();
 
         texture.filter(SmartTexture.LINEAR, SmartTexture.LINEAR);
 

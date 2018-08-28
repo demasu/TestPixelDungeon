@@ -48,6 +48,7 @@ public class MagicMissile extends Emitter {
         reset(from, to, SPEED, callback);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void reset(int from, int to, float velocity, Callback callback) {
         this.callback = callback;
 

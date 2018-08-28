@@ -32,6 +32,7 @@ public class MobProjectile extends MissileWeapon {
         this(1);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private MobProjectile(int number) {
         super();
         quantity = number;

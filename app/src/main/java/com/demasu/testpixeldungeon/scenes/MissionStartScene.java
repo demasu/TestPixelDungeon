@@ -145,7 +145,7 @@ public class MissionStartScene extends PixelScene {
         btnResume.visible = true;
         add(btnResume);
 
-        btnNewGame = new GameButton(TXT_NEW) {
+        btnNewGame = new GameButton() {
             @Override
             protected void onClick() {
 
@@ -305,7 +305,7 @@ public class MissionStartScene extends PixelScene {
 
 
         btnNewGame.visible = true;
-        btnNewGame.secondary(null, false);
+        btnNewGame.secondary();
         btnNewGame.setRect(buttonX, buttonY, Camera.main.width - buttonX * 2, BUTTON_HEIGHT);
 
 
@@ -340,8 +340,8 @@ public class MissionStartScene extends PixelScene {
 
         private BitmapText secondary;
 
-        GameButton(String primary) {
-            super(primary);
+        GameButton() {
+            super(MissionStartScene.TXT_NEW);
 
             this.secondary.text(null);
         }
@@ -368,11 +368,11 @@ public class MissionStartScene extends PixelScene {
             }
         }
 
-        void secondary(String text, boolean highlighted) {
-            secondary.text(text);
+        void secondary() {
+            secondary.text(null);
             secondary.measure();
 
-            secondary.hardlight(highlighted ? SECONDARY_COLOR_H : SECONDARY_COLOR_N);
+            secondary.hardlight(SECONDARY_COLOR_N);
         }
     }
 

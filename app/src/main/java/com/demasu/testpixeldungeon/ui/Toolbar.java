@@ -217,8 +217,8 @@ public class Toolbar extends Component {
 
         });
 
-        add(btnQuick1 = new QuickslotTool(83, 7, 22, 25, true));
-        add(btnQuick2 = new QuickslotTool(83, 7, 22, 25, false));
+        add(btnQuick1 = new QuickslotTool(true));
+        add(btnQuick2 = new QuickslotTool(false));
         btnQuick2.visible = (QuickSlot.secondaryValue != null);
 
         add(pickedUp = new PickedUpItem());
@@ -400,8 +400,9 @@ public class Toolbar extends Component {
 
         private QuickSlot slot;
 
-        QuickslotTool(int x, int y, int width, int height, boolean primary) {
-            super(x, y, width, height);
+        // This was all variables in commit 6832ea116027 and earlier
+        QuickslotTool(boolean primary) {
+            super(83, 7, 22, 25);
             if (primary) {
                 slot.primary();
             } else {

@@ -20,7 +20,7 @@ public class HighlightedText extends Component {
         highlighted = PixelScene.createMultiline(size);
         add(highlighted);
 
-        setColor(0xFFFFFF, 0xFFFF44);
+        setColor();
     }
 
     @Override
@@ -53,8 +53,9 @@ public class HighlightedText extends Component {
         height = normal.height();
     }
 
-    private void setColor(int n, int h) {
-        normal.hardlight(n);
-        highlighted.hardlight(h);
+    // These were variables in commit 6832ea116027 and earlier
+    private void setColor() {
+        normal.hardlight(0xFFFFFF);
+        highlighted.hardlight(0xFFFF44);
     }
 }

@@ -35,7 +35,7 @@ public class DungeonTilemap extends Tilemap {
         super(
                 Dungeon.level.tilesTex(),
                 new TextureFilm(Dungeon.level.tilesTex(), SIZE, SIZE));
-        map(Dungeon.level.map, Level.WIDTH);
+        map(Dungeon.level.map);
 
         instance = this;
     }

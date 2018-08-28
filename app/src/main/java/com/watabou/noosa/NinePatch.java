@@ -43,8 +43,8 @@ public class NinePatch extends Visual {
     private final float nWidth;
     private final float nHeight;
 
-    protected NinePatch(Object tx, int margin) {
-        this(tx, margin, margin, margin, margin);
+    protected NinePatch() {
+        this(com.demasu.testpixeldungeon.Assets.SHADOW, 1, 1, 1, 1);
     }
 
     public NinePatch(Object tx, int left, int top, int right, int bottom) {

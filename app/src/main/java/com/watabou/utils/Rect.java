@@ -106,6 +106,7 @@ public class Rect {
         return p.x >= left && p.x < right && p.y >= top && p.y < bottom;
     }
 
+    @SuppressWarnings("SameParameterValue")
     private Rect shrink(int d) {
         return new Rect(left + d, top + d, right - d, bottom - d);
     }

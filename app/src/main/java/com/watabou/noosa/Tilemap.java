@@ -60,12 +60,13 @@ public class Tilemap extends Visual {
         updated = new Rect();
     }
 
-    protected void map(int[] data, int cols) {
+    //This had a cols variable in commit 6832ea116027 and earlier
+    protected void map(int[] data) {
 
         this.data = data;
 
-        mapWidth = cols;
-        mapHeight = data.length / cols;
+        mapWidth = com.demasu.testpixeldungeon.levels.Level.WIDTH;
+        mapHeight = data.length / com.demasu.testpixeldungeon.levels.Level.WIDTH;
         size = mapWidth * mapHeight;
 
         width = cellW * mapWidth;
