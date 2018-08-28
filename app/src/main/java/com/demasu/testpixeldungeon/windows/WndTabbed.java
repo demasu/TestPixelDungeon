@@ -39,7 +39,7 @@ public class WndTabbed extends Window {
         super(0, 0, Objects.requireNonNull(Chrome.get(Chrome.Type.TAB_SET)));
     }
 
-    protected Tab add(Tab tab) {
+    protected void add(Tab tab) {
 
         tab.setPos(tabs.size() == 0 ?
                 -chrome.marginLeft() + 1 :
@@ -49,7 +49,6 @@ public class WndTabbed extends Window {
 
         tabs.add(tab);
 
-        return tab;
     }
 
     public void select(int index) {

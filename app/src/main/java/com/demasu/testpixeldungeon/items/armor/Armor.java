@@ -299,9 +299,8 @@ public class Armor extends EquipableItem {
         return considerState(price);
     }
 
-    public Armor inscribe(Glyph glyph) {
+    public void inscribe(Glyph glyph) {
         this.glyph = glyph;
-        return this;
     }
 
     public void inscribe() {
@@ -351,15 +350,13 @@ public class Armor extends EquipableItem {
             return ItemSprite.Glowing.WHITE;
         }
 
-        public boolean checkOwner(Char owner) {
+        public void checkOwner(Char owner) {
             if (!owner.isAlive() && owner instanceof Hero) {
 
                 ((Hero) owner).killerGlyph = this;
                 Badges.validateDeathFromGlyph();
-                return true;
 
             } else {
-                return false;
             }
         }
 

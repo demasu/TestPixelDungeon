@@ -117,11 +117,10 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
         play(id, volume, volume, 1);
     }
 
-    public int play(Object id, float leftVolume, float rightVolume, float rate) {
+    public void play(Object id, float leftVolume, float rightVolume, float rate) {
         if (enabled && ids.containsKey(id)) {
-            return pool.play(ids.get(id), leftVolume, rightVolume, 0, 0, rate);
+            pool.play(ids.get(id), leftVolume, rightVolume, 0, 0, rate);
         } else {
-            return -1;
         }
     }
 
