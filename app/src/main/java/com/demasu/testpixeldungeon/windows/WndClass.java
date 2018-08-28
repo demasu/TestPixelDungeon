@@ -37,16 +37,13 @@ public class WndClass extends WndTabbed {
 
     private HeroClass cl;
 
-    private PerksTab tabPerks;
-    private MasteryTab tabMastery;
-
     public WndClass(HeroClass cl) {
 
         super();
 
         this.cl = cl;
 
-        tabPerks = new PerksTab();
+        PerksTab tabPerks = new PerksTab();
         add(tabPerks);
 
         Tab tab = new RankingTab(Utils.capitalize(cl.title()), tabPerks);
@@ -54,7 +51,7 @@ public class WndClass extends WndTabbed {
         add(tab);
 
         if (Badges.isUnlocked(cl.masteryBadge())) {
-            tabMastery = new MasteryTab();
+            MasteryTab tabMastery = new MasteryTab();
             add(tabMastery);
 
             tab = new RankingTab(TXT_MASTERY, tabMastery);

@@ -53,8 +53,6 @@ public class RankingsScene extends PixelScene {
 
     private static final float GAP = 4;
 
-    private Archs archs;
-
     @Override
     public void create() {
 
@@ -68,7 +66,7 @@ public class RankingsScene extends PixelScene {
         int w = Camera.main.width;
         int h = Camera.main.height;
 
-        archs = new Archs();
+        Archs archs = new Archs();
         archs.setSize(w, h);
         add(archs);
 

@@ -13,8 +13,6 @@ public enum Difficulties {
     NORMAL(0), EASY(1), HARD(2), HELL(3), SUICIDE(4), JUSTKILLME(5);
 
 
-    private int difficulty;
-
     public static boolean canDisableChampions = false;
 
     private int championOffset = 0;
@@ -30,7 +28,7 @@ public enum Difficulties {
     private ArrayList<Integer> disabledChampions = new ArrayList<>();
 
     private Difficulties(int difficulty) {
-        this.difficulty = difficulty;
+        int difficulty1 = difficulty;
         championOffset = 0;
         hpOffset = 0;
         attOffset = 0;

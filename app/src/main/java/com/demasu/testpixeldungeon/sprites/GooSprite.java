@@ -17,6 +17,7 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
+import com.watabou.noosa.MovieClip;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.particles.PixelParticle;
@@ -28,7 +29,6 @@ import com.watabou.utils.Random;
 public class GooSprite extends MobSprite {
 
     private Animation pump;
-    private Animation jump;
 
     private Emitter spray;
 
@@ -48,7 +48,7 @@ public class GooSprite extends MobSprite {
         pump = new Animation(20, true);
         pump.frames(frames, 0, 1);
 
-        jump = new Animation(1, true);
+        Animation jump = new Animation(1, true);
         jump.frames(frames, 6);
 
         attack = new Animation(10, false);

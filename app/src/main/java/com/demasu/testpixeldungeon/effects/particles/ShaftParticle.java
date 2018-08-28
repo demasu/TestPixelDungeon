@@ -43,15 +43,13 @@ public class ShaftParticle extends PixelParticle {
         speed.set(0, -6);
     }
 
-    private float offs;
-
     public void reset(float x, float y) {
         revive();
 
         this.x = x;
         this.y = y;
 
-        offs = -Random.Float(lifespan);
+        float offs = -Random.Float(lifespan);
         left = lifespan - offs;
     }
 

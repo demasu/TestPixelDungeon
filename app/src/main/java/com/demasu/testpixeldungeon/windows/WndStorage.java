@@ -73,17 +73,12 @@ public class WndStorage extends WndTabbed {
 
     private Listener listener;
     private WndStorage.Mode mode;
-    private String title;
 
     private int nCols;
-    private int nRows;
 
     protected int count;
     protected int col;
     protected int row;
-
-    private static Mode lastMode;
-    private static Storage lastBag;
 
     public boolean noDegrade = !PixelDungeon.itemDeg();
 
@@ -93,13 +88,13 @@ public class WndStorage extends WndTabbed {
 
         this.listener = listener;
         this.mode = mode;
-        this.title = title;
+        String title1 = title;
 
-        lastMode = mode;
-        lastBag = bag;
+        Mode lastMode = mode;
+        Storage lastBag = bag;
 
         nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
-        nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
+        int nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
 
         int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
         int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);

@@ -57,7 +57,6 @@ public class WndSkills extends WndTabbed {
     private String title;
 
     private int nCols;
-    private int nRows;
 
     protected int count;
     protected int col;
@@ -75,7 +74,7 @@ public class WndSkills extends WndTabbed {
 
 
         nCols = 4;
-        nRows = 3;
+        int nRows = 3;
 
         int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
         int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);

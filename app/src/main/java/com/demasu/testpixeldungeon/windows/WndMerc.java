@@ -89,15 +89,9 @@ public class WndMerc extends WndTabbed {
     private WndMerc.Mode mode;
     private String title;
 
-    private int nCols;
-    private int nRows;
-
     protected int count;
     protected int col;
     protected int row;
-
-    private static Mode lastMode;
-    private static Storage lastBag;
 
     private static final int WIDTH = 120;
 
@@ -112,11 +106,11 @@ public class WndMerc extends WndTabbed {
         this.mode = mode;
         this.title = title;
 
-        lastMode = mode;
-        lastBag = bag;
+        Mode lastMode = mode;
+        Storage lastBag = bag;
 
-        nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
-        nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
+        int nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
+        int nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
 
         int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
         int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);

@@ -86,7 +86,6 @@ public class MissionStartScene extends PixelScene {
     private GameButton btnLoad;
     private GameButton btnNewGame;
 
-    private boolean huntressUnlocked;
     private Group unlock;
 
     public static HeroClass curClass;
@@ -206,6 +205,7 @@ public class MissionStartScene extends PixelScene {
         unlock = new Group();
         add(unlock);
 
+        boolean huntressUnlocked;
         if (!(huntressUnlocked = Badges.isUnlocked(Badges.Badge.BOSS_SLAIN_3))) {
 
             BitmapTextMultiline text = PixelScene.createMultiline(TXT_UNLOCK, 9);
