@@ -18,6 +18,7 @@
 package com.watabou.noosa.audio;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -67,9 +68,7 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
     private LinkedList<String> loadingQueue = new LinkedList<String>();
 
     public void load(String... assets) {
-        for (String asset : assets) {
-            loadingQueue.add(asset);
-        }
+        Collections.addAll(loadingQueue, assets);
         loadNext();
     }
 

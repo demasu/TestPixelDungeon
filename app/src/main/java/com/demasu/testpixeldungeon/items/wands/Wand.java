@@ -277,7 +277,7 @@ public abstract class Wand extends KindOfWeapon {
                 int min = min();
                 info.append(String.format(TXT_DAMAGE, min + (max() - min) / 2));
             } else {
-                info.append(String.format(TXT_WEAPON));
+                info.append(TXT_WEAPON);
             }
         }
         return info.toString();
