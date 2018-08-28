@@ -17,27 +17,19 @@
  */
 package com.demasu.testpixeldungeon.actors.blobs;
 
-import com.watabou.noosa.audio.Sample;
-import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.Journal;
 import com.demasu.testpixeldungeon.Journal.Feature;
-import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
-import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.FlavourBuff;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
-import com.demasu.testpixeldungeon.effects.BlobEmitter;
 import com.demasu.testpixeldungeon.effects.Flare;
 import com.demasu.testpixeldungeon.effects.Wound;
-import com.demasu.testpixeldungeon.effects.particles.SacrificialParticle;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfWipeOut;
 import com.demasu.testpixeldungeon.scenes.GameScene;
-import com.demasu.testpixeldungeon.ui.BuffIndicator;
 import com.demasu.testpixeldungeon.utils.GLog;
-import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 @SuppressWarnings("ALL")

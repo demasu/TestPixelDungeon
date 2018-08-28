@@ -17,13 +17,7 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs.npcs;
 
-import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.effects.CellEmitter;
-import com.demasu.testpixeldungeon.effects.Speck;
-import com.demasu.testpixeldungeon.effects.particles.ElmoParticle;
-import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.sprites.ImpSprite;
-import com.demasu.testpixeldungeon.utils.Utils;
 
 public class ImpShopkeeper extends Shopkeeper {
 

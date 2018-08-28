@@ -148,11 +148,11 @@ public abstract class Rat extends NPC {
 //    }
 // --Commented out by Inspection STOP (8/28/18, 6:17 PM)
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
-
-    static {
-        IMMUNITIES.add(Poison.class);
-    }
+//    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+//
+//    static {
+//        IMMUNITIES.add(Poison.class);
+//    }
 
 // --Commented out by Inspection START (8/28/18, 6:18 PM):
 //    @Override

@@ -17,15 +17,8 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs.npcs;
 
-import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Poison;
-import com.demasu.testpixeldungeon.actors.mobs.Mob;
-import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.sprites.CrabSprite;
-import com.demasu.testpixeldungeon.utils.Utils;
-import com.watabou.utils.Bundle;
-import com.watabou.utils.Random;
 
 import java.util.HashSet;
 
@@ -155,11 +148,11 @@ public abstract class Crab extends NPC {
 //    }
 // --Commented out by Inspection STOP (8/28/18, 6:15 PM)
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+    //private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
-    static {
-        IMMUNITIES.add(Poison.class);
-    }
+//    static {
+//        IMMUNITIES.add(Poison.class);
+//    }
 
 // --Commented out by Inspection START (8/28/18, 6:16 PM):
 //    @Override
