@@ -49,6 +49,7 @@ public class PointF {
         this.y = p.y;
     }
 
+    @Override
     public PointF clone() {
         return new PointF(this);
     }
