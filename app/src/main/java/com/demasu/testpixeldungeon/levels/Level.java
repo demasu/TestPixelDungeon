@@ -744,6 +744,7 @@ public abstract class Level implements Bundlable {
                 GLog.i(TXT_HIDDEN_PLATE_CLICKS);
             case Terrain.PARALYTIC_TRAP:
                 trap = true;
+                //noinspection StatementWithEmptyBody
                 if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
 
                 } else

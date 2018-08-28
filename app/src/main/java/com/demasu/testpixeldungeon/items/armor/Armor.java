@@ -351,6 +351,7 @@ public class Armor extends EquipableItem {
         }
 
         protected void checkOwner(Char owner) {
+            //noinspection StatementWithEmptyBody
             if (!owner.isAlive() && owner instanceof Hero) {
 
                 ((Hero) owner).killerGlyph = this;

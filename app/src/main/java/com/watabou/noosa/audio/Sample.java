@@ -117,6 +117,7 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
         play(id, volume, volume, 1);
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     public void play(Object id, float leftVolume, float rightVolume, float rate) {
         if (enabled && ids.containsKey(id)) {
             pool.play(ids.get(id), leftVolume, rightVolume, 0, 0, rate);
