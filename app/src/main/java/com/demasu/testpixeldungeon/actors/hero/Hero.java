@@ -351,6 +351,7 @@ public class Hero extends Char {
         return belongings.armor == null ? 0 : belongings.armor.tier;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean shoot(Char enemy, MissileWeapon wep) {
 
         rangedWeapon = wep;

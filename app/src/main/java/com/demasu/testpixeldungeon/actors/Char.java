@@ -503,6 +503,7 @@ public abstract class Char extends Actor {
         return null;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isCharmedBy(Char ch) {
         int chID = ch.id();
         for (Buff b : buffs) {

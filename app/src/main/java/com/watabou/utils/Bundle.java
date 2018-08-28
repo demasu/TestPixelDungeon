@@ -54,6 +54,7 @@ public class Bundle {
         this.data = data;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isNull() {
         return data == null;
     }

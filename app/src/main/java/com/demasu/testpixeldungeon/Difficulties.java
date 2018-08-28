@@ -366,6 +366,7 @@ public enum Difficulties {
         return disabledChampions.contains(champType);
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean disableChampion(int champType, boolean disable) {
         if (disable && disabledChampions.size() == 3)
             return false;
