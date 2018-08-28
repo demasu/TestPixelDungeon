@@ -184,20 +184,8 @@ public class MovieLevel extends Level {
     }
 
     @Override
-    public void mobPress(Mob mob) {
-        super.mobPress(mob);
-    }
-
-    @Override
     public void press(int cell, Char hero) {
 
-    }
-
-    @Override
-    public Heap drop(Item item, int cell) {
-
-
-        return super.drop(item, cell);
     }
 
 

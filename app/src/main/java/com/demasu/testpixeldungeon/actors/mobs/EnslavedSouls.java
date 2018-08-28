@@ -36,6 +36,7 @@ public class EnslavedSouls extends Mob {
         return 8;
     }
 
+    @SuppressWarnings("EmptyMethod")
     @Override
     public void die(Object cause) {
         super.die(cause);

@@ -1678,11 +1678,6 @@ public class Hero extends Char {
         return buff == null ? super.immunities() : GasesImmunity.IMMUNITIES;
     }
 
-    @Override
-    public void next() {
-        super.next();
-    }
-
     public interface Doom {
         void onDeath();
     }

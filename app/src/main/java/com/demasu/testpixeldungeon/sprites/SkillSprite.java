@@ -55,12 +55,5 @@ public class SkillSprite extends MovieClip {
         frame(film.get(image));
     }
 
-    @Override
-    public void update() {
-        super.update();
-
-
-    }
-
 
 }

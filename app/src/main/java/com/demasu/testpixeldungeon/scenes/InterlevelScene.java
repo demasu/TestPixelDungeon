@@ -309,6 +309,7 @@ public class InterlevelScene extends PixelScene {
         Dungeon.switchLevel(level, level.randomRespawnCell());
     }
 
+    @SuppressWarnings("EmptyMethod")
     private void endMovie() {
 
         //Actor.fixTime();

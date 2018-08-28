@@ -32,6 +32,7 @@ public class CheckBox extends Button {
         }
     }
 
+    @SuppressWarnings("EmptyMethod")
     protected void updateState() {
 
     }
@@ -42,6 +43,7 @@ public class CheckBox extends Button {
         onChange();
     }
 
+    @SuppressWarnings("EmptyMethod")
     protected void onChange() {
     }
 }

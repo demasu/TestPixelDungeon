@@ -78,6 +78,7 @@ public class Script extends Program {
 
     }
 
+    @SuppressWarnings("EmptyMethod")
     public void unuse() {
     }
 }

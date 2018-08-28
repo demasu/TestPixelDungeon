@@ -201,10 +201,6 @@ public class WndRatKing extends WndTabbed {
 
 
                 btnChamps = new RedButton(("Mobs Information")) {
-                    @Override
-                    protected void onClick() {
-
-                    }
                 };
 
                 add(btnChamps.setRect(0, 0, WIDTH, BTN_HEIGHT));
@@ -229,10 +225,6 @@ public class WndRatKing extends WndTabbed {
                 }.setRect(WIDTH - w, BTN_HEIGHT + GAP, w, BTN_HEIGHT));
 
                 btMobHP = new RedButton("HP: 100" + "%") {
-                    @Override
-                    protected void onClick() {
-
-                    }
                 };
                 add(btMobHP.setRect(w, BTN_HEIGHT + GAP, WIDTH - 2 * w, BTN_HEIGHT));
 
@@ -254,10 +246,6 @@ public class WndRatKing extends WndTabbed {
                 }.setRect(WIDTH - w, btMobHP.bottom() + GAP, w, BTN_HEIGHT));
 
                 btMobAtt = new RedButton("ATT: 100" + "%") {
-                    @Override
-                    protected void onClick() {
-
-                    }
                 };
                 add(btMobAtt.setRect(w, btMobHP.bottom() + GAP, WIDTH - 2 * w, BTN_HEIGHT));
 
@@ -278,10 +266,6 @@ public class WndRatKing extends WndTabbed {
                 }.setRect(WIDTH - w, btMobAtt.bottom() + GAP, w, BTN_HEIGHT));
 
                 btMobDef = new RedButton("Def: 100" + "%") {
-                    @Override
-                    protected void onClick() {
-
-                    }
                 };
 
                 add(btMobDef.setRect(w, btMobAtt.bottom() + GAP, WIDTH - 2 * w, BTN_HEIGHT));
@@ -303,10 +287,6 @@ public class WndRatKing extends WndTabbed {
                 }.setRect(WIDTH - w, btMobDef.bottom() + GAP, w, BTN_HEIGHT));
 
                 btDayNight = new RedButton("DAY NIGHT") {
-                    @Override
-                    protected void onClick() {
-
-                    }
                 };
                 add(btDayNight.setRect(w, btMobDef.bottom() + GAP, WIDTH - 2 * w, BTN_HEIGHT));
 

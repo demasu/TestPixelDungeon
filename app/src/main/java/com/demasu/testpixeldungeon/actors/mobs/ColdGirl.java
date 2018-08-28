@@ -127,13 +127,6 @@ public class ColdGirl extends Mob {
         return super.act();
     }
 
-    @Override
-    public void move(int step) {
-        super.move(step);
-
-
-    }
-
 
     @Override
     public int attackProc(Char enemy, int damage) {

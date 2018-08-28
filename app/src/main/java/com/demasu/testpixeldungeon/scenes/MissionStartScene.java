@@ -271,10 +271,6 @@ public class MissionStartScene extends PixelScene {
         } else {
             MissionStartScene.this.add(new WndOptions("Betrayal", "Coming soon") {
 
-                @Override
-                protected void onSelect(int index) {
-
-                }
             });
         }
 

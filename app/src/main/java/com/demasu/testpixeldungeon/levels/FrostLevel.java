@@ -186,11 +186,6 @@ public class FrostLevel extends Level {
     }
 
     @Override
-    public void mobPress(Mob mob) {
-        super.mobPress(mob);
-    }
-
-    @Override
     public void press(int cell, Char hero) {
 
         super.press(cell, hero);

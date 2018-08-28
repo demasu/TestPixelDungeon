@@ -226,23 +226,6 @@ public class FirstWave extends Level {
         return (HEIGHT + 1) * WIDTH / 2;
     }
 
-    @Override
-    public void mobPress(Mob mob) {
-        super.mobPress(mob);
-    }
-
-    @Override
-    public void press(int cell, Char hero) {
-        super.press(cell, hero);
-    }
-
-    @Override
-    public Heap drop(Item item, int cell) {
-
-
-        return super.drop(item, cell);
-    }
-
 
     @Override
     public String tileName(int tile) {
@@ -618,12 +601,6 @@ public class FirstWave extends Level {
 
 
         @Override
-        public CharSprite sprite() {
-
-            return super.sprite();
-        }
-
-        @Override
         public boolean act() {
             if (MissionScene.scenePause) {
                 spend(1f);
@@ -643,11 +620,6 @@ public class FirstWave extends Level {
             defenseSkill = 35;
         }
 
-
-        @Override
-        public void die(Object cause) {
-            super.die(cause);
-        }
 
         public void speak(String say) {
             sprite.showStatus(CharSprite.NEUTRAL, say);
@@ -669,12 +641,6 @@ public class FirstWave extends Level {
         }
 
         public boolean hasHalo = false;
-
-        @Override
-        public CharSprite sprite() {
-
-            return super.sprite();
-        }
 
         @Override
         public boolean act() {

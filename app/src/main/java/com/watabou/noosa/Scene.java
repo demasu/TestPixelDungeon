@@ -52,10 +52,6 @@ public class Scene extends Group {
 
     }
 
-    public void resume() {
-
-    }
-
     @Override
     public void update() {
         super.update();

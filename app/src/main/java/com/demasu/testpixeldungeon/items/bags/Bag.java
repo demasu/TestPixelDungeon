@@ -48,11 +48,6 @@ public class Bag extends Item implements Iterable<Item> {
     public int size = 1;
 
     @Override
-    public ArrayList<String> actions(Hero hero) {
-        return super.actions(hero);
-    }
-
-    @Override
     public void execute(Hero hero, String action) {
         if (action.equals(AC_OPEN)) {
 
