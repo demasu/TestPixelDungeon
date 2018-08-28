@@ -275,7 +275,7 @@ public class Ghost extends NPC {
                 for (int i = 0; i < 4; i++) {
                     Item another;
                     do {
-                        another = (Weapon) Generator.random(Generator.Category.WEAPON);
+                        another = Generator.random(Generator.Category.WEAPON);
                     } while (another instanceof MissileWeapon);
 
                     if (weapon == null || another.level() > weapon.level()) {

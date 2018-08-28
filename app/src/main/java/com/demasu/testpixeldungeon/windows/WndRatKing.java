@@ -424,7 +424,7 @@ public class WndRatKing extends WndTabbed {
             txtInfo.y = titlebar.bottom() + GAP;
             add(txtInfo);
 
-            resize(100, (int) txtInfo.y + (int) txtInfo.height() + (int) GAP);
+            resize(100, (int) txtInfo.y + (int) txtInfo.height() + GAP);
         }
     }
 }
