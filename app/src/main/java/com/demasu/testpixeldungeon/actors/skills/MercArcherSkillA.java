@@ -2,7 +2,6 @@ package com.demasu.testpixeldungeon.actors.skills;
 
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
-import com.watabou.utils.Random;
 
 /**
  * Created by Moussa on 25-Jan-17.

@@ -19,7 +19,6 @@ package com.demasu.testpixeldungeon.items.weapon.melee;
 
 import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.actors.Actor;
-import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.Skeleton;
 import com.demasu.testpixeldungeon.effects.CellEmitter;

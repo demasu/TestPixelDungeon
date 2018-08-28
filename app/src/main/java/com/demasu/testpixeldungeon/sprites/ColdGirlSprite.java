@@ -19,7 +19,6 @@ package com.demasu.testpixeldungeon.sprites;
 
 import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.effects.ArcherMaidenHalo;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 

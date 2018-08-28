@@ -17,18 +17,14 @@
  */
 package com.demasu.testpixeldungeon.items.weapon.missiles;
 
-import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Frost;
-import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Random;
-
-import java.util.ArrayList;
 
 public class FrostBow extends Bow {
 

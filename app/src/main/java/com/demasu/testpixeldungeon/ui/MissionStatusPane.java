@@ -18,7 +18,6 @@
 package com.demasu.testpixeldungeon.ui;
 
 import com.watabou.input.Touchscreen.Touch;
-import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.NinePatch;
@@ -30,10 +29,8 @@ import com.watabou.noosa.ui.Button;
 import com.watabou.noosa.ui.Component;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.effects.particles.BloodParticle;
-import com.demasu.testpixeldungeon.items.keys.IronKey;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.MissionScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;

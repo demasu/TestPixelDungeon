@@ -1,17 +1,13 @@
 package com.demasu.testpixeldungeon.actors.hero;
 
-import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
-import com.demasu.testpixeldungeon.actors.buffs.Hunger;
 import com.demasu.testpixeldungeon.actors.buffs.ManaRegeneration;
 import com.demasu.testpixeldungeon.actors.buffs.Regeneration;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.armor.Armor;
 import com.demasu.testpixeldungeon.items.armor.PlateArmor;
-import com.demasu.testpixeldungeon.items.wands.WandOfMagicCasting;
 import com.demasu.testpixeldungeon.items.weapon.Weapon;
 import com.demasu.testpixeldungeon.items.weapon.melee.Longsword;
-import com.demasu.testpixeldungeon.levels.MovieLevel;
 import com.demasu.testpixeldungeon.scenes.MissionScene;
 import com.watabou.utils.Bundle;
 

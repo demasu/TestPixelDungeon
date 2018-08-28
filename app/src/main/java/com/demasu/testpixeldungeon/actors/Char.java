@@ -58,7 +58,6 @@ import com.demasu.testpixeldungeon.actors.mobs.npcs.Shopkeeper;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.SummonedPet;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.particles.PoisonParticle;
-import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.weapon.melee.DualSwords;
 import com.demasu.testpixeldungeon.items.weapon.melee.NecroBlade;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;

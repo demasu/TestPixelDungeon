@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
-import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.BitmapTextMultiline;
 import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.ui.Component;

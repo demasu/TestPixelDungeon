@@ -5,8 +5,6 @@ import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.ui.StatusPane;
 
-import java.util.ArrayList;
-
 /**
  * Created by Moussa on 20-Jan-17.
  */

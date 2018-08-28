@@ -4,8 +4,6 @@ package com.demasu.testpixeldungeon.actors.skills;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
-import com.demasu.testpixeldungeon.actors.mobs.npcs.MirrorImage;
-import com.demasu.testpixeldungeon.actors.mobs.npcs.NPC;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.particles.ElmoParticle;
 import com.demasu.testpixeldungeon.items.wands.WandOfBlink;

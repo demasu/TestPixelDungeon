@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.MovieClip;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.particles.PixelParticle;

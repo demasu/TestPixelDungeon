@@ -21,7 +21,6 @@ package com.demasu.testpixeldungeon.sprites;
 import com.watabou.noosa.MovieClip;
 import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.Dungeon;
 
 
 public class SkillSprite extends MovieClip {

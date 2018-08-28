@@ -17,24 +17,14 @@
  */
 package com.demasu.testpixeldungeon.items.weapon.missiles;
 
-import com.watabou.noosa.audio.Sample;
-import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Charm;
-import com.demasu.testpixeldungeon.actors.buffs.Paralysis;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.mobs.Bestiary;
-import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.Speck;
-import com.demasu.testpixeldungeon.effects.particles.BlastParticle;
-import com.demasu.testpixeldungeon.effects.particles.SmokeParticle;
 import com.demasu.testpixeldungeon.items.Item;
-import com.demasu.testpixeldungeon.levels.Level;
-import com.demasu.testpixeldungeon.levels.Terrain;
-import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 

@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.hero;
 
-import android.util.Log;
-
 import java.util.Iterator;
 
 import com.demasu.testpixeldungeon.Badges;

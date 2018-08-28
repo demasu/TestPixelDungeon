@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import android.util.Log;
-
 import java.io.FileNotFoundException;
 
 import com.watabou.noosa.BitmapText;
@@ -33,11 +31,9 @@ import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.items.Generator;
 import com.demasu.testpixeldungeon.levels.Campaigns.FirstWave;
-import com.demasu.testpixeldungeon.levels.FrostLevel;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.MovieLevel;
 import com.demasu.testpixeldungeon.ui.GameLog;
-import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.windows.WndError;
 import com.demasu.testpixeldungeon.windows.WndStory;
 

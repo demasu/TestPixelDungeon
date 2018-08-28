@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import java.util.ArrayList;
-
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -31,7 +29,6 @@ import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Heap.Type;
-import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.HeroSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
