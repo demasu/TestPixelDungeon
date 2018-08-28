@@ -33,7 +33,7 @@ public class RatKing extends NPC {
     }
 
     @Override
-    public int defenseSkill(Char enemy) {
+    public int defenseSkill() {
         return 1000;
     }
 

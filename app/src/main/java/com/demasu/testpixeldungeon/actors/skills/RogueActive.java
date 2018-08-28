@@ -40,17 +40,14 @@ public class RogueActive extends BranchSkill {
                 + (canUpgrade() ? "Next advancement will cost you " + nextUpgradeCost() + " skill point.\n" : "You can no longer advance in this line");
     }
 
-    @Override
     protected int totalSpent() {
         return Dungeon.hero.heroSkills.totalSpent(CurrentSkills.BRANCHES.ACTIVE);
     }
 
-    @Override
     protected int nextUpgradeCost() {
         return Dungeon.hero.heroSkills.nextUpgradeCost(CurrentSkills.BRANCHES.ACTIVE);
     }
 
-    @Override
     protected boolean canUpgrade() {
         return Dungeon.hero.heroSkills.canUpgrade(CurrentSkills.BRANCHES.ACTIVE);
     }

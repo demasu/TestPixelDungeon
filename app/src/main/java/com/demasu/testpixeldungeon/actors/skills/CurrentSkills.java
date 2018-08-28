@@ -10,7 +10,7 @@ import com.watabou.utils.Bundle;
 
 public enum CurrentSkills {
 
-    WARRIOR("warrior"), MAGE("mage"), ROGUE("rogue"), HUNTRESS("huntress"), HATSUNE("hatsune");
+    WARRIOR(), MAGE(), ROGUE(), HUNTRESS(), HATSUNE();
 
 
     public enum BRANCHES {PASSIVEA, PASSIVEB, ACTIVE}
@@ -39,7 +39,7 @@ public enum CurrentSkills {
 
     public static Negotiations mercMenu = new Negotiations();
 
-    CurrentSkills(String type) {
+    CurrentSkills() {
     }
 
     public void init() {

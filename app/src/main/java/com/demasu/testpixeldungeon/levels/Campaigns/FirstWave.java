@@ -36,8 +36,6 @@ import com.demasu.testpixeldungeon.actors.mobs.npcs.SummonedPet;
 import com.demasu.testpixeldungeon.effects.ArcherMaidenHalo;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
 import com.demasu.testpixeldungeon.items.Gold;
-import com.demasu.testpixeldungeon.items.Heap;
-import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.levels.painters.Painter;

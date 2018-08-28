@@ -20,7 +20,6 @@ package com.demasu.testpixeldungeon.actors.mobs.npcs;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.Journal;
 import com.demasu.testpixeldungeon.actors.Actor;
-import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.mobs.Golem;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
@@ -93,7 +92,7 @@ public class Imp extends NPC {
     }
 
     @Override
-    public int defenseSkill(Char enemy) {
+    public int defenseSkill() {
         return 1000;
     }
 

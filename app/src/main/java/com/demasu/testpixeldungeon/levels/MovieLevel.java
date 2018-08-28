@@ -30,8 +30,6 @@ import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
 import com.demasu.testpixeldungeon.effects.Pushing;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
-import com.demasu.testpixeldungeon.items.Heap;
-import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.levels.painters.Painter;
 import com.demasu.testpixeldungeon.scenes.InterlevelScene;
 import com.demasu.testpixeldungeon.scenes.MissionScene;

@@ -63,7 +63,7 @@ public class Echo extends ActiveSkill3 {
                 minion.screams = false;
                 minion.HT = 50;
                 minion.HP = 50;
-                minion.defenseSkill = Dungeon.hero.defenseSkill(Dungeon.hero);
+                minion.defenseSkill = Dungeon.hero.defenseSkill();
                 GameScene.add(minion);
                 WandOfBlink.appear(minion, respawnPoints.get(index));
                 minion.sprite.alpha(0);

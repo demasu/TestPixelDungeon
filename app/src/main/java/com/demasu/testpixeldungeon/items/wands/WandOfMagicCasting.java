@@ -147,7 +147,7 @@ public class WandOfMagicCasting extends Wand {
                     minion.screams = false;
                     minion.HT = ch.HT;
                     minion.HP = minion.HT;
-                    minion.defenseSkill = ch.defenseSkill(Dungeon.hero);
+                    minion.defenseSkill = ch.defenseSkill();
                     minion.pos = cell;
                     GameScene.add(minion);
                     minion.sprite.alpha(0);

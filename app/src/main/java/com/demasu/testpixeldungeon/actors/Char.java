@@ -61,7 +61,6 @@ import com.demasu.testpixeldungeon.effects.particles.PoisonParticle;
 import com.demasu.testpixeldungeon.items.weapon.melee.DualSwords;
 import com.demasu.testpixeldungeon.items.weapon.melee.NecroBlade;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
-import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Shuriken;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.Terrain;
@@ -351,7 +350,7 @@ public abstract class Char extends Actor {
 
     public static boolean hit(Char attacker, Char defender, boolean magic) {
         float acuRoll = Random.Float(attacker.attackSkill(defender));
-        float defRoll = Random.Float(defender.defenseSkill(attacker));
+        float defRoll = Random.Float(defender.defenseSkill());
 
         // <--- Huntress Awareness if present
         return (!(defender instanceof Hero) || Level.distance(attacker.pos, defender.pos) <= 1 || !((Hero) defender).heroSkills.passiveA3.dodgeChance()) && (magic ? acuRoll * 2 : acuRoll) >= defRoll;
@@ -362,7 +361,7 @@ public abstract class Char extends Actor {
         return 0;
     }
 
-    public int defenseSkill(Char enemy) {
+    public int defenseSkill() {
         return 0;
     }
 
@@ -613,11 +612,13 @@ public abstract class Char extends Actor {
         }
     }
 
-    public void remove(Class<? extends Buff> buffClass) {
-        for (Buff buff : buffs(buffClass)) {
-            remove(buff);
-        }
-    }
+// --Commented out by Inspection START (8/28/18, 4:57 PM):
+//    public void remove(Class<? extends Buff> buffClass) {
+//        for (Buff buff : buffs(buffClass)) {
+//            remove(buff);
+//        }
+//    }
+// --Commented out by Inspection STOP (8/28/18, 4:57 PM)
 
 
     @Override

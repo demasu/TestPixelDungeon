@@ -24,7 +24,6 @@ import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.Journal;
-import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.items.EquipableItem;
@@ -225,7 +224,7 @@ public class Blacksmith extends NPC {
     }
 
     @Override
-    public int defenseSkill(Char enemy) {
+    public int defenseSkill() {
         return 1000;
     }
 

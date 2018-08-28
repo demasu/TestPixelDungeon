@@ -46,9 +46,11 @@ public class SkillSprite extends MovieClip {
         view(image);
     }
 
-    public void originToCenter() {
-        origin.set(SIZE / 2);
-    }
+// --Commented out by Inspection START (8/28/18, 4:57 PM):
+//    public void originToCenter() {
+//        origin.set(SIZE / 2);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 4:57 PM)
 
 
     public void view(int image) {

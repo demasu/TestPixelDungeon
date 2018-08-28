@@ -64,9 +64,11 @@ public class Skill {
         return false;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
+// --Commented out by Inspection START (8/28/18, 4:51 PM):
+//    public void setLevel(int level) {
+//        this.level = level;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 4:51 PM)
 
     public float incomingDamageModifier() {
         return 1f;
@@ -144,17 +146,23 @@ public class Skill {
         return tier;
     }
 
-    protected int totalSpent() {
-        return 0;
-    }
+// --Commented out by Inspection START (8/28/18, 4:51 PM):
+//    protected int totalSpent() {
+//        return 0;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 4:51 PM)
 
-    protected int nextUpgradeCost() {
-        return 0;
-    }
+// --Commented out by Inspection START (8/28/18, 4:55 PM):
+//    protected int nextUpgradeCost() {
+//        return 0;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 4:55 PM)
 
-    protected boolean canUpgrade() {
-        return false;
-    }
+// --Commented out by Inspection START (8/28/18, 4:56 PM):
+//    protected boolean canUpgrade() {
+//        return false;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 4:56 PM)
 
     public String costUpgradeInfo() {
         return name + " is at level " + level + ".\n"

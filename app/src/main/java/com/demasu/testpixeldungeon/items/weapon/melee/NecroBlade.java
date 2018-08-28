@@ -101,7 +101,7 @@ public class NecroBlade extends MeleeWeapon {
 
                     updateCharge(-55);
                     Skeleton skel = new Skeleton();
-                    int skelLevel = this.level() > 1 ? 1 + this.level() : 1;
+                    @SuppressWarnings("UnusedAssignment") int skelLevel = this.level() > 1 ? 1 + this.level() : 1;
                     skelLevel = 7;
                     skel.spawn(skelLevel);
                     skel.HP = skel.HT;

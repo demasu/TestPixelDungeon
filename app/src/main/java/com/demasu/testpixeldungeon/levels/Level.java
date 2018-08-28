@@ -636,6 +636,7 @@ public abstract class Level implements Bundlable {
         } else if (Dungeon.isChallenged(Challenges.NO_HERBALISM) && item instanceof SeedPouch) {
             item = new Gold(item.price());
         } else if (Dungeon.isChallenged(Challenges.NO_SCROLLS) && (item instanceof Scroll || item instanceof ScrollHolder)) {
+            //noinspection StatementWithEmptyBody
             if (item instanceof ScrollOfUpgrade) {
                 // These scrolls still can be found
             } else {
@@ -718,6 +719,7 @@ public abstract class Level implements Bundlable {
                 GLog.i(TXT_HIDDEN_PLATE_CLICKS);
             case Terrain.TOXIC_TRAP:
                 trap = true;
+                //noinspection StatementWithEmptyBody,StatementWithEmptyBody
                 if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
 
                 } else

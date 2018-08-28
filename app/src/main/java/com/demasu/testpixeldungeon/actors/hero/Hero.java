@@ -396,7 +396,7 @@ public class Hero extends Char {
     }
 
     @Override
-    public int defenseSkill(Char enemy) {
+    public int defenseSkill() {
 
         int bonus = 0;
         for (Buff buff : buffs(RingOfEvasion.Evasion.class)) {

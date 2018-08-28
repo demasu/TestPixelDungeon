@@ -319,7 +319,7 @@ public abstract class Mob extends Char {
     }
 
     @Override
-    public int defenseSkill(Char enemy) {
+    public int defenseSkill() {
         return enemySeen && !paralysed ? defenseSkill : 0;
     }
 
