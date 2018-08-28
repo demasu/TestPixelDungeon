@@ -156,6 +156,7 @@ public class HiredMerc extends NPC {
             return ItemSpriteSheet.WEAPON;
         }
 
+        @SuppressWarnings("SameReturnValue")
         public int getArmorPlaceHolder() {
             return ItemSpriteSheet.ARMOR;
         }
