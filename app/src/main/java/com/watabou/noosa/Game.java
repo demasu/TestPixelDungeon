@@ -92,6 +92,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         sceneClass = c;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
