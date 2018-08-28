@@ -140,7 +140,7 @@ public class CavesBossLevel extends Level {
                 Random.Int(ROOM_TOP + 1, ROOM_BOTTOM - 1) * WIDTH;
         map[entrance] = Terrain.ENTRANCE;
 
-        int arenaStorage = 0;
+        int arenaStorage;
         int safety = 0;
         do {
             arenaStorage = Random.Int(ROOM_LEFT + 1, ROOM_RIGHT - 1) +

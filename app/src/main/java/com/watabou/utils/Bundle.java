@@ -111,7 +111,6 @@ public class Bundle {
                 return null;
             }
         } catch (Exception e) {
-            e = null;
             return null;
         }
     }

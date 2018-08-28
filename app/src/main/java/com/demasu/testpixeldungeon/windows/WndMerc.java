@@ -259,7 +259,7 @@ public class WndMerc extends WndTabbed {
 
         private ColorBlock durability[];
 
-        public boolean holdOnly = false;
+        public boolean holdOnly;
 
         public ItemButton(Item item, boolean holdOnly) {
 

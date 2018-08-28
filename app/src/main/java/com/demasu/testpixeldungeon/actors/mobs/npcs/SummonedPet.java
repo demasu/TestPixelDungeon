@@ -25,7 +25,7 @@ public class SummonedPet extends NPC {
 
     public enum PET_TYPES {
         RAT("Rat"), CRAB("Crab"), SKELETON("Skeleton"), SKELETON_ARCHER("Skeleton Archer"), SPECIAL("Special");
-        public String type = "Rat";
+        public String type;
 
         PET_TYPES(String type) {
             this.type = type;

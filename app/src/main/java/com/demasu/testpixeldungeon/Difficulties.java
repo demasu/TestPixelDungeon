@@ -14,10 +14,10 @@ public enum Difficulties {
 
     public static boolean canDisableChampions = false;
 
-    private int championOffset = 0;
-    public float hpOffset = 0;
-    public float attOffset = 0;
-    public float defOffset = 0;
+    private int championOffset;
+    public float hpOffset;
+    public float attOffset;
+    public float defOffset;
     public float defenceOffset = 0;
 
     public enum isNightOverwrite {DEFAULT, ALWAYS_DAY, ALWAYS_NIGHT}

@@ -426,7 +426,7 @@ public abstract class Mob extends Char {
 
     protected void dropLoot() {
         if (loot != null && Random.Float() < lootChance) {
-            Item item = null;
+            Item item;
             if (loot instanceof Generator.Category) {
 
                 item = Generator.random((Generator.Category) loot);

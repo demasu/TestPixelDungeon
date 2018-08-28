@@ -41,7 +41,7 @@ public class WndRatKing extends WndTabbed {
         HERO
     }
 
-    public Mode mode = Mode.NORMAL;
+    public Mode mode;
 
     private static final String TXT_PLUS = "+";
     private static final String TXT_MINUS = "-";
@@ -363,8 +363,8 @@ public class WndRatKing extends WndTabbed {
 
     private class StatsControl extends Tab {
 
-        private Image icon = null;
-        Mode mode = Mode.NORMAL;
+        private Image icon;
+        Mode mode;
 
         public StatsControl(Mode mode) {
             super();

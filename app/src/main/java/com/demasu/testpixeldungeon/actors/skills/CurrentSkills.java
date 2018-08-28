@@ -248,7 +248,7 @@ public enum CurrentSkills {
 
     public void unlockSkill() {
         skillUnlocked = true;
-        int preserveLevel = 0;
+        int preserveLevel;
         switch (this) {
             case WARRIOR:
                 preserveLevel = active1.level;

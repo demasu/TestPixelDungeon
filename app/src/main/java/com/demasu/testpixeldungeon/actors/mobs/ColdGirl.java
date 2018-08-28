@@ -298,7 +298,7 @@ public class ColdGirl extends Mob {
         } else if (firstFetch || ((ColdGirlAI) state).aiStatus == GOD_MODE) {
             if (Dungeon.hero.belongings.weapon != null) {
 
-                int throwAt = 0;
+                int throwAt;
 
                 do {
                     throwAt = pos + 3 * Level.NEIGHBOURS8[Random.Int(Level.NEIGHBOURS8.length - 1)];

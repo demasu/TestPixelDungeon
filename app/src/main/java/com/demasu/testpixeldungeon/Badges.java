@@ -230,7 +230,7 @@ public class Badges {
 
     public static void saveGlobal() {
 
-        Bundle bundle = null;
+        Bundle bundle;
 
         if (saveNeeded) {
 

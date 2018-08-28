@@ -122,7 +122,6 @@ public class RemoteBombGround extends Item {
                 if (Level.flamable[c]) {
                     Level.set(c, Terrain.EMBERS);
                     GameScene.updateMap(c);
-                    terrainAffected = true;
                 }
 
                 Char ch = Actor.findChar(c);

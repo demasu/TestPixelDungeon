@@ -64,7 +64,7 @@ public class WndMercs extends WndTabbed {
         ARCHERMAIDEN
     }
 
-    float pos = 5;
+    float pos;
     float GAP = 2;
 
     private static final int WIDTH_P = 120;
@@ -763,7 +763,7 @@ public class WndMercs extends WndTabbed {
 
         private Image icon;
 
-        Mode mode = Mode.BRUTE;
+        Mode mode;
 
         public MercenaryTab(Mode mode) {
             super();

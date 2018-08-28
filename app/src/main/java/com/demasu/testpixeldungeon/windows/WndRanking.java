@@ -166,6 +166,7 @@ public class WndRanking extends WndTabbed {
 
         private static final String TXT_DIFF = "Difficulty";
 
+        @SuppressWarnings("UnusedAssignment")
         public StatsTab() {
             super();
 

@@ -48,7 +48,7 @@ public class HiredMerc extends NPC {
 
     public enum MERC_TYPES {
         Brute("Brute"), Wizard("Wizard"), Thief("Thief"), Archer("Archer"), ArcherMaiden("ArcherMaiden");
-        public String type = "Brute";
+        public String type;
 
         MERC_TYPES(String type) {
             this.type = type;

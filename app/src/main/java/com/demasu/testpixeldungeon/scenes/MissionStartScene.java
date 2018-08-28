@@ -204,7 +204,7 @@ public class MissionStartScene extends PixelScene {
         add(unlock);
 
         boolean huntressUnlocked;
-        if (!(huntressUnlocked = Badges.isUnlocked(Badges.Badge.BOSS_SLAIN_3))) {
+        if (!Badges.isUnlocked(Badges.Badge.BOSS_SLAIN_3)) {
 
             BitmapTextMultiline text = PixelScene.createMultiline(TXT_UNLOCK, 9);
             text.maxWidth = (int) width;
@@ -221,7 +221,6 @@ public class MissionStartScene extends PixelScene {
                 pos += line.height();
             }
         }
-        huntressUnlocked = true; // Just let it go... let it go... bla bla bla
         ExitButton btnExit = new ExitButton();
         btnExit.setPos(Camera.main.width - btnExit.width(), 0);
         add(btnExit);

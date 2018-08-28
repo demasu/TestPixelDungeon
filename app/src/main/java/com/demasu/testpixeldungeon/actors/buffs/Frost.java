@@ -30,6 +30,7 @@ public class Frost extends FlavourBuff {
 
     private static final float DURATION = 5f;
 
+    @SuppressWarnings("UnusedAssignment")
     @Override
     public boolean attachTo(Char target) {
         if (super.attachTo(target)) {
