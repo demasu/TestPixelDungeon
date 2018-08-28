@@ -11,7 +11,7 @@
 
         <activity
             android:label="Test Pixel Dungeon"
-            android:name=".TestPixelDungeon"
+            android:name=".PixelDungeon"
             android:screenOrientation="portrait">
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
