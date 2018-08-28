@@ -62,7 +62,7 @@ import com.demasu.testpixeldungeon.utils.Utils;
 
 public class WndMerc extends WndTabbed {
 
-    public static enum Mode {
+    public enum Mode {
         ALL,
         UNIDENTIFED,
         UPGRADEABLE,

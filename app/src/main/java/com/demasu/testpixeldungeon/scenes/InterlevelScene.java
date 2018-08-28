@@ -56,7 +56,7 @@ public class InterlevelScene extends PixelScene {
     private static final String ERR_FILE_NOT_FOUND = "File not found. For some reason.";
     private static final String ERR_GENERIC = "Something went wrong...";
 
-    public static enum Mode {
+    public enum Mode {
         DESCEND, ASCEND, CONTINUE, RESURRECT, RETURN, FALL, NONE, TELEPORT, TELEPORT_BACK, MOVIE, MOVIE_OUT, MISSION
     }
 

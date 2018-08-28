@@ -39,7 +39,7 @@ public enum CurrentSkills {
 
     public static Negotiations mercMenu = new Negotiations();
 
-    private CurrentSkills(String type) {
+    CurrentSkills(String type) {
     }
 
     public void init() {

@@ -27,7 +27,7 @@ public enum Difficulties {
 
     private ArrayList<Integer> disabledChampions = new ArrayList<>();
 
-    private Difficulties(int difficulty) {
+    Difficulties(int difficulty) {
         championOffset = 0;
         hpOffset = 0;
         attOffset = 0;
