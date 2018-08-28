@@ -79,16 +79,18 @@ public class Item implements Bundlable {
     private static final String AC_STORE = "STORE";
     public static final String AC_STORE_TAKE = "STORETAKE";
 
+    @SuppressWarnings("CanBeFinal")
     public String defaultAction;
 
     protected String name = "smth";
     protected int image = 0;
 
 
+    @SuppressWarnings("CanBeFinal")
     public boolean stackable = false;
     protected int quantity = 1;
 
-    private boolean noDegrade = PixelDungeon.itemDeg();
+    private final boolean noDegrade = PixelDungeon.itemDeg();
 
     public int level = 0;
     private int durability = maxDurability();
@@ -97,9 +99,10 @@ public class Item implements Bundlable {
     public boolean cursed;
     public boolean cursedKnown;
 
+    @SuppressWarnings("CanBeFinal")
     public boolean unique = false;
 
-    private static Comparator<Item> itemComparator = new Comparator<Item>() {
+    private static final Comparator<Item> itemComparator = new Comparator<Item>() {
         @Override
         public int compare(Item lhs, Item rhs) {
             return Generator.Category.order(lhs) - Generator.Category.order(rhs);
@@ -718,7 +721,7 @@ public class Item implements Bundlable {
 
     protected static Hero curUser = null;
     protected static Item curItem = null;
-    private static CellSelector.Listener thrower = new CellSelector.Listener() {
+    private static final CellSelector.Listener thrower = new CellSelector.Listener() {
         @Override
         public void onSelect(Integer target) {
             if (target != null) {
