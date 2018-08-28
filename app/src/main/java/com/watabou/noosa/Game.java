@@ -84,10 +84,10 @@ public abstract class Game extends Activity implements GLSurfaceView.Renderer, V
     protected SurfaceHolder holder;
 
     // Accumulated touch events
-    private final ArrayList<MotionEvent> motionEvents = new ArrayList<MotionEvent>();
+    private final ArrayList<MotionEvent> motionEvents = new ArrayList<>();
 
     // Accumulated key events
-    private final ArrayList<KeyEvent> keysEvents = new ArrayList<KeyEvent>();
+    private final ArrayList<KeyEvent> keysEvents = new ArrayList<>();
 
     public Game(Class<? extends Scene> c) {
         super();
