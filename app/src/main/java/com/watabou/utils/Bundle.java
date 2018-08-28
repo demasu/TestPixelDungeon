@@ -179,7 +179,7 @@ public class Bundle {
             for (int i = 0; i < array.length(); i++) {
                 list.add(new Bundle(array.getJSONObject(i)).get());
             }
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
 
@@ -189,7 +189,7 @@ public class Bundle {
     public void put(String key, boolean value) {
         try {
             data.put(key, value);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
     }
@@ -197,7 +197,7 @@ public class Bundle {
     public void put(String key, int value) {
         try {
             data.put(key, value);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
     }
@@ -205,7 +205,7 @@ public class Bundle {
     public void put(String key, float value) {
         try {
             data.put(key, value);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
     }
@@ -213,7 +213,7 @@ public class Bundle {
     public void put(String key, String value) {
         try {
             data.put(key, value);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
     }
@@ -221,7 +221,7 @@ public class Bundle {
     public void put(String key, Bundle bundle) {
         try {
             data.put(key, bundle.data);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
     }
@@ -233,7 +233,7 @@ public class Bundle {
                 bundle.put(CLASS_NAME, object.getClass().getName());
                 object.storeInBundle(bundle);
                 data.put(key, bundle.data);
-            } catch (JSONException e) {
+            } catch (JSONException ignored) {
             }
         }
     }
@@ -242,7 +242,7 @@ public class Bundle {
         if (value != null) {
             try {
                 data.put(key, value.name());
-            } catch (JSONException e) {
+            } catch (JSONException ignored) {
             }
         }
     }
@@ -254,7 +254,7 @@ public class Bundle {
                 jsonArray.put(i, array[i]);
             }
             data.put(key, jsonArray);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
     }
@@ -266,7 +266,7 @@ public class Bundle {
                 jsonArray.put(i, array[i]);
             }
             data.put(key, jsonArray);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
     }
@@ -278,7 +278,7 @@ public class Bundle {
                 jsonArray.put(i, array[i]);
             }
             data.put(key, jsonArray);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
     }
@@ -293,7 +293,7 @@ public class Bundle {
         }
         try {
             data.put(key, array);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
     }

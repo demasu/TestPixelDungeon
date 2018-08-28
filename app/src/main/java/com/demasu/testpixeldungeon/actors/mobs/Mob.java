@@ -140,7 +140,7 @@ public abstract class Mob extends Char {
         CharSprite sprite = null;
         try {
             sprite = spriteClass.newInstance();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return sprite;
     }
@@ -478,7 +478,7 @@ public abstract class Mob extends Char {
                         break;
                 }
             }
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
 
         }
     }

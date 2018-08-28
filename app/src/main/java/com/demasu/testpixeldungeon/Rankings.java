@@ -117,7 +117,7 @@ public enum Rankings {
             OutputStream output = Game.instance.openFileOutput(RANKINGS_FILE, Game.MODE_PRIVATE);
             Bundle.write(bundle, output);
             output.close();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -155,7 +155,7 @@ public enum Rankings {
                 }
             }
 
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 

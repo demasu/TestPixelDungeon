@@ -328,7 +328,7 @@ public class Dungeon {
                 nightMode = true;
             if (Dungeon.currentDifficulty.isNight == Difficulties.isNightOverwrite.ALWAYS_DAY)
                 nightMode = false;
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
         Dungeon.level = level;

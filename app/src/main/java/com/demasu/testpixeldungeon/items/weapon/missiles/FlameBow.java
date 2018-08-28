@@ -75,7 +75,7 @@ public class FlameBow extends Bow {
 
                 target.sprite.showStatus(CharSprite.NEUTRAL, "Hot!");
             }
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
 
         }
     }

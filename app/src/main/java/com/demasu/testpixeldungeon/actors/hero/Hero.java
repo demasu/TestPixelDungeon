@@ -297,7 +297,7 @@ public class Hero extends Char {
                 checkMerc = true;
                 hiredMerc.spawn(lvl, bundle.getInt(MERC_HEALTH));
                 hiredMerc.skillLevel(bundle.getInt(MERC_SKILL));
-            } catch (Exception ex) {
+            } catch (Exception ignored) {
 
             }
         }

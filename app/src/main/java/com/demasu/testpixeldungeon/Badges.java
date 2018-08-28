@@ -187,7 +187,7 @@ public class Badges {
         for (int i = 0; i < names.length; i++) {
             try {
                 badges.add(Badge.valueOf(names[i]));
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
 
@@ -241,7 +241,7 @@ public class Badges {
                 Bundle.write(bundle, output);
                 output.close();
                 saveNeeded = false;
-            } catch (IOException e) {
+            } catch (IOException ignored) {
 
             }
         }

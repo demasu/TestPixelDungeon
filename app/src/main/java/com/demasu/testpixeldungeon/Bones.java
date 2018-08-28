@@ -74,7 +74,7 @@ public class Bones {
             OutputStream output = Game.instance.openFileOutput(BONES_FILE, Game.MODE_PRIVATE);
             Bundle.write(bundle, output);
             output.close();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
 
         }
     }

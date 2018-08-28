@@ -79,7 +79,7 @@ public class FrostBow extends Bow {
                 target.sprite.showStatus(CharSprite.NEUTRAL, "Brrrr...");
             } else
                 Buff.affect(target, Frost.class);
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
 
         }
     }

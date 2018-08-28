@@ -293,7 +293,7 @@ public class QuickSlot extends Button implements WndBag.Listener {
         if (qsClass != null) {
             try {
                 primaryValue = Class.forName(qsClass);
-            } catch (ClassNotFoundException e) {
+            } catch (ClassNotFoundException ignored) {
             }
         }
 
@@ -301,7 +301,7 @@ public class QuickSlot extends Button implements WndBag.Listener {
         if (qsClass != null) {
             try {
                 secondaryValue = Class.forName(qsClass);
-            } catch (ClassNotFoundException e) {
+            } catch (ClassNotFoundException ignored) {
             }
         }
     }
