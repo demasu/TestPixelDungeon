@@ -245,7 +245,7 @@ public class Belongings implements Iterable<Item> {
         return count;
     }
 
-    public int discharge() {
+    public void discharge() {
 
         int count = 0;
 
@@ -261,7 +261,6 @@ public class Belongings implements Iterable<Item> {
             }
         }
 
-        return count;
     }
 
     @NonNull

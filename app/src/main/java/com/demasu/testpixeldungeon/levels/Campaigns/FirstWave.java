@@ -152,8 +152,7 @@ public class FirstWave extends Level {
     }
 
     @Override
-    public boolean[] updateFieldOfView(Char c) {
-        return fieldOfView;
+    public void updateFieldOfView(Char c) {
     }
 
     @Override

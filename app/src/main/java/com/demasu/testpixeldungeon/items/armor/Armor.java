@@ -304,7 +304,7 @@ public class Armor extends EquipableItem {
         return this;
     }
 
-    public Armor inscribe() {
+    public void inscribe() {
 
         Class<? extends Glyph> oldGlyphClass = glyph != null ? glyph.getClass() : null;
         Glyph gl = Glyph.random();
@@ -312,7 +312,7 @@ public class Armor extends EquipableItem {
             gl = Armor.Glyph.random();
         }
 
-        return inscribe(gl);
+        inscribe(gl);
     }
 
     public boolean isInscribed() {

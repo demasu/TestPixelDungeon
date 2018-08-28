@@ -682,7 +682,7 @@ public abstract class Level implements Bundlable {
         return heap;
     }
 
-    public Plant plant(Plant.Seed seed, int pos) {
+    public void plant(Plant.Seed seed, int pos) {
         Plant plant = plants.get(pos);
         if (plant != null) {
             plant.wither();
@@ -693,7 +693,6 @@ public abstract class Level implements Bundlable {
 
         GameScene.add(plant);
 
-        return plant;
     }
 
     public void uproot(int pos) {
@@ -895,7 +894,7 @@ public abstract class Level implements Bundlable {
         }
     }
 
-    public boolean[] updateFieldOfView(Char c) {
+    public void updateFieldOfView(Char c) {
 
         int cx = c.pos % WIDTH;
         int cy = c.pos / WIDTH;
@@ -986,7 +985,6 @@ public abstract class Level implements Bundlable {
             }
         }
 
-        return fieldOfView;
     }
 
     public static int distance(int a, int b) {

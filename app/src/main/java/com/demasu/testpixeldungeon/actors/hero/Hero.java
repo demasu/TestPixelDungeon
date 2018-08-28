@@ -86,7 +86,6 @@ import com.demasu.testpixeldungeon.items.keys.Key;
 import com.demasu.testpixeldungeon.items.keys.SkeletonKey;
 import com.demasu.testpixeldungeon.items.keys.IronKey;
 import com.demasu.testpixeldungeon.items.potions.Potion;
-import com.demasu.testpixeldungeon.items.potions.PotionOfMight;
 import com.demasu.testpixeldungeon.items.potions.PotionOfStrength;
 import com.demasu.testpixeldungeon.items.rings.RingOfAccuracy;
 import com.demasu.testpixeldungeon.items.rings.RingOfDetection;
@@ -1560,7 +1559,7 @@ public class Hero extends Char {
         super.onOperateComplete();
     }
 
-    public boolean search(boolean intentional) {
+    public void search(boolean intentional) {
 
         boolean smthFound = false;
 
@@ -1654,7 +1653,6 @@ public class Hero extends Char {
             interrupt();
         }
 
-        return smthFound;
     }
 
     public void resurrect(int resetLevel) {

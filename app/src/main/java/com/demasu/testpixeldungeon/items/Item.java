@@ -320,12 +320,11 @@ public class Item implements Bundlable {
         return this;
     }
 
-    final public Item upgrade(int n) {
+    final public void upgrade(int n) {
         for (int i = 0; i < n; i++) {
             upgrade();
         }
 
-        return this;
     }
 
     public Item degrade() {

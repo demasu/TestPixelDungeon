@@ -109,12 +109,12 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
         }
     }
 
-    public int play(Object id) {
-        return play(id, 1, 1, 1);
+    public void play(Object id) {
+        play(id, 1, 1, 1);
     }
 
-    public int play(Object id, float volume) {
-        return play(id, volume, volume, 1);
+    public void play(Object id, float volume) {
+        play(id, volume, volume, 1);
     }
 
     public int play(Object id, float leftVolume, float rightVolume, float rate) {

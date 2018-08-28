@@ -39,12 +39,11 @@ public class Component extends Group {
         return this;
     }
 
-    public Component setSize(float width, float height) {
+    public void setSize(float width, float height) {
         this.width = width;
         this.height = height;
         layout();
 
-        return this;
     }
 
     public Component setRect(float x, float y, float width, float height) {

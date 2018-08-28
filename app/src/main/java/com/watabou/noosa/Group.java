@@ -109,11 +109,11 @@ public class Group extends Gizmo {
         return g;
     }
 
-    public Gizmo addToBack(Gizmo g) {
+    public void addToBack(Gizmo g) {
 
         if (g.parent == this) {
             sendToBack(g);
-            return g;
+            return;
         }
 
         if (g.parent != null) {
@@ -123,13 +123,12 @@ public class Group extends Gizmo {
         if (members.get(0) == null) {
             members.set(0, g);
             g.parent = this;
-            return g;
+            return;
         }
 
         members.add(0, g);
         g.parent = this;
         length++;
-        return g;
     }
 
     public Gizmo recycle(Class<? extends Gizmo> c) {
@@ -156,25 +155,21 @@ public class Group extends Gizmo {
     }
 
     // Fast removal - replacing with null
-    public Gizmo erase(Gizmo g) {
+    public void erase(Gizmo g) {
         int index = members.indexOf(g);
         if (index != -1) {
             members.set(index, null);
             g.parent = null;
-            return g;
         } else {
-            return null;
         }
     }
 
     // Real removal
-    public Gizmo remove(Gizmo g) {
+    public void remove(Gizmo g) {
         if (members.remove(g)) {
             length--;
             g.parent = null;
-            return g;
         } else {
-            return null;
         }
     }
 
@@ -249,23 +244,19 @@ public class Group extends Gizmo {
         length = 0;
     }
 
-    public Gizmo bringToFront(Gizmo g) {
+    public void bringToFront(Gizmo g) {
         if (members.contains(g)) {
             members.remove(g);
             members.add(g);
-            return g;
         } else {
-            return null;
         }
     }
 
-    public Gizmo sendToBack(Gizmo g) {
+    public void sendToBack(Gizmo g) {
         if (members.contains(g)) {
             members.remove(g);
             members.add(0, g);
-            return g;
         } else {
-            return null;
         }
     }
 }

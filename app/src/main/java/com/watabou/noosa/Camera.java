@@ -56,8 +56,8 @@ public class Camera extends Gizmo {
     protected float shakeX;
     protected float shakeY;
 
-    public static Camera reset() {
-        return reset(createFullscreen(1));
+    public static void reset() {
+        reset(createFullscreen(1));
     }
 
     public static Camera reset(Camera newCamera) {
@@ -79,9 +79,8 @@ public class Camera extends Gizmo {
         return camera;
     }
 
-    public static Camera remove(Camera camera) {
+    public static void remove(Camera camera) {
         all.remove(camera);
-        return camera;
     }
 
     public static void updateAll() {

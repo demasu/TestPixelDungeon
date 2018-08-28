@@ -66,8 +66,8 @@ public class MeleeWeapon extends Weapon {
         return super.upgrade(enchant);
     }
 
-    public Item safeUpgrade() {
-        return upgrade(enchantment != null);
+    public void safeUpgrade() {
+        upgrade(enchantment != null);
     }
 
     @Override

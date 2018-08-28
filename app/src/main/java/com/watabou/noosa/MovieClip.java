@@ -116,12 +116,11 @@ public class MovieClip extends Image {
             return this;
         }
 
-        public Animation frames(TextureFilm film, Object... frames) {
+        public void frames(TextureFilm film, Object... frames) {
             this.frames = new RectF[frames.length];
             for (int i = 0; i < frames.length; i++) {
                 this.frames[i] = film.get(frames[i]);
             }
-            return this;
         }
 
         @SuppressWarnings("MethodDoesntCallSuperMethod")

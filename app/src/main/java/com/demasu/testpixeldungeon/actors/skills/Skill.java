@@ -47,19 +47,17 @@ public class Skill {
 
     public boolean multiTargetActive = false;
 
-    public boolean requestUpgrade() {
+    public void requestUpgrade() {
         if (availableSkill >= tier && level < MAX_LEVEL) {
             if (upgrade()) {
                 level++;
                 availableSkill -= tier;
                 // WndStory.showStory("You have gained a level in " + name);
-                return true;
             }
         } else {
             WndStory.showStory(FAIL_ADVANCE);
         }
 
-        return false;
     }
 
     protected boolean upgrade() {

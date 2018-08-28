@@ -51,9 +51,8 @@ public class SkillSprite extends MovieClip {
     }
 
 
-    public SkillSprite view(int image) {
+    public void view(int image) {
         frame(film.get(image));
-        return this;
     }
 
     @Override
