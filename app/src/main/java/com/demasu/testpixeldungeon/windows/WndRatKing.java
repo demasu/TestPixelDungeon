@@ -202,7 +202,7 @@ public class WndRatKing extends WndTabbed {
                 CheckBox btnImmersive = null;
 
 
-                btnChamps = new RedButton((String.format("Mobs Information"))) {
+                btnChamps = new RedButton(("Mobs Information")) {
                     @Override
                     protected void onClick() {
 
