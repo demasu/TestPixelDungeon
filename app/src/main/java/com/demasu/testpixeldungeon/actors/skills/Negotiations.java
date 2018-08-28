@@ -123,7 +123,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
     }
 
     public int getGoldCost() {
-        return Dungeon.hero.lvl * 0;
+        return 0;
     }
 
     public String getHireText() {

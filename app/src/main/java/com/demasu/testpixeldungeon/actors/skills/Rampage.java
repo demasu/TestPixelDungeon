@@ -52,7 +52,7 @@ public class Rampage extends ActiveSkill3 {
 
     @Override
     public int getManaCost() {
-        return (int) Math.ceil(mana * (1 + 1 * level));
+        return (int) Math.ceil(mana * (1 + level));
     }
 
     @Override
