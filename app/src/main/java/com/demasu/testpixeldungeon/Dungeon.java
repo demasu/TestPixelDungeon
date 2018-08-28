@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 
 import java.io.IOException;
@@ -102,7 +101,7 @@ public class Dungeon {
     public static HashSet<Integer> chapters;
 
     // Hero's field of view
-    public static final boolean[] visible = new boolean[Level.LENGTH];
+    public static boolean[] visible = new boolean[Level.LENGTH];
 
     public static boolean nightMode;
 
@@ -127,14 +126,14 @@ public class Dungeon {
         depth = 0;
         gold = 0;
 
-        droppedItems = new SparseArray<>();
+        droppedItems = new SparseArray<ArrayList<Item>>();
 
         potionOfStrength = 0;
         scrollsOfUpgrade = 0;
         scrollsOfEnchantment = 0;
         dewVial = true;
 
-        chapters = new HashSet<>();
+        chapters = new HashSet<Integer>();
 
         Ghost.Quest.reset();
         Wandmaker.Quest.reset();
@@ -175,14 +174,14 @@ public class Dungeon {
         depth = 0;
         gold = 0;
 
-        droppedItems = new SparseArray<>();
+        droppedItems = new SparseArray<ArrayList<Item>>();
 
         potionOfStrength = 0;
         scrollsOfUpgrade = 0;
         scrollsOfEnchantment = 0;
         dewVial = true;
 
-        chapters = new HashSet<>();
+        chapters = new HashSet<Integer>();
 
         Ghost.Quest.reset();
         Wandmaker.Quest.reset();
@@ -220,7 +219,11 @@ public class Dungeon {
         if (depth % ColdGirl.FROST_DEPTH > Statistics.deepestFloor) {
             Statistics.deepestFloor = depth;
 
-            Statistics.completedWithNoKilling = Statistics.qualifiedForNoKilling;
+            if (Statistics.qualifiedForNoKilling) {
+                Statistics.completedWithNoKilling = true;
+            } else {
+                Statistics.completedWithNoKilling = false;
+            }
         }
 
         Arrays.fill(visible, false);
@@ -354,9 +357,9 @@ public class Dungeon {
 
     public static void dropToChasm(Item item) {
         int depth = Dungeon.depth + 1;
-        ArrayList<Item> dropped = Dungeon.droppedItems.get(depth);
+        ArrayList<Item> dropped = (ArrayList<Item>) Dungeon.droppedItems.get(depth);
         if (dropped == null) {
-            Dungeon.droppedItems.put(depth, dropped = new ArrayList<>());
+            Dungeon.droppedItems.put(depth, dropped = new ArrayList<Item>());
         }
         dropped.add(item);
     }
@@ -441,8 +444,7 @@ public class Dungeon {
         }
     }
 
-    @SuppressLint("DefaultLocale")
-    public static void saveGame(String fileName) {
+    public static void saveGame(String fileName) throws IOException {
         try {
             Bundle bundle = new Bundle();
 
@@ -535,8 +537,7 @@ public class Dungeon {
         loadGame(fileName, false);
     }
 
-    @SuppressLint("DefaultLocale")
-    private static void loadGame(String fileName, boolean fullLoad) throws IOException {
+    public static void loadGame(String fileName, boolean fullLoad) throws IOException {
 
         Bundle bundle = gameBundle(fileName);
 
@@ -560,7 +561,7 @@ public class Dungeon {
         dewVial = bundle.getBoolean(DV);
 
         if (fullLoad) {
-            chapters = new HashSet<>();
+            chapters = new HashSet<Integer>();
             int ids[] = bundle.getIntArray(CHAPTERS);
             if (ids != null) {
                 for (int id : ids) {
@@ -608,9 +609,9 @@ public class Dungeon {
         Statistics.restoreFromBundle(bundle);
         Journal.restoreFromBundle(bundle);
 
-        droppedItems = new SparseArray<>();
+        droppedItems = new SparseArray<ArrayList<Item>>();
         for (int i = 2; i <= Statistics.deepestFloor + 1; i++) {
-            ArrayList<Item> dropped = new ArrayList<>();
+            ArrayList<Item> dropped = new ArrayList<Item>();
             for (Bundlable b : bundle.getCollection(String.format(DROPPED, i))) {
                 dropped.add((Item) b);
             }
@@ -700,7 +701,7 @@ public class Dungeon {
         GameScene.afterObserve();
     }
 
-    public static final boolean[] passable = new boolean[Level.LENGTH];
+    public static boolean[] passable = new boolean[Level.LENGTH];
 
     public static int findPath(Char ch, int from, int to, boolean pass[], boolean[] visible) {
 

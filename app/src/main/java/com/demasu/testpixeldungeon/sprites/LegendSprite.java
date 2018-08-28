@@ -1,6 +1,7 @@
 package com.demasu.testpixeldungeon.sprites;
 
 import com.watabou.noosa.TextureFilm;
+import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.effects.ArcherMaidenHalo;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 
@@ -10,8 +11,8 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 public class LegendSprite extends HeroSprite {
 
 
-    private ArcherMaidenHalo halo = null;
-    private boolean hasHalo = false;
+    public ArcherMaidenHalo halo = null;
+    public boolean hasHalo = false;
 
     public void haloUp() {
         if (hasHalo)

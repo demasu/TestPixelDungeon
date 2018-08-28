@@ -35,7 +35,7 @@ public class GemStone extends Ring {
     }
 
 
-    private int charge = 0;
+    public int charge = 0;
 
     public void ChargeUp() {
         charge++;
@@ -150,6 +150,6 @@ public class GemStone extends Ring {
         }
     }
 
-    class GemStoneBuff extends RingBuff {
+    public class GemStoneBuff extends RingBuff {
     }
 }

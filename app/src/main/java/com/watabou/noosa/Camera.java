@@ -26,7 +26,7 @@ import com.watabou.utils.Random;
 
 public class Camera extends Gizmo {
 
-    private static final ArrayList<Camera> all = new ArrayList<>();
+    protected static ArrayList<Camera> all = new ArrayList<Camera>();
 
     protected static float invW2;
     protected static float invH2;
@@ -56,8 +56,8 @@ public class Camera extends Gizmo {
     protected float shakeX;
     protected float shakeY;
 
-    public static void reset() {
-        reset(createFullscreen(1));
+    public static Camera reset() {
+        return reset(createFullscreen(1));
     }
 
     public static Camera reset(Camera newCamera) {
@@ -79,8 +79,9 @@ public class Camera extends Gizmo {
         return camera;
     }
 
-    public static void remove(Camera camera) {
+    public static Camera remove(Camera camera) {
         all.remove(camera);
+        return camera;
     }
 
     public static void updateAll() {
@@ -131,7 +132,7 @@ public class Camera extends Gizmo {
                 scroll.y + height / 2);
     }
 
-    private void zoom(float value, float fx, float fy) {
+    public void zoom(float value, float fx, float fy) {
 
         zoom = value;
         width = (int) (screenWidth / zoom);
@@ -175,11 +176,11 @@ public class Camera extends Gizmo {
         return x >= this.x && y >= this.y && x < this.x + screenWidth && y < this.y + screenHeight;
     }
 
-    private void focusOn(float x, float y) {
+    public void focusOn(float x, float y) {
         scroll.set(x - width / 2, y - height / 2);
     }
 
-    private void focusOn(PointF point) {
+    public void focusOn(PointF point) {
         focusOn(point.x, point.y);
     }
 

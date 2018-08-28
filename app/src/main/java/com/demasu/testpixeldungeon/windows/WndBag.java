@@ -55,7 +55,7 @@ import com.watabou.utils.GameMath;
 
 public class WndBag extends WndTabbed {
 
-    public enum Mode {
+    public static enum Mode {
         ALL,
         UNIDENTIFED,
         UPGRADEABLE,
@@ -71,31 +71,31 @@ public class WndBag extends WndTabbed {
         BRUTE_HOLD
     }
 
-    private static final int COLS_P = 4;
-    private static final int COLS_L = 6;
+    protected static final int COLS_P = 4;
+    protected static final int COLS_L = 6;
 
-    private static final int SLOT_SIZE = 28;
-    private static final int SLOT_MARGIN = 1;
+    protected static final int SLOT_SIZE = 28;
+    protected static final int SLOT_MARGIN = 1;
 
-    private static final int TAB_WIDTH = 25;
+    protected static final int TAB_WIDTH = 25;
 
-    private static final int TITLE_HEIGHT = 12;
+    protected static final int TITLE_HEIGHT = 12;
 
-    private final Listener listener;
-    private final WndBag.Mode mode;
-    private final String title;
+    private Listener listener;
+    private WndBag.Mode mode;
+    private String title;
 
-    private final int nCols;
-    private final int nRows;
+    private int nCols;
+    private int nRows;
 
-    private int count;
-    private int col;
-    private int row;
+    protected int count;
+    protected int col;
+    protected int row;
 
     private static Mode lastMode;
     private static Bag lastBag;
 
-    private final boolean noDegrade = PixelDungeon.itemDeg();
+    public boolean noDegrade = PixelDungeon.itemDeg();
 
     public WndBag(Bag bag, Listener listener, Mode mode, String title) {
 
@@ -165,7 +165,7 @@ public class WndBag extends WndTabbed {
                 new WndBag(Dungeon.hero.belongings.backpack, listener, mode, title);
     }
 
-    private void placeItems(Bag container) {
+    protected void placeItems(Bag container) {
 
         // Equipped items
         Belongings stuff = Dungeon.hero.belongings;
@@ -200,7 +200,7 @@ public class WndBag extends WndTabbed {
         }
     }
 
-    private void placeItem(final Item item) {
+    protected void placeItem(final Item item) {
 
         int x = col * (SLOT_SIZE + SLOT_MARGIN);
         int y = TITLE_HEIGHT + row * (SLOT_SIZE + SLOT_MARGIN);
@@ -243,11 +243,11 @@ public class WndBag extends WndTabbed {
 
     private class BagTab extends Tab {
 
-        private final Image icon;
+        private Image icon;
 
-        private final Bag bag;
+        private Bag bag;
 
-        BagTab(Bag bag) {
+        public BagTab(Bag bag) {
             super();
 
             this.bag = bag;
@@ -297,7 +297,7 @@ public class WndBag extends WndTabbed {
             name = null;
         }
 
-        Placeholder(int image) {
+        public Placeholder(int image) {
             this.image = image;
         }
 
@@ -319,12 +319,12 @@ public class WndBag extends WndTabbed {
 
         private static final int NBARS = 3;
 
-        private final Item item;
+        private Item item;
         private ColorBlock bg;
 
         private ColorBlock durability[];
 
-        ItemButton(Item item) {
+        public ItemButton(Item item) {
 
             super(item);
 
@@ -349,7 +349,7 @@ public class WndBag extends WndTabbed {
             bg.x = x;
             bg.y = y;
 
-            if (noDegrade)
+            if (noDegrade == true)
                 durability = null; // no durability
 
             if (durability != null) {
@@ -426,9 +426,13 @@ public class WndBag extends WndTabbed {
             Sample.INSTANCE.play(Assets.SND_CLICK, 0.7f, 0.7f, 1.2f);
         }
 
+        ;
+
         protected void onTouchUp() {
             bg.brightness(1.0f);
         }
+
+        ;
 
         @Override
         protected void onClick() {

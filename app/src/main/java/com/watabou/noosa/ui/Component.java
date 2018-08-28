@@ -39,11 +39,12 @@ public class Component extends Group {
         return this;
     }
 
-    public void setSize(float width, float height) {
+    public Component setSize(float width, float height) {
         this.width = width;
         this.height = height;
         layout();
 
+        return this;
     }
 
     public Component setRect(float x, float y, float width, float height) {
@@ -56,7 +57,7 @@ public class Component extends Group {
         return this;
     }
 
-    protected boolean inside(float x, float y) {
+    public boolean inside(float x, float y) {
         return x >= this.x && y >= this.y && x < this.x + width && y < this.y + height;
     }
 

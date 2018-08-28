@@ -34,8 +34,8 @@ public class WndWandmaker extends WndQuest {
 
     private static final String TXT_FARAWELL = "Good luck in your quest, %s!";
 
-    private final Wandmaker wandmaker;
-    private final Item questItem;
+    private Wandmaker wandmaker;
+    private Item questItem;
 
 
     public WndWandmaker(final Wandmaker wandmaker, final Item item) {

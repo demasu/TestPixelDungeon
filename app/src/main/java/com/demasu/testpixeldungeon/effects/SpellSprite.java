@@ -39,6 +39,8 @@ public class SpellSprite extends Image {
         FADE_IN, STATIC, FADE_OUT
     }
 
+    ;
+
     private static final float FADE_IN_TIME = 0.2f;
     private static final float STATIC_TIME = 0.8f;
     private static final float FADE_OUT_TIME = 0.4f;
@@ -51,7 +53,7 @@ public class SpellSprite extends Image {
     private float duration;
     private float passed;
 
-    private static final HashMap<Char, SpellSprite> all = new HashMap<>();
+    private static HashMap<Char, SpellSprite> all = new HashMap<Char, SpellSprite>();
 
     public SpellSprite() {
         super(Assets.SPELL_ICONS);
@@ -61,7 +63,7 @@ public class SpellSprite extends Image {
         }
     }
 
-    private void reset(int index) {
+    public void reset(int index) {
         frame(film.get(index));
         origin.set(width / 2, height / 2);
 

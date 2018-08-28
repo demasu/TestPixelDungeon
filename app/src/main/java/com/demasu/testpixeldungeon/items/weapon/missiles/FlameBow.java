@@ -20,6 +20,7 @@ package com.demasu.testpixeldungeon.items.weapon.missiles;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Burning;
+import com.demasu.testpixeldungeon.actors.buffs.Frost;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;

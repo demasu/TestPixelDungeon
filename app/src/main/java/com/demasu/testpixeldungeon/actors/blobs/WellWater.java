@@ -31,7 +31,7 @@ import com.watabou.utils.Random;
 
 public class WellWater extends Blob {
 
-    int pos;
+    protected int pos;
 
     @Override
     public void restoreFromBundle(Bundle bundle) {
@@ -60,7 +60,7 @@ public class WellWater extends Blob {
         }
     }
 
-    private boolean affect() {
+    protected boolean affect() {
 
         Heap heap;
 
@@ -111,11 +111,11 @@ public class WellWater extends Blob {
         }
     }
 
-    boolean affectHero(Hero hero) {
+    protected boolean affectHero(Hero hero) {
         return false;
     }
 
-    Item affectItem(Item item) {
+    protected Item affectItem(Item item) {
         return null;
     }
 

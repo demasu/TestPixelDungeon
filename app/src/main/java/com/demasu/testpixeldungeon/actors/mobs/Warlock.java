@@ -89,7 +89,7 @@ public class Warlock extends Mob implements Callback {
 
             boolean visible = Level.fieldOfView[pos] || Level.fieldOfView[enemy.pos];
             if (visible) {
-                sprite.zap(enemy.pos);
+                ((WarlockSprite) sprite).zap(enemy.pos);
             } else {
                 zap();
             }
@@ -143,7 +143,7 @@ public class Warlock extends Mob implements Callback {
                         "but soon switched to demonology and necromancy.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<>();
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
 
     static {
         RESISTANCES.add(Death.class);

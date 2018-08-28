@@ -32,7 +32,7 @@ public class EarthParticle extends PixelParticle {
         }
     };
 
-    private EarthParticle() {
+    public EarthParticle() {
         super();
 
         color(ColorMath.random(0x444444, 0x777766));
@@ -41,7 +41,7 @@ public class EarthParticle extends PixelParticle {
         lifespan = 0.5f;
     }
 
-    private void reset(float x, float y) {
+    public void reset(float x, float y) {
         revive();
 
         this.x = x;

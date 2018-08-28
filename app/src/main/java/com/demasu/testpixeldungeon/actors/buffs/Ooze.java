@@ -28,7 +28,7 @@ public class Ooze extends Buff {
 
     private static final String TXT_HERO_KILLED = "%s killed you...";
 
-    private final int damage = 1;
+    public int damage = 1;
 
     @Override
     public int icon() {

@@ -35,13 +35,13 @@ import com.watabou.utils.Rect;
 
 public class Room extends Rect implements Graph.Node, Bundlable {
 
-    public final HashSet<Room> neigbours = new HashSet<>();
-    public final HashMap<Room, Door> connected = new HashMap<>();
+    public HashSet<Room> neigbours = new HashSet<Room>();
+    public HashMap<Room, Door> connected = new HashMap<Room, Door>();
 
     public int distance;
-    private int price = 1;
+    public int price = 1;
 
-    public enum Type {
+    public static enum Type {
         NULL(null),
         STANDARD(StandardPainter.class),
         ENTRANCE(EntrancePainter.class),
@@ -70,7 +70,7 @@ public class Room extends Rect implements Graph.Node, Bundlable {
 
         private Method paint;
 
-        Type(Class<? extends Painter> painter) {
+        private Type(Class<? extends Painter> painter) {
             try {
                 paint = painter.getMethod("paint", Level.class, Room.class);
             } catch (Exception e) {
@@ -87,7 +87,9 @@ public class Room extends Rect implements Graph.Node, Bundlable {
         }
     }
 
-    public static final ArrayList<Type> SPECIALS = new ArrayList<>(Arrays.asList(
+    ;
+
+    public static final ArrayList<Type> SPECIALS = new ArrayList<Type>(Arrays.asList(
             Type.ARMORY, Type.WEAK_FLOOR, Type.MAGIC_WELL, Type.CRYPT, Type.POOL, Type.GARDEN, Type.LIBRARY,
             Type.TREASURY, Type.TRAPS, Type.STORAGE, Type.STATUE, Type.LABORATORY, Type.VAULT, Type.ALTAR
     ));
@@ -226,7 +228,7 @@ public class Room extends Rect implements Graph.Node, Bundlable {
 
     public static class Door extends Point {
 
-        public enum Type {
+        public static enum Type {
             EMPTY, TUNNEL, REGULAR, UNLOCKED, HIDDEN, BARRICADE, LOCKED
         }
 

@@ -33,14 +33,14 @@ public class WebParticle extends PixelParticle {
         }
     };
 
-    private WebParticle() {
+    public WebParticle() {
         super();
 
         color(0xCCCCCC);
         lifespan = 2f;
     }
 
-    private void reset(float x, float y) {
+    public void reset(float x, float y) {
         revive();
 
         this.x = x;

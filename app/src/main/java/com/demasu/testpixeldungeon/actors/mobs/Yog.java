@@ -116,7 +116,7 @@ public class Yog extends Mob {
     @Override
     public int defenseProc(Char enemy, int damage) {
 
-        ArrayList<Integer> spawnPoints = new ArrayList<>();
+        ArrayList<Integer> spawnPoints = new ArrayList<Integer>();
 
         for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
             int p = pos + Level.NEIGHBOURS8[i];
@@ -169,7 +169,7 @@ public class Yog extends Mob {
 
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 
     static {
 
@@ -204,7 +204,7 @@ public class Yog extends Mob {
             state = WANDERING;
         }
 
-        RottingFist() {
+        public RottingFist() {
             super();
             fistsCount++;
         }
@@ -257,7 +257,7 @@ public class Yog extends Mob {
 
         }
 
-        private static final HashSet<Class<?>> RESISTANCES = new HashSet<>();
+        private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
 
         static {
             RESISTANCES.add(ToxicGas.class);
@@ -270,7 +270,7 @@ public class Yog extends Mob {
             return RESISTANCES;
         }
 
-        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 
         static {
             IMMUNITIES.add(Amok.class);
@@ -376,7 +376,7 @@ public class Yog extends Mob {
 
         }
 
-        private static final HashSet<Class<?>> RESISTANCES = new HashSet<>();
+        private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
 
         static {
             RESISTANCES.add(ToxicGas.class);
@@ -389,7 +389,7 @@ public class Yog extends Mob {
             return RESISTANCES;
         }
 
-        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 
         static {
             IMMUNITIES.add(Amok.class);

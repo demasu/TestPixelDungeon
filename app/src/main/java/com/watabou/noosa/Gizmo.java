@@ -19,8 +19,8 @@ package com.watabou.noosa;
 
 public class Gizmo {
 
-    boolean exists;
-    boolean alive;
+    public boolean exists;
+    public boolean alive;
     public boolean active;
     public boolean visible;
 
@@ -28,21 +28,21 @@ public class Gizmo {
 
     public Camera camera;
 
-    protected Gizmo() {
+    public Gizmo() {
         exists = true;
         alive = true;
         active = true;
         visible = true;
     }
 
-    void destroy() {
+    public void destroy() {
         parent = null;
     }
 
     public void update() {
     }
 
-    void draw() {
+    public void draw() {
     }
 
     public void kill() {
@@ -66,7 +66,7 @@ public class Gizmo {
         }
     }
 
-    boolean isVisible() {
+    public boolean isVisible() {
         if (parent == null) {
             return visible;
         } else {
@@ -74,7 +74,7 @@ public class Gizmo {
         }
     }
 
-    boolean isActive() {
+    public boolean isActive() {
         if (parent == null) {
             return active;
         } else {

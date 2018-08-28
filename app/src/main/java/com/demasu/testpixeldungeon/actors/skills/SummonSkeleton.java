@@ -31,7 +31,7 @@ public class SummonSkeleton extends ActiveSkill3 {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<>();
+        ArrayList<String> actions = new ArrayList<String>();
         if (level > 0 && hero.MP >= getManaCost())
             actions.add(AC_SUMMON);
         return actions;
@@ -44,7 +44,7 @@ public class SummonSkeleton extends ActiveSkill3 {
             for (int nu = 0; nu < 1; nu++) {
                 int newPos = hero.pos;
                 if (Actor.findChar(newPos) != null) {
-                    ArrayList<Integer> candidates = new ArrayList<>();
+                    ArrayList<Integer> candidates = new ArrayList<Integer>();
                     boolean[] passable = Level.passable;
 
                     for (int n : Level.NEIGHBOURS4) {
@@ -69,7 +69,7 @@ public class SummonSkeleton extends ActiveSkill3 {
                 }
             }
 
-            if (spawned) {
+            if (spawned == true) {
                 hero.MP -= getManaCost();
                 StatusPane.manaDropping += getManaCost();
                 castTextYell();

@@ -1,6 +1,7 @@
 package com.demasu.testpixeldungeon;
 
 
+import com.demasu.testpixeldungeon.actors.buffs.Champ;
 import com.demasu.testpixeldungeon.items.food.Food;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 
@@ -12,22 +13,24 @@ public enum Difficulties {
     NORMAL(0), EASY(1), HARD(2), HELL(3), SUICIDE(4), JUSTKILLME(5);
 
 
-    public static final boolean canDisableChampions = false;
+    private int difficulty;
+
+    public static boolean canDisableChampions = false;
 
     private int championOffset = 0;
-    private float hpOffset = 0;
-    private float attOffset = 0;
-    private float defOffset = 0;
-    private float defenceOffset = 0;
+    public float hpOffset = 0;
+    public float attOffset = 0;
+    public float defOffset = 0;
+    public float defenceOffset = 0;
 
     public enum isNightOverwrite {DEFAULT, ALWAYS_DAY, ALWAYS_NIGHT}
 
     public isNightOverwrite isNight = isNightOverwrite.DEFAULT;
 
-    private final ArrayList<Integer> disabledChampions = new ArrayList<>();
+    private ArrayList<Integer> disabledChampions = new ArrayList<>();
 
-    Difficulties(int difficulty) {
-        int difficulty1 = difficulty;
+    private Difficulties(int difficulty) {
+        this.difficulty = difficulty;
         championOffset = 0;
         hpOffset = 0;
         attOffset = 0;
@@ -35,7 +38,7 @@ public enum Difficulties {
         disabledChampions.clear();
     }
 
-    private static final String[] EASY_DESC = {
+    public static final String[] EASY_DESC = {
             "- Start with 2 extra rations.",
             "- Start with 2 potions of healing.",
             "- Start with 200 Gold.",
@@ -43,18 +46,18 @@ public enum Difficulties {
             "- Champion spawn rate set to 10%."
     };
 
-    private static final String[] NORMAL_DESC = {
+    public static final String[] NORMAL_DESC = {
             "- Mobs are standard.",
             "- Champion spawn rate set to 20%."
     };
 
-    private static final String[] HARD_DESC = {
+    public static final String[] HARD_DESC = {
             "- Potion of healing heals 75% max hp.",
             "- Mobs are Strong, do 10% extra damage, take 10% less damage and have 20% more HP.",
             "- Champion spawn rate set to 30%."
     };
 
-    private static final String[] HELL_DESC = {
+    public static final String[] HELL_DESC = {
             "- Potion of healing heals 50% max hp.",
             "- Mobs are Immortal, do 25% more damage, take 20% less damage and have 35% more HP.",
             "- Champion spawn rate set to 40%.",
@@ -62,7 +65,7 @@ public enum Difficulties {
             "- Hero gains 1 less maxHP on leveling."
     };
 
-    private static final String[] SUICIDE_DESC = {
+    public static final String[] SUICIDE_DESC = {
             "- Potion of healing heals 25% max hp.",
             "- Mobs are Godlike, do 45% more damage, take 30% less damage and have 60% more HP.",
             "- Champion spawn rate set to 50%.",
@@ -70,7 +73,7 @@ public enum Difficulties {
             "- Hero gains 3 less maxHP on leveling."
     };
 
-    private static final String[] JUST_KILL_ME_DESC = {
+    public static final String[] JUST_KILL_ME_DESC = {
             "- Potion of healing heals 10% max hp.",
             "- Mobs are Deities, do 60% more damage, take 40% less damage and have 75% more HP.",
             "- Champion spawn rate set to 100%.",
@@ -98,21 +101,21 @@ public enum Difficulties {
         return "";
     }
 
-    private String description() {
+    public String description() {
 
         switch (this) {
             case EASY:
-                return join(EASY_DESC);
+                return join("\n", EASY_DESC);
             case NORMAL:
-                return join(NORMAL_DESC);
+                return join("\n", NORMAL_DESC);
             case HARD:
-                return join(HARD_DESC);
+                return join("\n", HARD_DESC);
             case HELL:
-                return join(HELL_DESC);
+                return join("\n", HELL_DESC);
             case SUICIDE:
-                return join(SUICIDE_DESC);
+                return join("\n", SUICIDE_DESC);
             case JUSTKILLME:
-                return join(JUST_KILL_ME_DESC);
+                return join("\n", JUST_KILL_ME_DESC);
         }
         return "";
     }
@@ -156,7 +159,7 @@ public enum Difficulties {
         return championChanceNatural() + championOffset;
     }
 
-    private int championChanceNatural() {
+    public int championChanceNatural() {
 
         switch (this) {
             case EASY:
@@ -179,7 +182,7 @@ public enum Difficulties {
         return naturalDamageModifier() + attOffset;
     }
 
-    private float naturalDamageModifier() {
+    public float naturalDamageModifier() {
 
         switch (this) {
             case EASY:
@@ -204,7 +207,7 @@ public enum Difficulties {
         return naturalMobDefenceModifier() + defenceOffset;
     }
 
-    private float naturalMobDefenceModifier() { // dmg *= this
+    public float naturalMobDefenceModifier() { // dmg *= this
 
         switch (this) {
             case EASY:
@@ -228,7 +231,7 @@ public enum Difficulties {
         return naturalMobHPModifier() + hpOffset;
     }
 
-    private float naturalMobHPModifier() {
+    public float naturalMobHPModifier() {
 
         switch (this) {
             case EASY:
@@ -369,7 +372,7 @@ public enum Difficulties {
         if (disable && disabledChampions.size() == 3)
             return false;
 
-        if (disable && !disableChampion(champType))
+        if (disable && disableChampion(champType) == false)
             disabledChampions.add(champType);
 
         if (!disable && disableChampion(champType))
@@ -430,14 +433,14 @@ public enum Difficulties {
         return diff == 0 ? 1 : (diff == 1 ? 0 : diff);
     }
 
-    static String join(String... data) {
+    static String join(String delim, String... data) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < data.length; i++) {
             sb.append(data[i]);
             if (i >= data.length - 1) {
                 break;
             }
-            sb.append("\n");
+            sb.append(delim);
         }
         return sb.toString();
     }

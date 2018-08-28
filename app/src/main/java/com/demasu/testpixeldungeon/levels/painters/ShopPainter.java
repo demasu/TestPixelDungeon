@@ -72,7 +72,7 @@ public class ShopPainter extends Painter {
         for (int i = 0; i < range.length; i++) {
 
             if (skip > 0) {
-                if (!(range[i] instanceof Ankh) && !(range[i] instanceof Bag)) {
+                if (range[i] instanceof Ankh == false && range[i] instanceof Bag == false) {
                     skip--;
                     continue; // Shop can't fit item and it's not important
                 }
@@ -101,7 +101,7 @@ public class ShopPainter extends Painter {
 
     private static Item[] range() {
 
-        ArrayList<Item> items = new ArrayList<>();
+        ArrayList<Item> items = new ArrayList<Item>();
 
         switch (Dungeon.depth) {
             case 1:

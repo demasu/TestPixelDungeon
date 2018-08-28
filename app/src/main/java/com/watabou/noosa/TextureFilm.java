@@ -28,12 +28,12 @@ public class TextureFilm {
 
     private static final RectF FULL = new RectF(0, 0, 1, 1);
 
-    private final int texWidth;
-    private final int texHeight;
+    private int texWidth;
+    private int texHeight;
 
-    final HashMap<Object, RectF> frames = new HashMap<>();
+    protected HashMap<Object, RectF> frames = new HashMap<Object, RectF>();
 
-    TextureFilm(Object tx) {
+    public TextureFilm(Object tx) {
 
         SmartTexture texture = TextureCache.get(tx);
 
@@ -88,7 +88,7 @@ public class TextureFilm {
         }
     }
 
-    void add(Object id, RectF rect) {
+    public void add(Object id, RectF rect) {
         frames.put(id, rect);
     }
 

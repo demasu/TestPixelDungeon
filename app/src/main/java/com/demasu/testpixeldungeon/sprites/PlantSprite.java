@@ -30,7 +30,7 @@ public class PlantSprite extends Image {
 
     private static final float DELAY = 0.2f;
 
-    private enum State {
+    private static enum State {
         GROWING, NORMAL, WITHERING
     }
 
@@ -71,7 +71,7 @@ public class PlantSprite extends Image {
         time = DELAY;
     }
 
-    private void reset(int image) {
+    public void reset(int image) {
         frame(frames.get(image));
     }
 

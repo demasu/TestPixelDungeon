@@ -34,9 +34,10 @@ public class FlameParticle extends PixelParticle.Shrinking {
             return true;
         }
 
+        ;
     };
 
-    private FlameParticle() {
+    public FlameParticle() {
         super();
 
         color(0xEE7722);
@@ -45,7 +46,7 @@ public class FlameParticle extends PixelParticle.Shrinking {
         acc.set(0, -80);
     }
 
-    private void reset(float x, float y) {
+    public void reset(float x, float y) {
         revive();
 
         this.x = x;

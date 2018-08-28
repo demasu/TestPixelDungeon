@@ -28,7 +28,7 @@ import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.Utils;
 
-class WndItem extends Window {
+public class WndItem extends Window {
 
     private static final float BUTTON_WIDTH = 36;
     private static final float BUTTON_HEIGHT = 16;
@@ -79,6 +79,7 @@ class WndItem extends Window {
                         owner.hide();
                     }
 
+                    ;
                 };
                 btn.setSize(Math.max(BUTTON_WIDTH, btn.reqWidth()), BUTTON_HEIGHT);
                 if (x + btn.width() > WIDTH) {

@@ -25,7 +25,7 @@ import com.watabou.glwrap.Shader;
 public class Script extends Program {
 
     private static final HashMap<Class<? extends Script>, Script> all =
-            new HashMap<>();
+            new HashMap<Class<? extends Script>, Script>();
 
     private static Script curScript = null;
     private static Class<? extends Script> curScriptClass = null;
@@ -68,7 +68,7 @@ public class Script extends Program {
         curScriptClass = null;
     }
 
-    protected void compile(String src) {
+    public void compile(String src) {
 
         String[] srcShaders = src.split("//\n");
         attach(Shader.createCompiled(Shader.VERTEX, srcShaders[0]));
@@ -77,6 +77,6 @@ public class Script extends Program {
 
     }
 
-    private void unuse() {
+    public void unuse() {
     }
 }

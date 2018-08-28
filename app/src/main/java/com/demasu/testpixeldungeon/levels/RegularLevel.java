@@ -43,12 +43,12 @@ import com.watabou.utils.Rect;
 
 public abstract class RegularLevel extends Level {
 
-    HashSet<Room> rooms;
+    protected HashSet<Room> rooms;
 
-    Room roomEntrance;
-    Room roomExit;
+    protected Room roomEntrance;
+    protected Room roomExit;
 
-    private ArrayList<Room.Type> specials;
+    protected ArrayList<Room.Type> specials;
 
     public int secretDoors;
 
@@ -83,7 +83,7 @@ public abstract class RegularLevel extends Level {
         roomEntrance.type = Type.ENTRANCE;
         roomExit.type = Type.EXIT;
 
-        HashSet<Room> connected = new HashSet<>();
+        HashSet<Room> connected = new HashSet<Room>();
         connected.add(roomEntrance);
 
         Graph.buildDistanceMap(rooms, roomExit);
@@ -134,7 +134,7 @@ public abstract class RegularLevel extends Level {
             }
         }
 
-        specials = new ArrayList<>(Room.SPECIALS);
+        specials = new ArrayList<Room.Type>(Room.SPECIALS);
         if (Dungeon.bossLevel(Dungeon.depth + 1)) {
             specials.remove(Room.Type.WEAK_FLOOR);
         }
@@ -149,8 +149,8 @@ public abstract class RegularLevel extends Level {
         return true;
     }
 
-    boolean initRooms() {
-        rooms = new HashSet<>();
+    protected boolean initRooms() {
+        rooms = new HashSet<Room>();
         split(new Rect(0, 0, WIDTH - 1, HEIGHT - 1));
 
         if (rooms.size() < 8) {
@@ -167,7 +167,7 @@ public abstract class RegularLevel extends Level {
         return true;
     }
 
-    void assignRoomType() {
+    protected void assignRoomType() {
 
         int specialRooms = 0;
 
@@ -213,7 +213,7 @@ public abstract class RegularLevel extends Level {
 
                 } else if (Random.Int(2) == 0) {
 
-                    HashSet<Room> neigbours = new HashSet<>();
+                    HashSet<Room> neigbours = new HashSet<Room>();
                     for (Room n : r.neigbours) {
                         if (!r.connected.containsKey(n) &&
                                 !Room.SPECIALS.contains(n.type) &&
@@ -253,7 +253,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    void paintWater() {
+    protected void paintWater() {
         boolean[] lake = water();
         for (int i = 0; i < LENGTH; i++) {
             if (map[i] == Terrain.EMPTY && lake[i]) {
@@ -262,7 +262,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    void paintGrass() {
+    protected void paintGrass() {
         boolean[] grass = grass();
 
         if (feeling == Feeling.GRASS) {
@@ -294,7 +294,7 @@ public abstract class RegularLevel extends Level {
 
     protected abstract boolean[] grass();
 
-    void placeTraps() {
+    protected void placeTraps() {
 
         int nTraps = nTraps();
         float[] trapChances = trapChances();
@@ -334,18 +334,19 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    int nTraps() {
+    protected int nTraps() {
         return Dungeon.depth <= 1 ? 0 : Random.Int(1, rooms.size() + Dungeon.depth);
     }
 
-    private float[] trapChances() {
-        return new float[]{1, 1, 1, 1, 1, 1, 1, 1};
+    protected float[] trapChances() {
+        float[] chances = {1, 1, 1, 1, 1, 1, 1, 1};
+        return chances;
     }
 
-    final int minRoomSize = 7;
-    private final int maxRoomSize = 9;
+    protected int minRoomSize = 7;
+    protected int maxRoomSize = 9;
 
-    private void split(Rect rect) {
+    protected void split(Rect rect) {
 
         int w = rect.width();
         int h = rect.height();
@@ -381,7 +382,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    void paint() {
+    protected void paint() {
 
         for (Room r : rooms) {
             if (r.type != Type.NULL) {
@@ -421,7 +422,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    void paintDoors(Room r) {
+    protected void paintDoors(Room r) {
         for (Room n : r.connected.keySet()) {
 
             if (joinRooms(r, n)) {
@@ -466,7 +467,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    private boolean joinRooms(Room r, Room n) {
+    protected boolean joinRooms(Room r, Room n) {
 
         if (r.type != Room.Type.STANDARD || n.type != Room.Type.STANDARD) {
             return false;
@@ -628,7 +629,7 @@ public abstract class RegularLevel extends Level {
         }
     }
 
-    private Room randomRoom(Room.Type type, int tries) {
+    protected Room randomRoom(Room.Type type, int tries) {
         for (int i = 0; i < tries; i++) {
             Room room = Random.element(rooms);
             if (room.type == type) {
@@ -648,7 +649,7 @@ public abstract class RegularLevel extends Level {
         return null;
     }
 
-    private int randomDropCell() {
+    protected int randomDropCell() {
         while (true) {
             Room room = randomRoom(Room.Type.STANDARD, 1);
             if (room != null) {
@@ -688,7 +689,7 @@ public abstract class RegularLevel extends Level {
 
         // This works
         Collection<Bundlable> tmp = bundle.getCollection("rooms");
-        rooms = new HashSet<>();
+        rooms = new HashSet<Room>();
 
         for (Bundlable item : tmp) {
             rooms.add((Room) item);

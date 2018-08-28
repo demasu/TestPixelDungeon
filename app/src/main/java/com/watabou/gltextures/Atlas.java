@@ -23,15 +23,15 @@ import android.graphics.RectF;
 
 public class Atlas {
 
-    private final SmartTexture tx;
+    public SmartTexture tx;
 
-    private final HashMap<Object, RectF> namedFrames;
+    protected HashMap<Object, RectF> namedFrames;
 
-    private float uvLeft;
-    private float uvTop;
-    private float uvWidth;
-    private float uvHeight;
-    private int cols;
+    protected float uvLeft;
+    protected float uvTop;
+    protected float uvWidth;
+    protected float uvHeight;
+    protected int cols;
 
     public Atlas(SmartTexture tx) {
 
@@ -45,7 +45,7 @@ public class Atlas {
         add(key, uvRect(tx, left, top, right, bottom));
     }
 
-    private void add(Object key, RectF rect) {
+    public void add(Object key, RectF rect) {
         namedFrames.put(key, rect);
     }
 
@@ -53,11 +53,11 @@ public class Atlas {
         grid(width, tx.height);
     }
 
-    private void grid(int width, int height) {
+    public void grid(int width, int height) {
         grid(0, 0, width, height, tx.width / width);
     }
 
-    private void grid(int left, int top, int width, int height, int cols) {
+    public void grid(int left, int top, int width, int height, int cols) {
         uvLeft = (float) left / tx.width;
         uvTop = (float) top / tx.height;
         uvWidth = (float) width / tx.width;
@@ -85,7 +85,7 @@ public class Atlas {
         return rect.height() * tx.height;
     }
 
-    private static RectF uvRect(SmartTexture tx, int left, int top, int right, int bottom) {
+    public static RectF uvRect(SmartTexture tx, int left, int top, int right, int bottom) {
         return new RectF(
                 (float) left / tx.width,
                 (float) top / tx.height,

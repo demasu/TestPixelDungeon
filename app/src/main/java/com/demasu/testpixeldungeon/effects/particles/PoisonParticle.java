@@ -36,6 +36,7 @@ public class PoisonParticle extends PixelParticle {
             return true;
         }
 
+        ;
     };
 
     public static final Emitter.Factory SPLASH = new Factory() {
@@ -49,9 +50,10 @@ public class PoisonParticle extends PixelParticle {
             return true;
         }
 
+        ;
     };
 
-    private PoisonParticle() {
+    public PoisonParticle() {
         super();
 
         lifespan = 0.6f;
@@ -59,7 +61,7 @@ public class PoisonParticle extends PixelParticle {
         acc.set(0, +30);
     }
 
-    private void resetMissile(float x, float y) {
+    public void resetMissile(float x, float y) {
         revive();
 
         this.x = x;
@@ -70,7 +72,7 @@ public class PoisonParticle extends PixelParticle {
         speed.polar(-Random.Float(3.1415926f), Random.Float(6));
     }
 
-    private void resetSplash(float x, float y) {
+    public void resetSplash(float x, float y) {
         revive();
 
         this.x = x;

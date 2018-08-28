@@ -27,9 +27,9 @@ public class DoubleStab extends ActiveSkill2 {
 
     @Override
     public boolean doubleStab() {
-        if (!active || Dungeon.hero.MP < getManaCost())
+        if (active == false || Dungeon.hero.MP < getManaCost())
             return false;
-        else if (!onDouble) {
+        else if (onDouble == false) {
             onDouble = true;
             castTextYell();
             Dungeon.hero.MP -= getManaCost();

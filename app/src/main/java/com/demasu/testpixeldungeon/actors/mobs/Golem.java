@@ -92,7 +92,7 @@ public class Golem extends Mob {
                         "most controllable of all. Despite this, the tiniest mistake in the ritual could cause an outbreak.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<>();
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
 
     static {
         RESISTANCES.add(ScrollOfPsionicBlast.class);
@@ -103,7 +103,7 @@ public class Golem extends Mob {
         return RESISTANCES;
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 
     static {
         IMMUNITIES.add(Amok.class);

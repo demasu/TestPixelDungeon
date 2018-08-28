@@ -123,11 +123,11 @@ public class BadgesScene extends PixelScene {
 
     private static class BadgeButton extends Button {
 
-        private final Badges.Badge badge;
+        private Badges.Badge badge;
 
-        private final Image icon;
+        private Image icon;
 
-        BadgeButton(Badges.Badge badge) {
+        public BadgeButton(Badges.Badge badge) {
             super();
 
             this.badge = badge;

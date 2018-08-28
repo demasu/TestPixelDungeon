@@ -66,9 +66,9 @@ public class Shock extends Weapon.Enchantment {
         return String.format(TXT_SHOCKING, weaponName);
     }
 
-    private final ArrayList<Char> affected = new ArrayList<>();
+    private ArrayList<Char> affected = new ArrayList<Char>();
 
-    private final int[] points = new int[20];
+    private int[] points = new int[20];
     private int nPoints;
 
     private void hit(Char ch, int damage) {
@@ -78,14 +78,14 @@ public class Shock extends Weapon.Enchantment {
         }
 
         affected.add(ch);
-        ch.damage(Level.water[ch.pos] && !ch.flying ? damage * 2 : damage, LightningTrap.LIGHTNING);
+        ch.damage(Level.water[ch.pos] && !ch.flying ? (int) (damage * 2) : damage, LightningTrap.LIGHTNING);
 
         ch.sprite.centerEmitter().burst(SparkParticle.FACTORY, 3);
         ch.sprite.flash();
 
         points[nPoints++] = ch.pos;
 
-        HashSet<Char> ns = new HashSet<>();
+        HashSet<Char> ns = new HashSet<Char>();
         for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
             Char n = Actor.findChar(ch.pos + Level.NEIGHBOURS8[i]);
             if (n != null && !affected.contains(n)) {

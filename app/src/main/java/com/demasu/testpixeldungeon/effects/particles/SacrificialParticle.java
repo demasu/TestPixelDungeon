@@ -34,9 +34,10 @@ public class SacrificialParticle extends PixelParticle.Shrinking {
             return true;
         }
 
+        ;
     };
 
-    private SacrificialParticle() {
+    public SacrificialParticle() {
         super();
 
         color(0x4488EE);
@@ -45,7 +46,7 @@ public class SacrificialParticle extends PixelParticle.Shrinking {
         acc.set(0, -100);
     }
 
-    private void reset(float x, float y) {
+    public void reset(float x, float y) {
         revive();
 
         this.x = x;

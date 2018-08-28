@@ -28,6 +28,7 @@ import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
+import com.demasu.testpixeldungeon.actors.skills.CurrentSkills;
 import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.levels.Level;
@@ -44,7 +45,11 @@ import com.demasu.testpixeldungeon.windows.WndInfoCell;
 import com.demasu.testpixeldungeon.windows.WndInfoItem;
 import com.demasu.testpixeldungeon.windows.WndInfoMob;
 import com.demasu.testpixeldungeon.windows.WndInfoPlant;
+import com.demasu.testpixeldungeon.windows.WndMerc;
+import com.demasu.testpixeldungeon.windows.WndMercs;
 import com.demasu.testpixeldungeon.windows.WndMessage;
+import com.demasu.testpixeldungeon.windows.WndRatKing;
+import com.demasu.testpixeldungeon.windows.WndSkill;
 import com.demasu.testpixeldungeon.windows.WndSkills;
 import com.demasu.testpixeldungeon.windows.WndTradeItem;
 
@@ -65,7 +70,7 @@ public class MissionToolbar extends Component {
 
     private boolean lastEnabled = true;
 
-    private static boolean tapAgainToSearch = false;
+    public static boolean tapAgainToSearch = false;
 
     private static MissionToolbar instance;
 
@@ -87,11 +92,14 @@ public class MissionToolbar extends Component {
                 Dungeon.hero.rest(false);
             }
 
+            ;
+
             protected boolean onLongClick() {
                 Dungeon.hero.rest(true);
                 return true;
             }
 
+            ;
         });
 
         add(btnSkill = new Tool(20, 7, 20, 25) {
@@ -100,11 +108,14 @@ public class MissionToolbar extends Component {
                 GameScene.show(new WndSkills(null, null));
             }
 
+            ;
+
             protected boolean onLongClick() {
                 GameScene.show(new WndSkills(null, null));
                 return true;
             }
 
+            ;
         });
 
 
@@ -114,11 +125,14 @@ public class MissionToolbar extends Component {
                 Dungeon.hero.heroSkills.showLastUsed();
             }
 
+            ;
+
             protected boolean onLongClick() {
                 Dungeon.hero.heroSkills.showLastUsed();
                 return true;
             }
 
+            ;
         });
 
         add(btnMerc = new Tool(252, 7, 20, 25) {
@@ -128,11 +142,14 @@ public class MissionToolbar extends Component {
 
             }
 
+            ;
+
             protected boolean onLongClick() {
                 Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, "I don't trust mercs");
                 return true;
             }
 
+            ;
         });
 
 
@@ -149,7 +166,7 @@ public class MissionToolbar extends Component {
         add(btnInfoSearch = new Tool(107, 7, 20, 25) {
             @Override
             protected void onClick() {
-                if (!tapAgainToSearch) {
+                if (tapAgainToSearch == false) {
                     GameScene.selectCell(informer);
                 } else {
                     Dungeon.hero.search(true);
@@ -177,6 +194,8 @@ public class MissionToolbar extends Component {
                 return true;
             }
 
+            ;
+
             @Override
             protected void createChildren() {
                 super.createChildren();
@@ -184,12 +203,15 @@ public class MissionToolbar extends Component {
                 add(gold);
             }
 
+            ;
+
             @Override
             protected void layout() {
                 super.layout();
                 gold.fill(this);
             }
 
+            ;
         });
 
         add(btnQuick1 = new QuickslotTool(83, 7, 22, 25, true));
@@ -263,7 +285,7 @@ public class MissionToolbar extends Component {
         instance.layout();
     }
 
-    private static final CellSelector.Listener informer = new CellSelector.Listener() {
+    private static CellSelector.Listener informer = new CellSelector.Listener() {
         @Override
         public void onSelect(Integer cell) {
 
@@ -323,9 +345,9 @@ public class MissionToolbar extends Component {
 
         private static final int BGCOLOR = 0x7B8073;
 
-        Image base;
+        protected Image base;
 
-        Tool(int x, int y, int width, int height) {
+        public Tool(int x, int y, int width, int height) {
             super();
 
             base.frame(x, y, width, height);
@@ -364,7 +386,7 @@ public class MissionToolbar extends Component {
             }
         }
 
-        void enable(boolean value) {
+        public void enable(boolean value) {
             if (value != active) {
                 if (value) {
                     base.resetColor();
@@ -380,7 +402,7 @@ public class MissionToolbar extends Component {
 
         private QuickSlot slot;
 
-        QuickslotTool(int x, int y, int width, int height, boolean primary) {
+        public QuickslotTool(int x, int y, int width, int height, boolean primary) {
             super(x, y, width, height);
             if (primary) {
                 slot.primary();
@@ -419,7 +441,7 @@ public class MissionToolbar extends Component {
         private float dstY;
         private float left;
 
-        PickedUpItem() {
+        public PickedUpItem() {
             super();
 
             originToCenter();
@@ -429,7 +451,7 @@ public class MissionToolbar extends Component {
                             false;
         }
 
-        void reset(Item item, float dstX, float dstY) {
+        public void reset(Item item, float dstX, float dstY) {
             view(item.image(), item.glowing());
 
             active =

@@ -28,7 +28,7 @@ import com.watabou.utils.Random;
 
 public class Degradation extends Group {
 
-    private static final int[] WEAPON = {
+    private static int[] WEAPON = {
             +2, -2,
             +1, -1,
             0, 0,
@@ -38,7 +38,7 @@ public class Degradation extends Group {
             0, +2
     };
 
-    private static final int[] ARMOR = {
+    private static int[] ARMOR = {
             -2, -1,
             -1, -1,
             +1, -1,
@@ -55,7 +55,7 @@ public class Degradation extends Group {
             +1, +2
     };
 
-    private static final int[] RING = {
+    private static int[] RING = {
             0, -1,
             -1, 0,
             0, 0,
@@ -67,7 +67,7 @@ public class Degradation extends Group {
             +1, +2
     };
 
-    private static final int[] WAND = {
+    private static int[] WAND = {
             +2, -2,
             +1, -1,
             0, 0,
@@ -121,7 +121,7 @@ public class Degradation extends Group {
         private static final int COLOR = 0xFF4422;
         private static final int SIZE = 3;
 
-        Speck(float x0, float y0, int mx, int my) {
+        public Speck(float x0, float y0, int mx, int my) {
 
             super();
             color(COLOR);

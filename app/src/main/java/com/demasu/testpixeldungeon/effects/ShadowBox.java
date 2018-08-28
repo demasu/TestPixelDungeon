@@ -23,7 +23,7 @@ import com.demasu.testpixeldungeon.Assets;
 
 public class ShadowBox extends NinePatch {
 
-    private static final float SIZE = 16;
+    public static final float SIZE = 16;
 
     public ShadowBox() {
         super(Assets.SHADOW, 1);

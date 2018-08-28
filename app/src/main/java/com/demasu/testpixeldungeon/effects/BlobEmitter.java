@@ -28,7 +28,7 @@ public class BlobEmitter extends Emitter {
     private static final int WIDTH = Blob.WIDTH;
     private static final int LENGTH = Blob.LENGTH;
 
-    private final Blob blob;
+    private Blob blob;
 
     public BlobEmitter(Blob blob) {
 

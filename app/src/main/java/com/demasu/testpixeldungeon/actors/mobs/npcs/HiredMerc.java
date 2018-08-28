@@ -46,15 +46,15 @@ import java.util.HashSet;
  */
 public class HiredMerc extends NPC {
 
-    public enum MERC_TYPES {
+    public static enum MERC_TYPES {
         Brute("Brute"), Wizard("Wizard"), Thief("Thief"), Archer("Archer"), ArcherMaiden("ArcherMaiden");
-        String type = "Brute";
+        public String type = "Brute";
 
         MERC_TYPES(String type) {
             this.type = type;
         }
 
-        String getName() {
+        public String getName() {
             return type;
         }
 
@@ -75,17 +75,17 @@ public class HiredMerc extends NPC {
             return 1;
         }
 
-        int getDamage(int level) {
+        public int getDamage(int level) {
             if (this == ArcherMaiden || this == Archer)
                 return getDamageRanged(level);
             return getStrength(level) > 10 ? Random.IntRange(1, getStrength(level) - 9) : 1;
         }
 
-        int getDamageRanged(int level) {
+        public int getDamageRanged(int level) {
             return getStrength(level) > 3 ? Random.IntRange(1, getStrength(level) - 3) : 1;
         }
 
-        int getDefence(int level) {
+        public int getDefence(int level) {
             switch (this) {
                 case Brute:
                     return 2 * level;
@@ -118,7 +118,7 @@ public class HiredMerc extends NPC {
         }
 
 
-        float speedModifier() {
+        public float speedModifier() {
             switch (this) {
                 case Brute:
                     return 0.7f;
@@ -156,7 +156,6 @@ public class HiredMerc extends NPC {
             return ItemSpriteSheet.WEAPON;
         }
 
-        @SuppressWarnings("SameReturnValue")
         public int getArmorPlaceHolder() {
             return ItemSpriteSheet.ARMOR;
         }
@@ -238,20 +237,20 @@ public class HiredMerc extends NPC {
         public int getStrength(int level) {
             switch (this) {
                 case Brute:
-                    return 13 + level / 3;
+                    return 13 + (int) (level / 3);
                 case Wizard:
-                    return 10 + level / 5;
+                    return 10 + (int) (level / 5);
                 case Thief:
-                    return 13 + level / 4;
+                    return 13 + (int) (level / 4);
                 case Archer:
-                    return 11 + level / 4;
+                    return 11 + (int) (level / 4);
                 case ArcherMaiden:
-                    return 12 + level / 4;
+                    return 12 + (int) (level / 4);
             }
             return 0;
         }
 
-        int getSpecialSkillTime() {
+        public int getSpecialSkillTime() {
             switch (this) {
                 case Wizard:
                     return 100;
@@ -260,20 +259,20 @@ public class HiredMerc extends NPC {
         }
     }
 
-    public static final boolean archerMaidenUnlocked = false;
+    public static boolean archerMaidenUnlocked = false;
     public static final String MAIDEN_UNLOCK_BY = "Please consider donating to unlock this feature.";
     public static final int COST_RATE = 15;
 
-    private static final String TXT_LEVEL_UP = "Stronger by the second...";
-    private static final String TXT_CANT_EQUIP = "Too heavy for me Sir";
+    public static final String TXT_LEVEL_UP = "Stronger by the second...";
+    public static final String TXT_CANT_EQUIP = "Too heavy for me Sir";
 
     public MERC_TYPES mercType = MERC_TYPES.Brute;
 
 
-    private int rangedAttackCooldown = 0;
-    private static final int RANGED_COOLDOWN = 5;
+    public int rangedAttackCooldown = 0;
+    public static final int RANGED_COOLDOWN = 5;
 
-    private int skillCounter = 90;
+    public int skillCounter = 90;
 
     public Skill skill = null;
     public Skill skillb = null;
@@ -301,13 +300,13 @@ public class HiredMerc extends NPC {
         state = WANDERING;
     }
 
-    protected int level;
+    public int level;
 
     private static final String LEVEL = "level";
     private static final String WEAPON = "weapon";
     private static final String ARMOR = "armor";
 
-    protected HiredMerc() {
+    public HiredMerc() {
 
     }
 
@@ -323,7 +322,7 @@ public class HiredMerc extends NPC {
         unEquipWeapon();
         weapon = item;
 
-        if (!canEquip(weapon)) {
+        if (canEquip(weapon) == false) {
             unEquipWeapon();
             sprite.showStatus(CharSprite.NEGATIVE, TXT_CANT_EQUIP);
         }
@@ -339,7 +338,7 @@ public class HiredMerc extends NPC {
     public void equipArmor(Item item) {
         unEquipArmor();
         armor = item;
-        if (!canEquip(armor)) {
+        if (canEquip(armor) == false) {
             unEquipArmor();
             sprite.showStatus(CharSprite.NEGATIVE, TXT_CANT_EQUIP);
         } else
@@ -375,10 +374,12 @@ public class HiredMerc extends NPC {
         return ((Armor) armor).tier;
     }
 
-    private boolean canEquip(Item item) {
+    public boolean canEquip(Item item) {
         if (item instanceof Weapon)
             return mercType.getStrength(level) >= ((Weapon) item).STR;
-        return item instanceof Armor && mercType.getStrength(level) >= ((Armor) item).STR;
+        if (item instanceof Armor)
+            return mercType.getStrength(level) >= ((Armor) item).STR;
+        return false;
     }
 
 
@@ -569,7 +570,7 @@ public class HiredMerc extends NPC {
 
         rangedAttackCooldown++;
 
-        if (!hackFix) {
+        if (hackFix == false) {
             ((MercSprite) super.sprite).updateArmor();
             hackFix = true;
         }
@@ -614,7 +615,7 @@ public class HiredMerc extends NPC {
     protected Char chooseEnemy() {
 
         if (enemy == null || !enemy.isAlive()) {
-            HashSet<Mob> enemies = new HashSet<>();
+            HashSet<Mob> enemies = new HashSet<Mob>();
             for (Mob mob : Dungeon.level.mobs) {
                 if (mob.hostile && Level.fieldOfView[mob.pos]) {
                     enemies.add(mob);
@@ -636,7 +637,7 @@ public class HiredMerc extends NPC {
                 mercType.getDescription();
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 
     static {
         IMMUNITIES.add(Poison.class);

@@ -113,7 +113,7 @@ public class CursePersonification extends Mob {
                         "Its face bears an expression of despair.";
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 
     static {
         IMMUNITIES.add(Death.class);

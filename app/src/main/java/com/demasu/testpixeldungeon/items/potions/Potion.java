@@ -40,7 +40,7 @@ import com.watabou.utils.Bundle;
 
 public class Potion extends Item {
 
-    private static final String AC_DRINK = "DRINK";
+    public static final String AC_DRINK = "DRINK";
 
     private static final String TXT_HARMFUL = "Harmful potion!";
     private static final String TXT_BENEFICIAL = "Beneficial potion";
@@ -97,7 +97,7 @@ public class Potion extends Item {
 
     @SuppressWarnings("unchecked")
     public static void initColors() {
-        handler = new ItemStatusHandler<>((Class<? extends Potion>[]) potions, colors, images, 1);
+        handler = new ItemStatusHandler<Potion>((Class<? extends Potion>[]) potions, colors, images, 1);
     }
 
     public static void save(Bundle bundle) {
@@ -106,7 +106,7 @@ public class Potion extends Item {
 
     @SuppressWarnings("unchecked")
     public static void restore(Bundle bundle) {
-        handler = new ItemStatusHandler<>((Class<? extends Potion>[]) potions, colors, images, bundle);
+        handler = new ItemStatusHandler<Potion>((Class<? extends Potion>[]) potions, colors, images, bundle);
     }
 
     public Potion() {
@@ -140,6 +140,7 @@ public class Potion extends Item {
                                 }
                             }
 
+                            ;
                         }
                 );
 
@@ -175,6 +176,7 @@ public class Potion extends Item {
                             }
                         }
 
+                        ;
                     }
             );
 
@@ -183,7 +185,7 @@ public class Potion extends Item {
         }
     }
 
-    private void drink(Hero hero) {
+    protected void drink(Hero hero) {
 
         detach(hero.belongings.backpack);
 
@@ -213,7 +215,7 @@ public class Potion extends Item {
         }
     }
 
-    void apply(Hero hero) {
+    protected void apply(Hero hero) {
         shatter(hero.pos);
     }
 
@@ -243,7 +245,7 @@ public class Potion extends Item {
         return this;
     }
 
-    private String color() {
+    protected String color() {
         return color;
     }
 
@@ -282,7 +284,7 @@ public class Potion extends Item {
         return handler.known().size() == potions.length;
     }
 
-    void splash(int cell) {
+    protected void splash(int cell) {
         final int color = ItemSprite.pick(image, 8, 10);
         Splash.at(cell, color, 5);
     }

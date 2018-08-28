@@ -76,7 +76,7 @@ public class Heap implements Bundlable {
 
     public ItemSprite sprite;
 
-    public LinkedList<Item> items = new LinkedList<>();
+    public LinkedList<Item> items = new LinkedList<Item>();
 
     public int image() {
         switch (type) {
@@ -345,7 +345,7 @@ public class Heap implements Bundlable {
         Sample.INSTANCE.play(Assets.SND_BURNING);
     }
 
-    private static void evaporateFX(int pos) {
+    public static void evaporateFX(int pos) {
         CellEmitter.get(pos).burst(Speck.factory(Speck.STEAM), 5);
     }
 
@@ -380,7 +380,7 @@ public class Heap implements Bundlable {
         // This works
         Collection<Bundlable> tmp = bundle.getCollection(ITEMS);
 
-        items = new LinkedList<>();
+        items = new LinkedList<Item>();
 
         for (Bundlable item : tmp) {
             items.add((Item) item);

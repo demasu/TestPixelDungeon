@@ -34,7 +34,7 @@ public final class ShadowCaster {
     private static boolean[] losBlocking;
     private static boolean[] fieldOfView;
 
-    private static final int[][] rounding;
+    private static int[][] rounding;
 
     static {
         rounding = new int[MAX_DISTANCE + 1][];
@@ -46,7 +46,7 @@ public final class ShadowCaster {
         }
     }
 
-    private static final Obstacles obs = new Obstacles();
+    private static Obstacles obs = new Obstacles();
 
     public static void castShadow(int x, int y, boolean[] fieldOfView, int distance) {
 
@@ -110,19 +110,19 @@ public final class ShadowCaster {
 
     private static final class Obstacles {
 
-        private static final int SIZE = (MAX_DISTANCE + 1) * (MAX_DISTANCE + 1) / 2;
-        private static final float[] a1 = new float[SIZE];
-        private static final float[] a2 = new float[SIZE];
+        private static int SIZE = (MAX_DISTANCE + 1) * (MAX_DISTANCE + 1) / 2;
+        private static float[] a1 = new float[SIZE];
+        private static float[] a2 = new float[SIZE];
 
         private int length;
         private int limit;
 
-        void reset() {
+        public void reset() {
             length = 0;
             limit = 0;
         }
 
-        void add(float o1, float o2) {
+        public void add(float o1, float o2) {
 
             if (length > limit && o1 <= a2[length - 1]) {
 
@@ -138,7 +138,7 @@ public final class ShadowCaster {
 
         }
 
-        boolean isBlocked(float a) {
+        public boolean isBlocked(float a) {
             for (int i = 0; i < limit; i++) {
                 if (a >= a1[i] && a <= a2[i]) {
                     return true;
@@ -147,7 +147,7 @@ public final class ShadowCaster {
             return false;
         }
 
-        void nextRow() {
+        public void nextRow() {
             limit = length;
         }
     }

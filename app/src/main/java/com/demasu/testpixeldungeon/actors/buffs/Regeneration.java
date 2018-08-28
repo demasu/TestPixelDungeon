@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.actors.buffs;
 
 import com.demasu.testpixeldungeon.actors.hero.Hero;
+import com.demasu.testpixeldungeon.actors.skills.CurrentSkills;
 import com.demasu.testpixeldungeon.items.rings.RingOfMending;
 
 public class Regeneration extends Buff {

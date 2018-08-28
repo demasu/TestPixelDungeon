@@ -36,7 +36,7 @@ public class Graph {
             node.distance(Integer.MAX_VALUE);
         }
 
-        LinkedList<Node> queue = new LinkedList<>();
+        LinkedList<Node> queue = new LinkedList<Node>();
 
         focus.distance(0);
         queue.add(focus);
@@ -59,7 +59,7 @@ public class Graph {
     @SuppressWarnings("unchecked")
     public static <T extends Node> List<T> buildPath(Collection<T> nodes, T from, T to) {
 
-        List<T> path = new ArrayList<>();
+        List<T> path = new ArrayList<T>();
 
         T room = from;
         while (room != to) {

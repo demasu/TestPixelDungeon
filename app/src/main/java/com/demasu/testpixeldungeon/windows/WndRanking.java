@@ -59,7 +59,7 @@ public class WndRanking extends WndTabbed {
     private Thread thread;
     private String error = null;
 
-    private final Image busy;
+    private Image busy;
 
     public WndRanking(final String gameFile) {
 
@@ -127,9 +127,9 @@ public class WndRanking extends WndTabbed {
 
     private class RankingTab extends LabeledTab {
 
-        private final Group page;
+        private Group page;
 
-        RankingTab(String label, Group page) {
+        public RankingTab(String label, Group page) {
             super(label);
             this.page = page;
         }
@@ -166,7 +166,7 @@ public class WndRanking extends WndTabbed {
 
         private static final String TXT_DIFF = "Difficulty";
 
-        StatsTab() {
+        public StatsTab() {
             super();
 
             if (Dungeon.hero == null) {
@@ -245,7 +245,7 @@ public class WndRanking extends WndTabbed {
         private int count;
         private float pos;
 
-        ItemsTab() {
+        public ItemsTab() {
             super();
 
             if (Dungeon.hero == null) {
@@ -323,7 +323,7 @@ public class WndRanking extends WndTabbed {
 
     private class BadgesTab extends Group {
 
-        BadgesTab() {
+        public BadgesTab() {
             super();
 
             if (Dungeon.hero == null) {
@@ -345,14 +345,14 @@ public class WndRanking extends WndTabbed {
 
     private class ItemButton extends Button {
 
-        static final int SIZE = 26;
+        public static final int SIZE = 26;
 
-        final Item item;
+        protected Item item;
 
-        ItemSlot slot;
+        protected ItemSlot slot;
         private ColorBlock bg;
 
-        ItemButton(Item item) {
+        public ItemButton(Item item) {
 
             super();
 
@@ -396,9 +396,13 @@ public class WndRanking extends WndTabbed {
             Sample.INSTANCE.play(Assets.SND_CLICK, 0.7f, 0.7f, 1.2f);
         }
 
+        ;
+
         protected void onTouchUp() {
             bg.brightness(1.0f);
         }
+
+        ;
 
         @Override
         protected void onClick() {
@@ -409,7 +413,7 @@ public class WndRanking extends WndTabbed {
     private class LabelledItemButton extends ItemButton {
         private BitmapText name;
 
-        LabelledItemButton(Item item) {
+        public LabelledItemButton(Item item) {
             super(item);
         }
 

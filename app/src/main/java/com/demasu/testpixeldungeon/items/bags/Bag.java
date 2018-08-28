@@ -31,7 +31,7 @@ import com.watabou.utils.Bundle;
 
 public class Bag extends Item implements Iterable<Item> {
 
-    private static final String AC_OPEN = "OPEN";
+    public static final String AC_OPEN = "OPEN";
 
     {
         image = 11;
@@ -41,7 +41,7 @@ public class Bag extends Item implements Iterable<Item> {
 
     public Char owner;
 
-    public final ArrayList<Item> items = new ArrayList<>();
+    public ArrayList<Item> items = new ArrayList<Item>();
 
     public int size = 1;
 
@@ -124,6 +124,7 @@ public class Bag extends Item implements Iterable<Item> {
         for (Bundlable item : bundle.getCollection(ITEMS)) {
             ((Item) item).collect(this);
         }
+        ;
     }
 
     public void restoreFromBundle2(Bundle bundle) {
@@ -131,6 +132,7 @@ public class Bag extends Item implements Iterable<Item> {
         for (Bundlable item : bundle.getCollection(ITEMS2)) {
             ((Item) item).collect(this);
         }
+        ;
     }
 
     public boolean contains(Item item) {

@@ -64,9 +64,9 @@ public class Splash {
 
     private static class SplashFactory extends Emitter.Factory {
 
-        int color;
-        float dir;
-        float cone;
+        public int color;
+        public float dir;
+        public float cone;
 
         @Override
         public void emit(Emitter emitter, int index, float x, float y) {

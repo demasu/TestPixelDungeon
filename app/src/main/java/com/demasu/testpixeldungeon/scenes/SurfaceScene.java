@@ -138,6 +138,7 @@ public class SurfaceScene extends PixelScene {
                 pet.jump();
             }
 
+            ;
         });
 
         for (int i = 0; i < nPatches; i++) {
@@ -190,10 +191,10 @@ public class SurfaceScene extends PixelScene {
         private static final int[] day = {0xFF4488FF, 0xFFCCEEFF};
         private static final int[] night = {0xFF001155, 0xFF335980};
 
-        private final SmartTexture texture;
-        private final FloatBuffer verticesBuffer;
+        private SmartTexture texture;
+        private FloatBuffer verticesBuffer;
 
-        Sky(boolean dayTime) {
+        public Sky(boolean dayTime) {
             super(0, 0, 1, 1);
 
             texture = new Gradient(dayTime ? day : night);
@@ -252,7 +253,7 @@ public class SurfaceScene extends PixelScene {
 
         private static int lastIndex = -1;
 
-        Cloud(float y, boolean dayTime) {
+        public Cloud(float y, boolean dayTime) {
             super(Assets.SURFACE);
 
             int index;
@@ -304,7 +305,7 @@ public class SurfaceScene extends PixelScene {
         private static final int WIDTH = 24;
         private static final int HEIGHT = 28;
 
-        Avatar(HeroClass cl) {
+        public Avatar(HeroClass cl) {
             super(Assets.AVATARS);
             frame(new TextureFilm(texture, WIDTH, HEIGHT).get(cl.ordinal()));
         }
@@ -312,10 +313,10 @@ public class SurfaceScene extends PixelScene {
 
     private static class Pet extends MovieClip implements MovieClip.Listener {
 
-        private final Animation idle;
-        private final Animation jump;
+        private Animation idle;
+        private Animation jump;
 
-        Pet() {
+        public Pet() {
             super(Assets.PET);
 
             TextureFilm frames = new TextureFilm(texture, 16, 16);
@@ -331,7 +332,7 @@ public class SurfaceScene extends PixelScene {
             play(idle);
         }
 
-        void jump() {
+        public void jump() {
             play(jump);
         }
 
@@ -345,18 +346,18 @@ public class SurfaceScene extends PixelScene {
 
     private static class GrassPatch extends Image {
 
-        static final int WIDTH = 16;
-        static final int HEIGHT = 14;
+        public static final int WIDTH = 16;
+        public static final int HEIGHT = 14;
 
-        private final float tx;
-        private final float ty;
+        private float tx;
+        private float ty;
 
         private double a = Random.Float(5);
         private double angle;
 
-        private final boolean forward;
+        private boolean forward;
 
-        GrassPatch(float tx, float ty, boolean forward) {
+        public GrassPatch(float tx, float ty, boolean forward) {
 
             super(Assets.SURFACE);
 

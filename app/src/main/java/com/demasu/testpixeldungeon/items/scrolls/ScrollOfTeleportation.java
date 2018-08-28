@@ -27,7 +27,7 @@ import com.demasu.testpixeldungeon.utils.GLog;
 
 public class ScrollOfTeleportation extends Scroll {
 
-    private static final String TXT_TELEPORTED =
+    public static final String TXT_TELEPORTED =
             "In a blink of an eye you were teleported to another location of the level.";
 
     public static final String TXT_NO_TELEPORT =

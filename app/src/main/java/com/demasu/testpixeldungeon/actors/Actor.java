@@ -62,7 +62,7 @@ public abstract class Actor implements Bundlable {
     protected void onAdd() {
     }
 
-    void onRemove() {
+    protected void onRemove() {
     }
 
     private static final String TIME = "time";
@@ -97,14 +97,14 @@ public abstract class Actor implements Bundlable {
     // **********************
     // *** Static members ***
 
-    private static final HashSet<Actor> all = new HashSet<>();
+    private static HashSet<Actor> all = new HashSet<Actor>();
     private static Actor current;
 
-    private static final SparseArray<Actor> ids = new SparseArray<>();
+    private static SparseArray<Actor> ids = new SparseArray<Actor>();
 
     private static float now = 0;
 
-    private static final Char[] chars = new Char[Level.LENGTH];
+    private static Char[] chars = new Char[Level.LENGTH];
 
     public static void clear() {
 

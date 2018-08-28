@@ -85,7 +85,7 @@ public class MirrorImage extends NPC {
     public int attackProc(Char enemy, int damage) {
         int dmg = super.attackProc(enemy, damage);
 
-        if (!(this instanceof ShadowClone)) {
+        if (this instanceof ShadowClone == false) {
             destroy();
             sprite.die();
         }
@@ -96,7 +96,7 @@ public class MirrorImage extends NPC {
     protected Char chooseEnemy() {
 
         if (enemy == null || !enemy.isAlive()) {
-            HashSet<Mob> enemies = new HashSet<>();
+            HashSet<Mob> enemies = new HashSet<Mob>();
             for (Mob mob : Dungeon.level.mobs) {
                 if (mob.hostile && Level.fieldOfView[mob.pos]) {
                     enemies.add(mob);
@@ -138,7 +138,7 @@ public class MirrorImage extends NPC {
         Dungeon.hero.busy();
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 
     static {
         IMMUNITIES.add(ToxicGas.class);

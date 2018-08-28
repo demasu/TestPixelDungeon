@@ -24,7 +24,7 @@ import com.watabou.utils.Bundle;
 
 public class GamesInProgress {
 
-    private static final HashMap<HeroClass, Info> state = new HashMap<>();
+    private static HashMap<HeroClass, Info> state = new HashMap<HeroClass, Info>();
 
     public static Info check(HeroClass cl) {
 

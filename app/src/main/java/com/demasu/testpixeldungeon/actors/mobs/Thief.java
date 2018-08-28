@@ -33,8 +33,8 @@ import com.watabou.utils.Random;
 
 public class Thief extends Mob {
 
-    private static final String TXT_STOLE = "%s stole %s from you!";
-    private static final String TXT_CARRIES = "\n\n%s is carrying a _%s_. Stolen obviously.";
+    protected static final String TXT_STOLE = "%s stole %s from you!";
+    protected static final String TXT_CARRIES = "\n\n%s is carrying a _%s_. Stolen obviously.";
 
     public Item item;
 
@@ -122,7 +122,7 @@ public class Thief extends Mob {
         return damage;
     }
 
-    boolean steal(Hero hero) {
+    protected boolean steal(Hero hero) {
 
         Item item = hero.belongings.randomUnequipped();
         if (item != null) {

@@ -76,7 +76,8 @@ public class ScrollOfRemoveCurse extends Scroll {
     public static boolean uncurse(Hero hero, Item... items) {
 
         boolean procced = false;
-        for (Item item : items) {
+        for (int i = 0; i < items.length; i++) {
+            Item item = items[i];
             if (item != null && item.cursed) {
                 item.cursed = false;
                 procced = true;

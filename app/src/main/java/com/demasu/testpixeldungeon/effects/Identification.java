@@ -28,7 +28,7 @@ import com.watabou.utils.Random;
 
 public class Identification extends Group {
 
-    private static final int[] DOTS = {
+    private static int[] DOTS = {
             -1, -3,
             0, -3,
             +1, -3,
@@ -69,7 +69,7 @@ public class Identification extends Group {
         private static final int COLOR = 0x4488CC;
         private static final int SIZE = 3;
 
-        Speck(float x0, float y0, int mx, int my) {
+        public Speck(float x0, float y0, int mx, int my) {
 
             super();
             color(COLOR);

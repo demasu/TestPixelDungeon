@@ -21,14 +21,15 @@ package com.demasu.testpixeldungeon.sprites;
 import com.watabou.noosa.MovieClip;
 import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
+import com.demasu.testpixeldungeon.Dungeon;
 
 
 public class SkillSprite extends MovieClip {
 
-    private static final int SIZE = 16;
+    public static final int SIZE = 16;
 
 
-    private static TextureFilm film;
+    protected static TextureFilm film;
 
 
     public SkillSprite() {
@@ -51,8 +52,9 @@ public class SkillSprite extends MovieClip {
     }
 
 
-    public void view(int image) {
+    public SkillSprite view(int image) {
         frame(film.get(image));
+        return this;
     }
 
     @Override

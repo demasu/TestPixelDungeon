@@ -65,7 +65,7 @@ abstract public class MissileWeapon extends Weapon {
         }
     }
 
-    void miss(int cell) {
+    protected void miss(int cell) {
         super.onThrow(cell);
     }
 
@@ -95,6 +95,7 @@ abstract public class MissileWeapon extends Weapon {
                         }
                     }
 
+                    ;
                 }
         );
 
@@ -123,19 +124,23 @@ abstract public class MissileWeapon extends Weapon {
 
         int min = min();
         int max = max();
-        info.append("\n\nAverage damage of this weapon equals to ").append(min + (max - min) / 2).append(" points per hit. ");
+        info.append("\n\nAverage damage of this weapon equals to " + (min + (max - min) / 2) + " points per hit. ");
 
         if (Dungeon.hero.belongings.backpack.items.contains(this)) {
             if (STR > Dungeon.hero.STR()) {
-                info.append("Because of your inadequate strength the accuracy and speed " + "of your attack with this ").append(name).append(" is decreased.");
+                info.append(
+                        "Because of your inadequate strength the accuracy and speed " +
+                                "of your attack with this " + name + " is decreased.");
             }
             if (STR < Dungeon.hero.STR()) {
-                info.append("Because of your excess strength the damage " + "of your attack with this ").append(name).append(" is increased.");
+                info.append(
+                        "Because of your excess strength the damage " +
+                                "of your attack with this " + name + " is increased.");
             }
         }
 
         if (isEquipped(Dungeon.hero)) {
-            info.append("\n\nYou hold the ").append(name).append(" at the ready.");
+            info.append("\n\nYou hold the " + name + " at the ready.");
         }
 
         return info.toString();

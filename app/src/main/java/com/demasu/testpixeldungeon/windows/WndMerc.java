@@ -20,6 +20,7 @@ package com.demasu.testpixeldungeon.windows;
 import android.graphics.RectF;
 
 import com.watabou.gltextures.TextureCache;
+import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.BitmapTextMultiline;
 import com.watabou.noosa.ColorBlock;
 import com.watabou.noosa.Image;
@@ -31,6 +32,7 @@ import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.hero.Storage;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.actors.skills.BranchSkill;
+import com.demasu.testpixeldungeon.actors.skills.Endurance;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.items.Gold;
 import com.demasu.testpixeldungeon.items.Item;
@@ -41,8 +43,12 @@ import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
+import com.demasu.testpixeldungeon.items.wands.Wand;
 import com.demasu.testpixeldungeon.items.weapon.Weapon;
+import com.demasu.testpixeldungeon.items.weapon.melee.MeleeWeapon;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Boomerang;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
+import com.demasu.testpixeldungeon.plants.Plant.Seed;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.sprites.HeroSprite;
@@ -56,7 +62,7 @@ import com.demasu.testpixeldungeon.utils.Utils;
 
 public class WndMerc extends WndTabbed {
 
-    public enum Mode {
+    public static enum Mode {
         ALL,
         UNIDENTIFED,
         UPGRADEABLE,
@@ -69,23 +75,29 @@ public class WndMerc extends WndTabbed {
         SEED
     }
 
-    private static final int COLS_P = 4;
-    private static final int COLS_L = 6;
+    protected static final int COLS_P = 4;
+    protected static final int COLS_L = 6;
 
-    private static final int SLOT_SIZE = 28;
-    private static final int SLOT_MARGIN = 1;
+    protected static final int SLOT_SIZE = 28;
+    protected static final int SLOT_MARGIN = 1;
 
     protected static final int TAB_WIDTH = 25;
 
     protected static final int TITLE_HEIGHT = 12;
 
-    private final Listener listener;
+    private Listener listener;
     private WndMerc.Mode mode;
     private String title;
+
+    private int nCols;
+    private int nRows;
 
     protected int count;
     protected int col;
     protected int row;
+
+    private static Mode lastMode;
+    private static Storage lastBag;
 
     private static final int WIDTH = 120;
 
@@ -100,11 +112,11 @@ public class WndMerc extends WndTabbed {
         this.mode = mode;
         this.title = title;
 
-        Mode lastMode = mode;
-        Storage lastBag = bag;
+        lastMode = mode;
+        lastBag = bag;
 
-        int nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
-        int nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
+        nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
+        nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
 
         int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
         int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);
@@ -179,9 +191,9 @@ public class WndMerc extends WndTabbed {
 
     private class BagTab extends Tab {
 
-        private final Image icon;
+        private Image icon;
 
-        private final Bag bag;
+        private Bag bag;
 
         public BagTab(Bag bag) {
             super();
@@ -233,7 +245,7 @@ public class WndMerc extends WndTabbed {
             name = null;
         }
 
-        Placeholder(int image) {
+        public Placeholder(int image) {
             this.image = image;
         }
 
@@ -255,14 +267,14 @@ public class WndMerc extends WndTabbed {
 
         private static final int NBARS = 3;
 
-        private final Item item;
+        private Item item;
         private ColorBlock bg;
 
         private ColorBlock durability[];
 
-        boolean holdOnly = false;
+        public boolean holdOnly = false;
 
-        ItemButton(Item item, boolean holdOnly) {
+        public ItemButton(Item item, boolean holdOnly) {
 
             super(item);
 
@@ -319,9 +331,13 @@ public class WndMerc extends WndTabbed {
             Sample.INSTANCE.play(Assets.SND_CLICK, 0.7f, 0.7f, 1.2f);
         }
 
+        ;
+
         protected void onTouchUp() {
             bg.brightness(1.0f);
         }
+
+        ;
 
         @Override
         protected void onClick() {
@@ -356,14 +372,14 @@ public class WndMerc extends WndTabbed {
         @Override
         public void onSelect(Item item) {
             if (item != null) {
-                if (item instanceof Weapon && !holdOnly) {
+                if (item instanceof Weapon && holdOnly == false) {
                     if (Dungeon.hero.belongings.weapon == item) {
                         Dungeon.hero.belongings.weapon = null;
                     } else {
                         item.detach(Dungeon.hero.belongings.backpack);
                     }
                     Dungeon.hero.hiredMerc.equipWeapon(item);
-                } else if (item instanceof Armor && !holdOnly) {
+                } else if (item instanceof Armor && holdOnly == false) {
                     if (Dungeon.hero.belongings.armor == item) {
                         Dungeon.hero.belongings.armor = null;
                     } else {
@@ -391,12 +407,12 @@ public class WndMerc extends WndTabbed {
         private static final int EQUIPPED = 0xFF63665B;
 
 
-        private final Skill skill;
+        private Skill skill;
         private ColorBlock bg;
 
-        private final ColorBlock[] durability;
+        private ColorBlock durability[];
 
-        SkillButton(Skill skill) {
+        public SkillButton(Skill skill) {
 
             super(skill);
 
@@ -454,9 +470,13 @@ public class WndMerc extends WndTabbed {
             Sample.INSTANCE.play(Assets.SND_CLICK, 0.7f, 0.7f, 1.2f);
         }
 
+        ;
+
         protected void onTouchUp() {
             bg.brightness(1.0f);
         }
+
+        ;
 
         @Override
         protected void onClick() {
@@ -479,7 +499,7 @@ public class WndMerc extends WndTabbed {
         }
     }
 
-    interface Listener {
+    public interface Listener {
         void onSelect(Item item);
     }
 }

@@ -29,17 +29,17 @@ import android.graphics.RectF;
 
 public class BitmapText extends Visual {
 
-    String text;
+    protected String text;
     protected Font font;
 
-    float[] vertices = new float[16];
-    FloatBuffer quads;
+    protected float[] vertices = new float[16];
+    protected FloatBuffer quads;
 
-    int realLength;
+    public int realLength;
 
-    boolean dirty = true;
+    protected boolean dirty = true;
 
-    protected BitmapText() {
+    public BitmapText() {
         this("", null);
     }
 
@@ -95,7 +95,7 @@ public class BitmapText extends Visual {
 
     }
 
-    void updateVertices() {
+    protected void updateVertices() {
 
         width = 0;
         height = 0;
@@ -208,22 +208,22 @@ public class BitmapText extends Visual {
 
     public static class Font extends TextureFilm {
 
-        static final String LATIN_UPPER =
+        public static final String LATIN_UPPER =
                 " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         public static final String LATIN_FULL =
                 " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u007F";
 
-        final SmartTexture texture;
+        public SmartTexture texture;
 
         public float tracking = 0;
         public float baseLine;
 
-        boolean autoUppercase = false;
+        public boolean autoUppercase = false;
 
-        float lineHeight;
+        public float lineHeight;
 
-        Font(SmartTexture tx) {
+        protected Font(SmartTexture tx) {
             super(tx);
 
             texture = tx;
@@ -233,7 +233,7 @@ public class BitmapText extends Visual {
             this(tx, width, tx.height, chars);
         }
 
-        Font(SmartTexture tx, int width, int height, String chars) {
+        public Font(SmartTexture tx, int width, int height, String chars) {
             super(tx);
 
             texture = tx;
@@ -262,7 +262,7 @@ public class BitmapText extends Visual {
             lineHeight = baseLine = height;
         }
 
-        void splitBy(Bitmap bitmap, int height, int color, String chars) {
+        protected void splitBy(Bitmap bitmap, int height, int color, String chars) {
 
             autoUppercase = chars.equals(LATIN_UPPER);
             int length = chars.length();
@@ -286,6 +286,7 @@ public class BitmapText extends Visual {
 
                 char ch = chars.charAt(i);
                 if (ch == ' ') {
+                    continue;
                 } else {
 
                     boolean found;
@@ -324,7 +325,7 @@ public class BitmapText extends Visual {
             return font;
         }
 
-        RectF get(char ch) {
+        public RectF get(char ch) {
             return super.get(autoUppercase ? Character.toUpperCase(ch) : ch);
         }
     }

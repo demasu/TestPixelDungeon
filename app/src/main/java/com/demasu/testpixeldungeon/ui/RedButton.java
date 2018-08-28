@@ -28,9 +28,9 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 
 public class RedButton extends Button {
 
-    private NinePatch bg;
+    protected NinePatch bg;
     protected BitmapText text;
-    Image icon;
+    protected Image icon;
 
     public RedButton(String label) {
         super();
@@ -68,16 +68,22 @@ public class RedButton extends Button {
         }
     }
 
+    ;
+
     @Override
     protected void onTouchDown() {
         bg.brightness(1.2f);
         Sample.INSTANCE.play(Assets.SND_CLICK);
     }
 
+    ;
+
     @Override
     protected void onTouchUp() {
         bg.resetColor();
     }
+
+    ;
 
     public void enable(boolean value) {
         active = value;

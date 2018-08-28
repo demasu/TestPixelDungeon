@@ -36,8 +36,8 @@ public class FogOfWar extends Image {
 
     private int[] pixels;
 
-    private final int pWidth;
-    private final int pHeight;
+    private int pWidth;
+    private int pHeight;
 
     private int width2;
     private int height2;
@@ -103,7 +103,7 @@ public class FogOfWar extends Image {
 
     private class FogTexture extends SmartTexture {
 
-        FogTexture() {
+        public FogTexture() {
             super(Bitmap.createBitmap(width2, height2, Bitmap.Config.ARGB_8888));
             filter(Texture.LINEAR, Texture.LINEAR);
             TextureCache.add(FogOfWar.class, this);

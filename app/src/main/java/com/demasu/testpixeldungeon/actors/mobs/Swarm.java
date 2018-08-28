@@ -55,7 +55,7 @@ public class Swarm extends Mob {
 
     private static final float SPLIT_DELAY = 1f;
 
-    private int generation = 0;
+    int generation = 0;
 
     private static final String GENERATION = "generation";
 
@@ -80,7 +80,7 @@ public class Swarm extends Mob {
     public int defenseProc(Char enemy, int damage) {
 
         if (HP >= damage + 2) {
-            ArrayList<Integer> candidates = new ArrayList<>();
+            ArrayList<Integer> candidates = new ArrayList<Integer>();
             boolean[] passable = Level.passable;
 
             int[] neighbours = {pos + 1, pos - 1, pos + Level.WIDTH, pos - Level.WIDTH};

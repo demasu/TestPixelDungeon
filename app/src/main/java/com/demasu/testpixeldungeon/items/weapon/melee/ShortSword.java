@@ -33,7 +33,7 @@ import com.demasu.testpixeldungeon.windows.WndBag;
 
 public class ShortSword extends MeleeWeapon {
 
-    private static final String AC_REFORGE = "REFORGE";
+    public static final String AC_REFORGE = "REFORGE";
 
     private static final String TXT_SELECT_WEAPON = "Select a weapon to upgrade";
 

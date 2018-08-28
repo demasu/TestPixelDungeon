@@ -44,7 +44,7 @@ public class BombTriggerBeacon extends Item {
         ArrayList<String> actions = super.actions(hero);
         actions.remove(AC_THROW);
 
-        if (!actions.contains("Detonate"))
+        if (actions.contains("Detonate") == false)
             actions.add("Detonate");
 
         return actions;

@@ -50,7 +50,7 @@ public class WandOfDisintegration extends Wand {
         int maxDistance = distance();
         Ballistica.distance = Math.min(Ballistica.distance, maxDistance);
 
-        ArrayList<Char> chars = new ArrayList<>();
+        ArrayList<Char> chars = new ArrayList<Char>();
 
         for (int i = 1; i < Ballistica.distance; i++) {
 
@@ -84,10 +84,11 @@ public class WandOfDisintegration extends Wand {
         }
 
         int lvl = level + chars.size();
+        int dmgMin = lvl;
         int dmgMax = 8 + lvl * lvl / 3;
         dmgMax *= Dungeon.hero.heroSkills.passiveB2.wandDamageBonus();
         for (Char ch : chars) {
-            ch.damage(Random.NormalIntRange(lvl, dmgMax), this);
+            ch.damage(Random.NormalIntRange(dmgMin, dmgMax), this);
             ch.sprite.centerEmitter().burst(PurpleParticle.BURST, Random.IntRange(1, 2));
             ch.sprite.flash();
         }

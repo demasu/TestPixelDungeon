@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.wands;
 
-import android.annotation.SuppressLint;
-
 import java.util.ArrayList;
 
 import com.watabou.noosa.audio.Sample;
@@ -51,7 +49,7 @@ public abstract class Wand extends KindOfWeapon {
 
     private static final int USAGES_TO_KNOW = 40;
 
-    private static final String AC_ZAP = "ZAP";
+    public static final String AC_ZAP = "ZAP";
 
     private static final String TXT_WOOD = "This thin %s wand is warm to the touch. Who knows what it will do when used?";
     private static final String TXT_DAMAGE = "When this wand is used as a melee weapon, its average damage is %d points per hit.";
@@ -67,13 +65,13 @@ public abstract class Wand extends KindOfWeapon {
     public int maxCharges = initialCharges();
     public int curCharges = maxCharges;
 
-    private Charger charger;
+    protected Charger charger;
 
     private boolean curChargeKnown = false;
 
     private int usagesToKnow = USAGES_TO_KNOW;
 
-    final boolean hitChars = true;
+    protected boolean hitChars = true;
 
     private static final Class<?>[] wands = {
             WandOfTeleportation.class,
@@ -115,7 +113,7 @@ public abstract class Wand extends KindOfWeapon {
 
     @SuppressWarnings("unchecked")
     public static void initWoods() {
-        handler = new ItemStatusHandler<>((Class<? extends Wand>[]) wands, woods, images);
+        handler = new ItemStatusHandler<Wand>((Class<? extends Wand>[]) wands, woods, images);
     }
 
     public static void save(Bundle bundle) {
@@ -124,7 +122,7 @@ public abstract class Wand extends KindOfWeapon {
 
     @SuppressWarnings("unchecked")
     public static void restore(Bundle bundle) {
-        handler = new ItemStatusHandler<>((Class<? extends Wand>[]) wands, woods, images, bundle);
+        handler = new ItemStatusHandler<Wand>((Class<? extends Wand>[]) wands, woods, images, bundle);
     }
 
     public Wand() {
@@ -191,6 +189,8 @@ public abstract class Wand extends KindOfWeapon {
         }
     }
 
+    ;
+
     public void charge(Char owner) {
         if (charger == null) {
             (charger = new Charger()).attachTo(owner);
@@ -198,7 +198,7 @@ public abstract class Wand extends KindOfWeapon {
     }
 
     @Override
-    protected void onDetach() {
+    public void onDetach() {
         stopCharging();
     }
 
@@ -209,7 +209,7 @@ public abstract class Wand extends KindOfWeapon {
         }
     }
 
-    int power() {
+    public int power() {
         int eLevel = effectiveLevel();
         if (charger != null) {
             Power power = charger.target.buff(Power.class);
@@ -219,11 +219,11 @@ public abstract class Wand extends KindOfWeapon {
         }
     }
 
-    boolean isKnown() {
+    protected boolean isKnown() {
         return handler.isKnown(this);
     }
 
-    void setKnown() {
+    public void setKnown() {
         if (!isKnown()) {
             handler.know(this);
         }
@@ -250,7 +250,7 @@ public abstract class Wand extends KindOfWeapon {
 
         String status = status();
         if (status != null) {
-            sb.append(" (").append(status).append(")");
+            sb.append(" (" + status + ")");
         }
 
         if (isBroken()) {
@@ -265,7 +265,6 @@ public abstract class Wand extends KindOfWeapon {
         return isKnown() ? name : wood + " wand";
     }
 
-    @SuppressLint("DefaultLocale")
     @Override
     public String info() {
         StringBuilder info = new StringBuilder(isKnown() ? desc() : String.format(TXT_WOOD, wood));
@@ -275,7 +274,7 @@ public abstract class Wand extends KindOfWeapon {
                 int min = min();
                 info.append(String.format(TXT_DAMAGE, min + (max() - min) / 2));
             } else {
-                info.append(TXT_WEAPON);
+                info.append(String.format(TXT_WEAPON));
             }
         }
         return info.toString();
@@ -322,18 +321,19 @@ public abstract class Wand extends KindOfWeapon {
         return 6 * (lvl < 16 ? 16 - lvl : 1);
     }
 
-    private void updateLevel() {
+    protected void updateLevel() {
         maxCharges = Math.min(initialCharges() + level(), 9);
         curCharges = Math.min(curCharges, maxCharges);
     }
 
-    int initialCharges() {
+    protected int initialCharges() {
         return 2;
     }
 
     @Override
     public int min() {
-        return 1 + effectiveLevel() / 3;
+        int tier = 1 + effectiveLevel() / 3;
+        return tier;
     }
 
     @Override
@@ -343,12 +343,12 @@ public abstract class Wand extends KindOfWeapon {
         return (tier * tier - tier + 10) / 2 + level;
     }
 
-    void fx(int cell, Callback callback) {
+    protected void fx(int cell, Callback callback) {
         MagicMissile.blueLight(curUser.sprite.parent, curUser.pos, cell, callback);
         Sample.INSTANCE.play(Assets.SND_ZAP);
     }
 
-    void wandUsed() {
+    protected void wandUsed() {
 
         curCharges--;
         if (!isIdentified() && --usagesToKnow <= 0) {
@@ -409,7 +409,7 @@ public abstract class Wand extends KindOfWeapon {
         curChargeKnown = bundle.getBoolean(CUR_CHARGE_KNOWN);
     }
 
-    private static final CellSelector.Listener zapper = new CellSelector.Listener() {
+    protected static CellSelector.Listener zapper = new CellSelector.Listener() {
 
         @Override
         public void onSelect(Integer target) {
@@ -487,7 +487,7 @@ public abstract class Wand extends KindOfWeapon {
             return true;
         }
 
-        void delay() {
+        protected void delay() {
             float time2charge = ((Hero) target).heroClass == HeroClass.MAGE ?
                     TIME_TO_CHARGE / (float) Math.sqrt(1 + effectiveLevel()) :
                     TIME_TO_CHARGE;

@@ -17,6 +17,7 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
+import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.BitmapTextMultiline;
 import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.ui.Component;
@@ -28,9 +29,9 @@ public class Toast extends Component {
     private static final float MARGIN_HOR = 2;
     private static final float MARGIN_VER = 2;
 
-    private NinePatch bg;
-    private SimpleButton close;
-    private BitmapTextMultiline text;
+    protected NinePatch bg;
+    protected SimpleButton close;
+    protected BitmapTextMultiline text;
 
     public Toast(String text) {
         super();
@@ -52,6 +53,7 @@ public class Toast extends Component {
                 onClose();
             }
 
+            ;
         };
         add(close);
         text = PixelScene.createMultiline(8);
@@ -75,7 +77,7 @@ public class Toast extends Component {
         PixelScene.align(text);
     }
 
-    private void text(String txt) {
+    public void text(String txt) {
         text.text(txt);
         text.measure();
     }
@@ -83,4 +85,5 @@ public class Toast extends Component {
     protected void onClose() {
     }
 
+    ;
 }

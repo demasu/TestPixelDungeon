@@ -141,7 +141,7 @@ public class CityLevel extends RegularLevel {
 
     private static class Smoke extends Emitter {
 
-        private final int pos;
+        private int pos;
 
         private static final Emitter.Factory factory = new Factory() {
 
@@ -152,7 +152,7 @@ public class CityLevel extends RegularLevel {
             }
         };
 
-        Smoke(int pos) {
+        public Smoke(int pos) {
             super();
 
             this.pos = pos;
@@ -173,14 +173,14 @@ public class CityLevel extends RegularLevel {
 
     public static final class SmokeParticle extends PixelParticle {
 
-        SmokeParticle() {
+        public SmokeParticle() {
             super();
 
             color(0x000000);
             speed.set(Random.Float(8), -Random.Float(8));
         }
 
-        void reset(float x, float y) {
+        public void reset(float x, float y) {
             revive();
 
             this.x = x;

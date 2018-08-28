@@ -31,13 +31,13 @@ public class SnowParticle extends PixelParticle {
         }
     };
 
-    private SnowParticle() {
+    public SnowParticle() {
         super();
         speed.set(0, Random.Float(5, 8));
         lifespan = 1.2f;
     }
 
-    private void reset(float x, float y) {
+    public void reset(float x, float y) {
         revive();
 
         this.x = x;

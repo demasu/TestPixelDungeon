@@ -1,7 +1,10 @@
 package com.demasu.testpixeldungeon.actors.skills;
 
 
+import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
+import com.demasu.testpixeldungeon.actors.hero.Legend;
+import com.demasu.testpixeldungeon.items.wands.WandOfMagicCasting;
 
 import java.util.ArrayList;
 
@@ -27,8 +30,9 @@ public class SoulFury extends ActiveSkill3 {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
+        ArrayList<String> actions = new ArrayList<String>();
 
-        return new ArrayList<String>();
+        return actions;
     }
 
     @Override

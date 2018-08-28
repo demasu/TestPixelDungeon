@@ -23,11 +23,15 @@ import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
+import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
+import com.demasu.testpixeldungeon.actors.buffs.Poison;
 import com.demasu.testpixeldungeon.actors.hero.Legend;
+import com.demasu.testpixeldungeon.actors.mobs.Mob;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.NPC;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.SummonedPet;
 import com.demasu.testpixeldungeon.effects.MagicMissile;
+import com.demasu.testpixeldungeon.effects.Pushing;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
 import com.demasu.testpixeldungeon.mechanics.Ballistica;
@@ -35,6 +39,7 @@ import com.demasu.testpixeldungeon.scenes.CellSelector;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.MissionScene;
 import com.demasu.testpixeldungeon.sprites.WraithSprite;
+import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
@@ -51,7 +56,7 @@ public class WandOfMagicCasting extends Wand {
     }
 
 
-    private void castSpellCost() {
+    public void castSpellCost() {
         switch (casting) {
             case DARK_BOLT:
                 Dungeon.hero.MP -= Dungeon.hero.heroSkills.passiveB2.getManaCost();
@@ -75,9 +80,10 @@ public class WandOfMagicCasting extends Wand {
 
     public enum CAST_TYPES {DARK_BOLT, DOMINANCE, SOUL_SPARK, SPARK}
 
-    private CAST_TYPES casting = CAST_TYPES.DARK_BOLT;
+    ;
+    public CAST_TYPES casting = CAST_TYPES.DARK_BOLT;
 
-    private static final CellSelector.Listener zapper = new CellSelector.Listener() {
+    protected static CellSelector.Listener zapper = new CellSelector.Listener() {
 
         @Override
         public void onSelect(Integer target) {
@@ -121,48 +127,41 @@ public class WandOfMagicCasting extends Wand {
             if (ch instanceof NPC && casting != CAST_TYPES.SOUL_SPARK)
                 return;
 
-            switch (casting) {
-                case DARK_BOLT: {
-                    ch.sprite.emitter().burst(ShadowParticle.CURSE, 6);
-                    Sample.INSTANCE.play(Assets.SND_CURSED);
-                    SummonedPet minion = new SummonedPet(WraithSprite.class);
-                    minion.name = "Consumed Soul";
-                    minion.screams = false;
-                    minion.HT = ch.HT;
-                    minion.HP = minion.HT;
-                    minion.defenseSkill = 5;
-                    minion.pos = cell;
-                    GameScene.add(minion);
-                    minion.sprite.alpha(0);
-                    minion.sprite.parent.add(new AlphaTweener(minion.sprite, 1, 0.15f));
+            if (casting == CAST_TYPES.DARK_BOLT) {
+                ch.sprite.emitter().burst(ShadowParticle.CURSE, 6);
+                Sample.INSTANCE.play(Assets.SND_CURSED);
+                SummonedPet minion = new SummonedPet(WraithSprite.class);
+                minion.name = "Consumed Soul";
+                minion.screams = false;
+                minion.HT = ch.HT;
+                minion.HP = minion.HT;
+                minion.defenseSkill = 5;
+                minion.pos = cell;
+                GameScene.add(minion);
+                minion.sprite.alpha(0);
+                minion.sprite.parent.add(new AlphaTweener(minion.sprite, 1, 0.15f));
 
-                    ch.die(null);
-                    break;
-                }
-                case DOMINANCE: {
-                    ch.sprite.emitter().burst(ShadowParticle.CURSE, 6);
-                    Sample.INSTANCE.play(Assets.SND_CURSED);
-                    SummonedPet minion = new SummonedPet(ch.sprite.getClass());
-                    minion.name = "Enslaved " + ch.name;
-                    minion.screams = false;
-                    minion.HT = ch.HT;
-                    minion.HP = minion.HT;
-                    minion.defenseSkill = ch.defenseSkill(Dungeon.hero);
-                    minion.pos = cell;
-                    GameScene.add(minion);
-                    minion.sprite.alpha(0);
-                    minion.sprite.parent.add(new AlphaTweener(minion.sprite, 1, 0.15f));
-                    ch.sprite.visible = false;
-                    ch.die(null);
-                    break;
-                }
-                case SOUL_SPARK:
-                    ch.HP = ch.HT;
-                    ch.sprite.emitter().start(Speck.factory(Speck.HEALING), 0.4f, 4);
-                    break;
-                case SPARK:
-                    ch.damage(Random.Int(Dungeon.hero.heroSkills.active2.level * 3, Dungeon.hero.heroSkills.active2.level * 5), Dungeon.hero);
-                    break;
+                ch.die(null);
+            } else if (casting == CAST_TYPES.DOMINANCE) {
+                ch.sprite.emitter().burst(ShadowParticle.CURSE, 6);
+                Sample.INSTANCE.play(Assets.SND_CURSED);
+                SummonedPet minion = new SummonedPet(ch.sprite.getClass());
+                minion.name = "Enslaved " + ch.name;
+                minion.screams = false;
+                minion.HT = ch.HT;
+                minion.HP = minion.HT;
+                minion.defenseSkill = ch.defenseSkill(Dungeon.hero);
+                minion.pos = cell;
+                GameScene.add(minion);
+                minion.sprite.alpha(0);
+                minion.sprite.parent.add(new AlphaTweener(minion.sprite, 1, 0.15f));
+                ch.sprite.visible = false;
+                ch.die(null);
+            } else if (casting == CAST_TYPES.SOUL_SPARK) {
+                ch.HP = ch.HT;
+                ch.sprite.emitter().start(Speck.factory(Speck.HEALING), 0.4f, 4);
+            } else if (casting == CAST_TYPES.SPARK) {
+                ch.damage(Random.Int(Dungeon.hero.heroSkills.active2.level * 3, Dungeon.hero.heroSkills.active2.level * 5), Dungeon.hero);
             }
 
         } else {
@@ -173,20 +172,14 @@ public class WandOfMagicCasting extends Wand {
     }
 
     protected void fx(int cell, Callback callback) {
-        switch (casting) {
-            case DARK_BOLT:
-                MagicMissile.shadow(curUser.sprite.parent, curUser.pos, cell, callback, 1);
-                break;
-            case DOMINANCE:
-                MagicMissile.shadow(curUser.sprite.parent, curUser.pos, cell, callback, 3);
-                break;
-            case SOUL_SPARK:
-                MagicMissile.whiteLight(curUser.sprite.parent, curUser.pos, cell, callback);
-                break;
-            case SPARK:
-                MagicMissile.blueLight(curUser.sprite.parent, curUser.pos, cell, callback);
-                break;
-        }
+        if (casting == CAST_TYPES.DARK_BOLT)
+            MagicMissile.shadow(curUser.sprite.parent, curUser.pos, cell, callback, 1);
+        else if (casting == CAST_TYPES.DOMINANCE)
+            MagicMissile.shadow(curUser.sprite.parent, curUser.pos, cell, callback, 3);
+        else if (casting == CAST_TYPES.SOUL_SPARK)
+            MagicMissile.whiteLight(curUser.sprite.parent, curUser.pos, cell, callback);
+        else if (casting == CAST_TYPES.SPARK)
+            MagicMissile.blueLight(curUser.sprite.parent, curUser.pos, cell, callback);
 
         Sample.INSTANCE.play(Assets.SND_ZAP);
     }

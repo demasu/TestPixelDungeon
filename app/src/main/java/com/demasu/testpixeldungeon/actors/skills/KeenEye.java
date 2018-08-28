@@ -1,5 +1,7 @@
 package com.demasu.testpixeldungeon.actors.skills;
 
+import com.watabou.utils.Random;
+
 /**
  * Created by Moussa on 20-Jan-17.
  */

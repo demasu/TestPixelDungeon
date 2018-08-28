@@ -31,14 +31,14 @@ import com.demasu.testpixeldungeon.ui.Window;
 
 public class WndTabbed extends Window {
 
-    final ArrayList<Tab> tabs = new ArrayList<>();
-    private Tab selected;
+    protected ArrayList<Tab> tabs = new ArrayList<WndTabbed.Tab>();
+    protected Tab selected;
 
-    WndTabbed() {
+    public WndTabbed() {
         super(0, 0, Chrome.get(Chrome.Type.TAB_SET));
     }
 
-    void add(Tab tab) {
+    protected Tab add(Tab tab) {
 
         tab.setPos(tabs.size() == 0 ?
                 -chrome.marginLeft() + 1 :
@@ -48,13 +48,14 @@ public class WndTabbed extends Window {
 
         tabs.add(tab);
 
+        return tab;
     }
 
-    void select(int index) {
+    public void select(int index) {
         select(tabs.get(index));
     }
 
-    private void select(Tab tab) {
+    public void select(Tab tab) {
         if (tab != selected) {
             for (Tab t : tabs) {
                 if (t == selected) {
@@ -78,7 +79,7 @@ public class WndTabbed extends Window {
                 width + chrome.marginHor(),
                 height + chrome.marginVer());
 
-        camera.resize((int) chrome.width, chrome.marginTop() + height + tabHeight());
+        camera.resize((int) chrome.width, (int) (chrome.marginTop() + height + tabHeight()));
         camera.x = (int) (Game.width - camera.screenWidth()) / 2;
         camera.y = (int) (Game.height - camera.screenHeight()) / 2;
 
@@ -92,7 +93,7 @@ public class WndTabbed extends Window {
             remove(tab);
         }
 
-        ArrayList<Tab> tabs = new ArrayList<>(this.tabs);
+        ArrayList<Tab> tabs = new ArrayList<WndTabbed.Tab>(this.tabs);
         this.tabs.clear();
 
         for (Tab tab : tabs) {
@@ -100,21 +101,21 @@ public class WndTabbed extends Window {
         }
     }
 
-    int tabHeight() {
+    protected int tabHeight() {
         return 25;
     }
 
-    void onClick(Tab tab) {
+    protected void onClick(Tab tab) {
         select(tab);
     }
 
     protected class Tab extends Button {
 
-        final int CUT = 5;
+        protected final int CUT = 5;
 
-        boolean selected;
+        protected boolean selected;
 
-        NinePatch bg;
+        protected NinePatch bg;
 
         @Override
         protected void layout() {
@@ -127,7 +128,7 @@ public class WndTabbed extends Window {
             }
         }
 
-        void select(boolean value) {
+        protected void select(boolean value) {
 
             active = !(selected = value);
 

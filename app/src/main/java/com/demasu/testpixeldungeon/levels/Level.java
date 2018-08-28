@@ -25,6 +25,7 @@ import java.util.HashSet;
 
 import com.watabou.noosa.Scene;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Challenges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -48,6 +49,7 @@ import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.effects.Pushing;
 import com.demasu.testpixeldungeon.effects.particles.FlowParticle;
 import com.demasu.testpixeldungeon.effects.particles.WindParticle;
+import com.demasu.testpixeldungeon.items.Bomb;
 import com.demasu.testpixeldungeon.items.Generator;
 import com.demasu.testpixeldungeon.items.Gold;
 import com.demasu.testpixeldungeon.items.Heap;
@@ -81,12 +83,14 @@ import com.watabou.utils.SparseArray;
 
 public abstract class Level implements Bundlable {
 
-    public enum Feeling {
+    public static enum Feeling {
         NONE,
         CHASM,
         WATER,
         GRASS
     }
+
+    ;
 
     public static final int WIDTH = 32;
     public static final int HEIGHT = 32;
@@ -96,7 +100,7 @@ public abstract class Level implements Bundlable {
     public static final int[] NEIGHBOURS8 = {+1, -1, +WIDTH, -WIDTH, +1 + WIDTH, +1 - WIDTH, -1 + WIDTH, -1 - WIDTH};
     public static final int[] NEIGHBOURS9 = {0, +1, -1, +WIDTH, -WIDTH, +1 + WIDTH, +1 - WIDTH, -1 + WIDTH, -1 - WIDTH};
 
-    private static final float TIME_TO_RESPAWN = 50;
+    protected static final float TIME_TO_RESPAWN = 50;
 
     private static final String TXT_HIDDEN_PLATE_CLICKS = "A hidden pressure plate clicks!";
 
@@ -107,20 +111,20 @@ public abstract class Level implements Bundlable {
     public boolean[] visited;
     public boolean[] mapped;
 
-    public final int viewDistance = Dungeon.isChallenged(Challenges.DARKNESS) ? 3 : 8;
+    public int viewDistance = Dungeon.isChallenged(Challenges.DARKNESS) ? 3 : 8;
 
-    public static final boolean[] fieldOfView = new boolean[LENGTH];
+    public static boolean[] fieldOfView = new boolean[LENGTH];
 
-    public static final boolean[] passable = new boolean[LENGTH];
-    public static final boolean[] losBlocking = new boolean[LENGTH];
-    public static final boolean[] flamable = new boolean[LENGTH];
-    public static final boolean[] secret = new boolean[LENGTH];
-    public static final boolean[] solid = new boolean[LENGTH];
-    public static final boolean[] avoid = new boolean[LENGTH];
-    public static final boolean[] water = new boolean[LENGTH];
-    public static final boolean[] pit = new boolean[LENGTH];
+    public static boolean[] passable = new boolean[LENGTH];
+    public static boolean[] losBlocking = new boolean[LENGTH];
+    public static boolean[] flamable = new boolean[LENGTH];
+    public static boolean[] secret = new boolean[LENGTH];
+    public static boolean[] solid = new boolean[LENGTH];
+    public static boolean[] avoid = new boolean[LENGTH];
+    public static boolean[] water = new boolean[LENGTH];
+    public static boolean[] pit = new boolean[LENGTH];
 
-    public static final boolean[] discoverable = new boolean[LENGTH];
+    public static boolean[] discoverable = new boolean[LENGTH];
 
     public Feeling feeling = Feeling.NONE;
 
@@ -133,13 +137,13 @@ public abstract class Level implements Bundlable {
     public HashMap<Class<? extends Blob>, Blob> blobs;
     public SparseArray<Plant> plants;
 
-    final ArrayList<Item> itemsToSpawn = new ArrayList<>();
+    protected ArrayList<Item> itemsToSpawn = new ArrayList<Item>();
 
-    public final int color1 = 0x004400;
-    public final int color2 = 0x88CC44;
+    public int color1 = 0x004400;
+    public int color2 = 0x88CC44;
 
-    static boolean pitRoomNeeded = false;
-    static boolean weakFloorCreated = false;
+    protected static boolean pitRoomNeeded = false;
+    protected static boolean weakFloorCreated = false;
 
     private static final String MAP = "map";
     private static final String VISITED = "visited";
@@ -162,10 +166,10 @@ public abstract class Level implements Bundlable {
         mapped = new boolean[LENGTH];
         Arrays.fill(mapped, false);
 
-        mobs = new HashSet<>();
-        heaps = new SparseArray<>();
-        blobs = new HashMap<>();
-        plants = new SparseArray<>();
+        mobs = new HashSet<Mob>();
+        heaps = new SparseArray<Heap>();
+        blobs = new HashMap<Class<? extends Blob>, Blob>();
+        plants = new SparseArray<Plant>();
 
         if (!Dungeon.bossLevel()) {
             addItemToSpawn(new Arrow().random());
@@ -237,10 +241,10 @@ public abstract class Level implements Bundlable {
     @Override
     public void restoreFromBundle(Bundle bundle) {
 
-        mobs = new HashSet<>();
-        heaps = new SparseArray<>();
-        blobs = new HashMap<>();
-        plants = new SparseArray<>();
+        mobs = new HashSet<Mob>();
+        heaps = new SparseArray<Heap>();
+        blobs = new HashMap<Class<? extends Blob>, Blob>();
+        plants = new SparseArray<Plant>();
 
         map = bundle.getIntArray(MAP);
         visited = bundle.getBooleanArray(VISITED);
@@ -376,7 +380,7 @@ public abstract class Level implements Bundlable {
         }
     }
 
-    int nMobs() {
+    public int nMobs() {
         return 0;
     }
 
@@ -408,7 +412,7 @@ public abstract class Level implements Bundlable {
         return new Actor() {
             @Override
             protected boolean act() {
-                if (Dungeon.hero.hiredMerc != null && Dungeon.hero.checkMerc) {
+                if (Dungeon.hero.hiredMerc != null && Dungeon.hero.checkMerc == true) {
 
                     HiredMerc mercCheck = checkMerc();
                     if (mercCheck != null) {
@@ -420,7 +424,7 @@ public abstract class Level implements Bundlable {
                     for (int nu = 0; nu < 1; nu++) {
                         int newPos = Dungeon.hero.pos;
                         if (Actor.findChar(newPos) != null) {
-                            ArrayList<Integer> candidates = new ArrayList<>();
+                            ArrayList<Integer> candidates = new ArrayList<Integer>();
                             boolean[] passable = Level.passable;
 
                             for (int n : Level.NEIGHBOURS4) {
@@ -565,8 +569,8 @@ public abstract class Level implements Bundlable {
 
         } else {
             boolean flood = false;
-            for (int aNEIGHBOURS4 : NEIGHBOURS4) {
-                if (water[pos + aNEIGHBOURS4]) {
+            for (int j = 0; j < NEIGHBOURS4.length; j++) {
+                if (water[pos + NEIGHBOURS4[j]]) {
                     flood = true;
                     break;
                 }
@@ -584,8 +588,8 @@ public abstract class Level implements Bundlable {
 
             boolean d = false;
 
-            for (int aNEIGHBOURS91 : NEIGHBOURS9) {
-                int n = i + aNEIGHBOURS91;
+            for (int j = 0; j < NEIGHBOURS9.length; j++) {
+                int n = i + NEIGHBOURS9[j];
                 if (n >= 0 && n < LENGTH && map[n] != Terrain.WALL && map[n] != Terrain.WALL_DECO) {
                     d = true;
                     break;
@@ -595,8 +599,8 @@ public abstract class Level implements Bundlable {
             if (d) {
                 d = false;
 
-                for (int aNEIGHBOURS9 : NEIGHBOURS9) {
-                    int n = i + aNEIGHBOURS9;
+                for (int j = 0; j < NEIGHBOURS9.length; j++) {
+                    int n = i + NEIGHBOURS9[j];
                     if (n >= 0 && n < LENGTH && !pit[n]) {
                         d = true;
                         break;
@@ -679,7 +683,7 @@ public abstract class Level implements Bundlable {
         return heap;
     }
 
-    public void plant(Plant.Seed seed, int pos) {
+    public Plant plant(Plant.Seed seed, int pos) {
         Plant plant = plants.get(pos);
         if (plant != null) {
             plant.wither();
@@ -690,6 +694,7 @@ public abstract class Level implements Bundlable {
 
         GameScene.add(plant);
 
+        return plant;
     }
 
     public void uproot(int pos) {
@@ -715,7 +720,7 @@ public abstract class Level implements Bundlable {
                 GLog.i(TXT_HIDDEN_PLATE_CLICKS);
             case Terrain.TOXIC_TRAP:
                 trap = true;
-                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
+                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap() == true) {
 
                 } else
                     ToxicTrap.trigger(cell, ch);
@@ -725,7 +730,7 @@ public abstract class Level implements Bundlable {
                 GLog.i(TXT_HIDDEN_PLATE_CLICKS);
             case Terrain.FIRE_TRAP:
                 trap = true;
-                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
+                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap() == true) {
 
                 } else
                     FireTrap.trigger(cell, ch);
@@ -735,7 +740,7 @@ public abstract class Level implements Bundlable {
                 GLog.i(TXT_HIDDEN_PLATE_CLICKS);
             case Terrain.PARALYTIC_TRAP:
                 trap = true;
-                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
+                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap() == true) {
 
                 } else
                     ParalyticTrap.trigger(cell, ch);
@@ -745,7 +750,7 @@ public abstract class Level implements Bundlable {
                 GLog.i(TXT_HIDDEN_PLATE_CLICKS);
             case Terrain.POISON_TRAP:
                 trap = true;
-                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
+                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap() == true) {
 
                 } else
                     PoisonTrap.trigger(cell, ch);
@@ -755,7 +760,7 @@ public abstract class Level implements Bundlable {
                 GLog.i(TXT_HIDDEN_PLATE_CLICKS);
             case Terrain.ALARM_TRAP:
                 trap = true;
-                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
+                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap() == true) {
 
                 } else
                     AlarmTrap.trigger(cell, ch);
@@ -765,7 +770,7 @@ public abstract class Level implements Bundlable {
                 GLog.i(TXT_HIDDEN_PLATE_CLICKS);
             case Terrain.LIGHTNING_TRAP:
                 trap = true;
-                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
+                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap() == true) {
 
                 } else
                     LightningTrap.trigger(cell, ch);
@@ -775,7 +780,7 @@ public abstract class Level implements Bundlable {
                 GLog.i(TXT_HIDDEN_PLATE_CLICKS);
             case Terrain.GRIPPING_TRAP:
                 trap = true;
-                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
+                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap() == true) {
 
                 } else
                     GrippingTrap.trigger(cell, ch);
@@ -785,7 +790,7 @@ public abstract class Level implements Bundlable {
                 GLog.i(TXT_HIDDEN_PLATE_CLICKS);
             case Terrain.SUMMONING_TRAP:
                 trap = true;
-                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
+                if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap() == true) {
 
                 } else
                     SummoningTrap.trigger(cell, ch);
@@ -890,7 +895,7 @@ public abstract class Level implements Bundlable {
         }
     }
 
-    public void updateFieldOfView(Char c) {
+    public boolean[] updateFieldOfView(Char c) {
 
         int cx = c.pos % WIDTH;
         int cy = c.pos / WIDTH;
@@ -909,7 +914,7 @@ public abstract class Level implements Bundlable {
             }
         }
 
-        if (!sighted || sense > 1) {
+        if ((sighted && sense > 1) || !sighted) {
 
             int ax = Math.max(0, cx - sense);
             int bx = Math.min(cx + sense, WIDTH - 1);
@@ -981,6 +986,7 @@ public abstract class Level implements Bundlable {
             }
         }
 
+        return fieldOfView;
     }
 
     public static int distance(int a, int b) {

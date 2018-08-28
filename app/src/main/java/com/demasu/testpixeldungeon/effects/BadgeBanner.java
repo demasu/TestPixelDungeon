@@ -30,6 +30,7 @@ public class BadgeBanner extends Image {
         FADE_IN, STATIC, FADE_OUT
     }
 
+    ;
     private State state;
 
     private static final float DEFAULT_SCALE = 3;
@@ -38,7 +39,7 @@ public class BadgeBanner extends Image {
     private static final float STATIC_TIME = 1f;
     private static final float FADE_OUT_TIME = 1.0f;
 
-    private final int index;
+    private int index;
     private float time;
 
     private static TextureFilm atlas;

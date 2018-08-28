@@ -50,7 +50,7 @@ public class HeroAction {
     }
 
     public static class Interact extends HeroAction {
-        public final NPC npc;
+        public NPC npc;
 
         public Interact(NPC npc) {
             this.npc = npc;
@@ -58,7 +58,7 @@ public class HeroAction {
     }
 
     public static class Discuss extends HeroAction {
-        public final ColdGirl coldGirl;
+        public ColdGirl coldGirl;
 
         public Discuss(ColdGirl coldGirl) {
             this.coldGirl = coldGirl;
@@ -90,7 +90,7 @@ public class HeroAction {
     }
 
     public static class Attack extends HeroAction {
-        public final Char target;
+        public Char target;
 
         public Attack(Char target) {
             this.target = target;

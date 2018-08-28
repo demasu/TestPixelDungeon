@@ -48,12 +48,12 @@ public class Armor extends EquipableItem {
     private static final String TXT_INCOMPATIBLE =
             "Interaction of different types of magic has erased the glyph on this armor!";
 
-    public final int tier;
+    public int tier;
     public int STR;
 
     private int hitsToKnow = HITS_TO_KNOW;
 
-    Glyph glyph;
+    public Glyph glyph;
 
     public Armor(int tier) {
 
@@ -151,7 +151,7 @@ public class Armor extends EquipableItem {
         return upgrade(false);
     }
 
-    private Item upgrade(boolean inscribe) {
+    public Item upgrade(boolean inscribe) {
 
         if (glyph != null) {
             if (!inscribe && Random.Int(level()) > 0) {
@@ -163,6 +163,7 @@ public class Armor extends EquipableItem {
                 inscribe();
             }
         }
+        ;
 
         STR--;
 
@@ -219,7 +220,9 @@ public class Armor extends EquipableItem {
         StringBuilder info = new StringBuilder(desc());
 
         if (levelKnown) {
-            info.append("\n\nThis ").append(name).append(" provides damage absorption up to ").append(Math.max(DR(), 0)).append(" points per attack. ");
+            info.append(
+                    "\n\nThis " + name + " provides damage absorption up to " +
+                            "" + Math.max(DR(), 0) + " points per attack. ");
 
             if (STR > Dungeon.hero.STR()) {
 
@@ -235,7 +238,9 @@ public class Armor extends EquipableItem {
 
             }
         } else {
-            info.append("\n\nTypical ").append(name).append(" provides damage absorption up to ").append(typicalDR()).append(" points per attack ").append(" and requires ").append(typicalSTR()).append(" points of strength. ");
+            info.append(
+                    "\n\nTypical " + name + " provides damage absorption up to " + typicalDR() + " points per attack " +
+                            " and requires " + typicalSTR() + " points of strength. ");
             if (typicalSTR() > Dungeon.hero.STR()) {
                 info.append("Probably this armor is too heavy for you. ");
             }
@@ -246,10 +251,11 @@ public class Armor extends EquipableItem {
         }
 
         if (isEquipped(Dungeon.hero)) {
-            info.append("\n\nYou are wearing the ").append(name).append(cursed ? ", and because it is cursed, you are powerless to remove it." : ".");
+            info.append("\n\nYou are wearing the " + name +
+                    (cursed ? ", and because it is cursed, you are powerless to remove it." : "."));
         } else {
             if (cursedKnown && cursed) {
-                info.append("\n\nYou can feel a malevolent magic lurking within the ").append(name).append(".");
+                info.append("\n\nYou can feel a malevolent magic lurking within the " + name + ".");
             }
         }
 
@@ -285,7 +291,7 @@ public class Armor extends EquipableItem {
         return 7 + tier * 2;
     }
 
-    private int typicalDR() {
+    public int typicalDR() {
         return tier * 2;
     }
 
@@ -298,12 +304,12 @@ public class Armor extends EquipableItem {
         return considerState(price);
     }
 
-    Armor inscribe(Glyph glyph) {
+    public Armor inscribe(Glyph glyph) {
         this.glyph = glyph;
         return this;
     }
 
-    public void inscribe() {
+    public Armor inscribe() {
 
         Class<? extends Glyph> oldGlyphClass = glyph != null ? glyph.getClass() : null;
         Glyph gl = Glyph.random();
@@ -311,7 +317,7 @@ public class Armor extends EquipableItem {
             gl = Armor.Glyph.random();
         }
 
-        inscribe(gl);
+        return inscribe(gl);
     }
 
     public boolean isInscribed() {
@@ -332,9 +338,9 @@ public class Armor extends EquipableItem {
 
         private static final float[] chances = new float[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
-        protected abstract int proc(Armor armor, Char attacker, Char defender, int damage);
+        public abstract int proc(Armor armor, Char attacker, Char defender, int damage);
 
-        protected String name(String armorName) {
+        public String name(String armorName) {
             return armorName;
         }
 
@@ -346,22 +352,24 @@ public class Armor extends EquipableItem {
         public void storeInBundle(Bundle bundle) {
         }
 
-        protected ItemSprite.Glowing glowing() {
+        public ItemSprite.Glowing glowing() {
             return ItemSprite.Glowing.WHITE;
         }
 
-        protected void checkOwner(Char owner) {
+        public boolean checkOwner(Char owner) {
             if (!owner.isAlive() && owner instanceof Hero) {
 
                 ((Hero) owner).killerGlyph = this;
                 Badges.validateDeathFromGlyph();
+                return true;
 
             } else {
+                return false;
             }
         }
 
         @SuppressWarnings("unchecked")
-        static Glyph random() {
+        public static Glyph random() {
             try {
                 return ((Class<Glyph>) glyphs[Random.chances(chances)]).newInstance();
             } catch (Exception e) {

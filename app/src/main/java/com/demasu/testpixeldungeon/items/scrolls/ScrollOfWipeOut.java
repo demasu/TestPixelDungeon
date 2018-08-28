@@ -17,6 +17,8 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
+import java.util.ArrayList;
+
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -29,6 +31,7 @@ import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Heap.Type;
+import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.HeroSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
@@ -39,9 +42,9 @@ public class ScrollOfWipeOut extends Scroll {
 
     private static final String TXT_BLINDED = "You can't read a scroll while blinded";
 
-    private static final String AC_READ = "READ";
+    public static final String AC_READ = "READ";
 
-    private static final float TIME_TO_READ = 1f;
+    protected static final float TIME_TO_READ = 1f;
 
     {
         name = "Scroll of Wipe Out";

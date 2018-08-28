@@ -247,21 +247,23 @@ public class PixelDungeon extends Game {
     }
 
     @SuppressLint("NewApi")
-    private static void updateImmersiveMode() {
-        try {
-            // Sometime NullPointerException happens here
-            instance.getWindow().getDecorView().setSystemUiVisibility(
-                    immersed() ?
-                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-                                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-                                    View.SYSTEM_UI_FLAG_FULLSCREEN |
-                                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                            :
-                            0);
-        } catch (Exception e) {
-            reportException(e);
+    public static void updateImmersiveMode() {
+        if (android.os.Build.VERSION.SDK_INT >= 19) {
+            try {
+                // Sometime NullPointerException happens here
+                instance.getWindow().getDecorView().setSystemUiVisibility(
+                        immersed() ?
+                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                                        View.SYSTEM_UI_FLAG_FULLSCREEN |
+                                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                                :
+                                0);
+            } catch (Exception e) {
+                reportException(e);
+            }
         }
     }
 
@@ -285,7 +287,7 @@ public class PixelDungeon extends Game {
     }
 
     public static int zoom() {
-        return Preferences.INSTANCE.getInt(Preferences.KEY_ZOOM);
+        return Preferences.INSTANCE.getInt(Preferences.KEY_ZOOM, 0);
     }
 
     public static void music(boolean value) {
@@ -330,7 +332,7 @@ public class PixelDungeon extends Game {
     }
 
     public static int donated() {
-        return Preferences.INSTANCE.getInt(Preferences.KEY_DONATED);
+        return Preferences.INSTANCE.getInt(Preferences.KEY_DONATED, 0);
     }
 
     public static void maidenUnlocked(Boolean value) {
@@ -354,7 +356,7 @@ public class PixelDungeon extends Game {
     }
 
     public static int lastClass() {
-        return Preferences.INSTANCE.getInt(Preferences.KEY_LAST_CLASS);
+        return Preferences.INSTANCE.getInt(Preferences.KEY_LAST_CLASS, 0);
     }
 
     public static void challenges(int value) {
@@ -362,7 +364,7 @@ public class PixelDungeon extends Game {
     }
 
     public static int challenges() {
-        return Preferences.INSTANCE.getInt(Preferences.KEY_CHALLENGES);
+        return Preferences.INSTANCE.getInt(Preferences.KEY_CHALLENGES, 0);
     }
 
     public static void intro(boolean value) {

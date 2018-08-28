@@ -144,6 +144,8 @@ public class Terrain {
         }
     }
 
+    ;
+
     public static int discover(int terr) {
         switch (terr) {
             case SECRET_DOOR:

@@ -30,7 +30,7 @@ public class CellSelector extends TouchArea {
 
     public boolean enabled;
 
-    private final float dragThreshold;
+    private float dragThreshold;
 
     public CellSelector(DungeonTilemap map) {
         super(map);
@@ -112,7 +112,7 @@ public class CellSelector extends TouchArea {
     }
 
     private boolean dragging = false;
-    private final PointF lastPos = new PointF();
+    private PointF lastPos = new PointF();
 
     @Override
     protected void onDrag(Touch t) {

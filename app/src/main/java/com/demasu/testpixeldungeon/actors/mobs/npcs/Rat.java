@@ -60,7 +60,7 @@ public class Rat extends NPC {
         spawn(bundle.getInt(LEVEL));
     }
 
-    private void spawn(int level) {
+    public void spawn(int level) {
         this.level = level;
 
         HT = (3 + level) * 2;

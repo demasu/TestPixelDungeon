@@ -37,7 +37,7 @@ public class AttackIndicator extends Tag {
     private CharSprite sprite = null;
 
     private static Mob lastTarget = null;
-    private final ArrayList<Mob> candidates = new ArrayList<>();
+    private ArrayList<Mob> candidates = new ArrayList<Mob>();
 
     public AttackIndicator() {
         super(DangerIndicator.COLOR);

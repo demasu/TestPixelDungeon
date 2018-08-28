@@ -50,7 +50,7 @@ import com.watabou.utils.Callback;
 
 public class Badges {
 
-    public enum Badge {
+    public static enum Badge {
         MONSTERS_SLAIN_1("10 enemies slain", 0),
         MONSTERS_SLAIN_2("50 enemies slain", 1),
         MONSTERS_SLAIN_3("150 enemies slain", 2),
@@ -145,28 +145,28 @@ public class Badges {
         CHAMPION("Challenge won", 39, true),
         SUPPORTER("Thanks for your support!", 31, true);
 
-        final boolean meta;
+        public boolean meta;
 
-        public final String description;
-        public final int image;
+        public String description;
+        public int image;
 
-        Badge(String description, int image) {
+        private Badge(String description, int image) {
             this(description, image, false);
         }
 
-        Badge(String description, int image, boolean meta) {
+        private Badge(String description, int image, boolean meta) {
             this.description = description;
             this.image = image;
             this.meta = meta;
         }
 
-        Badge() {
+        private Badge() {
             this("", -1);
         }
     }
 
     private static HashSet<Badge> global;
-    private static HashSet<Badge> local = new HashSet<>();
+    private static HashSet<Badge> local = new HashSet<Badges.Badge>();
 
     private static boolean saveNeeded = false;
 
@@ -181,12 +181,12 @@ public class Badges {
     private static final String BADGES = "badges";
 
     private static HashSet<Badge> restore(Bundle bundle) {
-        HashSet<Badge> badges = new HashSet<>();
+        HashSet<Badge> badges = new HashSet<Badge>();
 
         String[] names = bundle.getStringArray(BADGES);
-        for (String name : names) {
+        for (int i = 0; i < names.length; i++) {
             try {
-                badges.add(Badge.valueOf(name));
+                badges.add(Badge.valueOf(names[i]));
             } catch (Exception e) {
             }
         }
@@ -222,7 +222,7 @@ public class Badges {
                 global = restore(bundle);
 
             } catch (IOException e) {
-                global = new HashSet<>();
+                global = new HashSet<Badge>();
             }
         }
     }
@@ -503,7 +503,7 @@ public class Badges {
         }
     }
 
-    private static void validateAllItemsIdentified() {
+    public static void validateAllItemsIdentified() {
         if (!global.contains(Badge.ALL_ITEMS_IDENTIFIED) &&
                 global.contains(Badge.ALL_POTIONS_IDENTIFIED) &&
                 global.contains(Badge.ALL_SCROLLS_IDENTIFIED) &&
@@ -889,7 +889,7 @@ public class Badges {
 
     public static List<Badge> filtered(boolean global) {
 
-        HashSet<Badge> filtered = new HashSet<>(global ? Badges.global : Badges.local);
+        HashSet<Badge> filtered = new HashSet<Badge>(global ? Badges.global : Badges.local);
 
         {
             Iterator<Badge> iterator = filtered.iterator();
@@ -923,7 +923,7 @@ public class Badges {
         leaveBest(filtered, Badge.VICTORY, Badge.CHAMPION);
         leaveBest(filtered, Badge.GAMES_PLAYED_1, Badge.GAMES_PLAYED_2, Badge.GAMES_PLAYED_3, Badge.GAMES_PLAYED_4);
 
-        ArrayList<Badge> list = new ArrayList<>(filtered);
+        ArrayList<Badge> list = new ArrayList<Badge>(filtered);
         Collections.sort(list);
 
         return list;

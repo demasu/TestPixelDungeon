@@ -34,9 +34,9 @@ public abstract class Scroll extends Item {
 
     private static final String TXT_BLINDED = "You can't read a scroll while blinded";
 
-    private static final String AC_READ = "READ";
+    public static final String AC_READ = "READ";
 
-    static final float TIME_TO_READ = 1f;
+    protected static final float TIME_TO_READ = 1f;
 
     private static final Class<?>[] scrolls = {
             ScrollOfIdentify.class,
@@ -93,7 +93,7 @@ public abstract class Scroll extends Item {
 
     @SuppressWarnings("unchecked")
     public static void initLabels() {
-        handler = new ItemStatusHandler<>((Class<? extends Scroll>[]) scrolls, runes, images, 6);
+        handler = new ItemStatusHandler<Scroll>((Class<? extends Scroll>[]) scrolls, runes, images, 6);
     }
 
     public static void save(Bundle bundle) {
@@ -102,7 +102,7 @@ public abstract class Scroll extends Item {
 
     @SuppressWarnings("unchecked")
     public static void restore(Bundle bundle) {
-        handler = new ItemStatusHandler<>((Class<? extends Scroll>[]) scrolls, runes, images, bundle);
+        handler = new ItemStatusHandler<Scroll>((Class<? extends Scroll>[]) scrolls, runes, images, bundle);
     }
 
     public Scroll() {
@@ -139,7 +139,7 @@ public abstract class Scroll extends Item {
 
     abstract protected void doRead();
 
-    void readAnimation() {
+    protected void readAnimation() {
         curUser.spend(TIME_TO_READ);
         curUser.busy();
         ((HeroSprite) curUser.sprite).read();

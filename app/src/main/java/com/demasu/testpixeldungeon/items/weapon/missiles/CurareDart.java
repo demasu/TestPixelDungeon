@@ -26,7 +26,7 @@ import com.watabou.utils.Random;
 
 public class CurareDart extends MissileWeapon {
 
-    private static final float DURATION = 3f;
+    public static final float DURATION = 3f;
 
     {
         name = "curare dart";

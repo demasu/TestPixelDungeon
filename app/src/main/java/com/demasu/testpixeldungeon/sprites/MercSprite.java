@@ -22,8 +22,10 @@ import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.effects.ArcherMaidenHalo;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Dart;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Callback;
 
 public class MercSprite extends MobSprite {
@@ -33,9 +35,9 @@ public class MercSprite extends MobSprite {
 
     private HiredMerc.MERC_TYPES type = HiredMerc.MERC_TYPES.Brute;
 
-    private boolean hasHalo = false;
+    public boolean hasHalo = false;
 
-    private ArcherMaidenHalo halo = null;
+    public ArcherMaidenHalo halo = null;
 
     public MercSprite() {
         super();
@@ -91,7 +93,7 @@ public class MercSprite extends MobSprite {
 
     public void updateArmor() {
 
-        if (false) {
+        if (false && hasHalo == false) {
             hasHalo = true;
             add(State.ARCHERMAIDEN);
             GameScene.effect(halo = new ArcherMaidenHalo(this));

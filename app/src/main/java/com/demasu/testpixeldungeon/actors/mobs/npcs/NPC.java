@@ -33,7 +33,7 @@ public abstract class NPC extends Mob {
         state = PASSIVE;
     }
 
-    void throwItem() {
+    protected void throwItem() {
         Heap heap = Dungeon.level.heaps.get(pos);
         if (heap != null) {
             int n;

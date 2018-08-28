@@ -25,10 +25,10 @@ public class Group extends Gizmo {
 
     // Accessing it is a little faster,
     // than calling memebers.getSize()
-    protected int length;
+    public int length;
 
-    protected Group() {
-        members = new ArrayList<>();
+    public Group() {
+        members = new ArrayList<Gizmo>();
         length = 0;
     }
 
@@ -109,11 +109,11 @@ public class Group extends Gizmo {
         return g;
     }
 
-    public void addToBack(Gizmo g) {
+    public Gizmo addToBack(Gizmo g) {
 
         if (g.parent == this) {
             sendToBack(g);
-            return;
+            return g;
         }
 
         if (g.parent != null) {
@@ -123,12 +123,13 @@ public class Group extends Gizmo {
         if (members.get(0) == null) {
             members.set(0, g);
             g.parent = this;
-            return;
+            return g;
         }
 
         members.add(0, g);
         g.parent = this;
         length++;
+        return g;
     }
 
     public Gizmo recycle(Class<? extends Gizmo> c) {
@@ -155,21 +156,25 @@ public class Group extends Gizmo {
     }
 
     // Fast removal - replacing with null
-    public void erase(Gizmo g) {
+    public Gizmo erase(Gizmo g) {
         int index = members.indexOf(g);
         if (index != -1) {
             members.set(index, null);
             g.parent = null;
+            return g;
         } else {
+            return null;
         }
     }
 
     // Real removal
-    public void remove(Gizmo g) {
+    public Gizmo remove(Gizmo g) {
         if (members.remove(g)) {
             length--;
             g.parent = null;
+            return g;
         } else {
+            return null;
         }
     }
 
@@ -185,7 +190,7 @@ public class Group extends Gizmo {
         }
     }
 
-    private Gizmo getFirstAvailable(Class<? extends Gizmo> c) {
+    public Gizmo getFirstAvailable(Class<? extends Gizmo> c) {
 
         for (int i = 0; i < length; i++) {
             Gizmo g = members.get(i);
@@ -197,7 +202,7 @@ public class Group extends Gizmo {
         return null;
     }
 
-    protected int countLiving() {
+    public int countLiving() {
 
         int count = 0;
 
@@ -244,19 +249,23 @@ public class Group extends Gizmo {
         length = 0;
     }
 
-    public void bringToFront(Gizmo g) {
+    public Gizmo bringToFront(Gizmo g) {
         if (members.contains(g)) {
             members.remove(g);
             members.add(g);
+            return g;
         } else {
+            return null;
         }
     }
 
-    private void sendToBack(Gizmo g) {
+    public Gizmo sendToBack(Gizmo g) {
         if (members.contains(g)) {
             members.remove(g);
             members.add(0, g);
+            return g;
         } else {
+            return null;
         }
     }
 }

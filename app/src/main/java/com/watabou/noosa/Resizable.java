@@ -17,12 +17,12 @@
 
 package com.watabou.noosa;
 
-interface Resizable {
+public interface Resizable {
 
-    void size(float width, float height);
+    public void size(float width, float height);
 
-    float width();
+    public float width();
 
-    float height();
+    public float height();
 
 }

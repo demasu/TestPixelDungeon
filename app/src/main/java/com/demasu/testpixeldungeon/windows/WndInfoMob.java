@@ -36,19 +36,23 @@ public class WndInfoMob extends WndTitledMessage {
 
     private static String desc(Mob mob) {
 
-        return mob.description() + "\n\n" + mob.state.status() + ".";
+        StringBuilder builder = new StringBuilder(mob.description());
+
+        builder.append("\n\n" + mob.state.status() + ".");
+
+        return builder.toString();
     }
 
     private static class MobTitle extends Component {
 
         private static final int GAP = 2;
 
-        private final CharSprite image;
-        private final BitmapText name;
-        private final HealthBar health;
-        private final BuffIndicator buffs;
+        private CharSprite image;
+        private BitmapText name;
+        private HealthBar health;
+        private BuffIndicator buffs;
 
-        MobTitle(Mob mob) {
+        public MobTitle(Mob mob) {
 
             name = PixelScene.createText(Utils.capitalize(mob.name), 9);
             name.hardlight(TITLE_COLOR);

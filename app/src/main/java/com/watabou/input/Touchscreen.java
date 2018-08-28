@@ -27,13 +27,13 @@ import android.view.MotionEvent;
 
 public class Touchscreen {
 
-    public static final Signal<Touch> event = new Signal<>(true);
+    public static Signal<Touch> event = new Signal<Touch>(true);
 
-    private static final HashMap<Integer, Touch> pointers = new HashMap<>();
+    public static HashMap<Integer, Touch> pointers = new HashMap<Integer, Touch>();
 
     public static float x;
     public static float y;
-    private static boolean touched;
+    public static boolean touched;
 
     public static void processTouchEvents(ArrayList<MotionEvent> events) {
 
@@ -84,11 +84,11 @@ public class Touchscreen {
 
     public static class Touch {
 
-        public final PointF start;
-        public final PointF current;
+        public PointF start;
+        public PointF current;
         public boolean down;
 
-        Touch(MotionEvent e, int index) {
+        public Touch(MotionEvent e, int index) {
 
             float x = e.getX(index);
             float y = e.getY(index);
@@ -99,11 +99,11 @@ public class Touchscreen {
             down = true;
         }
 
-        void update(MotionEvent e, int index) {
+        public void update(MotionEvent e, int index) {
             current.set(e.getX(index), e.getY(index));
         }
 
-        Touch up() {
+        public Touch up() {
             down = false;
             return this;
         }

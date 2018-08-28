@@ -79,4 +79,5 @@ public class WndQuest extends Window {
     protected void onSelect(int index) {
     }
 
+    ;
 }

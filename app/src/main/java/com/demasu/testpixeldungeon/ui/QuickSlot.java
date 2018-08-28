@@ -169,7 +169,7 @@ public class QuickSlot extends Button implements WndBag.Listener {
         }
     }
 
-    private void item(Item item) {
+    public void item(Item item) {
         slot.item(item);
         itemInSlot = item;
         enableSlot();

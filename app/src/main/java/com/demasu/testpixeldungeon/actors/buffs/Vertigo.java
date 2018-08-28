@@ -23,7 +23,7 @@ import com.demasu.testpixeldungeon.ui.BuffIndicator;
 
 public class Vertigo extends FlavourBuff {
 
-    private static final float DURATION = 10f;
+    public static final float DURATION = 10f;
 
     @Override
     public int icon() {

@@ -12,8 +12,8 @@ public class ActiveSkill extends Skill {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<>();
-        if (!active && level > 0)
+        ArrayList<String> actions = new ArrayList<String>();
+        if (active == false && level > 0)
             actions.add(AC_ACTIVATE);
         else if (level > 0)
             actions.add(AC_DEACTIVATE);

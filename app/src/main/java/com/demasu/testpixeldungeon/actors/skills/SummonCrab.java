@@ -68,7 +68,7 @@ public class SummonCrab extends ActiveSkill2 {
                 }
             }
 
-            if (spawned) {
+            if (spawned == true) {
                 hero.MP -= getManaCost();
                 StatusPane.manaDropping += getManaCost();
                 castTextYell();

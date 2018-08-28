@@ -29,7 +29,7 @@ import com.watabou.utils.Random;
 
 public class Bleeding extends Buff {
 
-    private int level;
+    protected int level;
 
     private static final String LEVEL = "level";
 
@@ -49,6 +49,8 @@ public class Bleeding extends Buff {
     public void set(int level) {
         this.level = level;
     }
+
+    ;
 
     @Override
     public int icon() {

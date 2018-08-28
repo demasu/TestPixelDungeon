@@ -36,10 +36,10 @@ public class Food extends Item {
 
     private static final float TIME_TO_EAT = 3f;
 
-    static final String AC_EAT = "EAT";
+    public static final String AC_EAT = "EAT";
 
-    final float energy = Hunger.HUNGRY;
-    final String message = "That food tasted delicious!";
+    public float energy = Hunger.HUNGRY;
+    public String message = "That food tasted delicious!";
 
     {
         stackable = true;
@@ -60,7 +60,7 @@ public class Food extends Item {
 
             detach(hero.belongings.backpack);
 
-            hero.buff(Hunger.class).satisfy(energy);
+            ((Hunger) hero.buff(Hunger.class)).satisfy(energy);
             GLog.i(message);
 
             switch (hero.heroClass) {

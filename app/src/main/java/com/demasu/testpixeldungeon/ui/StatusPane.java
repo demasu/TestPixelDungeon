@@ -92,6 +92,7 @@ public class StatusPane extends Component {
                 GameScene.show(new WndHero());
             }
 
+            ;
         });
 
         btnMenu = new MenuButton();
@@ -309,7 +310,7 @@ public class StatusPane extends Component {
 
         private Image image;
 
-        MenuButton() {
+        public MenuButton() {
             super();
 
             width = image.width + 4;

@@ -31,12 +31,12 @@ public class Wound extends Image {
 
     private float time;
 
-    private Wound() {
+    public Wound() {
         super(Effects.get(Effects.Type.WOUND));
         origin.set(width / 2, height / 2);
     }
 
-    private void reset(int p) {
+    public void reset(int p) {
         revive();
 
         x = (p % Level.WIDTH) * DungeonTilemap.SIZE + (DungeonTilemap.SIZE - width) / 2;
@@ -62,7 +62,7 @@ public class Wound extends Image {
         hit(ch, 0);
     }
 
-    private static void hit(Char ch, float angle) {
+    public static void hit(Char ch, float angle) {
         Wound w = (Wound) ch.sprite.parent.recycle(Wound.class);
         ch.sprite.parent.bringToFront(w);
         w.reset(ch.pos);
@@ -73,7 +73,7 @@ public class Wound extends Image {
         hit(pos, 0);
     }
 
-    private static void hit(int pos, float angle) {
+    public static void hit(int pos, float angle) {
         Group parent = Dungeon.hero.sprite.parent;
         Wound w = (Wound) parent.recycle(Wound.class);
         parent.bringToFront(w);

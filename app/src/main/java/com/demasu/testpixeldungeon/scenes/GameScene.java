@@ -79,48 +79,48 @@ import com.watabou.utils.Random;
 
 public class GameScene extends PixelScene {
 
-    static final String TXT_WELCOME = "Welcome to the level %d of Pixel Dungeon!";
-    static final String TXT_WELCOME_BACK = "Welcome back to the level %d of Pixel Dungeon!";
-    static final String TXT_NIGHT_MODE = "Be cautious, since the dungeon is even more dangerous at night!";
+    protected static final String TXT_WELCOME = "Welcome to the level %d of Pixel Dungeon!";
+    protected static final String TXT_WELCOME_BACK = "Welcome back to the level %d of Pixel Dungeon!";
+    protected static final String TXT_NIGHT_MODE = "Be cautious, since the dungeon is even more dangerous at night!";
 
-    static final String TXT_CHASM = "Your steps echo across the dungeon.";
-    static final String TXT_WATER = "You hear the water splashing around you.";
-    static final String TXT_GRASS = "The smell of vegetation is thick in the air.";
-    static final String TXT_SECRETS = "The atmosphere hints that this floor hides many secrets.";
+    protected static final String TXT_CHASM = "Your steps echo across the dungeon.";
+    protected static final String TXT_WATER = "You hear the water splashing around you.";
+    protected static final String TXT_GRASS = "The smell of vegetation is thick in the air.";
+    protected static final String TXT_SECRETS = "The atmosphere hints that this floor hides many secrets.";
 
-    static final String TXT_WARN_DEGRADATION = "Your items will wear down with time. You can disable item degradation from settings.";
+    protected static final String TXT_WARN_DEGRADATION = "Your items will wear down with time. You can disable item degradation from settings.";
 
-    static final String TXT_FROST = "The portal spits you out in a cold domain...";
+    protected static final String TXT_FROST = "The portal spits you out in a cold domain...";
 
-    static GameScene scene;
+    protected static GameScene scene;
 
-    SkinnedBlock water;
-    DungeonTilemap tiles;
-    FogOfWar fog;
-    private HeroSprite hero;
+    protected SkinnedBlock water;
+    protected DungeonTilemap tiles;
+    protected FogOfWar fog;
+    protected HeroSprite hero;
 
-    GameLog log;
+    protected GameLog log;
 
-    BusyIndicator busy;
+    protected BusyIndicator busy;
 
-    static CellSelector cellSelector;
+    protected static CellSelector cellSelector;
 
-    Group terrain;
-    Group ripples;
-    Group plants;
-    Group heaps;
-    Group mobs;
-    Group emitters;
-    Group effects;
-    Group gases;
-    Group spells;
-    Group statuses;
-    Group emoicons;
+    protected Group terrain;
+    protected Group ripples;
+    protected Group plants;
+    protected Group heaps;
+    protected Group mobs;
+    protected Group emitters;
+    protected Group effects;
+    protected Group gases;
+    protected Group spells;
+    protected Group statuses;
+    protected Group emoicons;
 
-    private Toolbar toolbar;
-    private Toast prompt;
+    protected Toolbar toolbar;
+    protected Toast prompt;
 
-    void originalCreate() {
+    public void originalCreate() {
         super.create();
     }
 
@@ -266,7 +266,7 @@ public class GameScene extends PixelScene {
                 switch (Dungeon.depth) {
                     case 1:
                         WndStory.showChapter(WndStory.ID_SEWERS);
-                        if (!PixelDungeon.itemDeg())
+                        if (PixelDungeon.itemDeg() == false)
                             WndStory.showStory(TXT_WARN_DEGRADATION);
                         break;
                     case 6:
@@ -413,38 +413,38 @@ public class GameScene extends PixelScene {
         }
     }
 
-    void addHeapSprite(Heap heap) {
+    protected void addHeapSprite(Heap heap) {
         ItemSprite sprite = heap.sprite = (ItemSprite) heaps.recycle(ItemSprite.class);
         sprite.revive();
         sprite.link(heap);
         heaps.add(sprite);
     }
 
-    private void addDiscardedSprite(Heap heap) {
+    protected void addDiscardedSprite(Heap heap) {
         heap.sprite = (DiscardedItemSprite) heaps.recycle(DiscardedItemSprite.class);
         heap.sprite.revive();
         heap.sprite.link(heap);
         heaps.add(heap.sprite);
     }
 
-    void addPlantSprite(Plant plant) {
+    protected void addPlantSprite(Plant plant) {
         (plant.sprite = (PlantSprite) plants.recycle(PlantSprite.class)).reset(plant);
     }
 
-    void addBlobSprite(final Blob gas) {
+    protected void addBlobSprite(final Blob gas) {
         if (gas.emitter == null) {
             gases.add(new BlobEmitter(gas));
         }
     }
 
-    void addMobSprite(Mob mob) {
+    protected void addMobSprite(Mob mob) {
         CharSprite sprite = mob.sprite();
         sprite.visible = Dungeon.visible[mob.pos];
         mobs.add(sprite);
         sprite.link(mob);
     }
 
-    private void prompt(String text) {
+    protected void prompt(String text) {
 
         if (prompt != null) {
             prompt.killAndErase();
@@ -464,7 +464,7 @@ public class GameScene extends PixelScene {
         }
     }
 
-    private void showBanner(Banner banner) {
+    protected void showBanner(Banner banner) {
         banner.camera = uiCamera;
         banner.x = align(uiCamera, (uiCamera.width - banner.width) / 2);
         banner.y = align(uiCamera, (uiCamera.height - banner.height) / 3);

@@ -67,8 +67,9 @@ public class Rect {
         return right <= left || bottom <= top;
     }
 
-    public void setEmpty() {
+    public Rect setEmpty() {
         left = right = top = bottom = 0;
+        return this;
     }
 
     public Rect intersect(Rect other) {
@@ -106,7 +107,7 @@ public class Rect {
         return p.x >= left && p.x < right && p.y >= top && p.y < bottom;
     }
 
-    private Rect shrink(int d) {
+    public Rect shrink(int d) {
         return new Rect(left + d, top + d, right - d, bottom - d);
     }
 

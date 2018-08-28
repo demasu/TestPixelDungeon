@@ -22,14 +22,14 @@ import com.watabou.noosa.Gizmo;
 
 abstract public class Tweener extends Gizmo {
 
-    private final Gizmo target;
+    public Gizmo target;
 
-    private final float interval;
-    private float elapsed;
+    public float interval;
+    public float elapsed;
 
     public Listener listener;
 
-    protected Tweener(Gizmo target, float interval) {
+    public Tweener(Gizmo target, float interval) {
         super();
 
         this.target = target;
@@ -58,7 +58,7 @@ abstract public class Tweener extends Gizmo {
 
     abstract protected void updateValues(float progress);
 
-    public interface Listener {
+    public static interface Listener {
         void onComplete(Tweener tweener);
     }
 }

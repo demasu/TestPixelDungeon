@@ -50,10 +50,10 @@ public enum HeroSubClass {
             "Having a strong connection with forces of nature gives _Wardens_ an ability to gather dewdrops and " +
                     "seeds from plants. Also trampling a high grass grants them a temporary armor buff.");
 
-    private final String title;
-    private final String desc;
+    private String title;
+    private String desc;
 
-    HeroSubClass(String title, String desc) {
+    private HeroSubClass(String title, String desc) {
         this.title = title;
         this.desc = desc;
     }

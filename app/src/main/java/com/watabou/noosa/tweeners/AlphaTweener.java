@@ -21,10 +21,10 @@ import com.watabou.noosa.Visual;
 
 public class AlphaTweener extends Tweener {
 
-    public final Visual image;
+    public Visual image;
 
-    private final float start;
-    private final float delta;
+    public float start;
+    public float delta;
 
     public AlphaTweener(Visual image, float alpha, float time) {
         super(image, time);

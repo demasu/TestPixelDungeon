@@ -32,7 +32,7 @@ public class WoolParticle extends PixelParticle.Shrinking {
         }
     };
 
-    private WoolParticle() {
+    public WoolParticle() {
         super();
 
         color(ColorMath.random(0x999999, 0xEEEEE0));
@@ -40,7 +40,7 @@ public class WoolParticle extends PixelParticle.Shrinking {
         acc.set(0, -40);
     }
 
-    private void reset(float x, float y) {
+    public void reset(float x, float y) {
         revive();
 
         this.x = x;

@@ -7,8 +7,8 @@ import com.watabou.utils.Highlighter;
 
 public class HighlightedText extends Component {
 
-    private final BitmapTextMultiline normal;
-    private final BitmapTextMultiline highlighted;
+    protected BitmapTextMultiline normal;
+    protected BitmapTextMultiline highlighted;
 
     protected int nColor = 0xFFFFFF;
     protected int hColor = 0xFFFF44;
@@ -53,7 +53,7 @@ public class HighlightedText extends Component {
         height = normal.height();
     }
 
-    private void setColor(int n, int h) {
+    public void setColor(int n, int h) {
         normal.hardlight(n);
         highlighted.hardlight(h);
     }

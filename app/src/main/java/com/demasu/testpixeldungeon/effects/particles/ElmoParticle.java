@@ -34,9 +34,10 @@ public class ElmoParticle extends PixelParticle.Shrinking {
             return true;
         }
 
+        ;
     };
 
-    private ElmoParticle() {
+    public ElmoParticle() {
         super();
 
         color(0x22EE66);
@@ -45,7 +46,7 @@ public class ElmoParticle extends PixelParticle.Shrinking {
         acc.set(0, -80);
     }
 
-    private void reset(float x, float y) {
+    public void reset(float x, float y) {
         revive();
 
         this.x = x;

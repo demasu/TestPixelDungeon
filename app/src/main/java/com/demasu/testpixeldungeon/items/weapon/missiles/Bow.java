@@ -120,10 +120,10 @@ public class Bow extends MissileWeapon {
         actions.remove(AC_THROW);
         actions.remove(AC_EQUIP);
         if (Dungeon.hero.belongings.bow != this) {
-            if (!actions.contains(AC_EQUIP))
+            if (actions.contains(AC_EQUIP) == false)
                 actions.add(AC_EQUIP);
         } else {
-            if (!actions.contains(AC_UNEQUIP))
+            if (actions.contains(AC_UNEQUIP) == false)
                 actions.add(AC_UNEQUIP);
         }
 
@@ -148,8 +148,10 @@ public class Bow extends MissileWeapon {
     @Override
     public String info() {
 
+        StringBuilder info = new StringBuilder(desc());
 
-        return desc();
+
+        return info.toString();
     }
 
     public void bowSpecial(Char target) {

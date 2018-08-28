@@ -38,9 +38,9 @@ public class Bundle {
 
     private static final String CLASS_NAME = "__className";
 
-    private static final HashMap<String, String> aliases = new HashMap<>();
+    private static HashMap<String, String> aliases = new HashMap<String, String>();
 
-    private final JSONObject data;
+    private JSONObject data;
 
     public Bundle() {
         this(new JSONObject());
@@ -171,7 +171,7 @@ public class Bundle {
 
     public Collection<Bundlable> getCollection(String key) {
 
-        ArrayList<Bundlable> list = new ArrayList<>();
+        ArrayList<Bundlable> list = new ArrayList<Bundlable>();
 
         try {
             JSONArray array = data.getJSONArray(key);
@@ -329,13 +329,15 @@ public class Bundle {
         }
     }
 
-    public static void write(Bundle bundle, OutputStream stream) {
+    public static boolean write(Bundle bundle, OutputStream stream) {
         try {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
             writer.write(bundle.data.toString());
             writer.close();
 
+            return true;
         } catch (IOException e) {
+            return false;
         }
     }
 

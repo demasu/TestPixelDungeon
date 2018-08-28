@@ -138,7 +138,7 @@ public class Burning extends Buff implements Hero.Doom {
         return "Burning";
     }
 
-    private static float duration(Char ch) {
+    public static float duration(Char ch) {
         Resistance r = ch.buff(Resistance.class);
         return r != null ? r.durationFactor() * DURATION : DURATION;
     }

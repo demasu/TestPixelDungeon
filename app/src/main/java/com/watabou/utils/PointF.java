@@ -50,7 +50,6 @@ public class PointF {
     }
 
     public PointF clone() {
-        PointF pointF = (PointF) super.clone();
         return new PointF(this);
     }
 
@@ -66,9 +65,10 @@ public class PointF {
         return this;
     }
 
-    public void set(float x, float y) {
+    public PointF set(float x, float y) {
         this.x = x;
         this.y = y;
+        return this;
     }
 
     public PointF set(PointF p) {

@@ -28,12 +28,12 @@ import com.watabou.utils.PointF;
 
 public class ScrollPane extends Component {
 
-    private static final int THUMB_COLOR = 0xFF7b8073;
-    private static final float THUMB_ALPHA = 0.5f;
+    protected static final int THUMB_COLOR = 0xFF7b8073;
+    protected static final float THUMB_ALPHA = 0.5f;
 
-    private TouchController controller;
-    final Component content;
-    private ColorBlock thumb;
+    protected TouchController controller;
+    protected Component content;
+    protected ColorBlock thumb;
 
     protected float minX;
     protected float minY;
@@ -100,14 +100,14 @@ public class ScrollPane extends Component {
         return content;
     }
 
-    protected void onClick(float x, float y) {
+    public void onClick(float x, float y) {
     }
 
-    protected class TouchController extends TouchArea {
+    public class TouchController extends TouchArea {
 
-        private final float dragThreshold;
+        private float dragThreshold;
 
-        TouchController() {
+        public TouchController() {
             super(0, 0, 0, 0);
             dragThreshold = PixelScene.defaultZoom * 8;
         }
@@ -128,7 +128,7 @@ public class ScrollPane extends Component {
         }
 
         private boolean dragging = false;
-        private final PointF lastPos = new PointF();
+        private PointF lastPos = new PointF();
 
         @Override
         protected void onDrag(Touch t) {

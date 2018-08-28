@@ -23,18 +23,18 @@ public class MovieClip extends Image {
 
     protected Animation curAnim;
     protected int curFrame;
-    private float frameTimer;
-    private boolean finished;
+    protected float frameTimer;
+    protected boolean finished;
 
     public boolean paused = false;
 
-    protected Listener listener;
+    public Listener listener;
 
-    protected MovieClip() {
+    public MovieClip() {
         super();
     }
 
-    protected MovieClip(Object tx) {
+    public MovieClip(Object tx) {
         super(tx);
     }
 
@@ -46,7 +46,7 @@ public class MovieClip extends Image {
         }
     }
 
-    private void updateAnimation() {
+    protected void updateAnimation() {
         if (curAnim != null && curAnim.delay > 0 && (curAnim.looped || !finished)) {
 
             int lastFrame = curFrame;
@@ -79,7 +79,7 @@ public class MovieClip extends Image {
         }
     }
 
-    protected void play(Animation anim) {
+    public void play(Animation anim) {
         play(anim, false);
     }
 
@@ -104,27 +104,27 @@ public class MovieClip extends Image {
 
         public float delay;
         public RectF[] frames;
-        final boolean looped;
+        public boolean looped;
 
-        protected Animation(int fps, boolean looped) {
+        public Animation(int fps, boolean looped) {
             this.delay = 1f / fps;
             this.looped = looped;
         }
 
-        Animation frames(RectF... frames) {
+        public Animation frames(RectF... frames) {
             this.frames = frames;
             return this;
         }
 
-        public void frames(TextureFilm film, Object... frames) {
+        public Animation frames(TextureFilm film, Object... frames) {
             this.frames = new RectF[frames.length];
             for (int i = 0; i < frames.length; i++) {
                 this.frames[i] = film.get(frames[i]);
             }
+            return this;
         }
 
         public Animation clone() {
-            Animation animation = (Animation) super.clone();
             return new Animation(Math.round(1 / delay), looped).frames(frames);
         }
     }

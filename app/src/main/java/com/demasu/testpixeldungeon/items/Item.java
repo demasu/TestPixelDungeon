@@ -69,25 +69,25 @@ public class Item implements Bundlable {
 
     private static final float DURABILITY_WARNING_LEVEL = 1 / 6f;
 
-    static final float TIME_TO_THROW = 1.0f;
-    static final float TIME_TO_PICK_UP = 1.0f;
-    private static final float TIME_TO_DROP = 0.5f;
+    protected static final float TIME_TO_THROW = 1.0f;
+    protected static final float TIME_TO_PICK_UP = 1.0f;
+    protected static final float TIME_TO_DROP = 0.5f;
 
-    private static final String AC_DROP = "DROP";
+    public static final String AC_DROP = "DROP";
     public static final String AC_THROW = "THROW";
-    private static final String AC_STORE = "STORE";
+    public static final String AC_STORE = "STORE";
     public static final String AC_STORE_TAKE = "STORETAKE";
 
-    public final String defaultAction;
+    public String defaultAction;
 
     protected String name = "smth";
     protected int image = 0;
 
 
-    public final boolean stackable = false;
+    public boolean stackable = false;
     protected int quantity = 1;
 
-    private final boolean noDegrade = PixelDungeon.itemDeg();
+    public boolean noDegrade = PixelDungeon.itemDeg();
 
     public int level = 0;
     private int durability = maxDurability();
@@ -96,9 +96,9 @@ public class Item implements Bundlable {
     public boolean cursed;
     public boolean cursedKnown;
 
-    public final boolean unique = false;
+    public boolean unique = false;
 
-    private static final Comparator<Item> itemComparator = new Comparator<Item>() {
+    private static Comparator<Item> itemComparator = new Comparator<Item>() {
         @Override
         public int compare(Item lhs, Item rhs) {
             return Generator.Category.order(lhs) - Generator.Category.order(rhs);
@@ -106,7 +106,7 @@ public class Item implements Bundlable {
     };
 
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<>();
+        ArrayList<String> actions = new ArrayList<String>();
         actions.add(AC_DROP);
         actions.add(AC_THROW);
         if (hero.pos == Dungeon.level.storage && this != hero.belongings.weapon && this != hero.belongings.armor && this != hero.belongings.ring1 && this != hero.belongings.ring2 && this != hero.belongings.bow)
@@ -128,7 +128,7 @@ public class Item implements Bundlable {
         }
     }
 
-    void doDrop(Hero hero) {
+    public void doDrop(Hero hero) {
         hero.spendAndNext(TIME_TO_DROP);
         Dungeon.level.drop(detachAll(hero.belongings.backpack), hero.pos).sprite.drop(hero.pos);
     }
@@ -142,36 +142,31 @@ public class Item implements Bundlable {
         curUser = hero;
         curItem = this;
 
-        switch (action) {
-            case AC_DROP:
+        if (action.equals(AC_DROP)) {
 
-                doDrop(hero);
+            doDrop(hero);
 
-                break;
-            case AC_THROW:
+        } else if (action.equals(AC_THROW)) {
 
-                doThrow(hero);
+            doThrow(hero);
 
-                break;
-            case AC_STORE:
+        } else if (action.equals(AC_STORE)) {
 
-                doAddStorage(hero);
+            doAddStorage(hero);
 
-                break;
-            case AC_STORE_TAKE:
+        } else if (action.equals(AC_STORE_TAKE)) {
 
-                doTakeStorage(hero);
+            doTakeStorage(hero);
 
-                break;
         }
     }
 
-    private void doTakeStorage(Hero hero) {
+    public void doTakeStorage(Hero hero) {
         hero.spendAndNext(TIME_TO_DROP);
         Dungeon.level.drop(detachAll(hero.storage.backpack), hero.pos).sprite.drop(hero.pos);
     }
 
-    private void doAddStorage(Hero hero) {
+    public void doAddStorage(Hero hero) {
         if (collect(hero.storage.backpack)) {
             hero.spendAndNext(TIME_TO_DROP);
             detachAll(hero.belongings.backpack);
@@ -319,11 +314,12 @@ public class Item implements Bundlable {
         return this;
     }
 
-    final public void upgrade(int n) {
+    final public Item upgrade(int n) {
         for (int i = 0; i < n; i++) {
             upgrade();
         }
 
+        return this;
     }
 
     public Item degrade() {
@@ -344,7 +340,7 @@ public class Item implements Bundlable {
 
     public void use() {
 
-        if (noDegrade) // No degrade
+        if (noDegrade == true) // No degrade
             return;
 
         if (level > 0 && !isBroken()) {
@@ -396,7 +392,7 @@ public class Item implements Bundlable {
         return durability;
     }
 
-    protected int maxDurability(int lvl) {
+    public int maxDurability(int lvl) {
         return 1;
     }
 
@@ -478,7 +474,7 @@ public class Item implements Bundlable {
         return desc();
     }
 
-    protected String desc() {
+    public String desc() {
         return "";
     }
 
@@ -494,7 +490,7 @@ public class Item implements Bundlable {
         return 0;
     }
 
-    protected int considerState(int price) {
+    public int considerState(int price) {
         if (cursed && cursedKnown) {
             price /= 2;
         }
@@ -518,7 +514,7 @@ public class Item implements Bundlable {
     public static Item virtual(Class<? extends Item> cl) {
         try {
 
-            Item item = cl.newInstance();
+            Item item = (Item) cl.newInstance();
             item.quantity = 0;
             return item;
 
@@ -670,7 +666,7 @@ public class Item implements Bundlable {
                 });
     }
 
-    protected void castSPD(final Hero user, int dst, int skip) {
+    public void castSPD(final Hero user, int dst, int skip) {
 
         final int cell = Ballistica.cast(user.pos, dst, skip);
         user.sprite.zap(cell);
@@ -716,7 +712,7 @@ public class Item implements Bundlable {
 
     protected static Hero curUser = null;
     protected static Item curItem = null;
-    private static final CellSelector.Listener thrower = new CellSelector.Listener() {
+    protected static CellSelector.Listener thrower = new CellSelector.Listener() {
         @Override
         public void onSelect(Integer target) {
             if (target != null) {

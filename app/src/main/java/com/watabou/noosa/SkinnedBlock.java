@@ -23,11 +23,11 @@ import android.graphics.RectF;
 
 public class SkinnedBlock extends Image {
 
-    private float scaleX;
-    private float scaleY;
+    protected float scaleX;
+    protected float scaleY;
 
-    private float offsetX;
-    private float offsetY;
+    protected float offsetX;
+    protected float offsetY;
 
     public boolean autoAdjust = false;
 

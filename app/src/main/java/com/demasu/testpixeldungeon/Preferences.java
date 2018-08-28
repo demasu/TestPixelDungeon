@@ -50,8 +50,8 @@ enum Preferences {
         return prefs;
     }
 
-    int getInt(String key) {
-        return get().getInt(key, 0);
+    int getInt(String key, int defValue) {
+        return get().getInt(key, defValue);
     }
 
     boolean getBoolean(String key, boolean defValue) {
@@ -63,14 +63,14 @@ enum Preferences {
     }
 
     void put(String key, int value) {
-        get().edit().putInt(key, value).apply();
+        get().edit().putInt(key, value).commit();
     }
 
     void put(String key, boolean value) {
-        get().edit().putBoolean(key, value).apply();
+        get().edit().putBoolean(key, value).commit();
     }
 
     void put(String key, String value) {
-        get().edit().putString(key, value).apply();
+        get().edit().putString(key, value).commit();
     }
 }

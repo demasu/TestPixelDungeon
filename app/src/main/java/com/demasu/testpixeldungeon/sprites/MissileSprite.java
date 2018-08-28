@@ -43,7 +43,7 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
         }
     }
 
-    private void reset(int from, int to, int image, Glowing glowing, Callback listener) {
+    public void reset(int from, int to, int image, Glowing glowing, Callback listener) {
         revive();
 
         view(image, glowing);

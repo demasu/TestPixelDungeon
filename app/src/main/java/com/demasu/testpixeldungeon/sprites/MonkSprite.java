@@ -23,7 +23,7 @@ import com.watabou.utils.Random;
 
 public class MonkSprite extends MobSprite {
 
-    private final Animation kick;
+    private Animation kick;
 
     public MonkSprite() {
         super();

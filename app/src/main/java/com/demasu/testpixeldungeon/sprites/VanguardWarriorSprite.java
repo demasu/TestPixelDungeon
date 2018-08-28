@@ -24,13 +24,13 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 
 public class VanguardWarriorSprite extends MobSprite {
 
-    private static final int FRAME_WIDTH = 12;
-    private static final int FRAME_HEIGHT = 15;
+    protected static final int FRAME_WIDTH = 12;
+    protected static final int FRAME_HEIGHT = 15;
 
-    private static final int RUN_FRAMERATE = 20;
+    protected static final int RUN_FRAMERATE = 20;
 
-    private ArcherMaidenHalo halo = null;
-    private boolean hasHalo = false;
+    public ArcherMaidenHalo halo = null;
+    public boolean hasHalo = false;
 
 
     public VanguardWarriorSprite() {

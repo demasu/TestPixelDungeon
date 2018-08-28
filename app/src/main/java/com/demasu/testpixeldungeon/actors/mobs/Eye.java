@@ -154,7 +154,7 @@ public class Eye extends Mob {
                         "it uses its deathgaze recklessly, often ignoring its allies and wounding them.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<>();
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
 
     static {
         RESISTANCES.add(WandOfDisintegration.class);
@@ -167,7 +167,7 @@ public class Eye extends Mob {
         return RESISTANCES;
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 
     static {
         IMMUNITIES.add(Terror.class);

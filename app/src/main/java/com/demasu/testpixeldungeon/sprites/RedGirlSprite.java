@@ -19,6 +19,7 @@ package com.demasu.testpixeldungeon.sprites;
 
 import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
+import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.effects.ArcherMaidenHalo;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
 import com.demasu.testpixeldungeon.scenes.GameScene;
@@ -26,16 +27,16 @@ import com.watabou.utils.Callback;
 
 public class RedGirlSprite extends MobSprite {
 
-    private static final int FRAME_WIDTH = 12;
-    private static final int FRAME_HEIGHT = 15;
+    protected static final int FRAME_WIDTH = 12;
+    protected static final int FRAME_HEIGHT = 15;
 
-    private static final int RUN_FRAMERATE = 20;
+    protected static final int RUN_FRAMERATE = 20;
 
-    private ArcherMaidenHalo halo = null;
-    private boolean hasHalo = false;
+    public ArcherMaidenHalo halo = null;
+    public boolean hasHalo = false;
 
 
-    private int cellToAttack = 0;
+    int cellToAttack = 0;
 
     public RedGirlSprite() {
         super();

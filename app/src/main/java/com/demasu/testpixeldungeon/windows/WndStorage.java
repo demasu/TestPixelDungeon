@@ -48,7 +48,7 @@ import com.demasu.testpixeldungeon.utils.Utils;
 
 public class WndStorage extends WndTabbed {
 
-    public enum Mode {
+    public static enum Mode {
         ALL,
         UNIDENTIFED,
         UPGRADEABLE,
@@ -61,26 +61,31 @@ public class WndStorage extends WndTabbed {
         SEED
     }
 
-    private static final int COLS_P = 4;
-    private static final int COLS_L = 6;
+    protected static final int COLS_P = 4;
+    protected static final int COLS_L = 6;
 
-    private static final int SLOT_SIZE = 28;
-    private static final int SLOT_MARGIN = 1;
+    protected static final int SLOT_SIZE = 28;
+    protected static final int SLOT_MARGIN = 1;
 
     protected static final int TAB_WIDTH = 25;
 
-    private static final int TITLE_HEIGHT = 12;
+    protected static final int TITLE_HEIGHT = 12;
 
-    private final Listener listener;
-    private final WndStorage.Mode mode;
+    private Listener listener;
+    private WndStorage.Mode mode;
+    private String title;
 
-    private final int nCols;
+    private int nCols;
+    private int nRows;
 
-    private int count;
-    private int col;
-    private int row;
+    protected int count;
+    protected int col;
+    protected int row;
 
-    private final boolean noDegrade = !PixelDungeon.itemDeg();
+    private static Mode lastMode;
+    private static Storage lastBag;
+
+    public boolean noDegrade = !PixelDungeon.itemDeg();
 
     public WndStorage(Storage bag, Listener listener, Mode mode, String title) {
 
@@ -88,13 +93,13 @@ public class WndStorage extends WndTabbed {
 
         this.listener = listener;
         this.mode = mode;
-        String title1 = title;
+        this.title = title;
 
-        Mode lastMode = mode;
-        Storage lastBag = bag;
+        lastMode = mode;
+        lastBag = bag;
 
         nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
-        int nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
+        nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
 
         int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
         int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);
@@ -113,7 +118,7 @@ public class WndStorage extends WndTabbed {
     }
 
 
-    private void placeItems(Storage container) {
+    protected void placeItems(Storage container) {
 
 
         boolean backpack = (container == Dungeon.hero.storage);
@@ -135,7 +140,7 @@ public class WndStorage extends WndTabbed {
 
     }
 
-    private void placeItem(final Item item) {
+    protected void placeItem(final Item item) {
 
         int x = col * (SLOT_SIZE + SLOT_MARGIN);
         int y = TITLE_HEIGHT + row * (SLOT_SIZE + SLOT_MARGIN);
@@ -178,9 +183,9 @@ public class WndStorage extends WndTabbed {
 
     private class BagTab extends Tab {
 
-        private final Image icon;
+        private Image icon;
 
-        private final Bag bag;
+        private Bag bag;
 
         public BagTab(Bag bag) {
             super();
@@ -254,12 +259,12 @@ public class WndStorage extends WndTabbed {
 
         private static final int NBARS = 3;
 
-        private final Item item;
+        private Item item;
         private ColorBlock bg;
 
         private ColorBlock durability[];
 
-        ItemButton(Item item) {
+        public ItemButton(Item item) {
 
             super(item);
 
@@ -284,7 +289,7 @@ public class WndStorage extends WndTabbed {
             bg.x = x;
             bg.y = y;
 
-            if (noDegrade)
+            if (noDegrade == true)
                 durability = null; // no durability
 
             if (durability != null) {
@@ -340,9 +345,13 @@ public class WndStorage extends WndTabbed {
             Sample.INSTANCE.play(Assets.SND_CLICK, 0.7f, 0.7f, 1.2f);
         }
 
+        ;
+
         protected void onTouchUp() {
             bg.brightness(1.0f);
         }
+
+        ;
 
         @Override
         protected void onClick() {
@@ -366,7 +375,7 @@ public class WndStorage extends WndTabbed {
         }
     }
 
-    interface Listener {
+    public interface Listener {
         void onSelect(Item item);
     }
 }

@@ -44,7 +44,7 @@ public class WndBlacksmith extends Window {
 
     private ItemButton btnItem1;
     private ItemButton btnItem2;
-    private final RedButton btnReforge;
+    private RedButton btnReforge;
 
     private static final String TXT_PROMPT =
             "Ok, a deal is a deal, dat's what I can do for you: I can reforge " +
@@ -105,7 +105,7 @@ public class WndBlacksmith extends Window {
         resize(WIDTH, (int) btnReforge.bottom());
     }
 
-    private final WndBag.Listener itemSelector = new WndBag.Listener() {
+    protected WndBag.Listener itemSelector = new WndBag.Listener() {
         @Override
         public void onSelect(Item item) {
             if (item != null) {
@@ -124,12 +124,12 @@ public class WndBlacksmith extends Window {
         }
     };
 
-    protected static class ItemButton extends Component {
+    public static class ItemButton extends Component {
 
-        NinePatch bg;
-        ItemSlot slot;
+        protected NinePatch bg;
+        protected ItemSlot slot;
 
-        Item item = null;
+        public Item item = null;
 
         @Override
         protected void createChildren() {
@@ -145,6 +145,8 @@ public class WndBlacksmith extends Window {
                     Sample.INSTANCE.play(Assets.SND_CLICK);
                 }
 
+                ;
+
                 @Override
                 protected void onTouchUp() {
                     bg.resetColor();
@@ -158,8 +160,10 @@ public class WndBlacksmith extends Window {
             add(slot);
         }
 
-        void onClick() {
+        protected void onClick() {
         }
+
+        ;
 
         @Override
         protected void layout() {
@@ -172,7 +176,9 @@ public class WndBlacksmith extends Window {
             slot.setRect(x + 2, y + 2, width - 4, height - 4);
         }
 
-        void item(Item item) {
+        ;
+
+        public void item(Item item) {
             slot.item(this.item = item);
         }
     }

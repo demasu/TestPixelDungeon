@@ -28,9 +28,9 @@ import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 
 public class Torch extends Item {
 
-    private static final String AC_LIGHT = "LIGHT";
+    public static final String AC_LIGHT = "LIGHT";
 
-    private static final float TIME_TO_LIGHT = 1;
+    public static final float TIME_TO_LIGHT = 1;
 
     {
         name = "torch";

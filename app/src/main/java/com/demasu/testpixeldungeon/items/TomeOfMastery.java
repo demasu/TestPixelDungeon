@@ -40,9 +40,9 @@ public class TomeOfMastery extends Item {
 
     private static final String TXT_BLINDED = "You can't read while blinded";
 
-    private static final float TIME_TO_READ = 10;
+    public static final float TIME_TO_READ = 10;
 
-    private static final String AC_READ = "READ";
+    public static final String AC_READ = "READ";
 
     {
         stackable = false;

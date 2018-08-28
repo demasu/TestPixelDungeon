@@ -43,7 +43,7 @@ public class HuntressArmor extends ClassArmor {
         image = ItemSpriteSheet.ARMOR_HUNTRESS;
     }
 
-    private final HashMap<Callback, Mob> targets = new HashMap<>();
+    private HashMap<Callback, Mob> targets = new HashMap<Callback, Mob>();
 
     @Override
     public String special() {

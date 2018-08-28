@@ -31,7 +31,7 @@ import com.watabou.utils.Bundle;
 
 public class Poison extends Buff implements Hero.Doom {
 
-    private float left;
+    protected float left;
 
     private static final String LEFT = "left";
 
@@ -51,6 +51,8 @@ public class Poison extends Buff implements Hero.Doom {
     public void set(float duration) {
         this.left = duration;
     }
+
+    ;
 
     @Override
     public int icon() {

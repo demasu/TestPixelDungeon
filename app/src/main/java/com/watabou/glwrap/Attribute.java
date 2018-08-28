@@ -23,7 +23,7 @@ import android.opengl.GLES20;
 
 public class Attribute {
 
-    private final int location;
+    private int location;
 
     public Attribute(int location) {
         this.location = location;

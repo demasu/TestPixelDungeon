@@ -40,12 +40,15 @@ public class WndJournal extends Window {
 
     private static final String TXT_TITLE = "Journal";
 
+    private BitmapText txtTitle;
+    private ScrollPane list;
+
     public WndJournal() {
 
         super();
         resize(WIDTH, PixelDungeon.landscape() ? HEIGHT_L : HEIGHT_P);
 
-        BitmapText txtTitle = PixelScene.createText(TXT_TITLE, 9);
+        txtTitle = PixelScene.createText(TXT_TITLE, 9);
         txtTitle.hardlight(Window.TITLE_COLOR);
         txtTitle.measure();
         txtTitle.x = PixelScene.align(PixelScene.uiCamera, (WIDTH - txtTitle.width()) / 2);
@@ -66,7 +69,7 @@ public class WndJournal extends Window {
 
         content.setSize(WIDTH, pos);
 
-        ScrollPane list = new ScrollPane(content);
+        list = new ScrollPane(content);
         add(list);
 
         list.setRect(0, txtTitle.height(), WIDTH, height - txtTitle.height());
@@ -79,7 +82,7 @@ public class WndJournal extends Window {
 
         private Image icon;
 
-        ListItem(Journal.Feature f, int d) {
+        public ListItem(Journal.Feature f, int d) {
             super();
 
             feature.text(f.desc);

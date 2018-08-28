@@ -71,28 +71,21 @@ public class WndInfoItem extends Window {
             String title;
             String info;
 
-            switch (heap.type) {
-                case CHEST:
-                case MIMIC:
-                    title = TXT_CHEST;
-                    info = TXT_WONT_KNOW;
-                    break;
-                case TOMB:
-                    title = TXT_TOMB;
-                    info = TXT_OWNER;
-                    break;
-                case SKELETON:
-                    title = TXT_SKELETON;
-                    info = TXT_REMAINS;
-                    break;
-                case CRYSTAL_CHEST:
-                    title = TXT_CRYSTAL_CHEST;
-                    info = Utils.format(TXT_INSIDE, Utils.indefinite(heap.peek().name()));
-                    break;
-                default:
-                    title = TXT_LOCKED_CHEST;
-                    info = TXT_NEED_KEY;
-                    break;
+            if (heap.type == Type.CHEST || heap.type == Type.MIMIC) {
+                title = TXT_CHEST;
+                info = TXT_WONT_KNOW;
+            } else if (heap.type == Type.TOMB) {
+                title = TXT_TOMB;
+                info = TXT_OWNER;
+            } else if (heap.type == Type.SKELETON) {
+                title = TXT_SKELETON;
+                info = TXT_REMAINS;
+            } else if (heap.type == Type.CRYSTAL_CHEST) {
+                title = TXT_CRYSTAL_CHEST;
+                info = Utils.format(TXT_INSIDE, Utils.indefinite(heap.peek().name()));
+            } else {
+                title = TXT_LOCKED_CHEST;
+                info = TXT_NEED_KEY;
             }
 
             fillFields(heap.image(), heap.glowing(), TITLE_COLOR, title, info);

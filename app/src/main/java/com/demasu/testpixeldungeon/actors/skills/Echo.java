@@ -5,12 +5,14 @@ import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
+import com.demasu.testpixeldungeon.actors.hero.Legend;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.SummonedPet;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.particles.ElmoParticle;
 import com.demasu.testpixeldungeon.items.wands.WandOfBlink;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.demasu.testpixeldungeon.sprites.LegendSprite;
 import com.demasu.testpixeldungeon.sprites.MirrorSprite;
 import com.demasu.testpixeldungeon.ui.StatusPane;
 import com.watabou.utils.Random;
@@ -33,7 +35,7 @@ public class Echo extends ActiveSkill3 {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<>();
+        ArrayList<String> actions = new ArrayList<String>();
         if (level > 0 && hero.MP >= getManaCost())
             actions.add(AC_CAST);
         return actions;
@@ -42,7 +44,7 @@ public class Echo extends ActiveSkill3 {
     @Override
     public void execute(Hero hero, String action) {
         if (action == Skill.AC_CAST) {
-            ArrayList<Integer> respawnPoints = new ArrayList<>();
+            ArrayList<Integer> respawnPoints = new ArrayList<Integer>();
 
             for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
                 int p = hero.pos + Level.NEIGHBOURS8[i];

@@ -37,8 +37,8 @@ public enum Rankings {
 
     public static final int TABLE_SIZE = 6;
 
-    private static final String RANKINGS_FILE = "rankings.dat";
-    private static final String DETAILS_FILE = "game_%d.dat";
+    public static final String RANKINGS_FILE = "rankings.dat";
+    public static final String DETAILS_FILE = "game_%d.dat";
 
     public ArrayList<Record> records;
     public int lastRecord;
@@ -106,7 +106,7 @@ public enum Rankings {
     private static final String TOTAL = "total";
     private static final String WON = "won";
 
-    private void save() {
+    public void save() {
         Bundle bundle = new Bundle();
         bundle.put(RECORDS, records);
         bundle.put(LATEST, lastRecord);
@@ -127,7 +127,7 @@ public enum Rankings {
             return;
         }
 
-        records = new ArrayList<>();
+        records = new ArrayList<Rankings.Record>();
 
         try {
             InputStream input = Game.instance.openFileInput(RANKINGS_FILE);
@@ -171,9 +171,9 @@ public enum Rankings {
         public boolean win;
 
         public HeroClass heroClass;
-        int armorTier;
+        public int armorTier;
 
-        int score;
+        public int score;
 
         public String gameFile;
 

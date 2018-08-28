@@ -57,15 +57,15 @@ public abstract class Mob extends Char {
     protected static final String TXT_ECHO = "echo of ";
 
     protected static final String TXT_NOTICE1 = "?!";
-    static final String TXT_RAGE = "#$%^";
-    private static final String TXT_EXP = "%+dEXP";
-    private static final String TXT_EXP_CHAMP = "%+dEXP (Champion killed!)";
+    protected static final String TXT_RAGE = "#$%^";
+    protected static final String TXT_EXP = "%+dEXP";
+    protected static final String TXT_EXP_CHAMP = "%+dEXP (Champion killed!)";
 
-    public final AiState SLEEPEING = new Sleeping();
-    public final AiState HUNTING = new Hunting();
-    public final AiState WANDERING = new Wandering();
-    final AiState FLEEING = new Fleeing();
-    protected final AiState PASSIVE = new Passive();
+    public AiState SLEEPEING = new Sleeping();
+    public AiState HUNTING = new Hunting();
+    public AiState WANDERING = new Wandering();
+    public AiState FLEEING = new Fleeing();
+    public AiState PASSIVE = new Passive();
     public AiState state = SLEEPEING;
 
     public Class<? extends CharSprite> spriteClass;
@@ -75,20 +75,20 @@ public abstract class Mob extends Char {
     public int defenseSkill = 0;
 
     protected int EXP = 1;
-    final int maxLvl = 30;
+    protected int maxLvl = 30;
 
     protected Char enemy;
     protected boolean enemySeen;
-    private boolean alerted = false;
+    protected boolean alerted = false;
 
-    private static final float TIME_TO_WAKE_UP = 1f;
+    protected static final float TIME_TO_WAKE_UP = 1f;
 
     public boolean hostile = true;
 
     private static final String STATE = "state";
     private static final String TARGET = "target";
 
-    final int range = 0;
+    public int range = 0;
 
     @Override
     public void storeInBundle(Bundle bundle) {
@@ -115,22 +115,16 @@ public abstract class Mob extends Char {
         super.restoreFromBundle(bundle);
 
         String state = bundle.getString(STATE);
-        switch (state) {
-            case Sleeping.TAG:
-                this.state = SLEEPEING;
-                break;
-            case Wandering.TAG:
-                this.state = WANDERING;
-                break;
-            case Hunting.TAG:
-                this.state = HUNTING;
-                break;
-            case Fleeing.TAG:
-                this.state = FLEEING;
-                break;
-            case Passive.TAG:
-                this.state = PASSIVE;
-                break;
+        if (state.equals(Sleeping.TAG)) {
+            this.state = SLEEPEING;
+        } else if (state.equals(Wandering.TAG)) {
+            this.state = WANDERING;
+        } else if (state.equals(Hunting.TAG)) {
+            this.state = HUNTING;
+        } else if (state.equals(Fleeing.TAG)) {
+            this.state = FLEEING;
+        } else if (state.equals(Passive.TAG)) {
+            this.state = PASSIVE;
         }
 
         target = bundle.getInt(TARGET);
@@ -175,7 +169,7 @@ public abstract class Mob extends Char {
         if (buff(Amok.class) != null) {
             if (enemy == Dungeon.hero || enemy == null) {
 
-                HashSet<Mob> enemies = new HashSet<>();
+                HashSet<Mob> enemies = new HashSet<Mob>();
                 for (Mob mob : Dungeon.level.mobs) {
                     if (mob != this && Level.fieldOfView[mob.pos]) {
                         enemies.add(mob);
@@ -188,7 +182,7 @@ public abstract class Mob extends Char {
             }
         }
 
-        Terror terror = buff(Terror.class);
+        Terror terror = (Terror) buff(Terror.class);
         if (terror != null) {
             Char source = (Char) Actor.findById(terror.object);
             if (source != null) {
@@ -271,7 +265,7 @@ public abstract class Mob extends Char {
         }
     }
 
-    boolean getFurther(int target) {
+    protected boolean getFurther(int target) {
         int step = Dungeon.flee(this, pos, target,
                 Level.passable,
                 Level.fieldOfView);
@@ -412,18 +406,19 @@ public abstract class Mob extends Char {
         }
     }
 
-    final Object loot = null;
-    final float lootChance = 0;
+    protected Object loot = null;
+    protected float lootChance = 0;
 
     @SuppressWarnings("unchecked")
-    private void dropLootGuaranteed() {
+
+    protected void dropLootGuaranteed() {
 
         Item item = Generator.random();
         Dungeon.level.drop(item, pos).sprite.drop();
 
     }
 
-    void dropLoot() {
+    protected void dropLoot() {
         if (loot != null && Random.Float() < lootChance) {
             Item item = null;
             if (loot instanceof Generator.Category) {
@@ -447,7 +442,7 @@ public abstract class Mob extends Char {
         return false;
     }
 
-    void champEffect(Char enemy, int damage) {
+    public void champEffect(Char enemy, int damage) {
         if (enemy == null) // Happens sometimes with summoned stuff and NPCs
             return;
 
@@ -459,21 +454,17 @@ public abstract class Mob extends Char {
 
         try {
             if (champ != -1) {
-                switch (champ) {
-                    case Champ.CHAMP_VAMPERIC:
-                        int reg = Math.min(damage, HT - HP);
+                if (champ == Champ.CHAMP_VAMPERIC) {
+                    int reg = Math.min(damage, HT - HP);
 
-                        if (reg > 0) {
-                            HP += reg;
-                            sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-                        }
-                        break;
-                    case Champ.CHAMP_CURSED:
-                        Buff.affect(enemy, Weakness.class, 5);
-                        break;
-                    case Champ.CHAMP_FOUL:
-                        Buff.affect(enemy, Poison.class).set(5);
-                        break;
+                    if (reg > 0) {
+                        HP += reg;
+                        sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+                    }
+                } else if (champ == Champ.CHAMP_CURSED) {
+                    Buff.affect(enemy, Weakness.class, 5);
+                } else if (champ == Champ.CHAMP_FOUL) {
+                    Buff.affect(enemy, Poison.class).set(5);
                 }
             }
         } catch (Exception ex) {
@@ -504,14 +495,14 @@ public abstract class Mob extends Char {
     }
 
     public interface AiState {
-        boolean act(boolean enemyInFOV, boolean justAlerted);
+        public boolean act(boolean enemyInFOV, boolean justAlerted);
 
-        String status();
+        public String status();
     }
 
     public class Sleeping implements AiState {
 
-        static final String TAG = "SLEEPING";
+        public static final String TAG = "SLEEPING";
 
         @Override
         public boolean act(boolean enemyInFOV, boolean justAlerted) {
@@ -551,7 +542,7 @@ public abstract class Mob extends Char {
 
     private class Wandering implements AiState {
 
-        static final String TAG = "WANDERING";
+        public static final String TAG = "WANDERING";
 
         @Override
         public boolean act(boolean enemyInFOV, boolean justAlerted) {
@@ -588,7 +579,7 @@ public abstract class Mob extends Char {
 
     private class Hunting implements AiState {
 
-        static final String TAG = "HUNTING";
+        public static final String TAG = "HUNTING";
 
         @Override
         public boolean act(boolean enemyInFOV, boolean justAlerted) {
@@ -627,7 +618,7 @@ public abstract class Mob extends Char {
 
     protected class Fleeing implements AiState {
 
-        static final String TAG = "FLEEING";
+        public static final String TAG = "FLEEING";
 
         @Override
         public boolean act(boolean enemyInFOV, boolean justAlerted) {
@@ -651,7 +642,7 @@ public abstract class Mob extends Char {
             }
         }
 
-        void nowhereToRun() {
+        protected void nowhereToRun() {
         }
 
         @Override
@@ -662,7 +653,7 @@ public abstract class Mob extends Char {
 
     private class Passive implements AiState {
 
-        static final String TAG = "PASSIVE";
+        public static final String TAG = "PASSIVE";
 
         @Override
         public boolean act(boolean enemyInFOV, boolean justAlerted) {

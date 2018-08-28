@@ -38,10 +38,10 @@ public class ItemSlot extends Button {
     private static final float ENABLED = 1.0f;
     private static final float DISABLED = 0.3f;
 
-    ItemSprite icon;
-    private BitmapText topLeft;
+    protected ItemSprite icon;
+    protected BitmapText topLeft;
     protected BitmapText topRight;
-    private BitmapText bottomRight;
+    protected BitmapText bottomRight;
 
     private static final String TXT_STRENGTH = ":%d";
     private static final String TXT_TYPICAL_STR = "%d?";
@@ -55,31 +55,35 @@ public class ItemSlot extends Button {
             return ItemSpriteSheet.CHEST;
         }
 
+        ;
     };
     public static final Item LOCKED_CHEST = new Item() {
         public int image() {
             return ItemSpriteSheet.LOCKED_CHEST;
         }
 
+        ;
     };
     public static final Item TOMB = new Item() {
         public int image() {
             return ItemSpriteSheet.TOMB;
         }
 
+        ;
     };
     public static final Item SKELETON = new Item() {
         public int image() {
             return ItemSpriteSheet.BONES;
         }
 
+        ;
     };
 
     public ItemSlot() {
         super();
     }
 
-    protected ItemSlot(Item item) {
+    public ItemSlot(Item item) {
         this();
         item(item);
     }

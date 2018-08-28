@@ -35,8 +35,8 @@ public class WndChallenges extends Window {
 
     private static final String TITLE = "Challenges";
 
-    private final boolean editable;
-    private final ArrayList<CheckBox> boxes;
+    private boolean editable;
+    private ArrayList<CheckBox> boxes;
 
     public WndChallenges(int checked, boolean editable) {
 
@@ -51,7 +51,7 @@ public class WndChallenges extends Window {
         title.y = PixelScene.align(camera, (TTL_HEIGHT - title.height()) / 2);
         add(title);
 
-        boxes = new ArrayList<>();
+        boxes = new ArrayList<CheckBox>();
 
         float pos = TTL_HEIGHT;
         for (int i = 0; i < Challenges.NAMES.length; i++) {

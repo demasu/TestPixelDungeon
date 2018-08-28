@@ -19,13 +19,13 @@ package com.watabou.glwrap;
 
 import android.opengl.GLES20;
 
-class Renderbuffer {
+public class Renderbuffer {
 
     public static final int RGBA8 = GLES20.GL_RGBA;    // ?
     public static final int DEPTH16 = GLES20.GL_DEPTH_COMPONENT16;
     public static final int STENCIL8 = GLES20.GL_STENCIL_INDEX8;
 
-    private final int id;
+    private int id;
 
     public Renderbuffer() {
         int[] buffers = new int[1];

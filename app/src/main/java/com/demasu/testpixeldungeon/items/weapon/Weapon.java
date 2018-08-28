@@ -221,7 +221,7 @@ abstract public class Weapon extends KindOfWeapon {
         return this;
     }
 
-    private Weapon enchant(Enchantment ench) {
+    public Weapon enchant(Enchantment ench) {
         enchantment = ench;
         return this;
     }
@@ -256,7 +256,7 @@ abstract public class Weapon extends KindOfWeapon {
 
         public abstract boolean proc(Weapon weapon, Char attacker, Char defender, int damage);
 
-        protected String name(String weaponName) {
+        public String name(String weaponName) {
             return weaponName;
         }
 
@@ -268,12 +268,12 @@ abstract public class Weapon extends KindOfWeapon {
         public void storeInBundle(Bundle bundle) {
         }
 
-        protected ItemSprite.Glowing glowing() {
+        public ItemSprite.Glowing glowing() {
             return ItemSprite.Glowing.WHITE;
         }
 
         @SuppressWarnings("unchecked")
-        protected static Enchantment random() {
+        public static Enchantment random() {
             try {
                 return ((Class<Enchantment>) enchants[Random.chances(chances)]).newInstance();
             } catch (Exception e) {

@@ -110,7 +110,7 @@ public class Scorpio extends Mob {
                         "firing crippling serrated spikes from long distances.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<>();
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
 
     static {
         RESISTANCES.add(Leech.class);

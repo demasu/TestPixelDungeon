@@ -24,9 +24,9 @@ public class Shader {
     public static final int VERTEX = GLES20.GL_VERTEX_SHADER;
     public static final int FRAGMENT = GLES20.GL_FRAGMENT_SHADER;
 
-    private final int handle;
+    private int handle;
 
-    private Shader(int type) {
+    public Shader(int type) {
         handle = GLES20.glCreateShader(type);
     }
 
@@ -34,11 +34,11 @@ public class Shader {
         return handle;
     }
 
-    private void source(String src) {
+    public void source(String src) {
         GLES20.glShaderSource(handle, src);
     }
 
-    private void compile() {
+    public void compile() {
         GLES20.glCompileShader(handle);
 
         int[] status = new int[1];

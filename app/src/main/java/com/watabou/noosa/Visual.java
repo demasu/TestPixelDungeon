@@ -30,9 +30,9 @@ public class Visual extends Gizmo {
     public float height;
 
     public PointF scale;
-    public final PointF origin;
+    public PointF origin;
 
-    protected final float[] matrix;
+    protected float[] matrix;
 
     public float rm;
     public float gm;
@@ -43,13 +43,13 @@ public class Visual extends Gizmo {
     public float ba;
     public float aa;
 
-    public final PointF speed;
-    public final PointF acc;
+    public PointF speed;
+    public PointF acc;
 
     public float angle;
     public float angularSpeed;
 
-    protected Visual(float x, float y, float width, float height) {
+    public Visual(float x, float y, float width, float height) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -93,9 +93,10 @@ public class Visual extends Gizmo {
         return new PointF(x, y);
     }
 
-    public void point(PointF p) {
+    public PointF point(PointF p) {
         x = p.x;
         y = p.y;
+        return p;
     }
 
     public Point point(Point p) {
@@ -122,7 +123,7 @@ public class Visual extends Gizmo {
         return height * scale.y;
     }
 
-    private void updateMotion() {
+    protected void updateMotion() {
 
         float elapsed = Game.elapsed;
 
@@ -181,7 +182,7 @@ public class Visual extends Gizmo {
         ba = (color & 0xFF) / 255f * strength;
     }
 
-    private void color(float r, float g, float b) {
+    public void color(float r, float g, float b) {
         rm = gm = bm = 0;
         ra = r;
         ga = g;
@@ -208,7 +209,7 @@ public class Visual extends Gizmo {
         ra = ga = ba = aa = 0;
     }
 
-    protected boolean overlapsPoint(float x, float y) {
+    public boolean overlapsPoint(float x, float y) {
         return x >= this.x && x < this.x + width * scale.x && y >= this.y && y < this.y + height * scale.y;
     }
 

@@ -42,9 +42,9 @@ public class WandOfLightning extends Wand {
         name = "Wand of Lightning";
     }
 
-    private final ArrayList<Char> affected = new ArrayList<>();
+    private ArrayList<Char> affected = new ArrayList<Char>();
 
-    private final int[] points = new int[20];
+    private int[] points = new int[20];
     private int nPoints;
 
     @Override
@@ -69,14 +69,14 @@ public class WandOfLightning extends Wand {
         }
 
         affected.add(ch);
-        ch.damage(Level.water[ch.pos] && !ch.flying ? damage * 2 : damage, LightningTrap.LIGHTNING);
+        ch.damage(Level.water[ch.pos] && !ch.flying ? (int) (damage * 2) : damage, LightningTrap.LIGHTNING);
 
         ch.sprite.centerEmitter().burst(SparkParticle.FACTORY, 3);
         ch.sprite.flash();
 
         points[nPoints++] = ch.pos;
 
-        HashSet<Char> ns = new HashSet<>();
+        HashSet<Char> ns = new HashSet<Char>();
         for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
             Char n = Actor.findChar(ch.pos + Level.NEIGHBOURS8[i]);
             if (n != null && !affected.contains(n)) {

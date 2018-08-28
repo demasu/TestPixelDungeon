@@ -90,7 +90,7 @@ public class Shaman extends Mob implements Callback {
 
             boolean visible = Level.fieldOfView[pos] || Level.fieldOfView[enemy.pos];
             if (visible) {
-                sprite.zap(enemy.pos);
+                ((ShamanSprite) sprite).zap(enemy.pos);
             }
 
             spend(TIME_TO_ZAP);
@@ -142,7 +142,7 @@ public class Shaman extends Mob implements Callback {
                         "on those who question their status in a tribe.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<>();
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
 
     static {
         RESISTANCES.add(LightningTrap.Electricity.class);

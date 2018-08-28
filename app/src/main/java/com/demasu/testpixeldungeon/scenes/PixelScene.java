@@ -39,12 +39,12 @@ import com.watabou.utils.BitmapCache;
 public class PixelScene extends Scene {
 
     // Minimum virtual display size for portrait orientation
-    static final float MIN_WIDTH_P = 128;
-    static final float MIN_HEIGHT_P = 224;
+    public static final float MIN_WIDTH_P = 128;
+    public static final float MIN_HEIGHT_P = 224;
 
     // Minimum virtual display size for landscape orientation
-    static final float MIN_WIDTH_L = 224;
-    static final float MIN_HEIGHT_L = 160;
+    public static final float MIN_WIDTH_L = 224;
+    public static final float MIN_HEIGHT_L = 160;
 
     public static float defaultZoom = 0;
     public static float minZoom;
@@ -53,10 +53,10 @@ public class PixelScene extends Scene {
     public static Camera uiCamera;
 
     public static BitmapText.Font font1x;
-    private static BitmapText.Font font15x;
-    private static BitmapText.Font font2x;
-    private static BitmapText.Font font25x;
-    private static BitmapText.Font font3x;
+    public static BitmapText.Font font15x;
+    public static BitmapText.Font font2x;
+    public static BitmapText.Font font25x;
+    public static BitmapText.Font font3x;
 
     @Override
     public void create() {
@@ -143,7 +143,7 @@ public class PixelScene extends Scene {
     public static BitmapText.Font font;
     public static float scale;
 
-    private static void chooseFont(float size) {
+    public static void chooseFont(float size) {
         chooseFont(size, defaultZoom);
     }
 
@@ -250,7 +250,7 @@ public class PixelScene extends Scene {
 
     public static boolean noFade = false;
 
-    void fadeIn() {
+    protected void fadeIn() {
         if (noFade) {
             noFade = false;
         } else {
@@ -258,7 +258,7 @@ public class PixelScene extends Scene {
         }
     }
 
-    void fadeIn(int color, boolean light) {
+    protected void fadeIn(int color, boolean light) {
         add(new Fader(color, light));
     }
 
@@ -272,13 +272,13 @@ public class PixelScene extends Scene {
 
     protected static class Fader extends ColorBlock {
 
-        private static final float FADE_TIME = 1f;
+        private static float FADE_TIME = 1f;
 
-        private final boolean light;
+        private boolean light;
 
         private float time;
 
-        Fader(int color, boolean light) {
+        public Fader(int color, boolean light) {
             super(uiCamera.width, uiCamera.height, color);
 
             this.light = light;
@@ -316,7 +316,7 @@ public class PixelScene extends Scene {
 
     private static class PixelCamera extends Camera {
 
-        PixelCamera(float zoom) {
+        public PixelCamera(float zoom) {
             super(
                     (int) (Game.width - Math.ceil(Game.width / zoom) * zoom) / 2,
                     (int) (Game.height - Math.ceil(Game.height / zoom) * zoom) / 2,

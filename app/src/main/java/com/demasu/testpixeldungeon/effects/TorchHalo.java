@@ -26,7 +26,7 @@ import com.demasu.testpixeldungeon.sprites.CharSprite;
 
 public class TorchHalo extends Halo {
 
-    private final CharSprite target;
+    private CharSprite target;
 
     private float phase = 0;
 

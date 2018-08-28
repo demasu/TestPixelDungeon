@@ -110,7 +110,7 @@ public class Random {
         return element(array, array.length);
     }
 
-    private static <T> T element(T[] array, int max) {
+    public static <T> T element(T[] array, int max) {
         return array[(int) (Math.random() * max)];
     }
 

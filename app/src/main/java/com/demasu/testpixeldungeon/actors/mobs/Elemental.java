@@ -102,7 +102,7 @@ public class Elemental extends Mob {
                         "They are too chaotic in their nature to be controlled by even the most powerful demonologist.";
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 
     static {
         IMMUNITIES.add(Burning.class);

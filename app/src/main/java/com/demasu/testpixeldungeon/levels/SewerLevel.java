@@ -157,7 +157,7 @@ public class SewerLevel extends RegularLevel {
 
     private static class Sink extends Emitter {
 
-        private final int pos;
+        private int pos;
         private float rippleDelay = 0;
 
         private static final Emitter.Factory factory = new Factory() {
@@ -169,7 +169,7 @@ public class SewerLevel extends RegularLevel {
             }
         };
 
-        Sink(int pos) {
+        public Sink(int pos) {
             super();
 
             this.pos = pos;
@@ -194,9 +194,9 @@ public class SewerLevel extends RegularLevel {
         }
     }
 
-    static final class WaterParticle extends PixelParticle {
+    public static final class WaterParticle extends PixelParticle {
 
-        WaterParticle() {
+        public WaterParticle() {
             super();
 
             acc.y = 50;
@@ -206,7 +206,7 @@ public class SewerLevel extends RegularLevel {
             size(2);
         }
 
-        void reset(float x, float y) {
+        public void reset(float x, float y) {
             revive();
 
             this.x = x;

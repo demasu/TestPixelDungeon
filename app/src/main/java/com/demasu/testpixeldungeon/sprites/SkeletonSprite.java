@@ -22,6 +22,7 @@ import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
+import com.demasu.testpixeldungeon.items.weapon.missiles.MobProjectile;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.watabou.utils.Callback;
 

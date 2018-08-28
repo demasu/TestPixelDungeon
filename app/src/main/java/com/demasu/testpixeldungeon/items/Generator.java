@@ -38,7 +38,7 @@ import com.watabou.utils.Random;
 
 public class Generator {
 
-    public enum Category {
+    public static enum Category {
         WEAPON(15, Weapon.class),
         ARMOR(10, Armor.class),
         POTION(50, Potion.class),
@@ -50,13 +50,13 @@ public class Generator {
         GOLD(50, Gold.class),
         MISC(5, Item.class);
 
-        Class<?>[] classes;
-        float[] probs;
+        public Class<?>[] classes;
+        public float[] probs;
 
-        final float prob;
-        final Class<? extends Item> superClass;
+        public float prob;
+        public Class<? extends Item> superClass;
 
-        Category(float prob, Class<? extends Item> superClass) {
+        private Category(float prob, Class<? extends Item> superClass) {
             this.prob = prob;
             this.superClass = superClass;
         }
@@ -72,7 +72,9 @@ public class Generator {
         }
     }
 
-    private static final HashMap<Category, Float> categoryProbs = new HashMap<>();
+    ;
+
+    private static HashMap<Category, Float> categoryProbs = new HashMap<Generator.Category, Float>();
 
     static {
 
@@ -240,7 +242,7 @@ public class Generator {
     public static Item random(Class<? extends Item> cl) {
         try {
 
-            return cl.newInstance().random();
+            return ((Item) cl.newInstance()).random();
 
         } catch (Exception e) {
 
@@ -249,7 +251,7 @@ public class Generator {
         }
     }
 
-    private static Armor randomArmor() throws Exception {
+    public static Armor randomArmor() throws Exception {
 
         int curStr = Hero.STARTING_STR + Dungeon.potionOfStrength;
 
@@ -264,7 +266,7 @@ public class Generator {
         return Math.abs(curStr - a1.STR) < Math.abs(curStr - a2.STR) ? a1 : a2;
     }
 
-    private static Weapon randomWeapon() throws Exception {
+    public static Weapon randomWeapon() throws Exception {
 
         int curStr = Hero.STARTING_STR + Dungeon.potionOfStrength;
 

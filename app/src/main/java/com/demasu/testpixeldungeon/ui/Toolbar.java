@@ -68,7 +68,7 @@ public class Toolbar extends Component {
 
     private boolean lastEnabled = true;
 
-    private static boolean tapAgainToSearch = false;
+    public static boolean tapAgainToSearch = false;
 
     private static Toolbar instance;
 
@@ -90,11 +90,14 @@ public class Toolbar extends Component {
                 Dungeon.hero.rest(false);
             }
 
+            ;
+
             protected boolean onLongClick() {
                 Dungeon.hero.rest(true);
                 return true;
             }
 
+            ;
         });
 
         add(btnSkill = new Tool(20, 7, 20, 25) {
@@ -103,11 +106,14 @@ public class Toolbar extends Component {
                 GameScene.show(new WndSkills(null, null));
             }
 
+            ;
+
             protected boolean onLongClick() {
                 GameScene.show(new WndSkills(null, null));
                 return true;
             }
 
+            ;
         });
 
 
@@ -117,11 +123,14 @@ public class Toolbar extends Component {
                 GameScene.show(new WndRatKing(WndRatKing.Mode.NORMAL));
             }
 
+            ;
+
             protected boolean onLongClick() {
                 GameScene.show(new WndRatKing(WndRatKing.Mode.NORMAL));
                 return true;
             }
 
+            ;
         });
 
 
@@ -131,11 +140,14 @@ public class Toolbar extends Component {
                 Dungeon.hero.heroSkills.showLastUsed();
             }
 
+            ;
+
             protected boolean onLongClick() {
                 Dungeon.hero.heroSkills.showLastUsed();
                 return true;
             }
 
+            ;
         });
 
         add(btnMerc = new Tool(252, 7, 20, 25) {
@@ -150,6 +162,8 @@ public class Toolbar extends Component {
 
             }
 
+            ;
+
             protected boolean onLongClick() {
                 if (Dungeon.hero.hiredMerc == null)
                     GameScene.show(new WndSkill(null, CurrentSkills.mercMenu));
@@ -158,6 +172,7 @@ public class Toolbar extends Component {
                 return true;
             }
 
+            ;
         });
 
 
@@ -174,7 +189,7 @@ public class Toolbar extends Component {
         add(btnInfoSearch = new Tool(107, 7, 20, 25) {
             @Override
             protected void onClick() {
-                if (!tapAgainToSearch) {
+                if (tapAgainToSearch == false) {
                     GameScene.selectCell(informer);
                 } else {
                     Dungeon.hero.search(true);
@@ -202,6 +217,8 @@ public class Toolbar extends Component {
                 return true;
             }
 
+            ;
+
             @Override
             protected void createChildren() {
                 super.createChildren();
@@ -209,12 +226,15 @@ public class Toolbar extends Component {
                 add(gold);
             }
 
+            ;
+
             @Override
             protected void layout() {
                 super.layout();
                 gold.fill(this);
             }
 
+            ;
         });
 
         add(btnQuick1 = new QuickslotTool(83, 7, 22, 25, true));
@@ -283,7 +303,7 @@ public class Toolbar extends Component {
         instance.layout();
     }
 
-    private static final CellSelector.Listener informer = new CellSelector.Listener() {
+    private static CellSelector.Listener informer = new CellSelector.Listener() {
         @Override
         public void onSelect(Integer cell) {
 
@@ -343,9 +363,9 @@ public class Toolbar extends Component {
 
         private static final int BGCOLOR = 0x7B8073;
 
-        Image base;
+        protected Image base;
 
-        Tool(int x, int y, int width, int height) {
+        public Tool(int x, int y, int width, int height) {
             super();
 
             base.frame(x, y, width, height);
@@ -384,7 +404,7 @@ public class Toolbar extends Component {
             }
         }
 
-        void enable(boolean value) {
+        public void enable(boolean value) {
             if (value != active) {
                 if (value) {
                     base.resetColor();
@@ -400,7 +420,7 @@ public class Toolbar extends Component {
 
         private QuickSlot slot;
 
-        QuickslotTool(int x, int y, int width, int height, boolean primary) {
+        public QuickslotTool(int x, int y, int width, int height, boolean primary) {
             super(x, y, width, height);
             if (primary) {
                 slot.primary();
@@ -439,7 +459,7 @@ public class Toolbar extends Component {
         private float dstY;
         private float left;
 
-        PickedUpItem() {
+        public PickedUpItem() {
             super();
 
             originToCenter();
@@ -449,7 +469,7 @@ public class Toolbar extends Component {
                             false;
         }
 
-        void reset(Item item, float dstX, float dstY) {
+        public void reset(Item item, float dstX, float dstY) {
             view(item.image(), item.glowing());
 
             active =

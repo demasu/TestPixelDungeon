@@ -17,6 +17,8 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
+import android.util.Log;
+
 import java.io.FileNotFoundException;
 
 import com.watabou.noosa.BitmapText;
@@ -31,9 +33,11 @@ import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.items.Generator;
 import com.demasu.testpixeldungeon.levels.Campaigns.FirstWave;
+import com.demasu.testpixeldungeon.levels.FrostLevel;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.MovieLevel;
 import com.demasu.testpixeldungeon.ui.GameLog;
+import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.windows.WndError;
 import com.demasu.testpixeldungeon.windows.WndStory;
 
@@ -52,10 +56,11 @@ public class InterlevelScene extends PixelScene {
     private static final String ERR_FILE_NOT_FOUND = "File not found. For some reason.";
     private static final String ERR_GENERIC = "Something went wrong...";
 
-    public enum Mode {
+    public static enum Mode {
         DESCEND, ASCEND, CONTINUE, RESURRECT, RETURN, FALL, NONE, TELEPORT, TELEPORT_BACK, MOVIE, MOVIE_OUT, MISSION
     }
 
+    ;
     public static Mode mode;
 
     public static int returnDepth;
@@ -69,6 +74,7 @@ public class InterlevelScene extends PixelScene {
         FADE_IN, STATIC, FADE_OUT
     }
 
+    ;
     private Phase phase;
     private float timeLeft;
 
@@ -228,19 +234,13 @@ public class InterlevelScene extends PixelScene {
                     Music.INSTANCE.volume(p);
                 }
                 if ((timeLeft -= Game.elapsed) <= 0) {
-                    switch (mode) {
-                        case MOVIE:
-                        case MISSION:
-                            //Game.switchScene( TitleScene.class );
-                            Game.switchScene(MissionScene.class);
-                            break;
-                        case MOVIE_OUT:
-                            Game.switchScene(TitleScene.class);
-                            break;
-                        default:
-                            Game.switchScene(GameScene.class);
-                            break;
-                    }
+                    if (mode == Mode.MOVIE || mode == Mode.MISSION)
+                        //Game.switchScene( TitleScene.class );
+                        Game.switchScene(MissionScene.class);
+                    else if (mode == Mode.MOVIE_OUT)
+                        Game.switchScene(TitleScene.class);
+                    else
+                        Game.switchScene(GameScene.class);
                 }
                 break;
 
@@ -253,6 +253,7 @@ public class InterlevelScene extends PixelScene {
                                 Game.switchScene(StartScene.class);
                             }
 
+                            ;
                         });
                         error = null;
                     } else {
@@ -263,6 +264,7 @@ public class InterlevelScene extends PixelScene {
                                 Game.switchScene(InterlevelScene.class);
                             }
 
+                            ;
                         });
                         error = null;
                     }
@@ -271,7 +273,7 @@ public class InterlevelScene extends PixelScene {
         }
     }
 
-    private void runMission() {
+    private void runMission() throws Exception {
 
         try {
             GameLog.wipe();
@@ -290,7 +292,7 @@ public class InterlevelScene extends PixelScene {
         Dungeon.switchLevel(level, level.randomRespawnCell());
     }
 
-    private void runMovie() {
+    private void runMovie() throws Exception {
 
         try {
             GameLog.wipe();
@@ -309,7 +311,7 @@ public class InterlevelScene extends PixelScene {
         Dungeon.switchLevel(level, level.randomRespawnCell());
     }
 
-    private void endMovie() {
+    private void endMovie() throws Exception {
 
         //Actor.fixTime();
         // Game.switchScene(TitleScene.class);
@@ -408,7 +410,7 @@ public class InterlevelScene extends PixelScene {
         }
     }
 
-    private void resurrect() {
+    private void resurrect() throws Exception {
 
         Actor.fixTime();
 

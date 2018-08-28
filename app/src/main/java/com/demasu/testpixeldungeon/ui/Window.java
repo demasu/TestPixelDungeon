@@ -36,13 +36,13 @@ public class Window extends Group implements Signal.Listener<Key> {
     protected int width;
     protected int height;
 
-    private final TouchArea blocker;
-    protected final ShadowBox shadow;
+    protected TouchArea blocker;
+    protected ShadowBox shadow;
     protected NinePatch chrome;
 
     public static final int TITLE_COLOR = 0xFFFF44;
 
-    protected Window() {
+    public Window() {
         this(0, 0, Chrome.get(Chrome.Type.WINDOW));
     }
 
@@ -50,7 +50,7 @@ public class Window extends Group implements Signal.Listener<Key> {
         this(width, height, Chrome.get(Chrome.Type.WINDOW));
     }
 
-    protected Window(int width, int height, NinePatch chrome) {
+    public Window(int width, int height, NinePatch chrome) {
         super();
 
         blocker = new TouchArea(0, 0, PixelScene.uiCamera.width, PixelScene.uiCamera.height) {
@@ -102,7 +102,7 @@ public class Window extends Group implements Signal.Listener<Key> {
         Keys.event.add(this);
     }
 
-    protected void resize(int w, int h) {
+    public void resize(int w, int h) {
         this.width = w;
         this.height = h;
 
@@ -150,6 +150,6 @@ public class Window extends Group implements Signal.Listener<Key> {
         hide();
     }
 
-    protected void onMenuPressed() {
+    public void onMenuPressed() {
     }
 }

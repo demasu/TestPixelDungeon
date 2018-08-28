@@ -24,9 +24,11 @@ import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Paralysis;
+import com.demasu.testpixeldungeon.actors.buffs.SnipersMark;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.particles.BlastParticle;
+import com.demasu.testpixeldungeon.effects.particles.PurpleParticle;
 import com.demasu.testpixeldungeon.effects.particles.SmokeParticle;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.levels.Level;
@@ -34,7 +36,10 @@ import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.mechanics.Ballistica;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
+import com.demasu.testpixeldungeon.sprites.MissileSprite;
+import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -71,9 +76,9 @@ public class Arrow extends MissileWeapon {
     protected void onThrow(int cell) {
 
 
-        if (!Dungeon.hero.heroSkills.passiveB3.multiTargetActive || Dungeon.hero.heroSkills.active3.active) { //  bombvoyage
+        if (Dungeon.hero.heroSkills.passiveB3.multiTargetActive == false || Dungeon.hero.heroSkills.active3.active == true) { //  bombvoyage
             // Turn to bomb
-            if (Dungeon.hero.heroSkills.active3.arrowToBomb()) {
+            if (Dungeon.hero.heroSkills.active3.arrowToBomb() == true) {
                 if (Level.pit[cell]) {
                     super.onThrow(cell);
                 } else {
@@ -122,7 +127,7 @@ public class Arrow extends MissileWeapon {
 
         Ballistica.distance = Math.min(Ballistica.distance, Level.distance(Dungeon.hero.pos, cell));
 
-        ArrayList<Char> chars = new ArrayList<>();
+        ArrayList<Char> chars = new ArrayList<Char>();
 
         for (int i = 1; i < Ballistica.distance + 1; i++) {
 
@@ -143,7 +148,7 @@ public class Arrow extends MissileWeapon {
                 hitOne = true;
         }
 
-        if (!hitOne)
+        if (hitOne == false)
             miss(cell);
 
         Dungeon.hero.rangedWeapon = null;
@@ -174,7 +179,7 @@ public class Arrow extends MissileWeapon {
     public ArrayList<String> actions(Hero hero) {
         ArrayList<String> actions = super.actions(hero);
         if (Dungeon.hero.belongings.bow != null) {
-            if (!actions.contains(AC_THROW))
+            if (actions.contains(AC_THROW) == false)
                 actions.add(AC_THROW);
         } else
             actions.remove(AC_THROW);
@@ -197,8 +202,10 @@ public class Arrow extends MissileWeapon {
     @Override
     public String info() {
 
+        StringBuilder info = new StringBuilder(desc());
 
-        return desc();
+
+        return info.toString();
     }
 
 }

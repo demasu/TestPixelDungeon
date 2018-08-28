@@ -54,11 +54,11 @@ public class WndHero extends WndTabbed {
     private static final int WIDTH = 100;
     private static final int TAB_WIDTH = 40;
 
-    private final StatsTab stats;
-    private final BuffsTab buffs;
+    private StatsTab stats;
+    private BuffsTab buffs;
 
-    private final SmartTexture icons;
-    private final TextureFilm film;
+    private SmartTexture icons;
+    private TextureFilm film;
 
     public WndHero() {
 
@@ -79,6 +79,7 @@ public class WndHero extends WndTabbed {
                 stats.visible = stats.active = selected;
             }
 
+            ;
         });
         add(new LabeledTab(TXT_BUFFS) {
             protected void select(boolean value) {
@@ -86,6 +87,7 @@ public class WndHero extends WndTabbed {
                 buffs.visible = buffs.active = selected;
             }
 
+            ;
         });
         for (Tab tab : tabs) {
             tab.setSize(TAB_WIDTH, tabHeight());
@@ -106,7 +108,7 @@ public class WndHero extends WndTabbed {
 
         private float pos;
 
-        StatsTab() {
+        public StatsTab() {
 
             Hero hero = Dungeon.hero;
 
@@ -174,7 +176,7 @@ public class WndHero extends WndTabbed {
             statSlot(label, Integer.toString(value));
         }
 
-        float height() {
+        public float height() {
             return pos;
         }
     }
@@ -185,7 +187,7 @@ public class WndHero extends WndTabbed {
 
         private float pos;
 
-        BuffsTab() {
+        public BuffsTab() {
             for (Buff buff : Dungeon.hero.buffs()) {
                 buffSlot(buff);
             }
@@ -211,7 +213,7 @@ public class WndHero extends WndTabbed {
             }
         }
 
-        float height() {
+        public float height() {
             return pos;
         }
     }

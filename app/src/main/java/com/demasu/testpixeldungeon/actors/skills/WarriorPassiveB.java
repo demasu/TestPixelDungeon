@@ -20,7 +20,7 @@ public class WarriorPassiveB extends BranchSkill {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<>();
+        ArrayList<String> actions = new ArrayList<String>();
         if (canUpgrade())
             actions.add(AC_ADVANCE);
         return actions;

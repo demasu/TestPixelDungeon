@@ -46,10 +46,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
 
-@SuppressLint("Registered")
 public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTouchListener {
 
-    @SuppressLint("StaticFieldLeak")
     public static Game instance;
 
     // Actual size of the screen
@@ -61,40 +59,39 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public static String version;
     public static int versionBuild;
-    public static final String vanillaVersion = "Vanilla PD v 1.9.2a";
+    public static String vanillaVersion = "Vanilla PD v 1.9.2a";
 
     // Current scene
-    private Scene scene;
+    protected Scene scene;
     // New scene we are going to switch to
-    private Scene requestedScene;
+    protected Scene requestedScene;
     // true if scene switch is requested
     protected boolean requestedReset = true;
     // New scene class
-    private Class<? extends Scene> sceneClass;
+    protected Class<? extends Scene> sceneClass;
 
     // Current time in milliseconds
-    private long now;
+    protected long now;
     // Milliseconds passed since previous update
-    private long step;
+    protected long step;
 
-    private static float timeScale = 1f;
+    public static float timeScale = 1f;
     public static float elapsed = 0f;
 
-    private GLSurfaceView view;
+    protected GLSurfaceView view;
     protected SurfaceHolder holder;
 
     // Accumulated touch events
-    private final ArrayList<MotionEvent> motionEvents = new ArrayList<>();
+    protected ArrayList<MotionEvent> motionEvents = new ArrayList<MotionEvent>();
 
     // Accumulated key events
-    private final ArrayList<KeyEvent> keysEvents = new ArrayList<>();
+    protected ArrayList<KeyEvent> keysEvents = new ArrayList<KeyEvent>();
 
     public Game(Class<? extends Scene> c) {
         super();
         sceneClass = c;
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -244,7 +241,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         TextureCache.reload();
     }
 
-    private void destroyGame() {
+    protected void destroyGame() {
         if (scene != null) {
             scene.destroy();
             scene = null;
@@ -266,7 +263,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return instance.scene;
     }
 
-    private void step() {
+    protected void step() {
 
         if (requestedReset) {
             requestedReset = false;
@@ -281,11 +278,11 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         update();
     }
 
-    private void draw() {
+    protected void draw() {
         scene.draw();
     }
 
-    private void switchScene() {
+    protected void switchScene() {
 
         Camera.reset();
 
@@ -299,7 +296,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         Game.timeScale = 1f;
     }
 
-    private void update() {
+    protected void update() {
         Game.elapsed = Game.timeScale * step * 0.001f;
 
         synchronized (motionEvents) {

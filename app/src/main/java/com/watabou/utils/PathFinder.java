@@ -61,9 +61,9 @@ public class PathFinder {
             int minD = distance[s];
             int mins = s;
 
-            for (int aDir : dir) {
+            for (int i = 0; i < dir.length; i++) {
 
-                int n = s + aDir;
+                int n = s + dir[i];
 
                 int thisD = distance[n];
                 if (thisD < minD) {
@@ -90,9 +90,9 @@ public class PathFinder {
 
         int step, stepD;
 
-        for (int aDir : dir) {
+        for (int i = 0; i < dir.length; i++) {
 
-            if ((stepD = distance[step = from + aDir]) < minD) {
+            if ((stepD = distance[step = from + dir[i]]) < minD) {
                 minD = stepD;
                 best = step;
             }
@@ -103,7 +103,7 @@ public class PathFinder {
 
     public static int getStepBack(int cur, int from, boolean[] passable) {
 
-        int d = buildEscapeDistanceMap(cur, from, passable);
+        int d = buildEscapeDistanceMap(cur, from, 2f, passable);
         for (int i = 0; i < size; i++) {
             goals[i] = distance[i] == d;
         }
@@ -111,13 +111,15 @@ public class PathFinder {
             return -1;
         }
 
+        int s = cur;
+
         // From the starting position we are making one step downwards
-        int minD = distance[cur];
-        int mins = cur;
+        int minD = distance[s];
+        int mins = s;
 
-        for (int aDir : dir) {
+        for (int i = 0; i < dir.length; i++) {
 
-            int n = cur + aDir;
+            int n = s + dir[i];
             int thisD = distance[n];
 
             if (thisD < minD) {
@@ -156,9 +158,9 @@ public class PathFinder {
             }
             int nextDistance = distance[step] + 1;
 
-            for (int aDir : dir) {
+            for (int i = 0; i < dir.length; i++) {
 
-                int n = step + aDir;
+                int n = step + dir[i];
                 if (n == from || (n >= 0 && n < size && passable[n] && (distance[n] > nextDistance))) {
                     // Add to queue
                     queue[tail++] = n;
@@ -192,9 +194,9 @@ public class PathFinder {
                 return;
             }
 
-            for (int aDir : dir) {
+            for (int i = 0; i < dir.length; i++) {
 
-                int n = step + aDir;
+                int n = step + dir[i];
                 if (n >= 0 && n < size && passable[n] && (distance[n] > nextDistance)) {
                     // Add to queue
                     queue[tail++] = n;
@@ -236,9 +238,9 @@ public class PathFinder {
             }
             int nextDistance = distance[step] + 1;
 
-            for (int aDir : dir) {
+            for (int i = 0; i < dir.length; i++) {
 
-                int n = step + aDir;
+                int n = step + dir[i];
                 if (n == from || (n >= 0 && n < size && passable[n] && (distance[n] > nextDistance))) {
                     // Add to queue
                     queue[tail++] = n;
@@ -251,7 +253,7 @@ public class PathFinder {
         return pathFound;
     }
 
-    private static int buildEscapeDistanceMap(int cur, int from, boolean[] passable) {
+    private static int buildEscapeDistanceMap(int cur, int from, float factor, boolean[] passable) {
 
         Arrays.fill(distance, Integer.MAX_VALUE);
 
@@ -277,14 +279,14 @@ public class PathFinder {
             }
 
             if (step == cur) {
-                destDist = (int) (dist * 2f) + 1;
+                destDist = (int) (dist * factor) + 1;
             }
 
             int nextDistance = dist + 1;
 
-            for (int aDir : dir) {
+            for (int i = 0; i < dir.length; i++) {
 
-                int n = step + aDir;
+                int n = step + dir[i];
                 if (n >= 0 && n < size && passable[n] && distance[n] > nextDistance) {
                     // Add to queue
                     queue[tail++] = n;
@@ -315,9 +317,9 @@ public class PathFinder {
             int step = queue[head++];
             int nextDistance = distance[step] + 1;
 
-            for (int aDir : dir) {
+            for (int i = 0; i < dir.length; i++) {
 
-                int n = step + aDir;
+                int n = step + dir[i];
                 if (n >= 0 && n < size && passable[n] && (distance[n] > nextDistance)) {
                     // Add to queue
                     queue[tail++] = n;

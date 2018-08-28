@@ -38,7 +38,7 @@ public class FloatingText extends BitmapText {
 
     private float cameraZoom = -1;
 
-    private static final SparseArray<ArrayList<FloatingText>> stacks = new SparseArray<>();
+    private static SparseArray<ArrayList<FloatingText>> stacks = new SparseArray<ArrayList<FloatingText>>();
 
     public FloatingText() {
         super();
@@ -74,7 +74,7 @@ public class FloatingText extends BitmapText {
         super.destroy();
     }
 
-    private void reset(float x, float y, String text, int color) {
+    public void reset(float x, float y, String text, int color) {
 
         revive();
 
@@ -113,7 +113,7 @@ public class FloatingText extends BitmapText {
 
         ArrayList<FloatingText> stack = stacks.get(key);
         if (stack == null) {
-            stack = new ArrayList<>();
+            stack = new ArrayList<FloatingText>();
             stacks.put(key, stack);
         }
 

@@ -26,7 +26,7 @@ import com.watabou.utils.Callback;
 
 public class TenguSprite extends MobSprite {
 
-    private final Animation cast;
+    private Animation cast;
 
     public TenguSprite() {
         super();

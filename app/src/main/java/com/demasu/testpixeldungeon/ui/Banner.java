@@ -26,6 +26,7 @@ public class Banner extends Image {
         FADE_IN, STATIC, FADE_OUT
     }
 
+    ;
     private State state;
 
     private float time;

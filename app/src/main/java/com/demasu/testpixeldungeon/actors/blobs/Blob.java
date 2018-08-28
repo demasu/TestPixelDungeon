@@ -30,17 +30,17 @@ import com.watabou.utils.Bundle;
 public class Blob extends Actor {
 
     public static final int WIDTH = Level.WIDTH;
-    private static final int HEIGHT = Level.HEIGHT;
+    public static final int HEIGHT = Level.HEIGHT;
     public static final int LENGTH = Level.LENGTH;
 
     public int volume = 0;
 
     public int[] cur;
-    int[] off;
+    protected int[] off;
 
     public BlobEmitter emitter;
 
-    Blob() {
+    protected Blob() {
 
         cur = new int[LENGTH];
         off = new int[LENGTH];
@@ -133,7 +133,7 @@ public class Blob extends Actor {
         this.emitter = emitter;
     }
 
-    void evolve() {
+    protected void evolve() {
 
         boolean[] notBlocking = BArray.not(Level.solid, null);
 

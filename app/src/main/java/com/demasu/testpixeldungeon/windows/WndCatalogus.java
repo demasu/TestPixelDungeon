@@ -48,10 +48,10 @@ public class WndCatalogus extends WndTabbed {
     private static final String TXT_SCROLLS = "Scrolls";
     private static final String TXT_TITLE = "Catalogus";
 
-    private final BitmapText txtTitle;
-    private final ScrollPane list;
+    private BitmapText txtTitle;
+    private ScrollPane list;
 
-    private final ArrayList<ListItem> items = new ArrayList<>();
+    private ArrayList<ListItem> items = new ArrayList<WndCatalogus.ListItem>();
 
     private static boolean showPotions = true;
 
@@ -93,6 +93,7 @@ public class WndCatalogus extends WndTabbed {
                         updateList();
                     }
 
+                    ;
                 },
                 new LabeledTab(TXT_SCROLLS) {
                     protected void select(boolean value) {
@@ -101,6 +102,7 @@ public class WndCatalogus extends WndTabbed {
                         updateList();
                     }
 
+                    ;
                 }
         };
         for (Tab tab : tabs) {
@@ -154,7 +156,7 @@ public class WndCatalogus extends WndTabbed {
         private ItemSprite sprite;
         private BitmapText label;
 
-        ListItem(Class<? extends Item> cl) {
+        public ListItem(Class<? extends Item> cl) {
             super();
 
             try {
@@ -189,7 +191,7 @@ public class WndCatalogus extends WndTabbed {
             label.y = PixelScene.align(y + (height - label.baseLine()) / 2);
         }
 
-        boolean onClick(float x, float y) {
+        public boolean onClick(float x, float y) {
             if (identified && inside(x, y)) {
                 GameScene.show(new WndInfoItem(item));
                 return true;

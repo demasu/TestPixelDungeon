@@ -35,7 +35,7 @@ public class Enchanting extends ItemSprite {
 
     private static final float ALPHA = 0.6f;
 
-    private final int color;
+    private int color;
 
     private Char target;
 
@@ -43,7 +43,7 @@ public class Enchanting extends ItemSprite {
     private float duration;
     private float passed;
 
-    private Enchanting(Item item) {
+    public Enchanting(Item item) {
         super(item.image(), null);
         originToCenter();
 
