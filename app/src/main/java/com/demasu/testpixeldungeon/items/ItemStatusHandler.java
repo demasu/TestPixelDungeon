@@ -151,10 +151,12 @@ public class ItemStatusHandler<T extends Item> {
         }
     }
 
+    @SuppressWarnings("SuspiciousMethodCalls")
     public int image(T item) {
         return images.get(item.getClass());
     }
 
+    @SuppressWarnings("SuspiciousMethodCalls")
     public String label(T item) {
         return labels.get(item.getClass());
     }
