@@ -13,6 +13,7 @@ import com.demasu.testpixeldungeon.ui.StatusPane;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 20-Jan-17.
@@ -38,7 +39,7 @@ public class SummonCrab extends ActiveSkill2 {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == Skill.AC_SUMMON) {
+        if (Objects.equals(action, Skill.AC_SUMMON)) {
             boolean spawned = false;
             for (int nu = 0; nu < 1; nu++) {
                 int newPos = hero.pos;

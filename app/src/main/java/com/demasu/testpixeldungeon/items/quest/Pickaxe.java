@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.items.quest;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
@@ -82,7 +83,7 @@ public class Pickaxe extends Weapon {
     @Override
     public void execute(final Hero hero, String action) {
 
-        if (action == AC_MINE) {
+        if (Objects.equals(action, AC_MINE)) {
 
             if (Dungeon.depth < 11 || Dungeon.depth > 15) {
                 GLog.w(TXT_NO_VEIN);

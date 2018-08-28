@@ -10,6 +10,7 @@ import com.demasu.testpixeldungeon.effects.particles.ElmoParticle;
 import com.demasu.testpixeldungeon.ui.StatusPane;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 20-Jan-17.
@@ -35,7 +36,7 @@ public class SmokeBomb extends ActiveSkill1 {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == Skill.AC_CAST) {
+        if (Objects.equals(action, Skill.AC_CAST)) {
             Buff.affect(hero, Invisibility.class, Invisibility.DURATION * (0.5f * level));
             CellEmitter.get(hero.pos).burst(ElmoParticle.FACTORY, 4);
             hero.MP -= getManaCost();

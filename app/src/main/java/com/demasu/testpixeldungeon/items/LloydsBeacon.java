@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.items;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Sample;
@@ -98,7 +99,7 @@ public class LloydsBeacon extends Item {
     @Override
     public void execute(Hero hero, String action) {
 
-        if (action == AC_SET || action == AC_RETURN) {
+        if (Objects.equals(action, AC_SET) || Objects.equals(action, AC_RETURN)) {
 
             if (Dungeon.bossLevel()) {
                 hero.spend(LloydsBeacon.TIME_TO_USE);

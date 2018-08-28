@@ -4,6 +4,8 @@ import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.ui.StatusPane;
 
+import java.util.Objects;
+
 /**
  * Created by Moussa on 20-Jan-17.
  */
@@ -21,7 +23,7 @@ public class Bombvoyage extends ActiveSkill3 {
     @Override
     public void execute(Hero hero, String action) {
         super.execute(hero, action);
-        if (action == Skill.AC_ACTIVATE) {
+        if (Objects.equals(action, Skill.AC_ACTIVATE)) {
             hero.heroSkills.active2.active = false; // Disable Double Arrow
         }
     }

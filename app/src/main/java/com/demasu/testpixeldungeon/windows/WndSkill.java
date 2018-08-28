@@ -29,6 +29,8 @@ import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.Utils;
 
+import java.util.Objects;
+
 public class WndSkill extends Window {
 
     private static final float BUTTON_WIDTH = 36;
@@ -83,7 +85,7 @@ public class WndSkill extends Window {
                 btn.setPos(x, y);
 
 
-                if (action == Negotiations.TXT_HIRE_ARCHER_MAIDEN) {
+                if (Objects.equals(action, Negotiations.TXT_HIRE_ARCHER_MAIDEN)) {
                     btn.textColor(TITLE_COLOR);
                 }
 

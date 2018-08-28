@@ -28,6 +28,8 @@ import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.Utils;
 
+import java.util.Objects;
+
 public class WndItem extends Window {
 
     private static final float BUTTON_WIDTH = 36;
@@ -88,7 +90,7 @@ public class WndItem extends Window {
                 btn.setPos(x, y);
                 add(btn);
 
-                if (action == item.defaultAction) {
+                if (Objects.equals(action, item.defaultAction)) {
                     btn.textColor(TITLE_COLOR);
                 }
 

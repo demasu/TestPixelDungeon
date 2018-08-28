@@ -12,6 +12,7 @@ import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 25-Jan-17.
@@ -69,7 +70,7 @@ public class MercWizardSkillA extends SummonRat {
 
     @Override
     public void castTextYell() {
-        if (castText != "")
+        if (!Objects.equals(castText, ""))
             Dungeon.hero.hiredMerc.sprite.showStatus(CharSprite.NEUTRAL, castText);
     }
 

@@ -5,6 +5,7 @@ import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.utils.GLog;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 20-Jan-17.
@@ -37,9 +38,9 @@ public class SpiritArmor extends PassiveSkillA3 {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == Skill.AC_ACTIVATE) {
+        if (Objects.equals(action, Skill.AC_ACTIVATE)) {
             active = true;
-        } else if (action == Skill.AC_DEACTIVATE) {
+        } else if (Objects.equals(action, Skill.AC_DEACTIVATE)) {
             active = false;
         }
     }

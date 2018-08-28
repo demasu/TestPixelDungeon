@@ -21,6 +21,7 @@ package com.demasu.testpixeldungeon.actors.hero;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
@@ -289,7 +290,7 @@ public class Hero extends Char {
 
 
         String tmp = bundle.getString(MERC_TYPE);
-        if (tmp != null && tmp != "") {
+        if (tmp != null && !Objects.equals(tmp, "")) {
             try {
                 HiredMerc.MERC_TYPES tmpType = HiredMerc.MERC_TYPES.valueOf(tmp);
                 hiredMerc = new HiredMerc(tmpType);

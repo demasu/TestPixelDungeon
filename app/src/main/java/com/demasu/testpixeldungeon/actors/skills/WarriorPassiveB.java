@@ -4,6 +4,7 @@ import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 20-Jan-17.
@@ -28,7 +29,7 @@ public class WarriorPassiveB extends BranchSkill {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == Skill.AC_ADVANCE)
+        if (Objects.equals(action, Skill.AC_ADVANCE))
             hero.heroSkills.advance(CurrentSkills.BRANCHES.PASSIVEB);
     }
 

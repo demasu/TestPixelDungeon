@@ -14,6 +14,7 @@ import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 20-Jan-17.
@@ -55,7 +56,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == TXT_HIRE_BRUTE || action == TXT_HIRE_THIEF || action == TXT_HIRE_WIZARD || action == TXT_HIRE_ARCHER || action == TXT_HIRE_ARCHER_MAIDEN) {
+        if (Objects.equals(action, TXT_HIRE_BRUTE) || Objects.equals(action, TXT_HIRE_THIEF) || Objects.equals(action, TXT_HIRE_WIZARD) || Objects.equals(action, TXT_HIRE_ARCHER) || Objects.equals(action, TXT_HIRE_ARCHER_MAIDEN)) {
             if (Dungeon.gold < getGoldCost()) {
                 GLog.n("You cannot afford a merc.");
                 return;
@@ -85,7 +86,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                                 hero.hiredMerc = new HiredMerc(HiredMerc.MERC_TYPES.Archer);
                                 break;
                             default:
-                                hero.hiredMerc = action == TXT_HIRE_BRUTE ? new HiredMerc(HiredMerc.MERC_TYPES.Brute) : (action == TXT_HIRE_THIEF ? new HiredMerc(HiredMerc.MERC_TYPES.Thief) : new HiredMerc(HiredMerc.MERC_TYPES.Wizard));
+                                hero.hiredMerc = Objects.equals(action, TXT_HIRE_BRUTE) ? new HiredMerc(HiredMerc.MERC_TYPES.Brute) : (Objects.equals(action, TXT_HIRE_THIEF) ? new HiredMerc(HiredMerc.MERC_TYPES.Thief) : new HiredMerc(HiredMerc.MERC_TYPES.Wizard));
                                 break;
                         }
                         hero.hiredMerc.spawn(Dungeon.hero.lvl);

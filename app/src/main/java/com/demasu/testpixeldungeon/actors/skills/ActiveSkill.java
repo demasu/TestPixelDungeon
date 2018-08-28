@@ -4,6 +4,7 @@ import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 22-Jan-17.
@@ -24,9 +25,9 @@ public class ActiveSkill extends Skill {
     @Override
     public void execute(Hero hero, String action) {
         Dungeon.hero.heroSkills.lastUsed = this;
-        if (action == Skill.AC_ACTIVATE) {
+        if (Objects.equals(action, Skill.AC_ACTIVATE)) {
             active = true;
-        } else if (action == Skill.AC_DEACTIVATE) {
+        } else if (Objects.equals(action, Skill.AC_DEACTIVATE)) {
             active = false;
         }
     }

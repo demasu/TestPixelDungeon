@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.items.weapon.melee;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
@@ -73,7 +74,7 @@ public class ShortSword extends MeleeWeapon {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == AC_REFORGE) {
+        if (Objects.equals(action, AC_REFORGE)) {
 
             if (hero.belongings.weapon == this) {
                 equipped = true;

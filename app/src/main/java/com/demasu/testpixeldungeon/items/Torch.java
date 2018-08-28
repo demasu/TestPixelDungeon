@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.items;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.watabou.noosa.particles.Emitter;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
@@ -51,7 +52,7 @@ public class Torch extends Item {
     @Override
     public void execute(Hero hero, String action) {
 
-        if (action == AC_LIGHT) {
+        if (Objects.equals(action, AC_LIGHT)) {
 
             hero.spend(TIME_TO_LIGHT);
             hero.busy();

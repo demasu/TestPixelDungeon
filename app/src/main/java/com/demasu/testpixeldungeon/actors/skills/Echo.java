@@ -16,6 +16,7 @@ import com.demasu.testpixeldungeon.ui.StatusPane;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 20-Jan-17.
@@ -41,7 +42,7 @@ public class Echo extends ActiveSkill3 {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == Skill.AC_CAST) {
+        if (Objects.equals(action, Skill.AC_CAST)) {
             ArrayList<Integer> respawnPoints = new ArrayList<>();
 
             for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {

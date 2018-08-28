@@ -8,6 +8,7 @@ import com.demasu.testpixeldungeon.windows.WndStory;
 import com.watabou.utils.Bundle;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 20-Jan-17.
@@ -168,7 +169,7 @@ public class Skill {
     }
 
     public void castTextYell() {
-        if (castText != "")
+        if (!Objects.equals(castText, ""))
             Dungeon.hero.sprite.showStatus(CharSprite.NEUTRAL, castText);
     }
 

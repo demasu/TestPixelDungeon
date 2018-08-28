@@ -24,6 +24,7 @@ import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class BombTriggerBeacon extends Item {
 
@@ -53,7 +54,7 @@ public class BombTriggerBeacon extends Item {
     @Override
     public void execute(Hero hero, String action) {
 
-        if (action == "Detonate") {
+        if (Objects.equals(action, "Detonate")) {
             GLog.i("Beacon sends out a signal...");
             int key = 0;
             for (int i = 0; i < Dungeon.level.heaps.size(); i++) {

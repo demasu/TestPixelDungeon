@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.items;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
@@ -56,7 +57,7 @@ public class ArmorKit extends Item {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == AC_APPLY) {
+        if (Objects.equals(action, AC_APPLY)) {
 
             curUser = hero;
             GameScene.selectItem(itemSelector, WndBag.Mode.ARMOR, TXT_SELECT_ARMOR);

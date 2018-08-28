@@ -8,6 +8,7 @@ import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
 import com.demasu.testpixeldungeon.ui.StatusPane;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 20-Jan-17.
@@ -32,7 +33,7 @@ public class SpiritArrow extends ActiveSkill1 {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == Skill.AC_CAST) {
+        if (Objects.equals(action, Skill.AC_CAST)) {
             Arrow arrow = new Arrow(level);
             Dungeon.level.drop(arrow, hero.pos).sprite.drop();
             CellEmitter.get(hero.pos).burst(ElmoParticle.FACTORY, 4);

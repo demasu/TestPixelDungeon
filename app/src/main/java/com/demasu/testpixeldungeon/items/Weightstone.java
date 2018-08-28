@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.items;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.watabou.noosa.BitmapTextMultiline;
 import com.watabou.noosa.audio.Sample;
@@ -60,7 +61,7 @@ public class Weightstone extends Item {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == AC_APPLY) {
+        if (Objects.equals(action, AC_APPLY)) {
 
             curUser = hero;
             GameScene.selectItem(itemSelector, WndBag.Mode.WEAPON, TXT_SELECT_WEAPON);

@@ -7,6 +7,7 @@ import com.demasu.testpixeldungeon.actors.hero.Legend;
 import com.demasu.testpixeldungeon.items.wands.WandOfMagicCasting;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Moussa on 20-Jan-17.
@@ -38,7 +39,7 @@ public class SoulSpark extends ActiveSkill3 {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == Skill.AC_CAST && hero.MP >= getManaCost()) {
+        if (Objects.equals(action, Skill.AC_CAST) && hero.MP >= getManaCost()) {
             //hero.MP -= getManaCost();
             //castTextYell();
             Legend.haxWand.castSpell(WandOfMagicCasting.CAST_TYPES.SOUL_SPARK);

@@ -19,6 +19,7 @@ package com.demasu.testpixeldungeon.items;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.Badges;
@@ -48,7 +49,7 @@ public class Amulet extends Item {
 
     @Override
     public void execute(Hero hero, String action) {
-        if (action == AC_END) {
+        if (Objects.equals(action, AC_END)) {
 
             showAmuletScene(false);
 
