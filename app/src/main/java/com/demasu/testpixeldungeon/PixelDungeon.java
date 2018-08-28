@@ -285,7 +285,7 @@ public class PixelDungeon extends Game {
     }
 
     public static int zoom() {
-        return Preferences.INSTANCE.getInt(Preferences.KEY_ZOOM, 0);
+        return Preferences.INSTANCE.getInt(Preferences.KEY_ZOOM);
     }
 
     public static void music(boolean value) {
@@ -366,7 +366,7 @@ public class PixelDungeon extends Game {
     }
 
     public static int lastClass() {
-        return Preferences.INSTANCE.getInt(Preferences.KEY_LAST_CLASS, 0);
+        return Preferences.INSTANCE.getInt(Preferences.KEY_LAST_CLASS);
     }
 
     public static void challenges(int value) {
@@ -374,7 +374,7 @@ public class PixelDungeon extends Game {
     }
 
     public static int challenges() {
-        return Preferences.INSTANCE.getInt(Preferences.KEY_CHALLENGES, 0);
+        return Preferences.INSTANCE.getInt(Preferences.KEY_CHALLENGES);
     }
 
     public static void intro(boolean value) {

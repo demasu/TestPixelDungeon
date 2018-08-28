@@ -101,17 +101,17 @@ public enum Difficulties {
 
         switch (this) {
             case EASY:
-                return join("\n", EASY_DESC);
+                return join(EASY_DESC);
             case NORMAL:
-                return join("\n", NORMAL_DESC);
+                return join(NORMAL_DESC);
             case HARD:
-                return join("\n", HARD_DESC);
+                return join(HARD_DESC);
             case HELL:
-                return join("\n", HELL_DESC);
+                return join(HELL_DESC);
             case SUICIDE:
-                return join("\n", SUICIDE_DESC);
+                return join(SUICIDE_DESC);
             case JUSTKILLME:
-                return join("\n", JUST_KILL_ME_DESC);
+                return join(JUST_KILL_ME_DESC);
         }
         return "";
     }
@@ -431,14 +431,14 @@ public enum Difficulties {
         return diff == 0 ? 1 : (diff == 1 ? 0 : diff);
     }
 
-    static String join(String delim, String... data) {
+    static String join(String... data) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < data.length; i++) {
             sb.append(data[i]);
             if (i >= data.length - 1) {
                 break;
             }
-            sb.append(delim);
+            sb.append("\n");
         }
         return sb.toString();
     }

@@ -613,8 +613,8 @@ public class ColdGirl extends Mob {
         return IMMUNITIES;
     }
 
-    private void Discussion(String title, String message, String... options) {
-        GameScene.show(new PersistentWndOptions(title, message, options) {
+    private void Discussion(String message, String... options) {
+        GameScene.show(new PersistentWndOptions("Cold Girl", message, options) {
             @Override
             protected void onSelect(int index) {
                 DiscussionNext(index);
@@ -625,7 +625,7 @@ public class ColdGirl extends Mob {
     private void DiscussionNext(int index) {
         switch (discussionProgress + index) {
             case 0:
-                Discussion("Cold Girl", "My existence does not concern you... leave", "How do I leave?", "Were you raised like this?");
+                Discussion("My existence does not concern you... leave", "How do I leave?", "Were you raised like this?");
                 discussionProgress += DISCUSSION_STEP;
                 break;
             case 1:
@@ -637,7 +637,7 @@ public class ColdGirl extends Mob {
                 sendBack();
                 break;
             case DISCUSSION_STEP + 1:
-                Discussion("Cold Girl", "Talk about my mother like that again and I...\n You know what? Just die..", "Ok");
+                Discussion("Talk about my mother like that again and I...\n You know what? Just die..", "Ok");
                 discussionProgress += DISCUSSION_STEP;
                 break;
             case 2 * DISCUSSION_STEP:
@@ -646,15 +646,15 @@ public class ColdGirl extends Mob {
                 hostile = true;
                 break;
             case DISCUSSION_DEAD:
-                Discussion("Cold Girl", "What is wrong with you?!", "How are you this strong?");
+                Discussion("What is wrong with you?!", "How are you this strong?");
                 discussionProgress += DISCUSSION_STEP;
                 break;
             case DISCUSSION_DEAD + DISCUSSION_STEP:
-                Discussion("Cold Girl", "The rules cannot protect you from me fool!", "What rules?");
+                Discussion("The rules cannot protect you from me fool!", "What rules?");
                 discussionProgress += DISCUSSION_STEP;
                 break;
             case DISCUSSION_DEAD + 2 * DISCUSSION_STEP:
-                Discussion("Cold Girl", "LEAVE!", "Wai..");
+                Discussion("LEAVE!", "Wai..");
                 discussionProgress += DISCUSSION_STEP;
                 break;
             case DISCUSSION_DEAD + 3 * DISCUSSION_STEP:
