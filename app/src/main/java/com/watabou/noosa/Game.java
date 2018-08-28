@@ -46,6 +46,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
 
+@SuppressWarnings("unused")
 public abstract class Game extends Activity implements GLSurfaceView.Renderer, View.OnTouchListener {
 
     @SuppressLint("StaticFieldLeak")
