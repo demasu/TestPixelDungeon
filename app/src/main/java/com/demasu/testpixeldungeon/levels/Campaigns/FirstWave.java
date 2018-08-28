@@ -78,9 +78,9 @@ public class FirstWave extends Level {
     private static final int ROOM_TOP = HEIGHT / 2 - 2;
     private static final int ROOM_BOTTOM = HEIGHT / 2 + 2;
 
-    private int arenaDoor;
-    private boolean enteredArena = false;
-    private boolean keyDropped = false;
+    // --Commented out by Inspection (8/28/18, 6:32 PM):private int arenaDoor;
+    // --Commented out by Inspection (8/28/18, 6:33 PM):private boolean enteredArena = false;
+    // --Commented out by Inspection (8/28/18, 6:33 PM):private boolean keyDropped = false;
 
     @Override
     public String tilesTex() {
@@ -92,9 +92,9 @@ public class FirstWave extends Level {
         return Assets.WATER_CAVES;
     }
 
-    private static final String DOOR = "door";
-    private static final String ENTERED = "entered";
-    private static final String DROPPED = "droppped";
+    // --Commented out by Inspection (8/28/18, 6:33 PM):private static final String DOOR = "door";
+    // --Commented out by Inspection (8/28/18, 6:33 PM):private static final String ENTERED = "entered";
+    // --Commented out by Inspection (8/28/18, 6:33 PM):private static final String DROPPED = "droppped";
 
     @Override
     public void storeInBundle(Bundle bundle) {
@@ -108,9 +108,6 @@ public class FirstWave extends Level {
 
     @Override
     protected boolean build() {
-
-        int topMost = Integer.MAX_VALUE;
-
 
         int left, right, top, bottom;
 
@@ -261,31 +258,33 @@ public class FirstWave extends Level {
 
     }
 
-    public class MovieGirl extends Mob {
-
-
-        {
-            spriteClass = ColdGirlSisterSprite.class;
-            state = HUNTING;
-            hostile = false;
-            screams = false;
-        }
-
-        @Override
-        public boolean attack(Char enemy) {
-            return true;
-        }
-
-        @Override
-        public boolean act() {
-
-            spend(1f);
-
-
-            next();
-            return true;
-        }
-    }
+// --Commented out by Inspection START (8/28/18, 6:34 PM):
+//    public class MovieGirl extends Mob {
+//
+//
+//        {
+//            spriteClass = ColdGirlSisterSprite.class;
+//            state = HUNTING;
+//            hostile = false;
+//            screams = false;
+//        }
+//
+//        @Override
+//        public boolean attack(Char enemy) {
+//            return true;
+//        }
+//
+//        @Override
+//        public boolean act() {
+//
+//            spend(1f);
+//
+//
+//            next();
+//            return true;
+//        }
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:34 PM)
 
     public class MovieMaiden extends Mob {
 
@@ -619,9 +618,11 @@ public class FirstWave extends Level {
         }
 
 
-        public void speak(String say) {
-            sprite.showStatus(CharSprite.NEUTRAL, say);
-        }
+// --Commented out by Inspection START (8/28/18, 6:35 PM):
+//        public void speak(String say) {
+//            sprite.showStatus(CharSprite.NEUTRAL, say);
+//        }
+// --Commented out by Inspection STOP (8/28/18, 6:35 PM)
 
         @Override
         public String description() {
@@ -749,14 +750,15 @@ public class FirstWave extends Level {
 
 
         Char centerOfAttention = null;
-        MovieGirl actress;
+        //MovieGirl actress;
         Temari temari;
         General general;
         MovieMaiden actress2;
         VanguardWarrior vanguard;
         SoldierWarrior soldier1, soldier2, soldier3, soldier4, soldier5;
 
-        SkelEnemy skeleton1, skeleton2, skeleton3, skeleton4, skeleton5, skeleton6, skeleton7;
+        // --Commented out by Inspection (8/28/18, 6:35 PM):SkelEnemy skeleton1, skeleton7
+        SkelEnemy skeleton2, skeleton3, skeleton4, skeleton5, skeleton6;
 
         final ArrayList<WraithEnemy> listWraiths = new ArrayList<>();
 

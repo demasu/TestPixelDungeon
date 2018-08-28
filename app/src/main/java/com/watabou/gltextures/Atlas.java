@@ -41,17 +41,21 @@ public class Atlas {
         namedFrames = new HashMap<>();
     }
 
-    public void add(Object key, int left, int top, int right, int bottom) {
-        add(key, uvRect(tx, left, top, right, bottom));
-    }
+// --Commented out by Inspection START (8/28/18, 6:38 PM):
+//    public void add(Object key, int left, int top, int right, int bottom) {
+//        add(key, uvRect(tx, left, top, right, bottom));
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:38 PM)
 
     private void add(Object key, RectF rect) {
         namedFrames.put(key, rect);
     }
 
-    public void grid(int width) {
-        grid(width, tx.height);
-    }
+// --Commented out by Inspection START (8/28/18, 6:38 PM):
+//    public void grid(int width) {
+//        grid(width, tx.height);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:38 PM)
 
     private void grid(int width, int height) {
         grid(width, height, tx.width / width);
@@ -66,25 +70,33 @@ public class Atlas {
         this.cols = cols;
     }
 
-    public RectF get(int index) {
-        float x = index % cols;
-        float y = index / cols;
-        float l = uvLeft + x * uvWidth;
-        float t = uvTop + y * uvHeight;
-        return new RectF(l, t, l + uvWidth, t + uvHeight);
-    }
+// --Commented out by Inspection START (8/28/18, 6:38 PM):
+//    public RectF get(int index) {
+//        float x = index % cols;
+//        float y = index / cols;
+//        float l = uvLeft + x * uvWidth;
+//        float t = uvTop + y * uvHeight;
+//        return new RectF(l, t, l + uvWidth, t + uvHeight);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:38 PM)
 
-    public RectF get(Object key) {
-        return namedFrames.get(key);
-    }
+// --Commented out by Inspection START (8/28/18, 6:38 PM):
+//    public RectF get(Object key) {
+//        return namedFrames.get(key);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:38 PM)
 
-    public float width(RectF rect) {
-        return rect.width() * tx.width;
-    }
+// --Commented out by Inspection START (8/28/18, 6:38 PM):
+//    public float width(RectF rect) {
+//        return rect.width() * tx.width;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:38 PM)
 
-    public float height(RectF rect) {
-        return rect.height() * tx.height;
-    }
+// --Commented out by Inspection START (8/28/18, 6:39 PM):
+//    public float height(RectF rect) {
+//        return rect.height() * tx.height;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:39 PM)
 
     private static RectF uvRect(SmartTexture tx, int left, int top, int right, int bottom) {
         return new RectF(
