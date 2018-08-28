@@ -46,7 +46,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
 
-public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTouchListener {
+public abstract class Game extends Activity implements GLSurfaceView.Renderer, View.OnTouchListener {
 
     public static Game instance;
 
