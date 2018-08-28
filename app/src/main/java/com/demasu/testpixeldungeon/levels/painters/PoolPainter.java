@@ -28,6 +28,8 @@ import com.demasu.testpixeldungeon.levels.Room;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 public class PoolPainter extends Painter {
 
     private static final int NPIRANHAS = 3;
@@ -99,7 +101,7 @@ public class PoolPainter extends Painter {
                     Generator.Category.WEAPON,
                     Generator.Category.ARMOR
             ));
-            if (another.level() > prize.level()) {
+            if (Objects.requireNonNull(another).level() > Objects.requireNonNull(prize).level()) {
                 prize = another;
             }
         }

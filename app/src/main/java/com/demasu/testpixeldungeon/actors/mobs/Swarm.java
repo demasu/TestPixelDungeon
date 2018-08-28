@@ -94,6 +94,7 @@ public class Swarm extends Mob {
 
                 Swarm clone = split();
                 clone.HP = (HP - damage) / 2;
+                //noinspection ConstantConditions
                 clone.pos = Random.element(candidates);
                 clone.state = clone.HUNTING;
 

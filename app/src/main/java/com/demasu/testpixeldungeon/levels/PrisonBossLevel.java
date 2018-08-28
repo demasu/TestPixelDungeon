@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.levels;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.watabou.noosa.Scene;
 import com.demasu.testpixeldungeon.Assets;
@@ -105,7 +106,7 @@ public class PrisonBossLevel extends RegularLevel {
                     return false;
                 }
                 roomEntrance = Random.element(rooms);
-            } while (roomEntrance.width() < 4 || roomEntrance.height() < 4);
+            } while (Objects.requireNonNull(roomEntrance).width() < 4 || roomEntrance.height() < 4);
 
             innerRetry = 0;
             do {
@@ -115,12 +116,12 @@ public class PrisonBossLevel extends RegularLevel {
                 roomExit = Random.element(rooms);
             } while (
                     roomExit == roomEntrance ||
-                            roomExit.width() < 7 ||
+                            Objects.requireNonNull(roomExit).width() < 7 ||
                             roomExit.height() < 7 ||
                             roomExit.top == 0);
 
             Graph.buildDistanceMap(rooms, roomExit);
-            distance = Graph.buildPath(rooms, roomEntrance, roomExit).size();
+            distance = Objects.requireNonNull(Graph.buildPath(rooms, roomEntrance, roomExit)).size();
 
         } while (distance < 3);
 
@@ -128,12 +129,12 @@ public class PrisonBossLevel extends RegularLevel {
         roomExit.type = Type.BOSS_EXIT;
 
         List<Room> path = Graph.buildPath(rooms, roomEntrance, roomExit);
-        Graph.setPrice(path, roomEntrance.distance);
+        Graph.setPrice(Objects.requireNonNull(path), roomEntrance.distance);
 
         Graph.buildDistanceMap(rooms, roomExit);
         path = Graph.buildPath(rooms, roomEntrance, roomExit);
 
-        anteroom = path.get(path.size() - 2);
+        anteroom = path.get(Objects.requireNonNull(path).size() - 2);
         anteroom.type = Type.STANDARD;
 
         Room room = roomEntrance;
@@ -314,7 +315,7 @@ public class PrisonBossLevel extends RegularLevel {
             } while (pos == cell || Actor.findChar(pos) != null);
 
             Mob boss = Bestiary.mob(Dungeon.depth);
-            boss.state = boss.HUNTING;
+            Objects.requireNonNull(boss).state = boss.HUNTING;
             boss.pos = pos;
             GameScene.add(boss);
             boss.notice();

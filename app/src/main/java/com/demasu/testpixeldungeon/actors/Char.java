@@ -427,7 +427,7 @@ public abstract class Char extends Actor {
 
         if (src instanceof Hero) {
             Hero heroSrc = (Hero) src;
-            if (heroSrc.rangedWeapon instanceof Arrow && heroSrc.belongings.bow instanceof Bow) {
+            if (heroSrc.rangedWeapon instanceof Arrow && heroSrc.belongings.bow != null) {
                 heroSrc.belongings.bow.bowSpecial(this);
                 ((Arrow) heroSrc.rangedWeapon).arrowEffect(heroSrc, this);
             }

@@ -127,6 +127,7 @@ public class Yog extends Mob {
 
         if (spawnPoints.size() > 0) {
             Larva larva = new Larva();
+            //noinspection ConstantConditions
             larva.pos = Random.element(spawnPoints);
 
             GameScene.add(larva);

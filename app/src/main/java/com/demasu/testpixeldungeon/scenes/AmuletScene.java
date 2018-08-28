@@ -29,6 +29,8 @@ import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.ui.RedButton;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 public class AmuletScene extends PixelScene {
 
     private static final String TXT_EXIT = "Let's call it a day";
@@ -95,7 +97,7 @@ public class AmuletScene extends PixelScene {
             btnStay.setPos(btnExit.left(), btnExit.bottom() + SMALL_GAP);
 
         } else {
-            height = amulet.height + LARGE_GAP + text.height() + LARGE_GAP + btnExit.height() + SMALL_GAP + btnStay.height();
+            height = amulet.height + LARGE_GAP + Objects.requireNonNull(text).height() + LARGE_GAP + btnExit.height() + SMALL_GAP + btnStay.height();
 
             amulet.x = align((Camera.main.width - amulet.width) / 2);
             amulet.y = align((Camera.main.height - height) / 2);

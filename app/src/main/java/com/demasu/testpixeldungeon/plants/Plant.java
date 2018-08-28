@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.plants;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
@@ -132,7 +133,7 @@ public class Plant implements Bundlable {
 
                 hero.spend(TIME_TO_PLANT);
                 hero.busy();
-                ((Seed) detach(hero.belongings.backpack)).onThrow(hero.pos);
+                ((Seed) Objects.requireNonNull(detach(hero.belongings.backpack))).onThrow(hero.pos);
 
                 hero.sprite.operate(hero.pos);
 

@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.levels.traps;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -79,7 +80,7 @@ public class SummoningTrap {
 
         for (Integer point : respawnPoints) {
             Mob mob = Bestiary.mob(Dungeon.depth);
-            mob.state = mob.WANDERING;
+            Objects.requireNonNull(mob).state = mob.WANDERING;
             GameScene.add(mob, DELAY);
             WandOfBlink.appear(mob, point);
         }

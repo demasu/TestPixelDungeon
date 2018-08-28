@@ -20,13 +20,15 @@ package com.demasu.testpixeldungeon.items.weapon.enchantments;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.items.weapon.Weapon;
 
+import java.util.Objects;
+
 public class Instability extends Weapon.Enchantment {
 
     private static final String TXT_UNSTABLE = "unstable %s";
 
     @Override
     public boolean proc(Weapon weapon, Char attacker, Char defender, int damage) {
-        return random().proc(weapon, attacker, defender, damage);
+        return Objects.requireNonNull(random()).proc(weapon, attacker, defender, damage);
     }
 
     @Override

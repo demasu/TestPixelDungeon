@@ -47,6 +47,7 @@ public class MercWizardSkillA extends SummonRat {
                         candidates.add(c);
                     }
                 }
+                //noinspection ConstantConditions
                 newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
                 if (newPos != -1) {
                     spawned = true;

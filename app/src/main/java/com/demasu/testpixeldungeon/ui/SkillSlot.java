@@ -23,6 +23,8 @@ import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.sprites.SkillSprite;
 
+import java.util.Objects;
+
 public class SkillSlot extends Button {
 
     public static final int DEGRADED = 0xFF4444;
@@ -57,7 +59,7 @@ public class SkillSlot extends Button {
             icon.alpha(alpha);
         }
 
-        if (skill.active) {
+        if (Objects.requireNonNull(skill).active) {
             activeText = new BitmapText(PixelScene.font1x);
             activeText.text("Active");
             activeText.hardlight(Window.TITLE_COLOR);

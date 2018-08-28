@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.items.armor;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -307,7 +308,7 @@ public class Armor extends EquipableItem {
 
         Class<? extends Glyph> oldGlyphClass = glyph != null ? glyph.getClass() : null;
         Glyph gl = Glyph.random();
-        while (gl.getClass() == oldGlyphClass) {
+        while (Objects.requireNonNull(gl).getClass() == oldGlyphClass) {
             gl = Armor.Glyph.random();
         }
 

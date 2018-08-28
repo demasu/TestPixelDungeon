@@ -27,6 +27,8 @@ import com.demasu.testpixeldungeon.levels.Room;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 public class TrapsPainter extends Painter {
 
     public static void paint(Level level, Room room) {
@@ -94,7 +96,7 @@ public class TrapsPainter extends Painter {
                     Generator.Category.WEAPON,
                     Generator.Category.ARMOR
             ));
-            if (another.level() > prize.level()) {
+            if (Objects.requireNonNull(another).level() > Objects.requireNonNull(prize).level()) {
                 prize = another;
             }
         }

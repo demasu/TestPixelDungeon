@@ -54,6 +54,7 @@ public class SummonRat extends ActiveSkill1 {
                             candidates.add(c);
                         }
                     }
+                    //noinspection ConstantConditions
                     newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
                     if (newPos != -1) {
                         spawned = true;

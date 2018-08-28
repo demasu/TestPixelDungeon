@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.actors.mobs.Acidic;
@@ -219,7 +220,7 @@ public class Badges {
                 Bundle bundle = Bundle.read(input);
                 input.close();
 
-                global = restore(bundle);
+                global = restore(Objects.requireNonNull(bundle));
 
             } catch (IOException e) {
                 global = new HashSet<>();

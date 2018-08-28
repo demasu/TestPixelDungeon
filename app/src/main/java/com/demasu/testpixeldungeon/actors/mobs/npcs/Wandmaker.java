@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.actors.mobs.npcs;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.Journal;
@@ -345,7 +346,8 @@ public class Wandmaker extends NPC {
             }
 
             if (candidates.size() > 0) {
-                Random.element(candidates).drop(new CorpseDust());
+                //noinspection ConstantConditions
+                Objects.requireNonNull(Random.element(candidates)).drop(new CorpseDust());
             } else {
                 int pos = Dungeon.level.randomRespawnCell();
                 while (Dungeon.level.heaps.get(pos) != null) {
@@ -387,14 +389,12 @@ public class Wandmaker extends NPC {
                     return;
                 }
             }
-            if (heap == null) {
-                int pos = Dungeon.level.randomRespawnCell();
-                while (Dungeon.level.heaps.get(pos) != null) {
-                    pos = Dungeon.level.randomRespawnCell();
-                }
-
-                Dungeon.level.drop(new PhantomFish(), pos);
+            int pos = Dungeon.level.randomRespawnCell();
+            while (Dungeon.level.heaps.get(pos) != null) {
+                pos = Dungeon.level.randomRespawnCell();
             }
+
+            Dungeon.level.drop(new PhantomFish(), pos);
         }
     };
 }

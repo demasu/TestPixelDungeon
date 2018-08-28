@@ -20,6 +20,7 @@ package com.demasu.testpixeldungeon;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Objects;
 
 import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
@@ -91,7 +92,7 @@ public class Bones {
                 Bundle bundle = Bundle.read(input);
                 input.close();
 
-                depth = bundle.getInt(LEVEL);
+                depth = Objects.requireNonNull(bundle).getInt(LEVEL);
                 item = (Item) bundle.get(ITEM);
 
                 return get();

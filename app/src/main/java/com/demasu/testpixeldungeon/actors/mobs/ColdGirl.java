@@ -54,6 +54,7 @@ import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 
 public class ColdGirl extends Mob {
 
@@ -215,11 +216,7 @@ public class ColdGirl extends Mob {
 
                                 enemy.pos = newPos;
                                 // FIXME
-                                if (enemy instanceof Mob) {
-                                    Dungeon.level.mobPress((Mob) enemy);
-                                } else {
-                                    Dungeon.level.press(newPos, enemy);
-                                }
+                                Dungeon.level.press(newPos, enemy);
 
                                 enemy.sprite.bloodBurstA(sprite.center(), enemy.HP);
                             }
@@ -314,7 +311,7 @@ public class ColdGirl extends Mob {
                         reset(ColdGirl.this.pos, throwAt, Dungeon.hero.belongings.weapon, new Callback() {
                             @Override
                             public void call() {
-                                Dungeon.hero.belongings.weapon.detach(Dungeon.hero.belongings.backpack).onThrowColdGirl(throwAtFinal);
+                                Objects.requireNonNull(Dungeon.hero.belongings.weapon.detach(Dungeon.hero.belongings.backpack)).onThrowColdGirl(throwAtFinal);
 
                             }
                         });
@@ -682,6 +679,7 @@ public class ColdGirl extends Mob {
 
         if (spawnPoints.size() > 0) {
             Slaves slave = new Slaves();
+            //noinspection ConstantConditions
             slave.pos = Random.element(spawnPoints);
             Sample.INSTANCE.play(Assets.SND_GHOST);
 

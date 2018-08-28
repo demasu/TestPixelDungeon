@@ -20,6 +20,7 @@ package com.demasu.testpixeldungeon.items;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
@@ -621,8 +622,9 @@ public class Item implements Bundlable {
                 reset(user.pos, cell, this, new Callback() {
                     @Override
                     public void call() {
-                        Item.this.detach(user.belongings.backpack).onThrow(cell);
-                        if (curUser instanceof Hero && curItem instanceof Arrow && Dungeon.hero.heroSkills.active2.doubleShot()) // <--- Huntress double shot
+                        Objects.requireNonNull(Item.this.detach(user.belongings.backpack)).onThrow(cell);
+                        //noinspection ConstantConditions
+                        if (curUser != null && curItem instanceof Arrow && Dungeon.hero.heroSkills.active2.doubleShot()) // <--- Huntress double shot
                         {
                             if (Dungeon.hero.heroSkills.passiveB3.passThroughTargets(false) > 0) {
                                 curItem.castSPD(curUser, dstFinal, Dungeon.hero.heroSkills.passiveB3.passThroughTargets(true));
@@ -702,8 +704,8 @@ public class Item implements Bundlable {
                 reset(user.pos, cell, this, new Callback() {
                     @Override
                     public void call() {
-                        Item.this.detach(user.belongings.backpack).onThrow(cell);
-                        if (curUser instanceof Hero && curItem instanceof Arrow && Dungeon.hero.heroSkills.active2.doubleShot()) // <--- Huntress double shot
+                        Objects.requireNonNull(Item.this.detach(user.belongings.backpack)).onThrow(cell);
+                        if (curUser != null && curItem instanceof Arrow && Dungeon.hero.heroSkills.active2.doubleShot()) // <--- Huntress double shot
                         {
                             if (Dungeon.hero.heroSkills.passiveB3.passThroughTargets(false) > 0) {
                                 curItem.castSPD(curUser, dstFinal, Dungeon.hero.heroSkills.passiveB3.passThroughTargets(true));

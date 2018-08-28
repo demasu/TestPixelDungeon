@@ -727,8 +727,7 @@ public class Hero extends Char {
                         // Do nothing
                     } else {
                         boolean important =
-                                ((item instanceof ScrollOfUpgrade || item instanceof ScrollOfEnchantment) && ((Scroll) item).isKnown()) ||
-                                        ((item instanceof PotionOfStrength || item instanceof PotionOfMight) && ((Potion) item).isKnown());
+                                (item instanceof ScrollOfUpgrade || item instanceof ScrollOfEnchantment) && ((Scroll) item).isKnown() || item instanceof PotionOfStrength && ((Potion) item).isKnown();
                         if (important) {
                             GLog.p(TXT_YOU_NOW_HAVE, item.name());
                         } else {

@@ -74,6 +74,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                             candidates.add(c);
                         }
                     }
+                    //noinspection ConstantConditions
                     newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
                     if (newPos != -1) {
                         switch (action) {
@@ -98,10 +99,6 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                 }
             }
 
-            if (spawned) {
-                Dungeon.gold -= getGoldCost();
-                GLog.p(" " + action + " hired for " + getGoldCost() + " gold! ");
-            }
         }
     }
 

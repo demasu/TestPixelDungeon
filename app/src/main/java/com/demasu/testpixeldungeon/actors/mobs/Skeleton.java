@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.actors.mobs;
 
 import java.util.HashSet;
+import java.util.Objects;
 
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
@@ -93,7 +94,7 @@ public class Skeleton extends Mob {
             Item loot = Generator.random(Generator.Category.WEAPON);
             for (int i = 0; i < 2; i++) {
                 Item l = Generator.random(Generator.Category.WEAPON);
-                if (l.level() < loot.level()) {
+                if (Objects.requireNonNull(l).level() < Objects.requireNonNull(loot).level()) {
                     loot = l;
                 }
             }

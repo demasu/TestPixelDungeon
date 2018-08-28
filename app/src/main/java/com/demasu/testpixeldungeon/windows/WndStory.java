@@ -27,6 +27,8 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.watabou.utils.SparseArray;
 
+import java.util.Objects;
+
 public class WndStory extends Window {
 
     private static final int WIDTH = 120;
@@ -79,7 +81,7 @@ public class WndStory extends Window {
     private float delay;
 
     public WndStory(String text) {
-        super(0, 0, Chrome.get(Chrome.Type.SCROLL));
+        super(0, 0, Objects.requireNonNull(Chrome.get(Chrome.Type.SCROLL)));
 
         tf = PixelScene.createMultiline(text, 7);
         tf.maxWidth = WIDTH - MARGIN * 2;
@@ -121,9 +123,7 @@ public class WndStory extends Window {
         String text = CHAPTERS.get(id);
         if (text != null) {
             WndStory wnd = new WndStory(text);
-            if ((wnd.delay = 0.6f) > 0) {
-                wnd.shadow.visible = wnd.chrome.visible = wnd.tf.visible = false;
-            }
+            wnd.shadow.visible = wnd.chrome.visible = wnd.tf.visible = false;
 
             Game.scene().add(wnd);
 
@@ -134,9 +134,7 @@ public class WndStory extends Window {
     public static void showStory(String text) {
         if (text != null) {
             WndStory wnd = new WndStory(text);
-            if ((wnd.delay = 0.6f) > 0) {
-                wnd.shadow.visible = wnd.chrome.visible = wnd.tf.visible = false;
-            }
+            wnd.shadow.visible = wnd.chrome.visible = wnd.tf.visible = false;
 
             Game.scene().add(wnd);
         }

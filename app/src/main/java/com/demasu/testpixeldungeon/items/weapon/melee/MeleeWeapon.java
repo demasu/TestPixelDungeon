@@ -151,7 +151,7 @@ public class MeleeWeapon extends Weapon {
 
         if (isEquipped(Dungeon.hero)) {
             info.append(p);
-            if (this instanceof MeleeWeapon && Dungeon.hero.heroSkills.passiveA1 != null && Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus() > 0) // <--- Warrior Mastery if present
+            if (Dungeon.hero.heroSkills.passiveA1 != null && Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus() > 0) // <--- Warrior Mastery if present
                 info.append("Your mastery of melee weapons makes it easier to use this weapon (+ ").append(Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus()).append(" levels)\n");
             info.append("You hold the ").append(name).append(" at the ready").append(cursed ? ", and because it is cursed, you are powerless to let go." : ".");
         } else {

@@ -23,6 +23,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 
 import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.actors.hero.HeroClass;
@@ -135,7 +136,7 @@ public enum Rankings {
             input.close();
 
 
-            for (Bundlable record : bundle.getCollection(RECORDS)) {
+            for (Bundlable record : Objects.requireNonNull(bundle).getCollection(RECORDS)) {
                 if (record != null)
                     records.add((Record) record);
             }

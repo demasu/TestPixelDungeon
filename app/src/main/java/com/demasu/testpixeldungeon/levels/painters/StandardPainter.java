@@ -27,6 +27,8 @@ import com.demasu.testpixeldungeon.levels.Terrain;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 public class StandardPainter extends Painter {
 
     public static void paint(Level level, Room room) {
@@ -180,8 +182,8 @@ public class StandardPainter extends Painter {
             }
         }
 
-        if ((door1.x == room.left && door2.x == room.right) ||
-                (door1.x == room.right && door2.x == room.left)) {
+        if ((Objects.requireNonNull(door1).x == room.left && Objects.requireNonNull(door2).x == room.right) ||
+                (door1.x == room.right && Objects.requireNonNull(door2).x == room.left)) {
 
             int s = room.width() / 2;
 
@@ -189,8 +191,8 @@ public class StandardPainter extends Painter {
             drawInside(level, room, door2, s, Terrain.EMPTY_SP);
             fill(level, room.center().x, Math.min(door1.y, door2.y), 1, Math.abs(door1.y - door2.y) + 1, Terrain.EMPTY_SP);
 
-        } else if ((door1.y == room.top && door2.y == room.bottom) ||
-                (door1.y == room.bottom && door2.y == room.top)) {
+        } else if ((door1.y == room.top && Objects.requireNonNull(door2).y == room.bottom) ||
+                (door1.y == room.bottom && Objects.requireNonNull(door2).y == room.top)) {
 
             int s = room.height() / 2;
 
@@ -198,7 +200,7 @@ public class StandardPainter extends Painter {
             drawInside(level, room, door2, s, Terrain.EMPTY_SP);
             fill(level, Math.min(door1.x, door2.x), room.center().y, Math.abs(door1.x - door2.x) + 1, 1, Terrain.EMPTY_SP);
 
-        } else if (door1.x == door2.x) {
+        } else if (door1.x == Objects.requireNonNull(door2).x) {
 
             fill(level, door1.x == room.left ? room.left + 1 : room.right - 1, Math.min(door1.y, door2.y), 1, Math.abs(door1.y - door2.y) + 1, Terrain.EMPTY_SP);
 

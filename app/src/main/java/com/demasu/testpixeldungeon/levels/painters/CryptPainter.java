@@ -26,6 +26,8 @@ import com.demasu.testpixeldungeon.levels.Room;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.watabou.utils.Point;
 
+import java.util.Objects;
+
 public class CryptPainter extends Painter {
 
     public static void paint(Level level, Room room) {
@@ -69,7 +71,7 @@ public class CryptPainter extends Painter {
 
         for (int i = 0; i < 3; i++) {
             Item another = Generator.random(Generator.Category.ARMOR);
-            if (another.level() > prize.level()) {
+            if (Objects.requireNonNull(another).level() > Objects.requireNonNull(prize).level()) {
                 prize = another;
             }
         }

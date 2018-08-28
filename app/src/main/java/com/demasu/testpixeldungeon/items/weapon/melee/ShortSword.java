@@ -118,7 +118,7 @@ public class ShortSword extends MeleeWeapon {
 
             } else {
 
-                if (item instanceof Boomerang) {
+                if (item != null) {
                     GLog.w(TXT_NOT_BOOMERANG);
                 }
 

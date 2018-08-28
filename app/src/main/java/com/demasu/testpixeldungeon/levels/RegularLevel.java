@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 import com.demasu.testpixeldungeon.Bones;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -65,11 +66,11 @@ public abstract class RegularLevel extends Level {
         do {
             do {
                 roomEntrance = Random.element(rooms);
-            } while (roomEntrance.width() < 4 || roomEntrance.height() < 4);
+            } while (Objects.requireNonNull(roomEntrance).width() < 4 || roomEntrance.height() < 4);
 
             do {
                 roomExit = Random.element(rooms);
-            } while (roomExit == roomEntrance || roomExit.width() < 4 || roomExit.height() < 4);
+            } while (roomExit == roomEntrance || Objects.requireNonNull(roomExit).width() < 4 || roomExit.height() < 4);
 
             Graph.buildDistanceMap(rooms, roomExit);
             distance = roomEntrance.distance();
@@ -90,7 +91,7 @@ public abstract class RegularLevel extends Level {
         List<Room> path = Graph.buildPath(rooms, roomEntrance, roomExit);
 
         Room room = roomEntrance;
-        for (Room next : path) {
+        for (Room next : Objects.requireNonNull(path)) {
             room.connect(next);
             room = next;
             connected.add(room);
@@ -102,7 +103,7 @@ public abstract class RegularLevel extends Level {
         path = Graph.buildPath(rooms, roomEntrance, roomExit);
 
         room = roomEntrance;
-        for (Room next : path) {
+        for (Room next : Objects.requireNonNull(path)) {
             room.connect(next);
             room = next;
             connected.add(room);
@@ -111,7 +112,7 @@ public abstract class RegularLevel extends Level {
         int nConnected = (int) (rooms.size() * Random.Float(0.5f, 0.7f));
         while (connected.size() < nConnected) {
             Room cr = Random.element(connected);
-            Room or = Random.element(cr.neigbours);
+            Room or = Random.element(Objects.requireNonNull(cr).neigbours);
             if (!connected.contains(or)) {
                 cr.connect(or);
                 connected.add(or);
@@ -530,7 +531,7 @@ public abstract class RegularLevel extends Level {
         for (int i = 0; i < nMobs; i++) {
             Mob mob = Bestiary.mob(Dungeon.depth);
             do {
-                mob.pos = randomRespawnCell();
+                Objects.requireNonNull(mob).pos = randomRespawnCell();
             } while (mob.pos == -1);
             mobs.add(mob);
             if (Random.Int(10) < Dungeon.currentDifficulty.championChance())
@@ -631,7 +632,7 @@ public abstract class RegularLevel extends Level {
     protected Room randomRoom(Room.Type type, int tries) {
         for (int i = 0; i < tries; i++) {
             Room room = Random.element(rooms);
-            if (room.type == type) {
+            if (Objects.requireNonNull(room).type == type) {
                 return room;
             }
         }

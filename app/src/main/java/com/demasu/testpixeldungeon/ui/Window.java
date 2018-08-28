@@ -31,6 +31,8 @@ import com.demasu.testpixeldungeon.effects.ShadowBox;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.watabou.utils.Signal;
 
+import java.util.Objects;
+
 public class Window extends Group implements Signal.Listener<Key> {
 
     protected int width;
@@ -43,11 +45,11 @@ public class Window extends Group implements Signal.Listener<Key> {
     public static final int TITLE_COLOR = 0xFFFF44;
 
     public Window() {
-        this(0, 0, Chrome.get(Chrome.Type.WINDOW));
+        this(0, 0, Objects.requireNonNull(Chrome.get(Chrome.Type.WINDOW)));
     }
 
     public Window(int width, int height) {
-        this(width, height, Chrome.get(Chrome.Type.WINDOW));
+        this(width, height, Objects.requireNonNull(Chrome.get(Chrome.Type.WINDOW)));
     }
 
     public Window(int width, int height, NinePatch chrome) {

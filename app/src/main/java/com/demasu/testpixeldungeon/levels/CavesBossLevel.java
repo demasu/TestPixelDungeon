@@ -37,6 +37,8 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 public class CavesBossLevel extends Level {
 
     {
@@ -235,7 +237,7 @@ public class CavesBossLevel extends Level {
             enteredArena = true;
 
             Mob boss = Bestiary.mob(Dungeon.depth);
-            boss.state = boss.HUNTING;
+            Objects.requireNonNull(boss).state = boss.HUNTING;
             do {
                 boss.pos = Random.Int(LENGTH);
             } while (

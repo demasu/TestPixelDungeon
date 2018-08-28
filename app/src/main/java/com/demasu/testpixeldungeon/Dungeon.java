@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Objects;
 
 import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -627,7 +628,7 @@ public class Dungeon {
         Bundle bundle = Bundle.read(input);
         input.close();
 
-        return (Level) bundle.get("level");
+        return (Level) Objects.requireNonNull(bundle).get("level");
     }
 
     public static void deleteGame(HeroClass cl, boolean deleteLevels) {

@@ -27,6 +27,8 @@ import com.demasu.testpixeldungeon.levels.Terrain;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 public class PitPainter extends Painter {
 
     public static void paint(Level level, Room room) {
@@ -47,7 +49,7 @@ public class PitPainter extends Painter {
         } else if (entrance.y == room.bottom) {
             well = new Point(Random.Int(2) == 0 ? room.left + 1 : room.right - 1, room.top + 1);
         }
-        set(level, well, Terrain.EMPTY_WELL);
+        set(level, Objects.requireNonNull(well), Terrain.EMPTY_WELL);
 
         int remains = room.random();
         while (level.map[remains] == Terrain.EMPTY_WELL) {

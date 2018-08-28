@@ -21,6 +21,8 @@ import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.ui.BuffIndicator;
 
+import java.util.Objects;
+
 public class Buff extends Actor {
 
     public Char target;
@@ -63,7 +65,7 @@ public class Buff extends Actor {
 
     public static <T extends FlavourBuff> T append(Char target, Class<T> buffClass, float duration) {
         T buff = append(target, buffClass);
-        buff.spend(duration);
+        Objects.requireNonNull(buff).spend(duration);
         return buff;
     }
 

@@ -47,6 +47,8 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip.Listener {
 
     public static final int DEFAULT = 0xFFFFFF;
@@ -232,19 +234,19 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 
     public Emitter emitter() {
         Emitter emitter = GameScene.emitter();
-        emitter.pos(this);
+        Objects.requireNonNull(emitter).pos(this);
         return emitter;
     }
 
     public Emitter centerEmitter() {
         Emitter emitter = GameScene.emitter();
-        emitter.pos(center());
+        Objects.requireNonNull(emitter).pos(center());
         return emitter;
     }
 
     public Emitter bottomEmitter() {
         Emitter emitter = GameScene.emitter();
-        emitter.pos(x, y + height, width, 0);
+        Objects.requireNonNull(emitter).pos(x, y + height, width, 0);
         return emitter;
     }
 

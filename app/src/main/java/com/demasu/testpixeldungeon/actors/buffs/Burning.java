@@ -40,6 +40,8 @@ import com.demasu.testpixeldungeon.utils.Utils;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 public class Burning extends Buff implements Hero.Doom {
 
     private static final String TXT_BURNS_UP = "%s burns up!";
@@ -80,7 +82,7 @@ public class Burning extends Buff implements Hero.Doom {
                 if (item instanceof Scroll) {
 
                     item = item.detach(((Hero) target).belongings.backpack);
-                    GLog.w(TXT_BURNS_UP, item.toString());
+                    GLog.w(TXT_BURNS_UP, Objects.requireNonNull(item).toString());
 
                     Heap.burnFX(target.pos);
 
@@ -91,7 +93,7 @@ public class Burning extends Buff implements Hero.Doom {
                     if (!steak.collect(((Hero) target).belongings.backpack)) {
                         Dungeon.level.drop(steak, target.pos).sprite.drop();
                     }
-                    GLog.w(TXT_BURNS_UP, item.toString());
+                    GLog.w(TXT_BURNS_UP, Objects.requireNonNull(item).toString());
 
                     Heap.burnFX(target.pos);
 

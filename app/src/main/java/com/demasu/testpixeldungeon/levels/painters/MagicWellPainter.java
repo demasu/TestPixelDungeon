@@ -27,6 +27,8 @@ import com.demasu.testpixeldungeon.levels.Terrain;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 public class MagicWellPainter extends Painter {
 
     private static final Class<?>[] WATERS =
@@ -52,7 +54,7 @@ public class MagicWellPainter extends Painter {
                 water = null;
             }
         }
-        water.seed(c.x + Level.WIDTH * c.y, 1);
+        Objects.requireNonNull(water).seed(c.x + Level.WIDTH * c.y, 1);
         level.blobs.put(waterClass, water);
 
         room.entrance().set(Room.Door.Type.REGULAR);

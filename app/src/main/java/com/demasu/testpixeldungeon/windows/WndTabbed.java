@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.windows;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Game;
@@ -35,7 +36,7 @@ public class WndTabbed extends Window {
     protected Tab selected;
 
     public WndTabbed() {
-        super(0, 0, Chrome.get(Chrome.Type.TAB_SET));
+        super(0, 0, Objects.requireNonNull(Chrome.get(Chrome.Type.TAB_SET)));
     }
 
     protected Tab add(Tab tab) {

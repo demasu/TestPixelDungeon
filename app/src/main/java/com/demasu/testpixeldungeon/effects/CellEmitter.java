@@ -22,6 +22,8 @@ import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.watabou.utils.PointF;
 
+import java.util.Objects;
+
 public class CellEmitter {
 
     public static Emitter get(int cell) {
@@ -29,7 +31,7 @@ public class CellEmitter {
         PointF p = DungeonTilemap.tileToWorld(cell);
 
         Emitter emitter = GameScene.emitter();
-        emitter.pos(p.x, p.y, DungeonTilemap.SIZE, DungeonTilemap.SIZE);
+        Objects.requireNonNull(emitter).pos(p.x, p.y, DungeonTilemap.SIZE, DungeonTilemap.SIZE);
 
         return emitter;
     }
@@ -39,7 +41,7 @@ public class CellEmitter {
         PointF p = DungeonTilemap.tileToWorld(cell);
 
         Emitter emitter = GameScene.emitter();
-        emitter.pos(p.x + DungeonTilemap.SIZE / 2, p.y + DungeonTilemap.SIZE / 2);
+        Objects.requireNonNull(emitter).pos(p.x + DungeonTilemap.SIZE / 2, p.y + DungeonTilemap.SIZE / 2);
 
         return emitter;
     }
@@ -49,7 +51,7 @@ public class CellEmitter {
         PointF p = DungeonTilemap.tileToWorld(cell);
 
         Emitter emitter = GameScene.emitter();
-        emitter.pos(p.x, p.y + DungeonTilemap.SIZE, DungeonTilemap.SIZE, 0);
+        Objects.requireNonNull(emitter).pos(p.x, p.y + DungeonTilemap.SIZE, DungeonTilemap.SIZE, 0);
 
         return emitter;
     }

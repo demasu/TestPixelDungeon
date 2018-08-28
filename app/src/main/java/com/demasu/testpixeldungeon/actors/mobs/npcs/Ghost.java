@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.actors.mobs.npcs;
 
 import java.util.HashSet;
+import java.util.Objects;
 
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.tweeners.AlphaTweener;
@@ -277,7 +278,7 @@ public class Ghost extends NPC {
                         another = Generator.random(Generator.Category.WEAPON);
                     } while (another instanceof MissileWeapon);
 
-                    if (weapon == null || another.level() > weapon.level()) {
+                    if (weapon == null || Objects.requireNonNull(another).level() > weapon.level()) {
                         weapon = (Weapon) another;
                     }
                 }
@@ -288,7 +289,7 @@ public class Ghost extends NPC {
                     armor = (Armor) Generator.random(Generator.Category.ARMOR);
                     for (int i = 0; i < 3; i++) {
                         Item another = Generator.random(Generator.Category.ARMOR);
-                        if (another.level() > armor.level()) {
+                        if (Objects.requireNonNull(another).level() > armor.level()) {
                             armor = (Armor) another;
                         }
                     }

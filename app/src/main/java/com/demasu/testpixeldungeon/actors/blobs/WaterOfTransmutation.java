@@ -35,6 +35,8 @@ import com.demasu.testpixeldungeon.items.wands.Wand;
 import com.demasu.testpixeldungeon.items.weapon.melee.*;
 import com.demasu.testpixeldungeon.plants.Plant;
 
+import java.util.Objects;
+
 public class WaterOfTransmutation extends WellWater {
 
     @Override
@@ -124,7 +126,7 @@ public class WaterOfTransmutation extends WellWater {
         Ring n;
         do {
             n = (Ring) Generator.random(Category.RING);
-        } while (n.getClass() == r.getClass());
+        } while (Objects.requireNonNull(n).getClass() == r.getClass());
 
         n.level(0);
 
@@ -145,9 +147,10 @@ public class WaterOfTransmutation extends WellWater {
     private Wand changeWand(Wand w) {
 
         Wand n;
+        //noinspection ConstantConditions
         do {
             n = (Wand) Generator.random(Category.WAND);
-        } while (n.getClass() == w.getClass());
+        } while (Objects.requireNonNull(n).getClass() == w.getClass());
 
         n.level(0);
         n.upgrade(w.level());
@@ -165,7 +168,7 @@ public class WaterOfTransmutation extends WellWater {
 
         do {
             n = (Plant.Seed) Generator.random(Category.SEED);
-        } while (n.getClass() == s.getClass());
+        } while (Objects.requireNonNull(n).getClass() == s.getClass());
 
         return n;
     }
@@ -184,7 +187,7 @@ public class WaterOfTransmutation extends WellWater {
             Scroll n;
             do {
                 n = (Scroll) Generator.random(Category.SCROLL);
-            } while (n.getClass() == s.getClass());
+            } while (Objects.requireNonNull(n).getClass() == s.getClass());
             return n;
         }
     }
@@ -194,16 +197,12 @@ public class WaterOfTransmutation extends WellWater {
 
             return new PotionOfMight();
 
-        } else if (p instanceof PotionOfMight) {
-
-            return new PotionOfStrength();
-
         } else {
 
             Potion n;
             do {
                 n = (Potion) Generator.random(Category.POTION);
-            } while (n.getClass() == p.getClass());
+            } while (Objects.requireNonNull(n).getClass() == p.getClass());
             return n;
         }
     }

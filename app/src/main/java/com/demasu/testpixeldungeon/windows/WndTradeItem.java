@@ -34,6 +34,8 @@ import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
 
+import java.util.Objects;
+
 public class WndTradeItem extends Window {
 
     private static final float GAP = 2;
@@ -216,7 +218,7 @@ public class WndTradeItem extends Window {
             Hero hero = Dungeon.hero;
 
             item = item.detach(hero.belongings.backpack);
-            int price = item.price();
+            int price = Objects.requireNonNull(item).price();
 
             new Gold(price).doPickUp(hero);
             GLog.i(TXT_SOLD, item.name(), price);

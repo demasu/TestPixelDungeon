@@ -18,6 +18,7 @@
 package com.watabou.noosa;
 
 import java.nio.FloatBuffer;
+import java.util.Objects;
 
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
@@ -120,7 +121,7 @@ public class BitmapText extends Visual {
             vertices[0] = width;
             vertices[1] = 0;
 
-            vertices[2] = rect.left;
+            vertices[2] = Objects.requireNonNull(rect).left;
             vertices[3] = rect.top;
 
             vertices[4] = width + w;

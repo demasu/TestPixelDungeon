@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.items.armor;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.utils.GLog;
@@ -59,7 +60,7 @@ abstract public class ClassArmor extends Armor {
                 break;
         }
 
-        classArmor.STR = armor.STR;
+        Objects.requireNonNull(classArmor).STR = armor.STR;
         classArmor.DR = armor.DR();
 
         classArmor.inscribe(armor.glyph);

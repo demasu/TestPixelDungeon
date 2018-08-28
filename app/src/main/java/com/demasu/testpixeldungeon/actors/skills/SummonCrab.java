@@ -54,7 +54,15 @@ public class SummonCrab extends ActiveSkill2 {
                             candidates.add(c);
                         }
                     }
-                    newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
+                    if ( candidates.size() > 0 ) {
+                        if ( Random.element(candidates) != null ) {
+                            //noinspection ConstantConditions
+                            newPos = Random.element(candidates);
+                        }
+                    }
+                    else {
+                        newPos = -1;
+                    }
                     if (newPos != -1) {
                         spawned = true;
                         SummonedPet crab = new SummonedPet(SummonedPet.PET_TYPES.CRAB);

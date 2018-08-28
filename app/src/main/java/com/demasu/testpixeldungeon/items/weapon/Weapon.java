@@ -35,6 +35,8 @@ import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 abstract public class Weapon extends KindOfWeapon {
 
     private static final int HITS_TO_KNOW = 20;
@@ -230,7 +232,7 @@ abstract public class Weapon extends KindOfWeapon {
 
         Class<? extends Enchantment> oldEnchantment = enchantment != null ? enchantment.getClass() : null;
         Enchantment ench = Enchantment.random();
-        while (ench.getClass() == oldEnchantment) {
+        while (Objects.requireNonNull(ench).getClass() == oldEnchantment) {
             ench = Enchantment.random();
         }
 

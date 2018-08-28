@@ -27,6 +27,8 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.HighlightedText;
 import com.demasu.testpixeldungeon.utils.Utils;
 
+import java.util.Objects;
+
 public class WndClass extends WndTabbed {
 
     private static final String TXT_MASTERY = "Mastery";
@@ -104,7 +106,7 @@ public class WndClass extends WndTabbed {
             String[] items = cl.perks();
             float pos = MARGIN;
 
-            for (int i = 0; i < items.length; i++) {
+            for (int i = 0; i < Objects.requireNonNull(items).length; i++) {
 
                 if (i > 0) {
                     pos += GAP;

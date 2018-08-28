@@ -108,8 +108,7 @@ public class WandOfReach extends Wand {
             if (item instanceof Dewdrop) {
                 // Do nothing
             } else {
-                if (((item instanceof ScrollOfUpgrade || item instanceof ScrollOfEnchantment) && ((Scroll) item).isKnown()) ||
-                        ((item instanceof PotionOfStrength || item instanceof PotionOfMight) && ((Potion) item).isKnown())) {
+                if ((item instanceof ScrollOfUpgrade || item instanceof ScrollOfEnchantment) && ((Scroll) item).isKnown() || item instanceof PotionOfStrength && ((Potion) item).isKnown()) {
                     GLog.p(TXT_YOU_NOW_HAVE, item.name());
                 } else {
                     GLog.i(TXT_YOU_NOW_HAVE, item.name());

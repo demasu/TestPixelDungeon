@@ -38,6 +38,8 @@ import com.demasu.testpixeldungeon.windows.WndQuest;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 public class Imp extends NPC {
 
     {
@@ -226,7 +228,7 @@ public class Imp extends NPC {
 
                 do {
                     reward = (Ring) Generator.random(Generator.Category.RING);
-                } while (reward.cursed);
+                } while (Objects.requireNonNull(reward).cursed);
                 reward.upgrade(2);
                 reward.cursed = true;
             }

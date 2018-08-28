@@ -58,6 +58,7 @@ public class Multiplicity extends Glyph {
                 MirrorImage mob = new MirrorImage();
                 mob.duplicate((Hero) defender);
                 GameScene.add(mob);
+                //noinspection ConstantConditions,ConstantConditions
                 WandOfBlink.appear(mob, Random.element(respawnPoints));
 
                 defender.damage(Random.IntRange(1, defender.HT / 6), this);

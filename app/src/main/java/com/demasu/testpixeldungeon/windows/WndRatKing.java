@@ -140,7 +140,7 @@ public class WndRatKing extends WndTabbed {
                             checked(false);
                     }
                 };
-                btnChief.setRect(0, (btnImmersive != null ? btnImmersive.bottom() : BTN_HEIGHT) + GAP, WIDTH, BTN_HEIGHT);
+                btnChief.setRect(0, BTN_HEIGHT + GAP, WIDTH, BTN_HEIGHT);
                 btnChief.checked(Dungeon.currentDifficulty.disableChampion(Champ.CHAMP_CHIEF));
                 add(btnChief);
 

@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
 
 import com.watabou.noosa.Scene;
 import com.watabou.noosa.audio.Sample;
@@ -387,7 +388,7 @@ public abstract class Level implements Bundlable {
                 if (mobs.size() < nMobs()) {
 
                     Mob mob = Bestiary.mutable(Dungeon.depth);
-                    mob.state = mob.WANDERING;
+                    Objects.requireNonNull(mob).state = mob.WANDERING;
                     mob.pos = randomRespawnCell();
                     if (Dungeon.hero.isAlive() && mob.pos != -1) {
                         GameScene.add(mob);
@@ -432,6 +433,7 @@ public abstract class Level implements Bundlable {
                                     candidates.add(c);
                                 }
                             }
+                            //noinspection ConstantConditions
                             newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
                             if (newPos != -1) {
                                 HiredMerc tmp = new HiredMerc(Dungeon.hero.hiredMerc.mercType);
@@ -622,6 +624,7 @@ public abstract class Level implements Bundlable {
         water[cell] = terrain == Terrain.WATER || terrain >= Terrain.WATER_TILES;
     }
 
+    @SuppressWarnings("ConstantConditions")
     public Heap drop(Item item, int cell) {
 
         if (Dungeon.isChallenged(Challenges.NO_FOOD) && item instanceof Food) {
@@ -1026,6 +1029,7 @@ public abstract class Level implements Bundlable {
                 return "Floor";
             case Terrain.GRASS:
                 return "Grass";
+            //noinspection ConstantConditions
             case Terrain.WATER:
                 return "Water";
             case Terrain.WALL:

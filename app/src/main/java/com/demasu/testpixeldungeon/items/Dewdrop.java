@@ -56,7 +56,7 @@ public class Dewdrop extends Item {
                 hero.sprite.showStatus(CharSprite.POSITIVE, TXT_VALUE, effect);
             }
 
-        } else if (vial != null) {
+        } else {
 
             vial.collectDew(this);
 

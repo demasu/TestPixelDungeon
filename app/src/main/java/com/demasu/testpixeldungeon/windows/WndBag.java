@@ -362,6 +362,7 @@ public class WndBag extends WndTabbed {
             super.layout();
         }
 
+        @SuppressWarnings("ConstantConditions")
         @Override
         public void item(Item item) {
 

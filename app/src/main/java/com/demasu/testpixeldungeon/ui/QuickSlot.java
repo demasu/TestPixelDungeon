@@ -34,6 +34,8 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.windows.WndBag;
 import com.watabou.utils.Bundle;
 
+import java.util.Objects;
+
 public class QuickSlot extends Button implements WndBag.Listener {
 
     private static final String TXT_SELECT_ITEM = "Select an item for the quickslot";
@@ -87,7 +89,7 @@ public class QuickSlot extends Button implements WndBag.Listener {
                     GameScene.handleCell(lastTarget.pos);
                 } else {
                     useTargeting();
-                    select().execute(Dungeon.hero);
+                    Objects.requireNonNull(select()).execute(Dungeon.hero);
                 }
             }
 

@@ -28,6 +28,8 @@ import com.demasu.testpixeldungeon.levels.Room;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.watabou.utils.Random;
 
+import java.util.Objects;
+
 public class RatKingPainter extends Painter {
 
     public static void paint(Level level, Room room) {
@@ -78,11 +80,11 @@ public class RatKingPainter extends Painter {
                 if (prize instanceof MissileWeapon) {
                     prize.quantity(1);
                 } else {
-                    prize.degrade(Random.Int(3));
+                    Objects.requireNonNull(prize).degrade(Random.Int(3));
                 }
                 break;
             case 1:
-                prize = Generator.random(Generator.Category.ARMOR).degrade(Random.Int(3));
+                prize = Objects.requireNonNull(Generator.random(Generator.Category.ARMOR)).degrade(Random.Int(3));
                 break;
             default:
                 prize = new Gold(Random.IntRange(1, 5));

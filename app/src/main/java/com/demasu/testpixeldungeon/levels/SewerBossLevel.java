@@ -19,6 +19,7 @@ package com.demasu.testpixeldungeon.levels;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.watabou.noosa.Scene;
 import com.demasu.testpixeldungeon.Assets;
@@ -69,7 +70,7 @@ public class SewerBossLevel extends RegularLevel {
                     return false;
                 }
                 roomEntrance = Random.element(rooms);
-            } while (roomEntrance.width() < 4 || roomEntrance.height() < 4);
+            } while (Objects.requireNonNull(roomEntrance).width() < 4 || roomEntrance.height() < 4);
 
             innerRetry = 0;
             do {
@@ -78,7 +79,7 @@ public class SewerBossLevel extends RegularLevel {
                 }
                 roomExit = Random.element(rooms);
             }
-            while (roomExit == roomEntrance || roomExit.width() < 6 || roomExit.height() < 6 || roomExit.top == 0);
+            while (roomExit == roomEntrance || Objects.requireNonNull(roomExit).width() < 6 || roomExit.height() < 6 || roomExit.top == 0);
 
             Graph.buildDistanceMap(rooms, roomExit);
             distance = roomEntrance.distance();
@@ -95,13 +96,13 @@ public class SewerBossLevel extends RegularLevel {
         Graph.buildDistanceMap(rooms, roomExit);
         List<Room> path = Graph.buildPath(rooms, roomEntrance, roomExit);
 
-        Graph.setPrice(path, roomEntrance.distance);
+        Graph.setPrice(Objects.requireNonNull(path), roomEntrance.distance);
 
         Graph.buildDistanceMap(rooms, roomExit);
         path = Graph.buildPath(rooms, roomEntrance, roomExit);
 
         Room room = roomEntrance;
-        for (Room next : path) {
+        for (Room next : Objects.requireNonNull(path)) {
             room.connect(next);
             room = next;
         }
@@ -126,7 +127,7 @@ public class SewerBossLevel extends RegularLevel {
         }
         if (candidates.size() > 0) {
             Room kingsRoom = Random.element(candidates);
-            kingsRoom.connect(roomExit);
+            Objects.requireNonNull(kingsRoom).connect(roomExit);
             kingsRoom.type = Room.Type.RAT_KING;
         }
 
@@ -179,7 +180,7 @@ public class SewerBossLevel extends RegularLevel {
     @Override
     protected void createMobs() {
         Mob mob = Bestiary.mob(Dungeon.depth);
-        mob.pos = roomExit.random();
+        Objects.requireNonNull(mob).pos = roomExit.random();
         mobs.add(mob);
     }
 
