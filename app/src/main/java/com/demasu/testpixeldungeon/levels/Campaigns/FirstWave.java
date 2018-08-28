@@ -568,7 +568,6 @@ public class FirstWave extends Level {
                     for (Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone()) {
                         if (mob.hostile || mob instanceof SummonedPet) {
                             mob.die(null);
-                            continue;
                         }
                     }
 
@@ -581,7 +580,6 @@ public class FirstWave extends Level {
                     for (Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone()) {
                         if (mob.hostile || mob instanceof SummonedPet) {
                             mob.die(null);
-                            continue;
                         }
                     }
 
