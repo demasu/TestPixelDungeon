@@ -335,7 +335,7 @@ public class Bundle {
             writer.write(bundle.data.toString());
             writer.close();
 
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
     }
 
