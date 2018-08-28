@@ -136,14 +136,12 @@ public class Texture {
         bitmap.getPixels(pixels, 0, w, 0, 0, w, h);
 
         // recode - components reordering is needed
-        if (true) {
-            for (int i = 0; i < pixels.length; i++) {
-                int color = pixels[i];
-                int ag = color & 0xFF00FF00;
-                int r = (color >> 16) & 0xFF;
-                int b = color & 0xFF;
-                pixels[i] = ag | (b << 16) | r;
-            }
+        for (int i = 0; i < pixels.length; i++) {
+            int color = pixels[i];
+            int ag = color & 0xFF00FF00;
+            int r = (color >> 16) & 0xFF;
+            int b = color & 0xFF;
+            pixels[i] = ag | (b << 16) | r;
         }
 
         pixels(w, h, pixels);
