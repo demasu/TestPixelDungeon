@@ -132,6 +132,7 @@ public class WellWater extends Blob {
         Class<?>[] waters = {WaterOfHealth.class, WaterOfAwareness.class, WaterOfTransmutation.class};
 
         for (Class<?> waterClass : waters) {
+            //noinspection SuspiciousMethodCalls
             WellWater water = (WellWater) Dungeon.level.blobs.get(waterClass);
             if (water != null &&
                     water.volume > 0 &&

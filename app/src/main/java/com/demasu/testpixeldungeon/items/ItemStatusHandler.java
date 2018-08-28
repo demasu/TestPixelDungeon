@@ -160,6 +160,7 @@ public class ItemStatusHandler<T extends Item> {
     }
 
     public boolean isKnown(T item) {
+        //noinspection SuspiciousMethodCalls
         return known.contains(item.getClass());
     }
 

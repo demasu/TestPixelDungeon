@@ -373,6 +373,7 @@ public enum Difficulties {
             disabledChampions.add(champType);
 
         if (!disable && disableChampion(champType))
+            //noinspection SuspiciousMethodCalls
             disabledChampions.remove((Object) champType);
 
         return true;
