@@ -335,8 +335,7 @@ public abstract class Wand extends KindOfWeapon {
 
     @Override
     public int min() {
-        int tier = 1 + effectiveLevel() / 3;
-        return tier;
+        return 1 + effectiveLevel() / 3;
     }
 
     @Override

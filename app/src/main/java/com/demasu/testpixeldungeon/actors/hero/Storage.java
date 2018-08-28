@@ -42,7 +42,6 @@ public class Storage implements Iterable<Item> {
 
 
     public Storage(Hero owner) {
-        Hero owner1 = owner;
 
         backpack = new Bag() {{
             name = "Storage";

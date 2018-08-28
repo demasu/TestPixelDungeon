@@ -40,7 +40,6 @@ public enum CurrentSkills {
     public static Negotiations mercMenu = new Negotiations();
 
     private CurrentSkills(String type) {
-        String type1 = type;
     }
 
     public void init() {

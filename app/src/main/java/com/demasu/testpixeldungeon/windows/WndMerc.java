@@ -107,7 +107,6 @@ public class WndMerc extends WndTabbed {
         this.title = title;
 
         Mode lastMode = mode;
-        Storage lastBag = bag;
 
         int nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
         int nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);

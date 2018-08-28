@@ -88,10 +88,6 @@ public class WndStorage extends WndTabbed {
 
         this.listener = listener;
         this.mode = mode;
-        String title1 = title;
-
-        Mode lastMode = mode;
-        Storage lastBag = bag;
 
         nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
         int nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);

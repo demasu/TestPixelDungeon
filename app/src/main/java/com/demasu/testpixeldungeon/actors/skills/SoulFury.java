@@ -30,9 +30,8 @@ public class SoulFury extends ActiveSkill3 {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<String>();
 
-        return actions;
+        return new ArrayList<String>();
     }
 
     @Override

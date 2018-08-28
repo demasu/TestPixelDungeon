@@ -624,9 +624,8 @@ public class FirstWave extends Level {
 
         @Override
         public CharSprite sprite() {
-            CharSprite s = super.sprite();
 
-            return s;
+            return super.sprite();
         }
 
         @Override
@@ -678,9 +677,8 @@ public class FirstWave extends Level {
 
         @Override
         public CharSprite sprite() {
-            CharSprite s = super.sprite();
 
-            return s;
+            return super.sprite();
         }
 
         @Override

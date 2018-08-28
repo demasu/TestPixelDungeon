@@ -364,9 +364,8 @@ public class Hero extends Char {
     public boolean shootThrough(Char enemy, MissileWeapon wep) {
 
         rangedWeapon = wep;
-        boolean result = attack(enemy);
 
-        return result;
+        return attack(enemy);
     }
 
     @Override

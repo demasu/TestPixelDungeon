@@ -28,8 +28,7 @@ public class MercWizardSkillA extends SummonRat {
 
     @Override
     public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = new ArrayList<String>();
-        return actions;
+        return new ArrayList<String>();
     }
 
 
