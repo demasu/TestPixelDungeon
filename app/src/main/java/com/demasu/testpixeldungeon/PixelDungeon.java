@@ -247,7 +247,7 @@ public class PixelDungeon extends Game {
     }
 
     @SuppressLint("NewApi")
-    public static void updateImmersiveMode() {
+    private static void updateImmersiveMode() {
         try {
             // Sometime NullPointerException happens here
             instance.getWindow().getDecorView().setSystemUiVisibility(
