@@ -325,29 +325,41 @@ public class PixelDungeon extends Game {
         return Preferences.INSTANCE.getBoolean(Preferences.KEY_BRIGHTNESS, false);
     }
 
-    public static void donated(int value) {
-        Preferences.INSTANCE.put(Preferences.KEY_DONATED, value);
-    }
+// --Commented out by Inspection START (8/28/18, 1:56 PM):
+//    public static void donated(int value) {
+//        Preferences.INSTANCE.put(Preferences.KEY_DONATED, value);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 1:56 PM)
 
-    public static int donated() {
-        return Preferences.INSTANCE.getInt(Preferences.KEY_DONATED, 0);
-    }
+// --Commented out by Inspection START (8/28/18, 1:56 PM):
+//    public static int donated() {
+//        return Preferences.INSTANCE.getInt(Preferences.KEY_DONATED, 0);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 1:56 PM)
 
-    public static void maidenUnlocked(Boolean value) {
-        Preferences.INSTANCE.put(Preferences.KEY_ARCHER_MAIDEN, value);
-    }
+// --Commented out by Inspection START (8/28/18, 1:56 PM):
+//    public static void maidenUnlocked(Boolean value) {
+//        Preferences.INSTANCE.put(Preferences.KEY_ARCHER_MAIDEN, value);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 1:56 PM)
 
-    public static boolean maidenUnlocked() {
-        return Preferences.INSTANCE.getBoolean(Preferences.KEY_ARCHER_MAIDEN, false);
-    }
+// --Commented out by Inspection START (8/28/18, 1:56 PM):
+//    public static boolean maidenUnlocked() {
+//        return Preferences.INSTANCE.getBoolean(Preferences.KEY_ARCHER_MAIDEN, false);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 1:56 PM)
 
-    public static void disableChampionsUnlocked(Boolean value) {
-        Preferences.INSTANCE.put(Preferences.KEY_DISABLE_CHAMPIONS, value);
-    }
+// --Commented out by Inspection START (8/28/18, 1:56 PM):
+//    public static void disableChampionsUnlocked(Boolean value) {
+//        Preferences.INSTANCE.put(Preferences.KEY_DISABLE_CHAMPIONS, value);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 1:56 PM)
 
-    public static boolean disableChampionsUnlocked() {
-        return Preferences.INSTANCE.getBoolean(Preferences.KEY_DISABLE_CHAMPIONS, false);
-    }
+// --Commented out by Inspection START (8/28/18, 1:56 PM):
+//    public static boolean disableChampionsUnlocked() {
+//        return Preferences.INSTANCE.getBoolean(Preferences.KEY_DISABLE_CHAMPIONS, false);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 1:56 PM)
 
     public static void lastClass(int value) {
         Preferences.INSTANCE.put(Preferences.KEY_LAST_CLASS, value);
