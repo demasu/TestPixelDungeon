@@ -17,6 +17,8 @@
  */
 package com.demasu.testpixeldungeon.items.wands;
 
+import android.annotation.SuppressLint;
+
 import java.util.ArrayList;
 
 import com.watabou.noosa.audio.Sample;
@@ -265,6 +267,7 @@ public abstract class Wand extends KindOfWeapon {
         return isKnown() ? name : wood + " wand";
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public String info() {
         StringBuilder info = new StringBuilder(isKnown() ? desc() : String.format(TXT_WOOD, wood));
