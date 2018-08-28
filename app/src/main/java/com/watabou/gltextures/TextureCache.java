@@ -17,6 +17,7 @@
 
 package com.watabou.gltextures;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 import android.annotation.SuppressLint;
@@ -67,7 +68,7 @@ public class TextureCache {
 
     public static SmartTexture createGradient(int width, int height, int... colors) {
 
-        final String key = "" + width + "x" + height + ":" + colors;
+        final String key = "" + width + "x" + height + ":" + Arrays.toString(colors);
 
         if (all.containsKey(key)) {
 
