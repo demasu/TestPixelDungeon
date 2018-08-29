@@ -255,15 +255,13 @@ public class MissionStartScene extends PixelScene {
         if (index == 0) {
             String title = "";
             String Description = "Dark forces have caught the defences off guard.\n Moral is low and so are the resources at hand. \nHold the line...";
-            final int diff = index;
-
 
             MissionStartScene.this.add(new WndOptions(title, Description, "Start", "Back") {
 
                 @Override
                 protected void onSelect(int index) {
                     if (index == 0)
-                        startNewGame(diff);
+                        startNewGame();
                 }
             });
 
@@ -310,7 +308,7 @@ public class MissionStartScene extends PixelScene {
 
     }
 
-    private void startNewGame(int diff) {
+    private void startNewGame() {
 
         Dungeon.hero = null;
         // diff = Difficulties.getNormalizedDifficulty(diff);

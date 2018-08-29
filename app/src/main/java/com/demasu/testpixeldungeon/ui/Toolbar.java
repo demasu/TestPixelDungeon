@@ -145,7 +145,7 @@ public class Toolbar extends Component {
                     //GameScene.show(new WndSkill(null, CurrentSkills.mercMenu));
                     GameScene.show(new WndMercs(WndMercs.Mode.ALL));
                 } else {
-                    GameScene.show(new WndMerc(null, null));
+                    GameScene.show(new WndMerc(null));
                 }
 
             }
@@ -154,7 +154,7 @@ public class Toolbar extends Component {
                 if (Dungeon.hero.hiredMerc == null)
                     GameScene.show(new WndSkill(null, CurrentSkills.mercMenu));
                 else
-                    GameScene.show(new WndMerc(null, null));
+                    GameScene.show(new WndMerc(null));
                 return true;
             }
 

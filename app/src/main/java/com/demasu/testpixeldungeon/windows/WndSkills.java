@@ -17,25 +17,15 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import android.graphics.RectF;
-
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.ColorBlock;
-import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.skills.BranchSkill;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
-import com.demasu.testpixeldungeon.items.bags.Bag;
-import com.demasu.testpixeldungeon.items.bags.Keyring;
-import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
-import com.demasu.testpixeldungeon.items.bags.SeedPouch;
-import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
-import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.SkillSlot;
 import com.demasu.testpixeldungeon.utils.Utils;
 
@@ -95,24 +85,24 @@ public class WndSkills extends WndTabbed {
     private void placeSkills() {
 
 
-        placeSkill(Dungeon.hero.heroSkills.branchPA, true);
-        placeSkill(Dungeon.hero.heroSkills.passiveA1, false);
-        placeSkill(Dungeon.hero.heroSkills.passiveA2, false);
-        placeSkill(Dungeon.hero.heroSkills.passiveA3, false);
+        placeSkill(Dungeon.hero.heroSkills.branchPA);
+        placeSkill(Dungeon.hero.heroSkills.passiveA1);
+        placeSkill(Dungeon.hero.heroSkills.passiveA2);
+        placeSkill(Dungeon.hero.heroSkills.passiveA3);
 
-        placeSkill(Dungeon.hero.heroSkills.branchPB, true);
-        placeSkill(Dungeon.hero.heroSkills.passiveB1, true);
-        placeSkill(Dungeon.hero.heroSkills.passiveB2, true);
-        placeSkill(Dungeon.hero.heroSkills.passiveB3, true);
+        placeSkill(Dungeon.hero.heroSkills.branchPB);
+        placeSkill(Dungeon.hero.heroSkills.passiveB1);
+        placeSkill(Dungeon.hero.heroSkills.passiveB2);
+        placeSkill(Dungeon.hero.heroSkills.passiveB3);
 
-        placeSkill(Dungeon.hero.heroSkills.branchA, true);
-        placeSkill(Dungeon.hero.heroSkills.active1, true);
-        placeSkill(Dungeon.hero.heroSkills.active2, true);
-        placeSkill(Dungeon.hero.heroSkills.active3, true);
+        placeSkill(Dungeon.hero.heroSkills.branchA);
+        placeSkill(Dungeon.hero.heroSkills.active1);
+        placeSkill(Dungeon.hero.heroSkills.active2);
+        placeSkill(Dungeon.hero.heroSkills.active3);
 
     }
 
-    private void placeSkill(final Skill skill, boolean showBackground) {
+    private void placeSkill(final Skill skill) {
 
         int x = col * (SLOT_SIZE + SLOT_MARGIN);
         int y = TITLE_HEIGHT + row * (SLOT_SIZE + SLOT_MARGIN);

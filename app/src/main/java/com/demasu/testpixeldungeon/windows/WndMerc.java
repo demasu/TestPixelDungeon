@@ -17,29 +17,20 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import android.graphics.RectF;
-
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.BitmapTextMultiline;
 import com.watabou.noosa.ColorBlock;
-import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
-import com.demasu.testpixeldungeon.actors.hero.Storage;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.actors.skills.BranchSkill;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.items.Gold;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.armor.Armor;
-import com.demasu.testpixeldungeon.items.bags.Bag;
-import com.demasu.testpixeldungeon.items.bags.Keyring;
-import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
-import com.demasu.testpixeldungeon.items.bags.SeedPouch;
-import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 import com.demasu.testpixeldungeon.items.weapon.Weapon;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
@@ -49,25 +40,26 @@ import com.demasu.testpixeldungeon.sprites.HeroSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.sprites.MercSprite;
 import com.demasu.testpixeldungeon.sprites.SkillSprite;
-import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.ItemSlot;
 import com.demasu.testpixeldungeon.ui.SkillSlot;
 import com.demasu.testpixeldungeon.utils.Utils;
 
 public class WndMerc extends WndTabbed {
 
-    public enum Mode {
-        // --Commented out by Inspection (8/28/18, 6:52 PM):ALL,
-        // --Commented out by Inspection (8/28/18, 6:52 PM):UNIDENTIFED,
-        // --Commented out by Inspection (8/28/18, 6:52 PM):UPGRADEABLE,
-        // --Commented out by Inspection (8/28/18, 6:52 PM):QUICKSLOT,
-        // --Commented out by Inspection (8/28/18, 6:52 PM):FOR_SALE,
-        // --Commented out by Inspection (8/28/18, 6:52 PM):WEAPON,
-        // --Commented out by Inspection (8/28/18, 6:52 PM):ARMOR,
-        // --Commented out by Inspection (8/28/18, 6:52 PM):ENCHANTABLE,
-        // --Commented out by Inspection (8/28/18, 6:52 PM):WAND,
-        // --Commented out by Inspection (8/28/18, 6:52 PM):SEED
-    }
+// --Commented out by Inspection START (8/28/18, 9:30 PM):
+//    public enum Mode {
+//        // --Commented out by Inspection (8/28/18, 6:52 PM):ALL,
+//        // --Commented out by Inspection (8/28/18, 6:52 PM):UNIDENTIFED,
+//        // --Commented out by Inspection (8/28/18, 6:52 PM):UPGRADEABLE,
+//        // --Commented out by Inspection (8/28/18, 6:52 PM):QUICKSLOT,
+//        // --Commented out by Inspection (8/28/18, 6:52 PM):FOR_SALE,
+//        // --Commented out by Inspection (8/28/18, 6:52 PM):WEAPON,
+//        // --Commented out by Inspection (8/28/18, 6:52 PM):ARMOR,
+//        // --Commented out by Inspection (8/28/18, 6:52 PM):ENCHANTABLE,
+//        // --Commented out by Inspection (8/28/18, 6:52 PM):WAND,
+//        // --Commented out by Inspection (8/28/18, 6:52 PM):SEED
+//    }
+// --Commented out by Inspection STOP (8/28/18, 9:30 PM)
 
     private static final int COLS_P = 4;
     private static final int COLS_L = 6;
@@ -92,20 +84,13 @@ public class WndMerc extends WndTabbed {
     // --Commented out by Inspection (8/28/18, 6:52 PM):public boolean noDegrade = !PixelDungeon.itemDeg();
     private static final float GAP = 2;
 
-    public WndMerc(Storage bag, Listener listener) {
+    public WndMerc(Listener listener) {
 
         super();
 
         this.listener = listener;
 
         //Mode lastMode = mode;
-
-        int nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
-        int nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
-
-        int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
-        int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);
-
 
         IconTitle titlebar = new IconTitle();
         titlebar.icon(new SkillSprite(Dungeon.hero.hiredMerc.mercType.getImage()));
