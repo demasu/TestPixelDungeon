@@ -37,13 +37,13 @@ import com.demasu.testpixeldungeon.windows.WndBag;
 
 public class Weightstone extends Item {
 
-    private static final String TXT_SELECT_WEAPON = "Select a weapon to balance";
+    // --Commented out by Inspection (8/29/18, 4:02 PM):private static final String TXT_SELECT_WEAPON = "Select a weapon to balance";
     private static final String TXT_FAST = "you balanced your %s to make it faster";
     private static final String TXT_ACCURATE = "you balanced your %s to make it more accurate";
 
     private static final float TIME_TO_APPLY = 2;
 
-    private static final String AC_APPLY = "APPLY";
+    // --Commented out by Inspection (8/29/18, 4:02 PM):private static final String AC_APPLY = "APPLY";
 
     {
         name = "weightstone";
@@ -91,25 +91,27 @@ public class Weightstone extends Item {
 //    }
 // --Commented out by Inspection STOP (8/29/18, 12:34 PM)
 
-    private void apply(Weapon weapon, boolean forSpeed) {
-
-        detach(curUser.belongings.backpack);
-
-        weapon.fix();
-        if (forSpeed) {
-            weapon.imbue = Weapon.Imbue.SPEED;
-            GLog.p(TXT_FAST, weapon.name());
-        } else {
-            weapon.imbue = Weapon.Imbue.ACCURACY;
-            GLog.p(TXT_ACCURATE, weapon.name());
-        }
-
-        curUser.sprite.operate(curUser.pos);
-        Sample.INSTANCE.play(Assets.SND_MISS);
-
-        curUser.spend(TIME_TO_APPLY);
-        curUser.busy();
-    }
+// --Commented out by Inspection START (8/29/18, 4:02 PM):
+//    private void apply(Weapon weapon, boolean forSpeed) {
+//
+//        detach(curUser.belongings.backpack);
+//
+//        weapon.fix();
+//        if (forSpeed) {
+//            weapon.imbue = Weapon.Imbue.SPEED;
+//            GLog.p(TXT_FAST, weapon.name());
+//        } else {
+//            weapon.imbue = Weapon.Imbue.ACCURACY;
+//            GLog.p(TXT_ACCURATE, weapon.name());
+//        }
+//
+//        curUser.sprite.operate(curUser.pos);
+//        Sample.INSTANCE.play(Assets.SND_MISS);
+//
+//        curUser.spend(TIME_TO_APPLY);
+//        curUser.busy();
+//    }
+// --Commented out by Inspection STOP (8/29/18, 4:02 PM)
 
 // --Commented out by Inspection START (8/29/18, 12:34 PM):
 //    @Override
@@ -137,80 +139,84 @@ public class Weightstone extends Item {
 // --Commented out by Inspection STOP (8/29/18, 12:34 PM)
 //    };
 
-    class WndBalance extends Window {
+// --Commented out by Inspection START (8/29/18, 4:02 PM):
+//    class WndBalance extends Window {
+//
+//        private static final String TXT_CHOICE = "How would you like to balance your %s?";
+//
+//        private static final String TXT_SPEED = "For speed";
+//        private static final String TXT_ACCURACY = "For accuracy";
+//        private static final String TXT_CANCEL = "Never mind";
+//
+//        private static final int WIDTH = 120;
+//        private static final int MARGIN = 2;
+//        private static final int BUTTON_WIDTH = WIDTH - MARGIN * 2;
+//        private static final int BUTTON_HEIGHT = 20;
+//
+//// --Commented out by Inspection START (8/29/18, 4:02 PM):
+////        WndBalance(final Weapon weapon) {
+////            super();
+////
+////            IconTitle titlebar = new IconTitle(weapon);
+////            titlebar.setRect(0, 0, WIDTH, 0);
+////            add(titlebar);
+////
+////            BitmapTextMultiline tfMesage = PixelScene.createMultiline(Utils.format(TXT_CHOICE, weapon.name()), 8);
+////            tfMesage.maxWidth = WIDTH - MARGIN * 2;
+////            tfMesage.measure();
+////            tfMesage.x = MARGIN;
+////            tfMesage.y = titlebar.bottom() + MARGIN;
+////            add(tfMesage);
+////
+////            float pos = tfMesage.y + tfMesage.height();
+////
+////            if (weapon.imbue != Weapon.Imbue.SPEED) {
+////                RedButton btnSpeed = new RedButton(TXT_SPEED) {
+////// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//////                    @Override
+//////                    protected void onClick() {
+//////                        hide();
+//////                        Weightstone.this.apply(weapon, true);
+//////                    }
+////// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
+////                };
+////                btnSpeed.setRect(MARGIN, pos + MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT);
+////                add(btnSpeed);
+////
+////                pos = btnSpeed.bottom();
+////            }
+////
+////            if (weapon.imbue != Weapon.Imbue.ACCURACY) {
+////                RedButton btnAccuracy = new RedButton(TXT_ACCURACY) {
+////// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//////                    @Override
+//////                    protected void onClick() {
+//////                        hide();
+//////                        Weightstone.this.apply(weapon, false);
+//////                    }
+////// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
+////                };
+////                btnAccuracy.setRect(MARGIN, pos + MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT);
+////                add(btnAccuracy);
+////
+////                pos = btnAccuracy.bottom();
+////            }
+////
+////            RedButton btnCancel = new RedButton(TXT_CANCEL) {
+////// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//////                @Override
+//////                protected void onClick() {
+//////                    hide();
+//////                }
+////// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
+////            };
+////            btnCancel.setRect(MARGIN, pos + MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT);
+// --Commented out by Inspection STOP (8/29/18, 4:02 PM)
+//            add(btnCancel);
+//
+//            resize(WIDTH, (int) btnCancel.bottom() + MARGIN);
+//        }
+// --Commented out by Inspection STOP (8/29/18, 4:02 PM)
 
-        private static final String TXT_CHOICE = "How would you like to balance your %s?";
-
-        private static final String TXT_SPEED = "For speed";
-        private static final String TXT_ACCURACY = "For accuracy";
-        private static final String TXT_CANCEL = "Never mind";
-
-        private static final int WIDTH = 120;
-        private static final int MARGIN = 2;
-        private static final int BUTTON_WIDTH = WIDTH - MARGIN * 2;
-        private static final int BUTTON_HEIGHT = 20;
-
-        WndBalance(final Weapon weapon) {
-            super();
-
-            IconTitle titlebar = new IconTitle(weapon);
-            titlebar.setRect(0, 0, WIDTH, 0);
-            add(titlebar);
-
-            BitmapTextMultiline tfMesage = PixelScene.createMultiline(Utils.format(TXT_CHOICE, weapon.name()), 8);
-            tfMesage.maxWidth = WIDTH - MARGIN * 2;
-            tfMesage.measure();
-            tfMesage.x = MARGIN;
-            tfMesage.y = titlebar.bottom() + MARGIN;
-            add(tfMesage);
-
-            float pos = tfMesage.y + tfMesage.height();
-
-            if (weapon.imbue != Weapon.Imbue.SPEED) {
-                RedButton btnSpeed = new RedButton(TXT_SPEED) {
-// --Commented out by Inspection START (8/29/18, 12:34 PM):
-//                    @Override
-//                    protected void onClick() {
-//                        hide();
-//                        Weightstone.this.apply(weapon, true);
-//                    }
-// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
-                };
-                btnSpeed.setRect(MARGIN, pos + MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT);
-                add(btnSpeed);
-
-                pos = btnSpeed.bottom();
-            }
-
-            if (weapon.imbue != Weapon.Imbue.ACCURACY) {
-                RedButton btnAccuracy = new RedButton(TXT_ACCURACY) {
-// --Commented out by Inspection START (8/29/18, 12:34 PM):
-//                    @Override
-//                    protected void onClick() {
-//                        hide();
-//                        Weightstone.this.apply(weapon, false);
-//                    }
-// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
-                };
-                btnAccuracy.setRect(MARGIN, pos + MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT);
-                add(btnAccuracy);
-
-                pos = btnAccuracy.bottom();
-            }
-
-            RedButton btnCancel = new RedButton(TXT_CANCEL) {
-// --Commented out by Inspection START (8/29/18, 12:34 PM):
-//                @Override
-//                protected void onClick() {
-//                    hide();
-//                }
-// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
-            };
-            btnCancel.setRect(MARGIN, pos + MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT);
-            add(btnCancel);
-
-            resize(WIDTH, (int) btnCancel.bottom() + MARGIN);
-        }
-
-    }
+//    }
 }

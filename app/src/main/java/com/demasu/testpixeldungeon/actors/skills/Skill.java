@@ -85,10 +85,10 @@ public class Skill {
     }
 
     public int damageBonus(int hp) {
-        return damageBonus(hp, false);
+        return damageBonus();
     }
 
-    public int damageBonus(int hp, boolean castText) {
+    public int damageBonus() {
         return 0;
     }
 

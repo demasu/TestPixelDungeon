@@ -263,7 +263,7 @@ public abstract class Char extends Actor {
 
 
             if (!Bestiary.isBoss(enemy) && this == Dungeon.hero && Dungeon.hero.heroSkills.active2.damageBonus(enemy.HP) > 0 && Dungeon.hero.rangedWeapon instanceof Shuriken) // <-- Rogue Deadeye when present
-                enemy.damage(Dungeon.hero.heroSkills.active2.damageBonus(enemy.HP, true), this);
+                enemy.damage(Dungeon.hero.heroSkills.active2.damageBonus(), this);
 
             if (!Bestiary.isBoss(enemy) && this == Dungeon.hero && Dungeon.hero.heroSkills.passiveB2.cripple() && Dungeon.hero.rangedWeapon != null) // <-- Huntress knee shot when present
                 Buff.prolong(enemy, Cripple.class, Cripple.DURATION);

@@ -28,12 +28,12 @@ public class Framebuffer {
 
     // --Commented out by Inspection (8/28/18, 6:56 PM):public static final Framebuffer system = new Framebuffer();
 
-    private final int id;
+    // --Commented out by Inspection (8/29/18, 3:44 PM):private final int id;
 
     private Framebuffer() {
         int[] buffers = new int[1];
         GLES20.glGenBuffers(1, buffers, 0);
-        id = buffers[0];
+        //id = buffers[0];
     }
 
 // --Commented out by Inspection START (8/29/18, 12:24 PM):

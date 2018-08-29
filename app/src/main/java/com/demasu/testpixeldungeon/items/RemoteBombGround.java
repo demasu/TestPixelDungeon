@@ -36,125 +36,131 @@ import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
-public class RemoteBombGround extends Item {
-
-    {
-        name = "remote bomb";
-        image = ItemSpriteSheet.RemoteBomb;
-        defaultAction = AC_THROW;
-        stackable = true;
-
-    }
-
-    public int pos = 0;
-
-// --Commented out by Inspection START (8/28/18, 7:00 PM):
-//    @Override
-//    public void storeInBundle(Bundle bundle) {
-//        super.storeInBundle(bundle);
-//        bundle.put("pos", pos);
-//    }
-// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
-
-// --Commented out by Inspection START (8/28/18, 7:00 PM):
-//    @Override
-//    public void restoreFromBundle(Bundle bundle) {
-//        super.restoreFromBundle(bundle);
-//        pos = bundle.getInt("pos");
-//    }
-// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
-
-// --Commented out by Inspection START (8/28/18, 7:00 PM):
-//    @Override
-//    protected void onThrow(int cell) {
-//        if (Level.pit[cell]) {
-//            super.onThrow(cell);
+// --Commented out by Inspection START (8/29/18, 4:01 PM):
+// --Commented out by Inspection START (8/29/18, 4:01 PM):
+////public class RemoteBombGround extends Item {
+////
+////    {
+////        name = "remote bomb";
+////        image = ItemSpriteSheet.RemoteBomb;
+////        defaultAction = AC_THROW;
+////        stackable = true;
+////
+////    }
+////
+////    public int pos = 0;
+////
+////// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//////    @Override
+//////    public void storeInBundle(Bundle bundle) {
+//////        super.storeInBundle(bundle);
+//////        bundle.put("pos", pos);
+//////    }
+////// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
+////
+////// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//////    @Override
+//////    public void restoreFromBundle(Bundle bundle) {
+//////        super.restoreFromBundle(bundle);
+//////        pos = bundle.getInt("pos");
+//////    }
+////// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
+////
+////// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//////    @Override
+//////    protected void onThrow(int cell) {
+//////        if (Level.pit[cell]) {
+//////            super.onThrow(cell);
+//////        }
+//////
+//////
+//////    }
+////// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
+////
+////
+////// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//////    @Override
+//////    public boolean doPickUp(Hero hero) {
+//////        GLog.i("Cannot be retrieved anymore...");
+//////        return false;
+//////    }
+////// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
+////
+////
+////// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//////    @Override
+//////    public boolean isUpgradable() {
+//////        return false;
+//////    }
+////// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
+////
+////// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//////    @Override
+//////    public boolean isIdentified() {
+//////        return true;
+//////    }
+////// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
+////
+////// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//////    @Override
+//////    public Item random() {
+//////        quantity = 1;
+//////        return this;
+//////    }
+////// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
+////
+////// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//////    @Override
+//////    public int price() {
+//////        return 10 * quantity;
+//////    }
+////// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
+////
+////// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//////    @Override
+//////    public String info() {
+//////        return
+//////                "This small bomb will explode as soon as a signal is sent from a trigger beacon.";
+//////    }
+////// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
+////
+////// --Commented out by Inspection START (8/29/18, 4:01 PM):
+//////    public void explode() {
+//////        Sample.INSTANCE.play(Assets.SND_BLAST, 2);
+//////
+//////        if (Dungeon.visible[pos]) {
+//////            CellEmitter.center(pos).burst(BlastParticle.FACTORY, 30);
+//////        }
+//////
+//////        //boolean terrainAffected = false;
+//////        for (int n : Level.NEIGHBOURS9) {
+//////            int c = pos + n;
+//////            if (c >= 0 && c < Level.LENGTH) {
+//////                if (Dungeon.visible[c]) {
+//////                    CellEmitter.get(c).burst(SmokeParticle.FACTORY, 4);
+//////                }
+//////
+//////                if (Level.flamable[c]) {
+//////                    Level.set(c, Terrain.EMBERS);
+//////                    GameScene.updateMap(c);
+//////                }
+//////
+//////                Char ch = Actor.findChar(c);
+//////                if (ch != null) {
+//////                    int dmg = Random.Int(1 + Dungeon.depth, 10 + Dungeon.depth * 2) - Random.Int(ch.dr());
+// --Commented out by Inspection STOP (8/29/18, 4:01 PM)
+////                    if (dmg > 0) {
+////                        ch.damage(dmg, this);
+////                        if (ch.isAlive()) {
+////                            Buff.prolong(ch, Paralysis.class, 2);
+// --Commented out by Inspection STOP (8/29/18, 4:01 PM)
+//                        }
+//                    }
+//                }
+//            }
 //        }
 //
 //
 //    }
-// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
-
-
-// --Commented out by Inspection START (8/28/18, 7:00 PM):
-//    @Override
-//    public boolean doPickUp(Hero hero) {
-//        GLog.i("Cannot be retrieved anymore...");
-//        return false;
-//    }
-// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
-
-
-// --Commented out by Inspection START (8/28/18, 7:00 PM):
-//    @Override
-//    public boolean isUpgradable() {
-//        return false;
-//    }
-// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
-
-// --Commented out by Inspection START (8/28/18, 7:00 PM):
-//    @Override
-//    public boolean isIdentified() {
-//        return true;
-//    }
-// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
-
-// --Commented out by Inspection START (8/28/18, 7:00 PM):
-//    @Override
-//    public Item random() {
-//        quantity = 1;
-//        return this;
-//    }
-// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
-
-// --Commented out by Inspection START (8/28/18, 7:00 PM):
-//    @Override
-//    public int price() {
-//        return 10 * quantity;
-//    }
-// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
-
-// --Commented out by Inspection START (8/28/18, 7:00 PM):
-//    @Override
-//    public String info() {
-//        return
-//                "This small bomb will explode as soon as a signal is sent from a trigger beacon.";
-//    }
-// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
-
-    public void explode() {
-        Sample.INSTANCE.play(Assets.SND_BLAST, 2);
-
-        if (Dungeon.visible[pos]) {
-            CellEmitter.center(pos).burst(BlastParticle.FACTORY, 30);
-        }
-
-        //boolean terrainAffected = false;
-        for (int n : Level.NEIGHBOURS9) {
-            int c = pos + n;
-            if (c >= 0 && c < Level.LENGTH) {
-                if (Dungeon.visible[c]) {
-                    CellEmitter.get(c).burst(SmokeParticle.FACTORY, 4);
-                }
-
-                if (Level.flamable[c]) {
-                    Level.set(c, Terrain.EMBERS);
-                    GameScene.updateMap(c);
-                }
-
-                Char ch = Actor.findChar(c);
-                if (ch != null) {
-                    int dmg = Random.Int(1 + Dungeon.depth, 10 + Dungeon.depth * 2) - Random.Int(ch.dr());
-                    if (dmg > 0) {
-                        ch.damage(dmg, this);
-                        if (ch.isAlive()) {
-                            Buff.prolong(ch, Paralysis.class, 2);
-                        }
-                    }
-                }
-            }
-        }
-
-
-    }
-}
+// --Commented out by Inspection STOP (8/29/18, 4:01 PM)
+//}

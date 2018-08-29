@@ -60,7 +60,7 @@ public class Statue extends Mob {
         defenseSkill = 4 + Dungeon.depth;
     }
 
-    private static final String WEAPON = "weapon";
+    // --Commented out by Inspection (8/29/18, 4:04 PM):private static final String WEAPON = "weapon";
 
 // --Commented out by Inspection START (8/29/18, 12:42 PM):
 //    @Override

@@ -103,29 +103,31 @@ public class Texture {
                 imageBuffer);
     }
 
-    private void pixels(int w, int h, byte[] pixels) {
-
-        bind();
-
-        ByteBuffer imageBuffer = ByteBuffer.
-                allocateDirect(w * h).
-                order(ByteOrder.nativeOrder());
-        imageBuffer.put(pixels);
-        imageBuffer.position(0);
-
-        GLES20.glPixelStorei(GLES20.GL_UNPACK_ALIGNMENT, 1);
-
-        GLES20.glTexImage2D(
-                GLES20.GL_TEXTURE_2D,
-                0,
-                GLES20.GL_ALPHA,
-                w,
-                h,
-                0,
-                GLES20.GL_ALPHA,
-                GLES20.GL_UNSIGNED_BYTE,
-                imageBuffer);
-    }
+// --Commented out by Inspection START (8/29/18, 3:43 PM):
+//    private void pixels(int w, int h, byte[] pixels) {
+//
+//        bind();
+//
+//        ByteBuffer imageBuffer = ByteBuffer.
+//                allocateDirect(w * h).
+//                order(ByteOrder.nativeOrder());
+//        imageBuffer.put(pixels);
+//        imageBuffer.position(0);
+//
+//        GLES20.glPixelStorei(GLES20.GL_UNPACK_ALIGNMENT, 1);
+//
+//        GLES20.glTexImage2D(
+//                GLES20.GL_TEXTURE_2D,
+//                0,
+//                GLES20.GL_ALPHA,
+//                w,
+//                h,
+//                0,
+//                GLES20.GL_ALPHA,
+//                GLES20.GL_UNSIGNED_BYTE,
+//                imageBuffer);
+//    }
+// --Commented out by Inspection STOP (8/29/18, 3:43 PM)
 
     // If getConfig returns null (unsupported format?), GLUtils.texImage2D works
     // incorrectly. In this case we need to load pixels manually

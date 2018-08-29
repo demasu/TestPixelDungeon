@@ -84,14 +84,16 @@ public class Piranha extends Mob {
 //    }
 // --Commented out by Inspection STOP (8/29/18, 12:41 PM)
 
-    @Override
-    public void die(Object cause) {
-        Dungeon.level.drop(new MysteryMeat(), pos).sprite.drop();
-        super.die(cause);
-
-        Statistics.piranhasKilled++;
-        Badges.validatePiranhasKilled();
-    }
+// --Commented out by Inspection START (8/29/18, 4:04 PM):
+//    @Override
+//    public void die(Object cause) {
+//        Dungeon.level.drop(new MysteryMeat(), pos).sprite.drop();
+//        super.die(cause);
+//
+//        Statistics.piranhasKilled++;
+//        Badges.validatePiranhasKilled();
+//    }
+// --Commented out by Inspection STOP (8/29/18, 4:04 PM)
 
 // --Commented out by Inspection START (8/29/18, 12:41 PM):
 //    @Override

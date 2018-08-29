@@ -423,8 +423,8 @@ public class MissionToolbar extends Component {
         private static final float DISTANCE = DungeonTilemap.SIZE;
         private static final float DURATION = 0.2f;
 
-        private float dstX;
-        private float dstY;
+        // --Commented out by Inspection (8/29/18, 3:58 PM):private float dstX;
+        // --Commented out by Inspection (8/29/18, 3:58 PM):private float dstY;
         private float left;
 
         PickedUpItem() {
@@ -469,8 +469,8 @@ public class MissionToolbar extends Component {
                 float p = left / DURATION;
                 scale.set((float) Math.sqrt(p));
                 float offset = DISTANCE * p;
-                x = dstX - offset;
-                y = dstY - offset;
+                x = offset;
+                y = offset;
             }
         }
     }

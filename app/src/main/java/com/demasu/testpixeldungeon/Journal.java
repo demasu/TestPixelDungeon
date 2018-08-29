@@ -33,7 +33,7 @@ public class Journal {
         SACRIFICIAL_FIRE("Sacrificial chamber"),
         ALCHEMY("Alchemy pot"),
         GARDEN("Garden"),
-        STATUE("Animated statue"),
+        // --Commented out by Inspection (8/29/18, 3:42 PM):STATUE("Animated statue"),
 
         GHOST("Sad ghost"),
         WANDMAKER("Old wandmaker"),
