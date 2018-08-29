@@ -65,9 +65,9 @@ public class MovieLevel extends Level {
     private static final int ROOM_TOP = HEIGHT / 2 - 2;
     private static final int ROOM_BOTTOM = HEIGHT / 2 + 2;
 
-    private int arenaDoor;
-    private boolean enteredArena = false;
-    private boolean keyDropped = false;
+    // --Commented out by Inspection (8/29/18, 12:56 PM):private int arenaDoor;
+    // --Commented out by Inspection (8/29/18, 12:56 PM):private boolean enteredArena = false;
+    // --Commented out by Inspection (8/29/18, 12:56 PM):private boolean keyDropped = false;
 
     @Override
     public String tilesTex() {
@@ -79,9 +79,9 @@ public class MovieLevel extends Level {
         return Assets.WATER_CAVES;
     }
 
-    private static final String DOOR = "door";
-    private static final String ENTERED = "entered";
-    private static final String DROPPED = "droppped";
+    // --Commented out by Inspection (8/29/18, 12:56 PM):private static final String DOOR = "door";
+    // --Commented out by Inspection (8/29/18, 12:56 PM):private static final String ENTERED = "entered";
+    // --Commented out by Inspection (8/29/18, 12:56 PM):private static final String DROPPED = "droppped";
 
     @Override
     public void storeInBundle(Bundle bundle) {

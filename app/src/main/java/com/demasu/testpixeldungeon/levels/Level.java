@@ -726,7 +726,7 @@ public abstract class Level implements Bundlable {
                 if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
 
                 } else
-                    ToxicTrap.trigger(cell, ch);
+                    ToxicTrap.trigger(cell);
                 break;
 
             case Terrain.SECRET_FIRE_TRAP:
@@ -737,7 +737,7 @@ public abstract class Level implements Bundlable {
                 if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
 
                 } else
-                    FireTrap.trigger(cell, ch);
+                    FireTrap.trigger(cell);
                 break;
 
             case Terrain.SECRET_PARALYTIC_TRAP:
@@ -748,7 +748,7 @@ public abstract class Level implements Bundlable {
                 if (ch == Dungeon.hero && ((Hero) ch).heroSkills.passiveA3.disableTrap()) {
 
                 } else
-                    ParalyticTrap.trigger(cell, ch);
+                    ParalyticTrap.trigger(cell);
                 break;
 
             case Terrain.SECRET_POISON_TRAP:
@@ -853,15 +853,15 @@ public abstract class Level implements Bundlable {
         switch (map[cell]) {
 
             case Terrain.TOXIC_TRAP:
-                ToxicTrap.trigger(cell, mob);
+                ToxicTrap.trigger(cell);
                 break;
 
             case Terrain.FIRE_TRAP:
-                FireTrap.trigger(cell, mob);
+                FireTrap.trigger(cell);
                 break;
 
             case Terrain.PARALYTIC_TRAP:
-                ParalyticTrap.trigger(cell, mob);
+                ParalyticTrap.trigger(cell);
                 break;
 
             case Terrain.POISON_TRAP:

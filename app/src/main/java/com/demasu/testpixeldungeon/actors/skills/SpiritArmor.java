@@ -72,10 +72,12 @@ public class SpiritArmor extends PassiveSkillA3 {
                 + costUpgradeInfo();
     }
 
-    private int damageReduction() {
-        if (level == 0)
-            return 10;
-
-        return level * 10;
-    }
+// --Commented out by Inspection START (8/29/18, 12:56 PM):
+//    private int damageReduction() {
+//        if (level == 0)
+//            return 10;
+//
+//        return level * 10;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:56 PM)
 }

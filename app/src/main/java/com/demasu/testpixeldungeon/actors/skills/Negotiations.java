@@ -62,7 +62,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                 return;
             }
 
-            boolean spawned = false;
+            //boolean spawned = false;
             for (int nu = 0; nu < 1; nu++) {
                 int newPos = hero.pos;
                 if (Actor.findChar(newPos) != null) {
@@ -103,27 +103,29 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
         }
     }
 
-    public void restoreMerc(Hero hero) {
-        if (hero.hiredMerc != null) {
-            int newPos = hero.pos;
-
-            if (newPos != -1) {
-                HiredMerc tmp = new HiredMerc(hero.hiredMerc.mercType);
-                tmp.spawn(Dungeon.hero.lvl);
-                tmp.pos = newPos;
-                GameScene.add(tmp);
-                Actor.addDelayed(new Pushing(tmp, hero.pos, newPos), -1);
-                tmp.sprite.alpha(0);
-                tmp.sprite.parent.add(new AlphaTweener(tmp.sprite, 1, 0.15f));
-                tmp.weapon = hero.hiredMerc.weapon;
-                tmp.armor = hero.hiredMerc.armor;
-                ((MercSprite) tmp.sprite).updateArmor();
-
-                hero.hiredMerc = tmp;
-
-            }
-        }
-    }
+// --Commented out by Inspection START (8/29/18, 12:55 PM):
+//    public void restoreMerc(Hero hero) {
+//        if (hero.hiredMerc != null) {
+//            int newPos = hero.pos;
+//
+//            if (newPos != -1) {
+//                HiredMerc tmp = new HiredMerc(hero.hiredMerc.mercType);
+//                tmp.spawn(Dungeon.hero.lvl);
+//                tmp.pos = newPos;
+//                GameScene.add(tmp);
+//                Actor.addDelayed(new Pushing(tmp, hero.pos, newPos), -1);
+//                tmp.sprite.alpha(0);
+//                tmp.sprite.parent.add(new AlphaTweener(tmp.sprite, 1, 0.15f));
+//                tmp.weapon = hero.hiredMerc.weapon;
+//                tmp.armor = hero.hiredMerc.armor;
+//                ((MercSprite) tmp.sprite).updateArmor();
+//
+//                hero.hiredMerc = tmp;
+//
+//            }
+//        }
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:55 PM)
 
     @SuppressWarnings("SameReturnValue")
     private int getGoldCost() {
