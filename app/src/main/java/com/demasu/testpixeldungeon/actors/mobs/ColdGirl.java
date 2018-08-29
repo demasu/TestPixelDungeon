@@ -71,7 +71,7 @@ public class ColdGirl extends Mob {
         champ = 1;
     }
 
-    private boolean isSister = false;
+    // --Commented out by Inspection (8/29/18, 12:39 PM):private boolean isSister = false;
 
     private static final String TXT_SMB_MISSED = "%s %s %s's attack";
     public static final String TXT_DEATH = "Killed in the ice cave";
@@ -91,7 +91,7 @@ public class ColdGirl extends Mob {
     private boolean firstSwap = true;
     private boolean firstDamage = true;
     private boolean firstComplaint = true;
-    private boolean firstTroll = true;
+    // --Commented out by Inspection (8/29/18, 12:39 PM):private boolean firstTroll = true;
     private boolean firstFetch = true;
 
     public static final int FROST_DEPTH = 1000;
@@ -101,10 +101,12 @@ public class ColdGirl extends Mob {
     private int skillCharge = 5;
 
 
-    public void turnToSis() {
-        isSister = true;
-        ((ColdGirlSprite) sprite).turnToSis();
-    }
+// --Commented out by Inspection START (8/29/18, 12:39 PM):
+//    public void turnToSis() {
+//        isSister = true;
+//        ((ColdGirlSprite) sprite).turnToSis();
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:39 PM)
 
     @Override
     public int damageRoll() {
@@ -249,7 +251,7 @@ public class ColdGirl extends Mob {
             speak("I have no time for fodder");
             //GameScene.flash( 0x0042ff );
             //Sample.INSTANCE.play( Assets.SND_BLAST );
-            firstTroll = false;
+            //firstTroll = false;
             trollMinion(enemy);
             return -1;
         }
@@ -774,7 +776,7 @@ public class ColdGirl extends Mob {
 
     public class ColdGirlAI implements AiState {
 
-        public static final String TAG = "COLD_GIRL";
+        // --Commented out by Inspection (8/29/18, 12:39 PM):public static final String TAG = "COLD_GIRL";
         public int aiStatus = PASSIVE;
 
         @Override

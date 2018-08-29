@@ -170,9 +170,11 @@ public class Armor extends EquipableItem {
         return super.upgrade();
     }
 
-    public Item safeUpgrade() {
-        return upgrade(glyph != null);
-    }
+// --Commented out by Inspection START (8/29/18, 12:37 PM):
+//    public Item safeUpgrade() {
+//        return upgrade(glyph != null);
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:37 PM)
 
     @Override
     public Item degrade() {
@@ -314,9 +316,11 @@ public class Armor extends EquipableItem {
         inscribe(gl);
     }
 
-    public boolean isInscribed() {
-        return glyph != null;
-    }
+// --Commented out by Inspection START (8/29/18, 12:37 PM):
+//    public boolean isInscribed() {
+//        return glyph != null;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:37 PM)
 
     @Override
     public ItemSprite.Glowing glowing() {

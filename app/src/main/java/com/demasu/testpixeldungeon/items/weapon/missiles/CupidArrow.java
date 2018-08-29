@@ -39,9 +39,11 @@ public class CupidArrow extends Arrow {
         stackable = true;
     }
 
-    public CupidArrow() {
-        this(1);
-    }
+// --Commented out by Inspection START (8/29/18, 12:38 PM):
+//    public CupidArrow() {
+//        this(1);
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:38 PM)
 
     public CupidArrow(int number) {
         super();

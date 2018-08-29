@@ -28,7 +28,7 @@ import com.watabou.utils.Random;
 
 public class Bandit extends Thief {
 
-    public Item item;
+    // --Commented out by Inspection (8/29/18, 12:40 PM):public Item item;
 
     {
         name = "crazy bandit";

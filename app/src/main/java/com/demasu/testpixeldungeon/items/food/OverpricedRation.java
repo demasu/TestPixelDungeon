@@ -29,13 +29,17 @@ public class OverpricedRation extends Food {
         message = "That food tasted ok.";
     }
 
-    @Override
-    public String info() {
-        return "It looks exactly like a standard ration of food but smaller.";
-    }
+// --Commented out by Inspection START (8/29/18, 12:37 PM):
+//    @Override
+//    public String info() {
+//        return "It looks exactly like a standard ration of food but smaller.";
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:37 PM)
 
-    @Override
-    public int price() {
-        return 20 * quantity;
-    }
+// --Commented out by Inspection START (8/29/18, 12:37 PM):
+//    @Override
+//    public int price() {
+//        return 20 * quantity;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:37 PM)
 }

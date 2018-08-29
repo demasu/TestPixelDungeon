@@ -19,26 +19,34 @@ package com.demasu.testpixeldungeon.items.scrolls;
 
 import com.demasu.testpixeldungeon.utils.GLog;
 
-public class ScrollOfReadiness extends Scroll {
-
-    {
-        name = "Scroll of Readiness";
-    }
-
-    @Override
-    protected void doRead() {
-
-
-        GLog.w("Inspiring words that boost moral and remove fatigue!");
-        GLog.p("Your active skills are ready!");
-        setKnown();
-
-        curUser.spendAndNext(TIME_TO_READ);
-    }
-
-    @Override
-    public String desc() {
-        return
-                "When read, words of inspiration will make your ready for combat.";
-    }
-}
+// --Commented out by Inspection START (8/29/18, 12:39 PM):
+// --Commented out by Inspection START (8/29/18, 12:39 PM):
+////public class ScrollOfReadiness extends Scroll {
+////
+////    {
+////        name = "Scroll of Readiness";
+////    }
+////
+////// --Commented out by Inspection START (8/29/18, 12:39 PM):
+//////    @Override
+//////    protected void doRead() {
+//////
+//////
+//////        GLog.w("Inspiring words that boost moral and remove fatigue!");
+//////        GLog.p("Your active skills are ready!");
+//////        setKnown();
+//////
+//////        curUser.spendAndNext(TIME_TO_READ);
+// --Commented out by Inspection STOP (8/29/18, 12:39 PM)
+////    }
+//// --Commented out by Inspection STOP (8/29/18, 12:39 PM)
+//
+//// --Commented out by Inspection START (8/29/18, 12:39 PM):
+// --Commented out by Inspection STOP (8/29/18, 12:39 PM)
+//    @Override
+//    public String desc() {
+//        return
+//                "When read, words of inspiration will make your ready for combat.";
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:39 PM)
+//}

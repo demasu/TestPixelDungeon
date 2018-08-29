@@ -19,20 +19,22 @@ package com.demasu.testpixeldungeon.utils;
 
 public class BArray {
 
-    public static boolean[] and(boolean[] a, boolean[] b, boolean[] result) {
-
-        int length = a.length;
-
-        if (result == null) {
-            result = new boolean[length];
-        }
-
-        for (int i = 0; i < length; i++) {
-            result[i] = a[i] && b[i];
-        }
-
-        return result;
-    }
+// --Commented out by Inspection START (8/29/18, 12:39 PM):
+//    public static boolean[] and(boolean[] a, boolean[] b, boolean[] result) {
+//
+//        int length = a.length;
+//
+//        if (result == null) {
+//            result = new boolean[length];
+//        }
+//
+//        for (int i = 0; i < length; i++) {
+//            result[i] = a[i] && b[i];
+//        }
+//
+//        return result;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:39 PM)
 
     public static boolean[] or(boolean[] a, boolean[] b, boolean[] result) {
 
@@ -64,77 +66,85 @@ public class BArray {
         return result;
     }
 
-    public static boolean[] is(int[] a, boolean[] result, int v1) {
+// --Commented out by Inspection START (8/29/18, 12:39 PM):
+//    public static boolean[] is(int[] a, boolean[] result, int v1) {
+//
+//        int length = a.length;
+//
+//        if (result == null) {
+//            result = new boolean[length];
+//        }
+//
+//        for (int i = 0; i < length; i++) {
+//            result[i] = a[i] == v1;
+//        }
+//
+//        return result;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:39 PM)
 
-        int length = a.length;
+// --Commented out by Inspection START (8/29/18, 12:39 PM):
+//    public static boolean[] isOneOf(int[] a, boolean[] result, int... v) {
+//
+//        int length = a.length;
+//        int nv = v.length;
+//
+//        if (result == null) {
+//            result = new boolean[length];
+//        }
+//
+//        for (int i = 0; i < length; i++) {
+//            result[i] = false;
+//            for (int aV : v) {
+//                if (a[i] == aV) {
+//                    result[i] = true;
+//                    break;
+//                }
+//            }
+//        }
+//
+//        return result;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:39 PM)
 
-        if (result == null) {
-            result = new boolean[length];
-        }
+// --Commented out by Inspection START (8/29/18, 12:39 PM):
+//    public static boolean[] isNot(int[] a, boolean[] result, int v1) {
+//
+//        int length = a.length;
+//
+//        if (result == null) {
+//            result = new boolean[length];
+//        }
+//
+//        for (int i = 0; i < length; i++) {
+//            result[i] = a[i] != v1;
+//        }
+//
+//        return result;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:39 PM)
 
-        for (int i = 0; i < length; i++) {
-            result[i] = a[i] == v1;
-        }
-
-        return result;
-    }
-
-    public static boolean[] isOneOf(int[] a, boolean[] result, int... v) {
-
-        int length = a.length;
-        int nv = v.length;
-
-        if (result == null) {
-            result = new boolean[length];
-        }
-
-        for (int i = 0; i < length; i++) {
-            result[i] = false;
-            for (int aV : v) {
-                if (a[i] == aV) {
-                    result[i] = true;
-                    break;
-                }
-            }
-        }
-
-        return result;
-    }
-
-    public static boolean[] isNot(int[] a, boolean[] result, int v1) {
-
-        int length = a.length;
-
-        if (result == null) {
-            result = new boolean[length];
-        }
-
-        for (int i = 0; i < length; i++) {
-            result[i] = a[i] != v1;
-        }
-
-        return result;
-    }
-
-    public static boolean[] isNotOneOf(int[] a, boolean[] result, int... v) {
-
-        int length = a.length;
-        int nv = v.length;
-
-        if (result == null) {
-            result = new boolean[length];
-        }
-
-        for (int i = 0; i < length; i++) {
-            result[i] = true;
-            for (int aV : v) {
-                if (a[i] == aV) {
-                    result[i] = false;
-                    break;
-                }
-            }
-        }
-
-        return result;
-    }
+// --Commented out by Inspection START (8/29/18, 12:39 PM):
+//    public static boolean[] isNotOneOf(int[] a, boolean[] result, int... v) {
+//
+//        int length = a.length;
+//        int nv = v.length;
+//
+//        if (result == null) {
+//            result = new boolean[length];
+//        }
+//
+//        for (int i = 0; i < length; i++) {
+//            result[i] = true;
+//            for (int aV : v) {
+//                if (a[i] == aV) {
+//                    result[i] = false;
+//                    break;
+//                }
+//            }
+//        }
+//
+//        return result;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:39 PM)
 }
