@@ -19,6 +19,7 @@ package com.demasu.testpixeldungeon.actors.mobs.npcs;
 
 import com.demasu.testpixeldungeon.sprites.ImpSprite;
 
+// --Commented out by Inspection START (8/29/18, 12:43 PM):
 public class ImpShopkeeper extends Shopkeeper {
 
     // --Commented out by Inspection (8/28/18, 6:22 PM):private static final String TXT_GREETINGS = "Hello, friend!";
@@ -27,45 +28,46 @@ public class ImpShopkeeper extends Shopkeeper {
         name = "ambitious imp";
         spriteClass = ImpSprite.class;
     }
-
-    // --Commented out by Inspection (8/28/18, 6:22 PM):private boolean seenBefore = false;
-
-// --Commented out by Inspection START (8/28/18, 6:19 PM):
-//    @Override
-//    protected boolean act() {
 //
-//        if (!seenBefore && Dungeon.visible[pos]) {
-//            yell(Utils.format(TXT_GREETINGS));
-//            seenBefore = true;
-//        }
+//    // --Commented out by Inspection (8/28/18, 6:22 PM):private boolean seenBefore = false;
 //
-//        return super.act();
-//    }
-// --Commented out by Inspection STOP (8/28/18, 6:19 PM)
-
-// --Commented out by Inspection START (8/28/18, 6:19 PM):
-//    @Override
-//    protected void flee() {
-//        for (Heap heap : Dungeon.level.heaps.values()) {
-//            if (heap.type == Heap.Type.FOR_SALE) {
-//                CellEmitter.get(heap.pos).burst(ElmoParticle.FACTORY, 4);
-//                heap.destroy();
-//            }
-//        }
+//// --Commented out by Inspection START (8/28/18, 6:19 PM):
+////    @Override
+////    protected boolean act() {
+////
+////        if (!seenBefore && Dungeon.visible[pos]) {
+////            yell(Utils.format(TXT_GREETINGS));
+////            seenBefore = true;
+////        }
+////
+////        return super.act();
+////    }
+//// --Commented out by Inspection STOP (8/28/18, 6:19 PM)
 //
-//        destroy();
+//// --Commented out by Inspection START (8/28/18, 6:19 PM):
+////    @Override
+////    protected void flee() {
+////        for (Heap heap : Dungeon.level.heaps.values()) {
+////            if (heap.type == Heap.Type.FOR_SALE) {
+////                CellEmitter.get(heap.pos).burst(ElmoParticle.FACTORY, 4);
+////                heap.destroy();
+////            }
+////        }
+////
+////        destroy();
+////
+////        sprite.emitter().burst(Speck.factory(Speck.WOOL), 15);
+////        sprite.killAndErase();
+////    }
+//// --Commented out by Inspection STOP (8/28/18, 6:19 PM)
 //
-//        sprite.emitter().burst(Speck.factory(Speck.WOOL), 15);
-//        sprite.killAndErase();
-//    }
-// --Commented out by Inspection STOP (8/28/18, 6:19 PM)
-
-// --Commented out by Inspection START (8/28/18, 6:19 PM):
-//    @Override
-//    public String description() {
-//        return
-//                "Imps are lesser demons. They are notable for neither their strength nor their magic talent. " +
-//                        "But they are quite smart and sociable, and many of imps prefer to live and do business among non-demons.";
-//    }
-// --Commented out by Inspection STOP (8/28/18, 6:19 PM)
+//// --Commented out by Inspection START (8/28/18, 6:19 PM):
+////    @Override
+////    public String description() {
+////        return
+////                "Imps are lesser demons. They are notable for neither their strength nor their magic talent. " +
+////                        "But they are quite smart and sociable, and many of imps prefer to live and do business among non-demons.";
+////    }
+//// --Commented out by Inspection STOP (8/28/18, 6:19 PM)
 }
+// --Commented out by Inspection STOP (8/29/18, 12:43 PM)

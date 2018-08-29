@@ -51,30 +51,38 @@ public class Piranha extends Mob {
         defenseSkill = 10 + Dungeon.depth * 2;
     }
 
-    @Override
-    protected boolean act() {
-        if (!Level.water[pos]) {
-            die(null);
-            return true;
-        } else {
-            return super.act();
-        }
-    }
+// --Commented out by Inspection START (8/29/18, 12:41 PM):
+//    @Override
+//    protected boolean act() {
+//        if (!Level.water[pos]) {
+//            die(null);
+//            return true;
+//        } else {
+//            return super.act();
+//        }
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:41 PM)
 
-    @Override
-    public int damageRoll() {
-        return Random.NormalIntRange(Dungeon.depth, 4 + Dungeon.depth * 2);
-    }
+// --Commented out by Inspection START (8/29/18, 12:41 PM):
+//    @Override
+//    public int damageRoll() {
+//        return Random.NormalIntRange(Dungeon.depth, 4 + Dungeon.depth * 2);
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:41 PM)
 
-    @Override
-    public int attackSkill(Char target) {
-        return 20 + Dungeon.depth * 2;
-    }
+// --Commented out by Inspection START (8/29/18, 12:41 PM):
+//    @Override
+//    public int attackSkill(Char target) {
+//        return 20 + Dungeon.depth * 2;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:41 PM)
 
-    @Override
-    public int dr() {
-        return Dungeon.depth;
-    }
+// --Commented out by Inspection START (8/29/18, 12:41 PM):
+//    @Override
+//    public int dr() {
+//        return Dungeon.depth;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:41 PM)
 
     @Override
     public void die(Object cause) {
@@ -85,48 +93,56 @@ public class Piranha extends Mob {
         Badges.validatePiranhasKilled();
     }
 
-    @Override
-    public boolean reset() {
-        return true;
-    }
+// --Commented out by Inspection START (8/29/18, 12:41 PM):
+//    @Override
+//    public boolean reset() {
+//        return true;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:41 PM)
 
-    @Override
-    protected boolean getCloser(int target) {
+// --Commented out by Inspection START (8/29/18, 12:41 PM):
+//    @Override
+//    protected boolean getCloser(int target) {
+//
+//        if (rooted) {
+//            return false;
+//        }
+//
+//        int step = Dungeon.findPath(this, pos, target,
+//                Level.water,
+//                Level.fieldOfView);
+//        if (step != -1) {
+//            move(step);
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:41 PM)
 
-        if (rooted) {
-            return false;
-        }
+// --Commented out by Inspection START (8/29/18, 12:41 PM):
+//    @Override
+//    protected boolean getFurther(int target) {
+//        int step = Dungeon.flee(this, pos, target,
+//                Level.water,
+//                Level.fieldOfView);
+//        if (step != -1) {
+//            move(step);
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:41 PM)
 
-        int step = Dungeon.findPath(this, pos, target,
-                Level.water,
-                Level.fieldOfView);
-        if (step != -1) {
-            move(step);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    protected boolean getFurther(int target) {
-        int step = Dungeon.flee(this, pos, target,
-                Level.water,
-                Level.fieldOfView);
-        if (step != -1) {
-            move(step);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    public String description() {
-        return
-                "These carnivorous fish are not natural inhabitants of underground pools. " +
-                        "They were bred specifically to protect flooded treasure vaults.";
-    }
+// --Commented out by Inspection START (8/29/18, 12:41 PM):
+//    @Override
+//    public String description() {
+//        return
+//                "These carnivorous fish are not natural inhabitants of underground pools. " +
+//                        "They were bred specifically to protect flooded treasure vaults.";
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:41 PM)
 
     private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
@@ -138,8 +154,10 @@ public class Piranha extends Mob {
         IMMUNITIES.add(Frost.class);
     }
 
-    @Override
-    public HashSet<Class<?>> immunities() {
-        return IMMUNITIES;
-    }
+// --Commented out by Inspection START (8/29/18, 12:41 PM):
+//    @Override
+//    public HashSet<Class<?>> immunities() {
+//        return IMMUNITIES;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:41 PM)
 }

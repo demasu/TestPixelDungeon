@@ -18,7 +18,6 @@
 package com.demasu.testpixeldungeon.actors.buffs;
 
 import com.demasu.testpixeldungeon.Badges;
-import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.ui.BuffIndicator;
 import com.demasu.testpixeldungeon.utils.GLog;
 
@@ -36,7 +35,7 @@ public class Combo extends Buff {
         return "Combo";
     }
 
-    public int hit(Char enemy, int damage) {
+    public int hit(int damage) {
 
         count++;
 

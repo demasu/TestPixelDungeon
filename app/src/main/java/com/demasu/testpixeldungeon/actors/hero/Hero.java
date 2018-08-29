@@ -1004,7 +1004,7 @@ public class Hero extends Char {
             switch (subClass) {
                 case GLADIATOR:
                     if (wep instanceof MeleeWeapon) {
-                        damage += Buff.affect(this, Combo.class).hit(enemy, damage);
+                        damage += Buff.affect(this, Combo.class).hit(damage);
                     }
                     break;
                 case BATTLEMAGE:

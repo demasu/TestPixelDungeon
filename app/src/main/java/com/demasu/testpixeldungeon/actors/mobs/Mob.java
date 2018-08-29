@@ -54,9 +54,9 @@ public abstract class Mob extends Char {
 
     private static final String TXT_DIED = "You hear something died in the distance";
 
-    protected static final String TXT_ECHO = "echo of ";
+    // --Commented out by Inspection (8/29/18, 12:42 PM):protected static final String TXT_ECHO = "echo of ";
 
-    protected static final String TXT_NOTICE1 = "?!";
+    // --Commented out by Inspection (8/29/18, 12:42 PM):protected static final String TXT_NOTICE1 = "?!";
     static final String TXT_RAGE = "#$%^";
     private static final String TXT_EXP = "%+dEXP";
     private static final String TXT_EXP_CHAMP = "%+dEXP (Champion killed!)";
@@ -249,17 +249,19 @@ public abstract class Mob extends Char {
         return (Level.adjacent(pos, enemy.pos) || (Level.distance(pos, enemy.pos) <= range && Ballistica.cast(pos, enemy.pos, false, true) == enemy.pos)) && !isCharmedBy(enemy);
     }
 
-    public boolean canBeKnockedBackInto(int newPos) {
-        if (rooted)
-            return false;
-
-        try {
-            PathFinder.Path tmp = PathFinder.find(pos, newPos, Dungeon.passable);
-            return tmp != null && tmp.size() < 3;
-        } catch (Exception ex) {
-            return false; // Prevents crash if out of bounds
-        }
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    public boolean canBeKnockedBackInto(int newPos) {
+//        if (rooted)
+//            return false;
+//
+//        try {
+//            PathFinder.Path tmp = PathFinder.find(pos, newPos, Dungeon.passable);
+//            return tmp != null && tmp.size() < 3;
+//        } catch (Exception ex) {
+//            return false; // Prevents crash if out of bounds
+//        }
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
     protected boolean getCloser(int target) {
 

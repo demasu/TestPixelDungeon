@@ -62,91 +62,119 @@ public class Statue extends Mob {
 
     private static final String WEAPON = "weapon";
 
-    @Override
-    public void storeInBundle(Bundle bundle) {
-        super.storeInBundle(bundle);
-        bundle.put(WEAPON, weapon);
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public void storeInBundle(Bundle bundle) {
+//        super.storeInBundle(bundle);
+//        bundle.put(WEAPON, weapon);
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    public void restoreFromBundle(Bundle bundle) {
-        super.restoreFromBundle(bundle);
-        weapon = (Weapon) bundle.get(WEAPON);
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public void restoreFromBundle(Bundle bundle) {
+//        super.restoreFromBundle(bundle);
+//        weapon = (Weapon) bundle.get(WEAPON);
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    protected boolean act() {
-        if (Dungeon.visible[pos]) {
-            Journal.add(Journal.Feature.STATUE);
-        }
-        return super.act();
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    protected boolean act() {
+//        if (Dungeon.visible[pos]) {
+//            Journal.add(Journal.Feature.STATUE);
+//        }
+//        return super.act();
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    public int damageRoll() {
-        return Random.NormalIntRange(weapon.min(), weapon.max());
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public int damageRoll() {
+//        return Random.NormalIntRange(weapon.min(), weapon.max());
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    public int attackSkill(Char target) {
-        return (int) ((9 + Dungeon.depth) * weapon.ACU);
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public int attackSkill(Char target) {
+//        return (int) ((9 + Dungeon.depth) * weapon.ACU);
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    protected float attackDelay() {
-        return weapon.DLY;
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    protected float attackDelay() {
+//        return weapon.DLY;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    public int dr() {
-        return Dungeon.depth;
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public int dr() {
+//        return Dungeon.depth;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    public void damage(int dmg, Object src) {
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public void damage(int dmg, Object src) {
+//
+//        if (state == PASSIVE) {
+//            state = HUNTING;
+//        }
+//
+//        super.damage(dmg, src);
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-        if (state == PASSIVE) {
-            state = HUNTING;
-        }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public int attackProc(Char enemy, int damage) {
+//        weapon.proc(this, enemy, damage);
+//        return damage;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-        super.damage(dmg, src);
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public void beckon(int cell) {
+//        // Do nothing
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    public int attackProc(Char enemy, int damage) {
-        weapon.proc(this, enemy, damage);
-        return damage;
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public void die(Object cause) {
+//        Dungeon.level.drop(weapon, pos).sprite.drop();
+//        super.die(cause);
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    public void beckon(int cell) {
-        // Do nothing
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public void destroy() {
+//        Journal.remove(Journal.Feature.STATUE);
+//        super.destroy();
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    public void die(Object cause) {
-        Dungeon.level.drop(weapon, pos).sprite.drop();
-        super.die(cause);
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public boolean reset() {
+//        state = PASSIVE;
+//        return true;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    public void destroy() {
-        Journal.remove(Journal.Feature.STATUE);
-        super.destroy();
-    }
-
-    @Override
-    public boolean reset() {
-        state = PASSIVE;
-        return true;
-    }
-
-    @Override
-    public String description() {
-        return
-                "You would think that it's just another ugly statue of this dungeon, but its red glowing eyes give itself away. " +
-                        "While the statue itself is made of stone, the _" + weapon.name() + "_, it's wielding, looks real.";
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public String description() {
+//        return
+//                "You would think that it's just another ugly statue of this dungeon, but its red glowing eyes give itself away. " +
+//                        "While the statue itself is made of stone, the _" + weapon.name() + "_, it's wielding, looks real.";
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
     private static final HashSet<Class<?>> RESISTANCES = new HashSet<>();
     private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
@@ -159,13 +187,17 @@ public class Statue extends Mob {
         IMMUNITIES.add(Leech.class);
     }
 
-    @Override
-    public HashSet<Class<?>> resistances() {
-        return RESISTANCES;
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public HashSet<Class<?>> resistances() {
+//        return RESISTANCES;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 
-    @Override
-    public HashSet<Class<?>> immunities() {
-        return IMMUNITIES;
-    }
+// --Commented out by Inspection START (8/29/18, 12:42 PM):
+//    @Override
+//    public HashSet<Class<?>> immunities() {
+//        return IMMUNITIES;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:42 PM)
 }

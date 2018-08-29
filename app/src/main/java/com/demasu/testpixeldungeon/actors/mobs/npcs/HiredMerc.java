@@ -161,22 +161,24 @@ public class HiredMerc extends NPC {
             return ItemSpriteSheet.ARMOR;
         }
 
-        public Skill getSkill() {
-            switch (this) {
-                case Brute:
-                    return new MercBruteSkillA();
-                case Wizard:
-                    return new MercWizardSkillA();
-                case Thief:
-                    return new MercThiefSkillA();
-                case Archer:
-                    return new MercArcherSkillA();
-                case ArcherMaiden:
-                    return new MercArcherSkillB();
-            }
-
-            return new Endurance();
-        }
+// --Commented out by Inspection START (8/29/18, 12:50 PM):
+//        public Skill getSkill() {
+//            switch (this) {
+//                case Brute:
+//                    return new MercBruteSkillA();
+//                case Wizard:
+//                    return new MercWizardSkillA();
+//                case Thief:
+//                    return new MercThiefSkillA();
+//                case Archer:
+//                    return new MercArcherSkillA();
+//                case ArcherMaiden:
+//                    return new MercArcherSkillB();
+//            }
+//
+//            return new Endurance();
+//        }
+// --Commented out by Inspection STOP (8/29/18, 12:50 PM)
 
         public void setSkills(HiredMerc merc) {
             merc.skill = new MercBruteSkillA();
@@ -262,7 +264,7 @@ public class HiredMerc extends NPC {
 
     public static final boolean archerMaidenUnlocked = false;
     public static final String MAIDEN_UNLOCK_BY = "Please consider donating to unlock this feature.";
-    public static final int COST_RATE = 15;
+    // --Commented out by Inspection (8/29/18, 12:50 PM):public static final int COST_RATE = 15;
 
     private static final String TXT_LEVEL_UP = "Stronger by the second...";
     private static final String TXT_CANT_EQUIP = "Too heavy for me Sir";
@@ -277,7 +279,7 @@ public class HiredMerc extends NPC {
 
     public Skill skill = null;
     public Skill skillb = null;
-    public Skill skillc = null;
+    // --Commented out by Inspection (8/29/18, 12:50 PM):public Skill skillc = null;
 
     public Item weapon = null;
     public Item armor = null;
@@ -287,7 +289,7 @@ public class HiredMerc extends NPC {
     public boolean hackFix = false;
 
 
-    public static final String MERC_TYPE = "merctype";
+    // --Commented out by Inspection (8/29/18, 12:50 PM):public static final String MERC_TYPE = "merctype";
 
     {
         name = "Brute";
@@ -303,9 +305,9 @@ public class HiredMerc extends NPC {
 
     protected int level;
 
-    private static final String LEVEL = "level";
-    private static final String WEAPON = "weapon";
-    private static final String ARMOR = "armor";
+    // --Commented out by Inspection (8/29/18, 12:50 PM):private static final String LEVEL = "level";
+    // --Commented out by Inspection (8/29/18, 12:50 PM):private static final String WEAPON = "weapon";
+    // --Commented out by Inspection (8/29/18, 12:50 PM):private static final String ARMOR = "armor";
 
     protected HiredMerc() {
 

@@ -32,35 +32,48 @@ public class RatKing extends NPC {
         state = SLEEPEING;
     }
 
-    @Override
-    public int defenseSkill() {
-        return 1000;
-    }
+// --Commented out by Inspection START (8/29/18, 12:51 PM):
+//    @Override
+//    public int defenseSkill() {
+//        return 1000;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:51 PM)
 
-    @Override
-    public float speed() {
-        return 2f;
-    }
+// --Commented out by Inspection START (8/29/18, 12:51 PM):
+//    @Override
+//    public float speed() {
+//        return 2f;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:51 PM)
 
-    @Override
-    protected Char chooseEnemy() {
-        return null;
-    }
+// --Commented out by Inspection START (8/29/18, 12:51 PM):
+//    @Override
+//    protected Char chooseEnemy() {
+//        return null;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:51 PM)
 
-    @Override
-    public void damage(int dmg, Object src) {
-    }
+// --Commented out by Inspection START (8/29/18, 12:51 PM):
+//    @Override
+//    public void damage(int dmg, Object src) {
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:51 PM)
 
-    @Override
-    public void add(Buff buff) {
-    }
+// --Commented out by Inspection START (8/29/18, 12:51 PM):
+//    @Override
+//    public void add(Buff buff) {
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:51 PM)
 
-    @Override
-    public boolean reset() {
-        return true;
-    }
+// --Commented out by Inspection START (8/29/18, 12:51 PM):
+//    @Override
+//    public boolean reset() {
+//        return true;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:51 PM)
 
-    @Override
+// --Commented out by Inspection START (8/29/18, 12:51 PM):
+//    @Override
     public void interact() {
         sprite.turnTo(pos, Dungeon.hero.pos);
         if (state == SLEEPEING) {
@@ -71,11 +84,14 @@ public class RatKing extends NPC {
             yell("What is it? I have no time for this nonsense. My kingdom won't rule itself!");
         }
     }
+// --Commented out by Inspection STOP (8/29/18, 12:51 PM)
 
-    @Override
-    public String description() {
-        return
-                "This rat is a little bigger than a regular marsupial rat " +
-                        "and it's wearing a tiny crown on its head.";
-    }
+// --Commented out by Inspection START (8/29/18, 12:51 PM):
+//    @Override
+//    public String description() {
+//        return
+//                "This rat is a little bigger than a regular marsupial rat " +
+//                        "and it's wearing a tiny crown on its head.";
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:51 PM)
 }

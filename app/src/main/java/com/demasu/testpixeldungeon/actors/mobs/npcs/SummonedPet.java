@@ -141,9 +141,11 @@ public class SummonedPet extends NPC {
     private static final String LEVEL = "level";
 
 
-    public SummonedPet() {
-        super();
-    }
+// --Commented out by Inspection START (8/29/18, 12:51 PM):
+//    public SummonedPet() {
+//        super();
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:51 PM)
 
     public SummonedPet(PET_TYPES pet) {
         this.petType = pet;
@@ -215,17 +217,19 @@ public class SummonedPet extends NPC {
             range = 4;
     }
 
-    public void spawn(int level, int maintainHP) {
-        this.level = level;
-
-        HT = petType.getHealth(level);
-        HP = maintainHP;
-        defenseSkill = petType.getDefence(level);
-
-        spriteClass = petType.getSprite();
-
-        name = petType.getName();
-    }
+// --Commented out by Inspection START (8/29/18, 12:51 PM):
+//    public void spawn(int level, int maintainHP) {
+//        this.level = level;
+//
+//        HT = petType.getHealth(level);
+//        HP = maintainHP;
+//        defenseSkill = petType.getDefence(level);
+//
+//        spriteClass = petType.getSprite();
+//
+//        name = petType.getName();
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:51 PM)
 
     @Override
     public int attackSkill(Char target) {
