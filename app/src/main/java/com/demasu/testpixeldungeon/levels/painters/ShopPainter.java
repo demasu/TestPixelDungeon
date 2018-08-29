@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
+import com.demasu.testpixeldungeon.actors.mobs.npcs.ImpShopkeeper;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.Shopkeeper;
 import com.demasu.testpixeldungeon.items.Ankh;
 import com.demasu.testpixeldungeon.items.Generator;
@@ -175,7 +176,7 @@ public class ShopPainter extends Painter {
             pos = room.random();
         } while (level.heaps.get(pos) != null);
 
-        Mob shopkeeper = level instanceof LastShopLevel ? new Shopkeeper("imp") : new Shopkeeper("regular");
+        Mob shopkeeper = level instanceof LastShopLevel ? new ImpShopkeeper() : new Shopkeeper();
         shopkeeper.pos = pos;
         level.mobs.add(shopkeeper);
 

@@ -20,14 +20,14 @@ package com.demasu.testpixeldungeon.actors.mobs.npcs;
 import com.demasu.testpixeldungeon.sprites.ImpSprite;
 
 // --Commented out by Inspection START (8/29/18, 12:43 PM):
-//public class ImpShopkeeper extends Shopkeeper {
-//
-//    // --Commented out by Inspection (8/28/18, 6:22 PM):private static final String TXT_GREETINGS = "Hello, friend!";
-//
-//    {
-//        name = "ambitious imp";
-//        spriteClass = ImpSprite.class;
-//    }
+public class ImpShopkeeper extends Shopkeeper {
+
+    // --Commented out by Inspection (8/28/18, 6:22 PM):private static final String TXT_GREETINGS = "Hello, friend!";
+
+    {
+        name = "ambitious imp";
+        spriteClass = ImpSprite.class;
+    }
 //
 //    // --Commented out by Inspection (8/28/18, 6:22 PM):private boolean seenBefore = false;
 //
@@ -69,5 +69,5 @@ import com.demasu.testpixeldungeon.sprites.ImpSprite;
 ////                        "But they are quite smart and sociable, and many of imps prefer to live and do business among non-demons.";
 ////    }
 //// --Commented out by Inspection STOP (8/28/18, 6:19 PM)
-//}
+}
 // --Commented out by Inspection STOP (8/29/18, 12:43 PM)

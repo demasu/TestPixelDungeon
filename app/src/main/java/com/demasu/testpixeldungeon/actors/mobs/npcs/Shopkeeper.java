@@ -24,23 +24,15 @@ import com.demasu.testpixeldungeon.effects.particles.ElmoParticle;
 import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.scenes.GameScene;
-import com.demasu.testpixeldungeon.sprites.ImpSprite;
 import com.demasu.testpixeldungeon.sprites.ShopkeeperSprite;
 import com.demasu.testpixeldungeon.windows.WndBag;
 import com.demasu.testpixeldungeon.windows.WndTradeItem;
 
 public class Shopkeeper extends NPC {
 
-    public Shopkeeper( String type ) {
-
-        if ( type.equals("imp") ) {
-            name = "ambitious imp";
-            spriteClass = ImpSprite.class;
-        }
-        else{
-            name = "shopkeeper";
-            spriteClass = ShopkeeperSprite.class;
-        }
+    {
+        name = "shopkeeper";
+        spriteClass = ShopkeeperSprite.class;
     }
 
     @Override
