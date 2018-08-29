@@ -39,7 +39,7 @@ public class NoosaScript extends Script {
 
     private Camera lastCamera;
 
-    private NoosaScript() {
+    public NoosaScript() {
 
         super();
         compile(shader());

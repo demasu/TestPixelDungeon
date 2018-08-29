@@ -128,7 +128,7 @@ public class Fireball extends Component {
 
         private float timeLeft;
 
-        Flame() {
+        public Flame() {
 
             super(Assets.FIREBALL);
 

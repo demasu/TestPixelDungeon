@@ -33,7 +33,7 @@ public class EmoIcon extends Image {
 
     private final CharSprite owner;
 
-    EmoIcon(CharSprite owner) {
+    public EmoIcon(CharSprite owner) {
         super();
 
         this.owner = owner;

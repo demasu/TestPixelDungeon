@@ -193,7 +193,7 @@ public class MagicMissile extends Emitter {
 
         };
 
-        MagicParticle() {
+        public MagicParticle() {
             super();
 
             color(0x88CCFF);
@@ -308,7 +308,7 @@ public class MagicMissile extends Emitter {
 
         };
 
-        SlowParticle() {
+        public SlowParticle() {
             super();
 
             lifespan = 0.6f;

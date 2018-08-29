@@ -45,7 +45,7 @@ public class BadgeBanner extends Image {
 
     private static BadgeBanner current;
 
-    private BadgeBanner(int index) {
+    public BadgeBanner(int index) {
 
         super(Assets.BADGES);
 

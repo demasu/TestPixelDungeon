@@ -35,8 +35,8 @@ import com.watabou.utils.Rect;
 
 public class Room extends Rect implements Graph.Node, Bundlable {
 
-    public final HashSet<Room> neigbours = new HashSet<>();
-    public final HashMap<Room, Door> connected = new HashMap<>();
+    public HashSet<Room> neigbours = new HashSet<>();
+    public HashMap<Room, Door> connected = new HashMap<>();
 
     public int distance;
     private int price = 1;

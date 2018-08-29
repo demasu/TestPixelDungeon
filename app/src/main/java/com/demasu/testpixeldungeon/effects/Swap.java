@@ -31,8 +31,8 @@ import com.watabou.utils.PointF;
 
 public class Swap extends Actor {
 
-    private final Char ch1;
-    private final Char ch2;
+    private Char ch1;
+    private Char ch2;
 
     private Effect eff1;
     private Effect eff2;

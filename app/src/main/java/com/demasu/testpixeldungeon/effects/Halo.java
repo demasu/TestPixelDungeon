@@ -34,7 +34,7 @@ public class Halo extends Image {
     protected float radius = RADIUS;
     float brightness = 1;
 
-    protected Halo() {
+    public Halo() {
         super();
 
         if (!TextureCache.contains(CACHE_KEY)) {

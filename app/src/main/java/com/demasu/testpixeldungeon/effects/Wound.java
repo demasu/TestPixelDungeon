@@ -31,7 +31,7 @@ public class Wound extends Image {
 
     private float time;
 
-    private Wound() {
+    public Wound() {
         super(Effects.get(Effects.Type.WOUND));
         origin.set(width / 2, height / 2);
     }

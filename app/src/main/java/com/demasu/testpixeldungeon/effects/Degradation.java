@@ -121,7 +121,7 @@ public class Degradation extends Group {
         private static final int COLOR = 0xFF4422;
         private static final int SIZE = 3;
 
-        Speck(float x0, float y0, int mx, int my) {
+        public Speck(float x0, float y0, int mx, int my) {
 
             super();
             color(COLOR);

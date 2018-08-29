@@ -26,9 +26,9 @@ import com.watabou.utils.PointF;
 
 public class Pushing extends Actor {
 
-    private final CharSprite sprite;
-    private final int from;
-    private final int to;
+    private CharSprite sprite;
+    private int from;
+    private int to;
 
     private Effect effect;
 
@@ -58,7 +58,7 @@ public class Pushing extends Actor {
 
         private static final float DELAY = 0.15f;
 
-        private final PointF end;
+        private PointF end;
 
         private float delay;
 
