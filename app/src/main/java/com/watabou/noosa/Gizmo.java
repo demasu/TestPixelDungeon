@@ -66,13 +66,15 @@ public class Gizmo {
         }
     }
 
-    boolean isVisible() {
-        if (parent == null) {
-            return visible;
-        } else {
-            return visible && parent.isVisible();
-        }
-    }
+// --Commented out by Inspection START (8/28/18, 6:49 PM):
+//    boolean isVisible() {
+//        if (parent == null) {
+//            return visible;
+//        } else {
+//            return visible && parent.isVisible();
+//        }
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:49 PM)
 
     boolean isActive() {
         if (parent == null) {

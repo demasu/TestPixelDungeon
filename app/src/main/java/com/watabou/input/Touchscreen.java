@@ -33,9 +33,9 @@ public class Touchscreen {
     @SuppressLint("UseSparseArrays")
     private static final HashMap<Integer, Touch> pointers = new HashMap<>();
 
-    public static float x;
-    public static float y;
-    private static boolean touched;
+    // --Commented out by Inspection (8/28/18, 6:57 PM):public static float x;
+    // --Commented out by Inspection (8/28/18, 6:57 PM):public static float y;
+    // --Commented out by Inspection (8/28/18, 6:57 PM):private static boolean touched;
 
     public static void processTouchEvents(ArrayList<MotionEvent> events) {
 
@@ -48,7 +48,7 @@ public class Touchscreen {
             switch (e.getAction() & MotionEvent.ACTION_MASK) {
 
                 case MotionEvent.ACTION_DOWN:
-                    touched = true;
+                    //touched = true;
                     touch = new Touch(e, 0);
                     pointers.put(e.getPointerId(0), touch);
                     event.dispatch(touch);
@@ -74,7 +74,7 @@ public class Touchscreen {
                     break;
 
                 case MotionEvent.ACTION_UP:
-                    touched = false;
+                    //touched = false;
                     event.dispatch(pointers.remove(e.getPointerId(0)).up());
                     break;
 

@@ -57,16 +57,16 @@ import com.demasu.testpixeldungeon.utils.Utils;
 public class WndMerc extends WndTabbed {
 
     public enum Mode {
-        ALL,
-        UNIDENTIFED,
-        UPGRADEABLE,
-        QUICKSLOT,
-        FOR_SALE,
-        WEAPON,
-        ARMOR,
-        ENCHANTABLE,
-        WAND,
-        SEED
+        // --Commented out by Inspection (8/28/18, 6:52 PM):ALL,
+        // --Commented out by Inspection (8/28/18, 6:52 PM):UNIDENTIFED,
+        // --Commented out by Inspection (8/28/18, 6:52 PM):UPGRADEABLE,
+        // --Commented out by Inspection (8/28/18, 6:52 PM):QUICKSLOT,
+        // --Commented out by Inspection (8/28/18, 6:52 PM):FOR_SALE,
+        // --Commented out by Inspection (8/28/18, 6:52 PM):WEAPON,
+        // --Commented out by Inspection (8/28/18, 6:52 PM):ARMOR,
+        // --Commented out by Inspection (8/28/18, 6:52 PM):ENCHANTABLE,
+        // --Commented out by Inspection (8/28/18, 6:52 PM):WAND,
+        // --Commented out by Inspection (8/28/18, 6:52 PM):SEED
     }
 
     private static final int COLS_P = 4;
@@ -75,21 +75,21 @@ public class WndMerc extends WndTabbed {
     private static final int SLOT_SIZE = 28;
     private static final int SLOT_MARGIN = 1;
 
-    protected static final int TAB_WIDTH = 25;
+    // --Commented out by Inspection (8/28/18, 6:46 PM):protected static final int TAB_WIDTH = 25;
 
-    protected static final int TITLE_HEIGHT = 12;
+    // --Commented out by Inspection (8/28/18, 6:52 PM):protected static final int TITLE_HEIGHT = 12;
 
     private final Listener listener;
-    private WndMerc.Mode mode;
-    private String title;
+    // --Commented out by Inspection (8/28/18, 6:52 PM):private WndMerc.Mode mode;
+    // --Commented out by Inspection (8/28/18, 6:52 PM):private String title;
 
-    protected int count;
-    protected int col;
-    protected int row;
+    // --Commented out by Inspection (8/28/18, 6:52 PM):protected int count;
+    // --Commented out by Inspection (8/28/18, 6:52 PM):protected int col;
+    // --Commented out by Inspection (8/28/18, 6:52 PM):protected int row;
 
     private static final int WIDTH = 120;
 
-    public boolean noDegrade = !PixelDungeon.itemDeg();
+    // --Commented out by Inspection (8/28/18, 6:52 PM):public boolean noDegrade = !PixelDungeon.itemDeg();
     private static final float GAP = 2;
 
     public WndMerc(Storage bag, Listener listener) {
@@ -98,7 +98,7 @@ public class WndMerc extends WndTabbed {
 
         this.listener = listener;
 
-        Mode lastMode = mode;
+        //Mode lastMode = mode;
 
         int nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
         int nRows = (5) / nCols + ((5) % nCols > 0 ? 1 : 0);
@@ -174,56 +174,64 @@ public class WndMerc extends WndTabbed {
         return 20;
     }
 
-    private class BagTab extends Tab {
-
-        private final Image icon;
-
-        private final Bag bag;
-
-        public BagTab(Bag bag) {
-            super();
-
-            this.bag = bag;
-
-            icon = icon();
-            add(icon);
-        }
-
-        @Override
-        protected void select(boolean value) {
-            super.select(value);
-            icon.am = selected ? 1.0f : 0.6f;
-        }
-
-        @Override
-        protected void layout() {
-            super.layout();
-
-            icon.copy(icon());
-            icon.x = x + (width - icon.width) / 2;
-            icon.y = y + (height - icon.height) / 2 - 2 - (selected ? 0 : 1);
-            if (!selected && icon.y < y + CUT) {
-                RectF frame = icon.frame();
-                frame.top += (y + CUT - icon.y) / icon.texture.height;
-                icon.frame(frame);
-                icon.y = y + CUT;
-            }
-        }
-
-        private Image icon() {
-            if (bag instanceof SeedPouch) {
-                return Icons.get(Icons.SEED_POUCH);
-            } else if (bag instanceof ScrollHolder) {
-                return Icons.get(Icons.SCROLL_HOLDER);
-            } else if (bag instanceof WandHolster) {
-                return Icons.get(Icons.WAND_HOLSTER);
-            } else if (bag instanceof Keyring) {
-                return Icons.get(Icons.KEYRING);
-            } else {
-                return Icons.get(Icons.BACKPACK);
-            }
-        }
-    }
+// --Commented out by Inspection START (8/28/18, 6:52 PM):
+//    private class BagTab extends Tab {
+//
+//        private final Image icon;
+//
+//        private final Bag bag;
+//
+//// --Commented out by Inspection START (8/28/18, 6:52 PM):
+////        public BagTab(Bag bag) {
+////            super();
+////
+////            this.bag = bag;
+////
+////            icon = icon();
+////            add(icon);
+////        }
+//// --Commented out by Inspection STOP (8/28/18, 6:52 PM)
+//
+//// --Commented out by Inspection START (8/28/18, 6:52 PM):
+////        @Override
+////        protected void select(boolean value) {
+////            super.select(value);
+////            icon.am = selected ? 1.0f : 0.6f;
+////        }
+//// --Commented out by Inspection STOP (8/28/18, 6:52 PM)
+//
+//// --Commented out by Inspection START (8/28/18, 6:52 PM):
+////        @Override
+////        protected void layout() {
+////            super.layout();
+////
+////            icon.copy(icon());
+////            icon.x = x + (width - icon.width) / 2;
+////            icon.y = y + (height - icon.height) / 2 - 2 - (selected ? 0 : 1);
+////            if (!selected && icon.y < y + CUT) {
+////                RectF frame = icon.frame();
+////                frame.top += (y + CUT - icon.y) / icon.texture.height;
+////                icon.frame(frame);
+////                icon.y = y + CUT;
+////            }
+////        }
+//// --Commented out by Inspection STOP (8/28/18, 6:52 PM)
+//
+//        private Image icon() {
+//            if (bag instanceof SeedPouch) {
+//                return Icons.get(Icons.SEED_POUCH);
+//            } else if (bag instanceof ScrollHolder) {
+// --Commented out by Inspection STOP (8/28/18, 6:52 PM)
+//                return Icons.get(Icons.SCROLL_HOLDER);
+//            } else if (bag instanceof WandHolster) {
+//                return Icons.get(Icons.WAND_HOLSTER);
+//            } else if (bag instanceof Keyring) {
+//                return Icons.get(Icons.KEYRING);
+//            } else {
+//                return Icons.get(Icons.BACKPACK);
+//            }
+//        }
+//    }
 
     private static class Placeholder extends Item {
         {
@@ -250,12 +258,12 @@ public class WndMerc extends WndTabbed {
         private static final int NORMAL = 0xFF4A4D44;
         private static final int EQUIPPED = 0xFF63665B;
 
-        private static final int NBARS = 3;
+        // --Commented out by Inspection (8/28/18, 6:52 PM):private static final int NBARS = 3;
 
         private final Item item;
         private ColorBlock bg;
 
-        private ColorBlock durability[];
+        // --Commented out by Inspection (8/28/18, 6:52 PM):private ColorBlock durability[];
 
         final boolean holdOnly;
 
@@ -385,7 +393,7 @@ public class WndMerc extends WndTabbed {
     private class SkillButton extends SkillSlot {
 
         private static final int NORMAL = 0xFF4A4D44;
-        private static final int EQUIPPED = 0xFF63665B;
+        // --Commented out by Inspection (8/28/18, 6:52 PM):private static final int EQUIPPED = 0xFF63665B;
 
 
         private final Skill skill;

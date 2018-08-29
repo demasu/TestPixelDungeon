@@ -52,18 +52,18 @@ import java.util.HashMap;
 public class MissionStartScene extends PixelScene {
 
     private static final float BUTTON_HEIGHT = 24;
-    private static final float GAP = 2;
+    // --Commented out by Inspection (8/28/18, 6:46 PM):private static final float GAP = 2;
 
-    private static final String TXT_LOAD = "Load Game";
+    // --Commented out by Inspection (8/28/18, 6:46 PM):private static final String TXT_LOAD = "Load Game";
     private static final String TXT_NEW = "Choose Scenario";
 
-    private static final String TXT_ERASE = "Erase current game";
-    private static final String TXT_DPTH_LVL = "Depth: %d, level: %d";
+    // --Commented out by Inspection (8/28/18, 6:46 PM):private static final String TXT_ERASE = "Erase current game";
+    // --Commented out by Inspection (8/28/18, 6:46 PM):private static final String TXT_DPTH_LVL = "Depth: %d, level: %d";
 
-    private static final String TXT_REALLY = "Do you really want to start new game?";
-    private static final String TXT_WARNING = "Your current game progress will be erased.";
-    private static final String TXT_YES = "Yes, start new game";
-    private static final String TXT_NO = "No, return to main menu";
+    // --Commented out by Inspection (8/28/18, 6:46 PM):private static final String TXT_REALLY = "Do you really want to start new game?";
+    // --Commented out by Inspection (8/28/18, 6:46 PM):private static final String TXT_WARNING = "Your current game progress will be erased.";
+    // --Commented out by Inspection (8/28/18, 6:46 PM):private static final String TXT_YES = "Yes, start new game";
+    // --Commented out by Inspection (8/28/18, 6:46 PM):private static final String TXT_NO = "No, return to main menu";
 
     private static final String TXT_UNLOCK = "To unlock this character class, slay the 3rd boss with any other class";
 
@@ -81,7 +81,7 @@ public class MissionStartScene extends PixelScene {
     private float buttonX;
     private float buttonY;
 
-    private GameButton btnLoad;
+    // --Commented out by Inspection (8/28/18, 6:46 PM):private GameButton btnLoad;
     private GameButton btnNewGame;
 
     private Group unlock;
@@ -336,7 +336,7 @@ public class MissionStartScene extends PixelScene {
     private static class GameButton extends RedButton {
 
         private static final int SECONDARY_COLOR_N = 0xCACFC2;
-        private static final int SECONDARY_COLOR_H = 0xFFFF88;
+        // --Commented out by Inspection (8/28/18, 6:46 PM):private static final int SECONDARY_COLOR_H = 0xFFFF88;
 
         private BitmapText secondary;
 
@@ -383,8 +383,8 @@ public class MissionStartScene extends PixelScene {
         private static final int BASIC_NORMAL = 0x444444;
         private static final int BASIC_HIGHLIGHTED = 0xCACFC2;
 
-        private static final int MASTERY_NORMAL = 0x666644;
-        private static final int MASTERY_HIGHLIGHTED = 0xFFFF88;
+        // --Commented out by Inspection (8/28/18, 6:46 PM):private static final int MASTERY_NORMAL = 0x666644;
+        // --Commented out by Inspection (8/28/18, 6:46 PM):private static final int MASTERY_HIGHLIGHTED = 0xFFFF88;
 
         private static final int WIDTH = 24;
         private static final int HEIGHT = 28;

@@ -818,13 +818,15 @@ public class Badges {
         }
     }
 
-    public static void validateSupporter() {
-
-        global.add(Badge.SUPPORTER);
-        saveNeeded = true;
-
-        PixelScene.showBadge(Badge.SUPPORTER);
-    }
+// --Commented out by Inspection START (8/28/18, 6:59 PM):
+//    public static void validateSupporter() {
+//
+//        global.add(Badge.SUPPORTER);
+//        saveNeeded = true;
+//
+//        PixelScene.showBadge(Badge.SUPPORTER);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:59 PM)
 
     public static void validateGamesPlayed() {
         Badge badge = null;
@@ -882,11 +884,13 @@ public class Badges {
         return global.contains(badge);
     }
 
-    public static void disown(Badge badge) {
-        loadGlobal();
-        global.remove(badge);
-        saveNeeded = true;
-    }
+// --Commented out by Inspection START (8/28/18, 6:59 PM):
+//    public static void disown(Badge badge) {
+//        loadGlobal();
+//        global.remove(badge);
+//        saveNeeded = true;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:59 PM)
 
     public static List<Badge> filtered(boolean global) {
 

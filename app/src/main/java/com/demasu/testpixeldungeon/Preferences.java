@@ -27,19 +27,19 @@ enum Preferences {
 
     public static final String KEY_LANDSCAPE = "landscape";
     public static final String KEY_IMMERSIVE = "immersive";
-    public static final String KEY_GOOGLE_PLAY = "google_play";
+    // --Commented out by Inspection (8/28/18, 6:57 PM):public static final String KEY_GOOGLE_PLAY = "google_play";
     public static final String KEY_SCALE_UP = "scaleup";
     public static final String KEY_MUSIC = "music";
     public static final String KEY_SOUND_FX = "soundfx";
     public static final String KEY_ZOOM = "zoom";
     public static final String KEY_LAST_CLASS = "last_class";
     public static final String KEY_CHALLENGES = "challenges";
-    public static final String KEY_DONATED = "donated";
+    // --Commented out by Inspection (8/28/18, 6:57 PM):public static final String KEY_DONATED = "donated";
     public static final String KEY_INTRO = "intro";
     public static final String KEY_BRIGHTNESS = "brightness";
     public static final String KEY_DEGRADATION = "nodegradation";
-    public static final String KEY_ARCHER_MAIDEN = "archermaiden";
-    public static final String KEY_DISABLE_CHAMPIONS = "disablechampions";
+    // --Commented out by Inspection (8/28/18, 6:57 PM):public static final String KEY_ARCHER_MAIDEN = "archermaiden";
+    // --Commented out by Inspection (8/28/18, 6:57 PM):public static final String KEY_DISABLE_CHAMPIONS = "disablechampions";
 
     private SharedPreferences prefs;
 
@@ -58,9 +58,11 @@ enum Preferences {
         return get().getBoolean(key, defValue);
     }
 
-    String getString(String key, String defValue) {
-        return get().getString(key, defValue);
-    }
+// --Commented out by Inspection START (8/28/18, 6:57 PM):
+//    String getString(String key, String defValue) {
+//        return get().getString(key, defValue);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:57 PM)
 
     void put(String key, int value) {
         get().edit().putInt(key, value).apply();
@@ -70,7 +72,9 @@ enum Preferences {
         get().edit().putBoolean(key, value).apply();
     }
 
-    void put(String key, String value) {
-        get().edit().putString(key, value).apply();
-    }
+// --Commented out by Inspection START (8/28/18, 6:57 PM):
+//    void put(String key, String value) {
+//        get().edit().putString(key, value).apply();
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:57 PM)
 }

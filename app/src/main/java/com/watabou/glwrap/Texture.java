@@ -31,12 +31,12 @@ public class Texture {
     public static final int LINEAR = GLES20.GL_LINEAR;
 
     public static final int REPEAT = GLES20.GL_REPEAT;
-    public static final int MIRROR = GLES20.GL_MIRRORED_REPEAT;
+    // --Commented out by Inspection (8/28/18, 6:56 PM):public static final int MIRROR = GLES20.GL_MIRRORED_REPEAT;
     protected static final int CLAMP = GLES20.GL_CLAMP_TO_EDGE;
 
     public int id;
 
-    private boolean premultiplied = false;
+    // --Commented out by Inspection (8/28/18, 6:56 PM):private boolean premultiplied = false;
 
     protected Texture() {
         int[] ids = new int[1];
@@ -46,9 +46,11 @@ public class Texture {
         bind();
     }
 
-    public static void activate(int index) {
-        GLES20.glActiveTexture(GLES20.GL_TEXTURE0 + index);
-    }
+// --Commented out by Inspection START (8/28/18, 6:56 PM):
+//    public static void activate(int index) {
+//        GLES20.glActiveTexture(GLES20.GL_TEXTURE0 + index);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:56 PM)
 
     public void bind() {
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, id);
@@ -75,7 +77,7 @@ public class Texture {
         bind();
         GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
 
-        premultiplied = true;
+        //premultiplied = true;
     }
 
     public void pixels(int w, int h, int[] pixels) {
@@ -146,27 +148,33 @@ public class Texture {
 
         pixels(w, h, pixels);
 
-        premultiplied = false;
+        //premultiplied = false;
     }
 
-    public static Texture create(Bitmap bmp) {
-        Texture tex = new Texture();
-        tex.bitmap(bmp);
+// --Commented out by Inspection START (8/28/18, 6:56 PM):
+//    public static Texture create(Bitmap bmp) {
+//        Texture tex = new Texture();
+//        tex.bitmap(bmp);
+//
+//        return tex;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:56 PM)
 
-        return tex;
-    }
+// --Commented out by Inspection START (8/28/18, 6:56 PM):
+//    public static Texture create(int width, int height, int[] pixels) {
+//        Texture tex = new Texture();
+//        tex.pixels(width, height, pixels);
+//
+//        return tex;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:56 PM)
 
-    public static Texture create(int width, int height, int[] pixels) {
-        Texture tex = new Texture();
-        tex.pixels(width, height, pixels);
-
-        return tex;
-    }
-
-    public static Texture create(int width, int height, byte[] pixels) {
-        Texture tex = new Texture();
-        tex.pixels(width, height, pixels);
-
-        return tex;
-    }
+// --Commented out by Inspection START (8/28/18, 6:56 PM):
+//    public static Texture create(int width, int height, byte[] pixels) {
+//        Texture tex = new Texture();
+//        tex.pixels(width, height, pixels);
+//
+//        return tex;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:56 PM)
 }

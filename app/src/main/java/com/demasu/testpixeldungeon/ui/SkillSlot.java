@@ -27,9 +27,9 @@ import java.util.Objects;
 
 public class SkillSlot extends Button {
 
-    public static final int DEGRADED = 0xFF4444;
-    public static final int UPGRADED = 0x44FF44;
-    public static final int WARNING = 0xFF8800;
+    // --Commented out by Inspection (8/28/18, 6:47 PM):public static final int DEGRADED = 0xFF4444;
+    // --Commented out by Inspection (8/28/18, 6:53 PM):public static final int UPGRADED = 0x44FF44;
+    // --Commented out by Inspection (8/28/18, 6:53 PM):public static final int WARNING = 0xFF8800;
 
     private static final float ENABLED = 1.0f;
     private static final float DISABLED = 0.3f;
@@ -94,11 +94,13 @@ public class SkillSlot extends Button {
     }
 
 
-    public void enable(boolean value) {
-
-        active = value;
-
-        float alpha = value ? ENABLED : DISABLED;
-        icon.alpha(alpha);
-    }
+// --Commented out by Inspection START (8/28/18, 6:53 PM):
+//    public void enable(boolean value) {
+//
+//        active = value;
+//
+//        float alpha = value ? ENABLED : DISABLED;
+//        icon.alpha(alpha);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:53 PM)
 }

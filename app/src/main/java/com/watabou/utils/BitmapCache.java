@@ -72,9 +72,11 @@ public class BitmapCache {
         }
     }
 
-    public static Bitmap get(int resID) {
-        return get(DEFAULT, resID);
-    }
+// --Commented out by Inspection START (8/28/18, 6:54 PM):
+//    public static Bitmap get(int resID) {
+//        return get(DEFAULT, resID);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:54 PM)
 
     @SuppressWarnings("SameParameterValue")
     private static Bitmap get(String layerName, int resID) {
@@ -98,19 +100,23 @@ public class BitmapCache {
         }
     }
 
-    public static void clear(String layerName) {
-        if (layers.containsKey(layerName)) {
-            layers.get(layerName).clear();
-            layers.remove(layerName);
-        }
-    }
+// --Commented out by Inspection START (8/28/18, 6:54 PM):
+//    public static void clear(String layerName) {
+//        if (layers.containsKey(layerName)) {
+//            layers.get(layerName).clear();
+//            layers.remove(layerName);
+//        }
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:54 PM)
 
-    public static void clear() {
-        for (Layer layer : layers.values()) {
-            layer.clear();
-        }
-        layers.clear();
-    }
+// --Commented out by Inspection START (8/28/18, 6:54 PM):
+//    public static void clear() {
+//        for (Layer layer : layers.values()) {
+//            layer.clear();
+//        }
+//        layers.clear();
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:54 PM)
 
     @SuppressWarnings("serial")
     private static class Layer extends HashMap<Object, Bitmap> {

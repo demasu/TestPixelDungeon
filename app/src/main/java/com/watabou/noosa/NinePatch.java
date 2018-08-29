@@ -40,8 +40,8 @@ public class NinePatch extends Visual {
     private final int marginTop;
     private final int marginBottom;
 
-    private final float nWidth;
-    private final float nHeight;
+    // --Commented out by Inspection (8/28/18, 6:49 PM):private final float nWidth;
+    // --Commented out by Inspection (8/28/18, 6:49 PM):private final float nHeight;
 
     protected NinePatch() {
         this(com.demasu.testpixeldungeon.Assets.SHADOW, 1, 1, 1, 1);
@@ -62,8 +62,8 @@ public class NinePatch extends Visual {
         w = w == 0 ? texture.width : w;
         h = h == 0 ? texture.height : h;
 
-        nWidth = width = w;
-        nHeight = height = h;
+        //nWidth = width = w;
+        //nHeight = height = h;
 
         vertices = new float[16];
         verticesBuffer = Quad.createSet(9);
@@ -141,21 +141,29 @@ public class NinePatch extends Visual {
         return marginTop + marginBottom;
     }
 
-    public float innerWidth() {
-        return width - marginLeft - marginRight;
-    }
+// --Commented out by Inspection START (8/28/18, 6:49 PM):
+//    public float innerWidth() {
+//        return width - marginLeft - marginRight;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:49 PM)
 
-    public float innerHeight() {
-        return height - marginTop - marginBottom;
-    }
+// --Commented out by Inspection START (8/28/18, 6:49 PM):
+//    public float innerHeight() {
+//        return height - marginTop - marginBottom;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:49 PM)
 
-    public float innerRight() {
-        return width - marginRight;
-    }
+// --Commented out by Inspection START (8/28/18, 6:49 PM):
+//    public float innerRight() {
+//        return width - marginRight;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:49 PM)
 
-    public float innerBottom() {
-        return height - marginBottom;
-    }
+// --Commented out by Inspection START (8/28/18, 6:49 PM):
+//    public float innerBottom() {
+//        return height - marginBottom;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:49 PM)
 
     public void size(float width, float height) {
         this.width = width;

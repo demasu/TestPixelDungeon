@@ -40,10 +40,12 @@ public class Banner extends Image {
         alpha(0);
     }
 
-    public Banner(Object tx) {
-        super(tx);
-        alpha(0);
-    }
+// --Commented out by Inspection START (8/28/18, 6:59 PM):
+//    public Banner(Object tx) {
+//        super(tx);
+//        alpha(0);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:59 PM)
 
     public void show(int color, float fadeTime, float showTime) {
 

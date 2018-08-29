@@ -100,14 +100,16 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
         }
     }
 
-    public void unload(Object src) {
-
-        if (ids.containsKey(src)) {
-
-            pool.unload(ids.get(src));
-            ids.remove(src);
-        }
-    }
+// --Commented out by Inspection START (8/28/18, 6:50 PM):
+//    public void unload(Object src) {
+//
+//        if (ids.containsKey(src)) {
+//
+//            pool.unload(ids.get(src));
+//            ids.remove(src);
+//        }
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:50 PM)
 
     public void play(Object id) {
         play(id, 1, 1, 1);
@@ -129,9 +131,11 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
         enabled = value;
     }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
+// --Commented out by Inspection START (8/28/18, 6:50 PM):
+//    public boolean isEnabled() {
+//        return enabled;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:50 PM)
 
     @Override
     public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {

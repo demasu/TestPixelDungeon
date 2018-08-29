@@ -10,8 +10,8 @@ public class HighlightedText extends Component {
     private final BitmapTextMultiline normal;
     private final BitmapTextMultiline highlighted;
 
-    protected int nColor = 0xFFFFFF;
-    protected int hColor = 0xFFFF44;
+    // --Commented out by Inspection (8/28/18, 7:00 PM):protected int nColor = 0xFFFFFF;
+    // --Commented out by Inspection (8/28/18, 7:00 PM):protected int hColor = 0xFFFF44;
 
     public HighlightedText(float size) {
         normal = PixelScene.createMultiline(size);

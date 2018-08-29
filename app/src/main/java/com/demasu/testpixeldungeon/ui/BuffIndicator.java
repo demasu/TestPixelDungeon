@@ -64,7 +64,7 @@ public class BuffIndicator extends Component {
     public static final int DEFERRED = 28;
     public static final int VERTIGO = 29;
     public static final int RAGE = 30;
-    public static final int SACRIFICE = 31;
+    // --Commented out by Inspection (8/28/18, 6:59 PM):public static final int SACRIFICE = 31;
 
     public static final int SIZE = 7;
 

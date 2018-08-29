@@ -246,22 +246,28 @@ public class MissionToolbar extends Component {
         }
     }
 
-    public void pickup(Item item) {
-        pickedUp.reset(item,
-                btnInventory.centerX(),
-                btnInventory.centerY());
-    }
+// --Commented out by Inspection START (8/28/18, 7:01 PM):
+//    public void pickup(Item item) {
+//        pickedUp.reset(item,
+//                btnInventory.centerX(),
+//                btnInventory.centerY());
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:01 PM)
 
-    public static boolean secondQuickslot() {
-        return instance.btnQuick2.visible;
-    }
+// --Commented out by Inspection START (8/28/18, 7:01 PM):
+//    public static boolean secondQuickslot() {
+//        return instance.btnQuick2.visible;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:01 PM)
 
-    public static void secondQuickslot(boolean value) {
-        instance.btnQuick2.visible =
-                instance.btnQuick2.active =
-                        value;
-        instance.layout();
-    }
+// --Commented out by Inspection START (8/28/18, 7:01 PM):
+//    public static void secondQuickslot(boolean value) {
+//        instance.btnQuick2.visible =
+//                instance.btnQuick2.active =
+//                        value;
+//        instance.layout();
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:01 PM)
 
     private static final CellSelector.Listener informer = new CellSelector.Listener() {
         @Override

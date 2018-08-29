@@ -48,9 +48,11 @@ public class Window extends Group implements Signal.Listener<Key> {
         this(0, 0, Objects.requireNonNull(Chrome.get(Chrome.Type.WINDOW)));
     }
 
-    public Window(int width, int height) {
-        this(width, height, Objects.requireNonNull(Chrome.get(Chrome.Type.WINDOW)));
-    }
+// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//    public Window(int width, int height) {
+//        this(width, height, Objects.requireNonNull(Chrome.get(Chrome.Type.WINDOW)));
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
 
     protected Window(int width, int height, NinePatch chrome) {
         super();

@@ -190,13 +190,17 @@ public class BitmapText extends Visual {
         return font.baseLine * scale.y;
     }
 
-    public Font font() {
-        return font;
-    }
+// --Commented out by Inspection START (8/28/18, 6:50 PM):
+//    public Font font() {
+//        return font;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:50 PM)
 
-    public void font(Font value) {
-        font = value;
-    }
+// --Commented out by Inspection START (8/28/18, 6:50 PM):
+//    public void font(Font value) {
+//        font = value;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:50 PM)
 
     public String text() {
         return text;
@@ -230,9 +234,11 @@ public class BitmapText extends Visual {
             texture = tx;
         }
 
-        public Font(SmartTexture tx, int width, String chars) {
-            this(tx, width, tx.height, chars);
-        }
+// --Commented out by Inspection START (8/28/18, 6:50 PM):
+//        public Font(SmartTexture tx, int width, String chars) {
+//            this(tx, width, tx.height, chars);
+//        }
+// --Commented out by Inspection STOP (8/28/18, 6:50 PM)
 
         Font(SmartTexture tx, int width, int height, String chars) {
             super(tx);

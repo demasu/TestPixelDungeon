@@ -48,61 +48,79 @@ public class RemoteBombGround extends Item {
 
     public int pos = 0;
 
-    @Override
-    public void storeInBundle(Bundle bundle) {
-        super.storeInBundle(bundle);
-        bundle.put("pos", pos);
-    }
+// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//    @Override
+//    public void storeInBundle(Bundle bundle) {
+//        super.storeInBundle(bundle);
+//        bundle.put("pos", pos);
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
 
-    @Override
-    public void restoreFromBundle(Bundle bundle) {
-        super.restoreFromBundle(bundle);
-        pos = bundle.getInt("pos");
-    }
+// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//    @Override
+//    public void restoreFromBundle(Bundle bundle) {
+//        super.restoreFromBundle(bundle);
+//        pos = bundle.getInt("pos");
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
 
-    @Override
-    protected void onThrow(int cell) {
-        if (Level.pit[cell]) {
-            super.onThrow(cell);
-        }
-
-
-    }
-
-
-    @Override
-    public boolean doPickUp(Hero hero) {
-        GLog.i("Cannot be retrieved anymore...");
-        return false;
-    }
+// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//    @Override
+//    protected void onThrow(int cell) {
+//        if (Level.pit[cell]) {
+//            super.onThrow(cell);
+//        }
+//
+//
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
 
 
-    @Override
-    public boolean isUpgradable() {
-        return false;
-    }
+// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//    @Override
+//    public boolean doPickUp(Hero hero) {
+//        GLog.i("Cannot be retrieved anymore...");
+//        return false;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
 
-    @Override
-    public boolean isIdentified() {
-        return true;
-    }
 
-    @Override
-    public Item random() {
-        quantity = 1;
-        return this;
-    }
+// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//    @Override
+//    public boolean isUpgradable() {
+//        return false;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
 
-    @Override
-    public int price() {
-        return 10 * quantity;
-    }
+// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//    @Override
+//    public boolean isIdentified() {
+//        return true;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
 
-    @Override
-    public String info() {
-        return
-                "This small bomb will explode as soon as a signal is sent from a trigger beacon.";
-    }
+// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//    @Override
+//    public Item random() {
+//        quantity = 1;
+//        return this;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
+
+// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//    @Override
+//    public int price() {
+//        return 10 * quantity;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
+
+// --Commented out by Inspection START (8/28/18, 7:00 PM):
+//    @Override
+//    public String info() {
+//        return
+//                "This small bomb will explode as soon as a signal is sent from a trigger beacon.";
+//    }
+// --Commented out by Inspection STOP (8/28/18, 7:00 PM)
 
     public void explode() {
         Sample.INSTANCE.play(Assets.SND_BLAST, 2);

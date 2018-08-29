@@ -44,7 +44,7 @@ public class MissionStatusPane extends Component {
     private Image avatar;
     private Emitter blood;
 
-    private int lastTier = 0;
+    // --Commented out by Inspection (8/28/18, 7:00 PM):private int lastTier = 0;
 
     private Image hp;
     private Image hp_dropping;

@@ -602,7 +602,7 @@ public class Item implements Bundlable {
         Sample.INSTANCE.play(Assets.SND_MISS, 0.6f, 0.6f, 1.5f);
 
         Char enemy = Actor.findChar(cell);
-        QuickSlot.target(this, enemy);
+        QuickSlot.target(enemy);
 
         // FIXME!!!
         float delay = TIME_TO_THROW;
@@ -647,7 +647,7 @@ public class Item implements Bundlable {
         Sample.INSTANCE.play(Assets.SND_MISS, 0.6f, 0.6f, 1.5f);
 
         Char enemy = Actor.findChar(cell);
-        QuickSlot.target(this, enemy);
+        QuickSlot.target(enemy);
 
         // FIXME!!!
         float delay = TIME_TO_THROW;
@@ -684,7 +684,7 @@ public class Item implements Bundlable {
         Sample.INSTANCE.play(Assets.SND_MISS, 0.6f, 0.6f, 1.5f);
 
         Char enemy = Actor.findChar(cell);
-        QuickSlot.target(this, enemy);
+        QuickSlot.target(enemy);
 
         // FIXME!!!
         float delay = TIME_TO_THROW;

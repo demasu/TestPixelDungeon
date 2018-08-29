@@ -35,7 +35,7 @@ public class SmartTexture extends Texture {
 
     public Bitmap bitmap;
 
-    public Atlas atlas;
+    // --Commented out by Inspection (8/28/18, 6:54 PM):public Atlas atlas;
 
     public SmartTexture(Bitmap bitmap) {
         this(bitmap, CLAMP);

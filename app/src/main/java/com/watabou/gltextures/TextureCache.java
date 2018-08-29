@@ -66,28 +66,30 @@ public class TextureCache {
         }
     }
 
-    public static SmartTexture createGradient(int width, int height, int... colors) {
-
-        final String key = "" + width + "x" + height + ":" + Arrays.toString(colors);
-
-        if (all.containsKey(key)) {
-
-            return all.get(key);
-
-        } else {
-
-            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bmp);
-            Paint paint = new Paint();
-            paint.setShader(new LinearGradient(0, 0, 0, height, colors, null, TileMode.CLAMP));
-            canvas.drawPaint(paint);
-
-            SmartTexture tx = new SmartTexture(bmp);
-            all.put(key, tx);
-            return tx;
-        }
-
-    }
+// --Commented out by Inspection START (8/28/18, 6:56 PM):
+//    public static SmartTexture createGradient(int width, int height, int... colors) {
+//
+//        final String key = "" + width + "x" + height + ":" + Arrays.toString(colors);
+//
+//        if (all.containsKey(key)) {
+//
+//            return all.get(key);
+//
+//        } else {
+//
+//            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+//            Canvas canvas = new Canvas(bmp);
+//            Paint paint = new Paint();
+//            paint.setShader(new LinearGradient(0, 0, 0, height, colors, null, TileMode.CLAMP));
+//            canvas.drawPaint(paint);
+//
+//            SmartTexture tx = new SmartTexture(bmp);
+//            all.put(key, tx);
+//            return tx;
+//        }
+//
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:56 PM)
 
     public static void add(Object key, SmartTexture tx) {
         all.put(key, tx);
@@ -112,14 +114,16 @@ public class TextureCache {
 
     }
 
-    public static void clear() {
-
-        for (Texture txt : all.values()) {
-            txt.delete();
-        }
-        all.clear();
-
-    }
+// --Commented out by Inspection START (8/28/18, 6:56 PM):
+//    public static void clear() {
+//
+//        for (Texture txt : all.values()) {
+//            txt.delete();
+//        }
+//        all.clear();
+//
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:56 PM)
 
     public static void reload() {
         for (SmartTexture tx : all.values()) {

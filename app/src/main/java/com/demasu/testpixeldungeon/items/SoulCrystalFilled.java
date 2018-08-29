@@ -47,9 +47,11 @@ public class SoulCrystalFilled extends Item {
     private int defenceSkill;
     private String captured;
 
-    public SoulCrystalFilled() {
-        this(RatSprite.class, 5, 1, "Rat");
-    }
+// --Commented out by Inspection START (8/28/18, 6:49 PM):
+//    public SoulCrystalFilled() {
+//        this(RatSprite.class, 5, 1, "Rat");
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:49 PM)
 
     public SoulCrystalFilled(Class<? extends CharSprite> minionSprite, int HT, int defenceSkill, String captured) {
         super();

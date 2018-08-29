@@ -8,7 +8,7 @@ import com.demasu.testpixeldungeon.windows.WndWelcome;
  * Created by Moussa on 23-Jan-17.
  */
 public class VersionNewsInfo {
-    public static int versionBuild = 0;
+    // --Commented out by Inspection (8/28/18, 6:57 PM):public static int versionBuild = 0;
     private static final String message = "Welcome to Skillful PixelDungeon!\n \n \n"
             + "The game has been given a complete makeover in terms of class skills and balance.\n \n"
             + "Old ranking details cannot be displayed at this time, but rest assured they are not lost.\n \n"
@@ -25,10 +25,12 @@ public class VersionNewsInfo {
         return !alreadySeen;
     }
 
-    public static String getMessage() {
-        alreadySeen = true;
-        return message;
-    }
+// --Commented out by Inspection START (8/28/18, 6:57 PM):
+//    public static String getMessage() {
+//        alreadySeen = true;
+//        return message;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:57 PM)
 
     public static Window getWelcomeWindow() {
         alreadySeen = true;

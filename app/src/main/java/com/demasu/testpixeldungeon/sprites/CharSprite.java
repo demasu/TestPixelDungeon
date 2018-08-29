@@ -244,11 +244,13 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
         return emitter;
     }
 
-    public Emitter bottomEmitter() {
-        Emitter emitter = GameScene.emitter();
-        Objects.requireNonNull(emitter).pos(x, y + height, width, 0);
-        return emitter;
-    }
+// --Commented out by Inspection START (8/28/18, 6:42 PM):
+//    public Emitter bottomEmitter() {
+//        Emitter emitter = GameScene.emitter();
+//        Objects.requireNonNull(emitter).pos(x, y + height, width, 0);
+//        return emitter;
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:42 PM)
 
     public void burst(final int color, int n) {
         if (visible) {

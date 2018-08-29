@@ -42,13 +42,13 @@ import com.demasu.testpixeldungeon.utils.Utils;
 public class WndSkills extends WndTabbed {
 
 
-    protected static final int COLS_P = 4;
-    protected static final int COLS_L = 6;
+    // --Commented out by Inspection (8/28/18, 6:46 PM):protected static final int COLS_P = 4;
+    // --Commented out by Inspection (8/28/18, 6:50 PM):protected static final int COLS_L = 6;
 
     private static final int SLOT_SIZE = 28;
     private static final int SLOT_MARGIN = 1;
 
-    protected static final int TAB_WIDTH = 25;
+    // --Commented out by Inspection (8/28/18, 6:50 PM):protected static final int TAB_WIDTH = 25;
 
     private static final int TITLE_HEIGHT = 12;
 
@@ -62,7 +62,7 @@ public class WndSkills extends WndTabbed {
     private int row;
 
 
-    public boolean noDegrade = PixelDungeon.itemDeg();
+    // --Commented out by Inspection (8/28/18, 6:50 PM):public boolean noDegrade = PixelDungeon.itemDeg();
 
     public WndSkills(Listener listener, String title) {
 
@@ -153,71 +153,83 @@ public class WndSkills extends WndTabbed {
         return 20;
     }
 
-    private class BagTab extends Tab {
+// --Commented out by Inspection START (8/28/18, 6:50 PM):
+//    private class BagTab extends Tab {
+//
+//        private final Image icon;
+//
+//        private final Bag bag;
+//
+//// --Commented out by Inspection START (8/28/18, 6:50 PM):
+////        public BagTab(Bag bag) {
+////            super();
+////
+////            this.bag = bag;
+////
+////            icon = icon();
+////            add(icon);
+////        }
+//// --Commented out by Inspection STOP (8/28/18, 6:50 PM)
+//
+//// --Commented out by Inspection START (8/28/18, 6:50 PM):
+////        @Override
+////        protected void select(boolean value) {
+////            super.select(value);
+////            icon.am = selected ? 1.0f : 0.6f;
+////        }
+//// --Commented out by Inspection STOP (8/28/18, 6:50 PM)
+//
+//// --Commented out by Inspection START (8/28/18, 6:50 PM):
+////        @Override
+////        protected void layout() {
+////            super.layout();
+////
+////            icon.copy(icon());
+////            icon.x = x + (width - icon.width) / 2;
+////            icon.y = y + (height - icon.height) / 2 - 2 - (selected ? 0 : 1);
+////            if (!selected && icon.y < y + CUT) {
+////                RectF frame = icon.frame();
+////                frame.top += (y + CUT - icon.y) / icon.texture.height;
+////                icon.frame(frame);
+////                icon.y = y + CUT;
+////            }
+////        }
+//// --Commented out by Inspection STOP (8/28/18, 6:50 PM)
+//
+//        private Image icon() {
+//            if (bag instanceof SeedPouch) {
+//                return Icons.get(Icons.SEED_POUCH);
+//            } else if (bag instanceof ScrollHolder) {
+// --Commented out by Inspection STOP (8/28/18, 6:50 PM)
+//                return Icons.get(Icons.SCROLL_HOLDER);
+//            } else if (bag instanceof WandHolster) {
+//                return Icons.get(Icons.WAND_HOLSTER);
+//            } else if (bag instanceof Keyring) {
+//                return Icons.get(Icons.KEYRING);
+//            } else {
+//                return Icons.get(Icons.BACKPACK);
+//            }
+//        }
+//    }
 
-        private final Image icon;
-
-        private final Bag bag;
-
-        public BagTab(Bag bag) {
-            super();
-
-            this.bag = bag;
-
-            icon = icon();
-            add(icon);
-        }
-
-        @Override
-        protected void select(boolean value) {
-            super.select(value);
-            icon.am = selected ? 1.0f : 0.6f;
-        }
-
-        @Override
-        protected void layout() {
-            super.layout();
-
-            icon.copy(icon());
-            icon.x = x + (width - icon.width) / 2;
-            icon.y = y + (height - icon.height) / 2 - 2 - (selected ? 0 : 1);
-            if (!selected && icon.y < y + CUT) {
-                RectF frame = icon.frame();
-                frame.top += (y + CUT - icon.y) / icon.texture.height;
-                icon.frame(frame);
-                icon.y = y + CUT;
-            }
-        }
-
-        private Image icon() {
-            if (bag instanceof SeedPouch) {
-                return Icons.get(Icons.SEED_POUCH);
-            } else if (bag instanceof ScrollHolder) {
-                return Icons.get(Icons.SCROLL_HOLDER);
-            } else if (bag instanceof WandHolster) {
-                return Icons.get(Icons.WAND_HOLSTER);
-            } else if (bag instanceof Keyring) {
-                return Icons.get(Icons.KEYRING);
-            } else {
-                return Icons.get(Icons.BACKPACK);
-            }
-        }
-    }
-
-    private static class Placeholder extends Skill {
-        {
-            name = null;
-        }
-
-        public Placeholder(int image) {
-            this.image = image;
-        }
-    }
+// --Commented out by Inspection START (8/28/18, 6:50 PM):
+//    private static class Placeholder extends Skill {
+//        {
+//            name = null;
+//        }
+//
+//// --Commented out by Inspection START (8/28/18, 6:50 PM):
+////        public Placeholder(int image) {
+// --Commented out by Inspection STOP (8/28/18, 6:50 PM)
+//            this.image = image;
+//        }
+// --Commented out by Inspection STOP (8/28/18, 6:50 PM)
+//    }
 
     private class SkillButton extends SkillSlot {
 
         private static final int NORMAL = 0xFF4A4D44;
-        private static final int EQUIPPED = 0xFF63665B;
+        // --Commented out by Inspection (8/28/18, 6:50 PM):private static final int EQUIPPED = 0xFF63665B;
 
 
         private final Skill skill;

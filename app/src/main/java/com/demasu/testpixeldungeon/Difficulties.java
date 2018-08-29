@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public enum Difficulties {
 
-    NORMAL(0), EASY(1), HARD(2), HELL(3), SUICIDE(4), JUSTKILLME(5);
+    NORMAL(), EASY(), HARD(), HELL(), SUICIDE(), JUSTKILLME();
 
 
     public static final boolean canDisableChampions = false;
@@ -17,7 +17,7 @@ public enum Difficulties {
     private int championOffset;
     private float hpOffset;
     private float attOffset;
-    private final float defOffset;
+    // --Commented out by Inspection (8/28/18, 6:47 PM):private final float defOffset;
     private float defenceOffset = 0;
 
     public enum isNightOverwrite {DEFAULT, ALWAYS_DAY, ALWAYS_NIGHT}
@@ -26,11 +26,11 @@ public enum Difficulties {
 
     private final ArrayList<Integer> disabledChampions = new ArrayList<>();
 
-    Difficulties(int difficulty) {
+    Difficulties() {
         championOffset = 0;
         hpOffset = 0;
         attOffset = 0;
-        defOffset = 0;
+        //defOffset = 0;
         disabledChampions.clear();
     }
 
@@ -379,19 +379,21 @@ public enum Difficulties {
         return true;
     }
 
-    public void ToggleNight() {
-        switch (isNight) {
-            case ALWAYS_DAY:
-                isNight = isNightOverwrite.ALWAYS_NIGHT;
-                break;
-            case ALWAYS_NIGHT:
-                isNight = isNightOverwrite.DEFAULT;
-                break;
-            case DEFAULT:
-                isNight = isNightOverwrite.ALWAYS_NIGHT;
-                break;
-        }
-    }
+// --Commented out by Inspection START (8/28/18, 6:54 PM):
+//    public void ToggleNight() {
+//        switch (isNight) {
+//            case ALWAYS_DAY:
+//                isNight = isNightOverwrite.ALWAYS_NIGHT;
+//                break;
+//            case ALWAYS_NIGHT:
+//                isNight = isNightOverwrite.DEFAULT;
+//                break;
+//            case DEFAULT:
+//                isNight = isNightOverwrite.ALWAYS_NIGHT;
+//                break;
+//        }
+//    }
+// --Commented out by Inspection STOP (8/28/18, 6:54 PM)
 
     public void ToggleNight(boolean harder) {
         if (harder) {

@@ -35,10 +35,10 @@ public class ScrollPane extends Component {
     final Component content;
     private ColorBlock thumb;
 
-    protected float minX;
-    protected float minY;
-    protected float maxX;
-    protected float maxY;
+    // --Commented out by Inspection (8/28/18, 7:00 PM):protected float minX;
+    // --Commented out by Inspection (8/28/18, 7:00 PM):protected float minY;
+    // --Commented out by Inspection (8/28/18, 7:00 PM):protected float maxX;
+    // --Commented out by Inspection (8/28/18, 7:00 PM):protected float maxY;
 
     public ScrollPane(Component content) {
         super();
