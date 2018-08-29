@@ -81,7 +81,7 @@ public class WndStory extends Window {
     private float delay;
 
     public WndStory(String text) {
-        super(0, 0, Objects.requireNonNull(Chrome.get(Chrome.Type.SCROLL)));
+        super(Objects.requireNonNull(Chrome.get(Chrome.Type.SCROLL)));
 
         tf = PixelScene.createMultiline(text, 7);
         tf.maxWidth = WIDTH - MARGIN * 2;

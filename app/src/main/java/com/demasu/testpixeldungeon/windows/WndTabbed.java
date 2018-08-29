@@ -36,7 +36,7 @@ public class WndTabbed extends Window {
     private Tab selected;
 
     WndTabbed() {
-        super(0, 0, Objects.requireNonNull(Chrome.get(Chrome.Type.TAB_SET)));
+        super(Objects.requireNonNull(Chrome.get(Chrome.Type.TAB_SET)));
     }
 
     void add(Tab tab) {

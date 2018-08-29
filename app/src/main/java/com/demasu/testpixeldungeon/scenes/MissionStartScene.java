@@ -203,7 +203,6 @@ public class MissionStartScene extends PixelScene {
         unlock = new Group();
         add(unlock);
 
-        boolean huntressUnlocked;
         if (!Badges.isUnlocked(Badges.Badge.BOSS_SLAIN_3)) {
 
             BitmapTextMultiline text = PixelScene.createMultiline(TXT_UNLOCK, 9);
