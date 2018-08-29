@@ -22,53 +22,69 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
-public class RemoteBomb extends Item {
+// --Commented out by Inspection START (8/29/18, 12:33 PM):
+// --Commented out by Inspection START (8/29/18, 12:33 PM):
+////public class RemoteBomb extends Item {
+////
+////    {
+////        name = "remote bomb";
+////        image = ItemSpriteSheet.RemoteBomb;
+////        defaultAction = AC_THROW;
+////        stackable = true;
+////    }
+////
+////// --Commented out by Inspection START (8/29/18, 12:33 PM):
+//////    @Override
+//////    protected void onThrow(int cell) {
+//////        if (Level.pit[cell]) {
+//////            super.onThrow(cell);
+//////        } else {
+//////            RemoteBombGround tmp = new RemoteBombGround();
+//////            tmp.pos = cell;
+//////            Dungeon.level.drop(tmp, cell).sprite.drop();
+//////        }
+//////
+//////
+//////    }
+////// --Commented out by Inspection STOP (8/29/18, 12:33 PM)
+////
+////
+////// --Commented out by Inspection START (8/29/18, 12:33 PM):
+//////    @Override
+//////    public boolean isUpgradable() {
+//////        return false;
+//////    }
+////// --Commented out by Inspection STOP (8/29/18, 12:33 PM)
+////
+////// --Commented out by Inspection START (8/29/18, 12:33 PM):
+// --Commented out by Inspection STOP (8/29/18, 12:33 PM)
+////    @Override
+////    public boolean isIdentified() {
+////        return true;
+////    }
+//// --Commented out by Inspection STOP (8/29/18, 12:33 PM)
+// --Commented out by Inspection STOP (8/29/18, 12:33 PM)
 
-    {
-        name = "remote bomb";
-        image = ItemSpriteSheet.RemoteBomb;
-        defaultAction = AC_THROW;
-        stackable = true;
-    }
+// --Commented out by Inspection START (8/29/18, 12:33 PM):
+//    @Override
+//    public Item random() {
+//        quantity = Random.Int(1, 1);
+//        return this;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:33 PM)
 
-    @Override
-    protected void onThrow(int cell) {
-        if (Level.pit[cell]) {
-            super.onThrow(cell);
-        } else {
-            RemoteBombGround tmp = new RemoteBombGround();
-            tmp.pos = cell;
-            Dungeon.level.drop(tmp, cell).sprite.drop();
-        }
+// --Commented out by Inspection START (8/29/18, 12:33 PM):
+//    @Override
+//    public int price() {
+//        return 10 * quantity;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:33 PM)
 
-
-    }
-
-
-    @Override
-    public boolean isUpgradable() {
-        return false;
-    }
-
-    @Override
-    public boolean isIdentified() {
-        return true;
-    }
-
-    @Override
-    public Item random() {
-        quantity = Random.Int(1, 1);
-        return this;
-    }
-
-    @Override
-    public int price() {
-        return 10 * quantity;
-    }
-
-    @Override
-    public String info() {
-        return
-                "After being thrown, this bomb will explode once it receives a signal from a trigger beacon.";
-    }
-}
+// --Commented out by Inspection START (8/29/18, 12:33 PM):
+//    @Override
+//    public String info() {
+//        return
+//                "After being thrown, this bomb will explode once it receives a signal from a trigger beacon.";
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:33 PM)
+//}

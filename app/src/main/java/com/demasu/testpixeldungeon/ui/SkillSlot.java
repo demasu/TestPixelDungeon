@@ -31,8 +31,8 @@ public class SkillSlot extends Button {
     // --Commented out by Inspection (8/28/18, 6:53 PM):public static final int UPGRADED = 0x44FF44;
     // --Commented out by Inspection (8/28/18, 6:53 PM):public static final int WARNING = 0xFF8800;
 
-    private static final float ENABLED = 1.0f;
-    private static final float DISABLED = 0.3f;
+    // --Commented out by Inspection (8/29/18, 12:20 PM):private static final float ENABLED = 1.0f;
+    // --Commented out by Inspection (8/29/18, 12:20 PM):private static final float DISABLED = 0.3f;
 
     private SkillSprite icon;
     private BitmapText activeText;

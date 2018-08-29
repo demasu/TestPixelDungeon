@@ -61,8 +61,8 @@ public class WndMerc extends WndTabbed {
 //    }
 // --Commented out by Inspection STOP (8/28/18, 9:30 PM)
 
-    private static final int COLS_P = 4;
-    private static final int COLS_L = 6;
+    // --Commented out by Inspection (8/29/18, 12:19 PM):private static final int COLS_P = 4;
+    // --Commented out by Inspection (8/29/18, 12:19 PM):private static final int COLS_L = 6;
 
     private static final int SLOT_SIZE = 28;
     private static final int SLOT_MARGIN = 1;

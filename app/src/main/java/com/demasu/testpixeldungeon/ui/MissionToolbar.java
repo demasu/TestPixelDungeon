@@ -61,19 +61,19 @@ public class MissionToolbar extends Component {
     private Tool btnQuick1;
     private Tool btnQuick2;
 
-    private PickedUpItem pickedUp;
+    // --Commented out by Inspection (8/29/18, 12:30 PM):private PickedUpItem pickedUp;
 
     private boolean lastEnabled = true;
 
     private static boolean tapAgainToSearch = false;
 
-    private static MissionToolbar instance;
+    // --Commented out by Inspection (8/29/18, 12:30 PM):private static MissionToolbar instance;
 
 
     public MissionToolbar() {
         super();
 
-        instance = this;
+        //instance = this;
 
         height = btnInventory.height();
     }
@@ -196,7 +196,7 @@ public class MissionToolbar extends Component {
         add(btnQuick2 = new QuickslotTool(false));
         btnQuick2.visible = (QuickSlot.secondaryValue != null);
 
-        add(pickedUp = new PickedUpItem());
+        add(new PickedUpItem());
     }
 
     @Override
@@ -437,21 +437,23 @@ public class MissionToolbar extends Component {
                             false;
         }
 
-        void reset(Item item, float dstX, float dstY) {
-            view(item.image(), item.glowing());
-
-            active =
-                    visible =
-                            true;
-
-            this.dstX = dstX - ItemSprite.SIZE / 2;
-            this.dstY = dstY - ItemSprite.SIZE / 2;
-            left = DURATION;
-
-            x = this.dstX - DISTANCE;
-            y = this.dstY - DISTANCE;
-            alpha(1);
-        }
+// --Commented out by Inspection START (8/29/18, 12:30 PM):
+//        void reset(Item item, float dstX, float dstY) {
+//            view(item.image(), item.glowing());
+//
+//            active =
+//                    visible =
+//                            true;
+//
+//            this.dstX = dstX - ItemSprite.SIZE / 2;
+//            this.dstY = dstY - ItemSprite.SIZE / 2;
+//            left = DURATION;
+//
+//            x = this.dstX - DISTANCE;
+//            y = this.dstY - DISTANCE;
+//            alpha(1);
+//        }
+// --Commented out by Inspection STOP (8/29/18, 12:30 PM)
 
         @Override
         public void update() {

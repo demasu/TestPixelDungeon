@@ -143,8 +143,8 @@ public class Badges {
         GAMES_PLAYED_3("500 games played", 62, true),
         GAMES_PLAYED_4("2000 games played", 63, true),
         HAPPY_END("Happy end", 38),
-        CHAMPION("Challenge won", 39, true),
-        SUPPORTER("Thanks for your support!", 31, true);
+        CHAMPION("Challenge won", 39, true);
+        // --Commented out by Inspection (8/29/18, 12:24 PM):SUPPORTER("Thanks for your support!", 31, true);
 
         final boolean meta;
 

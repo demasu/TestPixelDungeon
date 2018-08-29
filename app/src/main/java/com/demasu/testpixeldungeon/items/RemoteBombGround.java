@@ -129,7 +129,7 @@ public class RemoteBombGround extends Item {
             CellEmitter.center(pos).burst(BlastParticle.FACTORY, 30);
         }
 
-        boolean terrainAffected = false;
+        //boolean terrainAffected = false;
         for (int n : Level.NEIGHBOURS9) {
             int c = pos + n;
             if (c >= 0 && c < Level.LENGTH) {

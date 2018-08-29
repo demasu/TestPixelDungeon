@@ -78,27 +78,29 @@ public class BitmapCache {
 //    }
 // --Commented out by Inspection STOP (8/28/18, 6:54 PM)
 
-    @SuppressWarnings("SameParameterValue")
-    private static Bitmap get(String layerName, int resID) {
-
-        Layer layer;
-        if (!layers.containsKey(layerName)) {
-            layer = new Layer();
-            layers.put(layerName, layer);
-        } else {
-            layer = layers.get(layerName);
-        }
-
-        if (layer.containsKey(resID)) {
-            return layer.get(resID);
-        } else {
-
-            Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), resID);
-            layer.put(resID, bmp);
-            return bmp;
-
-        }
-    }
+// --Commented out by Inspection START (8/29/18, 12:21 PM):
+//    @SuppressWarnings("SameParameterValue")
+//    private static Bitmap get(String layerName, int resID) {
+//
+//        Layer layer;
+//        if (!layers.containsKey(layerName)) {
+//            layer = new Layer();
+//            layers.put(layerName, layer);
+//        } else {
+//            layer = layers.get(layerName);
+//        }
+//
+//        if (layer.containsKey(resID)) {
+//            return layer.get(resID);
+//        } else {
+//
+//            Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), resID);
+//            layer.put(resID, bmp);
+//            return bmp;
+//
+//        }
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:21 PM)
 
 // --Commented out by Inspection START (8/28/18, 6:54 PM):
 //    public static void clear(String layerName) {

@@ -52,36 +52,44 @@ public class Weightstone extends Item {
         stackable = true;
     }
 
-    @Override
-    public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = super.actions(hero);
-        actions.add(AC_APPLY);
-        return actions;
-    }
+// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//    @Override
+//    public ArrayList<String> actions(Hero hero) {
+//        ArrayList<String> actions = super.actions(hero);
+//        actions.add(AC_APPLY);
+//        return actions;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
 
-    @Override
-    public void execute(Hero hero, String action) {
-        if (Objects.equals(action, AC_APPLY)) {
+// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//    @Override
+//    public void execute(Hero hero, String action) {
+//        if (Objects.equals(action, AC_APPLY)) {
+//
+//            curUser = hero;
+//            GameScene.selectItem(itemSelector, WndBag.Mode.WEAPON, TXT_SELECT_WEAPON);
+//
+//        } else {
+//
+//            super.execute(hero, action);
+//
+//        }
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
 
-            curUser = hero;
-            GameScene.selectItem(itemSelector, WndBag.Mode.WEAPON, TXT_SELECT_WEAPON);
+// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//    @Override
+//    public boolean isUpgradable() {
+//        return false;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
 
-        } else {
-
-            super.execute(hero, action);
-
-        }
-    }
-
-    @Override
-    public boolean isUpgradable() {
-        return false;
-    }
-
-    @Override
-    public boolean isIdentified() {
-        return true;
-    }
+// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//    @Override
+//    public boolean isIdentified() {
+//        return true;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
 
     private void apply(Weapon weapon, boolean forSpeed) {
 
@@ -103,25 +111,31 @@ public class Weightstone extends Item {
         curUser.busy();
     }
 
-    @Override
-    public int price() {
-        return 40 * quantity;
-    }
+// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//    @Override
+//    public int price() {
+//        return 40 * quantity;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
 
-    @Override
-    public String info() {
-        return
-                "Using a weightstone, you can balance your melee weapon to increase its speed or accuracy.";
-    }
+// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//    @Override
+//    public String info() {
+//        return
+//                "Using a weightstone, you can balance your melee weapon to increase its speed or accuracy.";
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
 
-    private final WndBag.Listener itemSelector = new WndBag.Listener() {
-        @Override
-        public void onSelect(Item item) {
-            if (item != null) {
-                GameScene.show(new WndBalance((Weapon) item));
-            }
-        }
-    };
+//    private final WndBag.Listener itemSelector = new WndBag.Listener() {
+// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//        @Override
+//        public void onSelect(Item item) {
+//            if (item != null) {
+//                GameScene.show(new WndBalance((Weapon) item));
+//            }
+//        }
+// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
+//    };
 
     class WndBalance extends Window {
 
@@ -154,11 +168,13 @@ public class Weightstone extends Item {
 
             if (weapon.imbue != Weapon.Imbue.SPEED) {
                 RedButton btnSpeed = new RedButton(TXT_SPEED) {
-                    @Override
-                    protected void onClick() {
-                        hide();
-                        Weightstone.this.apply(weapon, true);
-                    }
+// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//                    @Override
+//                    protected void onClick() {
+//                        hide();
+//                        Weightstone.this.apply(weapon, true);
+//                    }
+// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
                 };
                 btnSpeed.setRect(MARGIN, pos + MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT);
                 add(btnSpeed);
@@ -168,11 +184,13 @@ public class Weightstone extends Item {
 
             if (weapon.imbue != Weapon.Imbue.ACCURACY) {
                 RedButton btnAccuracy = new RedButton(TXT_ACCURACY) {
-                    @Override
-                    protected void onClick() {
-                        hide();
-                        Weightstone.this.apply(weapon, false);
-                    }
+// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//                    @Override
+//                    protected void onClick() {
+//                        hide();
+//                        Weightstone.this.apply(weapon, false);
+//                    }
+// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
                 };
                 btnAccuracy.setRect(MARGIN, pos + MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT);
                 add(btnAccuracy);
@@ -181,10 +199,12 @@ public class Weightstone extends Item {
             }
 
             RedButton btnCancel = new RedButton(TXT_CANCEL) {
-                @Override
-                protected void onClick() {
-                    hide();
-                }
+// --Commented out by Inspection START (8/29/18, 12:34 PM):
+//                @Override
+//                protected void onClick() {
+//                    hide();
+//                }
+// --Commented out by Inspection STOP (8/29/18, 12:34 PM)
             };
             btnCancel.setRect(MARGIN, pos + MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT);
             add(btnCancel);

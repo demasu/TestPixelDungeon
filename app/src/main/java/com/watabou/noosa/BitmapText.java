@@ -240,34 +240,36 @@ public class BitmapText extends Visual {
 //        }
 // --Commented out by Inspection STOP (8/28/18, 6:50 PM)
 
-        Font(SmartTexture tx, int width, int height, String chars) {
-            super(tx);
-
-            texture = tx;
-
-            autoUppercase = chars.equals(LATIN_UPPER);
-
-            int length = chars.length();
-
-            float uw = (float) width / tx.width;
-            float vh = (float) height / tx.height;
-
-            float left = 0;
-            float top = 0;
-            float bottom = vh;
-
-            for (int i = 0; i < length; i++) {
-                RectF rect = new RectF(left, top, left += uw, bottom);
-                add(chars.charAt(i), rect);
-                if (left >= 1) {
-                    left = 0;
-                    top = bottom;
-                    bottom += vh;
-                }
-            }
-
-            lineHeight = baseLine = height;
-        }
+// --Commented out by Inspection START (8/29/18, 12:21 PM):
+//        Font(SmartTexture tx, int width, int height, String chars) {
+//            super(tx);
+//
+//            texture = tx;
+//
+//            autoUppercase = chars.equals(LATIN_UPPER);
+//
+//            int length = chars.length();
+//
+//            float uw = (float) width / tx.width;
+//            float vh = (float) height / tx.height;
+//
+//            float left = 0;
+//            float top = 0;
+//            float bottom = vh;
+//
+//            for (int i = 0; i < length; i++) {
+//                RectF rect = new RectF(left, top, left += uw, bottom);
+//                add(chars.charAt(i), rect);
+//                if (left >= 1) {
+//                    left = 0;
+//                    top = bottom;
+//                    bottom += vh;
+//                }
+//            }
+//
+//            lineHeight = baseLine = height;
+//        }
+// --Commented out by Inspection STOP (8/29/18, 12:21 PM)
 
         void splitBy(Bitmap bitmap, int height, int color, String chars) {
 

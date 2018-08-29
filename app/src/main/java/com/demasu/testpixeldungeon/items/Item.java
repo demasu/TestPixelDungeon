@@ -412,13 +412,17 @@ public class Item implements Bundlable {
         return levelKnown ? level() : 0;
     }
 
-    public boolean visiblyCursed() {
-        return cursed && cursedKnown;
-    }
+// --Commented out by Inspection START (8/29/18, 12:36 PM):
+//    public boolean visiblyCursed() {
+//        return cursed && cursedKnown;
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:36 PM)
 
-    public boolean visiblyBroken() {
-        return levelKnown && isBroken();
-    }
+// --Commented out by Inspection START (8/29/18, 12:36 PM):
+//    public boolean visiblyBroken() {
+//        return levelKnown && isBroken();
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:36 PM)
 
     public boolean isUpgradable() {
         return true;
@@ -638,42 +642,46 @@ public class Item implements Bundlable {
                 });
     }
 
-    public void cast(final HiredMerc user, int dst) {
-
-        final int cell = Ballistica.cast(user.pos, dst, false, true);
-        user.sprite.zap(cell);
-        //user.busy();
-
-        Sample.INSTANCE.play(Assets.SND_MISS, 0.6f, 0.6f, 1.5f);
-
-        Char enemy = Actor.findChar(cell);
-        QuickSlot.target(enemy);
-
-        // FIXME!!!
-        float delay = TIME_TO_THROW;
-        if (this instanceof MissileWeapon) {
-            // delay *= ((MissileWeapon)this).speedFactor( user );
-            if (enemy != null) {
-                SnipersMark mark = user.buff(SnipersMark.class);
-                if (mark != null) {
-                    if (mark.object == enemy.id()) {
-                        delay *= 0.5f;
-                    }
-                    user.remove(mark);
-                }
-            }
-        }
-        final float finalDelay = delay;
-
-        ((MissileSprite) user.sprite.parent.recycle(MissileSprite.class)).
-                reset(user.pos, cell, this, new Callback() {
-                    @Override
-                    public void call() {
-                        //  Item.this.detach( user.belongings.backpack ).onThrow( cell );
-                        //user.spendAndNext( finalDelay );
-                    }
-                });
-    }
+// --Commented out by Inspection START (8/29/18, 12:36 PM):
+//    public void cast(final HiredMerc user, int dst) {
+//
+//        final int cell = Ballistica.cast(user.pos, dst, false, true);
+//        user.sprite.zap(cell);
+//        //user.busy();
+//
+//        Sample.INSTANCE.play(Assets.SND_MISS, 0.6f, 0.6f, 1.5f);
+//
+//        Char enemy = Actor.findChar(cell);
+//        QuickSlot.target(enemy);
+//
+//        // FIXME!!!
+//        float delay = TIME_TO_THROW;
+//        if (this instanceof MissileWeapon) {
+//            // delay *= ((MissileWeapon)this).speedFactor( user );
+//            if (enemy != null) {
+//                SnipersMark mark = user.buff(SnipersMark.class);
+//                if (mark != null) {
+//                    if (mark.object == enemy.id()) {
+//                        delay *= 0.5f;
+//                    }
+//                    user.remove(mark);
+//                }
+//            }
+//        }
+//        final float finalDelay = delay;
+//
+//        ((MissileSprite) user.sprite.parent.recycle(MissileSprite.class)).
+//                reset(user.pos, cell, this, new Callback() {
+//// --Commented out by Inspection START (8/29/18, 12:36 PM):
+////                    @Override
+////                    public void call() {
+////                        //  Item.this.detach( user.belongings.backpack ).onThrow( cell );
+////                        //user.spendAndNext( finalDelay );
+// --Commented out by Inspection STOP (8/29/18, 12:36 PM)
+//                    }
+// --Commented out by Inspection STOP (8/29/18, 12:36 PM)
+//                });
+//    }
 
     protected void castSPD(final Hero user, int dst, int skip) {
 

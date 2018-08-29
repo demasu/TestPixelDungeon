@@ -19,6 +19,7 @@ package com.watabou.glwrap;
 
 import android.opengl.GLES20;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class Framebuffer {
 
     // --Commented out by Inspection (8/28/18, 6:56 PM):public static final int COLOR = GLES20.GL_COLOR_ATTACHMENT0;
@@ -35,9 +36,11 @@ public class Framebuffer {
         id = buffers[0];
     }
 
-    private void bind() {
-        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, id);
-    }
+// --Commented out by Inspection START (8/29/18, 12:24 PM):
+//    private void bind() {
+//        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, id);
+//    }
+// --Commented out by Inspection STOP (8/29/18, 12:24 PM)
 
 // --Commented out by Inspection START (8/28/18, 6:56 PM):
 //    public void delete() {
