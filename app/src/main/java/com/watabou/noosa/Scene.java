@@ -53,6 +53,11 @@ public class Scene extends Group {
     }
 
     @SuppressWarnings("EmptyMethod")
+    public void resume() {
+
+    }
+
+    @SuppressWarnings("EmptyMethod")
     @Override
     public void update() {
         super.update();

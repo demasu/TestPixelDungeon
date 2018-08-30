@@ -192,7 +192,7 @@ public class Hero extends Char {
 
 
     private ArrayList<Mob> visibleEnemies;
-    public static final WandOfMagicCasting haxWand = new WandOfMagicCasting();
+    public static WandOfMagicCasting haxWand = new WandOfMagicCasting();
 
     public Hero() {
         super();

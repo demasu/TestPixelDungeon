@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import android.util.Log;
 
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.levels.painters.*;
@@ -39,7 +40,7 @@ public class Room extends Rect implements Graph.Node, Bundlable {
     public HashMap<Room, Door> connected = new HashMap<>();
 
     public int distance;
-    private int price = 1;
+    public int price = 1;
 
     public enum Type {
         NULL(null),
@@ -69,9 +70,11 @@ public class Room extends Rect implements Graph.Node, Bundlable {
         ALTAR(AltarPainter.class);
 
         private Method paint;
+        private static final String TAG = "# TPD: ";
 
-        Type(Class<? extends Painter> painter) {
+        private Type(Class<? extends Painter> painter) {
             try {
+                Log.i( TAG, "Looking for method paint(). Painter is: " + painter);
                 paint = painter.getMethod("paint", Level.class, Room.class);
             } catch (Exception e) {
                 paint = null;
@@ -80,6 +83,7 @@ public class Room extends Rect implements Graph.Node, Bundlable {
 
         public void paint(Level level, Room room) {
             try {
+                Log.i( TAG, "Attempting to invoke paint. Level is " + level + ". Room is " + room );
                 paint.invoke(null, level, room);
             } catch (Exception e) {
                 PixelDungeon.reportException(e);

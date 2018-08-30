@@ -135,15 +135,15 @@ public abstract class Level implements Bundlable {
     public HashMap<Class<? extends Blob>, Blob> blobs;
     public SparseArray<Plant> plants;
 
-    ArrayList<Item> itemsToSpawn = new ArrayList<>();
+    protected ArrayList<Item> itemsToSpawn = new ArrayList<>();
 
     @SuppressWarnings("CanBeFinal")
     public int color1 = 0x004400;
     @SuppressWarnings("CanBeFinal")
     public int color2 = 0x88CC44;
 
-    static boolean pitRoomNeeded = false;
-    static boolean weakFloorCreated = false;
+    protected static boolean pitRoomNeeded = false;
+    protected static boolean weakFloorCreated = false;
 
     private static final String MAP = "map";
     private static final String VISITED = "visited";
@@ -380,7 +380,7 @@ public abstract class Level implements Bundlable {
         }
     }
 
-    int nMobs() {
+    public int nMobs() {
         return 0;
     }
 
@@ -686,7 +686,7 @@ public abstract class Level implements Bundlable {
         return heap;
     }
 
-    public void plant(Plant.Seed seed, int pos) {
+    public Plant plant(Plant.Seed seed, int pos) {
         Plant plant = plants.get(pos);
         if (plant != null) {
             plant.wither();
@@ -697,6 +697,7 @@ public abstract class Level implements Bundlable {
 
         GameScene.add(plant);
 
+        return plant;
     }
 
     public void uproot(int pos) {
@@ -905,7 +906,7 @@ public abstract class Level implements Bundlable {
         }
     }
 
-    public void updateFieldOfView(Char c) {
+    public boolean[] updateFieldOfView(Char c) {
 
         int cx = c.pos % WIDTH;
         int cy = c.pos / WIDTH;
@@ -996,6 +997,7 @@ public abstract class Level implements Bundlable {
             }
         }
 
+        return fieldOfView;
     }
 
     public static int distance(int a, int b) {

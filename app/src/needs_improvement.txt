@@ -1,0 +1,26 @@
+main/java/com/demasu/testpixeldungeon/ui/Window.java:    protected Window() {
+main/java/com/demasu/testpixeldungeon/ui/Window.java:    protected Window(NinePatch chrome) {
+main/java/com/demasu/testpixeldungeon/ui/Tag.java:    Tag(int color) {
+main/java/com/demasu/testpixeldungeon/ui/SkillSlot.java:    protected SkillSlot() {
+main/java/com/demasu/testpixeldungeon/ui/SkillSlot.java:    protected SkillSlot(Skill skill) {
+main/java/com/demasu/testpixeldungeon/ui/ItemSlot.java:    protected ItemSlot(Item item) {
+main/java/com/demasu/testpixeldungeon/actors/mobs/npcs/HiredMerc.java:    protected HiredMerc() {
+main/java/com/demasu/testpixeldungeon/actors/blobs/Blob.java:    Blob() {
+main/java/com/demasu/testpixeldungeon/sprites/CharSprite.java:    CharSprite() {
+main/java/com/demasu/testpixeldungeon/windows/WndTabbed.java:    WndTabbed() {
+main/java/com/demasu/testpixeldungeon/items/weapon/melee/MeleeWeapon.java:    MeleeWeapon(int tier, float acu, float dly) {
+main/java/com/demasu/testpixeldungeon/items/armor/ClassArmor.java:    ClassArmor() {
+main/java/com/demasu/testpixeldungeon/items/keys/Key.java:    Key() {
+main/java/com/watabou/glwrap/Texture.java:    protected Texture() {
+main/java/com/watabou/glwrap/Program.java:    protected Program() {
+main/java/com/watabou/noosa/Gizmo.java:    protected Gizmo() {
+main/java/com/watabou/noosa/BitmapText.java:    protected BitmapText() {
+main/java/com/watabou/noosa/Tilemap.java:    protected Tilemap(Object tx, TextureFilm tileset) {
+main/java/com/watabou/noosa/MovieClip.java:    protected MovieClip() {
+main/java/com/watabou/noosa/MovieClip.java:    protected MovieClip(Object tx) {
+main/java/com/watabou/noosa/TextureFilm.java:    TextureFilm(Object tx) {
+main/java/com/watabou/noosa/tweeners/Tweener.java:    protected Tweener(Gizmo target, float interval) {
+main/java/com/watabou/noosa/Visual.java:    protected Visual(float x, float y, float width, float height) {
+main/java/com/watabou/noosa/NinePatch.java:    protected NinePatch() {
+main/java/com/watabou/noosa/PseudoPixel.java:    protected PseudoPixel() {
+main/java/com/watabou/noosa/Camera.java:    public PointF screenToCamera(int x, int y) {

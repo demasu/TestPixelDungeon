@@ -51,7 +51,7 @@ public class WandOfMagicCasting extends Wand {
     }
 
 
-    private void castSpellCost() {
+    public void castSpellCost() {
         switch (casting) {
             case DARK_BOLT:
                 Dungeon.hero.MP -= Dungeon.hero.heroSkills.passiveB2.getManaCost();
@@ -75,9 +75,9 @@ public class WandOfMagicCasting extends Wand {
 
     public enum CAST_TYPES {DARK_BOLT, DOMINANCE, SOUL_SPARK, SPARK}
 
-    private CAST_TYPES casting = CAST_TYPES.DARK_BOLT;
+    public CAST_TYPES casting = CAST_TYPES.DARK_BOLT;
 
-    private static final CellSelector.Listener zapper = new CellSelector.Listener() {
+    protected static CellSelector.Listener zapper = new CellSelector.Listener() {
 
         @Override
         public void onSelect(Integer target) {
