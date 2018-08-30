@@ -122,7 +122,8 @@ public class MovieLevel extends Level {
     }
 
     @Override
-    public void updateFieldOfView(Char c) {
+    public boolean[] updateFieldOfView(Char c) {
+        return fieldOfView;
     }
 
     @Override

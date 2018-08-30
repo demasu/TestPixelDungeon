@@ -36,7 +36,7 @@ public class PassagePainter extends Painter {
 
         int floor = level.tunnelTile();
 
-        ArrayList<Integer> joints = new ArrayList<>();
+        ArrayList<Integer> joints = new ArrayList<Integer>();
         for (Point door : room.connected.values()) {
             joints.add(xy2p(room, door));
         }

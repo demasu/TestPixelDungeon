@@ -101,7 +101,7 @@ public class ShopPainter extends Painter {
 
     private static Item[] range() {
 
-        ArrayList<Item> items = new ArrayList<>();
+        ArrayList<Item> items = new ArrayList<Item>();
 
         switch (Dungeon.depth) {
             case 1:

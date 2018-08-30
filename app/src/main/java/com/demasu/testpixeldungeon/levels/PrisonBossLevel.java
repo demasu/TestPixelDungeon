@@ -195,7 +195,7 @@ public class PrisonBossLevel extends RegularLevel {
     }
 
     @Override
-    void placeTraps() {
+    protected void placeTraps() {
 
         int nTraps = nTraps();
 

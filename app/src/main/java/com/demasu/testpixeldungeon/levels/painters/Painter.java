@@ -30,7 +30,7 @@ public class Painter {
         level.map[cell] = value;
     }
 
-    static void set(Level level, int x, int y, int value) {
+    public static void set(Level level, int x, int y, int value) {
         set(level, x + y * Level.WIDTH, value);
     }
 
@@ -52,7 +52,7 @@ public class Painter {
         fill(level, rect.left, rect.top, rect.width() + 1, rect.height() + 1, value);
     }
 
-    static void fill(Level level, Rect rect, int m, int value) {
+    public static void fill(Level level, Rect rect, int m, int value) {
         fill(level, rect.left + m, rect.top + m, rect.width() + 1 - m * 2, rect.height() + 1 - m * 2, value);
     }
 
@@ -60,7 +60,7 @@ public class Painter {
         fill(level, rect.left + l, rect.top + t, rect.width() + 1 - (l + r), rect.height() + 1 - (t + b), value);
     }
 
-    static Point drawInside(Level level, Room room, Point from, int n, int value) {
+    public static Point drawInside(Level level, Room room, Point from, int n, int value) {
 
         Point step = new Point();
         if (from.x == room.left) {
