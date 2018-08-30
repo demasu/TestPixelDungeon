@@ -44,7 +44,7 @@ public class Window extends Group implements Signal.Listener<Key> {
 
     public static final int TITLE_COLOR = 0xFFFF44;
 
-    protected Window() {
+    public Window() {
         this(Objects.requireNonNull(Chrome.get(Chrome.Type.WINDOW)));
     }
 
@@ -55,7 +55,7 @@ public class Window extends Group implements Signal.Listener<Key> {
 // --Commented out by Inspection STOP (8/28/18, 7:00 PM)
 
     //This was variables instead of constants in commit b50dd20ecd and earlier
-    protected Window(NinePatch chrome) {
+    public Window(NinePatch chrome) {
         super();
 
         blocker = new TouchArea(0, 0, PixelScene.uiCamera.width, PixelScene.uiCamera.height) {

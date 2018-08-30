@@ -29,7 +29,7 @@ abstract public class Tweener extends Gizmo {
 
     public Listener listener;
 
-    protected Tweener(Gizmo target, float interval) {
+    public Tweener(Gizmo target, float interval) {
         super();
 
         this.target = target;

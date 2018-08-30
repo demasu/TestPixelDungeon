@@ -30,11 +30,11 @@ public class MovieClip extends Image {
 
     protected Listener listener;
 
-    protected MovieClip() {
+    public MovieClip() {
         super();
     }
 
-    protected MovieClip(Object tx) {
+    public MovieClip(Object tx) {
         super(tx);
     }
 

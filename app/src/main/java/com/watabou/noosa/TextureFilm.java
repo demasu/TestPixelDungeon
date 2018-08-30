@@ -33,7 +33,7 @@ public class TextureFilm {
 
     final HashMap<Object, RectF> frames = new HashMap<>();
 
-    TextureFilm(Object tx) {
+    public TextureFilm(Object tx) {
 
         SmartTexture texture = TextureCache.get(tx);
 

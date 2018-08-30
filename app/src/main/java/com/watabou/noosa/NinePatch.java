@@ -27,23 +27,23 @@ import android.graphics.RectF;
 
 public class NinePatch extends Visual {
 
-    protected final SmartTexture texture;
+    protected SmartTexture texture;
 
-    private final float[] vertices;
-    private final FloatBuffer verticesBuffer;
+    private float[] vertices;
+    private FloatBuffer verticesBuffer;
 
-    private final RectF outterF;
-    private final RectF innerF;
+    private RectF outterF;
+    private RectF innerF;
 
-    private final int marginLeft;
-    private final int marginRight;
-    private final int marginTop;
-    private final int marginBottom;
+    private int marginLeft;
+    private int marginRight;
+    private int marginTop;
+    private int marginBottom;
 
     // --Commented out by Inspection (8/28/18, 6:49 PM):private final float nWidth;
     // --Commented out by Inspection (8/28/18, 6:49 PM):private final float nHeight;
 
-    protected NinePatch() {
+    public NinePatch() {
         this(com.demasu.testpixeldungeon.Assets.SHADOW, 1, 1, 1, 1);
     }
 

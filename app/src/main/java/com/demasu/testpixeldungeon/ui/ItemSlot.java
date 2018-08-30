@@ -79,7 +79,7 @@ public class ItemSlot extends Button {
         super();
     }
 
-    protected ItemSlot(Item item) {
+    public ItemSlot(Item item) {
         this();
         item(item);
     }

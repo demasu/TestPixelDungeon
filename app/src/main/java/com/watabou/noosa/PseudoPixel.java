@@ -21,7 +21,7 @@ import com.watabou.gltextures.TextureCache;
 
 public class PseudoPixel extends Image {
 
-    protected PseudoPixel() {
+    public PseudoPixel() {
         super(TextureCache.createSolid(0xFFFFFFFF));
     }
 

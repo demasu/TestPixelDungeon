@@ -44,7 +44,7 @@ public class Tilemap extends Visual {
 
     public final Rect updated;
 
-    protected Tilemap(Object tx, TextureFilm tileset) {
+    public Tilemap(Object tx, TextureFilm tileset) {
 
         super(0, 0, 0, 0);
 

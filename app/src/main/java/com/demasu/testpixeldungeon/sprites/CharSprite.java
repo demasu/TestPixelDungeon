@@ -100,7 +100,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 
     public boolean isMoving = false;
 
-    CharSprite() {
+    public CharSprite() {
         super();
         listener = this;
     }

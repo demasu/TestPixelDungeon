@@ -309,7 +309,7 @@ public class HiredMerc extends NPC {
     // --Commented out by Inspection (8/29/18, 12:50 PM):private static final String WEAPON = "weapon";
     // --Commented out by Inspection (8/29/18, 12:50 PM):private static final String ARMOR = "armor";
 
-    protected HiredMerc() {
+    public HiredMerc() {
 
     }
 

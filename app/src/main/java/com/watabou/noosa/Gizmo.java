@@ -28,7 +28,7 @@ public class Gizmo {
 
     public Camera camera;
 
-    protected Gizmo() {
+    public Gizmo() {
         exists = true;
         alive = true;
         active = true;

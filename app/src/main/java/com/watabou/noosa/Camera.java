@@ -26,7 +26,7 @@ import com.watabou.utils.Random;
 
 public class Camera extends Gizmo {
 
-    private static final ArrayList<Camera> all = new ArrayList<>();
+    private static ArrayList<Camera> all = new ArrayList<>();
 
     protected static float invW2;
     protected static float invH2;

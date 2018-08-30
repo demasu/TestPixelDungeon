@@ -31,7 +31,7 @@ public class Tag extends Button {
 
     private float lightness = 0;
 
-    Tag(int color) {
+    public Tag(int color) {
         super();
 
         this.r = (color >> 16) / 255f;

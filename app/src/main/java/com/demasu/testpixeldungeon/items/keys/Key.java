@@ -31,7 +31,7 @@ public class Key extends Item {
 
     public int depth;
 
-    Key() {
+    public Key() {
         super();
         depth = Dungeon.depth;
     }

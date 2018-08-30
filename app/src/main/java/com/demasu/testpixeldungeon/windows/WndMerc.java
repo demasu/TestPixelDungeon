@@ -71,7 +71,7 @@ public class WndMerc extends WndTabbed {
 
     // --Commented out by Inspection (8/28/18, 6:52 PM):protected static final int TITLE_HEIGHT = 12;
 
-    private final Listener listener;
+    private Listener listener;
     // --Commented out by Inspection (8/28/18, 6:52 PM):private WndMerc.Mode mode;
     // --Commented out by Inspection (8/28/18, 6:52 PM):private String title;
 

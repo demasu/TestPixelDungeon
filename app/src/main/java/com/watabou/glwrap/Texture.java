@@ -38,7 +38,7 @@ public class Texture {
 
     // --Commented out by Inspection (8/28/18, 6:56 PM):private boolean premultiplied = false;
 
-    protected Texture() {
+    public Texture() {
         int[] ids = new int[1];
         GLES20.glGenTextures(1, ids, 0);
         id = ids[0];

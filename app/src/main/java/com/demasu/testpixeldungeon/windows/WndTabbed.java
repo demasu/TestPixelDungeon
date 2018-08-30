@@ -35,7 +35,7 @@ public class WndTabbed extends Window {
     final ArrayList<Tab> tabs = new ArrayList<>();
     private Tab selected;
 
-    WndTabbed() {
+    public WndTabbed() {
         super(Objects.requireNonNull(Chrome.get(Chrome.Type.TAB_SET)));
     }
 

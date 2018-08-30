@@ -23,7 +23,7 @@ public class Program {
 
     private final int handle;
 
-    protected Program() {
+    public Program() {
         handle = GLES20.glCreateProgram();
     }
 

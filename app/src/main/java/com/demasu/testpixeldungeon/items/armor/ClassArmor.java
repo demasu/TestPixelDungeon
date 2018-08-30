@@ -37,7 +37,7 @@ abstract public class ClassArmor extends Armor {
         defaultAction = special();
     }
 
-    ClassArmor() {
+    public ClassArmor() {
         super(6);
     }
 

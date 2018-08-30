@@ -40,7 +40,7 @@ public class Blob extends Actor {
 
     public BlobEmitter emitter;
 
-    Blob() {
+    public Blob() {
 
         cur = new int[LENGTH];
         off = new int[LENGTH];

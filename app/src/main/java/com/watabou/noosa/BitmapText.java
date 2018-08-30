@@ -40,7 +40,7 @@ public class BitmapText extends Visual {
 
     boolean dirty = true;
 
-    protected BitmapText() {
+    public BitmapText() {
         this("", null);
     }
 
