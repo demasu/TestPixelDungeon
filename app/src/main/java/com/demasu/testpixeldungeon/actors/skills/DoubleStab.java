@@ -5,7 +5,7 @@ import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.ui.StatusPane;
 
 
-public class DoubleStab extends ActiveSkill2{
+public class DoubleStab extends ActiveSkill2 {
 
     {
         name = "Double Stab";
@@ -18,21 +18,18 @@ public class DoubleStab extends ActiveSkill2{
     private boolean onDouble = false; // prevent infinite loop
 
     @Override
-    public void execute( Hero hero, String action ) {
-        super.execute(hero, action);
-        if(action == Skill.AC_ACTIVATE)
-        {
+    public void execute ( Hero hero, String action ) {
+        super.execute( hero, action );
+        if ( action == Skill.AC_ACTIVATE ) {
             hero.heroSkills.active3.active = false; // Disable Bombvoyage
         }
     }
 
     @Override
-    public boolean doubleStab()
-    {
-        if(active == false || Dungeon.hero.MP < getManaCost())
+    public boolean doubleStab () {
+        if ( active == false || Dungeon.hero.MP < getManaCost() ) {
             return false;
-        else if(onDouble == false)
-        {
+        } else if ( onDouble == false ) {
             onDouble = true;
             castTextYell();
             Dungeon.hero.MP -= getManaCost();
@@ -44,15 +41,13 @@ public class DoubleStab extends ActiveSkill2{
     }
 
     @Override
-    protected boolean upgrade()
-    {
+    protected boolean upgrade () {
         return true;
     }
 
 
     @Override
-    public String info()
-    {
+    public String info () {
         return "Stabs: two for one.\n"
                 + costUpgradeInfo();
     }

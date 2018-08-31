@@ -32,33 +32,33 @@ import com.watabou.utils.Random;
 
 public class ScrollOfFrostLevel extends Scroll {
 
-	{
-		name = "Scroll of Frost";
-	}
-	
-	@Override
-	protected void doRead() {
+    {
+        name = "Scroll of Frost";
+    }
+
+    @Override
+    protected void doRead () {
 
         ColdGirl.cameFrom = Dungeon.depth;
         ColdGirl.cameFromPos = Dungeon.hero.pos;
         InterlevelScene.mode = InterlevelScene.Mode.TELEPORT;
-        Game.switchScene(InterlevelScene.class);
+        Game.switchScene( InterlevelScene.class );
         Dungeon.observe();
 
         setKnown();
 
 
         curUser.spendAndNext( TIME_TO_READ );
-	}
-	
-	@Override
-	public String desc() {
-		return
-			"The scroll seems colder than the surroundings. As if it were a portal to a colder dimension.";
-	}
-	
-	@Override
-	public int price() {
-		return isKnown() ? 80 * quantity : super.price();
-	}
+    }
+
+    @Override
+    public String desc () {
+        return
+                "The scroll seems colder than the surroundings. As if it were a portal to a colder dimension.";
+    }
+
+    @Override
+    public int price () {
+        return isKnown() ? 80 * quantity : super.price();
+    }
 }

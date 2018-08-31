@@ -24,29 +24,26 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 
 public class SoldierWarriorSprite extends MobSprite {
 
-    protected static final int FRAME_WIDTH	= 12;
-    protected static final int FRAME_HEIGHT	= 15;
+    protected static final int FRAME_WIDTH = 12;
+    protected static final int FRAME_HEIGHT = 15;
 
-    protected static final int RUN_FRAMERATE	= 20;
+    protected static final int RUN_FRAMERATE = 20;
 
     public ArcherMaidenHalo halo = null;
     public boolean hasHalo = false;
 
 
+    public SoldierWarriorSprite () {
+        super();
 
 
-	public SoldierWarriorSprite() {
-		super();
+        texture( Assets.SOLDIER_WARRIOR );
 
-
-
-		 texture( Assets.SOLDIER_WARRIOR);
-		
-		TextureFilm frames = new TextureFilm( texture, FRAME_WIDTH, FRAME_HEIGHT );
+        TextureFilm frames = new TextureFilm( texture, FRAME_WIDTH, FRAME_HEIGHT );
 
 
         idle = new Animation( 1, true );
-        idle.frames( frames, 0, 0, 0);
+        idle.frames( frames, 0, 0, 0 );
 
         run = new Animation( RUN_FRAMERATE, true );
         run.frames( frames, 2, 3, 4, 5, 6, 7 );
@@ -58,19 +55,18 @@ public class SoldierWarriorSprite extends MobSprite {
         attack.frames( frames, 13, 14, 15, 0 );
 
         zap = attack.clone();
-		
-		play( idle );
-	}
+
+        play( idle );
+    }
 
 
-
-    public void haloUp()
-    {
-        if(hasHalo)
+    public void haloUp () {
+        if ( hasHalo ) {
             return;
+        }
 
         hasHalo = true;
-        add(State.ARCHERMAIDEN);
-        GameScene.effect(halo = new ArcherMaidenHalo(this));
+        add( State.ARCHERMAIDEN );
+        GameScene.effect( halo = new ArcherMaidenHalo( this ) );
     }
 }

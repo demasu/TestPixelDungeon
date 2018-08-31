@@ -20,14 +20,14 @@ package com.demasu.testpixeldungeon.actors.buffs;
 import com.demasu.testpixeldungeon.ui.BuffIndicator;
 
 public class Amok extends FlavourBuff {
-	
-	@Override
-	public int icon() {
-		return BuffIndicator.AMOK;
-	}
-	
-	@Override
-	public String toString() {
-		return "Amok";
-	}
+
+    @Override
+    public int icon () {
+        return BuffIndicator.AMOK;
+    }
+
+    @Override
+    public String toString () {
+        return "Amok";
+    }
 }

@@ -20,16 +20,16 @@ package com.demasu.testpixeldungeon.items.keys;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 
 public class GoldenKey extends Key {
-	
-	{
-		name = "golden key";
-		image = ItemSpriteSheet.GOLDEN_KEY;
-	}
-	
-	@Override
-	public String info() {
-		return 
-			"The notches on this golden key are tiny and intricate. " +
-			"Maybe it can open some chest lock?";
-	}
+
+    {
+        name = "golden key";
+        image = ItemSpriteSheet.GOLDEN_KEY;
+    }
+
+    @Override
+    public String info () {
+        return
+                "The notches on this golden key are tiny and intricate. " +
+                        "Maybe it can open some chest lock?";
+    }
 }

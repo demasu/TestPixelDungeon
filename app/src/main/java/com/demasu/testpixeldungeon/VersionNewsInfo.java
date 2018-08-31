@@ -21,20 +21,17 @@ public class VersionNewsInfo {
 
     public static boolean alreadySeen = false;
 
-    public static boolean haveMessage()
-    {
+    public static boolean haveMessage () {
         return !alreadySeen;
     }
 
-    public static String getMessage()
-    {
+    public static String getMessage () {
         alreadySeen = true;
         return message;
     }
 
-    public static Window getWelcomeWindow()
-    {
+    public static Window getWelcomeWindow () {
         alreadySeen = true;
-        return (new WndWelcome(message));
+        return ( new WndWelcome( message ) );
     }
 }

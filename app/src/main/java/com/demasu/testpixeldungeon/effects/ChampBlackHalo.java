@@ -36,7 +36,7 @@ public class ChampBlackHalo extends Halo {
     static final int BLACK = 0xcccccc;
 
 
-    public ChampBlackHalo(CharSprite sprite) {
+    public ChampBlackHalo ( CharSprite sprite ) {
         super( 20, BLACK, 0.25f );
         target = sprite;
         am = 0;
@@ -44,18 +44,18 @@ public class ChampBlackHalo extends Halo {
 
 
     @Override
-    public void update() {
+    public void update () {
         super.update();
 
-        if (phase < 0) {
-            if ((phase += Game.elapsed) >= 0) {
+        if ( phase < 0 ) {
+            if ( ( phase += Game.elapsed ) >= 0 ) {
                 killAndErase();
             } else {
-                scale.set( (2 + phase) * radius / RADIUS );
+                scale.set( ( 2 + phase ) * radius / RADIUS );
                 am = -phase * brightness;
             }
-        } else if (phase < 1) {
-            if ((phase += Game.elapsed) >= 1) {
+        } else if ( phase < 1 ) {
+            if ( ( phase += Game.elapsed ) >= 1 ) {
                 phase = 1;
             }
             scale.set( phase * radius / RADIUS );
@@ -66,13 +66,13 @@ public class ChampBlackHalo extends Halo {
     }
 
     @Override
-    public void draw() {
+    public void draw () {
         GLES20.glBlendFunc( GL10.GL_SRC_ALPHA, GL10.GL_ONE );
         super.draw();
         GLES20.glBlendFunc( GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA );
     }
 
-    public void putOut() {
+    public void putOut () {
         phase = -1;
     }
 }

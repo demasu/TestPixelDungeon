@@ -5,12 +5,12 @@ package com.demasu.testpixeldungeon.windows;
  */
 public class PersistentWndOptions extends WndOptions {
 
-    public PersistentWndOptions(String title, String message, String... options) {
-        super(title, message, options);
+    public PersistentWndOptions ( String title, String message, String... options ) {
+        super( title, message, options );
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed () {
 
     }
 }

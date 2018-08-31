@@ -3,7 +3,7 @@ package com.demasu.testpixeldungeon.actors.skills;
 /**
  * Created by Moussa on 20-Jan-17.
  */
-public class Hunting extends PassiveSkillA2{
+public class Hunting extends PassiveSkillA2 {
 
 
     {
@@ -13,18 +13,18 @@ public class Hunting extends PassiveSkillA2{
     }
 
     @Override
-    public int hunting() {return level;}
+    public int hunting () {
+        return level;
+    }
 
     @Override
-    protected boolean upgrade()
-    {
+    protected boolean upgrade () {
         return true;
     }
 
 
     @Override
-    public String info()
-    {
+    public String info () {
         return "Creates food with time.\n"
                 + costUpgradeInfo();
     }

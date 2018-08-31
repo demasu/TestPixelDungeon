@@ -14,19 +14,19 @@ public class LegendSprite extends HeroSprite {
     public ArcherMaidenHalo halo = null;
     public boolean hasHalo = false;
 
-    public void haloUp()
-    {
-        if(hasHalo)
+    public void haloUp () {
+        if ( hasHalo ) {
             return;
+        }
 
         hasHalo = true;
-        add(State.ARCHERMAIDEN);
-        GameScene.effect(halo = new ArcherMaidenHalo(this));
+        add( State.ARCHERMAIDEN );
+        GameScene.effect( halo = new ArcherMaidenHalo( this ) );
     }
 
 
     @Override
-    public void updateArmor() {
+    public void updateArmor () {
 
         TextureFilm film = new TextureFilm( tiers(), 0, FRAME_WIDTH, FRAME_HEIGHT );
 

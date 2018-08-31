@@ -39,68 +39,68 @@ import java.util.ArrayList;
 
 public class SoulCrystalFilled extends Item {
 
-	{
-		name = "soul crystal";
-		image = ItemSpriteSheet.CRYSTAL_FULL;
+    {
+        name = "soul crystal";
+        image = ItemSpriteSheet.CRYSTAL_FULL;
         stackable = false;
         quantity = 1;
-	}
+    }
 
     public Class<? extends CharSprite> minionSprite;
     public int HT, defenceSkill;
     public String captured;
 
-	public SoulCrystalFilled() {
-		this( RatSprite.class, 5, 1, "Rat" );
-	}
+    public SoulCrystalFilled () {
+        this( RatSprite.class, 5, 1, "Rat" );
+    }
 
-	public SoulCrystalFilled(Class<? extends CharSprite> minionSprite, int HT, int defenceSkill, String captured) {
-		super();
-		this.minionSprite = minionSprite;
+    public SoulCrystalFilled ( Class<? extends CharSprite> minionSprite, int HT, int defenceSkill, String captured ) {
+        super();
+        this.minionSprite = minionSprite;
         this.HT = HT;
         this.defenceSkill = defenceSkill;
         this.captured = captured;
-	}
+    }
 
 
     @Override
-    protected void onThrow( int cell ) {
-        if (Level.pit[cell]) {
+    protected void onThrow ( int cell ) {
+        if ( Level.pit[cell] ) {
             super.onThrow( cell );
         } else {
             shatter( cell );
         }
     }
 
-    private void shatter( int pos ) {
+    private void shatter ( int pos ) {
         Sample.INSTANCE.play( Assets.SND_SHATTER );
 
 
         int newPos = pos;
-        if (Actor.findChar( pos ) != null) {
+        if ( Actor.findChar( pos ) != null ) {
             ArrayList<Integer> candidates = new ArrayList<Integer>();
             boolean[] passable = Level.passable;
 
-            for (int n : Level.NEIGHBOURS4) {
+            for ( int n : Level.NEIGHBOURS4 ) {
                 int c = pos + n;
-                if (passable[c] && Actor.findChar( c ) == null) {
+                if ( passable[c] && Actor.findChar( c ) == null ) {
                     candidates.add( c );
                 }
             }
 
-            newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
+            newPos = candidates.size() > 0 ? Random.element( candidates ) : -1;
         }
 
-        if (newPos != -1) {
+        if ( newPos != -1 ) {
 
-            SummonedPet minion = new SummonedPet(minionSprite);
+            SummonedPet minion = new SummonedPet( minionSprite );
             minion.name = captured;
             minion.HT = HT;
             minion.HP = minion.HT;
             minion.defenseSkill = defenceSkill;
             minion.pos = newPos;
 
-            GameScene.add(minion);
+            GameScene.add( minion );
             Actor.addDelayed( new Pushing( minion, pos, newPos ), -1 );
 
             minion.sprite.alpha( 0 );
@@ -109,44 +109,42 @@ public class SoulCrystalFilled extends Item {
     }
 
 
-    private static final String SPRITE	= "sprite";
+    private static final String SPRITE = "sprite";
     private static final String HEALTH = "HT";
     private static final String DEFENCE_SKILL = "defenceskill";
     private static final String CAPTURED_NAME = "capturedname";
 
     @Override
-    public void storeInBundle( Bundle bundle ) {
+    public void storeInBundle ( Bundle bundle ) {
         super.storeInBundle( bundle );
 
         bundle.put( HEALTH, HT );
         bundle.put( DEFENCE_SKILL, defenceSkill );
         bundle.put( CAPTURED_NAME, captured );
-        bundle.put( SPRITE, minionSprite.toString().replace("class ","" ));
+        bundle.put( SPRITE, minionSprite.toString().replace( "class ", "" ) );
     }
 
     @Override
-    public void restoreFromBundle( Bundle bundle ) {
+    public void restoreFromBundle ( Bundle bundle ) {
         super.restoreFromBundle( bundle );
-        HT = bundle.getInt(HEALTH);
-        defenceSkill = bundle.getInt(DEFENCE_SKILL);
-        captured = bundle.getString(CAPTURED_NAME);
+        HT = bundle.getInt( HEALTH );
+        defenceSkill = bundle.getInt( DEFENCE_SKILL );
+        captured = bundle.getString( CAPTURED_NAME );
         try {
-            minionSprite = (Class<? extends CharSprite>)Class.forName(bundle.getString(SPRITE));
-        }
-        catch (Exception ex)
-        {
+            minionSprite = (Class<? extends CharSprite>) Class.forName( bundle.getString( SPRITE ) );
+        } catch ( Exception ex ) {
             minionSprite = RatSprite.class;
         }
     }
 
-	@Override
-	public String desc() {
-		return 
-			"A soul crystal holding the essence of a " + captured + ".\nThrow it to summon the spirit into your service.";
-	}
+    @Override
+    public String desc () {
+        return
+                "A soul crystal holding the essence of a " + captured + ".\nThrow it to summon the spirit into your service.";
+    }
 
     @Override
-    public String info() {
+    public String info () {
 
         StringBuilder info = new StringBuilder( desc() );
 
@@ -155,18 +153,18 @@ public class SoulCrystalFilled extends Item {
     }
 
     @Override
-    public boolean isUpgradable() {
+    public boolean isUpgradable () {
         return false;
     }
 
     @Override
-    public boolean isIdentified() {
+    public boolean isIdentified () {
         return true;
     }
 
 
-	@Override
-	public int price() {
-		return quantity * 12;
-	}
+    @Override
+    public int price () {
+        return quantity * 12;
+    }
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by Moussa on 20-Jan-17.
  */
-public class SpiritArrow extends ActiveSkill1{
+public class SpiritArrow extends ActiveSkill1 {
 
 
     {
@@ -23,20 +23,20 @@ public class SpiritArrow extends ActiveSkill1{
     }
 
     @Override
-    public ArrayList<String> actions( Hero hero ) {
+    public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = new ArrayList<String>();
-        if(level > 0 && hero.MP >= getManaCost())
-            actions.add(AC_CAST);
+        if ( level > 0 && hero.MP >= getManaCost() ) {
+            actions.add( AC_CAST );
+        }
         return actions;
     }
 
     @Override
-    public void execute( Hero hero, String action ) {
-        if(action == Skill.AC_CAST)
-        {
-            Arrow arrow = new Arrow(level);
+    public void execute ( Hero hero, String action ) {
+        if ( action == Skill.AC_CAST ) {
+            Arrow arrow = new Arrow( level );
             Dungeon.level.drop( arrow, hero.pos ).sprite.drop();
-            CellEmitter.get(hero.pos).burst(ElmoParticle.FACTORY, 4);
+            CellEmitter.get( hero.pos ).burst( ElmoParticle.FACTORY, 4 );
             hero.MP -= getManaCost();
             StatusPane.manaDropping += getManaCost();
             castTextYell();
@@ -48,15 +48,13 @@ public class SpiritArrow extends ActiveSkill1{
     }
 
     @Override
-    protected boolean upgrade()
-    {
+    protected boolean upgrade () {
         return true;
     }
 
 
     @Override
-    public String info()
-    {
+    public String info () {
         return "Forges an arrow per level using mana.\n"
                 + costUpgradeInfo();
     }

@@ -27,10 +27,10 @@ import com.watabou.utils.Callback;
 
 public class RedGirlSprite extends MobSprite {
 
-    protected static final int FRAME_WIDTH	= 12;
-    protected static final int FRAME_HEIGHT	= 15;
+    protected static final int FRAME_WIDTH = 12;
+    protected static final int FRAME_HEIGHT = 15;
 
-    protected static final int RUN_FRAMERATE	= 20;
+    protected static final int RUN_FRAMERATE = 20;
 
     public ArcherMaidenHalo halo = null;
     public boolean hasHalo = false;
@@ -38,14 +38,13 @@ public class RedGirlSprite extends MobSprite {
 
     int cellToAttack = 0;
 
-	public RedGirlSprite() {
-		super();
+    public RedGirlSprite () {
+        super();
 
 
+        texture( Assets.RED_GIRL );
 
-		 texture( Assets.RED_GIRL);
-		
-		TextureFilm frames = new TextureFilm( texture, FRAME_WIDTH, FRAME_HEIGHT );
+        TextureFilm frames = new TextureFilm( texture, FRAME_WIDTH, FRAME_HEIGHT );
 
 
         idle = new Animation( 1, true );
@@ -61,40 +60,40 @@ public class RedGirlSprite extends MobSprite {
         attack.frames( frames, 13, 14, 15, 0 );
 
         zap = attack.clone();
-		
-		play( idle );
-	}
+
+        play( idle );
+    }
 
     @Override
-    public void attack( int cell ) {
+    public void attack ( int cell ) {
 
-            cellToAttack = cell;
-            turnTo( ch.pos , cell );
-            play( zap );
+        cellToAttack = cell;
+        turnTo( ch.pos, cell );
+        play( zap );
 
 
     }
 
-    public void haloUp()
-    {
-        if(hasHalo)
+    public void haloUp () {
+        if ( hasHalo ) {
             return;
+        }
 
         hasHalo = true;
-        add(State.ARCHERMAIDEN);
-        GameScene.effect(halo = new ArcherMaidenHalo(this));
+        add( State.ARCHERMAIDEN );
+        GameScene.effect( halo = new ArcherMaidenHalo( this ) );
     }
 
     @Override
-    public void onComplete( Animation anim ) {
+    public void onComplete ( Animation anim ) {
 
-        if (anim == zap) {
+        if ( anim == zap ) {
             idle();
 
-            ((MissileSprite)parent.recycle( MissileSprite.class )).
+            ( (MissileSprite) parent.recycle( MissileSprite.class ) ).
                     reset( ch.pos, cellToAttack, new Arrow(), new Callback() {
                         @Override
-                        public void call() {
+                        public void call () {
                             ch.onAttackComplete();
                         }
                     } );

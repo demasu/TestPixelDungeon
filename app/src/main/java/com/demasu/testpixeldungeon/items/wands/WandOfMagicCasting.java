@@ -46,21 +46,18 @@ import com.watabou.utils.Random;
 
 public class WandOfMagicCasting extends Wand {
 
-	{
-		name = "Wand of Hax";
-	}
-
-    public void castSpell(CAST_TYPES casting)
     {
+        name = "Wand of Hax";
+    }
+
+    public void castSpell ( CAST_TYPES casting ) {
         this.casting = casting;
-        MissionScene.selectCell(zapper);
+        MissionScene.selectCell( zapper );
     }
 
 
-    public void castSpellCost()
-    {
-        switch (casting)
-        {
+    public void castSpellCost () {
+        switch ( casting ) {
             case DARK_BOLT:
                 Dungeon.hero.MP -= Dungeon.hero.heroSkills.passiveB2.getManaCost();
                 Dungeon.hero.heroSkills.passiveB2.castTextYell();
@@ -81,34 +78,35 @@ public class WandOfMagicCasting extends Wand {
         }
     }
 
-    public enum CAST_TYPES  {DARK_BOLT, DOMINANCE, SOUL_SPARK, SPARK};
+    public enum CAST_TYPES {DARK_BOLT, DOMINANCE, SOUL_SPARK, SPARK}
+
+    ;
     public CAST_TYPES casting = CAST_TYPES.DARK_BOLT;
 
-    protected static CellSelector.Listener zapper = new  CellSelector.Listener() {
+    protected static CellSelector.Listener zapper = new CellSelector.Listener() {
 
         @Override
-        public void onSelect( Integer target ) {
+        public void onSelect ( Integer target ) {
 
-            if (target != null) {
+            if ( target != null ) {
 
                 curUser = Dungeon.hero;
-                final int cell = Ballistica.cast(curUser.pos, target, true, true);
-                curUser.sprite.zap(cell);
-
+                final int cell = Ballistica.cast( curUser.pos, target, true, true );
+                curUser.sprite.zap( cell );
 
 
                 final Wand curWand = Legend.haxWand;
 
-                ((WandOfMagicCasting)curWand).castSpellCost();
+                ( (WandOfMagicCasting) curWand ).castSpellCost();
                 curUser.busy();
 
-                curWand.fx(cell, new Callback() {
+                curWand.fx( cell, new Callback() {
                     @Override
-                    public void call() {
-                        curWand.onZap(cell);
+                    public void call () {
+                        curWand.onZap( cell );
                         curWand.wandUsed();
                     }
-                });
+                } );
 
                 Invisibility.dispel();
 
@@ -117,87 +115,83 @@ public class WandOfMagicCasting extends Wand {
         }
 
         @Override
-        public String prompt() {
+        public String prompt () {
             return "Choose direction to cast";
         }
     };
 
-	@Override
-	protected void onZap( int cell ) {
-		Char ch = Actor.findChar( cell );
-		if (ch != null) {
-            if(ch instanceof NPC && casting != CAST_TYPES.SOUL_SPARK)
+    @Override
+    protected void onZap ( int cell ) {
+        Char ch = Actor.findChar( cell );
+        if ( ch != null ) {
+            if ( ch instanceof NPC && casting != CAST_TYPES.SOUL_SPARK ) {
                 return;
+            }
 
-            if(casting == CAST_TYPES.DARK_BOLT) {
-                ch.sprite.emitter().burst(ShadowParticle.CURSE, 6);
-                Sample.INSTANCE.play(Assets.SND_CURSED);
-                SummonedPet minion = new SummonedPet(WraithSprite.class);
+            if ( casting == CAST_TYPES.DARK_BOLT ) {
+                ch.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
+                Sample.INSTANCE.play( Assets.SND_CURSED );
+                SummonedPet minion = new SummonedPet( WraithSprite.class );
                 minion.name = "Consumed Soul";
                 minion.screams = false;
                 minion.HT = ch.HT;
                 minion.HP = minion.HT;
                 minion.defenseSkill = 5;
                 minion.pos = cell;
-                GameScene.add(minion);
-                minion.sprite.alpha(0);
-                minion.sprite.parent.add(new AlphaTweener(minion.sprite, 1, 0.15f));
+                GameScene.add( minion );
+                minion.sprite.alpha( 0 );
+                minion.sprite.parent.add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
 
-                ch.die(null);
-            }
-            else  if(casting == CAST_TYPES.DOMINANCE)
-            {
-                ch.sprite.emitter().burst(ShadowParticle.CURSE, 6);
-                Sample.INSTANCE.play(Assets.SND_CURSED);
-                SummonedPet minion = new SummonedPet(ch.sprite.getClass());
+                ch.die( null );
+            } else if ( casting == CAST_TYPES.DOMINANCE ) {
+                ch.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
+                Sample.INSTANCE.play( Assets.SND_CURSED );
+                SummonedPet minion = new SummonedPet( ch.sprite.getClass() );
                 minion.name = "Enslaved " + ch.name;
                 minion.screams = false;
                 minion.HT = ch.HT;
                 minion.HP = minion.HT;
-                minion.defenseSkill = ch.defenseSkill(Dungeon.hero);
+                minion.defenseSkill = ch.defenseSkill( Dungeon.hero );
                 minion.pos = cell;
-                GameScene.add(minion);
-                minion.sprite.alpha(0);
-                minion.sprite.parent.add(new AlphaTweener(minion.sprite, 1, 0.15f));
+                GameScene.add( minion );
+                minion.sprite.alpha( 0 );
+                minion.sprite.parent.add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
                 ch.sprite.visible = false;
-                ch.die(null);
-            }
-            else  if(casting == CAST_TYPES.SOUL_SPARK)
-            {
+                ch.die( null );
+            } else if ( casting == CAST_TYPES.SOUL_SPARK ) {
                 ch.HP = ch.HT;
-                ch.sprite.emitter().start(Speck.factory(Speck.HEALING), 0.4f, 4);
+                ch.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
+            } else if ( casting == CAST_TYPES.SPARK ) {
+                ch.damage( Random.Int( Dungeon.hero.heroSkills.active2.level * 3, Dungeon.hero.heroSkills.active2.level * 5 ), Dungeon.hero );
             }
-            else  if(casting == CAST_TYPES.SPARK)
-            {
-                ch.damage(Random.Int(Dungeon.hero.heroSkills.active2.level * 3, Dungeon.hero.heroSkills.active2.level * 5), Dungeon.hero);
-            }
-			
-		} else {
-			
-			GLog.i( "nothing happened" );
-			
-		}
-	}
-	
-	protected void fx( int cell, Callback callback ) {
-        if(casting == CAST_TYPES.DARK_BOLT)
-		    MagicMissile.shadow( curUser.sprite.parent, curUser.pos, cell, callback, 1 );
-        else if(casting == CAST_TYPES.DOMINANCE)
-            MagicMissile.shadow(curUser.sprite.parent, curUser.pos, cell, callback, 3);
-        else if(casting == CAST_TYPES.SOUL_SPARK)
-            MagicMissile.whiteLight(curUser.sprite.parent, curUser.pos, cell, callback);
-        else if(casting == CAST_TYPES.SPARK)
-            MagicMissile.blueLight(curUser.sprite.parent, curUser.pos, cell, callback);
 
-		Sample.INSTANCE.play( Assets.SND_ZAP );
-	}
-	
-	@Override
-	public String desc() {
-		return
-			"The vile blast of this twisted bit of wood will imbue its target " +
-			"with a deadly venom. A creature that is poisoned will suffer periodic " +
-			"damage until the effect ends. The duration of the effect increases " +
-			"with the level of the staff.";
-	}
+        } else {
+
+            GLog.i( "nothing happened" );
+
+        }
+    }
+
+    protected void fx ( int cell, Callback callback ) {
+        if ( casting == CAST_TYPES.DARK_BOLT ) {
+            MagicMissile.shadow( curUser.sprite.parent, curUser.pos, cell, callback, 1 );
+        } else if ( casting == CAST_TYPES.DOMINANCE ) {
+            MagicMissile.shadow( curUser.sprite.parent, curUser.pos, cell, callback, 3 );
+        } else if ( casting == CAST_TYPES.SOUL_SPARK ) {
+            MagicMissile.whiteLight( curUser.sprite.parent, curUser.pos, cell, callback );
+        } else if ( casting == CAST_TYPES.SPARK ) {
+            MagicMissile.blueLight( curUser.sprite.parent, curUser.pos, cell, callback );
+        }
+
+        Sample.INSTANCE.play( Assets.SND_ZAP );
+    }
+
+    @Override
+    public String desc () {
+        return
+                "The vile blast of this twisted bit of wood will imbue its target " +
+                        "with a deadly venom. A creature that is poisoned will suffer periodic " +
+                        "damage until the effect ends. The duration of the effect increases " +
+                        "with the level of the staff.";
+    }
 }

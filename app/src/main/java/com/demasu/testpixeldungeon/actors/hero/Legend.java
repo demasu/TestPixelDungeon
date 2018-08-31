@@ -26,27 +26,26 @@ public class Legend extends Hero {
 
 
     @Override
-    public boolean act() {
-            super.act();
+    public boolean act () {
+        super.act();
 
-            if(MissionScene.scenePause == true)
-            {
-                spendAndNext( 1f );
-            }
+        if ( MissionScene.scenePause == true ) {
+            spendAndNext( 1f );
+        }
 
         return false;
     }
 
     @Override
-    public boolean isStarving() {
+    public boolean isStarving () {
         return false;
     }
 
     @Override
-    public void live() {
-        Buff.affect(this, ManaRegeneration.class);
-        Buff.affect(this, ManaRegeneration.class);
-        Buff.affect(this, ManaRegeneration.class);
+    public void live () {
+        Buff.affect( this, ManaRegeneration.class );
+        Buff.affect( this, ManaRegeneration.class );
+        Buff.affect( this, ManaRegeneration.class );
 
         Buff.affect( this, Regeneration.class );
         Buff.affect( this, Regeneration.class );
@@ -58,27 +57,25 @@ public class Legend extends Hero {
         attackSkill = 40;
         defenseSkill = 25;
         Item tmp = new Longsword().identify();
-        belongings.weapon = (Weapon)tmp;
+        belongings.weapon = (Weapon) tmp;
         tmp = new PlateArmor().identify();
-        belongings.armor = (Armor)tmp;
+        belongings.armor = (Armor) tmp;
     }
 
     @Override
-    public void die(Object reason)
-    {
-        super.die(reason);
+    public void die ( Object reason ) {
+        super.die( reason );
         MissionScene.scenePause = true;
     }
 
     @Override
-    public void storeInBundle( Bundle bundle ) {
-
+    public void storeInBundle ( Bundle bundle ) {
 
 
     }
 
     @Override
-    public void restoreFromBundle( Bundle bundle ) {
+    public void restoreFromBundle ( Bundle bundle ) {
 
     }
 }

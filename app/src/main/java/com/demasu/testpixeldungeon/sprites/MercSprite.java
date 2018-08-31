@@ -30,8 +30,8 @@ import com.watabou.utils.Callback;
 
 public class MercSprite extends MobSprite {
 
-	private static final int FRAME_WIDTH	= 12;
-	private static final int FRAME_HEIGHT	= 15;
+    private static final int FRAME_WIDTH = 12;
+    private static final int FRAME_HEIGHT = 15;
 
     private HiredMerc.MERC_TYPES type = HiredMerc.MERC_TYPES.Brute;
 
@@ -39,45 +39,45 @@ public class MercSprite extends MobSprite {
 
     public ArcherMaidenHalo halo = null;
 
-	public MercSprite() {
-		super();
-	}
-	
-	public void updateArmor( HiredMerc.MERC_TYPES type) {
+    public MercSprite () {
+        super();
+    }
+
+    public void updateArmor ( HiredMerc.MERC_TYPES type ) {
 
         this.type = type;
 
 
+        switch ( type ) {
+            case Brute:
+                texture( Assets.WARRIOR );
+                break;
+            case Wizard:
+                texture( Assets.MAGE );
+                break;
+            case Thief:
+                texture( Assets.ROGUE );
+                break;
+            case Archer:
+                texture( Assets.HUNTRESS );
+                break;
+            case ArcherMaiden:
+                texture( Assets.ARCHER_MAIDEN );
+                break;
+        }
 
-            switch (type) {
-                case Brute:
-                     texture(Assets.WARRIOR);
-                    break;
-                case Wizard:
-                    texture(Assets.MAGE);
-                    break;
-                case Thief:
-                    texture(Assets.ROGUE);
-                    break;
-                case Archer:  texture(Assets.HUNTRESS);
-                    break;
-                case ArcherMaiden:
-                    texture(Assets.ARCHER_MAIDEN);
-                    break;
-            }
+
+        TextureFilm film = new TextureFilm( HeroSprite.tiers(), type != HiredMerc.MERC_TYPES.ArcherMaiden ? 6 : 0, FRAME_WIDTH, FRAME_HEIGHT );
+
+        idle = new Animation( 1, true );
+        idle.frames( film, 0, 0, 0, 1, 0, 0, 1, 1 );
+
+        run = new Animation( 20, true );
+        run.frames( film, 2, 3, 4, 5, 6, 7 );
 
 
-		TextureFilm film = new TextureFilm( HeroSprite.tiers(), type != HiredMerc.MERC_TYPES.ArcherMaiden ? 6 : 0, FRAME_WIDTH, FRAME_HEIGHT );
-		
-		idle = new Animation( 1, true );
-		idle.frames( film, 0, 0, 0, 1, 0, 0, 1, 1 );
-		
-		run = new Animation( 20, true );
-		run.frames( film, 2, 3, 4, 5, 6, 7 );
-
-		
-		attack = new Animation( 15, false );
-		attack.frames( film, 13, 14, 15, 0 );
+        attack = new Animation( 15, false );
+        attack.frames( film, 13, 14, 15, 0 );
 
         zap = attack.clone();
 
@@ -89,32 +89,31 @@ public class MercSprite extends MobSprite {
         operate.frames( film, 16, 17, 16, 17 );
 
         idle();
-	}
+    }
 
-    public void updateArmor( ) {
+    public void updateArmor () {
 
-        if(false && hasHalo == false)
-        {
+        if ( false && hasHalo == false ) {
             hasHalo = true;
-            add(State.ARCHERMAIDEN);
-            GameScene.effect(halo = new ArcherMaidenHalo(this));
+            add( State.ARCHERMAIDEN );
+            GameScene.effect( halo = new ArcherMaidenHalo( this ) );
         }
 
 
-        switch (type) {
+        switch ( type ) {
             case Brute:
-                texture(Assets.WARRIOR);
+                texture( Assets.WARRIOR );
                 break;
             case Wizard:
-                texture(Assets.MAGE);
+                texture( Assets.MAGE );
                 break;
             case Thief:
-                texture(Assets.ROGUE);
+                texture( Assets.ROGUE );
                 break;
         }
 
 
-        TextureFilm film = new TextureFilm( HeroSprite.tiers(), type != HiredMerc.MERC_TYPES.ArcherMaiden ? ((HiredMerc)ch).getArmorTier() : 0, FRAME_WIDTH, FRAME_HEIGHT );
+        TextureFilm film = new TextureFilm( HeroSprite.tiers(), type != HiredMerc.MERC_TYPES.ArcherMaiden ? ( (HiredMerc) ch ).getArmorTier() : 0, FRAME_WIDTH, FRAME_HEIGHT );
 
         idle = new Animation( 1, true );
         idle.frames( film, 0, 0, 0, 1, 0, 0, 1, 1 );
@@ -139,16 +138,15 @@ public class MercSprite extends MobSprite {
     private int cellToAttack;
 
     @Override
-    public void attack( int cell ) {
-        if(type != HiredMerc.MERC_TYPES.Archer && type != HiredMerc.MERC_TYPES.ArcherMaiden)
-        {
-            super.attack(cell);
+    public void attack ( int cell ) {
+        if ( type != HiredMerc.MERC_TYPES.Archer && type != HiredMerc.MERC_TYPES.ArcherMaiden ) {
+            super.attack( cell );
             return;
         }
-        if (!Level.adjacent(cell, ch.pos)) {
+        if ( !Level.adjacent( cell, ch.pos ) ) {
 
             cellToAttack = cell;
-            turnTo( ch.pos , cell );
+            turnTo( ch.pos, cell );
             play( zap );
 
         } else {
@@ -159,20 +157,19 @@ public class MercSprite extends MobSprite {
     }
 
     @Override
-    public void onComplete( Animation anim ) {
-        if(type != HiredMerc.MERC_TYPES.Archer && type != HiredMerc.MERC_TYPES.ArcherMaiden)
-        {
-            super.onComplete(anim);
+    public void onComplete ( Animation anim ) {
+        if ( type != HiredMerc.MERC_TYPES.Archer && type != HiredMerc.MERC_TYPES.ArcherMaiden ) {
+            super.onComplete( anim );
             return;
         }
 
-        if (anim == zap) {
+        if ( anim == zap ) {
             idle();
 
-            ((MissileSprite)parent.recycle( MissileSprite.class )).
+            ( (MissileSprite) parent.recycle( MissileSprite.class ) ).
                     reset( ch.pos, cellToAttack, new Arrow(), new Callback() {
                         @Override
-                        public void call() {
+                        public void call () {
                             ch.onAttackComplete();
                         }
                     } );

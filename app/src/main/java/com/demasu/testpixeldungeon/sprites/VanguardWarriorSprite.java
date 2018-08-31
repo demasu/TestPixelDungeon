@@ -24,25 +24,22 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 
 public class VanguardWarriorSprite extends MobSprite {
 
-    protected static final int FRAME_WIDTH	= 12;
-    protected static final int FRAME_HEIGHT	= 15;
+    protected static final int FRAME_WIDTH = 12;
+    protected static final int FRAME_HEIGHT = 15;
 
-    protected static final int RUN_FRAMERATE	= 20;
+    protected static final int RUN_FRAMERATE = 20;
 
     public ArcherMaidenHalo halo = null;
     public boolean hasHalo = false;
 
 
+    public VanguardWarriorSprite () {
+        super();
 
 
-	public VanguardWarriorSprite() {
-		super();
+        texture( Assets.VANGUARD_WARRIOR );
 
-
-
-		 texture( Assets.VANGUARD_WARRIOR);
-		
-		TextureFilm frames = new TextureFilm( texture, FRAME_WIDTH, FRAME_HEIGHT );
+        TextureFilm frames = new TextureFilm( texture, FRAME_WIDTH, FRAME_HEIGHT );
 
 
         idle = new Animation( 1, true );
@@ -58,19 +55,18 @@ public class VanguardWarriorSprite extends MobSprite {
         attack.frames( frames, 13, 14, 15, 0 );
 
         zap = attack.clone();
-		
-		play( idle );
-	}
+
+        play( idle );
+    }
 
 
-
-    public void haloUp()
-    {
-        if(hasHalo)
+    public void haloUp () {
+        if ( hasHalo ) {
             return;
+        }
 
         hasHalo = true;
-        add(State.ARCHERMAIDEN);
-        GameScene.effect(halo = new ArcherMaidenHalo(this));
+        add( State.ARCHERMAIDEN );
+        GameScene.effect( halo = new ArcherMaidenHalo( this ) );
     }
 }

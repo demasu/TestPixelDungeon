@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by Moussa on 20-Jan-17.
  */
-public class DarkBolt extends ActiveSkill3{
+public class DarkBolt extends ActiveSkill3 {
 
 
     {
@@ -33,46 +33,42 @@ public class DarkBolt extends ActiveSkill3{
 
 
     @Override
-    public float getAlpha()
-    {
+    public float getAlpha () {
         return 1f;
     }
 
     @Override
-    public ArrayList<String> actions( Hero hero ) {
+    public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = new ArrayList<String>();
-        if(level > 0 && hero.MP >= getManaCost())
-            actions.add(AC_CAST);
+        if ( level > 0 && hero.MP >= getManaCost() ) {
+            actions.add( AC_CAST );
+        }
         return actions;
     }
 
     @Override
-    public void execute( Hero hero, String action ) {
-        if(action == Skill.AC_CAST && hero.MP >= getManaCost())
-        {
+    public void execute ( Hero hero, String action ) {
+        if ( action == Skill.AC_CAST && hero.MP >= getManaCost() ) {
             //hero.MP -= getManaCost();
             //castTextYell();
-            Legend.haxWand.castSpell(WandOfMagicCasting.CAST_TYPES.DARK_BOLT);
+            Legend.haxWand.castSpell( WandOfMagicCasting.CAST_TYPES.DARK_BOLT );
             Dungeon.hero.heroSkills.lastUsed = this;
         }
     }
 
     @Override
-    public int getManaCost()
-    {
-        return (int)Math.ceil(mana * (1 + 0.25 * level));
+    public int getManaCost () {
+        return (int) Math.ceil( mana * ( 1 + 0.25 * level ) );
     }
 
     @Override
-    protected boolean upgrade()
-    {
+    protected boolean upgrade () {
         return true;
     }
 
 
     @Override
-    public String info()
-    {
+    public String info () {
         return "Hurls concentrated dark energy into a target shredding their essence to pieces.\n What's left is a fate worse than death.\n"
 
                 + costUpgradeInfo();

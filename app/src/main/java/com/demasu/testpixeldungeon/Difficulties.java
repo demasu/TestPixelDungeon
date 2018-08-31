@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public enum Difficulties {
 
-    NORMAL( 0 ), EASY( 1 ), HARD( 2 ), HELL( 3 ), SUICIDE( 4 ) , JUSTKILLME( 5 );
+    NORMAL( 0 ), EASY( 1 ), HARD( 2 ), HELL( 3 ), SUICIDE( 4 ), JUSTKILLME( 5 );
 
 
     private int difficulty;
@@ -24,11 +24,12 @@ public enum Difficulties {
     public float defenceOffset = 0;
 
     public enum isNightOverwrite {DEFAULT, ALWAYS_DAY, ALWAYS_NIGHT}
+
     public isNightOverwrite isNight = isNightOverwrite.DEFAULT;
 
     private ArrayList<Integer> disabledChampions = new ArrayList<>();
 
-    private Difficulties( int difficulty ) {
+    private Difficulties ( int difficulty ) {
         this.difficulty = difficulty;
         championOffset = 0;
         hpOffset = 0;
@@ -81,9 +82,9 @@ public enum Difficulties {
     };
 
 
-    public String title() {
+    public String title () {
 
-        switch (this) {
+        switch ( this ) {
             case EASY:
                 return "Easy";
             case NORMAL:
@@ -100,28 +101,28 @@ public enum Difficulties {
         return "";
     }
 
-    public String description() {
+    public String description () {
 
-        switch (this) {
+        switch ( this ) {
             case EASY:
-                return join("\n", EASY_DESC);
+                return join( "\n", EASY_DESC );
             case NORMAL:
-                return join("\n", NORMAL_DESC);
+                return join( "\n", NORMAL_DESC );
             case HARD:
-                return join("\n", HARD_DESC);
+                return join( "\n", HARD_DESC );
             case HELL:
-                return join("\n", HELL_DESC);
+                return join( "\n", HELL_DESC );
             case SUICIDE:
-                return join("\n", SUICIDE_DESC);
+                return join( "\n", SUICIDE_DESC );
             case JUSTKILLME:
-                return join("\n", JUST_KILL_ME_DESC);
+                return join( "\n", JUST_KILL_ME_DESC );
         }
         return "";
     }
 
-    public String mobPrefix() {
+    public String mobPrefix () {
 
-        switch (this) {
+        switch ( this ) {
             case EASY:
                 return "Weak ";
             case NORMAL:
@@ -138,35 +139,29 @@ public enum Difficulties {
         return "";
     }
 
-    public static String description(int difficulty)
-    {
+    public static String description ( int difficulty ) {
         try {
             return Difficulties.values()[difficulty].description();
-        }
-        catch (Exception ex)
-        {
+        } catch ( Exception ex ) {
             return ""; // Invalid difficulty
         }
     }
 
-    public static String title(int difficulty)
-    {
+    public static String title ( int difficulty ) {
         try {
             return Difficulties.values()[difficulty].title();
-        }
-        catch (Exception ex)
-        {
+        } catch ( Exception ex ) {
             return ""; // Invalid difficulty
         }
     }
 
-    public int championChance() {
+    public int championChance () {
         return championChanceNatural() + championOffset;
     }
 
-    public int championChanceNatural() {
+    public int championChanceNatural () {
 
-        switch (this) {
+        switch ( this ) {
             case EASY:
                 return 1;
             case NORMAL:
@@ -183,14 +178,13 @@ public enum Difficulties {
         return 0;
     }
 
-    public float damageModifier()
-    {
+    public float damageModifier () {
         return naturalDamageModifier() + attOffset;
     }
 
-    public float naturalDamageModifier() {
+    public float naturalDamageModifier () {
 
-        switch (this) {
+        switch ( this ) {
             case EASY:
                 return 0.75f;
             case NORMAL:
@@ -208,14 +202,14 @@ public enum Difficulties {
     }
 
 
-    public float mobDefenceModifier() {
+    public float mobDefenceModifier () {
 
         return naturalMobDefenceModifier() + defenceOffset;
     }
 
-    public float naturalMobDefenceModifier() { // dmg *= this
+    public float naturalMobDefenceModifier () { // dmg *= this
 
-        switch (this) {
+        switch ( this ) {
             case EASY:
                 return 1.1f;
             case NORMAL:
@@ -232,14 +226,14 @@ public enum Difficulties {
         return 1f;
     }
 
-    public float mobHPModifier() {
+    public float mobHPModifier () {
 
         return naturalMobHPModifier() + hpOffset;
     }
 
-    public float naturalMobHPModifier() {
+    public float naturalMobHPModifier () {
 
-        switch (this) {
+        switch ( this ) {
             case EASY:
                 return 0.85f;
             case NORMAL:
@@ -256,9 +250,9 @@ public enum Difficulties {
         return 1f;
     }
 
-    public int healingPotionLimit() {
+    public int healingPotionLimit () {
 
-        switch (this) {
+        switch ( this ) {
             case EASY:
             case NORMAL:
                 return 100;
@@ -274,9 +268,9 @@ public enum Difficulties {
         return 100;
     }
 
-    public String healingPotionMessage() {
+    public String healingPotionMessage () {
 
-        switch (this) {
+        switch ( this ) {
             case EASY:
             case NORMAL:
                 return "Your wounds heal completely.";
@@ -286,10 +280,8 @@ public enum Difficulties {
     }
 
 
-
-    public int difficultyHPLevelPenalty()
-    {
-        switch (this) {
+    public int difficultyHPLevelPenalty () {
+        switch ( this ) {
             case EASY:
             case NORMAL:
             case HARD:
@@ -304,9 +296,8 @@ public enum Difficulties {
         return 0;
     }
 
-    public int difficultyHPStartPenalty()
-    {
-        switch (this) {
+    public int difficultyHPStartPenalty () {
+        switch ( this ) {
             case EASY:
             case NORMAL:
             case HARD:
@@ -321,9 +312,8 @@ public enum Difficulties {
         return 0;
     }
 
-    public void difficultyStartItemBonus()
-    {
-        switch (this) {
+    public void difficultyStartItemBonus () {
+        switch ( this ) {
             case EASY:
                 new PotionOfHealing().identify().collect();
                 new PotionOfHealing().identify().collect();
@@ -334,8 +324,7 @@ public enum Difficulties {
     }
 
 
-    public void reset()
-    {
+    public void reset () {
         championOffset = 0;
         defenceOffset = 0;
         hpOffset = 0;
@@ -343,65 +332,68 @@ public enum Difficulties {
         disabledChampions.clear();
     }
 
-    public void changeDefenceOffset(float change)
-    {
+    public void changeDefenceOffset ( float change ) {
         defenceOffset += change;
-        if(mobDefenceModifier() > naturalMobDefenceModifier())
+        if ( mobDefenceModifier() > naturalMobDefenceModifier() ) {
             defenceOffset = 0;
-        if(mobDefenceModifier() < 0.1f)
+        }
+        if ( mobDefenceModifier() < 0.1f ) {
             defenceOffset = 0.1f - naturalMobDefenceModifier();
+        }
     }
 
-    public void changeChampionOffset(int change)
-    {
+    public void changeChampionOffset ( int change ) {
         championOffset += change;
-        if(championChance() < championChanceNatural())
+        if ( championChance() < championChanceNatural() ) {
             championOffset = 0;
-        if(championChance() > 10)
+        }
+        if ( championChance() > 10 ) {
             championOffset = 10 - championChanceNatural();
+        }
     }
 
-    public void changeHPOffset(float change)
-    {
+    public void changeHPOffset ( float change ) {
         hpOffset += change;
-        if(mobHPModifier() < naturalMobHPModifier())
+        if ( mobHPModifier() < naturalMobHPModifier() ) {
             hpOffset = 0;
-        if(mobHPModifier() > 2f)
+        }
+        if ( mobHPModifier() > 2f ) {
             hpOffset = 2f - naturalMobHPModifier();
+        }
     }
 
-    public void changeDamageOffset(float change)
-    {
+    public void changeDamageOffset ( float change ) {
         attOffset += change;
-        if(damageModifier() < naturalDamageModifier())
+        if ( damageModifier() < naturalDamageModifier() ) {
             attOffset = 0;
-        if(damageModifier() > 2f)
+        }
+        if ( damageModifier() > 2f ) {
             attOffset = 2f - naturalDamageModifier();
+        }
     }
 
-    public boolean disableChampion(int champType)
-    {
-        return disabledChampions.contains(champType);
+    public boolean disableChampion ( int champType ) {
+        return disabledChampions.contains( champType );
     }
 
-    public boolean disableChampion(int champType, boolean disable)
-    {
-        if(disable && disabledChampions.size() == 3)
+    public boolean disableChampion ( int champType, boolean disable ) {
+        if ( disable && disabledChampions.size() == 3 ) {
             return false;
+        }
 
-        if(disable && disableChampion(champType) == false)
-            disabledChampions.add(champType);
+        if ( disable && disableChampion( champType ) == false ) {
+            disabledChampions.add( champType );
+        }
 
-        if(!disable && disableChampion(champType))
-            disabledChampions.remove((Object) champType);
+        if ( !disable && disableChampion( champType ) ) {
+            disabledChampions.remove( (Object) champType );
+        }
 
         return true;
     }
 
-    public void ToggleNight()
-    {
-        switch(isNight)
-        {
+    public void ToggleNight () {
+        switch ( isNight ) {
             case ALWAYS_DAY:
                 isNight = isNightOverwrite.ALWAYS_NIGHT;
                 break;
@@ -414,10 +406,9 @@ public enum Difficulties {
         }
     }
 
-    public void ToggleNight(boolean harder)
-    {
-        if(harder) {
-            switch (isNight) {
+    public void ToggleNight ( boolean harder ) {
+        if ( harder ) {
+            switch ( isNight ) {
                 case DEFAULT:
                     isNight = isNightOverwrite.ALWAYS_NIGHT;
                     break;
@@ -425,10 +416,8 @@ public enum Difficulties {
                     isNight = isNightOverwrite.DEFAULT;
                     break;
             }
-        }
-        else
-        {
-            switch (isNight) {
+        } else {
+            switch ( isNight ) {
                 case DEFAULT:
                     isNight = isNightOverwrite.ALWAYS_DAY;
                     break;
@@ -439,10 +428,8 @@ public enum Difficulties {
         }
     }
 
-    public String GetToggleNightDesc()
-    {
-        switch(isNight)
-        {
+    public String GetToggleNightDesc () {
+        switch ( isNight ) {
             case ALWAYS_DAY:
                 return "Always Day";
             case ALWAYS_NIGHT:
@@ -452,17 +439,19 @@ public enum Difficulties {
         }
         return "error";
     }
-    public static int getNormalizedDifficulty(int diff)
-    {
-        return diff == 0 ? 1 : (diff == 1 ? 0 : diff);
+
+    public static int getNormalizedDifficulty ( int diff ) {
+        return diff == 0 ? 1 : ( diff == 1 ? 0 : diff );
     }
 
-    static  String join (String delim, String ... data) {
+    static String join ( String delim, String... data ) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < data.length; i++) {
-            sb.append(data[i]);
-            if (i >= data.length-1) {break;}
-            sb.append(delim);
+        for ( int i = 0; i < data.length; i++ ) {
+            sb.append( data[i] );
+            if ( i >= data.length - 1 ) {
+                break;
+            }
+            sb.append( delim );
         }
         return sb.toString();
     }

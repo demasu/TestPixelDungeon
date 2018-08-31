@@ -37,103 +37,101 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class RemoteBombGround extends Item {
-	
-	{
-		name = "remote bomb";
-		image = ItemSpriteSheet.RemoteBomb;
-		defaultAction = AC_THROW;
-		stackable = true;
 
-	}
+    {
+        name = "remote bomb";
+        image = ItemSpriteSheet.RemoteBomb;
+        defaultAction = AC_THROW;
+        stackable = true;
+
+    }
 
     public int pos = 0;
 
     @Override
-    public void storeInBundle( Bundle bundle ) {
-        super.storeInBundle(bundle);
+    public void storeInBundle ( Bundle bundle ) {
+        super.storeInBundle( bundle );
         bundle.put( "pos", pos );
     }
 
     @Override
-    public void restoreFromBundle( Bundle bundle ) {
-        super.restoreFromBundle(bundle);
-        pos = bundle.getInt("pos");
+    public void restoreFromBundle ( Bundle bundle ) {
+        super.restoreFromBundle( bundle );
+        pos = bundle.getInt( "pos" );
     }
 
-	@Override
-	protected void onThrow( int cell ) {
-		if (Level.pit[cell]) {
-			super.onThrow( cell );
-		} 
+    @Override
+    protected void onThrow ( int cell ) {
+        if ( Level.pit[cell] ) {
+            super.onThrow( cell );
+        }
 
 
     }
 
 
     @Override
-    public boolean doPickUp( Hero hero ) {
-        GLog.i("Cannot be retrieved anymore...");
+    public boolean doPickUp ( Hero hero ) {
+        GLog.i( "Cannot be retrieved anymore..." );
         return false;
     }
 
 
-	
-	@Override
-	public boolean isUpgradable() {
-		return false;
-	}
-	
-	@Override
-	public boolean isIdentified() {
-		return true;
-	}
-	
-	@Override
-	public Item random() {
-		quantity = 1;
-		return this;
-	}	
-	
-	@Override
-	public int price() {
-		return 10 * quantity;
-	}
-	
-	@Override
-	public String info() {
-		return
-			"This small bomb will explode as soon as a signal is sent from a trigger beacon.";
-	}
+    @Override
+    public boolean isUpgradable () {
+        return false;
+    }
 
-    public void explode()
-    {
+    @Override
+    public boolean isIdentified () {
+        return true;
+    }
+
+    @Override
+    public Item random () {
+        quantity = 1;
+        return this;
+    }
+
+    @Override
+    public int price () {
+        return 10 * quantity;
+    }
+
+    @Override
+    public String info () {
+        return
+                "This small bomb will explode as soon as a signal is sent from a trigger beacon.";
+    }
+
+    public void explode () {
         Sample.INSTANCE.play( Assets.SND_BLAST, 2 );
 
-        if (Dungeon.visible[pos]) {
-            CellEmitter.center(pos).burst( BlastParticle.FACTORY, 30 );
+        if ( Dungeon.visible[pos] ) {
+            CellEmitter.center( pos ).burst( BlastParticle.FACTORY, 30 );
         }
 
         boolean terrainAffected = false;
-        for (int n : Level.NEIGHBOURS9) {
+        for ( int n : Level.NEIGHBOURS9 ) {
             int c = pos + n;
-            if (c >= 0 && c < Level.LENGTH) {
-                if (Dungeon.visible[c]) {
+            if ( c >= 0 && c < Level.LENGTH ) {
+                if ( Dungeon.visible[c] ) {
                     CellEmitter.get( c ).burst( SmokeParticle.FACTORY, 4 );
                 }
 
-                if (Level.flamable[c]) {
+                if ( Level.flamable[c] ) {
                     Level.set( c, Terrain.EMBERS );
                     GameScene.updateMap( c );
                     terrainAffected = true;
                 }
 
-                Char ch = Actor.findChar(c);
-                if (ch != null) {
-                    int dmg = Random.Int(1 + Dungeon.depth, 10 + Dungeon.depth * 2) - Random.Int( ch.dr() );
-                    if (dmg > 0) {
+                Char ch = Actor.findChar( c );
+                if ( ch != null ) {
+                    int dmg = Random.Int( 1 + Dungeon.depth, 10 + Dungeon.depth * 2 ) - Random.Int( ch.dr() );
+                    if ( dmg > 0 ) {
                         ch.damage( dmg, this );
-                        if (ch.isAlive()) {
-                            Buff.prolong(ch, Paralysis.class, 2);
+                        if ( ch.isAlive() ) {
+                            Buff.prolong( ch, Paralysis.class, 2 );
                         }
                     }
                 }

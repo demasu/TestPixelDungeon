@@ -28,12 +28,10 @@ public class ColdGirlSisterSprite extends ColdGirlSprite {
         isSister = true;
     }
 
-    public ColdGirlSisterSprite() {
+    public ColdGirlSisterSprite () {
 
 
-
-
-        texture( Assets.COLD_GIRL_SISTER);
+        texture( Assets.COLD_GIRL_SISTER );
 
 
         TextureFilm frames = new TextureFilm( texture, FRAME_WIDTH, FRAME_HEIGHT );

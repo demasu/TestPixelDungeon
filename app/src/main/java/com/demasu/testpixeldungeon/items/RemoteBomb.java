@@ -23,21 +23,19 @@ import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
 public class RemoteBomb extends Item {
-	
-	{
-		name = "remote bomb";
-		image = ItemSpriteSheet.RemoteBomb;
-		defaultAction = AC_THROW;
-		stackable = true;
-	}
 
-	@Override
-	protected void onThrow( int cell ) {
-		if (Level.pit[cell]) {
-			super.onThrow( cell );
-		}
-        else
-        {
+    {
+        name = "remote bomb";
+        image = ItemSpriteSheet.RemoteBomb;
+        defaultAction = AC_THROW;
+        stackable = true;
+    }
+
+    @Override
+    protected void onThrow ( int cell ) {
+        if ( Level.pit[cell] ) {
+            super.onThrow( cell );
+        } else {
             RemoteBombGround tmp = new RemoteBombGround();
             tmp.pos = cell;
             Dungeon.level.drop( tmp, cell ).sprite.drop();
@@ -45,36 +43,32 @@ public class RemoteBomb extends Item {
 
 
     }
-			
 
 
+    @Override
+    public boolean isUpgradable () {
+        return false;
+    }
 
+    @Override
+    public boolean isIdentified () {
+        return true;
+    }
 
-	
-	@Override
-	public boolean isUpgradable() {
-		return false;
-	}
-	
-	@Override
-	public boolean isIdentified() {
-		return true;
-	}
-	
-	@Override
-	public Item random() {
-        quantity = Random.Int(1, 1);
-		return this;
-	}	
-	
-	@Override
-	public int price() {
-		return 10 * quantity;
-	}
-	
-	@Override
-	public String info() {
-		return
+    @Override
+    public Item random () {
+        quantity = Random.Int( 1, 1 );
+        return this;
+    }
+
+    @Override
+    public int price () {
+        return 10 * quantity;
+    }
+
+    @Override
+    public String info () {
+        return
                 "After being thrown, this bomb will explode once it receives a signal from a trigger beacon.";
-	}
+    }
 }

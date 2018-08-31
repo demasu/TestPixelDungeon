@@ -22,26 +22,27 @@ public class EnslavedSouls extends Mob {
     }
 
     @Override
-    public int attackSkill( Char target ) {
+    public int attackSkill ( Char target ) {
         return 5;
     }
 
     @Override
-    public int damageRoll() {
-        return Random.NormalIntRange(10, 20);
+    public int damageRoll () {
+        return Random.NormalIntRange( 10, 20 );
     }
 
     @Override
-    public int dr() {
+    public int dr () {
         return 8;
     }
 
     @Override
-    public void die( Object cause ) {
-        super.die(cause);
+    public void die ( Object cause ) {
+        super.die( cause );
     }
+
     @Override
-    public String description() {
+    public String description () {
         return "wha..";
 
     }

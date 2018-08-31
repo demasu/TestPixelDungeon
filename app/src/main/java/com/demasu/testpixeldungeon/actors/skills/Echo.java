@@ -22,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by Moussa on 20-Jan-17.
  */
-public class Echo extends ActiveSkill3{
+public class Echo extends ActiveSkill3 {
 
 
     {
@@ -34,42 +34,44 @@ public class Echo extends ActiveSkill3{
     }
 
     @Override
-    public ArrayList<String> actions( Hero hero ) {
+    public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = new ArrayList<String>();
-        if(level > 0 && hero.MP >= getManaCost())
-            actions.add(AC_CAST);
+        if ( level > 0 && hero.MP >= getManaCost() ) {
+            actions.add( AC_CAST );
+        }
         return actions;
     }
 
     @Override
-    public void execute( Hero hero, String action ) {
-        if (action == Skill.AC_CAST) {
+    public void execute ( Hero hero, String action ) {
+        if ( action == Skill.AC_CAST ) {
             ArrayList<Integer> respawnPoints = new ArrayList<Integer>();
 
-            for (int i = 0; i < Level.NEIGHBOURS8.length; i++) {
+            for ( int i = 0; i < Level.NEIGHBOURS8.length; i++ ) {
                 int p = hero.pos + Level.NEIGHBOURS8[i];
-                if(p < 0 || p >= Level.passable.length)
+                if ( p < 0 || p >= Level.passable.length ) {
                     continue;
-                if (Actor.findChar(p) == null && (Level.passable[p] || Level.avoid[p])) {
-                    respawnPoints.add(p);
+                }
+                if ( Actor.findChar( p ) == null && ( Level.passable[p] || Level.avoid[p] ) ) {
+                    respawnPoints.add( p );
                 }
             }
 
             int nImages = 1;
-            while (nImages > 0 && respawnPoints.size() > 0) {
-                int index = Random.index(respawnPoints);
+            while ( nImages > 0 && respawnPoints.size() > 0 ) {
+                int index = Random.index( respawnPoints );
 
-                SummonedPet minion = new SummonedPet(MirrorSprite.class);
+                SummonedPet minion = new SummonedPet( MirrorSprite.class );
                 minion.name = "Hatsune's Echo";
                 minion.screams = false;
                 minion.HT = 50;
                 minion.HP = 50;
-                minion.defenseSkill = Dungeon.hero.defenseSkill(Dungeon.hero);
-                GameScene.add(minion);
-                WandOfBlink.appear(minion, respawnPoints.get(index));
-                minion.sprite.alpha(0);
-                minion.sprite.parent.add(new AlphaTweener(minion.sprite, 1, 0.15f));
-                CellEmitter.get(minion.pos).burst(ElmoParticle.FACTORY, 4);
+                minion.defenseSkill = Dungeon.hero.defenseSkill( Dungeon.hero );
+                GameScene.add( minion );
+                WandOfBlink.appear( minion, respawnPoints.get( index ) );
+                minion.sprite.alpha( 0 );
+                minion.sprite.parent.add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
+                CellEmitter.get( minion.pos ).burst( ElmoParticle.FACTORY, 4 );
 
                 nImages--;
             }
@@ -85,21 +87,18 @@ public class Echo extends ActiveSkill3{
     }
 
     @Override
-    public int getManaCost()
-    {
-        return (int)Math.ceil(mana * (1 + 0.7 * level));
+    public int getManaCost () {
+        return (int) Math.ceil( mana * ( 1 + 0.7 * level ) );
     }
 
     @Override
-    protected boolean upgrade()
-    {
+    protected boolean upgrade () {
         return true;
     }
 
 
     @Override
-    public String info()
-    {
+    public String info () {
         return "An echo of a memory you should not have survived.\n"
                 + costUpgradeInfo();
     }

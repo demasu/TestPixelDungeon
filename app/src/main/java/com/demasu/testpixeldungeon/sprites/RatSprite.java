@@ -28,36 +28,36 @@ public class RatSprite extends MobSprite {
 
     private int cellToAttack;
 
-	public RatSprite() {
-		super();
-		
-		texture( Assets.RAT );
-		
-		TextureFilm frames = new TextureFilm( texture, 16, 15 );
-		
-		idle = new Animation( 2, true );
-		idle.frames( frames, 0, 0, 0, 1 );
-		
-		run = new Animation( 10, true );
-		run.frames( frames, 6, 7, 8, 9, 10 );
-		
-		attack = new Animation( 15, false );
-		attack.frames( frames, 2, 3, 4, 5, 0 );
+    public RatSprite () {
+        super();
+
+        texture( Assets.RAT );
+
+        TextureFilm frames = new TextureFilm( texture, 16, 15 );
+
+        idle = new Animation( 2, true );
+        idle.frames( frames, 0, 0, 0, 1 );
+
+        run = new Animation( 10, true );
+        run.frames( frames, 6, 7, 8, 9, 10 );
+
+        attack = new Animation( 15, false );
+        attack.frames( frames, 2, 3, 4, 5, 0 );
 
         zap = attack.clone();
 
-		die = new Animation( 10, false );
-		die.frames( frames, 11, 12, 13, 14 );
-		
-		play( idle );
-	}
+        die = new Animation( 10, false );
+        die.frames( frames, 11, 12, 13, 14 );
+
+        play( idle );
+    }
 
     @Override
-    public void attack( int cell ) {
-        if (!Level.adjacent(cell, ch.pos)) {
+    public void attack ( int cell ) {
+        if ( !Level.adjacent( cell, ch.pos ) ) {
 
             cellToAttack = cell;
-            turnTo( ch.pos , cell );
+            turnTo( ch.pos, cell );
             play( zap );
 
         } else {
@@ -68,14 +68,14 @@ public class RatSprite extends MobSprite {
     }
 
     @Override
-    public void onComplete( Animation anim ) {
-        if (anim == zap) {
+    public void onComplete ( Animation anim ) {
+        if ( anim == zap ) {
             idle();
 
-            ((MissileSprite)parent.recycle( MissileSprite.class )).
+            ( (MissileSprite) parent.recycle( MissileSprite.class ) ).
                     reset( ch.pos, cellToAttack, new MobProjectile(), new Callback() {
                         @Override
-                        public void call() {
+                        public void call () {
                             ch.onAttackComplete();
                         }
                     } );
