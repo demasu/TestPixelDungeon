@@ -146,10 +146,10 @@ public class Hero extends Char {
     private static final String TXT_WAIT = "...";
     private static final String TXT_SEARCH = "search";
 
-    public static final int STARTING_STR = 10;
+    public static final int STARTING_STR = 15;
 
     private static final float TIME_TO_REST = 1f;
-    private static final float TIME_TO_SEARCH = 2f;
+    private static final float TIME_TO_SEARCH = 1f;
 
     public HeroClass heroClass = HeroClass.ROGUE;
     public HeroSubClass subClass = HeroSubClass.NONE;
@@ -158,8 +158,8 @@ public class Hero extends Char {
 
     public HiredMerc hiredMerc = null;
 
-    int attackSkill = 10;
-    int defenseSkill = 5;
+    int attackSkill = 15;
+    int defenseSkill = 10;
 
     public boolean ready = false;
 
@@ -198,9 +198,9 @@ public class Hero extends Char {
         super();
         name = "you";
 
-        HP = HT = 20;
+        HP = HT = 40;
         STR = STARTING_STR;
-        awareness = 0.1f;
+        awareness = 0.5f;
 
         belongings = new Belongings(this);
         storage = new Storage(this);
@@ -1566,7 +1566,7 @@ public class Hero extends Char {
         int positive = 0;
         int negative = 0;
         for (Buff buff : buffs(RingOfDetection.Detection.class)) {
-            int bonus = ((RingOfDetection.Detection) buff).level;
+            int bonus = ((RingOfDetection.Detection) buff).level + 5;
             if (bonus > positive) {
                 positive = bonus;
             } else if (bonus < 0) {

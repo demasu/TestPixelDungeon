@@ -363,12 +363,12 @@ public class Dungeon {
     }
 
     public static boolean posNeeded() {
-        int[] quota = {4, 2, 9, 4, 14, 6, 19, 8, 24, 9};
+        int[] quota = {8, 4, 18, 8, 28, 12, 38, 16, 48, 18};
         return chance(quota, potionOfStrength);
     }
 
     public static boolean souNeeded() {
-        int[] quota = {5, 3, 10, 6, 15, 9, 20, 12, 25, 13};
+        int[] quota = {10, 6, 20, 12, 30, 18, 40, 24, 50, 26};
         return chance(quota, scrollsOfUpgrade);
     }
 

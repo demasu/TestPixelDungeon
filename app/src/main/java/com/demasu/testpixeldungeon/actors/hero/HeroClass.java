@@ -42,6 +42,7 @@ import com.demasu.testpixeldungeon.items.wands.WandOfMagicMissile;
 import com.demasu.testpixeldungeon.items.weapon.melee.Dagger;
 import com.demasu.testpixeldungeon.items.weapon.melee.DualSwords;
 import com.demasu.testpixeldungeon.items.weapon.melee.Knuckles;
+import com.demasu.testpixeldungeon.items.weapon.melee.NecroBlade;
 import com.demasu.testpixeldungeon.items.weapon.melee.ShortSword;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
@@ -165,11 +166,19 @@ public enum HeroClass {
         // new ScrollOfSacrifice().collect();
         // new ScrollOfBloodyRitual().collect();
         new ScrollOfSkill().collect();
+        new ScrollOfSkill().collect();
+        new ScrollOfSkill().collect();
+        new ScrollOfSkill().collect();
         // new ScrollOfMagicMapping().identify().collect();
         // new ScrollOfFrostLevel().collect();
 
         // new Ankh().collect();
         new PotionOfHealing().setKnown();
+        new PotionOfHealing().collect();
+        new PotionOfHealing().collect();
+        new PotionOfHealing().collect();
+        new PotionOfHealing().collect();
+        new PotionOfHealing().collect();
         new PotionOfMana().setKnown();
 
         new PotionOfMana().collect();
@@ -203,6 +212,7 @@ public enum HeroClass {
         hero.STR = hero.STR + 1;
         hero.MP = hero.MMP = 20;
         (hero.belongings.weapon = new ShortSword()).identify();
+        new NecroBlade().identify().collect();
         new Dart(8).identify().collect();
 
         QuickSlot.primaryValue = Dart.class;
