@@ -150,10 +150,10 @@ public class Hero extends Char {
 	private static final String TXT_WAIT	= "...";
 	private static final String TXT_SEARCH	= "search";
 	
-	public static final int STARTING_STR = 10;
+	public static final int STARTING_STR = 15;
 	
 	private static final float TIME_TO_REST		= 1f;
-	private static final float TIME_TO_SEARCH	= 2f;
+	private static final float TIME_TO_SEARCH	= 1f;
 	
 	public HeroClass heroClass = HeroClass.ROGUE;
 	public HeroSubClass subClass = HeroSubClass.NONE;
@@ -162,8 +162,8 @@ public class Hero extends Char {
 
     public HiredMerc hiredMerc = null;
 
-	protected int attackSkill = 10;
-    protected int defenseSkill = 5;
+	protected int attackSkill = 20;
+    protected int defenseSkill = 10;
 
 	public boolean ready = false;
 
@@ -202,9 +202,9 @@ public class Hero extends Char {
 		super();
 		name = "you";
 		
-		HP = HT = 20;
+		HP = HT = 50;
 		STR = STARTING_STR;
-		awareness = 0.1f;
+		awareness = 1.0f;
 		
 		belongings = new Belongings( this );
         storage = new Storage( this );
@@ -1608,7 +1608,7 @@ public class Hero extends Char {
 				negative += bonus;
 			}
 		}
-		int distance = 1 + positive + negative;
+		int distance = 1 + positive + negative + 10;
 
 		float level = intentional ? (2 * awareness - awareness * awareness) : awareness;
 		if (distance <= 0) {
