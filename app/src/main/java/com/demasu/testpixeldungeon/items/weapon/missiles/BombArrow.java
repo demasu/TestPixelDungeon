@@ -39,94 +39,95 @@ import java.util.ArrayList;
 
 public class BombArrow extends Arrow {
 
-	{
-		name = "bomb arrow";
-		image = ItemSpriteSheet.BombArrow;
+    {
+        name = "bomb arrow";
+        image = ItemSpriteSheet.BombArrow;
 
         stackable = true;
-	}
+    }
 
-	public BombArrow() {
-		this( 1 );
-	}
+    public BombArrow () {
+        this( 1 );
+    }
 
-	public BombArrow(int number) {
-		super();
-		quantity = number;
-	}
+    public BombArrow ( int number ) {
+        super();
+        quantity = number;
+    }
 
     @Override
-    public Item random() {
-        quantity = Random.Int(1, 3);
+    public Item random () {
+        quantity = Random.Int( 1, 3 );
         return this;
     }
 
-	@Override
-	public String desc() {
-		return 
-			"An arrow with an attached bomb. Keep your distance..";
-	}
-	
+    @Override
+    public String desc () {
+        return
+                "An arrow with an attached bomb. Keep your distance..";
+    }
 
-	@Override
-	public int price() {
-		return quantity * 15;
-	}
 
     @Override
-    public ArrayList<String> actions( Hero hero ) {
+    public int price () {
+        return quantity * 15;
+    }
+
+    @Override
+    public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = super.actions( hero );
-        if(Dungeon.hero.belongings.bow != null) {
-            if(actions.contains(AC_THROW) == false)
-            actions.add(AC_THROW);
-        }
-        else
+        if ( Dungeon.hero.belongings.bow != null ) {
+            if ( actions.contains( AC_THROW ) == false ) {
+                actions.add( AC_THROW );
+            }
+        } else {
             actions.remove( AC_THROW );
-        actions.remove(AC_EQUIP);
+        }
+        actions.remove( AC_EQUIP );
 
         return actions;
     }
 
 
     @Override
-    protected void onThrow( int cell ) {
-        if (Level.pit[cell]) {
+    protected void onThrow ( int cell ) {
+        if ( Level.pit[cell] ) {
             super.onThrow( cell );
         } else {
             Sample.INSTANCE.play( Assets.SND_BLAST, 2 );
 
-            if (Dungeon.visible[cell]) {
-                CellEmitter.center(cell).burst( BlastParticle.FACTORY, 30 );
+            if ( Dungeon.visible[cell] ) {
+                CellEmitter.center( cell ).burst( BlastParticle.FACTORY, 30 );
             }
 
             boolean terrainAffected = false;
-            for (int n : Level.NEIGHBOURS9) {
+            for ( int n : Level.NEIGHBOURS9 ) {
                 int c = cell + n;
-                if (c >= 0 && c < Level.LENGTH) {
-                    if (Dungeon.visible[c]) {
+                if ( c >= 0 && c < Level.LENGTH ) {
+                    if ( Dungeon.visible[c] ) {
                         CellEmitter.get( c ).burst( SmokeParticle.FACTORY, 4 );
                     }
 
-                    if (Level.flamable[c]) {
+                    if ( Level.flamable[c] ) {
                         Level.set( c, Terrain.EMBERS );
-                        GameScene.updateMap(c);
+                        GameScene.updateMap( c );
                         terrainAffected = true;
                     }
 
-                    Char ch = Actor.findChar(c);
-                    if (ch != null) {
+                    Char ch = Actor.findChar( c );
+                    if ( ch != null ) {
                         int dmg = Random.Int( 1 + Dungeon.depth, 10 + Dungeon.depth * 2 ) - Random.Int( ch.dr() );
-                        if (dmg > 0) {
+                        if ( dmg > 0 ) {
                             ch.damage( dmg, this );
-                            if (ch.isAlive()) {
-                                Buff.prolong(ch, Paralysis.class, 2);
+                            if ( ch.isAlive() ) {
+                                Buff.prolong( ch, Paralysis.class, 2 );
                             }
                         }
                     }
                 }
             }
 
-            if (terrainAffected) {
+            if ( terrainAffected ) {
                 Dungeon.observe();
             }
         }

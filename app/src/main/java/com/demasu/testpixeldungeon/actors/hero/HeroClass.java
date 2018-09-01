@@ -22,6 +22,7 @@ import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.skills.CurrentSkills;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
+import com.demasu.testpixeldungeon.items.Ankh;
 import com.demasu.testpixeldungeon.items.ArmorKit;
 import com.demasu.testpixeldungeon.items.SoulCrystalFilled;
 import com.demasu.testpixeldungeon.items.TomeOfMastery;
@@ -36,6 +37,7 @@ import com.demasu.testpixeldungeon.items.potions.PotionOfMindVision;
 import com.demasu.testpixeldungeon.items.potions.PotionOfStrength;
 import com.demasu.testpixeldungeon.items.rings.RingOfShadows;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfBloodyRitual;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfEnchantment;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfFrostLevel;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfHome;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfIdentify;
@@ -193,7 +195,7 @@ public enum HeroClass {
         // new ScrollOfMagicMapping().identify().collect();
         // new ScrollOfFrostLevel().collect();
 
-        // new Ankh().collect();
+        new Ankh().collect();
         new PotionOfHealing().setKnown();
         new PotionOfMana().setKnown();
 
@@ -211,13 +213,13 @@ public enum HeroClass {
         new PotionOfHealing().collect();
         new PotionOfHealing().collect();
         new PotionOfHealing().collect();
-        // new ScrollOfEnchantment().identify().collect();
+        new ScrollOfEnchantment().identify().collect();
 
         new SoulCrystal( 3 ).collect();
         new SoulCrystalFilled( EyeSprite.class, 50, 20, "Captured Evil Eye" ).collect();
         // new PotionOfMindVision().collect();
         //new ArmorKit().collect();
-        // new ScrollHolder().collect();
+        new ScrollHolder().collect();
     }
 
     public Badges.Badge masteryBadge () {

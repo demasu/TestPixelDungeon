@@ -13,10 +13,10 @@ public class ShadowClone extends MirrorImage {
     int lifeSpan = 3;
 
     @Override
-    public int attackProc( Char enemy, int damage ) {
+    public int attackProc ( Char enemy, int damage ) {
         int dmg = super.attackProc( enemy, damage );
         lifeSpan--;
-        if(lifeSpan < 1) {
+        if ( lifeSpan < 1 ) {
             destroy();
             sprite.die();
         }
@@ -24,7 +24,7 @@ public class ShadowClone extends MirrorImage {
     }
 
     @Override
-    public String description() {
+    public String description () {
         return
                 "Shadow clones share your strength and cannot be attacked. \nThey will however disappear after dealing some punishment.";
     }
