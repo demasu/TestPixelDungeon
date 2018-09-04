@@ -74,7 +74,7 @@ public class ShopPainter extends Painter {
         for ( int i = 0; i < range.length; i++ ) {
 
             if ( skip > 0 ) {
-                if ( range[i] instanceof Ankh == false && range[i] instanceof Bag == false ) {
+                if ( !( range[i] instanceof Ankh ) && !( range[i] instanceof Bag ) ) {
                     skip--;
                     continue; // Shop can't fit item and it's not important
                 }
