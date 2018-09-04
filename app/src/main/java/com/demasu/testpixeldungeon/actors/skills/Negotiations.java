@@ -99,7 +99,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                 }
             }
 
-            if ( spawned == true ) {
+            if ( spawned ) {
                 Dungeon.gold -= getGoldCost();
                 GLog.p( " " + action + " hired for " + getGoldCost() + " gold! " );
             }
