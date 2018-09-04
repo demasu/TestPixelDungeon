@@ -324,7 +324,7 @@ public class HiredMerc extends NPC {
         unEquipWeapon();
         weapon = item;
 
-        if ( canEquip( weapon ) == false ) {
+        if ( !canEquip( weapon ) ) {
             unEquipWeapon();
             sprite.showStatus( CharSprite.NEGATIVE, TXT_CANT_EQUIP );
         }
@@ -340,7 +340,7 @@ public class HiredMerc extends NPC {
     public void equipArmor ( Item item ) {
         unEquipArmor();
         armor = item;
-        if ( canEquip( armor ) == false ) {
+        if ( !canEquip( armor ) ) {
             unEquipArmor();
             sprite.showStatus( CharSprite.NEGATIVE, TXT_CANT_EQUIP );
         } else {
@@ -593,7 +593,7 @@ public class HiredMerc extends NPC {
 
         rangedAttackCooldown++;
 
-        if ( hackFix == false ) {
+        if ( !hackFix ) {
             ( (MercSprite) super.sprite ).updateArmor();
             hackFix = true;
         }
