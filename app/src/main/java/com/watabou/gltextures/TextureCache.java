@@ -31,7 +31,7 @@ import com.watabou.glwrap.Texture;
 
 public class TextureCache {
 
-    public static Context context;
+    public Context context;
 
     private static HashMap<Object, SmartTexture> all = new HashMap<Object, SmartTexture>();
 
@@ -124,7 +124,7 @@ public class TextureCache {
         }
     }
 
-    public static Bitmap getBitmap ( Object src ) {
+    public Bitmap getBitmap ( Object src ) {
 
         try {
             if ( src instanceof Integer ) {
