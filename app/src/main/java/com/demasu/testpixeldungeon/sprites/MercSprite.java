@@ -93,12 +93,6 @@ public class MercSprite extends MobSprite {
 
     public void updateArmor () {
 
-        if ( false ) {
-            hasHalo = true;
-            add( State.ARCHERMAIDEN );
-            GameScene.effect( halo = new ArcherMaidenHalo( this ) );
-        }
-
 
         switch ( type ) {
             case Brute:
