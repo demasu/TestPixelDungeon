@@ -57,7 +57,7 @@ public class Champ extends Buff {
     @Override
     public boolean act () {
 
-        if ( bonusApplied == false ) {
+        if ( !bonusApplied ) {
 
             bonusApplied = true;
             haloApplied = true;
@@ -67,7 +67,7 @@ public class Champ extends Buff {
                     type = 4;
                 }
             }
-            while ( Dungeon.currentDifficulty.disableChampion( type ) == true );
+            while ( Dungeon.currentDifficulty.disableChampion( type ) );
 
             this.target.champ = type;
 
@@ -120,7 +120,7 @@ public class Champ extends Buff {
                     break;
 
             }
-        } else if ( haloApplied == false ) {
+        } else if ( !haloApplied ) {
             haloApplied = true;
             switch ( type ) {
                 case CHAMP_VAMPERIC: //red
