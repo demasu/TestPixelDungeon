@@ -220,11 +220,7 @@ public class Dungeon {
         if ( depth % ColdGirl.FROST_DEPTH > Statistics.deepestFloor ) {
             Statistics.deepestFloor = depth;
 
-            if ( Statistics.qualifiedForNoKilling ) {
-                Statistics.completedWithNoKilling = true;
-            } else {
-                Statistics.completedWithNoKilling = false;
-            }
+            Statistics.completedWithNoKilling = Statistics.qualifiedForNoKilling;
         }
 
         Arrays.fill( visible, false );
