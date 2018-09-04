@@ -83,7 +83,7 @@ import com.watabou.utils.SparseArray;
 
 public abstract class Level implements Bundlable {
 
-    public static enum Feeling {
+    public enum Feeling {
         NONE,
         CHASM,
         WATER,
