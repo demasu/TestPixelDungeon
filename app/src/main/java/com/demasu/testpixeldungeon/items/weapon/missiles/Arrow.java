@@ -77,9 +77,9 @@ public class Arrow extends MissileWeapon {
     protected void onThrow ( int cell ) {
 
 
-        if ( Dungeon.hero.heroSkills.passiveB3.multiTargetActive == false || Dungeon.hero.heroSkills.active3.active == true ) { //  bombvoyage
+        if ( !Dungeon.hero.heroSkills.passiveB3.multiTargetActive || Dungeon.hero.heroSkills.active3.active ) { //  bombvoyage
             // Turn to bomb
-            if ( Dungeon.hero.heroSkills.active3.arrowToBomb() == true ) {
+            if ( Dungeon.hero.heroSkills.active3.arrowToBomb() ) {
                 if ( Level.pit[cell] ) {
                     super.onThrow( cell );
                 } else {
@@ -152,7 +152,7 @@ public class Arrow extends MissileWeapon {
             }
         }
 
-        if ( hitOne == false ) {
+        if ( !hitOne ) {
             miss( cell );
         }
 
@@ -184,7 +184,7 @@ public class Arrow extends MissileWeapon {
     public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = super.actions( hero );
         if ( Dungeon.hero.belongings.bow != null ) {
-            if ( actions.contains( AC_THROW ) == false ) {
+            if ( !actions.contains( AC_THROW ) ) {
                 actions.add( AC_THROW );
             }
         } else {
