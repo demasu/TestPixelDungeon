@@ -62,7 +62,7 @@ public class MercWizardSkillA extends SummonRat {
             }
         }
 
-        if ( spawned == true ) {
+        if ( spawned ) {
             castTextYell();
         }
     }
