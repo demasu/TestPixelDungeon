@@ -413,7 +413,7 @@ public abstract class Level implements Bundlable {
         return new Actor() {
             @Override
             protected boolean act () {
-                if ( Dungeon.hero.hiredMerc != null && Dungeon.hero.checkMerc == true ) {
+                if ( Dungeon.hero.hiredMerc != null && Dungeon.hero.checkMerc ) {
 
                     HiredMerc mercCheck = checkMerc();
                     if ( mercCheck != null ) {
@@ -722,7 +722,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.TOXIC_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() == true ) {
+                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     ToxicTrap.trigger( cell, ch );
@@ -733,7 +733,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.FIRE_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() == true ) {
+                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     FireTrap.trigger( cell, ch );
@@ -744,7 +744,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.PARALYTIC_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() == true ) {
+                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     ParalyticTrap.trigger( cell, ch );
@@ -755,7 +755,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.POISON_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() == true ) {
+                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     PoisonTrap.trigger( cell, ch );
@@ -766,7 +766,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.ALARM_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() == true ) {
+                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     AlarmTrap.trigger( cell, ch );
@@ -777,7 +777,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.LIGHTNING_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() == true ) {
+                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     LightningTrap.trigger( cell, ch );
@@ -788,7 +788,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.GRIPPING_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() == true ) {
+                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     GrippingTrap.trigger( cell, ch );
@@ -799,7 +799,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.SUMMONING_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() == true ) {
+                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     SummoningTrap.trigger( cell, ch );
