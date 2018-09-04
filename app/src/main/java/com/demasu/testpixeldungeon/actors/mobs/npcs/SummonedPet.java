@@ -184,6 +184,7 @@ public class SummonedPet extends NPC {
 
 
         try {
+            //noinspection unchecked
             spriteClass = (Class<? extends CharSprite>) Class.forName( bundle.getString( SPRITE ) );
         } catch ( Exception ex ) {
             spriteClass = RatSprite.class;
