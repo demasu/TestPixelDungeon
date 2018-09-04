@@ -310,23 +310,14 @@ public class MissionStartScene extends PixelScene {
         }
         shields.get( curClass = cl ).highlight( true );
 
-        if ( true ) {
-
-            unlock.visible = false;
+        unlock.visible = false;
 
 
-            btnNewGame.visible = true;
-            btnNewGame.secondary( null, false );
-            btnNewGame.setRect( buttonX, buttonY, Camera.main.width - buttonX * 2, BUTTON_HEIGHT );
+        btnNewGame.visible = true;
+        btnNewGame.secondary( null, false );
+        btnNewGame.setRect( buttonX, buttonY, Camera.main.width - buttonX * 2, BUTTON_HEIGHT );
 
 
-        } else {
-
-            unlock.visible = true;
-
-            btnNewGame.visible = false;
-
-        }
     }
 
     private void startNewGame ( int diff ) {
