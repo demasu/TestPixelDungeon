@@ -381,7 +381,7 @@ public enum Difficulties {
             return false;
         }
 
-        if ( disable && disableChampion( champType ) == false ) {
+        if ( disable && !disableChampion( champType ) ) {
             disabledChampions.add( champType );
         }
 
