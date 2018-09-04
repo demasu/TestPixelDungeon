@@ -70,7 +70,7 @@ public class SummonRat extends ActiveSkill1 {
                 }
             }
 
-            if ( spawned == true ) {
+            if ( spawned ) {
                 hero.MP -= getManaCost();
                 StatusPane.manaDropping += getManaCost();
                 castTextYell();
