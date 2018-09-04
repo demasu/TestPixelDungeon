@@ -19,10 +19,7 @@ public class MercThiefSkillA extends Venom {
 
     @Override
     public boolean venomousAttack () {
-        if ( Random.Int( 100 ) < 5 * level + 15 ) {
-            return true;
-        }
-        return false;
+        return Random.Int( 100 ) < 5 * level + 15;
     }
 
     @Override
