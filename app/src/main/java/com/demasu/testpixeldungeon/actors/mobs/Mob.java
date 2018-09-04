@@ -503,9 +503,9 @@ public abstract class Mob extends Char {
     }
 
     public interface AiState {
-        public boolean act ( boolean enemyInFOV, boolean justAlerted );
+        boolean act ( boolean enemyInFOV, boolean justAlerted );
 
-        public String status ();
+        String status ();
     }
 
     public class Sleeping implements AiState {
