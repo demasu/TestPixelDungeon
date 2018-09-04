@@ -68,7 +68,7 @@ public enum HeroClass {
 
     private String title;
 
-    private HeroClass ( String title ) {
+    HeroClass ( String title ) {
         this.title = title;
     }
 
