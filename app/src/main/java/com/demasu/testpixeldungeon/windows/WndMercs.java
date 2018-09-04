@@ -77,7 +77,7 @@ import java.util.ArrayList;
 
 public class WndMercs extends WndTabbed {
 
-    public static enum Mode {
+    public enum Mode {
         ALL,
         BRUTE,
         WIZARD,
