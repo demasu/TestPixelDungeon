@@ -198,7 +198,7 @@ public class FrostLevel extends Level {
 
         super.press( cell, hero );
 
-        if ( enteredArena == false ) {
+        if ( !enteredArena ) {
             enteredArena = true;
             Mob boss = new ColdGirl();
             do {
