@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.items.wands;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
@@ -272,7 +273,7 @@ public abstract class Wand extends KindOfWeapon {
             info.append( "\n\n" );
             if ( levelKnown ) {
                 int min = min();
-                info.append( String.format( TXT_DAMAGE, min + ( max() - min ) / 2 ) );
+                info.append( String.format( Locale.US, TXT_DAMAGE, min + ( max() - min ) / 2 ) );
             } else {
                 info.append( String.format( TXT_WEAPON ) );
             }
