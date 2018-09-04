@@ -49,7 +49,7 @@ import android.view.View;
 @SuppressLint ( "Registered" )
 public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTouchListener {
 
-    public Game instance;
+    public static Game instance;
 
     // Actual size of the screen
     public static int width;
