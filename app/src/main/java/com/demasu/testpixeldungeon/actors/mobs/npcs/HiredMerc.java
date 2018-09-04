@@ -46,7 +46,7 @@ import java.util.HashSet;
  */
 public class HiredMerc extends NPC {
 
-    public static enum MERC_TYPES {
+    public enum MERC_TYPES {
         Brute( "Brute" ), Wizard( "Wizard" ), Thief( "Thief" ), Archer( "Archer" ), ArcherMaiden( "ArcherMaiden" );
         public String type = "Brute";
 
