@@ -286,7 +286,6 @@ public class BitmapText extends Visual {
 
                 char ch = chars.charAt( i );
                 if ( ch == ' ' ) {
-                    continue;
                 } else {
 
                     boolean found;
