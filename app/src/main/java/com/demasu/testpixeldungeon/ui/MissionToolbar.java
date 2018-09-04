@@ -154,7 +154,7 @@ public class MissionToolbar extends Component {
         add( btnInfoSearch = new Tool( 107, 7, 20, 25 ) {
             @Override
             protected void onClick () {
-                if ( tapAgainToSearch == false ) {
+                if ( !tapAgainToSearch ) {
                     GameScene.selectCell( informer );
                 } else {
                     Dungeon.hero.search( true );
