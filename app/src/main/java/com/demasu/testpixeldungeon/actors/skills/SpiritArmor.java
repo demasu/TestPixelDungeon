@@ -27,7 +27,7 @@ public class SpiritArmor extends PassiveSkillA3 {
     @Override
     public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = new ArrayList<String>();
-        if ( active == false && level > 0 ) {
+        if ( !active && level > 0 ) {
             actions.add( AC_ACTIVATE );
         } else if ( level > 0 ) {
             actions.add( AC_DEACTIVATE );
@@ -47,7 +47,7 @@ public class SpiritArmor extends PassiveSkillA3 {
 
     @Override
     public int incomingDamageReduction ( int damage ) {
-        if ( active == false ) {
+        if ( !active ) {
             return 0;
         }
         int maxReduction = (int) ( damage * 0.1f * level );
