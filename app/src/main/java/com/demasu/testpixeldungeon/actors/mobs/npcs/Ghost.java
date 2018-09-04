@@ -158,7 +158,7 @@ public class Ghost extends NPC {
 
             public QuestHandler handler;
 
-            private Type ( QuestHandler handler ) {
+            Type ( QuestHandler handler ) {
                 this.handler = handler;
             }
         }
