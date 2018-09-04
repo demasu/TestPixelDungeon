@@ -29,7 +29,7 @@ public enum Difficulties {
 
     private ArrayList<Integer> disabledChampions = new ArrayList<>();
 
-    private Difficulties ( int difficulty ) {
+    Difficulties ( int difficulty ) {
         this.difficulty = difficulty;
         championOffset = 0;
         hpOffset = 0;
