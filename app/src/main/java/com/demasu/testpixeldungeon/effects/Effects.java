@@ -29,8 +29,6 @@ public class Effects {
         RAY
     }
 
-    ;
-
     public static Image get ( Type type ) {
         Image icon = new Image( Assets.EFFECTS );
         switch ( type ) {

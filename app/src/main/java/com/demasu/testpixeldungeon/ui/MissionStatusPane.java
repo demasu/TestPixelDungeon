@@ -89,7 +89,6 @@ public class MissionStatusPane extends Component {
                 GameScene.show( new WndHero() );
             }
 
-            ;
         } );
 
         btnMenu = new MenuButton();

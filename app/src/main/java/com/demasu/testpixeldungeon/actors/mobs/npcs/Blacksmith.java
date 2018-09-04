@@ -103,7 +103,6 @@ public class Blacksmith extends NPC {
                     }
                 }
 
-                ;
             } );
 
             Journal.add( Journal.Feature.TROLL );

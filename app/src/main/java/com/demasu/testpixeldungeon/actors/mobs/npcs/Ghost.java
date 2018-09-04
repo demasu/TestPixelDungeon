@@ -140,7 +140,6 @@ public class Ghost extends NPC {
                 parent.erase( this );
             }
 
-            ;
         } );
 
         b.pos = a.pos;
@@ -460,7 +459,6 @@ public class Ghost extends NPC {
                         }
                     }
 
-                    ;
                 } );
 
                 Journal.add( Journal.Feature.GHOST );

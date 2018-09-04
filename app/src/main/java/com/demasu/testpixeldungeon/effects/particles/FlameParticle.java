@@ -34,7 +34,6 @@ public class FlameParticle extends PixelParticle.Shrinking {
             return true;
         }
 
-        ;
     };
 
     public FlameParticle () {

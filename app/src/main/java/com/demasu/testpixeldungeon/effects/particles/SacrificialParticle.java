@@ -34,7 +34,6 @@ public class SacrificialParticle extends PixelParticle.Shrinking {
             return true;
         }
 
-        ;
     };
 
     public SacrificialParticle () {

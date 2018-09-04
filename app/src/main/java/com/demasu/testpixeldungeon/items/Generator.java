@@ -72,8 +72,6 @@ public class Generator {
         }
     }
 
-    ;
-
     private static HashMap<Category, Float> categoryProbs = new HashMap<Generator.Category, Float>();
 
     static {

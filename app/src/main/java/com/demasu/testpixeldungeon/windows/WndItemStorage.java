@@ -76,7 +76,6 @@ public class WndItemStorage extends Window {
                     owner.hide();
                 }
 
-                ;
             };
             btn.setSize( Math.max( BUTTON_WIDTH, btn.reqWidth() ), BUTTON_HEIGHT );
             if ( x + btn.width() > WIDTH ) {

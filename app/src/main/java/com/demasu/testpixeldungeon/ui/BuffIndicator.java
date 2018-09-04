@@ -132,7 +132,6 @@ public class BuffIndicator extends Component {
                         image.scale.set( 1 + 5 * progress );
                     }
 
-                    ;
                 } );
             }
         }

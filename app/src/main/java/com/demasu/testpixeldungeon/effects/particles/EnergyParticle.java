@@ -36,7 +36,6 @@ public class EnergyParticle extends PixelParticle {
             return true;
         }
 
-        ;
     };
 
     public EnergyParticle () {

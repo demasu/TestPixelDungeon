@@ -90,14 +90,11 @@ public class Toolbar extends Component {
                 Dungeon.hero.rest( false );
             }
 
-            ;
-
             protected boolean onLongClick () {
                 Dungeon.hero.rest( true );
                 return true;
             }
 
-            ;
         } );
 
         add( btnSkill = new Tool( 20, 7, 20, 25 ) {
@@ -106,14 +103,11 @@ public class Toolbar extends Component {
                 GameScene.show( new WndSkills( null, null ) );
             }
 
-            ;
-
             protected boolean onLongClick () {
                 GameScene.show( new WndSkills( null, null ) );
                 return true;
             }
 
-            ;
         } );
 
 
@@ -123,14 +117,11 @@ public class Toolbar extends Component {
                 GameScene.show( new WndRatKing( WndRatKing.Mode.NORMAL ) );
             }
 
-            ;
-
             protected boolean onLongClick () {
                 GameScene.show( new WndRatKing( WndRatKing.Mode.NORMAL ) );
                 return true;
             }
 
-            ;
         } );
 
 
@@ -140,14 +131,11 @@ public class Toolbar extends Component {
                 Dungeon.hero.heroSkills.showLastUsed();
             }
 
-            ;
-
             protected boolean onLongClick () {
                 Dungeon.hero.heroSkills.showLastUsed();
                 return true;
             }
 
-            ;
         } );
 
         add( btnMerc = new Tool( 252, 7, 20, 25 ) {
@@ -162,8 +150,6 @@ public class Toolbar extends Component {
 
             }
 
-            ;
-
             protected boolean onLongClick () {
                 if ( Dungeon.hero.hiredMerc == null ) {
                     GameScene.show( new WndSkill( null, CurrentSkills.mercMenu ) );
@@ -173,7 +159,6 @@ public class Toolbar extends Component {
                 return true;
             }
 
-            ;
         } );
 
 
@@ -218,8 +203,6 @@ public class Toolbar extends Component {
                 return true;
             }
 
-            ;
-
             @Override
             protected void createChildren () {
                 super.createChildren();
@@ -227,15 +210,12 @@ public class Toolbar extends Component {
                 add( gold );
             }
 
-            ;
-
             @Override
             protected void layout () {
                 super.layout();
                 gold.fill( this );
             }
 
-            ;
         } );
 
         add( btnQuick1 = new QuickslotTool( 83, 7, 22, 25, true ) );

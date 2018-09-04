@@ -114,7 +114,6 @@ public class WndRatKing extends WndTabbed {
                 @Override
                 protected void onClick () {
                     Dungeon.currentDifficulty.changeChampionOffset( 1 );
-                    ;
                     updateEnabled();
                 }
             };

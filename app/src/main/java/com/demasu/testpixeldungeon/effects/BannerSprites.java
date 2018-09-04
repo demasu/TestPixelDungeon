@@ -31,8 +31,6 @@ public class BannerSprites {
         SKILLFUL_SIGNS
     }
 
-    ;
-
     public static Image get ( Type type ) {
         Image icon = new Image( Assets.BANNERS );
         switch ( type ) {

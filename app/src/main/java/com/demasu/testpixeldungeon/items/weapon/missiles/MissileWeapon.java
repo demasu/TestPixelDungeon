@@ -95,7 +95,6 @@ abstract public class MissileWeapon extends Weapon {
                         }
                     }
 
-                    ;
                 }
         );
 

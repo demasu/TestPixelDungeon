@@ -45,8 +45,6 @@ public class Journal {
         }
     }
 
-    ;
-
     public static class Record implements Comparable<Record>, Bundlable {
 
         private static final String FEATURE = "feature";

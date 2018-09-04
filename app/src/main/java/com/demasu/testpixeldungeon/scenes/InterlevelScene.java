@@ -60,7 +60,6 @@ public class InterlevelScene extends PixelScene {
         DESCEND, ASCEND, CONTINUE, RESURRECT, RETURN, FALL, NONE, TELEPORT, TELEPORT_BACK, MOVIE, MOVIE_OUT, MISSION
     }
 
-    ;
     public static Mode mode;
 
     public static int returnDepth;
@@ -74,7 +73,6 @@ public class InterlevelScene extends PixelScene {
         FADE_IN, STATIC, FADE_OUT
     }
 
-    ;
     private Phase phase;
     private float timeLeft;
 
@@ -257,7 +255,6 @@ public class InterlevelScene extends PixelScene {
                                 Game.switchScene( StartScene.class );
                             }
 
-                            ;
                         } );
                         error = null;
                     } else {
@@ -268,7 +265,6 @@ public class InterlevelScene extends PixelScene {
                                 Game.switchScene( InterlevelScene.class );
                             }
 
-                            ;
                         } );
                         error = null;
                     }

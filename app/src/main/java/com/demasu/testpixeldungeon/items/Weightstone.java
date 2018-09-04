@@ -194,6 +194,5 @@ public class Weightstone extends Item {
         protected void onSelect ( int index ) {
         }
 
-        ;
     }
 }

@@ -124,7 +124,6 @@ public class Bag extends Item implements Iterable<Item> {
         for ( Bundlable item : bundle.getCollection( ITEMS ) ) {
             ( (Item) item ).collect( this );
         }
-        ;
     }
 
     public void restoreFromBundle2 ( Bundle bundle ) {
@@ -132,7 +131,6 @@ public class Bag extends Item implements Iterable<Item> {
         for ( Bundlable item : bundle.getCollection( ITEMS2 ) ) {
             ( (Item) item ).collect( this );
         }
-        ;
     }
 
     public boolean contains ( Item item ) {

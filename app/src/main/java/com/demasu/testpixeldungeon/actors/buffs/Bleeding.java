@@ -50,8 +50,6 @@ public class Bleeding extends Buff {
         this.level = level;
     }
 
-    ;
-
     @Override
     public int icon () {
         return BuffIndicator.BLEEDING;
