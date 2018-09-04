@@ -36,7 +36,7 @@ import com.demasu.testpixeldungeon.utils.Utils;
 
 public class WndRatKing extends WndTabbed {
 
-    public static enum Mode {
+    public enum Mode {
         NORMAL,
         CHAMPIONS,
         HERO
