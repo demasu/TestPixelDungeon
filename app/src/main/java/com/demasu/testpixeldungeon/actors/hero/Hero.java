@@ -1688,7 +1688,7 @@ public class Hero extends Char {
         super.next();
     }
 
-    public static interface Doom {
-        public void onDeath ();
+    public interface Doom {
+        void onDeath ();
     }
 }
