@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,6 +38,7 @@ public class BitmapCache {
         opts.inDither = false;
     }
 
+    @SuppressLint ( "StaticFieldLeak" )
     public static Context context;
 
     public static Bitmap get ( String assetName ) {

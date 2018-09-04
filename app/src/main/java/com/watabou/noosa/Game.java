@@ -49,6 +49,7 @@ import android.view.View;
 @SuppressLint ( "Registered" )
 public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTouchListener {
 
+    @SuppressLint ( "StaticFieldLeak" )
     public static Game instance;
 
     // Actual size of the screen
