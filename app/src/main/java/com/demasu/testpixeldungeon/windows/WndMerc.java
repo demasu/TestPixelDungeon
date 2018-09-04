@@ -370,14 +370,14 @@ public class WndMerc extends WndTabbed {
         @Override
         public void onSelect ( Item item ) {
             if ( item != null ) {
-                if ( item instanceof Weapon && holdOnly == false ) {
+                if ( item instanceof Weapon && !holdOnly ) {
                     if ( Dungeon.hero.belongings.weapon == item ) {
                         Dungeon.hero.belongings.weapon = null;
                     } else {
                         item.detach( Dungeon.hero.belongings.backpack );
                     }
                     Dungeon.hero.hiredMerc.equipWeapon( item );
-                } else if ( item instanceof Armor && holdOnly == false ) {
+                } else if ( item instanceof Armor && !holdOnly ) {
                     if ( Dungeon.hero.belongings.armor == item ) {
                         Dungeon.hero.belongings.armor = null;
                     } else {
