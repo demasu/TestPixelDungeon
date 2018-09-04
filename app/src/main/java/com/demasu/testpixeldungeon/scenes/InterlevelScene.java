@@ -273,7 +273,7 @@ public class InterlevelScene extends PixelScene {
         }
     }
 
-    private void runMission () {
+    private void runMission () throws Exception {
 
         try {
             GameLog.wipe();
@@ -293,7 +293,7 @@ public class InterlevelScene extends PixelScene {
         Dungeon.switchLevel( level, level.randomRespawnCell() );
     }
 
-    private void runMovie () {
+    private void runMovie () throws Exception {
 
         try {
             GameLog.wipe();
@@ -313,7 +313,7 @@ public class InterlevelScene extends PixelScene {
         Dungeon.switchLevel( level, level.randomRespawnCell() );
     }
 
-    private void endMovie () {
+    private void endMovie () throws Exception {
 
         //Actor.fixTime();
         // Game.switchScene(TitleScene.class);
@@ -412,7 +412,7 @@ public class InterlevelScene extends PixelScene {
         }
     }
 
-    private void resurrect () {
+    private void resurrect () throws Exception {
 
         Actor.fixTime();
 

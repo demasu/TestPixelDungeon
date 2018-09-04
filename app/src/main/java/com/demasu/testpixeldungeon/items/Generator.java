@@ -240,7 +240,7 @@ public class Generator {
     public static Item random ( Class<? extends Item> cl ) {
         try {
 
-            return cl.newInstance().random();
+            return ( (Item) cl.newInstance() ).random();
 
         } catch ( Exception e ) {
 

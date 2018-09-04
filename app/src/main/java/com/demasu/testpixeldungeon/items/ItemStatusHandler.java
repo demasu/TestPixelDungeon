@@ -46,7 +46,7 @@ public class ItemStatusHandler<T extends Item> {
 
         for ( int i = 0; i < items.length - exclude; i++ ) {
 
-            Class<? extends T> item = items[i];
+            Class<? extends T> item = (Class<? extends T>) ( items[i] );
 
             int index = Random.Int( labelsLeft.size() - exclude );
 
@@ -58,7 +58,7 @@ public class ItemStatusHandler<T extends Item> {
         }
 
         for ( int i = items.length - exclude; i < items.length; i++ ) {
-            Class<? extends T> item = items[i];
+            Class<? extends T> item = (Class<? extends T>) ( items[i] );
 
             labels.put( item, allLabels[i] );
 
@@ -80,7 +80,7 @@ public class ItemStatusHandler<T extends Item> {
 
         for ( int i = 0; i < items.length; i++ ) {
 
-            Class<? extends T> item = items[i];
+            Class<? extends T> item = (Class<? extends T>) ( items[i] );
 
             int index = Random.Int( labelsLeft.size() );
 
@@ -123,7 +123,7 @@ public class ItemStatusHandler<T extends Item> {
 
         for ( int i = 0; i < items.length; i++ ) {
 
-            Class<? extends T> item = items[i];
+            Class<? extends T> item = (Class<? extends T>) ( items[i] );
             String itemName = item.toString();
 
             if ( bundle.contains( itemName + PFX_LABEL ) ) {
