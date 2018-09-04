@@ -266,7 +266,7 @@ public class GameScene extends PixelScene {
                 switch ( Dungeon.depth ) {
                     case 1:
                         WndStory.showChapter( WndStory.ID_SEWERS );
-                        if ( PixelDungeon.itemDeg() == false ) {
+                        if ( !PixelDungeon.itemDeg() ) {
                             WndStory.showStory( TXT_WARN_DEGRADATION );
                         }
                         break;
