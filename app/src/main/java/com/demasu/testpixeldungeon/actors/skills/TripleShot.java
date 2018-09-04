@@ -30,7 +30,7 @@ public class TripleShot extends ActiveSkill2 {
 
     @Override
     public boolean doubleShot () {
-        if ( active == false || Dungeon.hero.MP < getManaCost() ) {
+        if ( !active || Dungeon.hero.MP < getManaCost() ) {
             return false;
         } else if ( count < 2 ) {
             count++;
