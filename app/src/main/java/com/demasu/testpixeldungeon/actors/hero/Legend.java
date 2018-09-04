@@ -29,7 +29,7 @@ public class Legend extends Hero {
     public boolean act () {
         super.act();
 
-        if ( MissionScene.scenePause == true ) {
+        if ( MissionScene.scenePause ) {
             spendAndNext( 1f );
         }
 
