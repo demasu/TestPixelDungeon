@@ -41,7 +41,7 @@ public enum CurrentSkills {
 
     private String type = "";
 
-    private CurrentSkills ( String type ) {
+    CurrentSkills ( String type ) {
         this.type = type;
     }
 
