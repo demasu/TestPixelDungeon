@@ -239,15 +239,15 @@ public class HiredMerc extends NPC {
         public int getStrength ( int level ) {
             switch ( this ) {
                 case Brute:
-                    return 13 + (int) ( level / 3 );
+                    return 13 + level / 3;
                 case Wizard:
-                    return 10 + (int) ( level / 5 );
+                    return 10 + level / 5;
                 case Thief:
-                    return 13 + (int) ( level / 4 );
+                    return 13 + level / 4;
                 case Archer:
-                    return 11 + (int) ( level / 4 );
+                    return 11 + level / 4;
                 case ArcherMaiden:
-                    return 12 + (int) ( level / 4 );
+                    return 12 + level / 4;
             }
             return 0;
         }

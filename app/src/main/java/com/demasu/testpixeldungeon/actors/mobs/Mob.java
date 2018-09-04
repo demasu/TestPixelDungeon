@@ -182,7 +182,7 @@ public abstract class Mob extends Char {
             }
         }
 
-        Terror terror = (Terror) buff( Terror.class );
+        Terror terror = buff( Terror.class );
         if ( terror != null ) {
             Char source = (Char) Actor.findById( terror.object );
             if ( source != null ) {
