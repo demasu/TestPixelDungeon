@@ -163,13 +163,13 @@ public class Toolbar extends Component {
 
 
 
-		/*
-		add( btnSearch = new Tool( 20, 7, 20, 25 ) {
-			@Override
-			protected void onClick() {
-				Dungeon.hero.search( true );
-			}
-		} );
+        /*
+        add( btnSearch = new Tool( 20, 7, 20, 25 ) {
+            @Override
+            protected void onClick() {
+                Dungeon.hero.search( true );
+            }
+        } );
 
         */
         add( btnInfoSearch = new Tool( 107, 7, 20, 25 ) {

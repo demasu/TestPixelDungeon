@@ -212,12 +212,12 @@ public class Camera extends Gizmo {
 
     protected void updateMatrix () {
 
-	/*	Matrix.setIdentity( matrix );
-		Matrix.translate( matrix, -1, +1 );
-		Matrix.scale( matrix, 2f / G.width, -2f / G.height );
-		Matrix.translate( matrix, x, y );
-		Matrix.scale( matrix, zoom, zoom );
-		Matrix.translate( matrix, scroll.x, scroll.y );*/
+    /*	Matrix.setIdentity( matrix );
+        Matrix.translate( matrix, -1, +1 );
+        Matrix.scale( matrix, 2f / G.width, -2f / G.height );
+        Matrix.translate( matrix, x, y );
+        Matrix.scale( matrix, zoom, zoom );
+        Matrix.translate( matrix, scroll.x, scroll.y );*/
 
         matrix[0] = +zoom * invW2;
         matrix[5] = -zoom * invH2;

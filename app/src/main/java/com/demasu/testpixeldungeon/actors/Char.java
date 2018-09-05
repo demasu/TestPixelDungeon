@@ -424,7 +424,7 @@ public abstract class Char extends Actor {
                 Buff.detach( this, Frost.class );
         }
         else
-		    Buff.detach( this, Frost.class );
+            Buff.detach( this, Frost.class );
 
         */
 
