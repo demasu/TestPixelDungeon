@@ -379,6 +379,7 @@ public class HiredMerc extends NPC {
         return ( (Armor) armor ).tier;
     }
 
+    @SuppressWarnings ( "SimplifiableIfStatement" )
     public boolean canEquip ( Item item ) {
         if ( item instanceof Weapon ) {
             return mercType.getStrength( level ) >= ( (Weapon) item ).STR;
