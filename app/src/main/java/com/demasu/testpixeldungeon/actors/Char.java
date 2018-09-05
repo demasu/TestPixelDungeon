@@ -367,6 +367,7 @@ public abstract class Char extends Actor {
         float acuRoll = Random.Float( attacker.attackSkill( defender ) );
         float defRoll = Random.Float( defender.defenseSkill( attacker ) );
 
+        //noinspection SimplifiableIfStatement
         if ( defender instanceof Hero && Level.distance( attacker.pos, defender.pos ) > 1 && ( (Hero) defender ).heroSkills.passiveA3.dodgeChance() ) // <--- Huntress Awareness if present
         {
             return false;
