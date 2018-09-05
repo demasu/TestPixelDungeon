@@ -65,6 +65,7 @@ public class Patch {
                         count++;
                     }
 
+                    //noinspection SimplifiableIfStatement
                     if ( !off[pos] && count >= 5 ) {
                         cur[pos] = true;
                     } else {
