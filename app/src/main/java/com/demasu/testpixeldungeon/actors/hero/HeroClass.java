@@ -24,12 +24,17 @@ import com.demasu.testpixeldungeon.actors.skills.CurrentSkills;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.items.Ankh;
 import com.demasu.testpixeldungeon.items.ArmorKit;
+import com.demasu.testpixeldungeon.items.KindOfWeapon;
 import com.demasu.testpixeldungeon.items.SoulCrystalFilled;
 import com.demasu.testpixeldungeon.items.TomeOfMastery;
+import com.demasu.testpixeldungeon.items.armor.Armor;
 import com.demasu.testpixeldungeon.items.armor.ClothArmor;
+import com.demasu.testpixeldungeon.items.armor.DebugArmor;
 import com.demasu.testpixeldungeon.items.armor.ScaleArmor;
 import com.demasu.testpixeldungeon.items.bags.Keyring;
 import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
+import com.demasu.testpixeldungeon.items.bags.SeedPouch;
+import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.items.food.Food;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 import com.demasu.testpixeldungeon.items.potions.PotionOfMana;
@@ -51,6 +56,7 @@ import com.demasu.testpixeldungeon.items.weapon.melee.DualSwords;
 import com.demasu.testpixeldungeon.items.weapon.melee.Knuckles;
 import com.demasu.testpixeldungeon.items.weapon.melee.NecroBlade;
 import com.demasu.testpixeldungeon.items.weapon.melee.ShortSword;
+import com.demasu.testpixeldungeon.items.weapon.melee.SwordOfDebug;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.CupidArrow;
@@ -145,10 +151,8 @@ public enum HeroClass {
         hero.updateAwareness();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private static void initCommon ( Hero hero ) {
-        ( hero.belongings.armor = new ClothArmor() ).identify();
-        new Food().identify().collect();
-        new Keyring().collect();
 
         Dungeon.hero.HP -= Dungeon.currentDifficulty.difficultyHPStartPenalty();
         Dungeon.hero.HT -= Dungeon.currentDifficulty.difficultyHPStartPenalty();
@@ -156,46 +160,40 @@ public enum HeroClass {
 
         Skill.availableSkill = Skill.STARTING_SKILL;
 
+        getStarterItems( hero );
+
+
+    }
+
+    public static void getStarterItems ( Hero hero ) {
+        collectStarterItems( hero );
+        collectStarterScrolls();
+        collectStarterPotions();
+        collectDebugScrolls();    // For debugging
+        collectDebugPotions();    // For debugging
+        collectDebugItems();      // For debugging
+    }
+
+    @SuppressWarnings ( "FeatureEnvy" )
+    public static void collectStarterItems ( Hero hero ) {
+        //hero.belongings.armor = (Armor) new ClothArmor().identify();
+        hero.belongings.armor = (Armor) new DebugArmor().identify();
+
+        new Food().identify().collect();
+        new Keyring().collect();
+
         Bow tmp = new Bow( 1 );
         tmp.collect();
         tmp.doEquip( hero );
+
         new Arrow( 15 ).collect();
         new CupidArrow( 5 ).collect();
+        new SoulCrystal( 3 ).collect();
+        new SoulCrystalFilled( EyeSprite.class, 50, 20, "Captured Evil Eye" ).collect();
+    }
 
-        new ScrollOfHome().setKnown();
-        new ScrollOfSacrifice().setKnown();
-        new ScrollOfBloodyRitual().setKnown();
-        new ScrollOfSkill().setKnown();
-        new ScrollOfFrostLevel().setKnown();
-
-
-        new ScrollOfHome().collect();
-        // new ScrollOfSacrifice().collect();
-        // new ScrollOfBloodyRitual().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        new ScrollOfSkill().collect();
-        // new ScrollOfMagicMapping().identify().collect();
-        // new ScrollOfFrostLevel().collect();
-
-        new Ankh().collect();
+    @SuppressWarnings ( "FeatureEnvy" )
+    public static void collectStarterPotions () {
         new PotionOfHealing().setKnown();
         new PotionOfMana().setKnown();
 
@@ -204,22 +202,58 @@ public enum HeroClass {
         new PotionOfMana().collect();
 
         new PotionOfHealing().collect();
-        new PotionOfHealing().collect();
-        new PotionOfHealing().collect();
-        new PotionOfHealing().collect();
-        new PotionOfHealing().collect();
-        new PotionOfHealing().collect();
-        new PotionOfHealing().collect();
-        new PotionOfHealing().collect();
-        new PotionOfHealing().collect();
-        new PotionOfHealing().collect();
-        new ScrollOfEnchantment().identify().collect();
+    }
 
-        new SoulCrystal( 3 ).collect();
-        new SoulCrystalFilled( EyeSprite.class, 50, 20, "Captured Evil Eye" ).collect();
-        // new PotionOfMindVision().collect();
-        //new ArmorKit().collect();
+    @SuppressWarnings ( "FeatureEnvy" )
+    public static void collectStarterScrolls () {
+        new ScrollOfHome().setKnown();
+        new ScrollOfSacrifice().setKnown();
+        new ScrollOfBloodyRitual().setKnown();
+        new ScrollOfSkill().setKnown();
+        new ScrollOfFrostLevel().setKnown();
+        new ScrollOfHome().collect();
+        new ScrollOfSkill().collect();
+    }
+
+    @SuppressWarnings ( "FeatureEnvy" )
+    public static void collectDebugItems () {
+        new Ankh().collect();
         new ScrollHolder().collect();
+        new SeedPouch().collect();
+        new WandHolster().collect();
+        new ScrollOfEnchantment().identify().collect();
+        // new PotionOfMindVision().collect();
+        // new ArmorKit().collect();
+        // new ScrollOfMagicMapping().identify().collect();
+        // new ScrollOfFrostLevel().collect();
+    }
+
+    public static void collectDebugScrolls () {
+        collectIdentifyScrolls();
+        collectSkillScrolls();
+        // new ScrollOfSacrifice().collect();
+        // new ScrollOfBloodyRitual().collect();
+    }
+
+    @SuppressWarnings ( "FeatureEnvy" )
+    public static void collectDebugPotions () {
+        for (int i = 1; i <= 30; i++ ) {
+            new PotionOfHealing().collect();
+        }
+    }
+
+    @SuppressWarnings ( "FeatureEnvy" )
+    public static void collectSkillScrolls () {
+        for ( int i = 1; i <= 30; i++ ) {
+            new ScrollOfSkill().collect();
+        }
+    }
+
+    @SuppressWarnings ( "FeatureEnvy" )
+    public static void collectIdentifyScrolls () {
+        for ( int i = 1; i <= 30; i++ ) {
+            new ScrollOfIdentify().collect();
+        }
     }
 
     public Badges.Badge masteryBadge () {
@@ -237,9 +271,11 @@ public enum HeroClass {
     }
 
     private static void initWarrior ( Hero hero ) {
-        hero.STR = hero.STR + 1;
-        hero.MP = hero.MMP = 20;
-        ( hero.belongings.weapon = new ShortSword() ).identify();
+        hero.STR += 1;
+        hero.MP   = 200;
+        hero.MMP  = 200;
+        //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify();
+        hero.belongings.weapon = (KindOfWeapon) new SwordOfDebug().identify();
         new Dart( 8 ).identify().collect();
 
         QuickSlot.primaryValue = Dart.class;

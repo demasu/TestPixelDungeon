@@ -147,7 +147,7 @@ public class Hero extends Char {
     private static final String TXT_WAIT = "...";
     private static final String TXT_SEARCH = "search";
 
-    public static final int STARTING_STR = 15;
+    public static final int STARTING_STR = 30;
 
     private static final float TIME_TO_REST = 1f;
     private static final float TIME_TO_SEARCH = 1f;
@@ -159,8 +159,8 @@ public class Hero extends Char {
 
     public HiredMerc hiredMerc = null;
 
-    protected int attackSkill = 20;
-    protected int defenseSkill = 10;
+    protected int attackSkill = 500;
+    protected int defenseSkill = 400;
 
     public boolean ready = false;
 
@@ -199,9 +199,9 @@ public class Hero extends Char {
         super();
         name = "you";
 
-        HP = HT = 50;
+        HP = HT = 500;
         STR = STARTING_STR;
-        awareness = 1.0f;
+        awareness = 10.0f;
 
         belongings = new Belongings( this );
         storage = new Storage( this );
@@ -210,7 +210,8 @@ public class Hero extends Char {
     }
 
     public int STR () {
-        return weakened ? STR - 2 : STR;
+        //return weakened ? STR - 2 : STR;
+        return STR;
     }
 
     private static final String ATTACK = "attackSkill";

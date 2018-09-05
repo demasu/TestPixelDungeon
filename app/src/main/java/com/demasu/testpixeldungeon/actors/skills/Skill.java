@@ -29,7 +29,7 @@ public class Skill {
 
     public static final int MAX_LEVEL = 3;
 
-    public static final int STARTING_SKILL = 2;
+    public static final int STARTING_SKILL = 30;
 
     public static int availableSkill = STARTING_SKILL;
 
