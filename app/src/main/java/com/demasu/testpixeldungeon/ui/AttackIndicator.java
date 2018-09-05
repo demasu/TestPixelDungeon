@@ -39,6 +39,8 @@ public class AttackIndicator extends Tag {
     private static Mob lastTarget = null;
     private ArrayList<Mob> candidates = new ArrayList<Mob>();
 
+    public static boolean debugCreated = false;
+
     public AttackIndicator () {
         super( DangerIndicator.COLOR );
 
@@ -47,6 +49,7 @@ public class AttackIndicator extends Tag {
         setSize( 24, 24 );
         visible( false );
         enable( false );
+        AttackIndicator.debugCreated = true;
     }
 
     @Override

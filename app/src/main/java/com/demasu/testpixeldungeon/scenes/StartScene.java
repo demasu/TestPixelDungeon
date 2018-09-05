@@ -17,6 +17,8 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
+import android.util.Log;
+
 import java.util.HashMap;
 
 import com.watabou.noosa.BitmapText;
@@ -359,6 +361,7 @@ public class StartScene extends PixelScene {
 
     private void startNewGame ( int diff ) {
 
+        Log.i( "TBD", "Starting new game" );
         Dungeon.hero = null;
         diff = Difficulties.getNormalizedDifficulty( diff );
         Dungeon.difficulty = diff;

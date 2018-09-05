@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import com.demasu.testpixeldungeon.ui.AttackIndicator;
 import com.watabou.glscripts.Script;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.input.Keys;
@@ -41,6 +42,7 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -55,6 +57,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     // Actual size of the screen
     public static int width;
     public static int height;
+    public int steps;
 
     // Density: mdpi=1, hdpi=1.5, xhdpi=2...
     public static float density = 1;
@@ -215,6 +218,10 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         now = rightNow;
 
         step();
+        if (AttackIndicator.debugCreated) {
+            steps++;
+            Log.i( "TPD", "Called step for the " + steps + " time.");
+        }
 
         NoosaScript.get().resetCamera();
         GLES20.glScissor( 0, 0, width, height );

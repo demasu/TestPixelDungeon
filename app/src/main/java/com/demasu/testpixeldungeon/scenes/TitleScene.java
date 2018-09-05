@@ -20,6 +20,7 @@ package com.demasu.testpixeldungeon.scenes;
 import javax.microedition.khronos.opengles.GL10;
 
 import android.opengl.GLES20;
+import android.util.Log;
 
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Camera;
@@ -165,6 +166,7 @@ public class TitleScene extends PixelScene {
             add( VersionNewsInfo.getWelcomeWindow() );
         }
 
+        Log.i( "TPD", "Creating the title scene now" );
         fadeIn();
     }
 

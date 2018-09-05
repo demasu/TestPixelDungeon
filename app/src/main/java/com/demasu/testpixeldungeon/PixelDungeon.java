@@ -200,6 +200,7 @@ public class PixelDungeon extends Game {
     }
 
     public static void switchNoFade ( Class<? extends PixelScene> c ) {
+        Log.i( "TPD", "Switching to the play screen" );
         PixelScene.noFade = true;
         switchScene( c );
     }
