@@ -159,10 +159,10 @@ public enum HeroClass {
     public static void getStarterItems ( Hero hero ) {
         collectStarterItems( hero );
         collectStarterScrolls();
-        //collectStarterPotions();
-        //collectDebugScrolls();    // For debugging
-        //collectDebugPotions();    // For debugging
-        //collectDebugItems();      // For debugging
+        collectStarterPotions();
+        collectDebugScrolls();    // For debugging
+        collectDebugPotions();    // For debugging
+        collectDebugItems();      // For debugging
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
@@ -178,8 +178,8 @@ public enum HeroClass {
     public static void collectStarterItems ( Hero hero ) {
         initDungeonProperties( hero );
 
-        hero.belongings.armor = (Armor) new ClothArmor().identify();
-        //hero.belongings.armor = (Armor) new DebugArmor().identify();
+        //hero.belongings.armor = (Armor) new ClothArmor().identify();
+        hero.belongings.armor = (Armor) new DebugArmor().identify();
 
         new Food().identify().collect();
         new Keyring().collect();

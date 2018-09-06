@@ -17,6 +17,8 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import com.demasu.testpixeldungeon.Dungeon;
