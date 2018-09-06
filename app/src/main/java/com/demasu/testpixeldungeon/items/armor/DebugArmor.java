@@ -6,11 +6,11 @@ public class DebugArmor extends Armor {
 
     {
         name  = "Debug armor";
-        image =  ItemSpriteSheet.ARMOR_SCALE;
+        image =  ItemSpriteSheet.ARMOR_PLATE;
     }
 
     public DebugArmor () {
-        super( 10 );
+        super( 5 );
     }
 
     @Override
