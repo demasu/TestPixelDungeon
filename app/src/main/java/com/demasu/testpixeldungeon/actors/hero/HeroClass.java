@@ -158,6 +158,7 @@ public enum HeroClass {
         Dungeon.hero.HP -= Dungeon.currentDifficulty.difficultyHPStartPenalty();
         Dungeon.hero.HT -= Dungeon.currentDifficulty.difficultyHPStartPenalty();
         Dungeon.currentDifficulty.difficultyStartItemBonus();
+        Dungeon.gold += 10000;
 
         Skill.availableSkill = Skill.STARTING_SKILL;
 
@@ -178,9 +179,10 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectStarterItems ( Hero hero ) {
-        //hero.belongings.armor = (Armor) new ClothArmor().identify();
+        //hero.belongings.armor = (Armor) new ClothArmor().identify(); // For debug
         collectDebugArmor( hero );
-        new Food().identify().collect();
+        collectFood();
+        //new Food().identify().collect(); // For debug
         new Keyring().collect();
 
         Bow tmp = new Bow( 1 );
@@ -188,9 +190,18 @@ public enum HeroClass {
         tmp.doEquip( hero );
 
         new Arrow( 15 ).collect();
-        new CupidArrow( 5 ).collect();
-        new SoulCrystal( 3 ).collect();
-        new SoulCrystalFilled( EyeSprite.class, 50, 20, "Captured Evil Eye" ).collect();
+        // Commented out the below as they aren't needed for debugging
+        //new CupidArrow( 5 ).collect();
+        //new SoulCrystal( 3 ).collect();
+        //new SoulCrystalFilled( EyeSprite.class, 50, 20, "Captured Evil Eye" ).collect();
+    }
+
+    @SuppressWarnings( "FeatureEnvy" )
+    public static void collectFood () {
+        new Food().identify().collect();
+        for ( int i = 1; i <= 98; i++ ) {
+            new Food().collect();
+        }
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
@@ -198,9 +209,9 @@ public enum HeroClass {
         new PotionOfHealing().setKnown();
         new PotionOfMana().setKnown();
 
-        new PotionOfMana().collect();
-        new PotionOfMana().collect();
-        new PotionOfMana().collect();
+        //new PotionOfMana().collect(); // For debugging
+        //new PotionOfMana().collect(); // For debugging
+        //new PotionOfMana().collect(); // For debugging
 
         new PotionOfHealing().collect();
     }
@@ -212,7 +223,7 @@ public enum HeroClass {
         new ScrollOfBloodyRitual().setKnown();
         new ScrollOfSkill().setKnown();
         new ScrollOfFrostLevel().setKnown();
-        new ScrollOfHome().collect();
+        //new ScrollOfHome().collect();         // For debugging
         new ScrollOfSkill().collect();
     }
 
@@ -242,7 +253,6 @@ public enum HeroClass {
         new ScrollHolder().collect();
         new SeedPouch().collect();
         new WandHolster().collect();
-        new ScrollOfEnchantment().identify().collect();
         new MerchantsBeacon().collect();
         // new PotionOfMindVision().collect();
         // new ArmorKit().collect();
@@ -297,8 +307,8 @@ public enum HeroClass {
         hero.STR += 1;
         hero.MP   = 200;
         hero.MMP  = 200;
-        //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify(); // Commented out for debug
-        new Dart( 8 ).identify().collect();
+        //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify();  // For debug
+        //new Dart( 8 ).identify().collect();                                   // For debug
 
         QuickSlot.primaryValue = Dart.class;
 
@@ -307,7 +317,7 @@ public enum HeroClass {
         new PotionOfStrength().collect();
         new PotionOfStrength().collect();
 
-        new NecroBlade().identify().collect();
+        //new NecroBlade().identify().collect(); //For debug
 
         hero.heroSkills = CurrentSkills.WARRIOR;
         hero.heroSkills.init();

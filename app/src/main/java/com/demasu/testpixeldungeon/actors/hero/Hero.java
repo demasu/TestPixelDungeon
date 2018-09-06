@@ -128,6 +128,7 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
+@SuppressWarnings ( "MagicNumber" )
 public class Hero extends Char {
 
     private static final String TXT_LEAVE = "One does not simply leave Pixel Dungeon.";
@@ -199,8 +200,9 @@ public class Hero extends Char {
         super();
         name = "you";
 
-        HP = 500;
-        HT = 500;
+        int health = 500;
+        HP = health;
+        HT = health;
 
         STR = STARTING_STR;
         awareness = 10.0f;
@@ -233,6 +235,7 @@ public class Hero extends Char {
 
     private static final int skills_reset_version = 19;
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public void storeInBundle ( Bundle bundle ) {
 
@@ -270,6 +273,7 @@ public class Hero extends Char {
 
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
         super.restoreFromBundle( bundle );
@@ -342,6 +346,7 @@ public class Hero extends Char {
         return subClass == null || subClass == HeroSubClass.NONE ? heroClass.title() : subClass.title();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     public void live () {
         Buff.affect( this, ManaRegeneration.class );
         Buff.affect( this, Regeneration.class );
@@ -366,9 +371,8 @@ public class Hero extends Char {
     public boolean shootThrough ( Char enemy, MissileWeapon wep ) {
 
         rangedWeapon = wep;
-        boolean result = attack( enemy );
 
-        return result;
+        return attack( enemy );
     }
 
     @Override
@@ -718,6 +722,7 @@ public class Hero extends Char {
         }
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private boolean actPickUp ( HeroAction.PickUp action ) {
         int dst = action.dst;
         if ( pos == dst ) {
@@ -727,9 +732,8 @@ public class Hero extends Char {
                 Item item = heap.pickUp();
                 if ( item.doPickUp( this ) ) {
 
-                    if ( item instanceof Dewdrop ) {
-                        // Do nothing
-                    } else {
+                    if ( !(item instanceof Dewdrop) )
+                    {
                         boolean important =
                                 ( ( item instanceof ScrollOfUpgrade || item instanceof ScrollOfEnchantment ) && ( (Scroll) item ).isKnown() ) ||
                                         ( ( item instanceof PotionOfStrength || item instanceof PotionOfMight ) && ( (Potion) item ).isKnown() );
@@ -995,6 +999,7 @@ public class Hero extends Char {
         restoreHealth = tillHealthy;
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public int attackProc ( Char enemy, int damage ) {
         KindOfWeapon wep = rangedWeapon != null ? rangedWeapon : belongings.weapon;
@@ -1319,6 +1324,7 @@ public class Hero extends Char {
         return ( (Hunger) buff( Hunger.class ) ).isStarving();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public void add ( Buff buff ) {
         super.add( buff );
