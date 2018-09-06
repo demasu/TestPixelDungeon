@@ -25,6 +25,7 @@ import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.items.Ankh;
 import com.demasu.testpixeldungeon.items.ArmorKit;
 import com.demasu.testpixeldungeon.items.KindOfWeapon;
+import com.demasu.testpixeldungeon.items.MerchantsBeacon;
 import com.demasu.testpixeldungeon.items.SoulCrystalFilled;
 import com.demasu.testpixeldungeon.items.TomeOfMastery;
 import com.demasu.testpixeldungeon.items.armor.Armor;
@@ -242,6 +243,7 @@ public enum HeroClass {
         new SeedPouch().collect();
         new WandHolster().collect();
         new ScrollOfEnchantment().identify().collect();
+        new MerchantsBeacon().collect();
         // new PotionOfMindVision().collect();
         // new ArmorKit().collect();
         // new ScrollOfMagicMapping().identify().collect();
@@ -290,6 +292,7 @@ public enum HeroClass {
         return null;
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private static void initWarrior ( Hero hero ) {
         hero.STR += 1;
         hero.MP   = 200;
@@ -326,6 +329,7 @@ public enum HeroClass {
         hero.heroSkills.init();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private static void initRogue ( Hero hero ) {
         hero.MP = hero.MMP = 30;
         //(hero.belongings.weapon = new Dagger()).identify();
@@ -343,6 +347,7 @@ public enum HeroClass {
         hero.heroSkills.init();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private static void initHuntress ( Hero hero ) {
         hero.MP = hero.MMP = 35;
         hero.HP = ( hero.HT -= 5 );

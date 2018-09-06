@@ -27,6 +27,7 @@ import com.demasu.testpixeldungeon.items.Ankh;
 import com.demasu.testpixeldungeon.items.Generator;
 import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Item;
+import com.demasu.testpixeldungeon.items.MerchantsBeacon;
 import com.demasu.testpixeldungeon.items.Torch;
 import com.demasu.testpixeldungeon.items.Weightstone;
 import com.demasu.testpixeldungeon.items.armor.*;
@@ -109,6 +110,7 @@ public class ShopPainter extends Painter {
             case 1:
                 items.add( ( new DualSwords() ).identify() );
                 items.add( new NecroBlade().identify() );
+                items.add( new MerchantsBeacon() );
 
                 break;
             case 6:
@@ -116,6 +118,7 @@ public class ShopPainter extends Painter {
                 items.add( new LeatherArmor().identify() );
                 items.add( new SeedPouch() );
                 items.add( new Weightstone() );
+                items.add( new MerchantsBeacon() );
                 break;
 
             case 11:
@@ -123,6 +126,7 @@ public class ShopPainter extends Painter {
                 items.add( new MailArmor().identify() );
                 items.add( new ScrollHolder() );
                 items.add( new Weightstone() );
+                items.add( new MerchantsBeacon() );
                 break;
 
             case 16:
@@ -130,6 +134,7 @@ public class ShopPainter extends Painter {
                 items.add( new ScaleArmor().identify() );
                 items.add( new WandHolster() );
                 items.add( new Weightstone() );
+                items.add( new MerchantsBeacon() );
                 break;
 
             case 21:
@@ -146,6 +151,7 @@ public class ShopPainter extends Painter {
                 }
                 items.add( new Torch() );
                 items.add( new Torch() );
+                items.add( new MerchantsBeacon() );
                 break;
         }
 
