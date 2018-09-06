@@ -169,16 +169,16 @@ public enum HeroClass {
         collectStarterItems( hero );
         collectStarterScrolls();
         collectStarterPotions();
-        collectDebugScrolls();    // For debugging
-        collectDebugPotions();    // For debugging
-        collectDebugItems();      // For debugging
+        collectDebugScrolls();      // For debugging
+        collectDebugPotions();      // For debugging
+        collectDebugItems();        // For debugging
+        collectDebugWeapon( hero ); // For debugging
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectStarterItems ( Hero hero ) {
         //hero.belongings.armor = (Armor) new ClothArmor().identify();
-        hero.belongings.armor = (Armor) new DebugArmor().identify();
-
+        collectDebugArmor( hero );
         new Food().identify().collect();
         new Keyring().collect();
 
@@ -215,6 +215,26 @@ public enum HeroClass {
         new ScrollOfSkill().collect();
     }
 
+    @SuppressWarnings( "FeatureEnvy" )
+    public static void collectDebugArmor ( Hero hero) {
+        Armor armor = (Armor) new DebugArmor().identify();
+        for ( int i = 1; i <= 15; i++ ) {
+            armor.upgrade();
+        }
+
+        hero.belongings.armor = armor;
+    }
+
+    @SuppressWarnings( "FeatureEnvy" )
+    public static void collectDebugWeapon ( Hero hero ) {
+        KindOfWeapon sword = (KindOfWeapon) new SwordOfDebug().identify();
+        for ( int i = 1; i <= 15; i++ ) {
+            sword.upgrade();
+        }
+
+        hero.belongings.weapon = sword; // For debug
+    }
+
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectDebugItems () {
         new Ankh().collect();
@@ -237,7 +257,7 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectDebugPotions () {
-        for (int i = 1; i <= 30; i++ ) {
+        for (int i = 1; i <= 50; i++ ) {
             new PotionOfHealing().collect();
         }
     }
@@ -251,7 +271,7 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectIdentifyScrolls () {
-        for ( int i = 1; i <= 30; i++ ) {
+        for ( int i = 1; i <= 50; i++ ) {
             new ScrollOfIdentify().collect();
         }
     }
@@ -274,8 +294,7 @@ public enum HeroClass {
         hero.STR += 1;
         hero.MP   = 200;
         hero.MMP  = 200;
-        //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify();
-        hero.belongings.weapon = (KindOfWeapon) new SwordOfDebug().identify();
+        //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify(); // Commented out for debug
         new Dart( 8 ).identify().collect();
 
         QuickSlot.primaryValue = Dart.class;
