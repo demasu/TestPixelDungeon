@@ -24,11 +24,9 @@ import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Paralysis;
-import com.demasu.testpixeldungeon.actors.buffs.SnipersMark;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.particles.BlastParticle;
-import com.demasu.testpixeldungeon.effects.particles.PurpleParticle;
 import com.demasu.testpixeldungeon.effects.particles.SmokeParticle;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.levels.Level;
@@ -36,10 +34,7 @@ import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.mechanics.Ballistica;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
-import com.demasu.testpixeldungeon.sprites.MissileSprite;
-import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.demasu.testpixeldungeon.utils.GLog;
-import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -105,7 +100,7 @@ public class Arrow extends MissileWeapon {
 
                             Char ch = Actor.findChar( c );
                             if ( ch != null ) {
-                                int dmg = Random.Int( 1 + Dungeon.depth, 10 + Dungeon.depth * 2 ) - Random.Int( ch.dr() );
+                                int dmg = Random.Int( 1 + Dungeon.getDepth(), 10 + Dungeon.getDepth() * 2 ) - Random.Int( ch.dr() );
                                 if ( dmg > 0 ) {
                                     ch.damage( dmg, this );
                                     if ( ch.isAlive() ) {

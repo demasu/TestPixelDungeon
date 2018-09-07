@@ -89,7 +89,7 @@ public class Dungeon {
     public static Hero hero;
     public static Level level;
 
-    public static int depth;
+    private static int depth;
     private static int gold; // TODO: Add setter and getter methods
 
 
@@ -188,7 +188,7 @@ public class Dungeon {
         Statistics.reset();
         Journal.reset();
 
-        depth = 0;
+        setDepth( 0 );
         setGold( 0 );
 
         droppedItems = new SparseArray<ArrayList<Item>>();
@@ -232,9 +232,9 @@ public class Dungeon {
         Dungeon.level = null;
         Actor.clear();
 
-        depth++;
-        if ( depth % ColdGirl.FROST_DEPTH > Statistics.deepestFloor ) {
-            Statistics.deepestFloor = depth;
+        setDepth( getDepth() + 1 );
+        if ( getDepth() % ColdGirl.FROST_DEPTH > Statistics.deepestFloor ) {
+            Statistics.deepestFloor = getDepth();
 
             Statistics.completedWithNoKilling = Statistics.qualifiedForNoKilling;
         }
@@ -242,7 +242,7 @@ public class Dungeon {
         Arrays.fill( visible, false );
 
         Level level;
-        switch ( depth ) {
+        switch ( getDepth() ) {
             case 1:
             case 2:
             case 3:
@@ -319,11 +319,11 @@ public class Dungeon {
     }
 
     public static boolean shopOnLevel () {
-        return depth == 1 || depth == 6 || depth == 11 || depth == 16;
+        return getDepth() == 1 || getDepth() == 6 || getDepth() == 11 || getDepth() == 16;
     }
 
     public static boolean bossLevel () {
-        return bossLevel( depth );
+        return bossLevel( getDepth() );
     }
 
     public static boolean bossLevel ( int depth ) {
@@ -357,7 +357,7 @@ public class Dungeon {
         if ( hero.hiredMerc != null ) {
             hero.checkMerc = true;
         }
-        if ( depth != ColdGirl.FROST_DEPTH && depth != 0 ) {
+        if ( getDepth() != ColdGirl.FROST_DEPTH && getDepth() != 0 ) {
             Actor mercRespawn = level.mercRespawner();
             if ( mercRespawn != null ) {
                 Actor.add( mercRespawn );
@@ -372,7 +372,7 @@ public class Dungeon {
     }
 
     public static void dropToChasm ( Item item ) {
-        int depth = Dungeon.depth + 1;
+        int depth = Dungeon.getDepth() + 1;
         ArrayList<Item> dropped = (ArrayList<Item>) Dungeon.droppedItems.get( depth );
         if ( dropped == null ) {
             Dungeon.droppedItems.put( depth, dropped = new ArrayList<Item>() );
@@ -391,16 +391,16 @@ public class Dungeon {
     }
 
     public static boolean soeNeeded () {
-        return Random.Int( 12 * ( 1 + scrollsOfEnchantment ) ) < depth;
+        return Random.Int( 12 * ( 1 + scrollsOfEnchantment ) ) < getDepth();
     }
 
     private static boolean chance ( int[] quota, int number ) {
 
         for ( int i = 0; i < quota.length; i += 2 ) {
             int qDepth = quota[i];
-            if ( depth <= qDepth ) {
+            if ( getDepth() <= qDepth ) {
                 int qNumber = quota[i + 1];
-                return Random.Float() < (float) ( qNumber - number ) / ( qDepth - depth + 1 );
+                return Random.Float() < (float) ( qNumber - number ) / ( qDepth - getDepth() + 1 );
             }
         }
 
@@ -468,7 +468,7 @@ public class Dungeon {
             bundle.put( CHALLENGES, challenges );
             bundle.put( HERO, hero );
             bundle.put( GOLD, getGold() );
-            bundle.put( DEPTH, depth );
+            bundle.put( DEPTH, getDepth() );
 
             for ( int d : droppedItems.keyArray() ) {
                 bundle.put( String.format( Locale.US, DROPPED, d ), droppedItems.get( d ) );
@@ -523,7 +523,7 @@ public class Dungeon {
         Bundle bundle = new Bundle();
         bundle.put( LEVEL, level );
 
-        OutputStream output = Game.instance.openFileOutput( Utils.format( depthFile( hero.heroClass ), depth ), Game.MODE_PRIVATE );
+        OutputStream output = Game.instance.openFileOutput( Utils.format( depthFile( hero.heroClass ), getDepth() ), Game.MODE_PRIVATE );
         Bundle.write( bundle, output );
         output.close();
     }
@@ -535,7 +535,7 @@ public class Dungeon {
             saveGame( gameFile( hero.heroClass ) );
             saveLevel();
 
-            GamesInProgress.set( hero.heroClass, depth, hero.lvl, challenges != 0 );
+            GamesInProgress.set( hero.heroClass, getDepth(), hero.lvl, challenges != 0 );
 
         } else if ( WndResurrect.instance != null ) {
 
@@ -560,7 +560,7 @@ public class Dungeon {
         Dungeon.challenges = bundle.getInt( CHALLENGES );
 
         Dungeon.level = null;
-        Dungeon.depth = -1;
+        Dungeon.setDepth( -1 );
 
         if ( fullLoad ) {
             PathFinder.setMapSize( Level.WIDTH, Level.HEIGHT );
@@ -621,7 +621,7 @@ public class Dungeon {
         QuickSlot.compress();
 
         setGold( bundle.getInt( GOLD ) );
-        depth = bundle.getInt( DEPTH );
+        setDepth( bundle.getInt( DEPTH ) );
 
         Statistics.restoreFromBundle( bundle );
         Journal.restoreFromBundle( bundle );
@@ -643,7 +643,7 @@ public class Dungeon {
         Dungeon.level = null;
         Actor.clear();
 
-        InputStream input = Game.instance.openFileInput( Utils.format( depthFile( cl ), depth ) );
+        InputStream input = Game.instance.openFileInput( Utils.format( depthFile( cl ), getDepth() ) );
         Bundle bundle = Bundle.read( input );
         input.close();
 
@@ -684,8 +684,8 @@ public class Dungeon {
 
     public static void fail ( String desc ) {
         resultDescription = desc;
-        if ( hero.belongings.getItem( Ankh.class ) == null || Dungeon.depth == ColdGirl.FROST_DEPTH ) {
-            if ( Dungeon.depth == ColdGirl.FROST_DEPTH ) {
+        if ( hero.belongings.getItem( Ankh.class ) == null || Dungeon.getDepth() == ColdGirl.FROST_DEPTH ) {
+            if ( Dungeon.getDepth() == ColdGirl.FROST_DEPTH ) {
                 resultDescription = ColdGirl.TXT_DEATH;
             }
 

@@ -128,8 +128,8 @@ public class StatusPane extends Component {
         level.hardlight( 0xFFEBA4 );
         add( level );
 
-        if ( Dungeon.depth != ColdGirl.FROST_DEPTH ) {
-            depth = new BitmapText( Integer.toString( Dungeon.depth ), PixelScene.font1x );
+        if ( Dungeon.getDepth() != ColdGirl.FROST_DEPTH ) {
+            depth = new BitmapText( Integer.toString( Dungeon.getDepth() ), PixelScene.font1x );
         } else {
             depth = new BitmapText( "??", PixelScene.font1x );
         }

@@ -64,7 +64,7 @@ public class Bones {
             }
         }
 
-        depth = Dungeon.depth;
+        depth = Dungeon.getDepth();
 
         Bundle bundle = new Bundle();
         bundle.put( LEVEL, depth );
@@ -102,7 +102,7 @@ public class Bones {
             }
 
         } else {
-            if ( depth == Dungeon.depth ) {
+            if ( depth == Dungeon.getDepth() ) {
                 Game.instance.deleteFile( BONES_FILE );
                 depth = 0;
 
@@ -110,7 +110,7 @@ public class Bones {
                     item.cursed = true;
                     item.cursedKnown = true;
                     if ( item.isUpgradable() ) {
-                        int lvl = ( Dungeon.depth - 1 ) * 3 / 5 + 1;
+                        int lvl = ( Dungeon.getDepth() - 1 ) * 3 / 5 + 1;
                         if ( lvl < item.level() ) {
                             item.degrade( item.level() - lvl );
                         }

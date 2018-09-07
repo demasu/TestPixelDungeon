@@ -116,7 +116,7 @@ public class LloydsBeacon extends Item {
 
         if ( action == AC_SET ) {
 
-            returnDepth = Dungeon.depth;
+            returnDepth = Dungeon.getDepth();
             returnPos = hero.pos;
 
             hero.spend( LloydsBeacon.TIME_TO_USE );
@@ -129,7 +129,7 @@ public class LloydsBeacon extends Item {
 
         } else if ( action == AC_RETURN ) {
 
-            if ( returnDepth == Dungeon.depth ) {
+            if ( returnDepth == Dungeon.getDepth() ) {
                 reset();
                 WandOfBlink.appear( hero, returnPos );
                 Dungeon.level.press( returnPos, hero );

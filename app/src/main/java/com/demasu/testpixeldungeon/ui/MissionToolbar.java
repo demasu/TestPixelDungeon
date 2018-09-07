@@ -28,7 +28,6 @@ import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
-import com.demasu.testpixeldungeon.actors.skills.CurrentSkills;
 import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.levels.Level;
@@ -45,11 +44,7 @@ import com.demasu.testpixeldungeon.windows.WndInfoCell;
 import com.demasu.testpixeldungeon.windows.WndInfoItem;
 import com.demasu.testpixeldungeon.windows.WndInfoMob;
 import com.demasu.testpixeldungeon.windows.WndInfoPlant;
-import com.demasu.testpixeldungeon.windows.WndMerc;
-import com.demasu.testpixeldungeon.windows.WndMercs;
 import com.demasu.testpixeldungeon.windows.WndMessage;
-import com.demasu.testpixeldungeon.windows.WndRatKing;
-import com.demasu.testpixeldungeon.windows.WndSkill;
 import com.demasu.testpixeldungeon.windows.WndSkills;
 import com.demasu.testpixeldungeon.windows.WndTradeItem;
 
@@ -245,7 +240,7 @@ public class MissionToolbar extends Component {
                     if ( tool == btnLastUsed ) {
                         tool.visible = Dungeon.hero.heroSkills.lastUsed != null;
                     }
-                    if ( tool == btnMerc && Dungeon.depth == ColdGirl.FROST_DEPTH ) {
+                    if ( tool == btnMerc && Dungeon.getDepth() == ColdGirl.FROST_DEPTH ) {
                         ( (Tool) tool ).enable( false );
                     }
                 }

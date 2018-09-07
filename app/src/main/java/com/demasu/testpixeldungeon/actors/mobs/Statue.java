@@ -56,8 +56,8 @@ public class Statue extends Mob {
         weapon.identify();
         weapon.enchant();
 
-        HP = HT = 15 + Dungeon.depth * 5;
-        defenseSkill = 4 + Dungeon.depth;
+        HP = HT = 15 + Dungeon.getDepth() * 5;
+        defenseSkill = 4 + Dungeon.getDepth();
     }
 
     private static final String WEAPON = "weapon";
@@ -89,7 +89,7 @@ public class Statue extends Mob {
 
     @Override
     public int attackSkill ( Char target ) {
-        return (int) ( ( 9 + Dungeon.depth ) * weapon.ACU );
+        return (int) ( ( 9 + Dungeon.getDepth() ) * weapon.ACU );
     }
 
     @Override
@@ -99,7 +99,7 @@ public class Statue extends Mob {
 
     @Override
     public int dr () {
-        return Dungeon.depth;
+        return Dungeon.getDepth();
     }
 
     @Override

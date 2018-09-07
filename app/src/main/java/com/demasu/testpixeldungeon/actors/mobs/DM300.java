@@ -48,7 +48,7 @@ import com.watabou.utils.Random;
 public class DM300 extends Mob {
 
     {
-        name = Dungeon.depth == Statistics.deepestFloor ? "DM-300" : "DM-350";
+        name = Dungeon.getDepth() == Statistics.deepestFloor ? "DM-300" : "DM-350";
         spriteClass = DM300Sprite.class;
 
         HP = HT = 200;

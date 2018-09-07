@@ -21,10 +21,8 @@ import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.SkinnedBlock;
-import com.watabou.noosa.Visual;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.particles.Emitter;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -36,14 +34,7 @@ import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.blobs.Blob;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
-import com.demasu.testpixeldungeon.effects.BannerSprites;
-import com.demasu.testpixeldungeon.effects.BlobEmitter;
-import com.demasu.testpixeldungeon.effects.EmoIcon;
 import com.demasu.testpixeldungeon.effects.Flare;
-import com.demasu.testpixeldungeon.effects.FloatingText;
-import com.demasu.testpixeldungeon.effects.Ripple;
-import com.demasu.testpixeldungeon.effects.SpellSprite;
-import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.potions.Potion;
 import com.demasu.testpixeldungeon.items.wands.WandOfBlink;
@@ -52,32 +43,19 @@ import com.demasu.testpixeldungeon.levels.MovieLevel;
 import com.demasu.testpixeldungeon.levels.RegularLevel;
 import com.demasu.testpixeldungeon.levels.features.Chasm;
 import com.demasu.testpixeldungeon.plants.Plant;
-import com.demasu.testpixeldungeon.sprites.CharSprite;
-import com.demasu.testpixeldungeon.sprites.DiscardedItemSprite;
-import com.demasu.testpixeldungeon.sprites.HeroSprite;
-import com.demasu.testpixeldungeon.sprites.ItemSprite;
 import com.demasu.testpixeldungeon.sprites.LegendSprite;
-import com.demasu.testpixeldungeon.sprites.PlantSprite;
 import com.demasu.testpixeldungeon.ui.AttackIndicator;
-import com.demasu.testpixeldungeon.ui.Banner;
 import com.demasu.testpixeldungeon.ui.BusyIndicator;
 import com.demasu.testpixeldungeon.ui.GameLog;
 import com.demasu.testpixeldungeon.ui.HealthIndicator;
 import com.demasu.testpixeldungeon.ui.MissionStatusPane;
 import com.demasu.testpixeldungeon.ui.MissionToolbar;
-import com.demasu.testpixeldungeon.ui.QuickSlot;
-import com.demasu.testpixeldungeon.ui.StatusPane;
-import com.demasu.testpixeldungeon.ui.Toast;
-import com.demasu.testpixeldungeon.ui.Toolbar;
-import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.GLog;
-import com.demasu.testpixeldungeon.windows.WndBag;
 import com.demasu.testpixeldungeon.windows.WndBag.Mode;
 import com.demasu.testpixeldungeon.windows.WndGame;
 import com.demasu.testpixeldungeon.windows.WndStory;
 import com.watabou.utils.Random;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MissionScene extends GameScene {
@@ -90,7 +68,7 @@ public class MissionScene extends GameScene {
 
     @Override
     public void create () {
-        if ( Dungeon.depth != 0 && Dungeon.depth != ColdGirl.FROST_DEPTH ) {
+        if ( Dungeon.getDepth() != 0 && Dungeon.getDepth() != ColdGirl.FROST_DEPTH ) {
             Music.INSTANCE.play( Assets.TUNE, true );
             Music.INSTANCE.volume( 1f );
         } else {
@@ -227,7 +205,7 @@ public class MissionScene extends GameScene {
                 Chasm.heroLand();
                 break;
             case DESCEND:
-                switch ( Dungeon.depth ) {
+                switch ( Dungeon.getDepth() ) {
                     case 1:
                         WndStory.showChapter( WndStory.ID_SEWERS );
                         if ( !PixelDungeon.itemDeg() ) {
@@ -247,14 +225,14 @@ public class MissionScene extends GameScene {
                         WndStory.showChapter( WndStory.ID_HALLS );
                         break;
                 }
-                if ( Dungeon.hero.isAlive() && Dungeon.depth != 22 ) {
+                if ( Dungeon.hero.isAlive() && Dungeon.getDepth() != 22 ) {
                     Badges.validateNoKilling();
                 }
                 break;
             default:
         }
 
-        ArrayList<Item> dropped = Dungeon.droppedItems.get( Dungeon.depth );
+        ArrayList<Item> dropped = Dungeon.droppedItems.get( Dungeon.getDepth() );
         if ( dropped != null ) {
             for ( Item item : dropped ) {
                 int pos = Dungeon.level.randomRespawnCell();
@@ -266,17 +244,17 @@ public class MissionScene extends GameScene {
                     Dungeon.level.drop( item, pos );
                 }
             }
-            Dungeon.droppedItems.remove( Dungeon.depth );
+            Dungeon.droppedItems.remove( Dungeon.getDepth() );
         }
 
         Camera.main.target = hero;
 
-        if ( InterlevelScene.mode != InterlevelScene.Mode.NONE && Dungeon.depth != 0 ) {
-            if ( Dungeon.depth < Statistics.deepestFloor ) {
-                GLog.h( TXT_WELCOME_BACK, Dungeon.depth );
+        if ( InterlevelScene.mode != InterlevelScene.Mode.NONE && Dungeon.getDepth() != 0 ) {
+            if ( Dungeon.getDepth() < Statistics.deepestFloor ) {
+                GLog.h( TXT_WELCOME_BACK, Dungeon.getDepth() );
             } else {
-                if ( Dungeon.depth != ColdGirl.FROST_DEPTH ) {
-                    GLog.h( TXT_WELCOME, Dungeon.depth );
+                if ( Dungeon.getDepth() != ColdGirl.FROST_DEPTH ) {
+                    GLog.h( TXT_WELCOME, Dungeon.getDepth() );
                     Sample.INSTANCE.play( Assets.SND_DESCEND );
                 } else {
                     GLog.h( TXT_FROST );
@@ -348,7 +326,7 @@ public class MissionScene extends GameScene {
 
     @Override
     protected void onBackPressed () {
-        if ( Dungeon.depth == 0 && Dungeon.level instanceof MovieLevel ) {
+        if ( Dungeon.getDepth() == 0 && Dungeon.level instanceof MovieLevel ) {
             Music.INSTANCE.enable( PixelDungeon.music() );
             Game.switchScene( TitleScene.class );
             Dungeon.observe();

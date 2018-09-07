@@ -75,7 +75,7 @@ public class WandOfMagicMissile extends Wand {
             ch.sprite.burst( 0xFF99CCFF, level / 2 + 2 );
 
             if ( ch == curUser && !ch.isAlive() ) {
-                Dungeon.fail( Utils.format( ResultDescriptions.WAND, name, Dungeon.depth ) );
+                Dungeon.fail( Utils.format( ResultDescriptions.WAND, name, Dungeon.getDepth() ) );
                 GLog.n( "You killed yourself with your own Wand of Magic Missile..." );
             }
         }

@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.hero;
 
-import android.util.Log;
-
 import java.util.Iterator;
 
 import com.demasu.testpixeldungeon.Badges;
@@ -151,7 +149,7 @@ public class Belongings implements Iterable<Item> {
         IronKey.curDepthQuantity = 0;
 
         for ( Item item : backpack ) {
-            if ( item instanceof IronKey && ( (IronKey) item ).depth == Dungeon.depth ) {
+            if ( item instanceof IronKey && ( (IronKey) item ).depth == Dungeon.getDepth() ) {
                 IronKey.curDepthQuantity++;
             }
         }

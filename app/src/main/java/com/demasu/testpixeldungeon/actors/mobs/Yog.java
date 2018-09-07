@@ -57,7 +57,7 @@ import com.watabou.utils.Random;
 public class Yog extends Mob {
 
     {
-        name = Dungeon.depth == Statistics.deepestFloor ? "Yog-Dzewa" : "echo of Yog-Dzewa";
+        name = Dungeon.getDepth() == Statistics.deepestFloor ? "Yog-Dzewa" : "echo of Yog-Dzewa";
         spriteClass = YogSprite.class;
 
         HP = HT = 300;
@@ -346,7 +346,7 @@ public class Yog extends Mob {
                     enemy.sprite.flash();
 
                     if ( !enemy.isAlive() && enemy == Dungeon.hero ) {
-                        Dungeon.fail( Utils.format( ResultDescriptions.BOSS, name, Dungeon.depth ) );
+                        Dungeon.fail( Utils.format( ResultDescriptions.BOSS, name, Dungeon.getDepth() ) );
                         GLog.n( TXT_KILL, name );
                     }
                     return true;

@@ -116,7 +116,7 @@ public class BombArrow extends Arrow {
 
                     Char ch = Actor.findChar( c );
                     if ( ch != null ) {
-                        int dmg = Random.Int( 1 + Dungeon.depth, 10 + Dungeon.depth * 2 ) - Random.Int( ch.dr() );
+                        int dmg = Random.Int( 1 + Dungeon.getDepth(), 10 + Dungeon.getDepth() * 2 ) - Random.Int( ch.dr() );
                         if ( dmg > 0 ) {
                             ch.damage( dmg, this );
                             if ( ch.isAlive() ) {

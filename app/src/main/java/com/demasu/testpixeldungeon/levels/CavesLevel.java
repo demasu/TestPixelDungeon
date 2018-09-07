@@ -149,7 +149,7 @@ public class CavesLevel extends RegularLevel {
             }
         }
 
-        if ( Dungeon.bossLevel( Dungeon.depth + 1 ) ) {
+        if ( Dungeon.bossLevel( Dungeon.getDepth() + 1 ) ) {
             return;
         }
 

@@ -38,8 +38,8 @@ public class CursePersonification extends Mob {
         name = "curse personification";
         spriteClass = CursePersonificationSprite.class;
 
-        HP = HT = 10 + Dungeon.depth * 3;
-        defenseSkill = 10 + Dungeon.depth;
+        HP = HT = 10 + Dungeon.getDepth() * 3;
+        defenseSkill = 10 + Dungeon.getDepth();
 
         EXP = 3;
         maxLvl = 5;
@@ -56,7 +56,7 @@ public class CursePersonification extends Mob {
 
     @Override
     public int attackSkill ( Char target ) {
-        return 10 + Dungeon.depth;
+        return 10 + Dungeon.getDepth();
     }
 
     @Override

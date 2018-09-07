@@ -126,7 +126,7 @@ public class GameScene extends PixelScene {
 
     @Override
     public void create () {
-        if ( Dungeon.depth != 0 && Dungeon.depth != ColdGirl.FROST_DEPTH ) {
+        if ( Dungeon.getDepth() != 0 && Dungeon.getDepth() != ColdGirl.FROST_DEPTH ) {
             Music.INSTANCE.play( Assets.TUNE, true );
             Music.INSTANCE.volume( 1f );
         } else {
@@ -263,7 +263,7 @@ public class GameScene extends PixelScene {
                 Chasm.heroLand();
                 break;
             case DESCEND:
-                switch ( Dungeon.depth ) {
+                switch ( Dungeon.getDepth() ) {
                     case 1:
                         WndStory.showChapter( WndStory.ID_SEWERS );
                         if ( !PixelDungeon.itemDeg() ) {
@@ -283,14 +283,14 @@ public class GameScene extends PixelScene {
                         WndStory.showChapter( WndStory.ID_HALLS );
                         break;
                 }
-                if ( Dungeon.hero.isAlive() && Dungeon.depth != 22 ) {
+                if ( Dungeon.hero.isAlive() && Dungeon.getDepth() != 22 ) {
                     Badges.validateNoKilling();
                 }
                 break;
             default:
         }
 
-        ArrayList<Item> dropped = Dungeon.droppedItems.get( Dungeon.depth );
+        ArrayList<Item> dropped = Dungeon.droppedItems.get( Dungeon.getDepth() );
         if ( dropped != null ) {
             for ( Item item : dropped ) {
                 int pos = Dungeon.level.randomRespawnCell();
@@ -302,17 +302,17 @@ public class GameScene extends PixelScene {
                     Dungeon.level.drop( item, pos );
                 }
             }
-            Dungeon.droppedItems.remove( Dungeon.depth );
+            Dungeon.droppedItems.remove( Dungeon.getDepth() );
         }
 
         Camera.main.target = hero;
 
-        if ( InterlevelScene.mode != InterlevelScene.Mode.NONE && Dungeon.depth != 0 ) {
-            if ( Dungeon.depth < Statistics.deepestFloor ) {
-                GLog.h( TXT_WELCOME_BACK, Dungeon.depth );
+        if ( InterlevelScene.mode != InterlevelScene.Mode.NONE && Dungeon.getDepth() != 0 ) {
+            if ( Dungeon.getDepth() < Statistics.deepestFloor ) {
+                GLog.h( TXT_WELCOME_BACK, Dungeon.getDepth() );
             } else {
-                if ( Dungeon.depth != ColdGirl.FROST_DEPTH ) {
-                    GLog.h( TXT_WELCOME, Dungeon.depth );
+                if ( Dungeon.getDepth() != ColdGirl.FROST_DEPTH ) {
+                    GLog.h( TXT_WELCOME, Dungeon.getDepth() );
                     Sample.INSTANCE.play( Assets.SND_DESCEND );
                 } else {
                     GLog.h( TXT_FROST );
@@ -384,7 +384,7 @@ public class GameScene extends PixelScene {
 
     @Override
     protected void onBackPressed () {
-        if ( Dungeon.depth == 0 && Dungeon.level instanceof MovieLevel ) {
+        if ( Dungeon.getDepth() == 0 && Dungeon.level instanceof MovieLevel ) {
             Music.INSTANCE.enable( PixelDungeon.music() );
             InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
             Game.switchScene( InterlevelScene.class );

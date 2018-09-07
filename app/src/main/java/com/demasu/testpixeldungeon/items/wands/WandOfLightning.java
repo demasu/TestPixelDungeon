@@ -51,7 +51,7 @@ public class WandOfLightning extends Wand {
     protected void onZap ( int cell ) {
         // Everything is processed in fx() method
         if ( !curUser.isAlive() ) {
-            Dungeon.fail( Utils.format( ResultDescriptions.WAND, name, Dungeon.depth ) );
+            Dungeon.fail( Utils.format( ResultDescriptions.WAND, name, Dungeon.getDepth() ) );
             GLog.n( "You killed yourself with your own Wand of Lightning..." );
         }
     }

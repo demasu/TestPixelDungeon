@@ -52,7 +52,7 @@ public class King extends Mob {
     private static final int MAX_ARMY_SIZE = 5;
 
     {
-        name = Dungeon.depth == Statistics.deepestFloor ? "King of Dwarves" : "undead King of Dwarves";
+        name = Dungeon.getDepth() == Statistics.deepestFloor ? "King of Dwarves" : "undead King of Dwarves";
         spriteClass = KingSprite.class;
 
         HP = HT = 300;

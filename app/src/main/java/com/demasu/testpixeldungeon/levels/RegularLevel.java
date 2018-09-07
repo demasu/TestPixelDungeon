@@ -135,7 +135,7 @@ public abstract class RegularLevel extends Level {
         }
 
         specials = new ArrayList<Room.Type>( Room.SPECIALS );
-        if ( Dungeon.bossLevel( Dungeon.depth + 1 ) ) {
+        if ( Dungeon.bossLevel( Dungeon.getDepth() + 1 ) ) {
             specials.remove( Room.Type.WEAK_FLOOR );
         }
         assignRoomType();
@@ -193,7 +193,7 @@ public abstract class RegularLevel extends Level {
                         specials.remove( Type.VAULT );
                         specials.remove( Type.WEAK_FLOOR );
 
-                    } else if ( Dungeon.depth % 5 == 2 && specials.contains( Type.LABORATORY ) ) {
+                    } else if ( Dungeon.getDepth() % 5 == 2 && specials.contains( Type.LABORATORY ) ) {
 
                         r.type = Type.LABORATORY;
 
@@ -335,7 +335,7 @@ public abstract class RegularLevel extends Level {
     }
 
     protected int nTraps () {
-        return Dungeon.depth <= 1 ? 0 : Random.Int( 1, rooms.size() + Dungeon.depth );
+        return Dungeon.getDepth() <= 1 ? 0 : Random.Int( 1, rooms.size() + Dungeon.getDepth() );
     }
 
     protected float[] trapChances () {
@@ -440,10 +440,10 @@ public abstract class RegularLevel extends Level {
                     map[door] = tunnelTile();
                     break;
                 case REGULAR:
-                    if ( Dungeon.depth <= 1 ) {
+                    if ( Dungeon.getDepth() <= 1 ) {
                         map[door] = Terrain.DOOR;
                     } else {
-                        boolean secret = ( Dungeon.depth < 6 ? Random.Int( 12 - Dungeon.depth ) : Random.Int( 6 ) ) == 0;
+                        boolean secret = ( Dungeon.getDepth() < 6 ? Random.Int( 12 - Dungeon.getDepth() ) : Random.Int( 6 ) ) == 0;
                         map[door] = secret ? Terrain.SECRET_DOOR : Terrain.DOOR;
                         if ( secret ) {
                             secretDoors++;
@@ -522,14 +522,14 @@ public abstract class RegularLevel extends Level {
 
     @Override
     public int nMobs () {
-        return 2 + Dungeon.depth % 5 + Random.Int( 3 );
+        return 2 + Dungeon.getDepth() % 5 + Random.Int( 3 );
     }
 
     @Override
     protected void createMobs () {
         int nMobs = nMobs();
         for ( int i = 0; i < nMobs; i++ ) {
-            Mob mob = Bestiary.mob( Dungeon.depth );
+            Mob mob = Bestiary.mob( Dungeon.getDepth() );
             do {
                 mob.pos = randomRespawnCell();
             } while ( mob.pos == -1 );
@@ -606,7 +606,7 @@ public abstract class RegularLevel extends Level {
                     type = Heap.Type.CHEST;
                     break;
                 case 5:
-                    type = Dungeon.depth > 1 ? Heap.Type.MIMIC : Heap.Type.CHEST;
+                    type = Dungeon.getDepth() > 1 ? Heap.Type.MIMIC : Heap.Type.CHEST;
                     break;
                 default:
                     type = Heap.Type.HEAP;

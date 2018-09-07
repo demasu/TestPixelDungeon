@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import android.util.Log;
-
 import java.io.FileNotFoundException;
 
 import com.watabou.noosa.BitmapText;
@@ -33,11 +31,9 @@ import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.items.Generator;
 import com.demasu.testpixeldungeon.levels.Campaigns.FirstWave;
-import com.demasu.testpixeldungeon.levels.FrostLevel;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.MovieLevel;
 import com.demasu.testpixeldungeon.ui.GameLog;
-import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.windows.WndError;
 import com.demasu.testpixeldungeon.windows.WndStory;
 
@@ -179,7 +175,7 @@ public class InterlevelScene extends PixelScene {
                         default:
                     }
 
-                    if ( ( Dungeon.depth % 5 ) == 0 ) {
+                    if ( ( Dungeon.getDepth() % 5 ) == 0 ) {
                         Sample.INSTANCE.load( Assets.SND_BOSS );
                     }
 
@@ -230,7 +226,7 @@ public class InterlevelScene extends PixelScene {
                 message.alpha( p );
 
 
-                if ( mode == Mode.CONTINUE || ( mode == Mode.DESCEND && Dungeon.depth == 1 ) ) {
+                if ( mode == Mode.CONTINUE || ( mode == Mode.DESCEND && Dungeon.getDepth() == 1 ) ) {
                     Music.INSTANCE.volume( p );
                 }
                 if ( ( timeLeft -= Game.elapsed ) <= 0 ) {
@@ -334,10 +330,10 @@ public class InterlevelScene extends PixelScene {
         }
 
         Level level;
-        if ( Dungeon.depth >= Statistics.deepestFloor ) {
+        if ( Dungeon.getDepth() >= Statistics.deepestFloor ) {
             level = Dungeon.newLevel();
         } else {
-            Dungeon.depth++;
+            Dungeon.setDepth( Dungeon.getDepth() + 1 );
             level = Dungeon.loadLevel( Dungeon.hero.heroClass );
         }
         Dungeon.switchLevel( level, level.entrance );
@@ -349,10 +345,10 @@ public class InterlevelScene extends PixelScene {
         Dungeon.saveLevel();
 
         Level level;
-        if ( Dungeon.depth >= Statistics.deepestFloor ) {
+        if ( Dungeon.getDepth() >= Statistics.deepestFloor ) {
             level = Dungeon.newLevel();
         } else {
-            Dungeon.depth++;
+            Dungeon.setDepth( Dungeon.getDepth() + 1 );
             level = Dungeon.loadLevel( Dungeon.hero.heroClass );
         }
         Dungeon.switchLevel( level, fallIntoPit ? level.pitCell() : level.randomRespawnCell() );
@@ -363,7 +359,7 @@ public class InterlevelScene extends PixelScene {
         Actor.fixTime();
         Dungeon.saveLevel();
 
-        Dungeon.depth = ColdGirl.FROST_DEPTH - 1;
+        Dungeon.setDepth( ColdGirl.FROST_DEPTH - 1 );
         Level level = Dungeon.newLevel();
         int pos = level.randomRespawnCell();
         Dungeon.switchLevel( level, level.randomRespawnCell() );
@@ -373,7 +369,7 @@ public class InterlevelScene extends PixelScene {
         Actor.fixTime();
 
         Dungeon.saveLevel();
-        Dungeon.depth = ColdGirl.cameFrom;
+        Dungeon.setDepth( ColdGirl.cameFrom );
         Level level = Dungeon.loadLevel( Dungeon.hero.heroClass );
         Dungeon.switchLevel( level, ColdGirl.cameFromPos );
     }
@@ -382,7 +378,7 @@ public class InterlevelScene extends PixelScene {
         Actor.fixTime();
 
         Dungeon.saveLevel();
-        Dungeon.depth--;
+        Dungeon.setDepth( Dungeon.getDepth() - 1 );
         Level level = Dungeon.loadLevel( Dungeon.hero.heroClass );
         Dungeon.switchLevel( level, level.exit );
     }
@@ -392,7 +388,7 @@ public class InterlevelScene extends PixelScene {
         Actor.fixTime();
 
         Dungeon.saveLevel();
-        Dungeon.depth = returnDepth;
+        Dungeon.setDepth( returnDepth );
         Level level = Dungeon.loadLevel( Dungeon.hero.heroClass );
         Dungeon.switchLevel( level, Level.resizingNeeded ? level.adjustPos( returnPos ) : returnPos );
     }
@@ -403,8 +399,8 @@ public class InterlevelScene extends PixelScene {
 
         GameLog.wipe();
         Dungeon.loadGame( StartScene.curClass );
-        if ( Dungeon.depth == -1 ) {
-            Dungeon.depth = Statistics.deepestFloor;
+        if ( Dungeon.getDepth() == -1 ) {
+            Dungeon.setDepth( Statistics.deepestFloor );
             Dungeon.switchLevel( Dungeon.loadLevel( StartScene.curClass ), -1 );
         } else {
             Level level = Dungeon.loadLevel( StartScene.curClass );
@@ -417,8 +413,8 @@ public class InterlevelScene extends PixelScene {
         Actor.fixTime();
 
         if ( Dungeon.bossLevel() ) {
-            Dungeon.hero.resurrect( Dungeon.depth );
-            Dungeon.depth--;
+            Dungeon.hero.resurrect( Dungeon.getDepth() );
+            Dungeon.setDepth( Dungeon.getDepth() - 1 );
             Level level = Dungeon.newLevel();
             Dungeon.switchLevel( level, level.entrance );
         } else {

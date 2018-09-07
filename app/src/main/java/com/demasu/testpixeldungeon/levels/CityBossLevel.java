@@ -194,7 +194,7 @@ public class CityBossLevel extends Level {
 
             enteredArena = true;
 
-            Mob boss = Bestiary.mob( Dungeon.depth );
+            Mob boss = Bestiary.mob( Dungeon.getDepth() );
             boss.state = boss.HUNTING;
             int count = 0;
             do {

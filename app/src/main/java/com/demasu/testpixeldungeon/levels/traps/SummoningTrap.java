@@ -78,7 +78,7 @@ public class SummoningTrap {
         }
 
         for ( Integer point : respawnPoints ) {
-            Mob mob = Bestiary.mob( Dungeon.depth );
+            Mob mob = Bestiary.mob( Dungeon.getDepth() );
             mob.state = mob.WANDERING;
             GameScene.add( mob, DELAY );
             WandOfBlink.appear( mob, point );

@@ -778,7 +778,7 @@ public class Hero extends Char {
 
                 if ( heap.type == Type.LOCKED_CHEST || heap.type == Type.CRYSTAL_CHEST ) {
 
-                    theKey = belongings.getKey( GoldenKey.class, Dungeon.depth );
+                    theKey = belongings.getKey( GoldenKey.class, Dungeon.getDepth() );
 
                     if ( theKey == null ) {
                         GLog.w( TXT_LOCKED_CHEST );
@@ -826,11 +826,11 @@ public class Hero extends Char {
 
             if ( door == Terrain.LOCKED_DOOR ) {
 
-                theKey = belongings.getKey( IronKey.class, Dungeon.depth );
+                theKey = belongings.getKey( IronKey.class, Dungeon.getDepth() );
 
             } else if ( door == Terrain.LOCKED_EXIT ) {
 
-                theKey = belongings.getKey( SkeletonKey.class, Dungeon.depth );
+                theKey = belongings.getKey( SkeletonKey.class, Dungeon.getDepth() );
 
             }
 
@@ -906,7 +906,7 @@ public class Hero extends Char {
         int stairs = action.dst;
         if ( pos == stairs && pos == Dungeon.level.entrance ) {
 
-            if ( Dungeon.depth == 1 ) {
+            if ( Dungeon.getDepth() == 1 ) {
 
                 if ( belongings.getItem( Amulet.class ) == null ) {
                     GameScene.show( new WndMessage( TXT_LEAVE ) );
@@ -1298,7 +1298,7 @@ public class Hero extends Char {
 
         if ( subClass == HeroSubClass.WARLOCK ) {
 
-            int value = Math.min( HT - HP, 1 + ( Dungeon.depth - 1 ) / 5 );
+            int value = Math.min( HT - HP, 1 + ( Dungeon.getDepth() - 1 ) / 5 );
             if ( value > 0 ) {
                 HP += value;
                 sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
@@ -1412,7 +1412,7 @@ public class Hero extends Char {
 
         } else {
 
-            if ( Dungeon.depth == ColdGirl.FROST_DEPTH ) {
+            if ( Dungeon.getDepth() == ColdGirl.FROST_DEPTH ) {
                 GLog.n( "The girl saps away the power of your Ankh... no coming back" );
                 reallyDie( cause );
             } else {

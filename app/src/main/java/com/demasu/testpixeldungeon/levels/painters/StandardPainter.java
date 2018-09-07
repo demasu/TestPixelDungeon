@@ -49,7 +49,7 @@ public class StandardPainter extends Painter {
                         // Burned room
                     }
                 case 1:
-                    if ( Dungeon.depth > 1 ) {
+                    if ( Dungeon.getDepth() > 1 ) {
                         paintBurned( level, room );
                         return;
                     }
@@ -77,7 +77,7 @@ public class StandardPainter extends Painter {
                         // Fissure
                     }
                 case 5:
-                    if ( !Dungeon.bossLevel() && !Dungeon.bossLevel( Dungeon.depth + 1 ) &&
+                    if ( !Dungeon.bossLevel() && !Dungeon.bossLevel( Dungeon.getDepth() + 1 ) &&
                             Math.min( room.width(), room.height() ) >= 5 ) {
                         paintFissure( level, room );
                         return;
@@ -166,7 +166,7 @@ public class StandardPainter extends Painter {
     private static void paintBridge ( Level level, Room room ) {
 
         fill( level, room.left + 1, room.top + 1, room.width() - 1, room.height() - 1,
-                !Dungeon.bossLevel() && !Dungeon.bossLevel( Dungeon.depth + 1 ) && Random.Int( 3 ) == 0 ?
+                !Dungeon.bossLevel() && !Dungeon.bossLevel( Dungeon.getDepth() + 1 ) && Random.Int( 3 ) == 0 ?
                         Terrain.CHASM :
                         Terrain.WATER );
 

@@ -225,7 +225,7 @@ public class WndTradeItem extends Window {
 
     private int price ( Item item ) {
 
-        int price = item.price() * 5 * ( Dungeon.depth / 5 + 1 );
+        int price = item.price() * 5 * ( Dungeon.getDepth() / 5 + 1 );
         if ( Dungeon.hero.buff( RingOfHaggler.Haggling.class ) != null && price >= 2 ) {
             price /= 2;
         }

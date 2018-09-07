@@ -58,7 +58,6 @@ import com.demasu.testpixeldungeon.actors.mobs.npcs.Shopkeeper;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.SummonedPet;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.particles.PoisonParticle;
-import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.weapon.melee.DualSwords;
 import com.demasu.testpixeldungeon.items.weapon.melee.NecroBlade;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
@@ -328,10 +327,10 @@ public abstract class Char extends Actor {
 
                     } else {
                         if ( Bestiary.isBoss( this ) ) {
-                            Dungeon.fail( Utils.format( ResultDescriptions.BOSS, name, Dungeon.depth ) );
+                            Dungeon.fail( Utils.format( ResultDescriptions.BOSS, name, Dungeon.getDepth() ) );
                         } else {
                             Dungeon.fail( Utils.format( ResultDescriptions.MOB,
-                                    Utils.indefinite( name ), Dungeon.depth ) );
+                                    Utils.indefinite( name ), Dungeon.getDepth() ) );
                         }
 
                         GLog.n( TXT_KILL, name );

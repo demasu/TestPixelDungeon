@@ -50,7 +50,7 @@ public class Tengu extends Mob {
     private static final int JUMP_DELAY = 5;
 
     {
-        name = Dungeon.depth == Statistics.deepestFloor ? "Tengu" : "memory of Tengu";
+        name = Dungeon.getDepth() == Statistics.deepestFloor ? "Tengu" : "memory of Tengu";
         spriteClass = TenguSprite.class;
 
         HP = HT = 120;

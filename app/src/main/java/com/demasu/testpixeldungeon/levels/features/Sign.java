@@ -79,7 +79,7 @@ public class Sign {
 
         } else {
 
-            int index = Dungeon.depth - 1;
+            int index = Dungeon.getDepth() - 1;
 
             if ( index < TIPS.length ) {
                 GameScene.show( new WndMessage( TIPS[index] ) );

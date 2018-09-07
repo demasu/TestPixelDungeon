@@ -257,7 +257,7 @@ public class Toolbar extends Component {
                     if ( tool == btnLastUsed ) {
                         tool.visible = Dungeon.hero.heroSkills.lastUsed != null;
                     }
-                    if ( tool == btnMerc && Dungeon.depth == ColdGirl.FROST_DEPTH ) {
+                    if ( tool == btnMerc && Dungeon.getDepth() == ColdGirl.FROST_DEPTH ) {
                         ( (Tool) tool ).enable( false );
                     }
                 }

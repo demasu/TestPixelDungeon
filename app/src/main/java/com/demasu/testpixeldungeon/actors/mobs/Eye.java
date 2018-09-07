@@ -136,7 +136,7 @@ public class Eye extends Mob {
                 }
 
                 if ( !ch.isAlive() && ch == Dungeon.hero ) {
-                    Dungeon.fail( Utils.format( ResultDescriptions.MOB, Utils.indefinite( name ), Dungeon.depth ) );
+                    Dungeon.fail( Utils.format( ResultDescriptions.MOB, Utils.indefinite( name ), Dungeon.getDepth() ) );
                     GLog.n( TXT_DEATHGAZE_KILLED, name );
                 }
             } else {

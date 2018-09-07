@@ -25,7 +25,6 @@ import java.util.HashSet;
 
 import com.watabou.noosa.Scene;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Challenges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -49,7 +48,6 @@ import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.effects.Pushing;
 import com.demasu.testpixeldungeon.effects.particles.FlowParticle;
 import com.demasu.testpixeldungeon.effects.particles.WindParticle;
-import com.demasu.testpixeldungeon.items.Bomb;
 import com.demasu.testpixeldungeon.items.Generator;
 import com.demasu.testpixeldungeon.items.Gold;
 import com.demasu.testpixeldungeon.items.Heap;
@@ -193,10 +191,10 @@ public abstract class Level implements Bundlable {
                 Dungeon.scrollsOfEnchantment++;
             }
 
-            if ( Dungeon.depth > 1 ) {
+            if ( Dungeon.getDepth() > 1 ) {
                 switch ( Random.Int( 10 ) ) {
                     case 0:
-                        if ( !Dungeon.bossLevel( Dungeon.depth + 1 ) ) {
+                        if ( !Dungeon.bossLevel( Dungeon.getDepth() + 1 ) ) {
                             feeling = Feeling.CHASM;
                         }
                         break;
@@ -210,7 +208,7 @@ public abstract class Level implements Bundlable {
             }
         }
 
-        boolean pitNeeded = Dungeon.depth > 1 && weakFloorCreated;
+        boolean pitNeeded = Dungeon.getDepth() > 1 && weakFloorCreated;
 
         do {
             Arrays.fill( map, feeling == Feeling.CHASM ? Terrain.CHASM : Terrain.WALL );
@@ -390,7 +388,7 @@ public abstract class Level implements Bundlable {
             protected boolean act () {
                 if ( mobs.size() < nMobs() ) {
 
-                    Mob mob = Bestiary.mutable( Dungeon.depth );
+                    Mob mob = Bestiary.mutable( Dungeon.getDepth() );
                     mob.state = mob.WANDERING;
                     mob.pos = randomRespawnCell();
                     if ( Dungeon.hero.isAlive() && mob.pos != -1 ) {

@@ -106,7 +106,7 @@ public class ShopPainter extends Painter {
 
         ArrayList<Item> items = new ArrayList<Item>();
 
-        switch ( Dungeon.depth ) {
+        switch ( Dungeon.getDepth() ) {
             case 1:
                 items.add( ( new DualSwords() ).identify() );
                 items.add( new NecroBlade().identify() );

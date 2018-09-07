@@ -244,7 +244,7 @@ public class Ghost extends NPC {
         }
 
         public static void spawn ( SewerLevel level ) {
-            if ( !spawned && Dungeon.depth > 1 && Random.Int( 5 - Dungeon.depth ) == 0 ) {
+            if ( !spawned && Dungeon.getDepth() > 1 && Random.Int( 5 - Dungeon.getDepth() ) == 0 ) {
 
                 Ghost ghost = new Ghost();
                 do {
@@ -269,7 +269,7 @@ public class Ghost extends NPC {
 
                 given = false;
                 processed = false;
-                depth = Dungeon.depth;
+                depth = Dungeon.getDepth();
 
                 for ( int i = 0; i < 4; i++ ) {
                     Item another;
@@ -300,7 +300,7 @@ public class Ghost extends NPC {
         }
 
         public static void processSewersKill ( int pos ) {
-            if ( spawned && given && !processed && ( depth == Dungeon.depth ) ) {
+            if ( spawned && given && !processed && ( depth == Dungeon.getDepth() ) ) {
                 switch ( type ) {
                     case ROSE:
                         if ( Random.Int( left2kill ) == 0 ) {
