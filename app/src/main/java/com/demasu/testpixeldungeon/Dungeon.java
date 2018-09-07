@@ -90,7 +90,7 @@ public class Dungeon {
     public static Level level;
 
     private static int depth;
-    private static int gold; // TODO: Add setter and getter methods
+    private static int gold;
 
 
     public static int difficulty;
