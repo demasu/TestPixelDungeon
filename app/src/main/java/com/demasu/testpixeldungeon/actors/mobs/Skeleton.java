@@ -47,8 +47,8 @@ public class Skeleton extends Mob {
         EXP = 5;
         maxLvl = 10;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 
@@ -67,18 +67,18 @@ public class Skeleton extends Mob {
             Char ch = findChar( pos + Level.NEIGHBOURS8[i] );
             if ( ch != null && ch.isAlive() ) {
                 int damage = Math.max( 0, damageRoll() - Random.IntRange( 0, ch.dr() / 2 ) );
-                if ( ch == Dungeon.hero ) {
-                    ch.damage( damage - Dungeon.hero.heroSkills.passiveA3.incomingDamageReduction( damage ), this );
+                if ( ch == Dungeon.getHero() ) {
+                    ch.damage( damage - Dungeon.getHero().heroSkills.passiveA3.incomingDamageReduction( damage ), this );
                 } else {
                     ch.damage( damage, this );
                 }
-                if ( ch == Dungeon.hero && !ch.isAlive() ) {
+                if ( ch == Dungeon.getHero() && !ch.isAlive() ) {
                     heroKilled = true;
                 }
             }
         }
 
-        if ( Dungeon.visible[pos] ) {
+        if ( Dungeon.getVisible()[pos] ) {
             Sample.INSTANCE.play( Assets.SND_BONES );
         }
 
@@ -98,7 +98,7 @@ public class Skeleton extends Mob {
                     loot = l;
                 }
             }
-            Dungeon.level.drop( loot, pos ).sprite.drop();
+            Dungeon.getLevel().drop( loot, pos ).sprite.drop();
         }
     }
 

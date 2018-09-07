@@ -58,8 +58,8 @@ public class Eye extends Mob {
         loot = new Dewdrop();
         lootChance = 0.5f;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 
@@ -101,7 +101,7 @@ public class Eye extends Mob {
         boolean rayVisible = false;
 
         for ( int i = 0; i < Ballistica.distance; i++ ) {
-            if ( Dungeon.visible[Ballistica.trace[i]] ) {
+            if ( Dungeon.getVisible()[Ballistica.trace[i]] ) {
                 rayVisible = true;
             }
         }
@@ -130,12 +130,12 @@ public class Eye extends Mob {
             if ( hit( this, ch, true ) ) {
                 ch.damage( Random.NormalIntRange( 14, 20 ), this );
 
-                if ( Dungeon.visible[pos] ) {
+                if ( Dungeon.getVisible()[pos] ) {
                     ch.sprite.flash();
                     CellEmitter.center( pos ).burst( PurpleParticle.BURST, Random.IntRange( 1, 2 ) );
                 }
 
-                if ( !ch.isAlive() && ch == Dungeon.hero ) {
+                if ( !ch.isAlive() && ch == Dungeon.getHero() ) {
                     Dungeon.fail( Utils.format( ResultDescriptions.MOB, Utils.indefinite( name ), Dungeon.getDepth() ) );
                     GLog.n( TXT_DEATHGAZE_KILLED, name );
                 }

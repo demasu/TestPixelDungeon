@@ -37,13 +37,13 @@ public class MercWizardSkillA extends SummonRat {
     public void mercSummon () {
         boolean spawned = false;
         for ( int nu = 0; nu < 1; nu++ ) {
-            int newPos = Dungeon.hero.hiredMerc.pos;
+            int newPos = Dungeon.getHero().hiredMerc.pos;
             if ( Actor.findChar( newPos ) != null ) {
                 ArrayList<Integer> candidates = new ArrayList<Integer>();
                 boolean[] passable = Level.passable;
 
                 for ( int n : Level.NEIGHBOURS4 ) {
-                    int c = Dungeon.hero.hiredMerc.pos + n;
+                    int c = Dungeon.getHero().hiredMerc.pos + n;
                     if ( passable[c] && Actor.findChar( c ) == null ) {
                         candidates.add( c );
                     }
@@ -55,7 +55,7 @@ public class MercWizardSkillA extends SummonRat {
                     rat.spawn( level );
                     rat.pos = newPos;
                     GameScene.add( rat );
-                    Actor.addDelayed( new Pushing( rat, Dungeon.hero.hiredMerc.pos, newPos ), -1 );
+                    Actor.addDelayed( new Pushing( rat, Dungeon.getHero().hiredMerc.pos, newPos ), -1 );
                     rat.sprite.alpha( 0 );
                     rat.sprite.parent.add( new AlphaTweener( rat.sprite, 1, 0.15f ) );
                 }
@@ -70,7 +70,7 @@ public class MercWizardSkillA extends SummonRat {
     @Override
     public void castTextYell () {
         if ( castText != "" ) {
-            Dungeon.hero.hiredMerc.sprite.showStatus( CharSprite.NEUTRAL, castText );
+            Dungeon.getHero().hiredMerc.sprite.showStatus( CharSprite.NEUTRAL, castText );
         }
     }
 

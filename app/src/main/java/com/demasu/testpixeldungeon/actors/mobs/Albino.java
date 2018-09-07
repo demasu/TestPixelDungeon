@@ -33,8 +33,8 @@ public class Albino extends Rat {
 
         HP = HT = 15;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 

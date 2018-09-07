@@ -120,7 +120,7 @@ public class Bow extends MissileWeapon {
         ArrayList<String> actions = super.actions( hero );
         actions.remove( AC_THROW );
         actions.remove( AC_EQUIP );
-        if ( Dungeon.hero.belongings.bow != this ) {
+        if ( Dungeon.getHero().belongings.bow != this ) {
             if ( !actions.contains( AC_EQUIP ) ) {
                 actions.add( AC_EQUIP );
             }

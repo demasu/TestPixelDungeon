@@ -38,7 +38,7 @@ public class Dominance extends ActiveSkill3 {
             //hero.MP -= getManaCost();
             // castTextYell();
             Legend.haxWand.castSpell( WandOfMagicCasting.CAST_TYPES.DOMINANCE );
-            Dungeon.hero.heroSkills.lastUsed = this;
+            Dungeon.getHero().heroSkills.lastUsed = this;
         }
     }
 

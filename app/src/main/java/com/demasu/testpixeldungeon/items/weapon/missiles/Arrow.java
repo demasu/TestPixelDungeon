@@ -61,8 +61,8 @@ public class Arrow extends MissileWeapon {
     @Override
     public void cast ( final Hero user, int dst ) {
 
-        if ( Dungeon.hero.heroSkills.passiveB3.passThroughTargets( false ) > 0 ) {
-            castSPD( user, dst, Dungeon.hero.heroSkills.passiveB3.passThroughTargets( true ) );
+        if ( Dungeon.getHero().heroSkills.passiveB3.passThroughTargets( false ) > 0 ) {
+            castSPD( user, dst, Dungeon.getHero().heroSkills.passiveB3.passThroughTargets( true ) );
         } else {
             super.cast( user, dst );
         }
@@ -72,15 +72,15 @@ public class Arrow extends MissileWeapon {
     protected void onThrow ( int cell ) {
 
 
-        if ( !Dungeon.hero.heroSkills.passiveB3.multiTargetActive || Dungeon.hero.heroSkills.active3.active ) { //  bombvoyage
+        if ( !Dungeon.getHero().heroSkills.passiveB3.multiTargetActive || Dungeon.getHero().heroSkills.active3.active ) { //  bombvoyage
             // Turn to bomb
-            if ( Dungeon.hero.heroSkills.active3.arrowToBomb() ) {
+            if ( Dungeon.getHero().heroSkills.active3.arrowToBomb() ) {
                 if ( Level.pit[cell] ) {
                     super.onThrow( cell );
                 } else {
                     Sample.INSTANCE.play( Assets.SND_BLAST, 2 );
 
-                    if ( Dungeon.visible[cell] ) {
+                    if ( Dungeon.getVisible()[cell] ) {
                         CellEmitter.center( cell ).burst( BlastParticle.FACTORY, 30 );
                     }
 
@@ -88,7 +88,7 @@ public class Arrow extends MissileWeapon {
                     for ( int n : Level.NEIGHBOURS9 ) {
                         int c = cell + n;
                         if ( c >= 0 && c < Level.LENGTH ) {
-                            if ( Dungeon.visible[c] ) {
+                            if ( Dungeon.getVisible()[c] ) {
                                 CellEmitter.get( c ).burst( SmokeParticle.FACTORY, 4 );
                             }
 
@@ -123,7 +123,7 @@ public class Arrow extends MissileWeapon {
             return;
         }
 
-        Ballistica.distance = Math.min( Ballistica.distance, Level.distance( Dungeon.hero.pos, cell ) );
+        Ballistica.distance = Math.min( Ballistica.distance, Level.distance( Dungeon.getHero().pos, cell ) );
 
         ArrayList<Char> chars = new ArrayList<Char>();
 
@@ -151,7 +151,7 @@ public class Arrow extends MissileWeapon {
             miss( cell );
         }
 
-        Dungeon.hero.rangedWeapon = null;
+        Dungeon.getHero().rangedWeapon = null;
     }
 
     public void arrowEffect ( Char attacker, Char defender ) {
@@ -178,7 +178,7 @@ public class Arrow extends MissileWeapon {
     @Override
     public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = super.actions( hero );
-        if ( Dungeon.hero.belongings.bow != null ) {
+        if ( Dungeon.getHero().belongings.bow != null ) {
             if ( !actions.contains( AC_THROW ) ) {
                 actions.add( AC_THROW );
             }

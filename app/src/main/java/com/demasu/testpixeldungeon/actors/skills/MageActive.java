@@ -36,23 +36,23 @@ public class MageActive extends BranchSkill {
     @Override
     public String info () {
         return "Mages rely on summoned creatures to do their bidding.\n"
-                + "Limited to 3  (+" + Dungeon.hero.heroSkills.passiveB3.summoningLimitBonus() + " bonus from the Summoner skill) active summons\n"
+                + "Limited to 3  (+" + Dungeon.getHero().heroSkills.passiveB3.summoningLimitBonus() + " bonus from the Summoner skill) active summons\n"
                 + "You have invested a total of " + totalSpent() + " points in this branch.\n"
                 + ( canUpgrade() ? "Next advancement will cost you " + nextUpgradeCost() + " skill point.\n" : "You can no longer advance in this line" );
     }
 
     @Override
     protected int totalSpent () {
-        return Dungeon.hero.heroSkills.totalSpent( CurrentSkills.BRANCHES.ACTIVE );
+        return Dungeon.getHero().heroSkills.totalSpent( CurrentSkills.BRANCHES.ACTIVE );
     }
 
     @Override
     protected int nextUpgradeCost () {
-        return Dungeon.hero.heroSkills.nextUpgradeCost( CurrentSkills.BRANCHES.ACTIVE );
+        return Dungeon.getHero().heroSkills.nextUpgradeCost( CurrentSkills.BRANCHES.ACTIVE );
     }
 
     @Override
     protected boolean canUpgrade () {
-        return Dungeon.hero.heroSkills.canUpgrade( CurrentSkills.BRANCHES.ACTIVE );
+        return Dungeon.getHero().heroSkills.canUpgrade( CurrentSkills.BRANCHES.ACTIVE );
     }
 }

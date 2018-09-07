@@ -54,7 +54,7 @@ public class ScrollOfTeleportation extends Scroll {
         int count = 10;
         int pos;
         do {
-            pos = Dungeon.level.randomRespawnCell();
+            pos = Dungeon.getLevel().randomRespawnCell();
             if ( count-- <= 0 ) {
                 break;
             }
@@ -67,7 +67,7 @@ public class ScrollOfTeleportation extends Scroll {
         } else {
 
             WandOfBlink.appear( hero, pos );
-            Dungeon.level.press( pos, hero );
+            Dungeon.getLevel().press( pos, hero );
             Dungeon.observe();
 
             GLog.i( TXT_TELEPORTED );

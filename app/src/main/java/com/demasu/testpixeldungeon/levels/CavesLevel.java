@@ -245,7 +245,7 @@ public class CavesLevel extends RegularLevel {
         @Override
         public void update () {
 
-            if ( visible = Dungeon.visible[pos] ) {
+            if ( visible = Dungeon.getVisible()[pos] ) {
 
                 super.update();
 

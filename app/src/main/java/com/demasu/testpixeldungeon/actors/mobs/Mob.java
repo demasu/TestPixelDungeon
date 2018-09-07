@@ -167,10 +167,10 @@ public abstract class Mob extends Char {
     protected Char chooseEnemy () {
 
         if ( buff( Amok.class ) != null ) {
-            if ( enemy == Dungeon.hero || enemy == null ) {
+            if ( enemy == Dungeon.getHero() || enemy == null ) {
 
                 HashSet<Mob> enemies = new HashSet<Mob>();
-                for ( Mob mob : Dungeon.level.mobs ) {
+                for ( Mob mob : Dungeon.getLevel().mobs ) {
                     if ( mob != this && Level.fieldOfView[mob.pos] ) {
                         enemies.add( mob );
                     }
@@ -190,12 +190,12 @@ public abstract class Mob extends Char {
             }
         }
 
-        return enemy != null && enemy.isAlive() ? enemy : Dungeon.hero;
+        return enemy != null && enemy.isAlive() ? enemy : Dungeon.getHero();
     }
 
     protected boolean moveSprite ( int from, int to ) {
 
-        if ( sprite.isVisible() && ( Dungeon.visible[from] || Dungeon.visible[to] ) ) {
+        if ( sprite.isVisible() && ( Dungeon.getVisible()[from] || Dungeon.getVisible()[to] ) ) {
             sprite.move( from, to );
             return true;
         } else {
@@ -283,7 +283,7 @@ public abstract class Mob extends Char {
         super.move( step );
 
         if ( !flying ) {
-            Dungeon.level.mobPress( this );
+            Dungeon.getLevel().mobPress( this );
         }
     }
 
@@ -293,7 +293,7 @@ public abstract class Mob extends Char {
 
     protected boolean doAttack ( Char enemy ) {
 
-        boolean visible = Dungeon.visible[pos];
+        boolean visible = Dungeon.getVisible()[pos];
 
         if ( visible ) {
             sprite.attack( enemy.pos );
@@ -319,7 +319,7 @@ public abstract class Mob extends Char {
 
     @Override
     public int defenseProc ( Char enemy, int damage ) {
-        if ( !enemySeen && enemy == Dungeon.hero && ( (Hero) enemy ).subClass == HeroSubClass.ASSASSIN ) {
+        if ( !enemySeen && enemy == Dungeon.getHero() && ( (Hero) enemy ).subClass == HeroSubClass.ASSASSIN ) {
             damage += Random.Int( 1, damage );
             Wound.hit( this );
         }
@@ -349,16 +349,16 @@ public abstract class Mob extends Char {
 
         super.destroy();
 
-        Dungeon.level.mobs.remove( this );
+        Dungeon.getLevel().mobs.remove( this );
 
-        if ( Dungeon.hero.isAlive() ) {
+        if ( Dungeon.getHero().isAlive() ) {
 
             if ( hostile ) {
                 Statistics.enemiesSlain++;
                 Badges.validateMonstersSlain();
                 Statistics.qualifiedForNoKilling = false;
 
-                if ( Dungeon.nightMode ) {
+                if ( Dungeon.isNightMode() ) {
                     Statistics.nightHunt++;
                 } else {
                     Statistics.nightHunt = 0;
@@ -370,18 +370,18 @@ public abstract class Mob extends Char {
 
             if ( exp > 0 ) {
                 if ( this.champ > 0 ) {
-                    Dungeon.hero.sprite.showStatus( CharSprite.POSITIVE, TXT_EXP_CHAMP, (int) Math.ceil( 1.5 * exp ) );
-                    Dungeon.hero.earnExp( (int) Math.ceil( 1.5 * exp ) );
+                    Dungeon.getHero().sprite.showStatus( CharSprite.POSITIVE, TXT_EXP_CHAMP, (int) Math.ceil( 1.5 * exp ) );
+                    Dungeon.getHero().earnExp( (int) Math.ceil( 1.5 * exp ) );
                 } else {
-                    Dungeon.hero.sprite.showStatus( CharSprite.POSITIVE, TXT_EXP, exp );
-                    Dungeon.hero.earnExp( exp );
+                    Dungeon.getHero().sprite.showStatus( CharSprite.POSITIVE, TXT_EXP, exp );
+                    Dungeon.getHero().earnExp( exp );
                 }
             }
         }
     }
 
     public int exp () {
-        return Dungeon.hero.lvl <= maxLvl ? EXP : 0;
+        return Dungeon.getHero().lvl <= maxLvl ? EXP : 0;
     }
 
     @Override
@@ -397,7 +397,7 @@ public abstract class Mob extends Char {
             dropLootGuaranteed();
         }
 
-        if ( Dungeon.hero.lvl <= maxLvl + 2 ) {
+        if ( Dungeon.getHero().lvl <= maxLvl + 2 ) {
             dropLoot();
         }
 
@@ -405,7 +405,7 @@ public abstract class Mob extends Char {
             sprite.NotAChamp();
         }
 
-        if ( Dungeon.hero.isAlive() && !Dungeon.visible[pos] ) {
+        if ( Dungeon.getHero().isAlive() && !Dungeon.getVisible()[pos] ) {
             GLog.i( TXT_DIED );
         }
     }
@@ -418,7 +418,7 @@ public abstract class Mob extends Char {
     protected void dropLootGuaranteed () {
 
         Item item = Generator.random();
-        Dungeon.level.drop( item, pos ).sprite.drop();
+        Dungeon.getLevel().drop( item, pos ).sprite.drop();
 
     }
 
@@ -439,7 +439,7 @@ public abstract class Mob extends Char {
                 item = (Item) loot;
 
             }
-            Dungeon.level.drop( item, pos ).sprite.drop();
+            Dungeon.getLevel().drop( item, pos ).sprite.drop();
         }
     }
 
@@ -524,7 +524,7 @@ public abstract class Mob extends Char {
                 target = enemy.pos;
 
                 if ( Dungeon.isChallenged( Challenges.SWARM_INTELLIGENCE ) ) {
-                    for ( Mob mob : Dungeon.level.mobs ) {
+                    for ( Mob mob : Dungeon.getLevel().mobs ) {
                         if ( mob != Mob.this ) {
                             mob.beckon( target );
                         }
@@ -572,7 +572,7 @@ public abstract class Mob extends Char {
                     spend( 1 / speed() );
                     return moveSprite( oldPos, pos );
                 } else {
-                    target = Dungeon.level.randomDestination();
+                    target = Dungeon.getLevel().randomDestination();
                     spend( TICK );
                 }
 
@@ -613,7 +613,7 @@ public abstract class Mob extends Char {
 
                     spend( TICK );
                     state = WANDERING;
-                    target = Dungeon.level.randomDestination();
+                    target = Dungeon.getLevel().randomDestination();
                     return true;
                 }
             }

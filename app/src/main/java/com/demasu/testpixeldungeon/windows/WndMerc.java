@@ -20,7 +20,6 @@ package com.demasu.testpixeldungeon.windows;
 import android.graphics.RectF;
 
 import com.watabou.gltextures.TextureCache;
-import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.BitmapTextMultiline;
 import com.watabou.noosa.ColorBlock;
 import com.watabou.noosa.Image;
@@ -32,7 +31,6 @@ import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.hero.Storage;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.actors.skills.BranchSkill;
-import com.demasu.testpixeldungeon.actors.skills.Endurance;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.items.Gold;
 import com.demasu.testpixeldungeon.items.Item;
@@ -43,12 +41,8 @@ import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
-import com.demasu.testpixeldungeon.items.wands.Wand;
 import com.demasu.testpixeldungeon.items.weapon.Weapon;
-import com.demasu.testpixeldungeon.items.weapon.melee.MeleeWeapon;
-import com.demasu.testpixeldungeon.items.weapon.missiles.Boomerang;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
-import com.demasu.testpixeldungeon.plants.Plant.Seed;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.sprites.HeroSprite;
@@ -123,14 +117,14 @@ public class WndMerc extends WndTabbed {
 
 
         IconTitle titlebar = new IconTitle();
-        titlebar.icon( new SkillSprite( Dungeon.hero.hiredMerc.mercType.getImage() ) );
-        titlebar.label( Utils.capitalize( Dungeon.hero.hiredMerc.getNameAndLevel() ) );
-        titlebar.health( (float) Dungeon.hero.hiredMerc.HP / Dungeon.hero.hiredMerc.HT );
+        titlebar.icon( new SkillSprite( Dungeon.getHero().hiredMerc.mercType.getImage() ) );
+        titlebar.label( Utils.capitalize( Dungeon.getHero().hiredMerc.getNameAndLevel() ) );
+        titlebar.health( (float) Dungeon.getHero().hiredMerc.HP / Dungeon.getHero().hiredMerc.HT );
         titlebar.setRect( 0, 0, WIDTH, 0 );
         add( titlebar );
 
 
-        BitmapTextMultiline info = PixelScene.createMultiline( Dungeon.hero.hiredMerc.mercType.getDescription(), 6 );
+        BitmapTextMultiline info = PixelScene.createMultiline( Dungeon.getHero().hiredMerc.mercType.getDescription(), 6 );
         info.maxWidth = WIDTH;
         info.measure();
         info.x = titlebar.left();
@@ -138,25 +132,25 @@ public class WndMerc extends WndTabbed {
         add( info );
 
         //if(Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.ArcherMaiden && Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.Archer)
-        add( new ItemButton( Dungeon.hero.hiredMerc.weapon == null ? new Placeholder( Dungeon.hero.hiredMerc.mercType.getWeaponPlaceHolder() ) : Dungeon.hero.hiredMerc.weapon, false ).setPos( SLOT_MARGIN, info.y + info.height() + GAP ) );
+        add( new ItemButton( Dungeon.getHero().hiredMerc.weapon == null ? new Placeholder( Dungeon.getHero().hiredMerc.mercType.getWeaponPlaceHolder() ) : Dungeon.getHero().hiredMerc.weapon, false ).setPos( SLOT_MARGIN, info.y + info.height() + GAP ) );
 
-        if ( Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.ArcherMaiden ) {
-            add( new ItemButton( Dungeon.hero.hiredMerc.armor == null ? new Placeholder( Dungeon.hero.hiredMerc.mercType.getArmorPlaceHolder() ) : Dungeon.hero.hiredMerc.armor, false ).setPos( SLOT_SIZE + 2 * SLOT_MARGIN, info.y + info.height() + GAP ) );
-            if ( Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.Brute ) {
-                add( new ItemButton( Dungeon.hero.hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.hero.hiredMerc.carrying, false ).setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.y + info.height() + GAP ) );
+        if ( Dungeon.getHero().hiredMerc.mercType != HiredMerc.MERC_TYPES.ArcherMaiden ) {
+            add( new ItemButton( Dungeon.getHero().hiredMerc.armor == null ? new Placeholder( Dungeon.getHero().hiredMerc.mercType.getArmorPlaceHolder() ) : Dungeon.getHero().hiredMerc.armor, false ).setPos( SLOT_SIZE + 2 * SLOT_MARGIN, info.y + info.height() + GAP ) );
+            if ( Dungeon.getHero().hiredMerc.mercType != HiredMerc.MERC_TYPES.Brute ) {
+                add( new ItemButton( Dungeon.getHero().hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.getHero().hiredMerc.carrying, false ).setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.y + info.height() + GAP ) );
             } else {
-                add( new ItemButton( Dungeon.hero.hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.SMTH ) : Dungeon.hero.hiredMerc.carrying, true ).setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.y + info.height() + GAP ) );
+                add( new ItemButton( Dungeon.getHero().hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.SMTH ) : Dungeon.getHero().hiredMerc.carrying, true ).setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.y + info.height() + GAP ) );
             }
         } else {
-            add( new ItemButton( Dungeon.hero.hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.hero.hiredMerc.carrying, false ).setPos( SLOT_SIZE + 2 * SLOT_MARGIN, info.y + info.height() + GAP ) );
+            add( new ItemButton( Dungeon.getHero().hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.getHero().hiredMerc.carrying, false ).setPos( SLOT_SIZE + 2 * SLOT_MARGIN, info.y + info.height() + GAP ) );
         }
 
 
-        if ( Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.ArcherMaiden ) {
-            add( new SkillButton( Dungeon.hero.hiredMerc.skill ).setPos( WIDTH - SLOT_SIZE - SLOT_MARGIN, info.y + info.height() + GAP ) );
+        if ( Dungeon.getHero().hiredMerc.mercType != HiredMerc.MERC_TYPES.ArcherMaiden ) {
+            add( new SkillButton( Dungeon.getHero().hiredMerc.skill ).setPos( WIDTH - SLOT_SIZE - SLOT_MARGIN, info.y + info.height() + GAP ) );
         } else {
-            add( new SkillButton( Dungeon.hero.hiredMerc.skill ).setPos( WIDTH - 2 * ( SLOT_SIZE + SLOT_MARGIN ), info.y + info.height() + GAP ) );
-            add( new SkillButton( Dungeon.hero.hiredMerc.skillb ).setPos( WIDTH - SLOT_SIZE - SLOT_MARGIN, info.y + info.height() + GAP ) );
+            add( new SkillButton( Dungeon.getHero().hiredMerc.skill ).setPos( WIDTH - 2 * ( SLOT_SIZE + SLOT_MARGIN ), info.y + info.height() + GAP ) );
+            add( new SkillButton( Dungeon.getHero().hiredMerc.skillb ).setPos( WIDTH - SLOT_SIZE - SLOT_MARGIN, info.y + info.height() + GAP ) );
         }
 
         resize( WIDTH, (int) info.y + (int) info.height() + SLOT_SIZE + (int) GAP );
@@ -356,13 +350,13 @@ public class WndMerc extends WndTabbed {
             //GameScene.selectItem(this, (item instanceof Weapon || item.image() == ItemSpriteSheet.WEAPON) ? WndBag.Mode.WEAPON : WndBag.Mode.ARMOR, "Equip On Merc");
             WndMerc.this.hide();
             if ( holdOnly || item instanceof PotionOfHealing ) {
-                Dungeon.hero.hiredMerc.unEquipItem();
+                Dungeon.getHero().hiredMerc.unEquipItem();
                 return true;
             }
             if ( item instanceof Weapon ) {
-                Dungeon.hero.hiredMerc.unEquipWeapon();
+                Dungeon.getHero().hiredMerc.unEquipWeapon();
             } else {
-                Dungeon.hero.hiredMerc.unEquipArmor();
+                Dungeon.getHero().hiredMerc.unEquipArmor();
             }
             return true;
         }
@@ -371,30 +365,30 @@ public class WndMerc extends WndTabbed {
         public void onSelect ( Item item ) {
             if ( item != null ) {
                 if ( item instanceof Weapon && !holdOnly ) {
-                    if ( Dungeon.hero.belongings.weapon == item ) {
-                        Dungeon.hero.belongings.weapon = null;
+                    if ( Dungeon.getHero().belongings.weapon == item ) {
+                        Dungeon.getHero().belongings.weapon = null;
                     } else {
-                        item.detach( Dungeon.hero.belongings.backpack );
+                        item.detach( Dungeon.getHero().belongings.backpack );
                     }
-                    Dungeon.hero.hiredMerc.equipWeapon( item );
+                    Dungeon.getHero().hiredMerc.equipWeapon( item );
                 } else if ( item instanceof Armor && !holdOnly ) {
-                    if ( Dungeon.hero.belongings.armor == item ) {
-                        Dungeon.hero.belongings.armor = null;
+                    if ( Dungeon.getHero().belongings.armor == item ) {
+                        Dungeon.getHero().belongings.armor = null;
                     } else {
-                        item.detach( Dungeon.hero.belongings.backpack );
+                        item.detach( Dungeon.getHero().belongings.backpack );
                     }
-                    Dungeon.hero.hiredMerc.equipArmor( item );
+                    Dungeon.getHero().hiredMerc.equipArmor( item );
                 } else if ( item instanceof PotionOfHealing ) {
-                    item.detach( Dungeon.hero.belongings.backpack );
+                    item.detach( Dungeon.getHero().belongings.backpack );
 
-                    Dungeon.hero.hiredMerc.equipItem( new PotionOfHealing() );
+                    Dungeon.getHero().hiredMerc.equipItem( new PotionOfHealing() );
                 } else {
-                    Dungeon.hero.hiredMerc.equipItem( item.detachAll( Dungeon.hero.belongings.backpack ) );
+                    Dungeon.getHero().hiredMerc.equipItem( item.detachAll( Dungeon.getHero().belongings.backpack ) );
                 }
             }
-            ( (HeroSprite) Dungeon.hero.sprite ).updateArmor();
-            ( (MercSprite) Dungeon.hero.hiredMerc.sprite ).updateArmor();
-            Dungeon.hero.spend( 1f );
+            ( (HeroSprite) Dungeon.getHero().sprite ).updateArmor();
+            ( (MercSprite) Dungeon.getHero().hiredMerc.sprite ).updateArmor();
+            Dungeon.getHero().spend( 1f );
             WndMerc.this.hide();
         }
     }

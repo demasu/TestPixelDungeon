@@ -31,13 +31,13 @@ public class Door {
         GameScene.updateMap( pos );
         Dungeon.observe();
 
-        if ( Dungeon.visible[pos] ) {
+        if ( Dungeon.getVisible()[pos] ) {
             Sample.INSTANCE.play( Assets.SND_OPEN );
         }
     }
 
     public static void leave ( int pos ) {
-        if ( Dungeon.level.heaps.get( pos ) == null ) {
+        if ( Dungeon.getLevel().heaps.get( pos ) == null ) {
             Level.set( pos, Terrain.DOOR );
             GameScene.updateMap( pos );
             Dungeon.observe();

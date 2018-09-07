@@ -111,9 +111,9 @@ public class SewerLevel extends RegularLevel {
 
     @Override
     protected void createItems () {
-        if ( Dungeon.dewVial && Random.Int( 4 - Dungeon.getDepth() ) == 0 ) {
+        if ( Dungeon.isDewVial() && Random.Int( 4 - Dungeon.getDepth() ) == 0 ) {
             addItemToSpawn( new DewVial() );
-            Dungeon.dewVial = false;
+            Dungeon.setDewVial( false );
         }
 
         super.createItems();
@@ -182,7 +182,7 @@ public class SewerLevel extends RegularLevel {
 
         @Override
         public void update () {
-            if ( visible = Dungeon.visible[pos] ) {
+            if ( visible = Dungeon.getVisible()[pos] ) {
 
                 super.update();
 

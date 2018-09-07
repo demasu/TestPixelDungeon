@@ -107,7 +107,7 @@ public class MeleeWeapon extends Weapon {
             info.append(
                     "Its typical average damage is " + ( min + ( max - min ) / 2 ) + " points per hit " +
                             "and usually it requires " + typicalSTR() + " points of strength. " );
-            if ( typicalSTR() > Dungeon.hero.STR() ) {
+            if ( typicalSTR() > Dungeon.getHero().STR() ) {
                 info.append( "Probably this weapon is too heavy for you. " );
             }
         }
@@ -140,14 +140,14 @@ public class MeleeWeapon extends Weapon {
             info.append( "It is enchanted." );
         }
 
-        if ( levelKnown && Dungeon.hero.belongings.backpack.items.contains( this ) ) {
-            if ( STR() > Dungeon.hero.STR() ) {
+        if ( levelKnown && Dungeon.getHero().belongings.backpack.items.contains( this ) ) {
+            if ( STR() > Dungeon.getHero().STR() ) {
                 info.append( p );
                 info.append(
                         "Because of your inadequate strength the accuracy and speed " +
                                 "of your attack with this " + name + " is decreased." );
             }
-            if ( STR() < Dungeon.hero.STR() ) {
+            if ( STR() < Dungeon.getHero().STR() ) {
                 info.append( p );
                 info.append(
                         "Because of your excess strength the damage " +
@@ -155,11 +155,11 @@ public class MeleeWeapon extends Weapon {
             }
         }
 
-        if ( isEquipped( Dungeon.hero ) ) {
+        if ( isEquipped( Dungeon.getHero() ) ) {
             info.append( p );
-            if ( this instanceof MeleeWeapon && Dungeon.hero.heroSkills.passiveA1 != null && Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus() > 0 ) // <--- Warrior Mastery if present
+            if ( this instanceof MeleeWeapon && Dungeon.getHero().heroSkills.passiveA1 != null && Dungeon.getHero().heroSkills.passiveB3.weaponLevelBonus() > 0 ) // <--- Warrior Mastery if present
             {
-                info.append( "Your mastery of melee weapons makes it easier to use this weapon (+ " + Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus() + " levels)\n" );
+                info.append( "Your mastery of melee weapons makes it easier to use this weapon (+ " + Dungeon.getHero().heroSkills.passiveB3.weaponLevelBonus() + " levels)\n" );
             }
             info.append( "You hold the " + name + " at the ready" +
                     ( cursed ? ", and because it is cursed, you are powerless to let go." : "." ) );

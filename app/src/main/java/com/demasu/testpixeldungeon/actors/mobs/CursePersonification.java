@@ -78,9 +78,9 @@ public class CursePersonification extends Mob {
                     enemy.pos = newPos;
                     // FIXME
                     if ( enemy instanceof Mob ) {
-                        Dungeon.level.mobPress( (Mob) enemy );
+                        Dungeon.getLevel().mobPress( (Mob) enemy );
                     } else {
-                        Dungeon.level.press( newPos, enemy );
+                        Dungeon.getLevel().press( newPos, enemy );
                     }
 
                 }

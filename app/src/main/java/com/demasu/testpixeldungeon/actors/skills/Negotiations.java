@@ -88,7 +88,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                         } else {
                             hero.hiredMerc = action == TXT_HIRE_BRUTE ? new HiredMerc( HiredMerc.MERC_TYPES.Brute ) : ( action == TXT_HIRE_THIEF ? new HiredMerc( HiredMerc.MERC_TYPES.Thief ) : new HiredMerc( HiredMerc.MERC_TYPES.Wizard ) );
                         }
-                        hero.hiredMerc.spawn( Dungeon.hero.lvl );
+                        hero.hiredMerc.spawn( Dungeon.getHero().lvl );
                         hero.hiredMerc.pos = newPos;
                         GameScene.add( hero.hiredMerc );
                         Actor.addDelayed( new Pushing( hero.hiredMerc, hero.pos, newPos ), -1 );
@@ -112,7 +112,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
 
             if ( newPos != -1 ) {
                 HiredMerc tmp = new HiredMerc( hero.hiredMerc.mercType );
-                tmp.spawn( Dungeon.hero.lvl );
+                tmp.spawn( Dungeon.getHero().lvl );
                 tmp.pos = newPos;
                 GameScene.add( tmp );
                 Actor.addDelayed( new Pushing( tmp, hero.pos, newPos ), -1 );
@@ -129,15 +129,15 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
     }
 
     public int getGoldCost () {
-        return Dungeon.hero.lvl * 0;
+        return Dungeon.getHero().lvl * 0;
     }
 
     public String getHireText () {
-        return "\nHiring a level " + Dungeon.hero.lvl + " merc costs " + getGoldCost() + " gold.";
+        return "\nHiring a level " + Dungeon.getHero().lvl + " merc costs " + getGoldCost() + " gold.";
     }
 
     @Override
     public String info () {
-        return HiredMerc.MERC_TYPES.Brute.getDescription() + "\n" + HiredMerc.MERC_TYPES.Thief.getDescription() + "\n" + HiredMerc.MERC_TYPES.Wizard.getDescription() + ( Dungeon.hero.hiredMerc == null ? getHireText() : "" );
+        return HiredMerc.MERC_TYPES.Brute.getDescription() + "\n" + HiredMerc.MERC_TYPES.Thief.getDescription() + "\n" + HiredMerc.MERC_TYPES.Wizard.getDescription() + ( Dungeon.getHero().hiredMerc == null ? getHireText() : "" );
     }
 }

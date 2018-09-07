@@ -232,7 +232,7 @@ public class Heap implements Bundlable {
 
         if ( burnt || evaporated ) {
 
-            if ( Dungeon.visible[pos] ) {
+            if ( Dungeon.getVisible()[pos] ) {
                 if ( burnt ) {
                     burnFX( pos );
                 } else {
@@ -354,7 +354,7 @@ public class Heap implements Bundlable {
     }
 
     public void destroy () {
-        Dungeon.level.heaps.remove( this.pos );
+        Dungeon.getLevel().heaps.remove( this.pos );
         if ( sprite != null ) {
             sprite.kill();
         }

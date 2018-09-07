@@ -78,7 +78,7 @@ public class SummonCrab extends ActiveSkill2 {
                 hero.busy();
                 hero.sprite.operate( hero.pos );
             }
-            Dungeon.hero.heroSkills.lastUsed = this;
+            Dungeon.getHero().heroSkills.lastUsed = this;
         }
     }
 

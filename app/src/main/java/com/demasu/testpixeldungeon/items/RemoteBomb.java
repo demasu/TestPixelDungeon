@@ -38,7 +38,7 @@ public class RemoteBomb extends Item {
         } else {
             RemoteBombGround tmp = new RemoteBombGround();
             tmp.pos = cell;
-            Dungeon.level.drop( tmp, cell ).sprite.drop();
+            Dungeon.getLevel().drop( tmp, cell ).sprite.drop();
         }
 
 

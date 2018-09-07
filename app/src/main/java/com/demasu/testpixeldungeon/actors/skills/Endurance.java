@@ -15,8 +15,8 @@ public class Endurance extends PassiveSkillA1 {
 
     @Override
     protected boolean upgrade () {
-        Dungeon.hero.HT += 5;
-        Dungeon.hero.HP += 5;
+        Dungeon.getHero().HT += 5;
+        Dungeon.getHero().HP += 5;
         return true;
     }
 

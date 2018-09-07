@@ -85,7 +85,7 @@ public class StatusPane extends Component {
         add( new TouchArea( 0, 1, 30, 30 ) {
             @Override
             protected void onClick ( Touch touch ) {
-                Image sprite = Dungeon.hero.sprite;
+                Image sprite = Dungeon.getHero().sprite;
                 if ( !sprite.isVisible() ) {
                     Camera.main.focusOn( sprite );
                 }
@@ -97,7 +97,7 @@ public class StatusPane extends Component {
         btnMenu = new MenuButton();
         add( btnMenu );
 
-        avatar = HeroSprite.avatar( Dungeon.hero.getHeroClass(), lastTier );
+        avatar = HeroSprite.avatar( Dungeon.getHero().getHeroClass(), lastTier );
         add( avatar );
 
         blood = new BitmaskEmitter( avatar );
@@ -106,7 +106,7 @@ public class StatusPane extends Component {
         blood.on = false;
         add( blood );
 
-        compass = new Compass( Dungeon.level.exit );
+        compass = new Compass( Dungeon.getLevel().exit );
         add( compass );
 
         hp = new Image( Assets.HP_BAR );
@@ -137,7 +137,7 @@ public class StatusPane extends Component {
         depth.measure();
         add( depth );
 
-        Dungeon.hero.belongings.countIronKeys();
+        Dungeon.getHero().belongings.countIronKeys();
         keys = new BitmapText( PixelScene.font1x );
         keys.hardlight( 0xCACFC2 );
         add( keys );
@@ -151,7 +151,7 @@ public class StatusPane extends Component {
         resume = new ResumeButton();
         add( resume );
 
-        buffs = new BuffIndicator( Dungeon.hero );
+        buffs = new BuffIndicator( Dungeon.getHero() );
         add( buffs );
 
         takingDamage = 0;
@@ -228,13 +228,13 @@ public class StatusPane extends Component {
             layoutTags();
         }
 
-        float health = (float) ( Dungeon.hero.HP ) / Dungeon.hero.HT;
+        float health = (float) ( Dungeon.getHero().HP ) / Dungeon.getHero().HT;
 
-        if ( Dungeon.hero.HP == 0 ) {
+        if ( Dungeon.getHero().HP == 0 ) {
             takingDamage = 0;
         }
 
-        float health_drop = takingDamage / Dungeon.hero.HT;
+        float health_drop = takingDamage / Dungeon.getHero().HT;
 
         if ( takingDamage > 0 ) {
             takingDamageCooldownCounter++;
@@ -258,17 +258,17 @@ public class StatusPane extends Component {
         hp_dropping.x = hp.x + hp.width() - 20 * health;
         hp_dropping.scale.x = health_drop;
 
-        exp.scale.x = ( width / exp.width ) * Dungeon.hero.exp / Dungeon.hero.maxExp();
+        exp.scale.x = ( width / exp.width ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp();
 
-        float mana = (float) Dungeon.hero.MP / Dungeon.hero.MMP;
+        float mana = (float) Dungeon.getHero().MP / Dungeon.getHero().MMP;
 
-        float mana_drop = manaDropping / Dungeon.hero.MMP;
+        float mana_drop = manaDropping / Dungeon.getHero().MMP;
 
         mp.scale.x = mana;
         mp_dropping.x = mp.x + mp.width() - 20 * mana;
         mp_dropping.scale.x = mana_drop;
 
-        if ( Dungeon.hero.MP == 0 ) {
+        if ( Dungeon.getHero().MP == 0 ) {
             manaDropping = 0;
         }
 
@@ -279,7 +279,7 @@ public class StatusPane extends Component {
             }
         }
 
-        if ( Dungeon.hero.lvl != lastLvl ) {
+        if ( Dungeon.getHero().lvl != lastLvl ) {
 
             if ( lastLvl != -1 ) {
                 Emitter emitter = (Emitter) recycle( Emitter.class );
@@ -288,7 +288,7 @@ public class StatusPane extends Component {
                 emitter.burst( Speck.factory( Speck.STAR ), 12 );
             }
 
-            lastLvl = Dungeon.hero.lvl;
+            lastLvl = Dungeon.getHero().lvl;
             level.text( Integer.toString( lastLvl ) );
             level.measure();
             level.x = PixelScene.align( 27.5f - level.width() / 2 );
@@ -303,10 +303,10 @@ public class StatusPane extends Component {
             keys.x = width - 8 - keys.width() - 18;
         }
 
-        int tier = Dungeon.hero.tier();
+        int tier = Dungeon.getHero().tier();
         if ( tier != lastTier ) {
             lastTier = tier;
-            avatar.copy( HeroSprite.avatar( Dungeon.hero.getHeroClass(), tier ) );
+            avatar.copy( HeroSprite.avatar( Dungeon.getHero().getHeroClass(), tier ) );
         }
     }
 

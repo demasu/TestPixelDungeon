@@ -51,7 +51,7 @@ public class Bomb extends Item {
         } else {
             Sample.INSTANCE.play( Assets.SND_BLAST, 2 );
 
-            if ( Dungeon.visible[cell] ) {
+            if ( Dungeon.getVisible()[cell] ) {
                 CellEmitter.center( cell ).burst( BlastParticle.FACTORY, 30 );
             }
 
@@ -59,12 +59,12 @@ public class Bomb extends Item {
             for ( int n : Level.NEIGHBOURS9 ) {
                 int c = cell + n;
                 if ( c >= 0 && c < Level.LENGTH ) {
-                    if ( Dungeon.visible[c] ) {
+                    if ( Dungeon.getVisible()[c] ) {
                         CellEmitter.get( c ).burst( SmokeParticle.FACTORY, 4 );
                     }
 
                     if ( Level.flamable[c] ) {
-                        Dungeon.level.destroy( c );
+                        Dungeon.getLevel().destroy( c );
                         GameScene.updateMap( c );
                         terrainAffected = true;
                     }
@@ -76,7 +76,7 @@ public class Bomb extends Item {
                             ch.damage( dmg, this );
                             if ( ch.isAlive() ) {
                                 Buff.prolong( ch, Paralysis.class, 2 );
-                            } else if ( ch == Dungeon.hero ) {
+                            } else if ( ch == Dungeon.getHero() ) {
                                 Dungeon.fail( Utils.format( ResultDescriptions.BOMB, Dungeon.getDepth() ) );
                                 GLog.n( "You killed yourself with a bomb..." );
                             }

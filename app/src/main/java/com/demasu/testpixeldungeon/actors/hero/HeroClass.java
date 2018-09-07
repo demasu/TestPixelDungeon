@@ -148,9 +148,9 @@ public enum HeroClass {
     }
 
     public static void initStarterStats (Hero hero ) {
-        Dungeon.hero.HP -= Dungeon.currentDifficulty.difficultyHPStartPenalty();
-        Dungeon.hero.HT -= Dungeon.currentDifficulty.difficultyHPStartPenalty();
-        Dungeon.currentDifficulty.difficultyStartItemBonus();
+        Dungeon.getHero().HP -= Dungeon.getCurrentDifficulty().difficultyHPStartPenalty();
+        Dungeon.getHero().HT -= Dungeon.getCurrentDifficulty().difficultyHPStartPenalty();
+        Dungeon.getCurrentDifficulty().difficultyStartItemBonus();
         Dungeon.setGold( Dungeon.getGold() + 10000 ); // For debug
 
         Skill.availableSkill = Skill.STARTING_SKILL;

@@ -125,7 +125,7 @@ public class WndBag extends WndTabbed {
 
         resize( slotsWidth, slotsHeight + TITLE_HEIGHT );
 
-        Belongings stuff = Dungeon.hero.belongings;
+        Belongings stuff = Dungeon.getHero().belongings;
         Bag[] bags = {
                 stuff.backpack,
                 stuff.getItem( SeedPouch.class ),
@@ -147,35 +147,35 @@ public class WndBag extends WndTabbed {
     public static WndBag lastBag ( Listener listener, Mode mode, String title ) {
 
         if ( mode == lastMode && lastBag != null &&
-                Dungeon.hero.belongings.backpack.contains( lastBag ) ) {
+                Dungeon.getHero().belongings.backpack.contains( lastBag ) ) {
 
             return new WndBag( lastBag, listener, mode, title );
 
         } else {
 
-            return new WndBag( Dungeon.hero.belongings.backpack, listener, mode, title );
+            return new WndBag( Dungeon.getHero().belongings.backpack, listener, mode, title );
 
         }
     }
 
     public static WndBag seedPouch ( Listener listener, Mode mode, String title ) {
-        SeedPouch pouch = Dungeon.hero.belongings.getItem( SeedPouch.class );
+        SeedPouch pouch = Dungeon.getHero().belongings.getItem( SeedPouch.class );
         return pouch != null ?
                 new WndBag( pouch, listener, mode, title ) :
-                new WndBag( Dungeon.hero.belongings.backpack, listener, mode, title );
+                new WndBag( Dungeon.getHero().belongings.backpack, listener, mode, title );
     }
 
     protected void placeItems ( Bag container ) {
 
         // Equipped items
-        Belongings stuff = Dungeon.hero.belongings;
+        Belongings stuff = Dungeon.getHero().belongings;
         placeItem( stuff.weapon != null ? stuff.weapon : new Placeholder( ItemSpriteSheet.WEAPON ) );
         placeItem( stuff.armor != null ? stuff.armor : new Placeholder( ItemSpriteSheet.ARMOR ) );
         placeItem( stuff.ring1 != null ? stuff.ring1 : new Placeholder( ItemSpriteSheet.RING ) );
         placeItem( stuff.ring2 != null ? stuff.ring2 : new Placeholder( ItemSpriteSheet.RING ) );
         placeItem( stuff.bow != null ? stuff.bow : new Placeholder( ItemSpriteSheet.EMPTY_BOW ) );
 
-        boolean backpack = ( container == Dungeon.hero.belongings.backpack );
+        boolean backpack = ( container == Dungeon.getHero().belongings.backpack );
         if ( !backpack ) {
             count = nCols;
             col = 0;
@@ -193,7 +193,7 @@ public class WndBag extends WndTabbed {
         }
 
         // Gold in the backpack
-        if ( container == Dungeon.hero.belongings.backpack ) {
+        if ( container == Dungeon.getHero().belongings.backpack ) {
             row = nRows - 1;
             col = nCols - 1;
             placeItem( new Gold( Dungeon.getGold() ) );
@@ -369,7 +369,7 @@ public class WndBag extends WndTabbed {
             super.item( item );
             if ( item != null ) {
 
-                bg.texture( TextureCache.createSolid( item.isEquipped( Dungeon.hero ) ? EQUIPPED : NORMAL ) );
+                bg.texture( TextureCache.createSolid( item.isEquipped( Dungeon.getHero() ) ? EQUIPPED : NORMAL ) );
                 if ( item.cursed && item.cursedKnown ) {
                     bg.ra = +0.2f;
                     bg.ga = -0.1f;
@@ -396,7 +396,7 @@ public class WndBag extends WndTabbed {
                 } else {
                     enable(
                             mode == Mode.QUICKSLOT && ( item.defaultAction != null ) ||
-                                    mode == Mode.FOR_SALE && ( item.price() > 0 ) && ( !item.isEquipped( Dungeon.hero ) || !item.cursed ) ||
+                                    mode == Mode.FOR_SALE && ( item.price() > 0 ) && ( !item.isEquipped( Dungeon.getHero() ) || !item.cursed ) ||
                                     mode == Mode.UPGRADEABLE && item.isUpgradable() ||
                                     mode == Mode.UNIDENTIFED && !item.isIdentified() ||
                                     mode == Mode.WEAPON && ( item instanceof MeleeWeapon || item instanceof Boomerang ) ||
@@ -408,13 +408,13 @@ public class WndBag extends WndTabbed {
                     );
 
                     if ( mode == Mode.BOW ) {
-                        enable( item instanceof Bow && Dungeon.hero.belongings.bow != item );
+                        enable( item instanceof Bow && Dungeon.getHero().belongings.bow != item );
                     }
                     if ( mode == Mode.HEALING_POTION ) {
                         enable( item instanceof PotionOfHealing && ( (Potion) item ).isKnown() );
                     }
                     if ( mode == Mode.BRUTE_HOLD ) {
-                        enable( !( item instanceof Bag ) && item != Dungeon.hero.belongings.weapon && item != Dungeon.hero.belongings.armor && item != Dungeon.hero.belongings.ring1 && item != Dungeon.hero.belongings.ring2 && item != Dungeon.hero.belongings.bow );
+                        enable( !( item instanceof Bag ) && item != Dungeon.getHero().belongings.weapon && item != Dungeon.getHero().belongings.armor && item != Dungeon.getHero().belongings.ring1 && item != Dungeon.getHero().belongings.ring2 && item != Dungeon.getHero().belongings.bow );
                     }
                     if ( mode == Mode.ARMOR && title.contains( "Merc" ) && item instanceof Armor && ( (Armor) item ).tier > 5 ) {
                         enable( false );

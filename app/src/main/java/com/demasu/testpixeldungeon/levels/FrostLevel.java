@@ -23,11 +23,8 @@ import com.demasu.testpixeldungeon.Bones;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
-import com.demasu.testpixeldungeon.actors.buffs.Buff;
-import com.demasu.testpixeldungeon.actors.buffs.Frost;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
-import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.items.Heap;
@@ -206,7 +203,7 @@ public class FrostLevel extends Level {
             } while (
                     !passable[boss.pos] ||
                             !outsideEntraceRoom( boss.pos ) ||
-                            Dungeon.visible[boss.pos] );
+                            Dungeon.getVisible()[boss.pos] );
             GameScene.add( boss );
         }
     }

@@ -44,7 +44,7 @@ public class Sorrowmoss extends Plant {
             Buff.affect( ch, Poison.class ).set( Poison.durationFactor( ch ) * ( 4 + Dungeon.getDepth() / 2 ) );
         }
 
-        if ( Dungeon.visible[pos] ) {
+        if ( Dungeon.getVisible()[pos] ) {
             CellEmitter.center( pos ).burst( PoisonParticle.SPLASH, 3 );
         }
     }

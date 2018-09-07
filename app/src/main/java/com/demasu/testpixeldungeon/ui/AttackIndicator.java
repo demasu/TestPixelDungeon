@@ -69,9 +69,9 @@ public class AttackIndicator extends Tag {
     public void update () {
         super.update();
 
-        if ( Dungeon.hero.isAlive() ) {
+        if ( Dungeon.getHero().isAlive() ) {
 
-            if ( !Dungeon.hero.ready ) {
+            if ( !Dungeon.getHero().ready ) {
                 enable( false );
             }
 
@@ -83,11 +83,11 @@ public class AttackIndicator extends Tag {
 
     private void checkEnemies () {
 
-        int heroPos = Dungeon.hero.pos;
+        int heroPos = Dungeon.getHero().pos;
         candidates.clear();
-        int v = Dungeon.hero.visibleEnemies();
+        int v = Dungeon.getHero().visibleEnemies();
         for ( int i = 0; i < v; i++ ) {
-            Mob mob = Dungeon.hero.visibleEnemy( i );
+            Mob mob = Dungeon.getHero().visibleEnemy( i );
             if ( Level.adjacent( heroPos, mob.pos ) ) {
                 candidates.add( mob );
             }
@@ -151,7 +151,7 @@ public class AttackIndicator extends Tag {
     @Override
     protected void onClick () {
         if ( enabled ) {
-            Dungeon.hero.handle( lastTarget.pos );
+            Dungeon.getHero().handle( lastTarget.pos );
         }
     }
 

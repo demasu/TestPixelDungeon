@@ -23,15 +23,11 @@ import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
-import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
-import com.demasu.testpixeldungeon.actors.buffs.Poison;
 import com.demasu.testpixeldungeon.actors.hero.Legend;
-import com.demasu.testpixeldungeon.actors.mobs.Mob;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.NPC;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.SummonedPet;
 import com.demasu.testpixeldungeon.effects.MagicMissile;
-import com.demasu.testpixeldungeon.effects.Pushing;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
 import com.demasu.testpixeldungeon.mechanics.Ballistica;
@@ -39,7 +35,6 @@ import com.demasu.testpixeldungeon.scenes.CellSelector;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.MissionScene;
 import com.demasu.testpixeldungeon.sprites.WraithSprite;
-import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
@@ -59,20 +54,20 @@ public class WandOfMagicCasting extends Wand {
     public void castSpellCost () {
         switch ( casting ) {
             case DARK_BOLT:
-                Dungeon.hero.MP -= Dungeon.hero.heroSkills.passiveB2.getManaCost();
-                Dungeon.hero.heroSkills.passiveB2.castTextYell();
+                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.passiveB2.getManaCost();
+                Dungeon.getHero().heroSkills.passiveB2.castTextYell();
                 break;
             case DOMINANCE:
-                Dungeon.hero.MP -= Dungeon.hero.heroSkills.passiveB3.getManaCost();
-                Dungeon.hero.heroSkills.passiveB3.castTextYell();
+                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.passiveB3.getManaCost();
+                Dungeon.getHero().heroSkills.passiveB3.castTextYell();
                 break;
             case SOUL_SPARK:
-                Dungeon.hero.MP -= Dungeon.hero.heroSkills.active2.getManaCost();
-                Dungeon.hero.heroSkills.active2.castTextYell();
+                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.active2.getManaCost();
+                Dungeon.getHero().heroSkills.active2.castTextYell();
                 break;
             case SPARK:
-                Dungeon.hero.MP -= Dungeon.hero.heroSkills.active2.getManaCost();
-                Dungeon.hero.heroSkills.active2.castTextYell();
+                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.active2.getManaCost();
+                Dungeon.getHero().heroSkills.active2.castTextYell();
                 break;
 
         }
@@ -89,7 +84,7 @@ public class WandOfMagicCasting extends Wand {
 
             if ( target != null ) {
 
-                curUser = Dungeon.hero;
+                curUser = Dungeon.getHero();
                 final int cell = Ballistica.cast( curUser.pos, target, true, true );
                 curUser.sprite.zap( cell );
 
@@ -150,7 +145,7 @@ public class WandOfMagicCasting extends Wand {
                 minion.screams = false;
                 minion.HT = ch.HT;
                 minion.HP = minion.HT;
-                minion.defenseSkill = ch.defenseSkill( Dungeon.hero );
+                minion.defenseSkill = ch.defenseSkill( Dungeon.getHero() );
                 minion.pos = cell;
                 GameScene.add( minion );
                 minion.sprite.alpha( 0 );
@@ -161,7 +156,7 @@ public class WandOfMagicCasting extends Wand {
                 ch.HP = ch.HT;
                 ch.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
             } else if ( casting == CAST_TYPES.SPARK ) {
-                ch.damage( Random.Int( Dungeon.hero.heroSkills.active2.level * 3, Dungeon.hero.heroSkills.active2.level * 5 ), Dungeon.hero );
+                ch.damage( Random.Int( Dungeon.getHero().heroSkills.active2.level * 3, Dungeon.getHero().heroSkills.active2.level * 5 ), Dungeon.getHero() );
             }
 
         } else {

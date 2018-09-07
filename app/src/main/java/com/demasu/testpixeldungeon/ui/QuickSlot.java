@@ -87,7 +87,7 @@ public class QuickSlot extends Button implements WndBag.Listener {
                     GameScene.handleCell( lastTarget.pos );
                 } else {
                     useTargeting();
-                    select().execute( Dungeon.hero );
+                    select().execute( Dungeon.getHero() );
                 }
             }
 
@@ -147,7 +147,7 @@ public class QuickSlot extends Button implements WndBag.Listener {
 
         } else if ( content != null ) {
 
-            Item item = Dungeon.hero.belongings.getItem( (Class<? extends Item>) content );
+            Item item = Dungeon.getHero().belongings.getItem( (Class<? extends Item>) content );
             return item != null ? item : Item.virtual( (Class<? extends Item>) content );
 
         } else {
@@ -185,18 +185,18 @@ public class QuickSlot extends Button implements WndBag.Listener {
     }
 
     private void enableSlot () {
-        slot.enable( !( itemInSlot instanceof Bow ) && ( !( itemInSlot instanceof Arrow ) || Dungeon.hero.belongings.bow != null ) &&
+        slot.enable( !( itemInSlot instanceof Bow ) && ( !( itemInSlot instanceof Arrow ) || Dungeon.getHero().belongings.bow != null ) &&
                 itemInSlot != null &&
                 itemInSlot.quantity() > 0 &&
-                ( Dungeon.hero.belongings.backpack.contains( itemInSlot ) || itemInSlot.isEquipped( Dungeon.hero ) ) );
+                ( Dungeon.getHero().belongings.backpack.contains( itemInSlot ) || itemInSlot.isEquipped( Dungeon.getHero() ) ) );
     }
 
     private void useTargeting () {
 
-        targeting = lastTarget != null && lastTarget.isAlive() && Dungeon.visible[lastTarget.pos];
+        targeting = lastTarget != null && lastTarget.isAlive() && Dungeon.getVisible()[lastTarget.pos];
 
         if ( targeting ) {
-            int pos = Ballistica.cast( Dungeon.hero.pos, lastTarget.pos, false, true );
+            int pos = Ballistica.cast( Dungeon.getHero().pos, lastTarget.pos, false, true );
             if ( pos != lastTarget.pos ) {
                 lastTarget = null;
                 targeting = false;
@@ -204,10 +204,10 @@ public class QuickSlot extends Button implements WndBag.Listener {
         }
 
         if ( !targeting ) {
-            int n = Dungeon.hero.visibleEnemies();
+            int n = Dungeon.getHero().visibleEnemies();
             for ( int i = 0; i < n; i++ ) {
-                Mob enemy = Dungeon.hero.visibleEnemy( i );
-                int pos = Ballistica.cast( Dungeon.hero.pos, enemy.pos, false, true );
+                Mob enemy = Dungeon.getHero().visibleEnemy( i );
+                int pos = Ballistica.cast( Dungeon.getHero().pos, enemy.pos, false, true );
                 if ( pos == enemy.pos ) {
                     lastTarget = enemy;
                     targeting = true;
@@ -237,7 +237,7 @@ public class QuickSlot extends Button implements WndBag.Listener {
     }
 
     public static void target ( Item item, Char target ) {
-        if ( target != Dungeon.hero ) {
+        if ( target != Dungeon.getHero() ) {
             lastTarget = target;
             HealthIndicator.instance.target( target );
         }
@@ -261,7 +261,7 @@ public class QuickSlot extends Button implements WndBag.Listener {
 
     @SuppressWarnings ( "unchecked" )
     public static void save ( Bundle bundle ) {
-        Belongings stuff = Dungeon.hero.belongings;
+        Belongings stuff = Dungeon.getHero().belongings;
 
         if ( primaryValue instanceof Class &&
                 stuff.getItem( (Class<? extends Item>) primaryValue ) != null ) {

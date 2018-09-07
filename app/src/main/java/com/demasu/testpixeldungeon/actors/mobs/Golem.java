@@ -41,8 +41,8 @@ public class Golem extends Mob {
         EXP = 12;
         maxLvl = 22;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 

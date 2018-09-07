@@ -332,7 +332,7 @@ public class HiredMerc extends NPC {
 
     public void unEquipWeapon () {
         if ( weapon != null ) {
-            Dungeon.level.drop( weapon, pos ).sprite.drop();
+            Dungeon.getLevel().drop( weapon, pos ).sprite.drop();
         }
         weapon = null;
     }
@@ -344,16 +344,16 @@ public class HiredMerc extends NPC {
             unEquipArmor();
             sprite.showStatus( CharSprite.NEGATIVE, TXT_CANT_EQUIP );
         } else {
-            ( (MercSprite) Dungeon.hero.hiredMerc.sprite ).updateArmor();
+            ( (MercSprite) Dungeon.getHero().hiredMerc.sprite ).updateArmor();
         }
     }
 
     public void unEquipArmor () {
         if ( armor != null ) {
-            Dungeon.level.drop( armor, pos ).sprite.drop();
+            Dungeon.getLevel().drop( armor, pos ).sprite.drop();
             armor = null;
             if ( HP > 0 ) {
-                ( (MercSprite) Dungeon.hero.hiredMerc.sprite ).updateArmor();
+                ( (MercSprite) Dungeon.getHero().hiredMerc.sprite ).updateArmor();
             }
         }
     }
@@ -366,7 +366,7 @@ public class HiredMerc extends NPC {
 
     public void unEquipItem () {
         if ( carrying != null ) {
-            Dungeon.level.drop( carrying, pos ).sprite.drop();
+            Dungeon.getLevel().drop( carrying, pos ).sprite.drop();
         }
         carrying = null;
     }
@@ -633,7 +633,7 @@ public class HiredMerc extends NPC {
         unEquipArmor();
         unEquipItem();
 
-        Dungeon.hero.hiredMerc = null;
+        Dungeon.getHero().hiredMerc = null;
 
     }
 
@@ -641,7 +641,7 @@ public class HiredMerc extends NPC {
 
         if ( enemy == null || !enemy.isAlive() ) {
             HashSet<Mob> enemies = new HashSet<Mob>();
-            for ( Mob mob : Dungeon.level.mobs ) {
+            for ( Mob mob : Dungeon.getLevel().mobs ) {
                 if ( mob.hostile && Level.fieldOfView[mob.pos] ) {
                     enemies.add( mob );
                 }
@@ -679,7 +679,7 @@ public class HiredMerc extends NPC {
         @Override
         public boolean act ( boolean enemyInFOV, boolean justAlerted ) {
 
-            if ( pos == Dungeon.hero.pos ) {
+            if ( pos == Dungeon.getHero().pos ) {
                 return true;
             }
 
@@ -696,7 +696,7 @@ public class HiredMerc extends NPC {
                 enemySeen = false;
 
                 int oldPos = pos;
-                if ( getCloser( Dungeon.hero.pos ) ) {
+                if ( getCloser( Dungeon.getHero().pos ) ) {
                     spend( 1 / ( speed() * mercType.speedModifier() ) );
                     return moveSprite( oldPos, pos );
                 } else {
@@ -715,19 +715,19 @@ public class HiredMerc extends NPC {
 
     @Override
     public void interact () {
-        if ( pos == Dungeon.hero.pos ) {
+        if ( pos == Dungeon.getHero().pos ) {
             return;
         }
 
         int curPos = pos;
 
-        moveSprite( pos, Dungeon.hero.pos );
-        move( Dungeon.hero.pos );
+        moveSprite( pos, Dungeon.getHero().pos );
+        move( Dungeon.getHero().pos );
 
-        Dungeon.hero.sprite.move( Dungeon.hero.pos, curPos );
-        Dungeon.hero.move( curPos );
+        Dungeon.getHero().sprite.move( Dungeon.getHero().pos, curPos );
+        Dungeon.getHero().move( curPos );
 
-        Dungeon.hero.spend( 1 / Dungeon.hero.speed() );
-        Dungeon.hero.busy();
+        Dungeon.getHero().spend( 1 / Dungeon.getHero().speed() );
+        Dungeon.getHero().busy();
     }
 }

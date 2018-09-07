@@ -39,8 +39,8 @@ public class Gnoll extends Mob {
         loot = Gold.class;
         lootChance = 0.5f;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 

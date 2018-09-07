@@ -25,7 +25,7 @@ public class MercThiefSkillA extends Venom {
     @Override
     public void castTextYell () {
         if ( castText != "" ) {
-            Dungeon.hero.hiredMerc.sprite.showStatus( CharSprite.NEUTRAL, castText );
+            Dungeon.getHero().hiredMerc.sprite.showStatus( CharSprite.NEUTRAL, castText );
         }
     }
 

@@ -21,7 +21,7 @@ public class Rampage extends ActiveSkill3 {
 
     @Override
     public float damageModifier () {
-        if ( !active || Dungeon.hero.MP < getManaCost() ) {
+        if ( !active || Dungeon.getHero().MP < getManaCost() ) {
             return 1f;
         } else {
             return 0.4f + 0.2f * level;
@@ -30,11 +30,11 @@ public class Rampage extends ActiveSkill3 {
 
     @Override
     public boolean AoEDamage () {
-        if ( !active || Dungeon.hero.MP < getManaCost() ) {
+        if ( !active || Dungeon.getHero().MP < getManaCost() ) {
             return false;
         } else {
             castTextYell();
-            Dungeon.hero.MP -= getManaCost();
+            Dungeon.getHero().MP -= getManaCost();
             StatusPane.manaDropping += getManaCost();
             return true;
         }

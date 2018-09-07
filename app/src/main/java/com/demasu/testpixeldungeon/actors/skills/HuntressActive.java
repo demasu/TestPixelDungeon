@@ -43,16 +43,16 @@ public class HuntressActive extends BranchSkill {
 
     @Override
     protected int totalSpent () {
-        return Dungeon.hero.heroSkills.totalSpent( CurrentSkills.BRANCHES.ACTIVE );
+        return Dungeon.getHero().heroSkills.totalSpent( CurrentSkills.BRANCHES.ACTIVE );
     }
 
     @Override
     protected int nextUpgradeCost () {
-        return Dungeon.hero.heroSkills.nextUpgradeCost( CurrentSkills.BRANCHES.ACTIVE );
+        return Dungeon.getHero().heroSkills.nextUpgradeCost( CurrentSkills.BRANCHES.ACTIVE );
     }
 
     @Override
     protected boolean canUpgrade () {
-        return Dungeon.hero.heroSkills.canUpgrade( CurrentSkills.BRANCHES.ACTIVE );
+        return Dungeon.getHero().heroSkills.canUpgrade( CurrentSkills.BRANCHES.ACTIVE );
     }
 }

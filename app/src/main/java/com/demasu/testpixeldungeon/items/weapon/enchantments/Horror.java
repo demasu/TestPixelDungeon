@@ -42,7 +42,7 @@ public class Horror extends Weapon.Enchantment {
 
         if ( Random.Int( level + 5 ) >= 4 ) {
 
-            if ( defender == Dungeon.hero ) {
+            if ( defender == Dungeon.getHero() ) {
                 Buff.affect( defender, Vertigo.class, Vertigo.duration( defender ) );
             } else {
                 Buff.affect( defender, Terror.class, Terror.DURATION ).object = attacker.id();

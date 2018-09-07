@@ -108,7 +108,7 @@ public class WndHero extends WndTabbed {
 
         public StatsTab () {
 
-            Hero hero = Dungeon.hero;
+            Hero hero = Dungeon.getHero();
 
             BitmapText title = PixelScene.createText(
                     Utils.format( TXT_TITLE, hero.lvl, hero.className() ).toUpperCase( Locale.ENGLISH ), 9 );
@@ -147,7 +147,7 @@ public class WndHero extends WndTabbed {
 
             pos += GAP;
 
-            statSlot( TXT_Difficulty, Dungeon.currentDifficulty.title() );
+            statSlot( TXT_Difficulty, Dungeon.getCurrentDifficulty().title() );
 
             statSlot( TXT_GOLD, Statistics.goldCollected );
             statSlot( TXT_DEPTH, Statistics.deepestFloor );
@@ -186,7 +186,7 @@ public class WndHero extends WndTabbed {
         private float pos;
 
         public BuffsTab () {
-            for ( Buff buff : Dungeon.hero.buffs() ) {
+            for ( Buff buff : Dungeon.getHero().buffs() ) {
                 buffSlot( buff );
             }
         }

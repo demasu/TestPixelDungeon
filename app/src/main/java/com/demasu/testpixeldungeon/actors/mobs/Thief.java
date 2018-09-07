@@ -53,8 +53,8 @@ public class Thief extends Mob {
 
         FLEEING = new Fleeing();
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 
@@ -88,7 +88,7 @@ public class Thief extends Mob {
         super.die( cause );
 
         if ( item != null ) {
-            Dungeon.level.drop( item, pos ).sprite.drop();
+            Dungeon.getLevel().drop( item, pos ).sprite.drop();
         }
     }
 
@@ -116,7 +116,7 @@ public class Thief extends Mob {
     @Override
     public int defenseProc ( Char enemy, int damage ) {
         if ( state == FLEEING ) {
-            Dungeon.level.drop( new Gold(), pos ).sprite.drop();
+            Dungeon.getLevel().drop( new Gold(), pos ).sprite.drop();
         }
 
         return damage;

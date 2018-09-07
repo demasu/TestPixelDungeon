@@ -35,7 +35,6 @@ import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
-import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.SkillSlot;
 import com.demasu.testpixeldungeon.utils.Utils;
@@ -97,20 +96,20 @@ public class WndSkills extends WndTabbed {
     protected void placeSkills () {
 
 
-        placeSkill( Dungeon.hero.heroSkills.branchPA, true );
-        placeSkill( Dungeon.hero.heroSkills.passiveA1, false );
-        placeSkill( Dungeon.hero.heroSkills.passiveA2, false );
-        placeSkill( Dungeon.hero.heroSkills.passiveA3, false );
+        placeSkill( Dungeon.getHero().heroSkills.branchPA, true );
+        placeSkill( Dungeon.getHero().heroSkills.passiveA1, false );
+        placeSkill( Dungeon.getHero().heroSkills.passiveA2, false );
+        placeSkill( Dungeon.getHero().heroSkills.passiveA3, false );
 
-        placeSkill( Dungeon.hero.heroSkills.branchPB, true );
-        placeSkill( Dungeon.hero.heroSkills.passiveB1, true );
-        placeSkill( Dungeon.hero.heroSkills.passiveB2, true );
-        placeSkill( Dungeon.hero.heroSkills.passiveB3, true );
+        placeSkill( Dungeon.getHero().heroSkills.branchPB, true );
+        placeSkill( Dungeon.getHero().heroSkills.passiveB1, true );
+        placeSkill( Dungeon.getHero().heroSkills.passiveB2, true );
+        placeSkill( Dungeon.getHero().heroSkills.passiveB3, true );
 
-        placeSkill( Dungeon.hero.heroSkills.branchA, true );
-        placeSkill( Dungeon.hero.heroSkills.active1, true );
-        placeSkill( Dungeon.hero.heroSkills.active2, true );
-        placeSkill( Dungeon.hero.heroSkills.active3, true );
+        placeSkill( Dungeon.getHero().heroSkills.branchA, true );
+        placeSkill( Dungeon.getHero().heroSkills.active1, true );
+        placeSkill( Dungeon.getHero().heroSkills.active2, true );
+        placeSkill( Dungeon.getHero().heroSkills.active3, true );
 
     }
 

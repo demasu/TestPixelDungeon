@@ -3,7 +3,6 @@ package com.demasu.testpixeldungeon.actors.mobs.npcs;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Poison;
-import com.demasu.testpixeldungeon.actors.mobs.Eye;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.mechanics.Ballistica;
@@ -279,7 +278,7 @@ public class SummonedPet extends NPC {
                 HP--;
             }
 
-            if ( summonedPets > SUMMONED_PETS_LIMIT + Dungeon.hero.heroSkills.passiveB3.summoningLimitBonus() ) {
+            if ( summonedPets > SUMMONED_PETS_LIMIT + Dungeon.getHero().heroSkills.passiveB3.summoningLimitBonus() ) {
                 HP = 0;
             }
         }
@@ -297,7 +296,7 @@ public class SummonedPet extends NPC {
 
         if ( enemy == null || !enemy.isAlive() ) {
             HashSet<Mob> enemies = new HashSet<Mob>();
-            for ( Mob mob : Dungeon.level.mobs ) {
+            for ( Mob mob : Dungeon.getLevel().mobs ) {
                 if ( mob.hostile && Level.fieldOfView[mob.pos] ) {
                     enemies.add( mob );
                 }
@@ -347,7 +346,7 @@ public class SummonedPet extends NPC {
                 enemySeen = false;
 
                 int oldPos = pos;
-                if ( getCloser( Dungeon.hero.pos ) ) {
+                if ( getCloser( Dungeon.getHero().pos ) ) {
                     spend( 1 / speed() );
                     return moveSprite( oldPos, pos );
                 } else {
@@ -369,13 +368,13 @@ public class SummonedPet extends NPC {
 
         int curPos = pos;
 
-        moveSprite( pos, Dungeon.hero.pos );
-        move( Dungeon.hero.pos );
+        moveSprite( pos, Dungeon.getHero().pos );
+        move( Dungeon.getHero().pos );
 
-        Dungeon.hero.sprite.move( Dungeon.hero.pos, curPos );
-        Dungeon.hero.move( curPos );
+        Dungeon.getHero().sprite.move( Dungeon.getHero().pos, curPos );
+        Dungeon.getHero().move( curPos );
 
-        Dungeon.hero.spend( 1 / Dungeon.hero.speed() );
-        Dungeon.hero.busy();
+        Dungeon.getHero().spend( 1 / Dungeon.getHero().speed() );
+        Dungeon.getHero().busy();
     }
 }

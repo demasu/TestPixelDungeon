@@ -52,8 +52,8 @@ public class Invisibility extends FlavourBuff {
     }
 
     public static void dispel () {
-        Invisibility buff = Dungeon.hero.buff( Invisibility.class );
-        if ( buff != null && Dungeon.hero.visibleEnemies() > 0 ) {
+        Invisibility buff = Dungeon.getHero().buff( Invisibility.class );
+        if ( buff != null && Dungeon.getHero().visibleEnemies() > 0 ) {
             buff.detach();
         }
     }

@@ -517,23 +517,23 @@ public class WndMercs extends WndTabbed {
                             //Dungeon.hero.checkMerc = true;
                             ArrayList<Integer> respawnPoints = new ArrayList<Integer>();
                             for ( int i = 0; i < Level.NEIGHBOURS8.length; i++ ) {
-                                int p = Dungeon.hero.pos + Level.NEIGHBOURS8[i];
+                                int p = Dungeon.getHero().pos + Level.NEIGHBOURS8[i];
                                 if ( Actor.findChar( p ) == null && ( Level.passable[p] || Level.avoid[p] ) ) {
                                     respawnPoints.add( p );
                                 }
                             }
                             if ( respawnPoints.size() > 0 ) {
                                 Dungeon.setGold( Dungeon.getGold() - getGoldCost( mode ) );
-                                Dungeon.hero.hiredMerc = new HiredMerc( getMercType( mode ) );
-                                Dungeon.hero.hiredMerc.spawn( Dungeon.hero.lvl );
-                                Dungeon.hero.hiredMerc.HP = Dungeon.hero.hiredMerc.mercType.getHealth( Dungeon.hero.lvl );
-                                Dungeon.hero.hiredMerc.mercType.setEquipment( Dungeon.hero.hiredMerc );
-                                Dungeon.hero.hiredMerc.pos = respawnPoints.get( 0 );
-                                GameScene.add( Dungeon.hero.hiredMerc );
-                                ( (MercSprite) Dungeon.hero.hiredMerc.sprite ).updateArmor();
-                                WandOfBlink.appear( Dungeon.hero.hiredMerc, respawnPoints.get( 0 ) );
+                                Dungeon.getHero().hiredMerc = new HiredMerc( getMercType( mode ) );
+                                Dungeon.getHero().hiredMerc.spawn( Dungeon.getHero().lvl );
+                                Dungeon.getHero().hiredMerc.HP = Dungeon.getHero().hiredMerc.mercType.getHealth( Dungeon.getHero().lvl );
+                                Dungeon.getHero().hiredMerc.mercType.setEquipment( Dungeon.getHero().hiredMerc );
+                                Dungeon.getHero().hiredMerc.pos = respawnPoints.get( 0 );
+                                GameScene.add( Dungeon.getHero().hiredMerc );
+                                ( (MercSprite) Dungeon.getHero().hiredMerc.sprite ).updateArmor();
+                                WandOfBlink.appear( Dungeon.getHero().hiredMerc, respawnPoints.get( 0 ) );
 
-                                Dungeon.hero.spend( 1 / Dungeon.hero.speed() );
+                                Dungeon.getHero().spend( 1 / Dungeon.getHero().speed() );
                             }
                             hide();
                             //WndStory.showStory("Your mercenary will arrive shortly");
@@ -575,28 +575,28 @@ public class WndMercs extends WndTabbed {
         add( tabAll );
         tabAll.select( mode == Mode.ALL );
 
-        if ( Dungeon.hero.getHeroClass() != HeroClass.WARRIOR ) {
+        if ( Dungeon.getHero().getHeroClass() != HeroClass.WARRIOR ) {
             MercenaryTab tabBrute = new MercenaryTab( Mode.BRUTE );
             tabBrute.setSize( TAB_WIDTH, tabHeight() );
             add( tabBrute );
             tabBrute.select( mode == Mode.BRUTE );
         }
 
-        if ( Dungeon.hero.getHeroClass() != HeroClass.MAGE ) {
+        if ( Dungeon.getHero().getHeroClass() != HeroClass.MAGE ) {
             MercenaryTab tabWizard = new MercenaryTab( Mode.WIZARD );
             tabWizard.setSize( TAB_WIDTH, tabHeight() );
             add( tabWizard );
             tabWizard.select( mode == Mode.WIZARD );
         }
 
-        if ( Dungeon.hero.getHeroClass() != HeroClass.ROGUE ) {
+        if ( Dungeon.getHero().getHeroClass() != HeroClass.ROGUE ) {
             MercenaryTab tabThief = new MercenaryTab( Mode.THIEF );
             tabThief.setSize( TAB_WIDTH, tabHeight() );
             add( tabThief );
             tabThief.select( mode == Mode.THIEF );
         }
 
-        if ( Dungeon.hero.getHeroClass() != HeroClass.HUNTRESS ) {
+        if ( Dungeon.getHero().getHeroClass() != HeroClass.HUNTRESS ) {
             MercenaryTab tabArcher = new MercenaryTab( Mode.ARCHER );
             tabArcher.setSize( TAB_WIDTH, tabHeight() );
             add( tabArcher );
@@ -729,15 +729,15 @@ public class WndMercs extends WndTabbed {
     private int getGoldCost ( Mode mode ) {
         switch ( mode ) {
             case BRUTE:
-                return 100 + Dungeon.hero.lvl * 25;
+                return 100 + Dungeon.getHero().lvl * 25;
             case WIZARD:
-                return 80 + Dungeon.hero.lvl * 20;
+                return 80 + Dungeon.getHero().lvl * 20;
             case THIEF:
-                return 75 + Dungeon.hero.lvl * 15;
+                return 75 + Dungeon.getHero().lvl * 15;
             case ARCHER:
-                return 90 + Dungeon.hero.lvl * 20;
+                return 90 + Dungeon.getHero().lvl * 20;
             case ARCHERMAIDEN:
-                return 90 + Dungeon.hero.lvl * 25;
+                return 90 + Dungeon.getHero().lvl * 25;
         }
 
         return 0;

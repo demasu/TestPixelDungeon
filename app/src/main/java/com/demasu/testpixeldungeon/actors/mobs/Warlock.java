@@ -54,8 +54,8 @@ public class Warlock extends Mob implements Callback {
         loot = Generator.Category.POTION;
         lootChance = 0.83f;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 
@@ -102,14 +102,14 @@ public class Warlock extends Mob implements Callback {
         spend( TIME_TO_ZAP );
 
         if ( hit( this, enemy, true ) ) {
-            if ( enemy == Dungeon.hero && Random.Int( 2 ) == 0 ) {
+            if ( enemy == Dungeon.getHero() && Random.Int( 2 ) == 0 ) {
                 Buff.prolong( enemy, Weakness.class, Weakness.duration( enemy ) );
             }
 
             int dmg = Random.Int( 12, 18 );
             enemy.damage( dmg, this );
 
-            if ( !enemy.isAlive() && enemy == Dungeon.hero ) {
+            if ( !enemy.isAlive() && enemy == Dungeon.getHero() ) {
                 Dungeon.fail( Utils.format( ResultDescriptions.MOB,
                         Utils.indefinite( name ), Dungeon.getDepth() ) );
                 GLog.n( TXT_SHADOWBOLT_KILLED, name );

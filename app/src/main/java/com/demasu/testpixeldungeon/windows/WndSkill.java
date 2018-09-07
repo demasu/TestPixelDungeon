@@ -59,13 +59,13 @@ public class WndSkill extends Window {
         float y = info.y + info.height() + GAP;
         float x = 0;
 
-        if ( Dungeon.hero.isAlive() ) {
-            for ( final String action : skill.actions( Dungeon.hero ) ) {
+        if ( Dungeon.getHero().isAlive() ) {
+            for ( final String action : skill.actions( Dungeon.getHero() ) ) {
 
                 RedButton btn = new RedButton( action ) {
                     @Override
                     protected void onClick () {
-                        skill.execute( Dungeon.hero, action );
+                        skill.execute( Dungeon.getHero(), action );
                         hide();
                         if ( owner != null ) {
                             owner.hide();

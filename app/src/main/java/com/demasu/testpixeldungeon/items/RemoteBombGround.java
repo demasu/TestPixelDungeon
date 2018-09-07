@@ -107,7 +107,7 @@ public class RemoteBombGround extends Item {
     public void explode () {
         Sample.INSTANCE.play( Assets.SND_BLAST, 2 );
 
-        if ( Dungeon.visible[pos] ) {
+        if ( Dungeon.getVisible()[pos] ) {
             CellEmitter.center( pos ).burst( BlastParticle.FACTORY, 30 );
         }
 
@@ -115,7 +115,7 @@ public class RemoteBombGround extends Item {
         for ( int n : Level.NEIGHBOURS9 ) {
             int c = pos + n;
             if ( c >= 0 && c < Level.LENGTH ) {
-                if ( Dungeon.visible[c] ) {
+                if ( Dungeon.getVisible()[c] ) {
                     CellEmitter.get( c ).burst( SmokeParticle.FACTORY, 4 );
                 }
 

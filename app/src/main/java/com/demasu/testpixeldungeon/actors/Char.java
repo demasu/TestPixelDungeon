@@ -167,7 +167,7 @@ public abstract class Char extends Actor {
 
     @Override
     protected boolean act () {
-        Dungeon.level.updateFieldOfView( this );
+        Dungeon.getLevel().updateFieldOfView( this );
         return false;
     }
 
@@ -212,7 +212,7 @@ public abstract class Char extends Actor {
 
     public boolean attack ( Char enemy ) {
 
-        boolean visibleFight = Dungeon.visible[pos] || Dungeon.visible[enemy.pos];
+        boolean visibleFight = Dungeon.getVisible()[pos] || Dungeon.getVisible()[enemy.pos];
 
         if ( hit( this, enemy, false ) ) {
 
@@ -226,36 +226,36 @@ public abstract class Char extends Actor {
 
             int dmg = damageRoll();
 
-            if ( enemy == Dungeon.hero ) {
-                dmg *= Dungeon.currentDifficulty.damageModifier();
-                dmg *= Dungeon.hero.heroSkills.passiveA3.incomingDamageModifier(); //  <--- Warrior Toughness if present
-                dmg -= Dungeon.hero.heroSkills.passiveA3.incomingDamageReduction( dmg ); // <--- Mage SpiritArmor if present
+            if ( enemy == Dungeon.getHero() ) {
+                dmg *= Dungeon.getCurrentDifficulty().damageModifier();
+                dmg *= Dungeon.getHero().heroSkills.passiveA3.incomingDamageModifier(); //  <--- Warrior Toughness if present
+                dmg -= Dungeon.getHero().heroSkills.passiveA3.incomingDamageReduction( dmg ); // <--- Mage SpiritArmor if present
             } else {
-                if ( this == Dungeon.hero && Dungeon.hero.rangedWeapon == null ) {
-                    dmg *= Dungeon.hero.heroSkills.passiveB2.damageModifier(); //  <--- Warrior Aggression if present
-                    dmg *= Dungeon.hero.heroSkills.active1.damageModifier(); //  <--- Warrior Smash if present and active
-                    dmg *= Dungeon.hero.heroSkills.active2.damageModifier(); //  <--- Warrior Knockback if present and active
-                    dmg *= Dungeon.hero.heroSkills.active3.damageModifier(); //  <--- Warrior Rampage if present and active
+                if ( this == Dungeon.getHero() && Dungeon.getHero().rangedWeapon == null ) {
+                    dmg *= Dungeon.getHero().heroSkills.passiveB2.damageModifier(); //  <--- Warrior Aggression if present
+                    dmg *= Dungeon.getHero().heroSkills.active1.damageModifier(); //  <--- Warrior Smash if present and active
+                    dmg *= Dungeon.getHero().heroSkills.active2.damageModifier(); //  <--- Warrior Knockback if present and active
+                    dmg *= Dungeon.getHero().heroSkills.active3.damageModifier(); //  <--- Warrior Rampage if present and active
 
 
-                    if ( !( Bestiary.isBoss( enemy ) ) && Dungeon.hero.heroSkills.active3.AoEDamage() ) //  <--- Warrior Rampage if present and active
+                    if ( !( Bestiary.isBoss( enemy ) ) && Dungeon.getHero().heroSkills.active3.AoEDamage() ) //  <--- Warrior Rampage if present and active
                     {
-                        Dungeon.hero.heroSkills.active3.active = false; // Prevent infinite callstack
+                        Dungeon.getHero().heroSkills.active3.active = false; // Prevent infinite callstack
                         for ( int possibleTarget : Level.NEIGHBOURS8 ) {
                             Char tmpTarget = Actor.findChar( pos + possibleTarget );
                             if ( tmpTarget != null && tmpTarget != enemy && tmpTarget instanceof Mob && !( tmpTarget instanceof NPC ) ) {
                                 attack( tmpTarget );
                             }
                         }
-                        Dungeon.hero.heroSkills.active3.active = true; // Should be safe now
+                        Dungeon.getHero().heroSkills.active3.active = true; // Should be safe now
                     }
 
-                    if ( !Bestiary.isBoss( enemy ) && enemy instanceof Mob && ( (Mob) enemy ).state instanceof Mob.Sleeping && Dungeon.hero.heroSkills.passiveB3.instantKill() ) {
+                    if ( !Bestiary.isBoss( enemy ) && enemy instanceof Mob && ( (Mob) enemy ).state instanceof Mob.Sleeping && Dungeon.getHero().heroSkills.passiveB3.instantKill() ) {
                         dmg = ( (Mob) enemy ).HP + dr;
                     }
                 }
-                if ( this == Dungeon.hero ) {
-                    if ( Dungeon.hero.heroSkills.passiveB1.venomousAttack() ) // <--- Rogue Venom when present
+                if ( this == Dungeon.getHero() ) {
+                    if ( Dungeon.getHero().heroSkills.passiveB1.venomousAttack() ) // <--- Rogue Venom when present
                     {
                         Buff.affect( enemy, Poison.class ).set( Poison.durationFactor( enemy ) );
                     }
@@ -272,12 +272,12 @@ public abstract class Char extends Actor {
             enemy.damage( effectiveDamage, this );
 
 
-            if ( !Bestiary.isBoss( enemy ) && this == Dungeon.hero && Dungeon.hero.heroSkills.active2.damageBonus( enemy.HP ) > 0 && Dungeon.hero.rangedWeapon instanceof Shuriken ) // <-- Rogue Deadeye when present
+            if ( !Bestiary.isBoss( enemy ) && this == Dungeon.getHero() && Dungeon.getHero().heroSkills.active2.damageBonus( enemy.HP ) > 0 && Dungeon.getHero().rangedWeapon instanceof Shuriken ) // <-- Rogue Deadeye when present
             {
-                enemy.damage( Dungeon.hero.heroSkills.active2.damageBonus( enemy.HP, true ), this );
+                enemy.damage( Dungeon.getHero().heroSkills.active2.damageBonus( enemy.HP, true ), this );
             }
 
-            if ( !Bestiary.isBoss( enemy ) && this == Dungeon.hero && Dungeon.hero.heroSkills.passiveB2.cripple() && Dungeon.hero.rangedWeapon != null ) // <-- Huntress knee shot when present
+            if ( !Bestiary.isBoss( enemy ) && this == Dungeon.getHero() && Dungeon.getHero().heroSkills.passiveB2.cripple() && Dungeon.getHero().rangedWeapon != null ) // <-- Huntress knee shot when present
             {
                 Buff.prolong( enemy, Cripple.class, Cripple.DURATION );
             }
@@ -286,8 +286,8 @@ public abstract class Char extends Actor {
                 Sample.INSTANCE.play( Assets.SND_HIT, 1, 1, Random.Float( 0.8f, 1.25f ) );
             }
 
-            if ( enemy == Dungeon.hero ) {
-                Dungeon.hero.interrupt();
+            if ( enemy == Dungeon.getHero() ) {
+                Dungeon.getHero().interrupt();
                 if ( effectiveDamage > enemy.HT / 4 ) {
                     Camera.main.shake( GameMath.gate( 1, effectiveDamage / ( enemy.HT / 4 ), 5 ), 0.3f );
                 }
@@ -310,16 +310,16 @@ public abstract class Char extends Actor {
 
             if ( this instanceof Hero && ( (Hero) this ).rangedWeapon == null && ( (Hero) this ).belongings.weapon instanceof NecroBlade ) {
                 if ( !enemy.isAlive() ) {
-                    ( (NecroBlade) Dungeon.hero.belongings.weapon ).updateCharge( enemy.HT > 22 ? (int) Math.floor( enemy.HT / 22 ) : 1 );
+                    ( (NecroBlade) Dungeon.getHero().belongings.weapon ).updateCharge( enemy.HT > 22 ? (int) Math.floor( enemy.HT / 22 ) : 1 );
                     GLog.p( "NecroBlade absored a portion of " + enemy.name + "'s life energy." );
 
                 }
             }
 
             if ( !enemy.isAlive() && visibleFight ) {
-                if ( enemy == Dungeon.hero ) {
+                if ( enemy == Dungeon.getHero() ) {
 
-                    if ( Dungeon.hero.killerGlyph != null ) {
+                    if ( Dungeon.getHero().killerGlyph != null ) {
 
                         // FIXME
                         //	Dungeon.fail( Utils.format( ResultDescriptions.GLYPH, Dungeon.hero.killerGlyph.name(), Dungeon.depth ) );
@@ -348,7 +348,7 @@ public abstract class Char extends Actor {
             if ( visibleFight ) {
                 String defense = enemy.defenseVerb();
                 enemy.sprite.showStatus( CharSprite.NEUTRAL, defense );
-                if ( this == Dungeon.hero ) {
+                if ( this == Dungeon.getHero() ) {
                     GLog.i( TXT_YOU_MISSED, enemy.name, defense );
                 } else {
                     GLog.i( TXT_SMB_MISSED, enemy.name, defense, name );
@@ -437,7 +437,7 @@ public abstract class Char extends Actor {
         if ( buff( Paralysis.class ) != null ) {
             if ( Random.Int( dmg ) >= Random.Int( HP ) ) {
                 Buff.detach( this, Paralysis.class );
-                if ( Dungeon.visible[pos] ) {
+                if ( Dungeon.getVisible()[pos] ) {
                     GLog.i( TXT_OUT_OF_PARALYSIS, name );
                 }
             }
@@ -675,18 +675,18 @@ public abstract class Char extends Actor {
             }
         }
 
-        if ( Dungeon.level.map[pos] == Terrain.OPEN_DOOR ) {
+        if ( Dungeon.getLevel().map[pos] == Terrain.OPEN_DOOR ) {
             Door.leave( pos );
         }
 
         pos = step;
 
-        if ( flying && Dungeon.level.map[pos] == Terrain.DOOR ) {
+        if ( flying && Dungeon.getLevel().map[pos] == Terrain.DOOR ) {
             Door.enter( pos );
         }
 
-        if ( this != Dungeon.hero ) {
-            sprite.visible = Dungeon.visible[pos];
+        if ( this != Dungeon.getHero() ) {
+            sprite.visible = Dungeon.getVisible()[pos];
         }
     }
 

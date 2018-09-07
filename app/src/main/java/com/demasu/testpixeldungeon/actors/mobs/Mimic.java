@@ -92,11 +92,11 @@ public class Mimic extends Mob {
 
     @Override
     public int attackProc ( Char enemy, int damage ) {
-        if ( enemy == Dungeon.hero && Random.Int( 3 ) == 0 && Dungeon.hero.heroSkills.passiveA1.lootBonus( 100 ) == 0 ) { // <--- Rogue bandit if present
+        if ( enemy == Dungeon.getHero() && Random.Int( 3 ) == 0 && Dungeon.getHero().heroSkills.passiveA1.lootBonus( 100 ) == 0 ) { // <--- Rogue bandit if present
             Gold gold = new Gold( Random.Int( Dungeon.getGold() / 10, Dungeon.getGold() / 2 ) );
             if ( gold.quantity() > 0 ) {
                 Dungeon.setGold( Dungeon.getGold() - gold.quantity() );
-                Dungeon.level.drop( gold, Dungeon.hero.pos ).sprite.drop();
+                Dungeon.getLevel().drop( gold, Dungeon.getHero().pos ).sprite.drop();
             }
         }
         return super.attackProc( enemy, damage );
@@ -119,7 +119,7 @@ public class Mimic extends Mob {
 
         if ( items != null ) {
             for ( Item item : items ) {
-                Dungeon.level.drop( item, pos ).sprite.drop();
+                Dungeon.getLevel().drop( item, pos ).sprite.drop();
             }
         }
     }
@@ -154,9 +154,9 @@ public class Mimic extends Mob {
                 ch.pos = newPos;
                 // FIXME
                 if ( ch instanceof Mob ) {
-                    Dungeon.level.mobPress( (Mob) ch );
+                    Dungeon.getLevel().mobPress( (Mob) ch );
                 } else {
-                    Dungeon.level.press( newPos, ch );
+                    Dungeon.getLevel().press( newPos, ch );
                 }
             } else {
                 return null;
@@ -171,9 +171,9 @@ public class Mimic extends Mob {
         m.state = m.HUNTING;
         GameScene.add( m, 1 );
 
-        m.sprite.turnTo( pos, Dungeon.hero.pos );
+        m.sprite.turnTo( pos, Dungeon.getHero().pos );
 
-        if ( Dungeon.visible[m.pos] ) {
+        if ( Dungeon.getVisible()[m.pos] ) {
             CellEmitter.get( pos ).burst( Speck.factory( Speck.STAR ), 10 );
             Sample.INSTANCE.play( Assets.SND_MIMIC );
         }

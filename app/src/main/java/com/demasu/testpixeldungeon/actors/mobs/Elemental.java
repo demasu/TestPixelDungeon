@@ -49,8 +49,8 @@ public class Elemental extends Mob {
         loot = new PotionOfLiquidFlame();
         lootChance = 0.1f;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 

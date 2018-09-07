@@ -486,7 +486,7 @@ public class FirstWave extends Level {
         protected void dropLoot () {
             Gold tmp = new Gold();
             tmp = (Gold) tmp.random();
-            Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, "+" + tmp.quantity() + " Gold!" );
+            Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, "+" + tmp.quantity() + " Gold!" );
             Dungeon.setGold( Dungeon.getGold() + tmp.quantity() );
         }
     }
@@ -566,7 +566,7 @@ public class FirstWave extends Level {
 
                 if ( enemyKilled > 15 && !temariAdded ) {
                     //noinspection unchecked
-                    for ( Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone() ) {
+                    for ( Mob mob : (Iterable<Mob>) Dungeon.getLevel().mobs.clone() ) {
                         if ( mob.hostile || mob instanceof SummonedPet ) {
                             mob.die( null );
                         }
@@ -578,7 +578,7 @@ public class FirstWave extends Level {
 
                 if ( enemyKilled > 30 && !generalAdded ) {
                     //noinspection unchecked
-                    for ( Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone() ) {
+                    for ( Mob mob : (Iterable<Mob>) Dungeon.getLevel().mobs.clone() ) {
                         if ( mob.hostile || mob instanceof SummonedPet ) {
                             mob.die( null );
                         }
@@ -811,13 +811,13 @@ public class FirstWave extends Level {
         public void endScenario () {
             MissionScene.scenePause = true;
             //noinspection unchecked
-            for ( Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone() ) {
+            for ( Mob mob : (Iterable<Mob>) Dungeon.getLevel().mobs.clone() ) {
                 if ( mob.hostile || mob instanceof SummonedPet ) {
                     mob.die( null );
                     continue;
                 }
                 mob.sprite.idle();
-                Dungeon.hero.sprite.idle();
+                Dungeon.getHero().sprite.idle();
             }
 
 
@@ -835,17 +835,17 @@ public class FirstWave extends Level {
 
                 */
 
-                    Dungeon.level.plant( new Sungrass.Seed(), WIDTH * 13 + 8 );
-                    Dungeon.level.plant( new Sungrass.Seed(), WIDTH * 13 + 9 );
+                    Dungeon.getLevel().plant( new Sungrass.Seed(), WIDTH * 13 + 8 );
+                    Dungeon.getLevel().plant( new Sungrass.Seed(), WIDTH * 13 + 9 );
 
-                    Dungeon.level.plant( new Sungrass.Seed(), WIDTH * 18 + 8 );
-                    Dungeon.level.plant( new Sungrass.Seed(), WIDTH * 18 + 9 );
+                    Dungeon.getLevel().plant( new Sungrass.Seed(), WIDTH * 18 + 8 );
+                    Dungeon.getLevel().plant( new Sungrass.Seed(), WIDTH * 18 + 9 );
 
-                    Dungeon.level.plant( new Sungrass.Seed(), WIDTH * 13 + 23 );
-                    Dungeon.level.plant( new Sungrass.Seed(), WIDTH * 13 + 24 );
+                    Dungeon.getLevel().plant( new Sungrass.Seed(), WIDTH * 13 + 23 );
+                    Dungeon.getLevel().plant( new Sungrass.Seed(), WIDTH * 13 + 24 );
 
-                    Dungeon.level.plant( new Sungrass.Seed(), WIDTH * 18 + 23 );
-                    Dungeon.level.plant( new Sungrass.Seed(), WIDTH * 18 + 24 );
+                    Dungeon.getLevel().plant( new Sungrass.Seed(), WIDTH * 18 + 23 );
+                    Dungeon.getLevel().plant( new Sungrass.Seed(), WIDTH * 18 + 24 );
 
 
                     actress2 = new MovieMaiden();
@@ -907,7 +907,7 @@ public class FirstWave extends Level {
                     //  MissionScene.add(skeleton7);
 
                     sprite.visible = false;
-                    Dungeon.hero.sprite.visible = false;
+                    Dungeon.getHero().sprite.visible = false;
                     centerOfAttention = vanguard;
                 } else if ( MissionScene.scenePause ) {
                     Camera.main.target = centerOfAttention.sprite;
@@ -1042,11 +1042,11 @@ public class FirstWave extends Level {
                 }
                 if ( counter == 350 ) {
                     //  GameScene.flash( 0x0042ff );
-                    centerOfAttention = Dungeon.hero;
-                    Camera.main.target = Dungeon.hero.sprite;
-                    Dungeon.hero.sprite.visible = true;
-                    Dungeon.hero.sprite.emitter().burst( ShadowParticle.CURSE, 5 );
-                    Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, "A bit dramatic are we not now?" );
+                    centerOfAttention = Dungeon.getHero();
+                    Camera.main.target = Dungeon.getHero().sprite;
+                    Dungeon.getHero().sprite.visible = true;
+                    Dungeon.getHero().sprite.emitter().burst( ShadowParticle.CURSE, 5 );
+                    Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, "A bit dramatic are we not now?" );
                 }
                 if ( counter == 400 ) {
                     soldier3.sprite.showStatus( CharSprite.NEUTRAL, "We're saved!" );
@@ -1057,14 +1057,14 @@ public class FirstWave extends Level {
                 if ( counter == 540 ) {
                     Camera.main.shake( 5, 0.07f * ( 30 ) );
                     //   GameScene.flash( 0x0042ff );
-                    ( (LegendSprite) Dungeon.hero.sprite ).haloUp();
+                    ( (LegendSprite) Dungeon.getHero().sprite ).haloUp();
                     for ( int i = 0; i < listWraiths.size(); i++ ) {
                         listWraiths.get( i ).die( null );
                     }
                     // skeleton7.die(null);
                 }
                 if ( counter == 600 ) {
-                    Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, "Fall back to the city" );
+                    Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, "Fall back to the city" );
                 }
                 if ( counter == 670 ) {
                     vanguard.sprite.showStatus( CharSprite.NEUTRAL, "As you command" );
@@ -1110,13 +1110,13 @@ public class FirstWave extends Level {
                 }
 
                 if ( counter == 80 ) {
-                    Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, "I am broke.. go away" );
+                    Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, "I am broke.. go away" );
                 }
                 if ( counter == 150 ) {
                     temari.speak( "Liar!" );
                 }
                 if ( counter == 200 ) {
-                    Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, "Fine.. just you" );
+                    Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, "Fine.. just you" );
                 }
                 if ( counter == 250 ) {
                     temari.speak( "Hah.. why anyone else?" );
@@ -1133,8 +1133,8 @@ public class FirstWave extends Level {
                 }
 
                 if ( counter == 30 ) {
-                    Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, "I said fall back to the city..." );
-                    centerOfAttention = Dungeon.hero;
+                    Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, "I said fall back to the city..." );
+                    centerOfAttention = Dungeon.getHero();
                     Camera.main.target = centerOfAttention.sprite;
                 }
 
@@ -1145,8 +1145,8 @@ public class FirstWave extends Level {
                 }
 
                 if ( counter == 90 ) {
-                    Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, "Can they even fight?" );
-                    centerOfAttention = Dungeon.hero;
+                    Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, "Can they even fight?" );
+                    centerOfAttention = Dungeon.getHero();
                     Camera.main.target = centerOfAttention.sprite;
                 }
 
@@ -1182,8 +1182,8 @@ public class FirstWave extends Level {
                 }
 
                 if ( counter == 30 ) {
-                    Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, "If you say so" );
-                    centerOfAttention = Dungeon.hero;
+                    Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, "If you say so" );
+                    centerOfAttention = Dungeon.getHero();
                     Camera.main.target = centerOfAttention.sprite;
                 }
 
@@ -1194,8 +1194,8 @@ public class FirstWave extends Level {
                 }
 
                 if ( counter == 90 ) {
-                    Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, "Because you brought them!" );
-                    centerOfAttention = Dungeon.hero;
+                    Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, "Because you brought them!" );
+                    centerOfAttention = Dungeon.getHero();
                     Camera.main.target = centerOfAttention.sprite;
                 }
 
@@ -1213,8 +1213,8 @@ public class FirstWave extends Level {
                 }
 
                 if ( counter == 180 ) {
-                    Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, "I'll be with my daughters if needed" );
-                    centerOfAttention = Dungeon.hero;
+                    Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, "I'll be with my daughters if needed" );
+                    centerOfAttention = Dungeon.getHero();
                     Camera.main.target = centerOfAttention.sprite;
                 }
 
@@ -1247,7 +1247,7 @@ public class FirstWave extends Level {
             if ( phase == 0 ) {
 
                 temari = new Temari();
-                temari.pos = Dungeon.hero.pos + 1;
+                temari.pos = Dungeon.getHero().pos + 1;
                 temari.initStats();
                 MissionScene.add( temari );
                 temari.haloUp();

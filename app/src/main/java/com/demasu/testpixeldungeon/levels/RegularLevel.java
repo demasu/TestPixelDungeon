@@ -534,7 +534,7 @@ public abstract class RegularLevel extends Level {
                 mob.pos = randomRespawnCell();
             } while ( mob.pos == -1 );
             mobs.add( mob );
-            if ( Random.Int( 10 ) < Dungeon.currentDifficulty.championChance() ) {
+            if ( Random.Int( 10 ) < Dungeon.getCurrentDifficulty().championChance() ) {
                 Buff.affect( mob, Champ.class );
             }
             Actor.occupyCell( mob );
@@ -558,7 +558,7 @@ public abstract class RegularLevel extends Level {
             }
 
             cell = room.random();
-            if ( !Dungeon.visible[cell] && Actor.findChar( cell ) == null && Level.passable[cell] ) {
+            if ( !Dungeon.getVisible()[cell] && Actor.findChar( cell ) == null && Level.passable[cell] ) {
                 return cell;
             }
 

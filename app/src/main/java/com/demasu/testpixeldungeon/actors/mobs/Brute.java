@@ -46,8 +46,8 @@ public class Brute extends Mob {
         loot = Gold.class;
         lootChance = 0.5f;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 
@@ -83,7 +83,7 @@ public class Brute extends Mob {
         if ( isAlive() && !enraged && HP < HT / 4 ) {
             enraged = true;
             spend( TICK );
-            if ( Dungeon.visible[pos] ) {
+            if ( Dungeon.getVisible()[pos] ) {
                 GLog.w( TXT_ENRAGED, name );
                 sprite.showStatus( CharSprite.NEGATIVE, "enraged" );
             }

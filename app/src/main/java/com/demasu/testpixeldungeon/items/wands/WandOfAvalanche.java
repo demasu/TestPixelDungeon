@@ -72,7 +72,7 @@ public class WandOfAvalanche extends Wand {
                     if ( ch.sprite != null ) {
                         ch.sprite.flash();
                     }
-                    ch.damage( Random.Int( 2, 6 + (int) ( ( size - d ) * 2 * Dungeon.hero.heroSkills.passiveB2.wandDamageBonus() ) ), this );
+                    ch.damage( Random.Int( 2, 6 + (int) ( ( size - d ) * 2 * Dungeon.getHero().heroSkills.passiveB2.wandDamageBonus() ) ), this );
 
                     if ( ch.isAlive() && Random.Int( 2 + d ) == 0 ) {
                         Buff.prolong( ch, Paralysis.class, Random.IntRange( 2, 6 ) );
@@ -81,15 +81,15 @@ public class WandOfAvalanche extends Wand {
 
                 if ( ch != null && ch.isAlive() ) {
                     if ( ch instanceof Mob ) {
-                        Dungeon.level.mobPress( (Mob) ch );
+                        Dungeon.getLevel().mobPress( (Mob) ch );
                     } else {
-                        Dungeon.level.press( i, ch );
+                        Dungeon.getLevel().press( i, ch );
                     }
                 } else {
-                    Dungeon.level.press( i, null );
+                    Dungeon.getLevel().press( i, null );
                 }
 
-                if ( Dungeon.visible[i] ) {
+                if ( Dungeon.getVisible()[i] ) {
                     CellEmitter.get( i ).start( Speck.factory( Speck.ROCK ), 0.07f, 3 + ( size - d ) );
                     if ( Level.water[i] ) {
                         GameScene.ripple( i );

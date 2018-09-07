@@ -25,15 +25,11 @@ import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.mobs.Bestiary;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
-import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.NPC;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.SummonedPet;
 import com.demasu.testpixeldungeon.effects.Splash;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
-import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.SoulCrystalFilled;
-import com.demasu.testpixeldungeon.levels.Level;
-import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Random;
@@ -88,10 +84,10 @@ public class SoulCrystal extends MissileWeapon {
             Sample.INSTANCE.play( Assets.SND_CURSED );
             GLog.p( "Captured " + Actor.findChar( cell ).name + "!" );
             SoulCrystalFilled crystal = new SoulCrystalFilled( ( (Mob) Actor.findChar( cell ) ).spriteClass, Actor.findChar( cell ).HT, ( (Mob) Actor.findChar( cell ) ).defenseSkill, Actor.findChar( cell ).name );
-            Dungeon.level.drop( crystal, cell ).sprite.drop();
-            Actor.findChar( cell ).damage( Actor.findChar( cell ).HP, Dungeon.hero );
+            Dungeon.getLevel().drop( crystal, cell ).sprite.drop();
+            Actor.findChar( cell ).damage( Actor.findChar( cell ).HP, Dungeon.getHero() );
 
-        } else if ( Dungeon.visible[cell] ) {
+        } else if ( Dungeon.getVisible()[cell] ) {
             GLog.i( "The " + name + " shatters" );
             Sample.INSTANCE.play( Assets.SND_SHATTER );
             Splash.at( cell, Color.parseColor( "#50FFFFFF" ), 5 );

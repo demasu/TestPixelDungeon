@@ -25,7 +25,6 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Component;
 import com.demasu.testpixeldungeon.Difficulties;
 import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.buffs.Champ;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.CheckBox;
@@ -104,7 +103,7 @@ public class WndRatKing extends WndTabbed {
             btnZoomOut = new RedButton( TXT_MINUS ) {
                 @Override
                 protected void onClick () {
-                    Dungeon.currentDifficulty.changeChampionOffset( -1 );
+                    Dungeon.getCurrentDifficulty().changeChampionOffset( -1 );
                     updateEnabled();
                 }
             };
@@ -113,13 +112,13 @@ public class WndRatKing extends WndTabbed {
             btnZoomIn = new RedButton( TXT_PLUS ) {
                 @Override
                 protected void onClick () {
-                    Dungeon.currentDifficulty.changeChampionOffset( 1 );
+                    Dungeon.getCurrentDifficulty().changeChampionOffset( 1 );
                     updateEnabled();
                 }
             };
             add( btnZoomIn.setRect( WIDTH - w, 0, w, BTN_HEIGHT ) );
 
-            btnChamps = new RedButton( ( String.format( TXT_CHAMPION_CHANCE, ( Dungeon.currentDifficulty.championChance() * 10 + "%" ) ) ) ) {
+            btnChamps = new RedButton( ( String.format( TXT_CHAMPION_CHANCE, ( Dungeon.getCurrentDifficulty().championChance() * 10 + "%" ) ) ) ) {
                 @Override
                 protected void onClick () {
                     if ( !Difficulties.canDisableChampions ) {
@@ -137,26 +136,26 @@ public class WndRatKing extends WndTabbed {
                 @Override
                 protected void onClick () {
                     super.onClick();
-                    if ( !Dungeon.currentDifficulty.disableChampion( Champ.CHAMP_CHIEF, checked() ) ) {
+                    if ( !Dungeon.getCurrentDifficulty().disableChampion( Champ.CHAMP_CHIEF, checked() ) ) {
                         checked( false );
                     }
                 }
             };
             btnChief.setRect( 0, ( btnImmersive != null ? btnImmersive.bottom() : BTN_HEIGHT ) + GAP, WIDTH, BTN_HEIGHT );
-            btnChief.checked( Dungeon.currentDifficulty.disableChampion( Champ.CHAMP_CHIEF ) );
+            btnChief.checked( Dungeon.getCurrentDifficulty().disableChampion( Champ.CHAMP_CHIEF ) );
             add( btnChief );
 
             CheckBox btnVamp = new CheckBox( "Disable Vampiric" ) {
                 @Override
                 protected void onClick () {
                     super.onClick();
-                    if ( !Dungeon.currentDifficulty.disableChampion( Champ.CHAMP_VAMPERIC, checked() ) ) {
+                    if ( !Dungeon.getCurrentDifficulty().disableChampion( Champ.CHAMP_VAMPERIC, checked() ) ) {
                         checked( false );
                     }
                 }
             };
             btnVamp.setRect( 0, btnChief.bottom() + GAP, WIDTH, BTN_HEIGHT );
-            btnVamp.checked( Dungeon.currentDifficulty.disableChampion( Champ.CHAMP_VAMPERIC ) );
+            btnVamp.checked( Dungeon.getCurrentDifficulty().disableChampion( Champ.CHAMP_VAMPERIC ) );
             add( btnVamp );
 
 
@@ -164,27 +163,27 @@ public class WndRatKing extends WndTabbed {
                 @Override
                 protected void onClick () {
                     super.onClick();
-                    if ( !Dungeon.currentDifficulty.disableChampion( Champ.CHAMP_CURSED, checked() ) ) {
+                    if ( !Dungeon.getCurrentDifficulty().disableChampion( Champ.CHAMP_CURSED, checked() ) ) {
                         checked( false );
                     }
                 }
             };
             btnCursed.setRect( 0, btnVamp.bottom() + GAP, WIDTH, BTN_HEIGHT );
-            btnCursed.checked( Dungeon.currentDifficulty.disableChampion( Champ.CHAMP_CURSED ) );
+            btnCursed.checked( Dungeon.getCurrentDifficulty().disableChampion( Champ.CHAMP_CURSED ) );
             add( btnCursed );
 
             CheckBox btnFoul = new CheckBox( "Disable Foul" ) {
                 @Override
                 protected void onClick () {
                     super.onClick();
-                    if ( !Dungeon.currentDifficulty.disableChampion( Champ.CHAMP_FOUL, checked() ) ) {
+                    if ( !Dungeon.getCurrentDifficulty().disableChampion( Champ.CHAMP_FOUL, checked() ) ) {
                         checked( false );
                     }
                 }
             };
 
             btnFoul.setRect( 0, btnCursed.bottom() + GAP, WIDTH, BTN_HEIGHT );
-            btnFoul.checked( Dungeon.currentDifficulty.disableChampion( Champ.CHAMP_FOUL ) );
+            btnFoul.checked( Dungeon.getCurrentDifficulty().disableChampion( Champ.CHAMP_FOUL ) );
             add( btnFoul );
 
             if ( !Difficulties.canDisableChampions ) {
@@ -219,7 +218,7 @@ public class WndRatKing extends WndTabbed {
             add( new RedButton( TXT_MINUS ) {
                 @Override
                 protected void onClick () {
-                    Dungeon.currentDifficulty.changeHPOffset( -0.1f );
+                    Dungeon.getCurrentDifficulty().changeHPOffset( -0.1f );
                     updateMobStats();
                 }
             }.setRect( 0, BTN_HEIGHT + GAP, w, BTN_HEIGHT ) );
@@ -227,7 +226,7 @@ public class WndRatKing extends WndTabbed {
             add( new RedButton( TXT_PLUS ) {
                 @Override
                 protected void onClick () {
-                    Dungeon.currentDifficulty.changeHPOffset( 0.1f );
+                    Dungeon.getCurrentDifficulty().changeHPOffset( 0.1f );
                     updateMobStats();
                 }
             }.setRect( WIDTH - w, BTN_HEIGHT + GAP, w, BTN_HEIGHT ) );
@@ -244,7 +243,7 @@ public class WndRatKing extends WndTabbed {
             add( new RedButton( TXT_MINUS ) {
                 @Override
                 protected void onClick () {
-                    Dungeon.currentDifficulty.changeDamageOffset( -0.1f );
+                    Dungeon.getCurrentDifficulty().changeDamageOffset( -0.1f );
                     updateMobStats();
                 }
             }.setRect( 0, btMobHP.bottom() + GAP, w, BTN_HEIGHT ) );
@@ -252,7 +251,7 @@ public class WndRatKing extends WndTabbed {
             add( new RedButton( TXT_PLUS ) {
                 @Override
                 protected void onClick () {
-                    Dungeon.currentDifficulty.changeDamageOffset( 0.1f );
+                    Dungeon.getCurrentDifficulty().changeDamageOffset( 0.1f );
                     updateMobStats();
                 }
             }.setRect( WIDTH - w, btMobHP.bottom() + GAP, w, BTN_HEIGHT ) );
@@ -268,7 +267,7 @@ public class WndRatKing extends WndTabbed {
             add( new RedButton( TXT_MINUS ) {
                 @Override
                 protected void onClick () {
-                    Dungeon.currentDifficulty.changeDefenceOffset( 0.1f );
+                    Dungeon.getCurrentDifficulty().changeDefenceOffset( 0.1f );
                     updateMobStats();
                 }
             }.setRect( 0, btMobAtt.bottom() + GAP, w, BTN_HEIGHT ) );
@@ -276,7 +275,7 @@ public class WndRatKing extends WndTabbed {
             add( new RedButton( TXT_PLUS ) {
                 @Override
                 protected void onClick () {
-                    Dungeon.currentDifficulty.changeDefenceOffset( -0.1f );
+                    Dungeon.getCurrentDifficulty().changeDefenceOffset( -0.1f );
                     updateMobStats();
                 }
             }.setRect( WIDTH - w, btMobAtt.bottom() + GAP, w, BTN_HEIGHT ) );
@@ -293,7 +292,7 @@ public class WndRatKing extends WndTabbed {
             add( new RedButton( TXT_MINUS ) {
                 @Override
                 protected void onClick () {
-                    Dungeon.currentDifficulty.ToggleNight( false );
+                    Dungeon.getCurrentDifficulty().ToggleNight( false );
                     updateMobStats();
                 }
             }.setRect( 0, btMobDef.bottom() + GAP, w, BTN_HEIGHT ) );
@@ -301,7 +300,7 @@ public class WndRatKing extends WndTabbed {
             add( new RedButton( TXT_PLUS ) {
                 @Override
                 protected void onClick () {
-                    Dungeon.currentDifficulty.ToggleNight( true );
+                    Dungeon.getCurrentDifficulty().ToggleNight( true );
                     updateMobStats();
                 }
             }.setRect( WIDTH - w, btMobDef.bottom() + GAP, w, BTN_HEIGHT ) );
@@ -353,14 +352,14 @@ public class WndRatKing extends WndTabbed {
         float zoom = Camera.main.zoom;
         btnZoomIn.enable( zoom < PixelScene.maxZoom );
         btnZoomOut.enable( zoom > PixelScene.minZoom );
-        btnChamps.text( String.format( TXT_CHAMPION_CHANCE, ( Dungeon.currentDifficulty.championChance() * 10 + "%" ) ) );
+        btnChamps.text( String.format( TXT_CHAMPION_CHANCE, ( Dungeon.getCurrentDifficulty().championChance() * 10 + "%" ) ) );
     }
 
     private void updateMobStats () {
-        btMobHP.text( String.format( "HP: %s", ( (int) ( Dungeon.currentDifficulty.mobHPModifier() * 100 ) + "%" ) ) );
-        btMobAtt.text( String.format( "ATT: %s", ( (int) ( Dungeon.currentDifficulty.damageModifier() * 100 ) + "%" ) ) );
-        btMobDef.text( String.format( "Def: %s", ( (int) ( ( 2 - Dungeon.currentDifficulty.mobDefenceModifier() ) * 100 ) + "%" ) ) );
-        btDayNight.text( Dungeon.currentDifficulty.GetToggleNightDesc() );
+        btMobHP.text( String.format( "HP: %s", ( (int) ( Dungeon.getCurrentDifficulty().mobHPModifier() * 100 ) + "%" ) ) );
+        btMobAtt.text( String.format( "ATT: %s", ( (int) ( Dungeon.getCurrentDifficulty().damageModifier() * 100 ) + "%" ) ) );
+        btMobDef.text( String.format( "Def: %s", ( (int) ( ( 2 - Dungeon.getCurrentDifficulty().mobDefenceModifier() ) * 100 ) + "%" ) ) );
+        btDayNight.text( Dungeon.getCurrentDifficulty().GetToggleNightDesc() );
     }
 
 

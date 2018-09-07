@@ -42,7 +42,7 @@ public class Hunting extends Buff {
 
             GLog.p( "Hunted... something..." );
             MysteryMeat steak = new MysteryMeat();
-            Dungeon.level.drop( steak, hero.pos ).sprite.drop();
+            Dungeon.getLevel().drop( steak, hero.pos ).sprite.drop();
 
             spend( 100 - 10 * hero.heroSkills.passiveA2.hunting() );
 

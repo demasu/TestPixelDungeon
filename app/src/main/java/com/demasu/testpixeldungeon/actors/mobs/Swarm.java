@@ -48,8 +48,8 @@ public class Swarm extends Mob {
 
         flying = true;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 
@@ -97,7 +97,7 @@ public class Swarm extends Mob {
                 clone.pos = Random.element( candidates );
                 clone.state = clone.HUNTING;
 
-                if ( Dungeon.level.map[clone.pos] == Terrain.DOOR ) {
+                if ( Dungeon.getLevel().map[clone.pos] == Terrain.DOOR ) {
                     Door.enter( clone.pos );
                 }
 
@@ -136,7 +136,7 @@ public class Swarm extends Mob {
     @Override
     protected void dropLoot () {
         if ( Random.Int( 5 * ( generation + 1 ) ) == 0 ) {
-            Dungeon.level.drop( new PotionOfHealing(), pos ).sprite.drop();
+            Dungeon.getLevel().drop( new PotionOfHealing(), pos ).sprite.drop();
         }
     }
 

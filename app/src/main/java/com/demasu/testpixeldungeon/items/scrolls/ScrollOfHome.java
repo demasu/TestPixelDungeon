@@ -36,7 +36,7 @@ public class ScrollOfHome extends Scroll {
         Sample.INSTANCE.play( Assets.SND_READ );
 
         if ( !Dungeon.bossLevel() ) {
-            WandOfBlink.appear( curUser, Dungeon.level.entrance );
+            WandOfBlink.appear( curUser, Dungeon.getLevel().entrance );
             GLog.i( "The scroll takes you back to the level entrance" );
         } else {
             GLog.w( "Strong magic aura of this place prevents you from teleporting!" );

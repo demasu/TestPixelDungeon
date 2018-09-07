@@ -57,9 +57,9 @@ public class BombTriggerBeacon extends Item {
         if ( action == "Detonate" ) {
             GLog.i( "Beacon sends out a signal..." );
             int key = 0;
-            for ( int i = 0; i < Dungeon.level.heaps.size(); i++ ) {
-                key = Dungeon.level.heaps.keyAt( i );
-                Heap heap = Dungeon.level.heaps.get( key );
+            for ( int i = 0; i < Dungeon.getLevel().heaps.size(); i++ ) {
+                key = Dungeon.getLevel().heaps.keyAt( i );
+                Heap heap = Dungeon.getLevel().heaps.get( key );
 
                 for ( Item item : heap.items ) {
                     if ( item instanceof RemoteBombGround ) {

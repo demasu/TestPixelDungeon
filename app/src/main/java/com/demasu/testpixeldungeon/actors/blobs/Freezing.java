@@ -41,12 +41,12 @@ public class Freezing {
             fire.clear( cell );
         }
 
-        Heap heap = Dungeon.level.heaps.get( cell );
+        Heap heap = Dungeon.getLevel().heaps.get( cell );
         if ( heap != null ) {
             heap.freeze();
         }
 
-        if ( Dungeon.visible[cell] ) {
+        if ( Dungeon.getVisible()[cell] ) {
             CellEmitter.get( cell ).start( SnowParticle.FACTORY, 0.2f, 6 );
             return true;
         } else {

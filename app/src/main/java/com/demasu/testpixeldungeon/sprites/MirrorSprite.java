@@ -30,7 +30,7 @@ public class MirrorSprite extends MobSprite {
     public MirrorSprite () {
         super();
 
-        texture( Dungeon.hero.getHeroClass().spritesheet() );
+        texture( Dungeon.getHero().getHeroClass().spritesheet() );
         updateArmor( 0 );
         idle();
     }

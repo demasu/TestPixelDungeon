@@ -105,7 +105,7 @@ public class Ghost extends NPC {
 
     @Override
     public void interact () {
-        sprite.turnTo( pos, Dungeon.hero.pos );
+        sprite.turnTo( pos, Dungeon.getHero().pos );
         Sample.INSTANCE.play( Assets.SND_GHOST );
 
         Quest.type.handler.interact( this );
@@ -304,7 +304,7 @@ public class Ghost extends NPC {
                 switch ( type ) {
                     case ROSE:
                         if ( Random.Int( left2kill ) == 0 ) {
-                            Dungeon.level.drop( new DriedRose(), pos ).sprite.drop();
+                            Dungeon.getLevel().drop( new DriedRose(), pos ).sprite.drop();
                             processed = true;
                         } else {
                             left2kill--;
@@ -312,7 +312,7 @@ public class Ghost extends NPC {
                         break;
                     case RAT:
                         FetidRat rat = new FetidRat();
-                        rat.pos = Dungeon.level.randomRespawnCell();
+                        rat.pos = Dungeon.getLevel().randomRespawnCell();
                         if ( rat.pos != -1 ) {
                             GameScene.add( rat );
                             processed = true;
@@ -338,7 +338,7 @@ public class Ghost extends NPC {
         protected void relocate ( Ghost ghost ) {
             int newPos = -1;
             for ( int i = 0; i < 10; i++ ) {
-                newPos = Dungeon.level.randomRespawnCell();
+                newPos = Dungeon.getLevel().randomRespawnCell();
                 if ( newPos != -1 ) {
                     break;
                 }
@@ -350,7 +350,7 @@ public class Ghost extends NPC {
                 CellEmitter.get( ghost.pos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
                 ghost.pos = newPos;
                 ghost.sprite.place( ghost.pos );
-                ghost.sprite.visible = Dungeon.visible[ghost.pos];
+                ghost.sprite.visible = Dungeon.getVisible()[ghost.pos];
             }
         }
     }
@@ -372,7 +372,7 @@ public class Ghost extends NPC {
         public void interact ( Ghost ghost ) {
             if ( Quest.given ) {
 
-                Item item = Dungeon.hero.belongings.getItem( DriedRose.class );
+                Item item = Dungeon.getHero().belongings.getItem( DriedRose.class );
                 if ( item != null ) {
                     GameScene.show( new WndSadGhost( ghost, item, TXT_ROSE3 ) );
                 } else {
@@ -406,7 +406,7 @@ public class Ghost extends NPC {
         public void interact ( Ghost ghost ) {
             if ( Quest.given ) {
 
-                Item item = Dungeon.hero.belongings.getItem( RatSkull.class );
+                Item item = Dungeon.getHero().belongings.getItem( RatSkull.class );
                 if ( item != null ) {
                     GameScene.show( new WndSadGhost( ghost, item, TXT_RAT3 ) );
                 } else {
@@ -439,7 +439,7 @@ public class Ghost extends NPC {
         public void interact ( final Ghost ghost ) {
             if ( Quest.given ) {
 
-                GameScene.show( new WndSadGhost( ghost, null, Utils.format( TXT_CURSE2, Dungeon.hero.className() ) ) );
+                GameScene.show( new WndSadGhost( ghost, null, Utils.format( TXT_CURSE2, Dungeon.getHero().className() ) ) );
 
             } else {
                 GameScene.show( new WndQuest( ghost, TXT_CURSE1, TXT_YES, TXT_NO ) {
@@ -453,7 +453,7 @@ public class Ghost extends NPC {
                             d.sprite.emitter().burst( ShadowParticle.CURSE, 5 );
                             Sample.INSTANCE.play( Assets.SND_GHOST );
 
-                            Dungeon.hero.next();
+                            Dungeon.getHero().next();
                         } else {
                             relocate( ghost );
                         }

@@ -2,7 +2,6 @@ package com.demasu.testpixeldungeon.actors.skills;
 
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
-import com.watabou.utils.Random;
 
 /**
  * Created by Moussa on 25-Jan-17.
@@ -20,7 +19,7 @@ public class MercArcherSkillA extends KneeShot {
     @Override
     public void castTextYell () {
         if ( castText != "" ) {
-            Dungeon.hero.hiredMerc.sprite.showStatus( CharSprite.NEUTRAL, castText );
+            Dungeon.getHero().hiredMerc.sprite.showStatus( CharSprite.NEUTRAL, castText );
         }
     }
 

@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import java.util.ArrayList;
-
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -31,7 +29,6 @@ import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Heap.Type;
-import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.HeroSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
@@ -80,18 +77,18 @@ public class ScrollOfWipeOut extends Scroll {
 
         Invisibility.dispel();
 
-        for ( Mob mob : Dungeon.level.mobs.toArray( new Mob[0] ) ) {
+        for ( Mob mob : Dungeon.getLevel().mobs.toArray( new Mob[0] ) ) {
             if ( !Bestiary.isBoss( mob ) ) {
                 Sample.INSTANCE.play( Assets.SND_CURSED, 0.3f, 0.3f, Random.Float( 0.6f, 0.9f ) );
                 mob.die( this );
             }
         }
 
-        for ( Heap heap : Dungeon.level.heaps.values() ) {
+        for ( Heap heap : Dungeon.getLevel().heaps.values() ) {
             switch ( heap.type ) {
                 case FOR_SALE:
                     heap.type = Type.HEAP;
-                    if ( Dungeon.visible[heap.pos] ) {
+                    if ( Dungeon.getVisible()[heap.pos] ) {
                         CellEmitter.center( heap.pos ).burst( Speck.factory( Speck.COIN ), 2 );
                     }
                     break;

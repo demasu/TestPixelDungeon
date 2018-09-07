@@ -67,7 +67,7 @@ public class Champ extends Buff {
                     type = 4;
                 }
             }
-            while ( Dungeon.currentDifficulty.disableChampion( type ) );
+            while ( Dungeon.getCurrentDifficulty().disableChampion( type ) );
 
             this.target.champ = type;
 

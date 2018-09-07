@@ -22,7 +22,6 @@ import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.ResultDescriptions;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Amok;
@@ -43,10 +42,8 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.InterlevelScene;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
-import com.demasu.testpixeldungeon.sprites.CursePersonificationSprite;
 import com.demasu.testpixeldungeon.sprites.ColdGirlSprite;
 import com.demasu.testpixeldungeon.sprites.MissileSprite;
-import com.demasu.testpixeldungeon.sprites.RatSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
 import com.demasu.testpixeldungeon.windows.PersistentWndOptions;
@@ -171,9 +168,9 @@ public class ColdGirl extends Mob {
                         enemy.pos = newPos;
                         // FIXME
                         if ( enemy instanceof Mob ) {
-                            Dungeon.level.mobPress( (Mob) enemy );
+                            Dungeon.getLevel().mobPress( (Mob) enemy );
                         } else {
-                            Dungeon.level.press( newPos, enemy );
+                            Dungeon.getLevel().press( newPos, enemy );
                         }
 
                         enemy.sprite.bloodBurstA( sprite.center(), enemy.HP );
@@ -220,9 +217,9 @@ public class ColdGirl extends Mob {
                                 enemy.pos = newPos;
                                 // FIXME
                                 if ( enemy instanceof Mob ) {
-                                    Dungeon.level.mobPress( (Mob) enemy );
+                                    Dungeon.getLevel().mobPress( (Mob) enemy );
                                 } else {
-                                    Dungeon.level.press( newPos, enemy );
+                                    Dungeon.getLevel().press( newPos, enemy );
                                 }
 
                                 enemy.sprite.bloodBurstA( sprite.center(), enemy.HP );
@@ -232,7 +229,7 @@ public class ColdGirl extends Mob {
                     }
                 }
                 ( (ColdGirlAI) state ).aiStatus = DONE_MODE;
-                Buff.affect( Dungeon.hero, Frost.class, 10f );
+                Buff.affect( Dungeon.getHero(), Frost.class, 10f );
                 return -1;
             }
         } else {
@@ -307,7 +304,7 @@ public class ColdGirl extends Mob {
                 return super.defenseProc( enemy, damage );
             }
         } else if ( firstFetch || ( (ColdGirlAI) state ).aiStatus == GOD_MODE ) {
-            if ( Dungeon.hero.belongings.weapon != null ) {
+            if ( Dungeon.getHero().belongings.weapon != null ) {
 
                 int throwAt = 0;
 
@@ -319,10 +316,10 @@ public class ColdGirl extends Mob {
 
                 final int throwAtFinal = throwAt;
                 ( (MissileSprite) this.sprite.parent.recycle( MissileSprite.class ) ).
-                        reset( ColdGirl.this.pos, throwAt, Dungeon.hero.belongings.weapon, new Callback() {
+                        reset( ColdGirl.this.pos, throwAt, Dungeon.getHero().belongings.weapon, new Callback() {
                             @Override
                             public void call () {
-                                Dungeon.hero.belongings.weapon.detach( Dungeon.hero.belongings.backpack ).onThrowColdGirl( throwAtFinal );
+                                Dungeon.getHero().belongings.weapon.detach( Dungeon.getHero().belongings.backpack ).onThrowColdGirl( throwAtFinal );
 
                             }
                         } );
@@ -353,9 +350,9 @@ public class ColdGirl extends Mob {
                         enemy.pos = newPos;
                         // FIXME
                         if ( minion instanceof Mob ) {
-                            Dungeon.level.mobPress( (Mob) minion );
+                            Dungeon.getLevel().mobPress( (Mob) minion );
                         } else {
-                            Dungeon.level.press( newPos, minion );
+                            Dungeon.getLevel().press( newPos, minion );
                         }
 
                     }
@@ -388,7 +385,7 @@ public class ColdGirl extends Mob {
             for ( int i = 0; i < cells.length; i++ ) {
                 int cell = cells[i];
                 Char ch = Actor.findChar( cell );
-                if ( ch != null && ch != this && ch != Dungeon.hero && !( ch instanceof HiredMerc ) && ch.HP > 0 ) {
+                if ( ch != null && ch != this && ch != Dungeon.getHero() && !( ch instanceof HiredMerc ) && ch.HP > 0 ) {
                     trollMinion( ch );
                 }
             }
@@ -406,9 +403,9 @@ public class ColdGirl extends Mob {
                             enemy.pos = newPos;
                             // FIXME
                             if ( enemy instanceof Mob ) {
-                                Dungeon.level.mobPress( (Mob) enemy );
+                                Dungeon.getLevel().mobPress( (Mob) enemy );
                             } else {
-                                Dungeon.level.press( newPos, enemy );
+                                Dungeon.getLevel().press( newPos, enemy );
                             }
 
                         }
@@ -442,9 +439,9 @@ public class ColdGirl extends Mob {
                             enemy.pos = newPos;
                             // FIXME
                             if ( enemy instanceof Mob ) {
-                                Dungeon.level.mobPress( (Mob) enemy );
+                                Dungeon.getLevel().mobPress( (Mob) enemy );
                             } else {
-                                Dungeon.level.press( newPos, enemy );
+                                Dungeon.getLevel().press( newPos, enemy );
                             }
 
                         }
@@ -511,7 +508,7 @@ public class ColdGirl extends Mob {
     }
 
     public void heroSpeak ( String speakText ) {
-        Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, speakText );
+        Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, speakText );
     }
 
     private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
@@ -522,7 +519,7 @@ public class ColdGirl extends Mob {
 
     @Override
     public boolean attack ( Char enemy ) {
-        boolean visibleFight = Dungeon.visible[pos] || Dungeon.visible[enemy.pos];
+        boolean visibleFight = Dungeon.getVisible()[pos] || Dungeon.getVisible()[enemy.pos];
 
         if ( hit( this, enemy, false ) ) {
 
@@ -532,10 +529,10 @@ public class ColdGirl extends Mob {
 
             int dmg = damageRoll();
 
-            if ( enemy == Dungeon.hero ) {
-                dmg *= Dungeon.currentDifficulty.damageModifier();
-                dmg *= Dungeon.hero.heroSkills.passiveA3.incomingDamageModifier(); //  <--- Warrior Toughness if present
-                dmg -= Dungeon.hero.heroSkills.passiveA3.incomingDamageReduction( dmg ); // <--- Mage SpiritArmor if present
+            if ( enemy == Dungeon.getHero() ) {
+                dmg *= Dungeon.getCurrentDifficulty().damageModifier();
+                dmg *= Dungeon.getHero().heroSkills.passiveA3.incomingDamageModifier(); //  <--- Warrior Toughness if present
+                dmg -= Dungeon.getHero().heroSkills.passiveA3.incomingDamageReduction( dmg ); // <--- Mage SpiritArmor if present
             }
 
 
@@ -553,8 +550,8 @@ public class ColdGirl extends Mob {
                 Sample.INSTANCE.play( Assets.SND_HIT, 1, 1, Random.Float( 0.8f, 1.25f ) );
             }
 
-            if ( enemy == Dungeon.hero ) {
-                Dungeon.hero.interrupt();
+            if ( enemy == Dungeon.getHero() ) {
+                Dungeon.getHero().interrupt();
                 if ( effectiveDamage > enemy.HT / 4 ) {
                     Camera.main.shake( GameMath.gate( 1, effectiveDamage / ( enemy.HT / 4 ), 5 ), 0.3f );
                 }
@@ -565,9 +562,9 @@ public class ColdGirl extends Mob {
 
 
             if ( !enemy.isAlive() && visibleFight ) {
-                if ( enemy == Dungeon.hero ) {
+                if ( enemy == Dungeon.getHero() ) {
 
-                    if ( Dungeon.hero.killerGlyph != null ) {
+                    if ( Dungeon.getHero().killerGlyph != null ) {
 
                         // FIXME
                         //	Dungeon.fail( Utils.format( ResultDescriptions.GLYPH, Dungeon.hero.killerGlyph.name(), Dungeon.depth ) );
@@ -672,8 +669,8 @@ public class ColdGirl extends Mob {
                 break;
             case DISCUSSION_DEAD + 3 * DISCUSSION_STEP:
                 sendBack();
-                Dungeon.hero.heroSkills.unlockSkill();
-                GLog.p( "Fighting that weird girl inspired you into learning " + Dungeon.hero.heroSkills.unlockableSkillName() );
+                Dungeon.getHero().heroSkills.unlockSkill();
+                GLog.p( "Fighting that weird girl inspired you into learning " + Dungeon.getHero().heroSkills.unlockableSkillName() );
                 break;
             default:
                 discuss(); // fallback to prevent getting stuck

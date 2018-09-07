@@ -31,7 +31,6 @@ import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Difficulties;
 import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.GamesInProgress;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.demasu.testpixeldungeon.effects.BannerSprites;
@@ -42,7 +41,6 @@ import com.demasu.testpixeldungeon.ui.ExitButton;
 import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.ResumeButton;
-import com.demasu.testpixeldungeon.utils.Utils;
 import com.demasu.testpixeldungeon.windows.WndChallenges;
 import com.demasu.testpixeldungeon.windows.WndClass;
 import com.demasu.testpixeldungeon.windows.WndMessage;
@@ -322,11 +320,11 @@ public class MissionStartScene extends PixelScene {
 
     private void startNewGame ( int diff ) {
 
-        Dungeon.hero = null;
+        Dungeon.setHero( null );
         // diff = Difficulties.getNormalizedDifficulty(diff);
-        Dungeon.difficulty = 0;
-        Dungeon.currentDifficulty = Difficulties.values()[0];
-        Dungeon.currentDifficulty.reset();
+        Dungeon.setDifficulty( 0 );
+        Dungeon.setCurrentDifficulty( Difficulties.values()[0] );
+        Dungeon.getCurrentDifficulty().reset();
         InterlevelScene.mode = InterlevelScene.Mode.MISSION;
         MissionScene.scenePause = true;
         //if (PixelDungeon.intro()) {

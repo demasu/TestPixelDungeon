@@ -84,8 +84,8 @@ abstract public class Weapon extends KindOfWeapon {
     private static final String IMBUE = "imbue";
 
     public int STR () {
-        if ( Dungeon.hero != null && Dungeon.hero.heroSkills != null && Dungeon.hero.heroSkills.passiveA1 != null && this instanceof MeleeWeapon && Dungeon.hero.belongings.weapon == this ) {
-            return STR - Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus(); // <--- Warrior Mastery if present
+        if ( Dungeon.getHero() != null && Dungeon.getHero().heroSkills != null && Dungeon.getHero().heroSkills.passiveA1 != null && this instanceof MeleeWeapon && Dungeon.getHero().belongings.weapon == this ) {
+            return STR - Dungeon.getHero().heroSkills.passiveB3.weaponLevelBonus(); // <--- Warrior Mastery if present
         }
         return STR;
     }

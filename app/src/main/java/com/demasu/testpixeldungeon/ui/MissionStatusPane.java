@@ -79,7 +79,7 @@ public class MissionStatusPane extends Component {
         add( new TouchArea( 0, 1, 30, 30 ) {
             @Override
             protected void onClick ( Touch touch ) {
-                Image sprite = Dungeon.hero.sprite;
+                Image sprite = Dungeon.getHero().sprite;
                 if ( !sprite.isVisible() ) {
                     Camera.main.focusOn( sprite );
                 }
@@ -91,7 +91,7 @@ public class MissionStatusPane extends Component {
         btnMenu = new MenuButton();
         add( btnMenu );
 
-        avatar = HeroSprite.avatar( Dungeon.hero.getHeroClass(), 0 );
+        avatar = HeroSprite.avatar( Dungeon.getHero().getHeroClass(), 0 );
         add( avatar );
 
         blood = new BitmaskEmitter( avatar );
@@ -126,7 +126,7 @@ public class MissionStatusPane extends Component {
         resume = new ResumeButton();
         add( resume );
 
-        buffs = new BuffIndicator( Dungeon.hero );
+        buffs = new BuffIndicator( Dungeon.getHero() );
         add( buffs );
 
         takingDamage = 0;
@@ -198,13 +198,13 @@ public class MissionStatusPane extends Component {
             layoutTags();
         }
 
-        float health = (float) ( Dungeon.hero.HP ) / Dungeon.hero.HT;
+        float health = (float) ( Dungeon.getHero().HP ) / Dungeon.getHero().HT;
 
-        if ( Dungeon.hero.HP == 0 ) {
+        if ( Dungeon.getHero().HP == 0 ) {
             takingDamage = 0;
         }
 
-        float health_drop = takingDamage / Dungeon.hero.HT;
+        float health_drop = takingDamage / Dungeon.getHero().HT;
 
         if ( takingDamage > 0 ) {
             takingDamageCooldownCounter++;
@@ -228,17 +228,17 @@ public class MissionStatusPane extends Component {
         hp_dropping.x = hp.x + hp.width() - 20 * health;
         hp_dropping.scale.x = health_drop;
 
-        exp.scale.x = ( width / exp.width ) * Dungeon.hero.exp / Dungeon.hero.maxExp();
+        exp.scale.x = ( width / exp.width ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp();
 
-        float mana = (float) Dungeon.hero.MP / Dungeon.hero.MMP;
+        float mana = (float) Dungeon.getHero().MP / Dungeon.getHero().MMP;
 
-        float mana_drop = manaDropping / Dungeon.hero.MMP;
+        float mana_drop = manaDropping / Dungeon.getHero().MMP;
 
         mp.scale.x = mana;
         mp_dropping.x = mp.x + mp.width() - 20 * mana;
         mp_dropping.scale.x = mana_drop;
 
-        if ( Dungeon.hero.MMP == 0 ) {
+        if ( Dungeon.getHero().MMP == 0 ) {
             manaDropping = 0;
         }
 
@@ -249,7 +249,7 @@ public class MissionStatusPane extends Component {
             }
         }
 
-        if ( Dungeon.hero.lvl != lastLvl ) {
+        if ( Dungeon.getHero().lvl != lastLvl ) {
 
             if ( lastLvl != -1 ) {
                 Emitter emitter = (Emitter) recycle( Emitter.class );
@@ -258,7 +258,7 @@ public class MissionStatusPane extends Component {
                 emitter.burst( Speck.factory( Speck.STAR ), 12 );
             }
 
-            lastLvl = Dungeon.hero.lvl;
+            lastLvl = Dungeon.getHero().lvl;
 
         }
 

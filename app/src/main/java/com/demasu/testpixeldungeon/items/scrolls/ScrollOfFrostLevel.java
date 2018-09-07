@@ -32,7 +32,7 @@ public class ScrollOfFrostLevel extends Scroll {
     protected void doRead () {
 
         ColdGirl.cameFrom = Dungeon.getDepth();
-        ColdGirl.cameFromPos = Dungeon.hero.pos;
+        ColdGirl.cameFromPos = Dungeon.getHero().pos;
         InterlevelScene.mode = InterlevelScene.Mode.TELEPORT;
         Game.switchScene( InterlevelScene.class );
         Dungeon.observe();

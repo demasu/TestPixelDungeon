@@ -170,7 +170,7 @@ public class Skill {
 
     public void castTextYell () {
         if ( castText != "" ) {
-            Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, castText );
+            Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, castText );
         }
     }
 

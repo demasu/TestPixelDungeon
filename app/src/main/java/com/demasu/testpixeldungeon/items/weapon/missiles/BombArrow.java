@@ -76,7 +76,7 @@ public class BombArrow extends Arrow {
     @Override
     public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = super.actions( hero );
-        if ( Dungeon.hero.belongings.bow != null ) {
+        if ( Dungeon.getHero().belongings.bow != null ) {
             if ( !actions.contains( AC_THROW ) ) {
                 actions.add( AC_THROW );
             }
@@ -96,7 +96,7 @@ public class BombArrow extends Arrow {
         } else {
             Sample.INSTANCE.play( Assets.SND_BLAST, 2 );
 
-            if ( Dungeon.visible[cell] ) {
+            if ( Dungeon.getVisible()[cell] ) {
                 CellEmitter.center( cell ).burst( BlastParticle.FACTORY, 30 );
             }
 
@@ -104,7 +104,7 @@ public class BombArrow extends Arrow {
             for ( int n : Level.NEIGHBOURS9 ) {
                 int c = cell + n;
                 if ( c >= 0 && c < Level.LENGTH ) {
-                    if ( Dungeon.visible[c] ) {
+                    if ( Dungeon.getVisible()[c] ) {
                         CellEmitter.get( c ).burst( SmokeParticle.FACTORY, 4 );
                     }
 

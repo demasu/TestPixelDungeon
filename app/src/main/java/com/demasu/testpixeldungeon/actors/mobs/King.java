@@ -61,8 +61,8 @@ public class King extends Mob {
 
         Undead.count = 0;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 
@@ -141,14 +141,14 @@ public class King extends Mob {
     @Override
     public void die ( Object cause ) {
         GameScene.bossSlain();
-        Dungeon.level.drop( new ArmorKit(), pos ).sprite.drop();
-        Dungeon.level.drop( new SkeletonKey(), pos ).sprite.drop();
+        Dungeon.getLevel().drop( new ArmorKit(), pos ).sprite.drop();
+        Dungeon.getLevel().drop( new SkeletonKey(), pos ).sprite.drop();
 
         super.die( cause );
 
         Badges.validateBossSlain();
 
-        yell( "You cannot kill me, " + Dungeon.hero.getHeroClass().title() + "... I am... immortal..." );
+        yell( "You cannot kill me, " + Dungeon.getHero().getHeroClass().title() + "... I am... immortal..." );
     }
 
     private int maxArmySize () {
@@ -299,7 +299,7 @@ public class King extends Mob {
         public void die ( Object cause ) {
             super.die( cause );
 
-            if ( Dungeon.visible[pos] ) {
+            if ( Dungeon.getVisible()[pos] ) {
                 Sample.INSTANCE.play( Assets.SND_BONES );
             }
         }

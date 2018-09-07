@@ -100,7 +100,7 @@ public class Skeleton extends NPC {
 
         if ( enemy == null || !enemy.isAlive() ) {
             HashSet<Mob> enemies = new HashSet<Mob>();
-            for ( Mob mob : Dungeon.level.mobs ) {
+            for ( Mob mob : Dungeon.getLevel().mobs ) {
                 if ( mob.hostile && Level.fieldOfView[mob.pos] ) {
                     enemies.add( mob );
                 }
@@ -126,14 +126,14 @@ public class Skeleton extends NPC {
 
         int curPos = pos;
 
-        moveSprite( pos, Dungeon.hero.pos );
-        move( Dungeon.hero.pos );
+        moveSprite( pos, Dungeon.getHero().pos );
+        move( Dungeon.getHero().pos );
 
-        Dungeon.hero.sprite.move( Dungeon.hero.pos, curPos );
-        Dungeon.hero.move( curPos );
+        Dungeon.getHero().sprite.move( Dungeon.getHero().pos, curPos );
+        Dungeon.getHero().move( curPos );
 
-        Dungeon.hero.spend( 1 / Dungeon.hero.speed() );
-        Dungeon.hero.busy();
+        Dungeon.getHero().spend( 1 / Dungeon.getHero().speed() );
+        Dungeon.getHero().busy();
     }
 
     private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
@@ -164,7 +164,7 @@ public class Skeleton extends NPC {
                 enemySeen = false;
 
                 int oldPos = pos;
-                if ( getCloser( Dungeon.hero.pos ) ) {
+                if ( getCloser( Dungeon.getHero().pos ) ) {
                     spend( 1 / speed() );
                     return moveSprite( oldPos, pos );
                 } else {

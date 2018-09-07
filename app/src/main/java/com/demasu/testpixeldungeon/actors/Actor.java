@@ -118,7 +118,7 @@ public abstract class Actor implements Bundlable {
 
     public static void fixTime () {
 
-        if ( Dungeon.hero != null && all.contains( Dungeon.hero ) ) {
+        if ( Dungeon.getHero() != null && all.contains( Dungeon.getHero() ) ) {
             Statistics.duration += now;
         }
 
@@ -136,13 +136,13 @@ public abstract class Actor implements Bundlable {
 
     public static void init () {
 
-        addDelayed( Dungeon.hero, -Float.MIN_VALUE );
+        addDelayed( Dungeon.getHero(), -Float.MIN_VALUE );
 
-        for ( Mob mob : Dungeon.level.mobs ) {
+        for ( Mob mob : Dungeon.getLevel().mobs ) {
             add( mob );
         }
 
-        for ( Blob blob : Dungeon.level.blobs.values() ) {
+        for ( Blob blob : Dungeon.getLevel().blobs.values() ) {
             add( blob );
         }
 
@@ -200,7 +200,7 @@ public abstract class Actor implements Bundlable {
                 }
 
                 doNext = current.act();
-                if ( doNext && !Dungeon.hero.isAlive() ) {
+                if ( doNext && !Dungeon.getHero().isAlive() ) {
                     doNext = false;
                     current = null;
                 }

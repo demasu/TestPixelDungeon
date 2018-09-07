@@ -41,21 +41,21 @@ public class WandOfRegrowth extends Wand {
 
         for ( int i = 1; i < Ballistica.distance - 1; i++ ) {
             int p = Ballistica.trace[i];
-            int c = Dungeon.level.map[p];
+            int c = Dungeon.getLevel().map[p];
             if ( c == Terrain.EMPTY ||
                     c == Terrain.EMBERS ||
                     c == Terrain.EMPTY_DECO ) {
 
                 Level.set( p, Terrain.GRASS );
                 GameScene.updateMap( p );
-                if ( Dungeon.visible[p] ) {
+                if ( Dungeon.getVisible()[p] ) {
                     GameScene.discoverTile( p, c );
                 }
 
             }
         }
 
-        int c = Dungeon.level.map[cell];
+        int c = Dungeon.getLevel().map[cell];
         if ( c == Terrain.EMPTY ||
                 c == Terrain.EMBERS ||
                 c == Terrain.EMPTY_DECO ||

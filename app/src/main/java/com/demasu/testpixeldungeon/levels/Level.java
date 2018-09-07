@@ -188,7 +188,7 @@ public abstract class Level implements Bundlable {
             }
             if ( Dungeon.soeNeeded() ) {
                 addItemToSpawn( new ScrollOfEnchantment() );
-                Dungeon.scrollsOfEnchantment++;
+                Dungeon.setScrollsOfEnchantment( Dungeon.getScrollsOfEnchantment() + 1 );
             }
 
             if ( Dungeon.getDepth() > 1 ) {
@@ -391,17 +391,17 @@ public abstract class Level implements Bundlable {
                     Mob mob = Bestiary.mutable( Dungeon.getDepth() );
                     mob.state = mob.WANDERING;
                     mob.pos = randomRespawnCell();
-                    if ( Dungeon.hero.isAlive() && mob.pos != -1 ) {
+                    if ( Dungeon.getHero().isAlive() && mob.pos != -1 ) {
                         GameScene.add( mob );
-                        if ( Random.Int( 10 ) < Dungeon.currentDifficulty.championChance() ) {
+                        if ( Random.Int( 10 ) < Dungeon.getCurrentDifficulty().championChance() ) {
                             Buff.affect( mob, Champ.class );
                         }
                         if ( Statistics.amuletObtained ) {
-                            mob.beckon( Dungeon.hero.pos );
+                            mob.beckon( Dungeon.getHero().pos );
                         }
                     }
                 }
-                spend( Dungeon.nightMode || Statistics.amuletObtained ? TIME_TO_RESPAWN / 2 : TIME_TO_RESPAWN );
+                spend( Dungeon.isNightMode() || Statistics.amuletObtained ? TIME_TO_RESPAWN / 2 : TIME_TO_RESPAWN );
                 return true;
             }
         };
@@ -411,7 +411,7 @@ public abstract class Level implements Bundlable {
         return new Actor() {
             @Override
             protected boolean act () {
-                if ( Dungeon.hero.hiredMerc != null && Dungeon.hero.checkMerc ) {
+                if ( Dungeon.getHero().hiredMerc != null && Dungeon.getHero().checkMerc ) {
 
                     HiredMerc mercCheck = checkMerc();
                     if ( mercCheck != null ) {
@@ -421,13 +421,13 @@ public abstract class Level implements Bundlable {
 
 
                     for ( int nu = 0; nu < 1; nu++ ) {
-                        int newPos = Dungeon.hero.pos;
+                        int newPos = Dungeon.getHero().pos;
                         if ( Actor.findChar( newPos ) != null ) {
                             ArrayList<Integer> candidates = new ArrayList<Integer>();
                             boolean[] passable = Level.passable;
 
                             for ( int n : Level.NEIGHBOURS4 ) {
-                                int c = Dungeon.hero.pos + n;
+                                int c = Dungeon.getHero().pos + n;
                                 if ( c < 0 || c >= Level.passable.length ) {
                                     continue;
                                 }
@@ -438,19 +438,19 @@ public abstract class Level implements Bundlable {
                             }
                             newPos = candidates.size() > 0 ? Random.element( candidates ) : -1;
                             if ( newPos != -1 ) {
-                                HiredMerc tmp = new HiredMerc( Dungeon.hero.hiredMerc.mercType );
-                                tmp.spawn( Dungeon.hero.lvl );
+                                HiredMerc tmp = new HiredMerc( Dungeon.getHero().hiredMerc.mercType );
+                                tmp.spawn( Dungeon.getHero().lvl );
                                 tmp.pos = newPos;
                                 GameScene.add( tmp );
-                                Actor.addDelayed( new Pushing( tmp, Dungeon.hero.pos, newPos ), -1 );
-                                tmp.weapon = Dungeon.hero.hiredMerc.weapon;
-                                tmp.armor = Dungeon.hero.hiredMerc.armor;
-                                tmp.HP = Dungeon.hero.hiredMerc.HP;
-                                tmp.skill.level = Dungeon.hero.hiredMerc.skill.level;
-                                tmp.carrying = Dungeon.hero.hiredMerc.carrying;
+                                Actor.addDelayed( new Pushing( tmp, Dungeon.getHero().pos, newPos ), -1 );
+                                tmp.weapon = Dungeon.getHero().hiredMerc.weapon;
+                                tmp.armor = Dungeon.getHero().hiredMerc.armor;
+                                tmp.HP = Dungeon.getHero().hiredMerc.HP;
+                                tmp.skill.level = Dungeon.getHero().hiredMerc.skill.level;
+                                tmp.carrying = Dungeon.getHero().hiredMerc.carrying;
                                 ( (MercSprite) tmp.sprite ).updateArmor();
-                                Dungeon.hero.hiredMerc = tmp;
-                                Dungeon.hero.checkMerc = false;
+                                Dungeon.getHero().hiredMerc = tmp;
+                                Dungeon.getHero().checkMerc = false;
                             }
                         }
                     }
@@ -464,7 +464,7 @@ public abstract class Level implements Bundlable {
 
     private HiredMerc checkMerc () {
 
-        for ( Mob mob : Dungeon.level.mobs ) {
+        for ( Mob mob : Dungeon.getLevel().mobs ) {
             if ( mob instanceof HiredMerc && mob.HP > 0 ) {
                 return (HiredMerc) mob;
             }
@@ -477,7 +477,7 @@ public abstract class Level implements Bundlable {
         int cell;
         do {
             cell = Random.Int( LENGTH );
-        } while ( !passable[cell] || Dungeon.visible[cell] || Actor.findChar( cell ) != null );
+        } while ( !passable[cell] || Dungeon.getVisible()[cell] || Actor.findChar( cell ) != null );
         return cell;
     }
 
@@ -613,7 +613,7 @@ public abstract class Level implements Bundlable {
     }
 
     public static void set ( int cell, int terrain ) {
-        Painter.set( Dungeon.level, cell, terrain );
+        Painter.set( Dungeon.getLevel(), cell, terrain );
 
         int flags = Terrain.flags[terrain];
         passable[cell] = ( flags & Terrain.PASSABLE ) != 0;
@@ -657,7 +657,7 @@ public abstract class Level implements Bundlable {
 
             heap = new Heap();
             heap.pos = cell;
-            if ( map[cell] == Terrain.CHASM || ( Dungeon.level != null && pit[cell] ) ) {
+            if ( map[cell] == Terrain.CHASM || ( Dungeon.getLevel() != null && pit[cell] ) ) {
                 Dungeon.dropToChasm( item );
                 GameScene.discard( heap );
             } else {
@@ -676,7 +676,7 @@ public abstract class Level implements Bundlable {
         }
         heap.drop( item );
 
-        if ( Dungeon.level != null ) {
+        if ( Dungeon.getLevel() != null ) {
             press( cell, null );
         }
 
@@ -707,7 +707,7 @@ public abstract class Level implements Bundlable {
 
     public void press ( int cell, Char ch ) {
 
-        if ( pit[cell] && ch == Dungeon.hero ) {
+        if ( pit[cell] && ch == Dungeon.getHero() ) {
             Chasm.heroFall( cell );
             return;
         }
@@ -720,7 +720,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.TOXIC_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
+                if ( ch == Dungeon.getHero() && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     ToxicTrap.trigger( cell, ch );
@@ -731,7 +731,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.FIRE_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
+                if ( ch == Dungeon.getHero() && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     FireTrap.trigger( cell, ch );
@@ -742,7 +742,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.PARALYTIC_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
+                if ( ch == Dungeon.getHero() && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     ParalyticTrap.trigger( cell, ch );
@@ -753,7 +753,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.POISON_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
+                if ( ch == Dungeon.getHero() && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     PoisonTrap.trigger( cell, ch );
@@ -764,7 +764,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.ALARM_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
+                if ( ch == Dungeon.getHero() && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     AlarmTrap.trigger( cell, ch );
@@ -775,7 +775,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.LIGHTNING_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
+                if ( ch == Dungeon.getHero() && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     LightningTrap.trigger( cell, ch );
@@ -786,7 +786,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.GRIPPING_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
+                if ( ch == Dungeon.getHero() && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     GrippingTrap.trigger( cell, ch );
@@ -797,7 +797,7 @@ public abstract class Level implements Bundlable {
                 GLog.i( TXT_HIDDEN_PLATE_CLICKS );
             case Terrain.SUMMONING_TRAP:
                 trap = true;
-                if ( ch == Dungeon.hero && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
+                if ( ch == Dungeon.getHero() && ( (Hero) ch ).heroSkills.passiveA3.disableTrap() ) {
 
                 } else {
                     SummoningTrap.trigger( cell, ch );
@@ -825,8 +825,8 @@ public abstract class Level implements Bundlable {
 
         if ( trap ) {
             Sample.INSTANCE.play( Assets.SND_TRAP );
-            if ( ch == Dungeon.hero ) {
-                Dungeon.hero.interrupt();
+            if ( ch == Dungeon.getHero() ) {
+                Dungeon.getHero().interrupt();
             }
             set( cell, Terrain.INACTIVE_TRAP );
             GameScene.updateMap( cell );
@@ -890,7 +890,7 @@ public abstract class Level implements Bundlable {
         }
 
         if ( trap ) {
-            if ( Dungeon.visible[cell] ) {
+            if ( Dungeon.getVisible()[cell] ) {
                 Sample.INSTANCE.play( Assets.SND_TRAP );
             }
             set( cell, Terrain.INACTIVE_TRAP );
@@ -958,7 +958,7 @@ public abstract class Level implements Bundlable {
                         // Sometimes merc respawning causes crash out if index
                     }
                 }
-            } else if ( c == Dungeon.hero && ( (Hero) c ).getHeroClass() == HeroClass.HUNTRESS ) {
+            } else if ( c == Dungeon.getHero() && ( (Hero) c ).getHeroClass() == HeroClass.HUNTRESS ) {
                 for ( Mob mob : mobs ) {
                     try {
                         int p = mob.pos;

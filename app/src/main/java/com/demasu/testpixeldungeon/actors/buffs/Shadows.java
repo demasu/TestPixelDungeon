@@ -66,7 +66,7 @@ public class Shadows extends Invisibility {
 
             spend( TICK * 2 );
 
-            if ( --left <= 0 || Dungeon.hero.visibleEnemies() > 0 ) {
+            if ( --left <= 0 || Dungeon.getHero().visibleEnemies() > 0 ) {
                 detach();
             }
 

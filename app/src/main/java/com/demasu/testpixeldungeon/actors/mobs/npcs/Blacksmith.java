@@ -81,7 +81,7 @@ public class Blacksmith extends NPC {
     @Override
     public void interact () {
 
-        sprite.turnTo( pos, Dungeon.hero.pos );
+        sprite.turnTo( pos, Dungeon.getHero().pos );
 
         if ( !Quest.given ) {
 
@@ -96,10 +96,10 @@ public class Blacksmith extends NPC {
                     Quest.completed = false;
 
                     Pickaxe pick = new Pickaxe();
-                    if ( pick.doPickUp( Dungeon.hero ) ) {
+                    if ( pick.doPickUp( Dungeon.getHero() ) ) {
                         GLog.i( Hero.TXT_YOU_NOW_HAVE, pick.name() );
                     } else {
-                        Dungeon.level.drop( pick, Dungeon.hero.pos ).sprite.drop();
+                        Dungeon.getLevel().drop( pick, Dungeon.getHero().pos ).sprite.drop();
                     }
                 }
 
@@ -110,16 +110,16 @@ public class Blacksmith extends NPC {
         } else if ( !Quest.completed ) {
             if ( Quest.alternative ) {
 
-                Pickaxe pick = Dungeon.hero.belongings.getItem( Pickaxe.class );
+                Pickaxe pick = Dungeon.getHero().belongings.getItem( Pickaxe.class );
                 if ( pick == null ) {
                     tell( TXT2 );
                 } else if ( !pick.bloodStained ) {
                     tell( TXT4 );
                 } else {
-                    if ( pick.isEquipped( Dungeon.hero ) ) {
-                        pick.doUnequip( Dungeon.hero, false );
+                    if ( pick.isEquipped( Dungeon.getHero() ) ) {
+                        pick.doUnequip( Dungeon.getHero(), false );
                     }
-                    pick.detach( Dungeon.hero.belongings.backpack );
+                    pick.detach( Dungeon.getHero().belongings.backpack );
                     tell( TXT_COMPLETED );
 
                     Quest.completed = true;
@@ -128,18 +128,18 @@ public class Blacksmith extends NPC {
 
             } else {
 
-                Pickaxe pick = Dungeon.hero.belongings.getItem( Pickaxe.class );
-                DarkGold gold = Dungeon.hero.belongings.getItem( DarkGold.class );
+                Pickaxe pick = Dungeon.getHero().belongings.getItem( Pickaxe.class );
+                DarkGold gold = Dungeon.getHero().belongings.getItem( DarkGold.class );
                 if ( pick == null ) {
                     tell( TXT2 );
                 } else if ( gold == null || gold.quantity() < 15 ) {
                     tell( TXT3 );
                 } else {
-                    if ( pick.isEquipped( Dungeon.hero ) ) {
-                        pick.doUnequip( Dungeon.hero, false );
+                    if ( pick.isEquipped( Dungeon.getHero() ) ) {
+                        pick.doUnequip( Dungeon.getHero(), false );
                     }
-                    pick.detach( Dungeon.hero.belongings.backpack );
-                    gold.detachAll( Dungeon.hero.belongings.backpack );
+                    pick.detach( Dungeon.getHero().belongings.backpack );
+                    gold.detachAll( Dungeon.getHero().belongings.backpack );
                     tell( TXT_COMPLETED );
 
                     Quest.completed = true;
@@ -149,7 +149,7 @@ public class Blacksmith extends NPC {
             }
         } else if ( !Quest.reforged ) {
 
-            GameScene.show( new WndBlacksmith( this, Dungeon.hero ) );
+            GameScene.show( new WndBlacksmith( this, Dungeon.getHero() ) );
 
         } else {
 
@@ -203,21 +203,21 @@ public class Blacksmith extends NPC {
         }
 
         Sample.INSTANCE.play( Assets.SND_EVOKE );
-        ScrollOfUpgrade.upgrade( Dungeon.hero );
-        Item.evoke( Dungeon.hero );
+        ScrollOfUpgrade.upgrade( Dungeon.getHero() );
+        Item.evoke( Dungeon.getHero() );
 
-        if ( first.isEquipped( Dungeon.hero ) ) {
-            ( (EquipableItem) first ).doUnequip( Dungeon.hero, true );
+        if ( first.isEquipped( Dungeon.getHero() ) ) {
+            ( (EquipableItem) first ).doUnequip( Dungeon.getHero(), true );
         }
         first.upgrade();
         GLog.p( TXT_LOOKS_BETTER, first.name() );
-        Dungeon.hero.spendAndNext( 2f );
+        Dungeon.getHero().spendAndNext( 2f );
         Badges.validateItemLevelAquired( first );
 
-        if ( second.isEquipped( Dungeon.hero ) ) {
-            ( (EquipableItem) second ).doUnequip( Dungeon.hero, false );
+        if ( second.isEquipped( Dungeon.getHero() ) ) {
+            ( (EquipableItem) second ).doUnequip( Dungeon.getHero(), false );
         }
-        second.detachAll( Dungeon.hero.belongings.backpack );
+        second.detachAll( Dungeon.getHero().belongings.backpack );
 
         Quest.reforged = true;
 

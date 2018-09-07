@@ -121,7 +121,7 @@ public class WndStorage extends WndTabbed {
     protected void placeItems ( Storage container ) {
 
 
-        boolean backpack = ( container == Dungeon.hero.storage );
+        boolean backpack = ( container == Dungeon.getHero().storage );
         if ( !backpack ) {
             count = nCols;
             col = 0;
@@ -309,7 +309,7 @@ public class WndStorage extends WndTabbed {
             super.item( item );
             if ( item != null ) {
 
-                bg.texture( TextureCache.createSolid( item.isEquipped( Dungeon.hero ) ? EQUIPPED : NORMAL ) );
+                bg.texture( TextureCache.createSolid( item.isEquipped( Dungeon.getHero() ) ? EQUIPPED : NORMAL ) );
                 if ( item.cursed && item.cursedKnown ) {
                     bg.ra = +0.2f;
                     bg.ga = -0.1f;
@@ -324,7 +324,7 @@ public class WndStorage extends WndTabbed {
                 } else {
                     enable(
                             mode == Mode.QUICKSLOT && ( item.defaultAction != null ) ||
-                                    mode == Mode.FOR_SALE && ( item.price() > 0 ) && ( !item.isEquipped( Dungeon.hero ) || !item.cursed ) ||
+                                    mode == Mode.FOR_SALE && ( item.price() > 0 ) && ( !item.isEquipped( Dungeon.getHero() ) || !item.cursed ) ||
                                     mode == Mode.UPGRADEABLE && item.isUpgradable() ||
                                     mode == Mode.UNIDENTIFED && !item.isIdentified() ||
                                     mode == Mode.WEAPON && ( item instanceof MeleeWeapon || item instanceof Boomerang ) ||

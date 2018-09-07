@@ -52,10 +52,10 @@ public enum Rankings {
 
         Record rec = new Record();
 
-        rec.info = Dungeon.resultDescription;
+        rec.info = Dungeon.getResultDescription();
         rec.win = win;
-        rec.heroClass = Dungeon.hero.getHeroClass();
-        rec.armorTier = Dungeon.hero.tier();
+        rec.heroClass = Dungeon.getHero().getHeroClass();
+        rec.armorTier = Dungeon.getHero().tier();
         rec.score = score( win );
 
         String gameFile = Utils.format( DETAILS_FILE, SystemTime.now );
@@ -98,7 +98,7 @@ public enum Rankings {
     }
 
     private int score ( boolean win ) {
-        return ( Statistics.goldCollected + Dungeon.hero.lvl * Statistics.deepestFloor * 100 ) * ( win ? 2 : 1 );
+        return ( Statistics.goldCollected + Dungeon.getHero().lvl * Statistics.deepestFloor * 100 ) * ( win ? 2 : 1 );
     }
 
     private static final String RECORDS = "records";

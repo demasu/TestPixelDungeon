@@ -24,7 +24,7 @@ public class ActiveSkill extends Skill {
 
     @Override
     public void execute ( Hero hero, String action ) {
-        Dungeon.hero.heroSkills.lastUsed = this;
+        Dungeon.getHero().heroSkills.lastUsed = this;
         if ( action == Skill.AC_ACTIVATE ) {
             active = true;
         } else if ( action == Skill.AC_DEACTIVATE ) {

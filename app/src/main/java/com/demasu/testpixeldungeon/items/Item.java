@@ -109,7 +109,7 @@ public class Item implements Bundlable {
         ArrayList<String> actions = new ArrayList<String>();
         actions.add( AC_DROP );
         actions.add( AC_THROW );
-        if ( hero.pos == Dungeon.level.storage && this != hero.belongings.weapon && this != hero.belongings.armor && this != hero.belongings.ring1 && this != hero.belongings.ring2 && this != hero.belongings.bow ) {
+        if ( hero.pos == Dungeon.getLevel().storage && this != hero.belongings.weapon && this != hero.belongings.armor && this != hero.belongings.ring1 && this != hero.belongings.ring2 && this != hero.belongings.bow ) {
             actions.add( AC_STORE );
         }
         return actions;
@@ -131,7 +131,7 @@ public class Item implements Bundlable {
 
     public void doDrop ( Hero hero ) {
         hero.spendAndNext( TIME_TO_DROP );
-        Dungeon.level.drop( detachAll( hero.belongings.backpack ), hero.pos ).sprite.drop( hero.pos );
+        Dungeon.getLevel().drop( detachAll( hero.belongings.backpack ), hero.pos ).sprite.drop( hero.pos );
     }
 
     public void doThrow ( Hero hero ) {
@@ -164,7 +164,7 @@ public class Item implements Bundlable {
 
     public void doTakeStorage ( Hero hero ) {
         hero.spendAndNext( TIME_TO_DROP );
-        Dungeon.level.drop( detachAll( hero.storage.backpack ), hero.pos ).sprite.drop( hero.pos );
+        Dungeon.getLevel().drop( detachAll( hero.storage.backpack ), hero.pos ).sprite.drop( hero.pos );
     }
 
     public void doAddStorage ( Hero hero ) {
@@ -179,18 +179,18 @@ public class Item implements Bundlable {
     }
 
     protected void onThrow ( int cell ) {
-        Heap heap = Dungeon.level.drop( this, cell );
+        Heap heap = Dungeon.getLevel().drop( this, cell );
         if ( !heap.isEmpty() ) {
             heap.sprite.drop( cell );
         }
     }
 
     public void onThrowColdGirl ( int cell ) {
-        Heap heap = Dungeon.level.drop( this, cell );
+        Heap heap = Dungeon.getLevel().drop( this, cell );
         if ( !heap.isEmpty() ) {
             heap.sprite.drop( cell );
         }
-        Dungeon.hero.belongings.weapon = null;
+        Dungeon.getHero().belongings.weapon = null;
     }
 
     public boolean collect ( Bag container ) {
@@ -221,7 +221,7 @@ public class Item implements Bundlable {
 
         if ( items.size() < container.size ) {
 
-            if ( Dungeon.hero != null && Dungeon.hero.isAlive() ) {
+            if ( Dungeon.getHero() != null && Dungeon.getHero().isAlive() ) {
                 Badges.validateItemLevelAquired( this );
             }
 
@@ -239,7 +239,7 @@ public class Item implements Bundlable {
     }
 
     public boolean collect () {
-        return collect( Dungeon.hero.belongings.backpack );
+        return collect( Dungeon.getHero().belongings.backpack );
     }
 
     public final Item detach ( Bag container ) {
@@ -290,8 +290,8 @@ public class Item implements Bundlable {
     }
 
     public int level () {
-        if ( Dungeon.hero != null && Dungeon.hero.heroSkills != null && Dungeon.hero.heroSkills.passiveA1 != null && this instanceof MeleeWeapon && Dungeon.hero.belongings.weapon == this ) {
-            return level + Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus(); // <--- Warrior Mastery if present
+        if ( Dungeon.getHero() != null && Dungeon.getHero().heroSkills != null && Dungeon.getHero().heroSkills.passiveA1 != null && this instanceof MeleeWeapon && Dungeon.getHero().belongings.weapon == this ) {
+            return level + Dungeon.getHero().heroSkills.passiveB3.weaponLevelBonus(); // <--- Warrior Mastery if present
         }
 
         return level;
@@ -356,9 +356,9 @@ public class Item implements Bundlable {
                 getBroken();
                 if ( levelKnown ) {
                     GLog.n( TXT_BROKEN, name() );
-                    Dungeon.hero.interrupt();
+                    Dungeon.getHero().interrupt();
 
-                    CharSprite sprite = Dungeon.hero.sprite;
+                    CharSprite sprite = Dungeon.getHero().sprite;
                     PointF point = sprite.center().offset( 0, -16 );
                     if ( this instanceof Weapon ) {
                         sprite.parent.add( Degradation.weapon( point ) );
@@ -621,10 +621,10 @@ public class Item implements Bundlable {
                     @Override
                     public void call () {
                         Item.this.detach( user.belongings.backpack ).onThrow( cell );
-                        if ( curUser instanceof Hero && curItem instanceof Arrow && Dungeon.hero.heroSkills.active2.doubleShot() ) // <--- Huntress double shot
+                        if ( curUser instanceof Hero && curItem instanceof Arrow && Dungeon.getHero().heroSkills.active2.doubleShot() ) // <--- Huntress double shot
                         {
-                            if ( Dungeon.hero.heroSkills.passiveB3.passThroughTargets( false ) > 0 ) {
-                                curItem.castSPD( curUser, dstFinal, Dungeon.hero.heroSkills.passiveB3.passThroughTargets( true ) );
+                            if ( Dungeon.getHero().heroSkills.passiveB3.passThroughTargets( false ) > 0 ) {
+                                curItem.castSPD( curUser, dstFinal, Dungeon.getHero().heroSkills.passiveB3.passThroughTargets( true ) );
                             } else {
                                 curItem.cast( curUser, dstFinal );
                             }
@@ -704,10 +704,10 @@ public class Item implements Bundlable {
                     @Override
                     public void call () {
                         Item.this.detach( user.belongings.backpack ).onThrow( cell );
-                        if ( curUser instanceof Hero && curItem instanceof Arrow && Dungeon.hero.heroSkills.active2.doubleShot() ) // <--- Huntress double shot
+                        if ( curUser instanceof Hero && curItem instanceof Arrow && Dungeon.getHero().heroSkills.active2.doubleShot() ) // <--- Huntress double shot
                         {
-                            if ( Dungeon.hero.heroSkills.passiveB3.passThroughTargets( false ) > 0 ) {
-                                curItem.castSPD( curUser, dstFinal, Dungeon.hero.heroSkills.passiveB3.passThroughTargets( true ) );
+                            if ( Dungeon.getHero().heroSkills.passiveB3.passThroughTargets( false ) > 0 ) {
+                                curItem.castSPD( curUser, dstFinal, Dungeon.getHero().heroSkills.passiveB3.passThroughTargets( true ) );
                             } else {
                                 curItem.cast( curUser, dstFinal );
                             }

@@ -29,8 +29,8 @@ public class Acidic extends Scorpio {
         name = "acidic scorpio";
         spriteClass = AcidicSprite.class;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 

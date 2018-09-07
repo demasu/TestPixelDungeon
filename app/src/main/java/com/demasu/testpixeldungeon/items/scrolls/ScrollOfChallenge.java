@@ -39,14 +39,14 @@ public class ScrollOfChallenge extends Scroll {
     @Override
     protected void doRead () {
 
-        for ( Mob mob : Dungeon.level.mobs.toArray( new Mob[0] ) ) {
+        for ( Mob mob : Dungeon.getLevel().mobs.toArray( new Mob[0] ) ) {
             mob.beckon( curUser.pos );
-            if ( Dungeon.visible[mob.pos] ) {
+            if ( Dungeon.getVisible()[mob.pos] ) {
                 Buff.affect( mob, Rage.class, Level.distance( curUser.pos, mob.pos ) );
             }
         }
 
-        for ( Heap heap : Dungeon.level.heaps.values() ) {
+        for ( Heap heap : Dungeon.getLevel().heaps.values() ) {
             if ( heap.type == Heap.Type.MIMIC ) {
                 Mimic m = Mimic.spawnAt( heap.pos, heap.items );
                 if ( m != null ) {

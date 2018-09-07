@@ -94,7 +94,7 @@ public class WndRanking extends WndTabbed {
 
         if ( thread != null && !thread.isAlive() ) {
             thread = null;
-            if ( Dungeon.hero == null ) {
+            if ( Dungeon.getHero() == null ) {
                 error = TXT_ERROR;
             }
             if ( error == null ) {
@@ -170,7 +170,7 @@ public class WndRanking extends WndTabbed {
         public StatsTab () {
             super();
 
-            if ( Dungeon.hero == null ) {
+            if ( Dungeon.getHero() == null ) {
                 IconTitle title = new IconTitle();
                 title.label( "ERROR loading data" );
                 title.setRect( 0, 0, WIDTH, 0 );
@@ -178,21 +178,21 @@ public class WndRanking extends WndTabbed {
                 return;
             }
 
-            String heroClass = Dungeon.hero.className();
+            String heroClass = Dungeon.getHero().className();
 
             IconTitle title = new IconTitle();
-            title.icon( HeroSprite.avatar( Dungeon.hero.getHeroClass(), Dungeon.hero.tier() ) );
-            title.label( Utils.format( TXT_TITLE, Dungeon.hero.lvl, heroClass ).toUpperCase( Locale.ENGLISH ) );
+            title.icon( HeroSprite.avatar( Dungeon.getHero().getHeroClass(), Dungeon.getHero().tier() ) );
+            title.label( Utils.format( TXT_TITLE, Dungeon.getHero().lvl, heroClass ).toUpperCase( Locale.ENGLISH ) );
             title.setRect( 0, 0, WIDTH, 0 );
             add( title );
 
             float pos = title.bottom();
 
-            if ( Dungeon.challenges > 0 ) {
+            if ( Dungeon.getChallenges() > 0 ) {
                 RedButton btnCatalogus = new RedButton( TXT_CHALLENGES ) {
                     @Override
                     protected void onClick () {
-                        Game.scene().add( new WndChallenges( Dungeon.challenges, false ) );
+                        Game.scene().add( new WndChallenges( Dungeon.getChallenges(), false ) );
                     }
                 };
                 btnCatalogus.setRect( 0, pos + GAP, btnCatalogus.reqWidth() + 2, btnCatalogus.reqHeight() + 2 );
@@ -203,8 +203,8 @@ public class WndRanking extends WndTabbed {
 
             pos += GAP + GAP;
 
-            pos = statSlot( this, TXT_STR, Integer.toString( Dungeon.hero.STR ), pos );
-            pos = statSlot( this, TXT_HEALTH, Integer.toString( Dungeon.hero.HT ), pos );
+            pos = statSlot( this, TXT_STR, Integer.toString( Dungeon.getHero().STR ), pos );
+            pos = statSlot( this, TXT_HEALTH, Integer.toString( Dungeon.getHero().HT ), pos );
 
             pos += GAP;
 
@@ -222,7 +222,7 @@ public class WndRanking extends WndTabbed {
             pos = statSlot( this, TXT_ALCHEMY, Integer.toString( Statistics.potionsCooked ), pos );
             pos = statSlot( this, TXT_ANKHS, Integer.toString( Statistics.ankhsUsed ), pos );
 
-            pos = statSlot( this, TXT_DIFF, Difficulties.title( Dungeon.hero.difficulty ), pos );
+            pos = statSlot( this, TXT_DIFF, Difficulties.title( Dungeon.getHero().difficulty ), pos );
         }
 
         private float statSlot ( Group parent, String label, String value, float pos ) {
@@ -249,7 +249,7 @@ public class WndRanking extends WndTabbed {
         public ItemsTab () {
             super();
 
-            if ( Dungeon.hero == null ) {
+            if ( Dungeon.getHero() == null ) {
                 IconTitle title = new IconTitle();
                 title.label( "ERROR loading data" );
                 title.setRect( 0, 0, WIDTH, 0 );
@@ -257,7 +257,7 @@ public class WndRanking extends WndTabbed {
                 return;
             }
 
-            Belongings stuff = Dungeon.hero.belongings;
+            Belongings stuff = Dungeon.getHero().belongings;
             if ( stuff.weapon != null ) {
                 addItem( stuff.weapon );
             }
@@ -305,14 +305,14 @@ public class WndRanking extends WndTabbed {
         }
 
         private Item getQuickslot ( Object value ) {
-            if ( value instanceof Item && Dungeon.hero.belongings.backpack.contains( (Item) value ) ) {
+            if ( value instanceof Item && Dungeon.getHero().belongings.backpack.contains( (Item) value ) ) {
 
                 return (Item) value;
 
             } else if ( value instanceof Class ) {
 
                 @SuppressWarnings ( "unchecked" )
-                Item item = Dungeon.hero.belongings.getItem( (Class<? extends Item>) value );
+                Item item = Dungeon.getHero().belongings.getItem( (Class<? extends Item>) value );
                 if ( item != null ) {
                     return item;
                 }
@@ -327,7 +327,7 @@ public class WndRanking extends WndTabbed {
         public BadgesTab () {
             super();
 
-            if ( Dungeon.hero == null ) {
+            if ( Dungeon.getHero() == null ) {
                 IconTitle title = new IconTitle();
                 title.label( "ERROR loading data" );
                 title.setRect( 0, 0, WIDTH, 0 );

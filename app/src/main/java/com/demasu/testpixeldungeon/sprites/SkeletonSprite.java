@@ -22,7 +22,6 @@ import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
-import com.demasu.testpixeldungeon.items.weapon.missiles.MobProjectile;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.watabou.utils.Callback;
 
@@ -57,7 +56,7 @@ public class SkeletonSprite extends MobSprite {
     @Override
     public void die () {
         super.die();
-        if ( Dungeon.visible[ch.pos] ) {
+        if ( Dungeon.getVisible()[ch.pos] ) {
             emitter().burst( Speck.factory( Speck.BONE ), 6 );
         }
     }

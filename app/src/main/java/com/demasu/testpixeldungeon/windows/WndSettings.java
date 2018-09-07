@@ -139,7 +139,7 @@ public class WndSettings extends Window {
         btnSound.checked( PixelDungeon.soundFx() );
         add( btnSound );
 
-        if ( Dungeon.hero == null || !( Dungeon.hero instanceof Legend ) ) {
+        if ( Dungeon.getHero() == null || !( Dungeon.getHero() instanceof Legend ) ) {
             if ( inGame ) {
 
                 CheckBox btnDeg = new CheckBox( "No Degradation" ) {

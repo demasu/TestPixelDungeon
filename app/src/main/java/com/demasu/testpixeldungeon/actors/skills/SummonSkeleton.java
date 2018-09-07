@@ -79,7 +79,7 @@ public class SummonSkeleton extends ActiveSkill3 {
                 hero.busy();
                 hero.sprite.operate( hero.pos );
             }
-            Dungeon.hero.heroSkills.lastUsed = this;
+            Dungeon.getHero().heroSkills.lastUsed = this;
         }
     }
 

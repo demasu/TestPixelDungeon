@@ -44,16 +44,16 @@ public class Bones {
         item = null;
         switch ( Random.Int( 4 ) ) {
             case 0:
-                item = Dungeon.hero.belongings.weapon;
+                item = Dungeon.getHero().belongings.weapon;
                 break;
             case 1:
-                item = Dungeon.hero.belongings.armor;
+                item = Dungeon.getHero().belongings.armor;
                 break;
             case 2:
-                item = Dungeon.hero.belongings.ring1;
+                item = Dungeon.getHero().belongings.ring1;
                 break;
             case 3:
-                item = Dungeon.hero.belongings.ring2;
+                item = Dungeon.getHero().belongings.ring2;
                 break;
         }
         if ( item == null ) {

@@ -54,8 +54,8 @@ public class Shaman extends Mob implements Callback {
         loot = Generator.Category.SCROLL;
         lootChance = 0.33f;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 
@@ -105,7 +105,7 @@ public class Shaman extends Mob implements Callback {
                 enemy.sprite.centerEmitter().burst( SparkParticle.FACTORY, 3 );
                 enemy.sprite.flash();
 
-                if ( enemy == Dungeon.hero ) {
+                if ( enemy == Dungeon.getHero() ) {
 
                     Camera.main.shake( 2, 0.3f );
 

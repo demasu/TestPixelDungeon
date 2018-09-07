@@ -76,9 +76,9 @@ public class Imp extends NPC {
     @Override
     protected boolean act () {
 
-        if ( !Quest.given && Dungeon.visible[pos] ) {
+        if ( !Quest.given && Dungeon.getVisible()[pos] ) {
             if ( !seenBefore ) {
-                yell( Utils.format( TXT_HEY, Dungeon.hero.className() ) );
+                yell( Utils.format( TXT_HEY, Dungeon.getHero().className() ) );
             }
             seenBefore = true;
         } else {
@@ -116,14 +116,14 @@ public class Imp extends NPC {
     @Override
     public void interact () {
 
-        sprite.turnTo( pos, Dungeon.hero.pos );
+        sprite.turnTo( pos, Dungeon.getHero().pos );
         if ( Quest.given ) {
 
-            DwarfToken tokens = Dungeon.hero.belongings.getItem( DwarfToken.class );
+            DwarfToken tokens = Dungeon.getHero().belongings.getItem( DwarfToken.class );
             if ( tokens != null && ( tokens.quantity() >= 8 || ( !Quest.alternative && tokens.quantity() >= 6 ) ) ) {
                 GameScene.show( new WndImp( this, tokens ) );
             } else {
-                tell( Quest.alternative ? TXT_MONKS2 : TXT_GOLEMS2, Dungeon.hero.className() );
+                tell( Quest.alternative ? TXT_MONKS2 : TXT_GOLEMS2, Dungeon.getHero().className() );
             }
 
         } else {
@@ -142,7 +142,7 @@ public class Imp extends NPC {
 
     public void flee () {
 
-        yell( Utils.format( TXT_CYA, Dungeon.hero.className() ) );
+        yell( Utils.format( TXT_CYA, Dungeon.getHero().className() ) );
 
         destroy();
         sprite.die();
@@ -237,7 +237,7 @@ public class Imp extends NPC {
                 if ( ( alternative && mob instanceof Monk ) ||
                         ( !alternative && mob instanceof Golem ) ) {
 
-                    Dungeon.level.drop( new DwarfToken(), mob.pos ).sprite.drop();
+                    Dungeon.getLevel().drop( new DwarfToken(), mob.pos ).sprite.drop();
                 }
             }
         }

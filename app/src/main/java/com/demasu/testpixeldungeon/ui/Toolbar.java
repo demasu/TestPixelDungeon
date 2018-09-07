@@ -87,11 +87,11 @@ public class Toolbar extends Component {
         add( btnWait = new Tool( 0, 7, 20, 25 ) {
             @Override
             protected void onClick () {
-                Dungeon.hero.rest( false );
+                Dungeon.getHero().rest( false );
             }
 
             protected boolean onLongClick () {
-                Dungeon.hero.rest( true );
+                Dungeon.getHero().rest( true );
                 return true;
             }
 
@@ -128,11 +128,11 @@ public class Toolbar extends Component {
         add( btnLastUsed = new Tool( 40, 7, 20, 25 ) {
             @Override
             protected void onClick () {
-                Dungeon.hero.heroSkills.showLastUsed();
+                Dungeon.getHero().heroSkills.showLastUsed();
             }
 
             protected boolean onLongClick () {
-                Dungeon.hero.heroSkills.showLastUsed();
+                Dungeon.getHero().heroSkills.showLastUsed();
                 return true;
             }
 
@@ -141,7 +141,7 @@ public class Toolbar extends Component {
         add( btnMerc = new Tool( 252, 7, 20, 25 ) {
             @Override
             protected void onClick () {
-                if ( Dungeon.hero.hiredMerc == null ) {
+                if ( Dungeon.getHero().hiredMerc == null ) {
                     //GameScene.show(new WndSkill(null, CurrentSkills.mercMenu));
                     GameScene.show( new WndMercs( WndMercs.Mode.ALL ) );
                 } else {
@@ -151,7 +151,7 @@ public class Toolbar extends Component {
             }
 
             protected boolean onLongClick () {
-                if ( Dungeon.hero.hiredMerc == null ) {
+                if ( Dungeon.getHero().hiredMerc == null ) {
                     GameScene.show( new WndSkill( null, CurrentSkills.mercMenu ) );
                 } else {
                     GameScene.show( new WndMerc( null, null ) );
@@ -178,14 +178,14 @@ public class Toolbar extends Component {
                 if ( !tapAgainToSearch ) {
                     GameScene.selectCell( informer );
                 } else {
-                    Dungeon.hero.search( true );
+                    Dungeon.getHero().search( true );
                 }
                 tapAgainToSearch = !tapAgainToSearch;
             }
 
             @Override
             protected boolean onLongClick () {
-                Dungeon.hero.search( true );
+                Dungeon.getHero().search( true );
                 return true;
             }
         } );
@@ -195,7 +195,7 @@ public class Toolbar extends Component {
 
             @Override
             protected void onClick () {
-                GameScene.show( new WndBag( Dungeon.hero.belongings.backpack, null, WndBag.Mode.ALL, null ) );
+                GameScene.show( new WndBag( Dungeon.getHero().belongings.backpack, null, WndBag.Mode.ALL, null ) );
             }
 
             protected boolean onLongClick () {
@@ -247,15 +247,15 @@ public class Toolbar extends Component {
     public void update () {
         super.update();
 
-        if ( lastEnabled != Dungeon.hero.ready ) {
-            lastEnabled = Dungeon.hero.ready;
+        if ( lastEnabled != Dungeon.getHero().ready ) {
+            lastEnabled = Dungeon.getHero().ready;
 
             for ( Gizmo tool : members ) {
                 if ( tool instanceof Tool ) {
                     ( (Tool) tool ).enable( lastEnabled );
 
                     if ( tool == btnLastUsed ) {
-                        tool.visible = Dungeon.hero.heroSkills.lastUsed != null;
+                        tool.visible = Dungeon.getHero().heroSkills.lastUsed != null;
                     }
                     if ( tool == btnMerc && Dungeon.getDepth() == ColdGirl.FROST_DEPTH ) {
                         ( (Tool) tool ).enable( false );
@@ -264,7 +264,7 @@ public class Toolbar extends Component {
             }
         }
 
-        if ( !Dungeon.hero.isAlive() ) {
+        if ( !Dungeon.getHero().isAlive() ) {
             btnInventory.enable( true );
         }
     }
@@ -296,17 +296,17 @@ public class Toolbar extends Component {
                 return;
             }
 
-            if ( cell < 0 || cell > Level.LENGTH || ( !Dungeon.level.visited[cell] && !Dungeon.level.mapped[cell] ) ) {
+            if ( cell < 0 || cell > Level.LENGTH || ( !Dungeon.getLevel().visited[cell] && !Dungeon.getLevel().mapped[cell] ) ) {
                 GameScene.show( new WndMessage( "You don't know what is there." ) );
                 return;
             }
 
-            if ( !Dungeon.visible[cell] ) {
+            if ( !Dungeon.getVisible()[cell] ) {
                 GameScene.show( new WndInfoCell( cell ) );
                 return;
             }
 
-            if ( cell == Dungeon.hero.pos ) {
+            if ( cell == Dungeon.getHero().pos ) {
                 GameScene.show( new WndHero() );
                 return;
             }
@@ -317,7 +317,7 @@ public class Toolbar extends Component {
                 return;
             }
 
-            Heap heap = Dungeon.level.heaps.get( cell );
+            Heap heap = Dungeon.getLevel().heaps.get( cell );
             if ( heap != null && heap.type != Heap.Type.HIDDEN ) {
                 if ( heap.type == Heap.Type.FOR_SALE && heap.size() == 1 && heap.peek().price() > 0 ) {
                     GameScene.show( new WndTradeItem( heap, false ) );
@@ -327,7 +327,7 @@ public class Toolbar extends Component {
                 return;
             }
 
-            Plant plant = Dungeon.level.plants.get( cell );
+            Plant plant = Dungeon.getLevel().plants.get( cell );
             if ( plant != null ) {
                 GameScene.show( new WndInfoPlant( plant ) );
                 return;

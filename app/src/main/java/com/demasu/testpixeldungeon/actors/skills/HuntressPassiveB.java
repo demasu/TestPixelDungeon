@@ -43,16 +43,16 @@ public class HuntressPassiveB extends BranchSkill {
 
     @Override
     protected int totalSpent () {
-        return Dungeon.hero.heroSkills.totalSpent( CurrentSkills.BRANCHES.PASSIVEB );
+        return Dungeon.getHero().heroSkills.totalSpent( CurrentSkills.BRANCHES.PASSIVEB );
     }
 
     @Override
     protected int nextUpgradeCost () {
-        return Dungeon.hero.heroSkills.nextUpgradeCost( CurrentSkills.BRANCHES.PASSIVEB );
+        return Dungeon.getHero().heroSkills.nextUpgradeCost( CurrentSkills.BRANCHES.PASSIVEB );
     }
 
     @Override
     protected boolean canUpgrade () {
-        return Dungeon.hero.heroSkills.canUpgrade( CurrentSkills.BRANCHES.PASSIVEB );
+        return Dungeon.getHero().heroSkills.canUpgrade( CurrentSkills.BRANCHES.PASSIVEB );
     }
 }

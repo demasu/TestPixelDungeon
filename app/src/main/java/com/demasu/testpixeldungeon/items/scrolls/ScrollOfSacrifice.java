@@ -29,16 +29,16 @@ public class ScrollOfSacrifice extends Scroll {
     @Override
     protected void doRead () {
 
-        Dungeon.hero.STR++;
-        if ( Dungeon.hero.HT > 3 ) {
+        Dungeon.getHero().STR++;
+        if ( Dungeon.getHero().HT > 3 ) {
 
-            Dungeon.hero.HT -= 3;
+            Dungeon.getHero().HT -= 3;
         } else {
-            Dungeon.hero.HT = 1;
+            Dungeon.getHero().HT = 1;
         }
 
-        if ( Dungeon.hero.HP > Dungeon.hero.HT ) {
-            Dungeon.hero.HP = Dungeon.hero.HT;
+        if ( Dungeon.getHero().HP > Dungeon.getHero().HT ) {
+            Dungeon.getHero().HP = Dungeon.getHero().HT;
         }
 
         GLog.w( "The scroll boosts your strength, but at a cost!" );

@@ -32,7 +32,7 @@ public class PotionOfToxicGas extends Potion {
 
     @Override
     public void shatter ( int cell ) {
-        if ( Dungeon.visible[cell] ) {
+        if ( Dungeon.getVisible()[cell] ) {
             setKnown();
 
             splash( cell );

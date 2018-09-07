@@ -41,7 +41,7 @@ public class ScrollOfEnchantment extends InventoryScroll {
     @Override
     protected void onItemSelected ( Item item ) {
 
-        ScrollOfRemoveCurse.uncurse( Dungeon.hero, item );
+        ScrollOfRemoveCurse.uncurse( Dungeon.getHero(), item );
 
 
         if ( item instanceof Bow ) {
@@ -50,7 +50,7 @@ public class ScrollOfEnchantment extends InventoryScroll {
             if ( curUser.belongings.bow != null ) {
                 curUser.belongings.bow = newBow;
             } else {
-                item.detach( Dungeon.hero.belongings.backpack );
+                item.detach( Dungeon.getHero().belongings.backpack );
                 newBow.collect();
             }
 

@@ -359,11 +359,11 @@ public class StartScene extends PixelScene {
 
     private void startNewGame ( int diff ) {
 
-        Dungeon.hero = null;
+        Dungeon.setHero( null );
         diff = Difficulties.getNormalizedDifficulty( diff );
-        Dungeon.difficulty = diff;
-        Dungeon.currentDifficulty = Difficulties.values()[diff];
-        Dungeon.currentDifficulty.reset();
+        Dungeon.setDifficulty( diff );
+        Dungeon.setCurrentDifficulty( Difficulties.values()[diff] );
+        Dungeon.getCurrentDifficulty().reset();
         InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
         MissionScene.scenePause = false;
         if ( PixelDungeon.intro() ) {

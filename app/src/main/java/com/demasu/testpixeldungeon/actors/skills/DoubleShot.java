@@ -30,12 +30,12 @@ public class DoubleShot extends ActiveSkill2 {
 
     @Override
     public boolean doubleShot () {
-        if ( !active || Dungeon.hero.MP < getManaCost() ) {
+        if ( !active || Dungeon.getHero().MP < getManaCost() ) {
             return false;
         } else if ( !onDouble ) {
             onDouble = true;
             castTextYell();
-            Dungeon.hero.MP -= getManaCost();
+            Dungeon.getHero().MP -= getManaCost();
             StatusPane.manaDropping += getManaCost();
             return true;
         }

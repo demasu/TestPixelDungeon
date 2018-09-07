@@ -190,7 +190,7 @@ public class CityBossLevel extends Level {
 
         super.press( cell, hero );
 
-        if ( !enteredArena && outsideEntraceRoom( cell ) && hero == Dungeon.hero ) {
+        if ( !enteredArena && outsideEntraceRoom( cell ) && hero == Dungeon.getHero() ) {
 
             enteredArena = true;
 
@@ -202,10 +202,10 @@ public class CityBossLevel extends Level {
             } while (
                     !passable[boss.pos] ||
                             !outsideEntraceRoom( boss.pos ) ||
-                            ( Dungeon.visible[boss.pos] && count++ < 20 ) );
+                            ( Dungeon.getVisible()[boss.pos] && count++ < 20 ) );
             GameScene.add( boss );
 
-            if ( Dungeon.visible[boss.pos] ) {
+            if ( Dungeon.getVisible()[boss.pos] ) {
                 boss.notice();
                 boss.sprite.alpha( 0 );
                 boss.sprite.parent.add( new AlphaTweener( boss.sprite, 1, 0.1f ) );

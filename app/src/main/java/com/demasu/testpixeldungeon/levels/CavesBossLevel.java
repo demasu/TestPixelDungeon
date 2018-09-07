@@ -231,7 +231,7 @@ public class CavesBossLevel extends Level {
 
         super.press( cell, hero );
 
-        if ( !enteredArena && outsideEntraceRoom( cell ) && hero == Dungeon.hero ) {
+        if ( !enteredArena && outsideEntraceRoom( cell ) && hero == Dungeon.getHero() ) {
 
             enteredArena = true;
 
@@ -242,7 +242,7 @@ public class CavesBossLevel extends Level {
             } while (
                     !passable[boss.pos] ||
                             !outsideEntraceRoom( boss.pos ) ||
-                            Dungeon.visible[boss.pos] );
+                            Dungeon.getVisible()[boss.pos] );
             GameScene.add( boss );
 
             set( arenaDoor, Terrain.WALL );

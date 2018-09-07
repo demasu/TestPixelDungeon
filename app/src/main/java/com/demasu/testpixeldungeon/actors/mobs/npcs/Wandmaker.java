@@ -90,7 +90,7 @@ public class Wandmaker extends NPC {
 
     @Override
     public void interact () {
-        sprite.turnTo( pos, Dungeon.hero.pos );
+        sprite.turnTo( pos, Dungeon.getHero().pos );
         Quest.type.handler.interact( this );
     }
 
@@ -275,7 +275,7 @@ public class Wandmaker extends NPC {
                 if ( item != null ) {
                     GameScene.show( new WndWandmaker( wandmaker, item ) );
                 } else {
-                    wandmaker.tell( txtQuest2, Dungeon.hero.className() );
+                    wandmaker.tell( txtQuest2, Dungeon.getHero().className() );
                 }
 
             } else {
@@ -306,16 +306,16 @@ public class Wandmaker extends NPC {
 
         @Override
         protected Item checkItem () {
-            return Dungeon.hero.belongings.getItem( Rotberry.Seed.class );
+            return Dungeon.getHero().belongings.getItem( Rotberry.Seed.class );
         }
 
         @Override
         protected void placeItem () {
-            int shrubPos = Dungeon.level.randomRespawnCell();
-            while ( Dungeon.level.heaps.get( shrubPos ) != null ) {
-                shrubPos = Dungeon.level.randomRespawnCell();
+            int shrubPos = Dungeon.getLevel().randomRespawnCell();
+            while ( Dungeon.getLevel().heaps.get( shrubPos ) != null ) {
+                shrubPos = Dungeon.getLevel().randomRespawnCell();
             }
-            Dungeon.level.plant( new Rotberry.Seed(), shrubPos );
+            Dungeon.getLevel().plant( new Rotberry.Seed(), shrubPos );
         }
     };
 
@@ -332,14 +332,14 @@ public class Wandmaker extends NPC {
 
         @Override
         protected Item checkItem () {
-            return Dungeon.hero.belongings.getItem( CorpseDust.class );
+            return Dungeon.getHero().belongings.getItem( CorpseDust.class );
         }
 
         @Override
         protected void placeItem () {
             ArrayList<Heap> candidates = new ArrayList<Heap>();
-            for ( Heap heap : Dungeon.level.heaps.values() ) {
-                if ( heap.type == Heap.Type.SKELETON && !Dungeon.visible[heap.pos] ) {
+            for ( Heap heap : Dungeon.getLevel().heaps.values() ) {
+                if ( heap.type == Heap.Type.SKELETON && !Dungeon.getVisible()[heap.pos] ) {
                     candidates.add( heap );
                 }
             }
@@ -347,12 +347,12 @@ public class Wandmaker extends NPC {
             if ( candidates.size() > 0 ) {
                 Random.element( candidates ).drop( new CorpseDust() );
             } else {
-                int pos = Dungeon.level.randomRespawnCell();
-                while ( Dungeon.level.heaps.get( pos ) != null ) {
-                    pos = Dungeon.level.randomRespawnCell();
+                int pos = Dungeon.getLevel().randomRespawnCell();
+                while ( Dungeon.getLevel().heaps.get( pos ) != null ) {
+                    pos = Dungeon.getLevel().randomRespawnCell();
                 }
 
-                Heap heap = Dungeon.level.drop( new CorpseDust(), pos );
+                Heap heap = Dungeon.getLevel().drop( new CorpseDust(), pos );
                 heap.type = Heap.Type.SKELETON;
                 heap.sprite.link();
             }
@@ -372,7 +372,7 @@ public class Wandmaker extends NPC {
 
         @Override
         protected Item checkItem () {
-            return Dungeon.hero.belongings.getItem( PhantomFish.class );
+            return Dungeon.getHero().belongings.getItem( PhantomFish.class );
         }
 
         @Override
@@ -381,19 +381,19 @@ public class Wandmaker extends NPC {
             for ( int i = 0; i < 100; i++ ) {
                 int pos = Random.Int( Level.LENGTH );
                 if ( Level.water[pos] ) {
-                    heap = Dungeon.level.drop( new PhantomFish(), pos );
+                    heap = Dungeon.getLevel().drop( new PhantomFish(), pos );
                     heap.type = Heap.Type.HIDDEN;
                     heap.sprite.link();
                     return;
                 }
             }
             if ( heap == null ) {
-                int pos = Dungeon.level.randomRespawnCell();
-                while ( Dungeon.level.heaps.get( pos ) != null ) {
-                    pos = Dungeon.level.randomRespawnCell();
+                int pos = Dungeon.getLevel().randomRespawnCell();
+                while ( Dungeon.getLevel().heaps.get( pos ) != null ) {
+                    pos = Dungeon.getLevel().randomRespawnCell();
                 }
 
-                Dungeon.level.drop( new PhantomFish(), pos );
+                Dungeon.getLevel().drop( new PhantomFish(), pos );
             }
         }
     };

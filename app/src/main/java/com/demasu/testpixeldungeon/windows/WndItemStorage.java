@@ -65,13 +65,13 @@ public class WndItemStorage extends Window {
         float y = info.y + info.height() + GAP;
         float x = 0;
 
-        if ( Dungeon.hero.isAlive() && owner != null ) {
+        if ( Dungeon.getHero().isAlive() && owner != null ) {
 
 
             RedButton btn = new RedButton( "Take from storage" ) {
                 @Override
                 protected void onClick () {
-                    item.execute( Dungeon.hero, Item.AC_STORE_TAKE );
+                    item.execute( Dungeon.getHero(), Item.AC_STORE_TAKE );
                     hide();
                     owner.hide();
                 }

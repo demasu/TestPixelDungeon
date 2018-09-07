@@ -40,7 +40,7 @@ public class Regrowth extends Blob {
 
             for ( int i = 0; i < LENGTH; i++ ) {
                 if ( off[i] > 0 ) {
-                    int c = Dungeon.level.map[i];
+                    int c = Dungeon.getLevel().map[i];
                     int c1 = c;
                     if ( c == Terrain.EMPTY || c == Terrain.EMBERS || c == Terrain.EMPTY_DECO ) {
                         c1 = cur[i] > 9 ? Terrain.HIGH_GRASS : Terrain.GRASS;
@@ -53,7 +53,7 @@ public class Regrowth extends Blob {
                         mapUpdated = true;
 
                         GameScene.updateMap( i );
-                        if ( Dungeon.visible[i] ) {
+                        if ( Dungeon.getVisible()[i] ) {
                             GameScene.discoverTile( i, c );
                         }
                     }

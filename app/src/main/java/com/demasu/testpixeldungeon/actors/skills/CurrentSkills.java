@@ -46,7 +46,7 @@ public enum CurrentSkills {
     }
 
     public void init () {
-        init( Dungeon.hero );
+        init( Dungeon.getHero() );
     }
 
     public void init ( Hero hero ) {

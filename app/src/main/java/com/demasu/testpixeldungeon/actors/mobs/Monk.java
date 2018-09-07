@@ -49,8 +49,8 @@ public class Monk extends Mob {
         loot = new Food();
         lootChance = 0.083f;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 
@@ -89,14 +89,14 @@ public class Monk extends Mob {
     @Override
     public int attackProc ( Char enemy, int damage ) {
 
-        if ( Random.Int( 6 ) == 0 && enemy == Dungeon.hero ) {
+        if ( Random.Int( 6 ) == 0 && enemy == Dungeon.getHero() ) {
 
-            Hero hero = Dungeon.hero;
+            Hero hero = Dungeon.getHero();
             KindOfWeapon weapon = hero.belongings.weapon;
 
             if ( weapon != null && !( weapon instanceof Knuckles ) && !weapon.cursed ) {
                 hero.belongings.weapon = null;
-                Dungeon.level.drop( weapon, hero.pos ).sprite.drop();
+                Dungeon.getLevel().drop( weapon, hero.pos ).sprite.drop();
                 GLog.w( TXT_DISARM, name, weapon.name() );
             }
         }

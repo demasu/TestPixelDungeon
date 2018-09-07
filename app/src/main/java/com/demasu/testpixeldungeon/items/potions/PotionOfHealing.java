@@ -37,8 +37,8 @@ public class PotionOfHealing extends Potion {
     @Override
     protected void apply ( Hero hero ) {
         setKnown();
-        heal( Dungeon.hero, Dungeon.currentDifficulty.healingPotionLimit() );
-        GLog.p( Dungeon.currentDifficulty.healingPotionMessage() );
+        heal( Dungeon.getHero(), Dungeon.getCurrentDifficulty().healingPotionLimit() );
+        GLog.p( Dungeon.getCurrentDifficulty().healingPotionMessage() );
         StatusPane.takingDamage = 0;
     }
 

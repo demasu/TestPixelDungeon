@@ -43,8 +43,8 @@ public class FetidRat extends Mob {
 
         state = WANDERING;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 
@@ -80,7 +80,7 @@ public class FetidRat extends Mob {
     public void die ( Object cause ) {
         super.die( cause );
 
-        Dungeon.level.drop( new RatSkull(), pos ).sprite.drop();
+        Dungeon.getLevel().drop( new RatSkull(), pos ).sprite.drop();
     }
 
     @Override

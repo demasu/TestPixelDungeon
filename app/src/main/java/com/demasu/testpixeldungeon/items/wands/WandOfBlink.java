@@ -46,7 +46,7 @@ public class WandOfBlink extends Wand {
         }
 
         curUser.sprite.visible = true;
-        appear( Dungeon.hero, cell );
+        appear( Dungeon.getHero(), cell );
         Dungeon.observe();
     }
 

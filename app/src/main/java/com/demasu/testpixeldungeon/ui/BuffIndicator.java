@@ -81,7 +81,7 @@ public class BuffIndicator extends Component {
         super();
 
         this.ch = ch;
-        if ( ch == Dungeon.hero ) {
+        if ( ch == Dungeon.getHero() ) {
             heroInstance = this;
         }
     }

@@ -52,8 +52,8 @@ public class PotionOfPurity extends Potion {
         boolean procd = false;
 
         Blob[] blobs = {
-                Dungeon.level.blobs.get( ToxicGas.class ),
-                Dungeon.level.blobs.get( ParalyticGas.class )
+                Dungeon.getLevel().blobs.get( ToxicGas.class ),
+                Dungeon.getLevel().blobs.get( ParalyticGas.class )
         };
 
         for ( int j = 0; j < blobs.length; j++ ) {
@@ -73,7 +73,7 @@ public class PotionOfPurity extends Potion {
                         blob.volume -= value;
                         procd = true;
 
-                        if ( Dungeon.visible[i] ) {
+                        if ( Dungeon.getVisible()[i] ) {
                             CellEmitter.get( i ).burst( Speck.factory( Speck.DISCOVER ), 1 );
                         }
                     }
@@ -82,11 +82,11 @@ public class PotionOfPurity extends Potion {
             }
         }
 
-        boolean heroAffected = PathFinder.distance[Dungeon.hero.pos] < Integer.MAX_VALUE;
+        boolean heroAffected = PathFinder.distance[Dungeon.getHero().pos] < Integer.MAX_VALUE;
 
         if ( procd ) {
 
-            if ( Dungeon.visible[cell] ) {
+            if ( Dungeon.getVisible()[cell] ) {
                 splash( cell );
                 Sample.INSTANCE.play( Assets.SND_SHATTER );
             }

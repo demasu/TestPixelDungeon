@@ -56,8 +56,8 @@ public class Goo extends Mob {
         loot = new LloydsBeacon();
         lootChance = 0.333f;
 
-        name = Dungeon.currentDifficulty.mobPrefix() + name;
-        HT *= Dungeon.currentDifficulty.mobHPModifier();
+        name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
+        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
 
@@ -130,12 +130,12 @@ public class Goo extends Mob {
                         @Override
                         public void call () {
                             move( dest );
-                            Dungeon.level.mobPress( Goo.this );
+                            Dungeon.getLevel().mobPress( Goo.this );
                             Goo.super.doAttack( enemy );
                         }
                     };
 
-                    if ( Dungeon.visible[pos] || Dungeon.visible[dest] ) {
+                    if ( Dungeon.getVisible()[pos] || Dungeon.getVisible()[dest] ) {
 
                         sprite.jump( pos, dest, afterJump );
                         return false;
@@ -167,7 +167,7 @@ public class Goo extends Mob {
 
             ( (GooSprite) sprite ).pumpUp();
 
-            if ( Dungeon.visible[pos] ) {
+            if ( Dungeon.getVisible()[pos] ) {
                 sprite.showStatus( CharSprite.NEGATIVE, "!!!" );
                 GLog.n( "Goo is pumping itself up!" );
             }
@@ -191,7 +191,7 @@ public class Goo extends Mob {
 
     @Override
     public void move ( int step ) {
-        ( (SewerBossLevel) Dungeon.level ).seal();
+        ( (SewerBossLevel) Dungeon.getLevel() ).seal();
         super.move( step );
     }
 
@@ -200,10 +200,10 @@ public class Goo extends Mob {
 
         super.die( cause );
 
-        ( (SewerBossLevel) Dungeon.level ).unseal();
+        ( (SewerBossLevel) Dungeon.getLevel() ).unseal();
 
         GameScene.bossSlain();
-        Dungeon.level.drop( new SkeletonKey(), pos ).sprite.drop();
+        Dungeon.getLevel().drop( new SkeletonKey(), pos ).sprite.drop();
 
         Badges.validateBossSlain();
 

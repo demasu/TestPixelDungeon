@@ -155,7 +155,7 @@ public class ItemSprite extends MovieClip {
     public void update () {
         super.update();
 
-        visible = ( heap == null || Dungeon.visible[heap.pos] );
+        visible = ( heap == null || Dungeon.getVisible()[heap.pos] );
 
         if ( dropInterval > 0 && ( dropInterval -= Game.elapsed ) <= 0 ) {
 
@@ -169,7 +169,7 @@ public class ItemSprite extends MovieClip {
                 if ( water ) {
                     GameScene.ripple( heap.pos );
                 } else {
-                    int cell = Dungeon.level.map[heap.pos];
+                    int cell = Dungeon.getLevel().map[heap.pos];
                     water = ( cell == Terrain.WELL || cell == Terrain.ALCHEMY );
                 }
 

@@ -28,11 +28,11 @@ public class Bombvoyage extends ActiveSkill3 {
 
     @Override
     public boolean arrowToBomb () {
-        if ( !active || Dungeon.hero.MP < getManaCost() ) {
+        if ( !active || Dungeon.getHero().MP < getManaCost() ) {
             return false;
         } else {
             castTextYell();
-            Dungeon.hero.MP -= getManaCost();
+            Dungeon.getHero().MP -= getManaCost();
             StatusPane.manaDropping += getManaCost();
             return true;
         }

@@ -198,11 +198,11 @@ public class Potion extends Item {
 
     @Override
     protected void onThrow ( int cell ) {
-        if ( Dungeon.hero.pos == cell ) {
+        if ( Dungeon.getHero().pos == cell ) {
 
-            apply( Dungeon.hero );
+            apply( Dungeon.getHero() );
 
-        } else if ( Dungeon.level.map[cell] == Terrain.WELL || Level.pit[cell] ) {
+        } else if ( Dungeon.getLevel().map[cell] == Terrain.WELL || Level.pit[cell] ) {
 
             super.onThrow( cell );
 
@@ -218,7 +218,7 @@ public class Potion extends Item {
     }
 
     public void shatter ( int cell ) {
-        if ( Dungeon.visible[cell] ) {
+        if ( Dungeon.getVisible()[cell] ) {
             GLog.i( "The flask shatters and " + color() + " liquid splashes harmlessly" );
             Sample.INSTANCE.play( Assets.SND_SHATTER );
             splash( cell );

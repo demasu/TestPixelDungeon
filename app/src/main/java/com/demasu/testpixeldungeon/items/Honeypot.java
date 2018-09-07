@@ -78,7 +78,7 @@ public class Honeypot extends Item {
     private void shatter ( int pos ) {
         Sample.INSTANCE.play( Assets.SND_SHATTER );
 
-        if ( Dungeon.visible[pos] ) {
+        if ( Dungeon.getVisible()[pos] ) {
             Splash.at( pos, 0xffd500, 5 );
         }
 

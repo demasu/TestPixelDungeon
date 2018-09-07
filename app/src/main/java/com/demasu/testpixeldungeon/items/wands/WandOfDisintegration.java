@@ -61,10 +61,10 @@ public class WandOfDisintegration extends Wand {
                 chars.add( ch );
             }
 
-            int terr = Dungeon.level.map[c];
+            int terr = Dungeon.getLevel().map[c];
             if ( terr == Terrain.DOOR || terr == Terrain.SIGN ) {
 
-                Dungeon.level.destroy( c );
+                Dungeon.getLevel().destroy( c );
                 GameScene.updateMap( c );
                 terrainAffected = true;
 
@@ -86,7 +86,7 @@ public class WandOfDisintegration extends Wand {
         int lvl = level + chars.size();
         int dmgMin = lvl;
         int dmgMax = 8 + lvl * lvl / 3;
-        dmgMax *= Dungeon.hero.heroSkills.passiveB2.wandDamageBonus();
+        dmgMax *= Dungeon.getHero().heroSkills.passiveB2.wandDamageBonus();
         for ( Char ch : chars ) {
             ch.damage( Random.NormalIntRange( dmgMin, dmgMax ), this );
             ch.sprite.centerEmitter().burst( PurpleParticle.BURST, Random.IntRange( 1, 2 ) );

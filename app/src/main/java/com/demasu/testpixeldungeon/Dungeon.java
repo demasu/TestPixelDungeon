@@ -81,36 +81,36 @@ public class Dungeon {
 
     private static int potionOfStrength;
     private static int scrollsOfUpgrade;
-    public static int scrollsOfEnchantment;
-    public static boolean dewVial;        // true if the dew vial can be spawned
+    private static int scrollsOfEnchantment;
+    private static boolean dewVial;        // true if the dew vial can be spawned
 
-    public static int challenges;
+    private static int challenges;
 
-    public static Hero hero;
-    public static Level level;
+    private static Hero hero;
+    private static Level level;
 
     private static int depth;
     private static int gold;
 
 
-    public static int difficulty;
-    public static Difficulties currentDifficulty;
+    private static int difficulty;
+    private static Difficulties currentDifficulty;
 
     // Reason of death
-    public static String resultDescription;
+    private static String resultDescription;
 
-    public static HashSet<Integer> chapters;
+    private static HashSet<Integer> chapters;
 
     // Hero's field of view
-    public static boolean[] visible = new boolean[Level.LENGTH];
+    private static boolean[] visible = new boolean[Level.LENGTH];
 
-    public static boolean nightMode;
+    private static boolean nightMode;
 
-    public static SparseArray<ArrayList<Item>> droppedItems;
+    private static SparseArray<ArrayList<Item>> droppedItems;
 
     public static void init () {
 
-        challenges = PixelDungeon.challenges();
+        setChallenges( PixelDungeon.challenges() );
 
         Actor.clear();
 
@@ -127,14 +127,14 @@ public class Dungeon {
         setDepth( 0 );
         setGold( 0 );
 
-        droppedItems = new SparseArray<ArrayList<Item>>();
+        setDroppedItems( new SparseArray<ArrayList<Item>>() );
 
         setPotionOfStrength( 0 );
         setScrollsOfUpgrade( 0 );
-        scrollsOfEnchantment = 0;
-        dewVial = true;
+        setScrollsOfEnchantment( 0 );
+        setDewVial( true );
 
-        chapters = new HashSet<Integer>();
+        setChapters( new HashSet<Integer>() );
 
         Ghost.Quest.reset();
         Wandmaker.Quest.reset();
@@ -146,13 +146,13 @@ public class Dungeon {
         QuickSlot.primaryValue = null;
         QuickSlot.secondaryValue = null;
 
-        hero = new Hero();
-        hero.difficulty = difficulty;
-        hero.live();
+        setHero( new Hero() );
+        getHero().difficulty = getDifficulty();
+        getHero().live();
 
         Badges.reset();
 
-        StartScene.curClass.initHero( hero );
+        StartScene.curClass.initHero( getHero() );
 
     }
 
@@ -174,7 +174,7 @@ public class Dungeon {
 
     public static void initLegend () {
 
-        challenges = PixelDungeon.challenges();
+        setChallenges( PixelDungeon.challenges() );
 
         Actor.clear();
 
@@ -191,14 +191,14 @@ public class Dungeon {
         setDepth( 0 );
         setGold( 0 );
 
-        droppedItems = new SparseArray<ArrayList<Item>>();
+        setDroppedItems( new SparseArray<ArrayList<Item>>() );
 
         setPotionOfStrength( 0 );
         setScrollsOfUpgrade( 0 );
-        scrollsOfEnchantment = 0;
-        dewVial = true;
+        setScrollsOfEnchantment( 0 );
+        setDewVial( true );
 
-        chapters = new HashSet<Integer>();
+        setChapters( new HashSet<Integer>() );
 
         Ghost.Quest.reset();
         Wandmaker.Quest.reset();
@@ -210,26 +210,26 @@ public class Dungeon {
         QuickSlot.primaryValue = null;
         QuickSlot.secondaryValue = null;
 
-        hero = new Legend();
-        hero.difficulty = difficulty;
-        hero.live();
+        setHero( new Legend() );
+        getHero().difficulty = getDifficulty();
+        getHero().live();
 
         Badges.reset();
 
         StartScene.curClass = HeroClass.HATSUNE;
-        StartScene.curClass.initHero( hero );
-        hero.heroSkills = CurrentSkills.HATSUNE;
-        hero.heroSkills.init();
+        StartScene.curClass.initHero( getHero() );
+        getHero().heroSkills = CurrentSkills.HATSUNE;
+        getHero().heroSkills.init();
 
     }
 
     public static boolean isChallenged ( int mask ) {
-        return ( challenges & mask ) != 0;
+        return ( getChallenges() & mask ) != 0;
     }
 
     public static Level newLevel () {
 
-        Dungeon.level = null;
+        Dungeon.setLevel( null );
         Actor.clear();
 
         setDepth( getDepth() + 1 );
@@ -239,7 +239,7 @@ public class Dungeon {
             Statistics.completedWithNoKilling = Statistics.qualifiedForNoKilling;
         }
 
-        Arrays.fill( visible, false );
+        Arrays.fill( getVisible(), false );
 
         Level level;
         switch ( getDepth() ) {
@@ -312,10 +312,10 @@ public class Dungeon {
 
         Actor.clear();
 
-        Arrays.fill( visible, false );
+        Arrays.fill( getVisible(), false );
 
-        level.reset();
-        switchLevel( level, level.entrance );
+        getLevel().reset();
+        switchLevel( getLevel(), getLevel().entrance );
     }
 
     public static boolean shopOnLevel () {
@@ -333,19 +333,19 @@ public class Dungeon {
     @SuppressWarnings ( "deprecation" )
     public static void switchLevel ( final Level level, int pos ) {
 
-        nightMode = new Date().getHours() < 7;
+        setNightMode( new Date().getHours() < 7 );
 
         try {
-            if ( Dungeon.currentDifficulty.isNight == Difficulties.isNightOverwrite.ALWAYS_NIGHT ) {
-                nightMode = true;
+            if ( Dungeon.getCurrentDifficulty().isNight == Difficulties.isNightOverwrite.ALWAYS_NIGHT ) {
+                setNightMode( true );
             }
-            if ( Dungeon.currentDifficulty.isNight == Difficulties.isNightOverwrite.ALWAYS_DAY ) {
-                nightMode = false;
+            if ( Dungeon.getCurrentDifficulty().isNight == Difficulties.isNightOverwrite.ALWAYS_DAY ) {
+                setNightMode( false );
             }
         } catch ( Exception e ) {
 
         }
-        Dungeon.level = level;
+        Dungeon.setLevel( level );
         Actor.init();
 
 
@@ -354,8 +354,8 @@ public class Dungeon {
             Actor.add( level.respawner() );
         }
 
-        if ( hero.hiredMerc != null ) {
-            hero.checkMerc = true;
+        if ( getHero().hiredMerc != null ) {
+            getHero().checkMerc = true;
         }
         if ( getDepth() != ColdGirl.FROST_DEPTH && getDepth() != 0 ) {
             Actor mercRespawn = level.mercRespawner();
@@ -363,19 +363,19 @@ public class Dungeon {
                 Actor.add( mercRespawn );
             }
         }
-        hero.pos = pos != -1 ? pos : level.exit;
+        getHero().pos = pos != -1 ? pos : level.exit;
 
-        Light light = hero.buff( Light.class );
-        hero.viewDistance = light == null ? level.viewDistance : Math.max( Light.DISTANCE, level.viewDistance );
+        Light light = getHero().buff( Light.class );
+        getHero().viewDistance = light == null ? level.viewDistance : Math.max( Light.DISTANCE, level.viewDistance );
 
         observe();
     }
 
     public static void dropToChasm ( Item item ) {
         int depth = Dungeon.getDepth() + 1;
-        ArrayList<Item> dropped = (ArrayList<Item>) Dungeon.droppedItems.get( depth );
+        ArrayList<Item> dropped = (ArrayList<Item>) Dungeon.getDroppedItems().get( depth );
         if ( dropped == null ) {
-            Dungeon.droppedItems.put( depth, dropped = new ArrayList<Item>() );
+            Dungeon.getDroppedItems().put( depth, dropped = new ArrayList<Item>() );
         }
         dropped.add( item );
     }
@@ -391,7 +391,7 @@ public class Dungeon {
     }
 
     public static boolean soeNeeded () {
-        return Random.Int( 12 * ( 1 + scrollsOfEnchantment ) ) < getDepth();
+        return Random.Int( 12 * ( 1 + getScrollsOfEnchantment() ) ) < getDepth();
     }
 
     private static boolean chance ( int[] quota, int number ) {
@@ -465,23 +465,23 @@ public class Dungeon {
             Bundle bundle = new Bundle();
 
             bundle.put( VERSION, Game.version );
-            bundle.put( CHALLENGES, challenges );
-            bundle.put( HERO, hero );
+            bundle.put( CHALLENGES, getChallenges() );
+            bundle.put( HERO, getHero() );
             bundle.put( GOLD, getGold() );
             bundle.put( DEPTH, getDepth() );
 
-            for ( int d : droppedItems.keyArray() ) {
-                bundle.put( String.format( Locale.US, DROPPED, d ), droppedItems.get( d ) );
+            for ( int d : getDroppedItems().keyArray() ) {
+                bundle.put( String.format( Locale.US, DROPPED, d ), getDroppedItems().get( d ) );
             }
 
             bundle.put( POS, getPotionOfStrength() );
             bundle.put( SOU, getScrollsOfUpgrade() );
-            bundle.put( SOE, scrollsOfEnchantment );
-            bundle.put( DV, dewVial );
+            bundle.put( SOE, getScrollsOfEnchantment() );
+            bundle.put( DV, isDewVial() );
 
             int count = 0;
-            int ids[] = new int[chapters.size()];
-            for ( Integer id : chapters ) {
+            int ids[] = new int[getChapters().size()];
+            for ( Integer id : getChapters() ) {
                 ids[count++] = id;
             }
             bundle.put( CHAPTERS, ids );
@@ -515,27 +515,27 @@ public class Dungeon {
 
         } catch ( Exception e ) {
 
-            GamesInProgress.setUnknown( hero.getHeroClass() );
+            GamesInProgress.setUnknown( getHero().getHeroClass() );
         }
     }
 
     public static void saveLevel () throws IOException {
         Bundle bundle = new Bundle();
-        bundle.put( LEVEL, level );
+        bundle.put( LEVEL, getLevel() );
 
-        OutputStream output = Game.instance.openFileOutput( Utils.format( depthFile( hero.getHeroClass() ), getDepth() ), Game.MODE_PRIVATE );
+        OutputStream output = Game.instance.openFileOutput( Utils.format( depthFile( getHero().getHeroClass() ), getDepth() ), Game.MODE_PRIVATE );
         Bundle.write( bundle, output );
         output.close();
     }
 
     public static void saveAll () throws IOException {
-        if ( hero.isAlive() ) {
+        if ( getHero().isAlive() ) {
 
             Actor.fixTime();
-            saveGame( gameFile( hero.getHeroClass() ) );
+            saveGame( gameFile( getHero().getHeroClass() ) );
             saveLevel();
 
-            GamesInProgress.set( hero.getHeroClass(), getDepth(), hero.lvl, challenges != 0 );
+            GamesInProgress.set( getHero().getHeroClass(), getDepth(), getHero().lvl, getChallenges() != 0 );
 
         } else if ( WndResurrect.instance != null ) {
 
@@ -557,9 +557,9 @@ public class Dungeon {
 
         Bundle bundle = gameBundle( fileName );
 
-        Dungeon.challenges = bundle.getInt( CHALLENGES );
+        Dungeon.setChallenges( bundle.getInt( CHALLENGES ) );
 
-        Dungeon.level = null;
+        Dungeon.setLevel( null );
         Dungeon.setDepth( -1 );
 
         if ( fullLoad ) {
@@ -573,15 +573,15 @@ public class Dungeon {
 
         setPotionOfStrength( bundle.getInt( POS ) );
         setScrollsOfUpgrade( bundle.getInt( SOU ) );
-        scrollsOfEnchantment = bundle.getInt( SOE );
-        dewVial = bundle.getBoolean( DV );
+        setScrollsOfEnchantment( bundle.getInt( SOE ) );
+        setDewVial( bundle.getBoolean( DV ) );
 
         if ( fullLoad ) {
-            chapters = new HashSet<Integer>();
+            setChapters( new HashSet<Integer>() );
             int ids[] = bundle.getIntArray( CHAPTERS );
             if ( ids != null ) {
                 for ( int id : ids ) {
-                    chapters.add( id );
+                    getChapters().add( id );
                 }
             }
 
@@ -613,9 +613,9 @@ public class Dungeon {
         @SuppressWarnings ( "unused" )
         String version = bundle.getString( VERSION );
 
-        hero = null;
-        hero = (Hero) bundle.get( HERO );
-        if ( hero == null ) {
+        setHero( null );
+        setHero( (Hero) bundle.get( HERO ) );
+        if ( getHero() == null ) {
             Log.d( "", "null hero" );
         }
         QuickSlot.compress();
@@ -626,21 +626,21 @@ public class Dungeon {
         Statistics.restoreFromBundle( bundle );
         Journal.restoreFromBundle( bundle );
 
-        droppedItems = new SparseArray<ArrayList<Item>>();
+        setDroppedItems( new SparseArray<ArrayList<Item>>() );
         for ( int i = 2; i <= Statistics.deepestFloor + 1; i++ ) {
             ArrayList<Item> dropped = new ArrayList<Item>();
             for ( Bundlable b : bundle.getCollection( String.format( Locale.US, DROPPED, i ) ) ) {
                 dropped.add( (Item) b );
             }
             if ( !dropped.isEmpty() ) {
-                droppedItems.put( i, dropped );
+                getDroppedItems().put( i, dropped );
             }
         }
     }
 
     public static Level loadLevel ( HeroClass cl ) throws IOException {
 
-        Dungeon.level = null;
+        Dungeon.setLevel( null );
         Actor.clear();
 
         InputStream input = Game.instance.openFileInput( Utils.format( depthFile( cl ), getDepth() ) );
@@ -683,10 +683,10 @@ public class Dungeon {
     }
 
     public static void fail ( String desc ) {
-        resultDescription = desc;
-        if ( hero.belongings.getItem( Ankh.class ) == null || Dungeon.getDepth() == ColdGirl.FROST_DEPTH ) {
+        setResultDescription( desc );
+        if ( getHero().belongings.getItem( Ankh.class ) == null || Dungeon.getDepth() == ColdGirl.FROST_DEPTH ) {
             if ( Dungeon.getDepth() == ColdGirl.FROST_DEPTH ) {
-                resultDescription = ColdGirl.TXT_DEATH;
+                setResultDescription( ColdGirl.TXT_DEATH );
             }
 
             Rankings.INSTANCE.submit( false );
@@ -695,26 +695,26 @@ public class Dungeon {
 
     public static void win ( String desc ) {
 
-        hero.belongings.identify();
+        getHero().belongings.identify();
 
-        if ( challenges != 0 ) {
+        if ( getChallenges() != 0 ) {
             Badges.validateChampion();
         }
 
-        resultDescription = desc;
+        setResultDescription( desc );
         Rankings.INSTANCE.submit( true );
     }
 
     public static void observe () {
 
-        if ( level == null ) {
+        if ( getLevel() == null ) {
             return;
         }
 
-        level.updateFieldOfView( hero );
-        System.arraycopy( Level.fieldOfView, 0, visible, 0, visible.length );
+        getLevel().updateFieldOfView( getHero() );
+        System.arraycopy( Level.fieldOfView, 0, getVisible(), 0, getVisible().length );
 
-        BArray.or( level.visited, visible, level.visited );
+        BArray.or( getLevel().visited, getVisible(), getLevel().visited );
 
         GameScene.afterObserve();
     }
@@ -782,5 +782,101 @@ public class Dungeon {
 
     public static void setScrollsOfUpgrade ( int scrollsOfUpgrade ) {
         Dungeon.scrollsOfUpgrade = scrollsOfUpgrade;
+    }
+
+    public static int getScrollsOfEnchantment () {
+        return scrollsOfEnchantment;
+    }
+
+    public static void setScrollsOfEnchantment ( int scrollsOfEnchantment ) {
+        Dungeon.scrollsOfEnchantment = scrollsOfEnchantment;
+    }
+
+    public static boolean isDewVial () {
+        return dewVial;
+    }
+
+    public static void setDewVial ( boolean dewVial ) {
+        Dungeon.dewVial = dewVial;
+    }
+
+    public static int getChallenges () {
+        return challenges;
+    }
+
+    public static void setChallenges ( int challenges ) {
+        Dungeon.challenges = challenges;
+    }
+
+    public static Hero getHero () {
+        return hero;
+    }
+
+    public static void setHero ( Hero hero ) {
+        Dungeon.hero = hero;
+    }
+
+    public static Level getLevel () {
+        return level;
+    }
+
+    public static void setLevel ( Level level ) {
+        Dungeon.level = level;
+    }
+
+    public static int getDifficulty () {
+        return difficulty;
+    }
+
+    public static void setDifficulty ( int difficulty ) {
+        Dungeon.difficulty = difficulty;
+    }
+
+    public static Difficulties getCurrentDifficulty () {
+        return currentDifficulty;
+    }
+
+    public static void setCurrentDifficulty ( Difficulties currentDifficulty ) {
+        Dungeon.currentDifficulty = currentDifficulty;
+    }
+
+    public static String getResultDescription () {
+        return resultDescription;
+    }
+
+    public static void setResultDescription ( String resultDescription ) {
+        Dungeon.resultDescription = resultDescription;
+    }
+
+    public static HashSet<Integer> getChapters () {
+        return chapters;
+    }
+
+    public static void setChapters ( HashSet<Integer> chapters ) {
+        Dungeon.chapters = chapters;
+    }
+
+    public static boolean[] getVisible () {
+        return visible;
+    }
+
+    public static void setVisible ( boolean[] visible ) {
+        Dungeon.visible = visible;
+    }
+
+    public static boolean isNightMode () {
+        return nightMode;
+    }
+
+    public static void setNightMode ( boolean nightMode ) {
+        Dungeon.nightMode = nightMode;
+    }
+
+    public static SparseArray<ArrayList<Item>> getDroppedItems () {
+        return droppedItems;
+    }
+
+    public static void setDroppedItems ( SparseArray<ArrayList<Item>> droppedItems ) {
+        Dungeon.droppedItems = droppedItems;
     }
 }

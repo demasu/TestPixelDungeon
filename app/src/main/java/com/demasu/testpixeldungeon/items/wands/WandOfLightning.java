@@ -62,10 +62,10 @@ public class WandOfLightning extends Wand {
             return;
         }
 
-        if ( ch == Dungeon.hero ) {
+        if ( ch == Dungeon.getHero() ) {
             Camera.main.shake( 2, 0.3f );
         } else if ( ch instanceof Mob ) {
-            damage *= Dungeon.hero.heroSkills.passiveB2.wandDamageBonus(); // <---- Mage Sorcerer if present
+            damage *= Dungeon.getHero().heroSkills.passiveB2.wandDamageBonus(); // <---- Mage Sorcerer if present
         }
 
         affected.add( ch );
@@ -93,7 +93,7 @@ public class WandOfLightning extends Wand {
     protected void fx ( int cell, Callback callback ) {
 
         nPoints = 0;
-        points[nPoints++] = Dungeon.hero.pos;
+        points[nPoints++] = Dungeon.getHero().pos;
 
         Char ch = Actor.findChar( cell );
         if ( ch != null ) {

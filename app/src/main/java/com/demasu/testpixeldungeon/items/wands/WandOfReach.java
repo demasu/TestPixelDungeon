@@ -59,7 +59,7 @@ public class WandOfReach extends Wand {
 
             int c = Ballistica.trace[i];
 
-            int before = Dungeon.level.map[c];
+            int before = Dungeon.getLevel().map[c];
 
             Char ch = Actor.findChar( c );
             if ( ch != null ) {
@@ -67,7 +67,7 @@ public class WandOfReach extends Wand {
                 break;
             }
 
-            Heap heap = Dungeon.level.heaps.get( c );
+            Heap heap = Dungeon.getLevel().heaps.get( c );
             if ( heap != null ) {
                 switch ( heap.type ) {
                     case HEAP:
@@ -85,7 +85,7 @@ public class WandOfReach extends Wand {
                 break;
             }
 
-            Dungeon.level.press( c, null );
+            Dungeon.getLevel().press( c, null );
             if ( before == Terrain.OPEN_DOOR ) {
                 Level.set( c, Terrain.DOOR );
                 GameScene.updateMap( c );
@@ -93,7 +93,7 @@ public class WandOfReach extends Wand {
                 GameScene.ripple( c );
             }
 
-            mapUpdated = mapUpdated || Dungeon.level.map[c] != before;
+            mapUpdated = mapUpdated || Dungeon.getLevel().map[c] != before;
         }
 
         if ( mapUpdated ) {
@@ -117,7 +117,7 @@ public class WandOfReach extends Wand {
             }
 
         } else {
-            Dungeon.level.drop( item, curUser.pos ).sprite.drop();
+            Dungeon.getLevel().drop( item, curUser.pos ).sprite.drop();
         }
     }
 

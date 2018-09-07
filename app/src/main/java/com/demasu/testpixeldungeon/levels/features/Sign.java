@@ -73,7 +73,7 @@ public class Sign {
 
     public static void read ( int pos ) {
 
-        if ( Dungeon.level instanceof DeadEndLevel ) {
+        if ( Dungeon.getLevel() instanceof DeadEndLevel ) {
 
             GameScene.show( new WndMessage( TXT_DEAD_END ) );
 
@@ -85,7 +85,7 @@ public class Sign {
                 GameScene.show( new WndMessage( TIPS[index] ) );
             } else {
 
-                Dungeon.level.destroy( pos );
+                Dungeon.getLevel().destroy( pos );
                 GameScene.updateMap( pos );
                 GameScene.discoverTile( pos, Terrain.SIGN );
 
