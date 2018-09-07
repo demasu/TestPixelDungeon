@@ -958,7 +958,7 @@ public abstract class Level implements Bundlable {
                         // Sometimes merc respawning causes crash out if index
                     }
                 }
-            } else if ( c == Dungeon.hero && ( (Hero) c ).heroClass == HeroClass.HUNTRESS ) {
+            } else if ( c == Dungeon.hero && ( (Hero) c ).getHeroClass() == HeroClass.HUNTRESS ) {
                 for ( Mob mob : mobs ) {
                     try {
                         int p = mob.pos;

@@ -77,7 +77,7 @@ public class MageArmor extends ClassArmor {
 
     @Override
     public boolean doEquip ( Hero hero ) {
-        if ( hero.heroClass == HeroClass.MAGE ) {
+        if ( hero.getHeroClass() == HeroClass.MAGE ) {
             return super.doEquip( hero );
         } else {
             GLog.w( TXT_NOT_MAGE );

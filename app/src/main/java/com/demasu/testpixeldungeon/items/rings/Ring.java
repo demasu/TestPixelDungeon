@@ -356,7 +356,7 @@ public class Ring extends EquipableItem {
         @Override
         public boolean attachTo ( Char target ) {
 
-            if ( target instanceof Hero && ( (Hero) target ).heroClass == HeroClass.ROGUE && !isKnown() ) {
+            if ( target instanceof Hero && ( (Hero) target ).getHeroClass() == HeroClass.ROGUE && !isKnown() ) {
                 setKnown();
                 GLog.i( TXT_KNOWN, name() );
                 Badges.validateItemLevelAquired( Ring.this );

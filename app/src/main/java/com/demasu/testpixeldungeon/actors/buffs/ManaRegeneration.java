@@ -19,7 +19,6 @@ package com.demasu.testpixeldungeon.actors.buffs;
 
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.hero.HeroClass;
-import com.demasu.testpixeldungeon.items.rings.RingOfMending;
 
 public class ManaRegeneration extends Buff {
 
@@ -32,14 +31,14 @@ public class ManaRegeneration extends Buff {
             if ( target.MP < target.MMP ) {
                 target.MP += 1;
             }
-            if ( ( (Hero) target ).heroClass == HeroClass.MAGE ) {
+            if ( ( (Hero) target ).getHeroClass() == HeroClass.MAGE ) {
                 if ( target.MP < target.MMP ) {
                     target.MP += 1;
                 }
             }
 
             int bonus = 0;
-            if ( ( (Hero) target ).heroClass == HeroClass.MAGE ) {
+            if ( ( (Hero) target ).getHeroClass() == HeroClass.MAGE ) {
                 bonus = 1;
             }
 

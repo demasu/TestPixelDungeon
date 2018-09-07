@@ -70,7 +70,7 @@ public class TomeOfMastery extends Item {
 
             curUser = hero;
 
-            switch ( hero.heroClass ) {
+            switch ( hero.getHeroClass() ) {
                 case WARRIOR:
                     read( hero, HeroSubClass.GLADIATOR, HeroSubClass.BERSERKER );
                     break;

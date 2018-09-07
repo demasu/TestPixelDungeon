@@ -515,7 +515,7 @@ public class Dungeon {
 
         } catch ( Exception e ) {
 
-            GamesInProgress.setUnknown( hero.heroClass );
+            GamesInProgress.setUnknown( hero.getHeroClass() );
         }
     }
 
@@ -523,7 +523,7 @@ public class Dungeon {
         Bundle bundle = new Bundle();
         bundle.put( LEVEL, level );
 
-        OutputStream output = Game.instance.openFileOutput( Utils.format( depthFile( hero.heroClass ), getDepth() ), Game.MODE_PRIVATE );
+        OutputStream output = Game.instance.openFileOutput( Utils.format( depthFile( hero.getHeroClass() ), getDepth() ), Game.MODE_PRIVATE );
         Bundle.write( bundle, output );
         output.close();
     }
@@ -532,10 +532,10 @@ public class Dungeon {
         if ( hero.isAlive() ) {
 
             Actor.fixTime();
-            saveGame( gameFile( hero.heroClass ) );
+            saveGame( gameFile( hero.getHeroClass() ) );
             saveLevel();
 
-            GamesInProgress.set( hero.heroClass, getDepth(), hero.lvl, challenges != 0 );
+            GamesInProgress.set( hero.getHeroClass(), getDepth(), hero.lvl, challenges != 0 );
 
         } else if ( WndResurrect.instance != null ) {
 

@@ -152,7 +152,7 @@ public class Hero extends Char {
     private static final float TIME_TO_REST = 1f;
     private static final float TIME_TO_SEARCH = 1f;
 
-    public HeroClass heroClass = HeroClass.ROGUE;
+    private HeroClass heroClass = HeroClass.ROGUE;
     public HeroSubClass subClass = HeroSubClass.NONE;
 
     public CurrentSkills heroSkills = CurrentSkills.MAGE;
@@ -242,7 +242,7 @@ public class Hero extends Char {
         super.storeInBundle( bundle );
 
 
-        heroClass.storeInBundle( bundle );
+        getHeroClass().storeInBundle( bundle );
         subClass.storeInBundle( bundle );
 
         heroSkills.storeInBundle( bundle );
@@ -276,7 +276,7 @@ public class Hero extends Char {
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
         super.restoreFromBundle( bundle );
-        heroClass = HeroClass.restoreInBundle( bundle );
+        setHeroClass( HeroClass.restoreInBundle( bundle ) );
         subClass = HeroSubClass.restoreInBundle( bundle );
 
 
@@ -313,7 +313,7 @@ public class Hero extends Char {
         storage.restoreFromBundle( bundle );
 
         if ( bundle.getInt( VERSION_SAVE ) < skills_reset_version ) {
-            switch ( heroClass ) {
+            switch ( getHeroClass() ) {
                 case WARRIOR:
                     heroSkills = CurrentSkills.WARRIOR;
                     break;
@@ -342,7 +342,7 @@ public class Hero extends Char {
     }
 
     public String className () {
-        return subClass == null || subClass == HeroSubClass.NONE ? heroClass.title() : subClass.title();
+        return subClass == null || subClass == HeroSubClass.NONE ? getHeroClass().title() : subClass.title();
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
@@ -420,7 +420,7 @@ public class Hero extends Char {
             return (int) ( defenseSkill * evasion / Math.pow( 1.5, aEnc ) );
         } else {
 
-            if ( heroClass == HeroClass.ROGUE ) {
+            if ( getHeroClass() == HeroClass.ROGUE ) {
 
                 if ( curAction != null && subClass == HeroSubClass.FREERUNNER && !isStarving() ) {
                     evasion *= 2;
@@ -913,7 +913,7 @@ public class Hero extends Char {
                     ready();
                 } else {
                     Dungeon.win( ResultDescriptions.WIN );
-                    Dungeon.deleteGame( Dungeon.hero.heroClass, true );
+                    Dungeon.deleteGame( Dungeon.hero.getHeroClass(), true );
                     Game.switchScene( SurfaceScene.class );
                 }
 
@@ -1314,7 +1314,7 @@ public class Hero extends Char {
 
     void updateAwareness () {
         awareness = (float) ( 1 - Math.pow(
-                ( heroClass == HeroClass.ROGUE ? 0.85 : 0.90 ),
+                ( getHeroClass() == HeroClass.ROGUE ? 0.85 : 0.90 ),
                 ( 1 + Math.min( lvl, 9 ) ) * 0.5
         ) );
     }
@@ -1416,7 +1416,7 @@ public class Hero extends Char {
                 GLog.n( "The girl saps away the power of your Ankh... no coming back" );
                 reallyDie( cause );
             } else {
-                Dungeon.deleteGame( Dungeon.hero.heroClass, false );
+                Dungeon.deleteGame( Dungeon.hero.getHeroClass(), false );
                 GameScene.show( new WndResurrect( ankh, cause ) );
             }
 
@@ -1478,7 +1478,7 @@ public class Hero extends Char {
             ( (Hero.Doom) cause ).onDeath();
         }
 
-        Dungeon.deleteGame( Dungeon.hero.heroClass, true );
+        Dungeon.deleteGame( Dungeon.hero.getHeroClass(), true );
     }
 
     @Override
@@ -1692,6 +1692,14 @@ public class Hero extends Char {
     @Override
     public void next () {
         super.next();
+    }
+
+    public HeroClass getHeroClass () {
+        return heroClass;
+    }
+
+    public void setHeroClass ( HeroClass heroClass ) {
+        this.heroClass = heroClass;
     }
 
     public interface Doom {

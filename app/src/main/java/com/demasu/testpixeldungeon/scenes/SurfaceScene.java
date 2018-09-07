@@ -122,7 +122,7 @@ public class SurfaceScene extends PixelScene {
             window.add( patch );
         }
 
-        Avatar a = new Avatar( Dungeon.hero.heroClass );
+        Avatar a = new Avatar( Dungeon.hero.getHeroClass() );
         a.x = PixelScene.align( ( SKY_WIDTH - a.width ) / 2 );
         a.y = SKY_HEIGHT - a.height;
         window.add( a );

@@ -111,7 +111,7 @@ public enum HeroClass {
 
     public void initHero ( Hero hero ) {
 
-        hero.heroClass = this;
+        hero.setHeroClass( this );
 
         initCommon( hero );
 

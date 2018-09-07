@@ -46,7 +46,7 @@ abstract public class MissileWeapon extends Weapon {
     @Override
     public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = super.actions( hero );
-        if ( hero.heroClass != HeroClass.HUNTRESS && hero.heroClass != HeroClass.ROGUE ) {
+        if ( hero.getHeroClass() != HeroClass.HUNTRESS && hero.getHeroClass() != HeroClass.ROGUE ) {
             actions.remove( AC_EQUIP );
             actions.remove( AC_UNEQUIP );
         }

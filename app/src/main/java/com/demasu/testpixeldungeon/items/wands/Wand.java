@@ -143,7 +143,7 @@ public abstract class Wand extends KindOfWeapon {
         if ( curCharges > 0 || !curChargeKnown ) {
             actions.add( AC_ZAP );
         }
-        if ( hero.heroClass != HeroClass.MAGE ) {
+        if ( hero.getHeroClass() != HeroClass.MAGE ) {
             actions.remove( AC_EQUIP );
             actions.remove( AC_UNEQUIP );
         }
@@ -267,7 +267,7 @@ public abstract class Wand extends KindOfWeapon {
     @Override
     public String info () {
         StringBuilder info = new StringBuilder( isKnown() ? desc() : String.format( TXT_WOOD, wood ) );
-        if ( Dungeon.hero.heroClass == HeroClass.MAGE ) {
+        if ( Dungeon.hero.getHeroClass() == HeroClass.MAGE ) {
             info.append( "\n\n" );
             if ( levelKnown ) {
                 int min = min();
@@ -487,7 +487,7 @@ public abstract class Wand extends KindOfWeapon {
         }
 
         protected void delay () {
-            float time2charge = ( (Hero) target ).heroClass == HeroClass.MAGE ?
+            float time2charge = ( (Hero) target ).getHeroClass() == HeroClass.MAGE ?
                     TIME_TO_CHARGE / (float) Math.sqrt( 1 + effectiveLevel() ) :
                     TIME_TO_CHARGE;
             if ( ( (Hero) target ).heroSkills != null && ( (Hero) target ).heroSkills.passiveB1 != null ) {

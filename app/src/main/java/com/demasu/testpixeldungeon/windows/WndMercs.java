@@ -575,28 +575,28 @@ public class WndMercs extends WndTabbed {
         add( tabAll );
         tabAll.select( mode == Mode.ALL );
 
-        if ( Dungeon.hero.heroClass != HeroClass.WARRIOR ) {
+        if ( Dungeon.hero.getHeroClass() != HeroClass.WARRIOR ) {
             MercenaryTab tabBrute = new MercenaryTab( Mode.BRUTE );
             tabBrute.setSize( TAB_WIDTH, tabHeight() );
             add( tabBrute );
             tabBrute.select( mode == Mode.BRUTE );
         }
 
-        if ( Dungeon.hero.heroClass != HeroClass.MAGE ) {
+        if ( Dungeon.hero.getHeroClass() != HeroClass.MAGE ) {
             MercenaryTab tabWizard = new MercenaryTab( Mode.WIZARD );
             tabWizard.setSize( TAB_WIDTH, tabHeight() );
             add( tabWizard );
             tabWizard.select( mode == Mode.WIZARD );
         }
 
-        if ( Dungeon.hero.heroClass != HeroClass.ROGUE ) {
+        if ( Dungeon.hero.getHeroClass() != HeroClass.ROGUE ) {
             MercenaryTab tabThief = new MercenaryTab( Mode.THIEF );
             tabThief.setSize( TAB_WIDTH, tabHeight() );
             add( tabThief );
             tabThief.select( mode == Mode.THIEF );
         }
 
-        if ( Dungeon.hero.heroClass != HeroClass.HUNTRESS ) {
+        if ( Dungeon.hero.getHeroClass() != HeroClass.HUNTRESS ) {
             MercenaryTab tabArcher = new MercenaryTab( Mode.ARCHER );
             tabArcher.setSize( TAB_WIDTH, tabHeight() );
             add( tabArcher );

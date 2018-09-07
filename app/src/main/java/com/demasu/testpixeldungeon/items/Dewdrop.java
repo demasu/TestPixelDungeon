@@ -45,7 +45,7 @@ public class Dewdrop extends Item {
         if ( hero.HP < hero.HT || vial == null || vial.isFull() ) {
 
             int value = 1 + ( Dungeon.getDepth() - 1 ) / 5;
-            if ( hero.heroClass == HeroClass.HUNTRESS ) {
+            if ( hero.getHeroClass() == HeroClass.HUNTRESS ) {
                 value++;
             }
 

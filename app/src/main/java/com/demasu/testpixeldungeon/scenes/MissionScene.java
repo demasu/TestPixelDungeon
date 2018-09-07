@@ -76,7 +76,7 @@ public class MissionScene extends GameScene {
             Music.INSTANCE.volume( 1f );
         }
 
-        PixelDungeon.lastClass( Dungeon.hero.heroClass.ordinal() );
+        PixelDungeon.lastClass( Dungeon.hero.getHeroClass().ordinal() );
 
         super.originalCreate();
         Camera.main.zoom( defaultZoom + PixelDungeon.zoom() );

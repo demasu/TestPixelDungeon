@@ -83,7 +83,7 @@ public class Tengu extends Mob {
     public void die ( Object cause ) {
 
         Badges.Badge badgeToCheck = null;
-        switch ( Dungeon.hero.heroClass ) {
+        switch ( Dungeon.hero.getHeroClass() ) {
             case WARRIOR:
                 badgeToCheck = Badge.MASTERY_WARRIOR;
                 break;
@@ -176,7 +176,7 @@ public class Tengu extends Mob {
     @Override
     public void notice () {
         super.notice();
-        yell( "Gotcha, " + Dungeon.hero.heroClass.title() + "!" );
+        yell( "Gotcha, " + Dungeon.hero.getHeroClass().title() + "!" );
     }
 
     @Override

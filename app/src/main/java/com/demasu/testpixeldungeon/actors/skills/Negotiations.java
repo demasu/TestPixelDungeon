@@ -37,16 +37,16 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
     public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = new ArrayList<String>();
         if ( hero.hiredMerc == null ) {
-            if ( hero.heroClass != HeroClass.WARRIOR ) {
+            if ( hero.getHeroClass() != HeroClass.WARRIOR ) {
                 actions.add( TXT_HIRE_BRUTE );
             }
-            if ( hero.heroClass != HeroClass.ROGUE ) {
+            if ( hero.getHeroClass() != HeroClass.ROGUE ) {
                 actions.add( TXT_HIRE_THIEF );
             }
-            if ( hero.heroClass != HeroClass.MAGE ) {
+            if ( hero.getHeroClass() != HeroClass.MAGE ) {
                 actions.add( TXT_HIRE_WIZARD );
             }
-            if ( hero.heroClass != HeroClass.HUNTRESS ) {
+            if ( hero.getHeroClass() != HeroClass.HUNTRESS ) {
                 actions.add( TXT_HIRE_ARCHER );
             }
 

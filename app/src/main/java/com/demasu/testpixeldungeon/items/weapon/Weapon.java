@@ -114,7 +114,7 @@ abstract public class Weapon extends KindOfWeapon {
         int encumbrance = STR() - hero.STR();
 
         if ( this instanceof MissileWeapon ) {
-            switch ( hero.heroClass ) {
+            switch ( hero.getHeroClass() ) {
                 case WARRIOR:
                     encumbrance += 3;
                     break;
@@ -134,7 +134,7 @@ abstract public class Weapon extends KindOfWeapon {
     public float speedFactor ( Hero hero ) {
 
         int encumrance = STR() - hero.STR();
-        if ( this instanceof MissileWeapon && hero.heroClass == HeroClass.HUNTRESS ) {
+        if ( this instanceof MissileWeapon && hero.getHeroClass() == HeroClass.HUNTRESS ) {
             encumrance -= 2;
         }
 
@@ -148,7 +148,7 @@ abstract public class Weapon extends KindOfWeapon {
 
         int damage = super.damageRoll( hero );
 
-        if ( ( hero.rangedWeapon != null ) == ( hero.heroClass == HeroClass.HUNTRESS ) ) {
+        if ( ( hero.rangedWeapon != null ) == ( hero.getHeroClass() == HeroClass.HUNTRESS ) ) {
             int exStr = hero.STR() - STR();
             if ( exStr > 0 ) {
                 damage += Random.IntRange( 0, exStr );

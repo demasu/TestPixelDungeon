@@ -54,7 +54,7 @@ public enum Rankings {
 
         rec.info = Dungeon.resultDescription;
         rec.win = win;
-        rec.heroClass = Dungeon.hero.heroClass;
+        rec.heroClass = Dungeon.hero.getHeroClass();
         rec.armorTier = Dungeon.hero.tier();
         rec.score = score( win );
 
