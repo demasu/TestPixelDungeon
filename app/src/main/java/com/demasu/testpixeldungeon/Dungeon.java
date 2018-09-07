@@ -79,7 +79,7 @@ import com.watabou.utils.SparseArray;
 
 public class Dungeon {
 
-    public static int potionOfStrength;
+    private static int potionOfStrength;
     public static int scrollsOfUpgrade;
     public static int scrollsOfEnchantment;
     public static boolean dewVial;        // true if the dew vial can be spawned
@@ -129,7 +129,7 @@ public class Dungeon {
 
         droppedItems = new SparseArray<ArrayList<Item>>();
 
-        potionOfStrength = 0;
+        setPotionOfStrength( 0 );
         scrollsOfUpgrade = 0;
         scrollsOfEnchantment = 0;
         dewVial = true;
@@ -193,7 +193,7 @@ public class Dungeon {
 
         droppedItems = new SparseArray<ArrayList<Item>>();
 
-        potionOfStrength = 0;
+        setPotionOfStrength( 0 );
         scrollsOfUpgrade = 0;
         scrollsOfEnchantment = 0;
         dewVial = true;
@@ -382,7 +382,7 @@ public class Dungeon {
 
     public static boolean posNeeded () {
         int[] quota = { 16, 8, 36, 16, 56, 24, 76, 32, 96, 36 };
-        return chance( quota, potionOfStrength );
+        return chance( quota, getPotionOfStrength() );
     }
 
     public static boolean souNeeded () {
@@ -474,7 +474,7 @@ public class Dungeon {
                 bundle.put( String.format( Locale.US, DROPPED, d ), droppedItems.get( d ) );
             }
 
-            bundle.put( POS, potionOfStrength );
+            bundle.put( POS, getPotionOfStrength() );
             bundle.put( SOU, scrollsOfUpgrade );
             bundle.put( SOE, scrollsOfEnchantment );
             bundle.put( DV, dewVial );
@@ -571,7 +571,7 @@ public class Dungeon {
         Wand.restore( bundle );
         Ring.restore( bundle );
 
-        potionOfStrength = bundle.getInt( POS );
+        setPotionOfStrength( bundle.getInt( POS ) );
         scrollsOfUpgrade = bundle.getInt( SOU );
         scrollsOfEnchantment = bundle.getInt( SOE );
         dewVial = bundle.getBoolean( DV );
@@ -768,4 +768,11 @@ public class Dungeon {
 
     }
 
+    public static int getPotionOfStrength () {
+        return potionOfStrength;
+    }
+
+    public static void setPotionOfStrength ( int potionOfStrength ) {
+        Dungeon.potionOfStrength = potionOfStrength;
+    }
 }

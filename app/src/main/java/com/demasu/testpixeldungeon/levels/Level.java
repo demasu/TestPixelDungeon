@@ -180,7 +180,7 @@ public abstract class Level implements Bundlable {
             addItemToSpawn( Generator.random( Generator.Category.FOOD ) );
             if ( Dungeon.posNeeded() ) {
                 addItemToSpawn( new PotionOfStrength() );
-                Dungeon.potionOfStrength++;
+                Dungeon.setPotionOfStrength( Dungeon.getPotionOfStrength() + 1 );
             }
             if ( Dungeon.souNeeded() ) {
                 addItemToSpawn( new ScrollOfUpgrade() );
