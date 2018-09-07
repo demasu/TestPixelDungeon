@@ -90,7 +90,7 @@ public class Dungeon {
     public static Level level;
 
     public static int depth;
-    public static int gold; // TODO: Add setter and getter methods
+    private static int gold; // TODO: Add setter and getter methods
 
 
     public static int difficulty;
@@ -124,8 +124,8 @@ public class Dungeon {
         Statistics.reset();
         Journal.reset();
 
-        depth = 0;
-        gold = 0;
+        setDepth( 0 );
+        setGold( 0 );
 
         droppedItems = new SparseArray<ArrayList<Item>>();
 
@@ -156,6 +156,22 @@ public class Dungeon {
 
     }
 
+    public static int getGold () {
+        return gold;
+    }
+
+    public static void setGold ( int gold ) {
+        Dungeon.gold = gold;
+    }
+
+    public static int getDepth () {
+        return depth;
+    }
+
+    public static void setDepth ( int depth ) {
+        Dungeon.depth = depth;
+    }
+
     public static void initLegend () {
 
         challenges = PixelDungeon.challenges();
@@ -173,7 +189,7 @@ public class Dungeon {
         Journal.reset();
 
         depth = 0;
-        gold = 0;
+        setGold( 0 );
 
         droppedItems = new SparseArray<ArrayList<Item>>();
 
@@ -451,7 +467,7 @@ public class Dungeon {
             bundle.put( VERSION, Game.version );
             bundle.put( CHALLENGES, challenges );
             bundle.put( HERO, hero );
-            bundle.put( GOLD, gold );
+            bundle.put( GOLD, getGold() );
             bundle.put( DEPTH, depth );
 
             for ( int d : droppedItems.keyArray() ) {
@@ -604,7 +620,7 @@ public class Dungeon {
         }
         QuickSlot.compress();
 
-        gold = bundle.getInt( GOLD );
+        setGold( bundle.getInt( GOLD ) );
         depth = bundle.getInt( DEPTH );
 
         Statistics.restoreFromBundle( bundle );

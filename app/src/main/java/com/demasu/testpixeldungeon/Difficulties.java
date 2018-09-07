@@ -1,7 +1,6 @@
 package com.demasu.testpixeldungeon;
 
 
-import com.demasu.testpixeldungeon.actors.buffs.Champ;
 import com.demasu.testpixeldungeon.items.food.Food;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 
@@ -319,7 +318,7 @@ public enum Difficulties {
                 new PotionOfHealing().identify().collect();
                 new Food().identify().collect();
                 new Food().identify().collect();
-                Dungeon.gold = 200;
+                Dungeon.setGold( 200 );
         }
     }
 

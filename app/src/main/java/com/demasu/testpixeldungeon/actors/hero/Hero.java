@@ -105,7 +105,6 @@ import com.demasu.testpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.demasu.testpixeldungeon.levels.Level;
-import com.demasu.testpixeldungeon.levels.MovieLevel;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.levels.features.AlchemyPot;
 import com.demasu.testpixeldungeon.levels.features.Chasm;
@@ -1670,7 +1669,7 @@ public class Hero extends Char {
     public void resurrect ( int resetLevel ) {
 
         HP = HT;
-        Dungeon.gold = 0;
+        Dungeon.setGold( 0 );
         exp = 0;
 
         belongings.resurrect( resetLevel );

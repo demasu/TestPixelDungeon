@@ -27,7 +27,6 @@ import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
-import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.Pushing;
 import com.demasu.testpixeldungeon.effects.Speck;
@@ -94,9 +93,9 @@ public class Mimic extends Mob {
     @Override
     public int attackProc ( Char enemy, int damage ) {
         if ( enemy == Dungeon.hero && Random.Int( 3 ) == 0 && Dungeon.hero.heroSkills.passiveA1.lootBonus( 100 ) == 0 ) { // <--- Rogue bandit if present
-            Gold gold = new Gold( Random.Int( Dungeon.gold / 10, Dungeon.gold / 2 ) );
+            Gold gold = new Gold( Random.Int( Dungeon.getGold() / 10, Dungeon.getGold() / 2 ) );
             if ( gold.quantity() > 0 ) {
-                Dungeon.gold -= gold.quantity();
+                Dungeon.setGold( Dungeon.getGold() - gold.quantity() );
                 Dungeon.level.drop( gold, Dungeon.hero.pos ).sprite.drop();
             }
         }

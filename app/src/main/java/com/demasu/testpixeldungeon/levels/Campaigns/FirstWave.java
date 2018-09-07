@@ -34,7 +34,6 @@ import com.demasu.testpixeldungeon.actors.mobs.Skeleton;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.SummonedPet;
 import com.demasu.testpixeldungeon.effects.ArcherMaidenHalo;
-import com.demasu.testpixeldungeon.effects.Pushing;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
 import com.demasu.testpixeldungeon.items.Gold;
 import com.demasu.testpixeldungeon.items.Heap;
@@ -46,7 +45,6 @@ import com.demasu.testpixeldungeon.plants.Sungrass;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.MissionScene;
 import com.demasu.testpixeldungeon.scenes.MissionStartScene;
-import com.demasu.testpixeldungeon.scenes.TitleScene;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.sprites.ColdGirlSisterSprite;
 import com.demasu.testpixeldungeon.sprites.CursePersonificationSprite;
@@ -489,7 +487,7 @@ public class FirstWave extends Level {
             Gold tmp = new Gold();
             tmp = (Gold) tmp.random();
             Dungeon.hero.sprite.showStatus( CharSprite.NEUTRAL, "+" + tmp.quantity() + " Gold!" );
-            Dungeon.gold += tmp.quantity();
+            Dungeon.setGold( Dungeon.getGold() + tmp.quantity() );
         }
     }
 

@@ -62,7 +62,7 @@ public class Gold extends Item {
     @Override
     public boolean doPickUp ( Hero hero ) {
 
-        Dungeon.gold += quantity + hero.heroSkills.passiveA1.lootBonus( quantity ); // <--- Rogue bandit if present
+        Dungeon.setGold( Dungeon.getGold() + quantity + hero.heroSkills.passiveA1.lootBonus( quantity ) ); // <--- Rogue bandit if present
         Statistics.goldCollected += quantity + hero.heroSkills.passiveA1.lootBonus( quantity );
         Badges.validateGoldCollected();
 

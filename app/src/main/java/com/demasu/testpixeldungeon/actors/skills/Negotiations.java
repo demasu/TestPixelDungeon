@@ -61,7 +61,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
     @Override
     public void execute ( Hero hero, String action ) {
         if ( action == TXT_HIRE_BRUTE || action == TXT_HIRE_THIEF || action == TXT_HIRE_WIZARD || action == TXT_HIRE_ARCHER || action == TXT_HIRE_ARCHER_MAIDEN ) {
-            if ( Dungeon.gold < getGoldCost() ) {
+            if ( Dungeon.getGold() < getGoldCost() ) {
                 GLog.n( "You cannot afford a merc." );
                 return;
             }
@@ -100,7 +100,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
             }
 
             if ( spawned ) {
-                Dungeon.gold -= getGoldCost();
+                Dungeon.setGold( Dungeon.getGold() - getGoldCost() );
                 GLog.p( " " + action + " hired for " + getGoldCost() + " gold! " );
             }
         }

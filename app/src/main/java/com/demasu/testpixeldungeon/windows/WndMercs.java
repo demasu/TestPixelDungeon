@@ -19,40 +19,22 @@ package com.demasu.testpixeldungeon.windows;
 
 import android.graphics.RectF;
 
-import com.watabou.gltextures.TextureCache;
 import com.watabou.input.Touchscreen;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.ColorBlock;
-import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.TouchArea;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
-import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.hero.HeroClass;
-import com.demasu.testpixeldungeon.actors.hero.Storage;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
-import com.demasu.testpixeldungeon.actors.skills.BranchSkill;
-import com.demasu.testpixeldungeon.actors.skills.Skill;
-import com.demasu.testpixeldungeon.items.Gold;
-import com.demasu.testpixeldungeon.items.Item;
-import com.demasu.testpixeldungeon.items.armor.Armor;
 import com.demasu.testpixeldungeon.items.armor.ClothArmor;
 import com.demasu.testpixeldungeon.items.armor.LeatherArmor;
-import com.demasu.testpixeldungeon.items.bags.Bag;
-import com.demasu.testpixeldungeon.items.bags.Keyring;
-import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
-import com.demasu.testpixeldungeon.items.bags.SeedPouch;
-import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.items.food.ChargrilledMeat;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 import com.demasu.testpixeldungeon.items.wands.WandOfBlink;
-import com.demasu.testpixeldungeon.items.weapon.Weapon;
 import com.demasu.testpixeldungeon.items.weapon.melee.Dagger;
 import com.demasu.testpixeldungeon.items.weapon.melee.Knuckles;
 import com.demasu.testpixeldungeon.items.weapon.melee.Mace;
@@ -61,15 +43,11 @@ import com.demasu.testpixeldungeon.items.weapon.missiles.FrostBow;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
-import com.demasu.testpixeldungeon.sprites.HeroSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;
-import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.sprites.MercSprite;
 import com.demasu.testpixeldungeon.sprites.SkillSprite;
 import com.demasu.testpixeldungeon.ui.Icons;
-import com.demasu.testpixeldungeon.ui.ItemSlot;
 import com.demasu.testpixeldungeon.ui.RedButton;
-import com.demasu.testpixeldungeon.ui.SkillSlot;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.Utils;
 
@@ -532,7 +510,7 @@ public class WndMercs extends WndTabbed {
                 RedButton btnHire = new RedButton( "Hire " + getName( mode ) + " For " + getGoldCost( mode ) + " gold" ) {
                     @Override
                     protected void onClick () {
-                        if ( Dungeon.gold < getGoldCost( mode ) ) {
+                        if ( Dungeon.getGold() < getGoldCost( mode ) ) {
                             text( TXT_NO_GOLD );
                         } else {
 
@@ -545,7 +523,7 @@ public class WndMercs extends WndTabbed {
                                 }
                             }
                             if ( respawnPoints.size() > 0 ) {
-                                Dungeon.gold -= getGoldCost( mode );
+                                Dungeon.setGold( Dungeon.getGold() - getGoldCost( mode ) );
                                 Dungeon.hero.hiredMerc = new HiredMerc( getMercType( mode ) );
                                 Dungeon.hero.hiredMerc.spawn( Dungeon.hero.lvl );
                                 Dungeon.hero.hiredMerc.HP = Dungeon.hero.hiredMerc.mercType.getHealth( Dungeon.hero.lvl );
