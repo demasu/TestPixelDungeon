@@ -61,6 +61,7 @@ public enum HeroClass {
 
     WARRIOR( "warrior" ), MAGE( "mage" ), ROGUE( "rogue" ), HUNTRESS( "huntress" ), HATSUNE( "hatsune" );
 
+    private static final int FOOD = 298;
     private String title;
 
     HeroClass ( String title ) {
@@ -142,17 +143,17 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     private static void initCommon ( Hero hero ) {
+        initStarterStats( hero );
+        getStarterItems( hero );
+    }
 
+    public static void initStarterStats (Hero hero ) {
         Dungeon.hero.HP -= Dungeon.currentDifficulty.difficultyHPStartPenalty();
         Dungeon.hero.HT -= Dungeon.currentDifficulty.difficultyHPStartPenalty();
         Dungeon.currentDifficulty.difficultyStartItemBonus();
-        Dungeon.setGold( Dungeon.getGold() + 10000 );
+        Dungeon.setGold( Dungeon.getGold() + 10000 ); // For debug
 
         Skill.availableSkill = Skill.STARTING_SKILL;
-
-        getStarterItems( hero );
-
-
     }
 
     public static void getStarterItems ( Hero hero ) {
@@ -187,7 +188,7 @@ public enum HeroClass {
     @SuppressWarnings( "FeatureEnvy" )
     public static void collectFood () {
         new Food().identify().collect();
-        for ( int i = 1; i <= 98; i++ ) {
+        for ( int i = 1; i <= FOOD; i++ ) {
             new Food().collect();
         }
     }
