@@ -80,7 +80,7 @@ import com.watabou.utils.SparseArray;
 public class Dungeon {
 
     private static int potionOfStrength;
-    public static int scrollsOfUpgrade;
+    private static int scrollsOfUpgrade;
     public static int scrollsOfEnchantment;
     public static boolean dewVial;        // true if the dew vial can be spawned
 
@@ -130,7 +130,7 @@ public class Dungeon {
         droppedItems = new SparseArray<ArrayList<Item>>();
 
         setPotionOfStrength( 0 );
-        scrollsOfUpgrade = 0;
+        setScrollsOfUpgrade( 0 );
         scrollsOfEnchantment = 0;
         dewVial = true;
 
@@ -194,7 +194,7 @@ public class Dungeon {
         droppedItems = new SparseArray<ArrayList<Item>>();
 
         setPotionOfStrength( 0 );
-        scrollsOfUpgrade = 0;
+        setScrollsOfUpgrade( 0 );
         scrollsOfEnchantment = 0;
         dewVial = true;
 
@@ -387,7 +387,7 @@ public class Dungeon {
 
     public static boolean souNeeded () {
         int[] quota = { 20, 12, 40, 24, 60, 36, 80, 48, 100, 52 };
-        return chance( quota, scrollsOfUpgrade );
+        return chance( quota, getScrollsOfUpgrade() );
     }
 
     public static boolean soeNeeded () {
@@ -475,7 +475,7 @@ public class Dungeon {
             }
 
             bundle.put( POS, getPotionOfStrength() );
-            bundle.put( SOU, scrollsOfUpgrade );
+            bundle.put( SOU, getScrollsOfUpgrade() );
             bundle.put( SOE, scrollsOfEnchantment );
             bundle.put( DV, dewVial );
 
@@ -572,7 +572,7 @@ public class Dungeon {
         Ring.restore( bundle );
 
         setPotionOfStrength( bundle.getInt( POS ) );
-        scrollsOfUpgrade = bundle.getInt( SOU );
+        setScrollsOfUpgrade( bundle.getInt( SOU ) );
         scrollsOfEnchantment = bundle.getInt( SOE );
         dewVial = bundle.getBoolean( DV );
 
@@ -774,5 +774,13 @@ public class Dungeon {
 
     public static void setPotionOfStrength ( int potionOfStrength ) {
         Dungeon.potionOfStrength = potionOfStrength;
+    }
+
+    public static int getScrollsOfUpgrade () {
+        return scrollsOfUpgrade;
+    }
+
+    public static void setScrollsOfUpgrade ( int scrollsOfUpgrade ) {
+        Dungeon.scrollsOfUpgrade = scrollsOfUpgrade;
     }
 }

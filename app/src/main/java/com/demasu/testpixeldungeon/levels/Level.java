@@ -184,7 +184,7 @@ public abstract class Level implements Bundlable {
             }
             if ( Dungeon.souNeeded() ) {
                 addItemToSpawn( new ScrollOfUpgrade() );
-                Dungeon.scrollsOfUpgrade++;
+                Dungeon.setScrollsOfUpgrade( Dungeon.getScrollsOfUpgrade() + 1 );
             }
             if ( Dungeon.soeNeeded() ) {
                 addItemToSpawn( new ScrollOfEnchantment() );
