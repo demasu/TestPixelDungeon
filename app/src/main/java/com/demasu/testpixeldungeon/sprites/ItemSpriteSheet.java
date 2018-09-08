@@ -223,4 +223,9 @@ public class ItemSpriteSheet {
     public static final int CRYSTAL_FULL = SPD_OFFSET + 41;
 
     public static final int MOB_PROJECTILE = SPD_OFFSET + 42;
+
+
+    // Demasu's items //TODO: Change when there's a real name
+    public static final int DEM_OFFSET = SPD_OFFSET + 48;
+    public static final int BELT = DEM_OFFSET;
 }

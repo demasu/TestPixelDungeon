@@ -34,6 +34,7 @@ import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.armor.Armor;
 import com.demasu.testpixeldungeon.items.bags.Bag;
 import com.demasu.testpixeldungeon.items.bags.Keyring;
+import com.demasu.testpixeldungeon.items.bags.PotionBelt;
 import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
@@ -131,7 +132,8 @@ public class WndBag extends WndTabbed {
                 stuff.getItem( SeedPouch.class ),
                 stuff.getItem( ScrollHolder.class ),
                 stuff.getItem( WandHolster.class ),
-                stuff.getItem( Keyring.class ) };
+                stuff.getItem( Keyring.class ),
+                stuff.getItem( PotionBelt.class ) };
 
         for ( Bag b : bags ) {
             if ( b != null ) {

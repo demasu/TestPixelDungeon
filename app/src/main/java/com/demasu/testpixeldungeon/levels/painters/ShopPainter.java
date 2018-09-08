@@ -32,10 +32,12 @@ import com.demasu.testpixeldungeon.items.Torch;
 import com.demasu.testpixeldungeon.items.Weightstone;
 import com.demasu.testpixeldungeon.items.armor.*;
 import com.demasu.testpixeldungeon.items.bags.Bag;
+import com.demasu.testpixeldungeon.items.bags.PotionBelt;
 import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.items.food.OverpricedRation;
+import com.demasu.testpixeldungeon.items.potions.Potion;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfMagicMapping;
@@ -127,6 +129,7 @@ public class ShopPainter extends Painter {
                 items.add( new ScrollHolder() );
                 items.add( new Weightstone() );
                 items.add( new MerchantsBeacon() );
+                items.add( new Potion() );
                 break;
 
             case 16:
