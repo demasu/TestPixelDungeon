@@ -12,20 +12,51 @@ public enum Difficulties {
     NORMAL( 0 ), EASY( 1 ), HARD( 2 ), HELL( 3 ), SUICIDE( 4 ), JUSTKILLME( 5 );
 
 
-    private int difficulty;
-
-    public static boolean canDisableChampions = false;
-
-    private int championOffset = 0;
+    public static final String[] EASY_DESC = {
+            "- Start with 2 extra rations.",
+            "- Start with 2 potions of healing.",
+            "- Start with 200 Gold.",
+            "- Mobs are Weak, do 25% less damage, take 10% more damage and have 15% less HP.",
+            "- Champion spawn rate set to 10%."
+    };
+    public static final String[] NORMAL_DESC = {
+            "- Mobs are standard.",
+            "- Champion spawn rate set to 20%."
+    };
+    public static final String[] HARD_DESC = {
+            "- Potion of healing heals 75% max hp.",
+            "- Mobs are Strong, do 10% extra damage, take 10% less damage and have 20% more HP.",
+            "- Champion spawn rate set to 30%."
+    };
+    public static final String[] HELL_DESC = {
+            "- Potion of healing heals 50% max hp.",
+            "- Mobs are Immortal, do 25% more damage, take 20% less damage and have 35% more HP.",
+            "- Champion spawn rate set to 40%.",
+            "- Hero starts with 4 less maxHP.",
+            "- Hero gains 1 less maxHP on leveling."
+    };
+    public static final String[] SUICIDE_DESC = {
+            "- Potion of healing heals 25% max hp.",
+            "- Mobs are Godlike, do 45% more damage, take 30% less damage and have 60% more HP.",
+            "- Champion spawn rate set to 50%.",
+            "- Hero starts with 8 less maxHP.",
+            "- Hero gains 3 less maxHP on leveling."
+    };
+    public static final String[] JUST_KILL_ME_DESC = {
+            "- Potion of healing heals 10% max hp.",
+            "- Mobs are Deities, do 60% more damage, take 40% less damage and have 75% more HP.",
+            "- Champion spawn rate set to 100%.",
+            "- Hero starts with 8 less maxHP.",
+            "- Hero gains 3 less maxHP on leveling."
+    };
+    public static boolean canDisableChampions = true;
     public float hpOffset = 0;
     public float attOffset = 0;
     public float defOffset = 0;
     public float defenceOffset = 0;
-
-    public enum isNightOverwrite {DEFAULT, ALWAYS_DAY, ALWAYS_NIGHT}
-
     public isNightOverwrite isNight = isNightOverwrite.DEFAULT;
-
+    private int difficulty;
+    private int championOffset = 0;
     private ArrayList<Integer> disabledChampions = new ArrayList<>();
 
     Difficulties ( int difficulty ) {
@@ -37,49 +68,37 @@ public enum Difficulties {
         disabledChampions.clear();
     }
 
-    public static final String[] EASY_DESC = {
-            "- Start with 2 extra rations.",
-            "- Start with 2 potions of healing.",
-            "- Start with 200 Gold.",
-            "- Mobs are Weak, do 25% less damage, take 10% more damage and have 15% less HP.",
-            "- Champion spawn rate set to 10%."
-    };
+    public static String description ( int difficulty ) {
+        try {
+            return Difficulties.values()[difficulty].description();
+        } catch ( Exception ex ) {
+            return ""; // Invalid difficulty
+        }
+    }
 
-    public static final String[] NORMAL_DESC = {
-            "- Mobs are standard.",
-            "- Champion spawn rate set to 20%."
-    };
+    public static String title ( int difficulty ) {
+        try {
+            return Difficulties.values()[difficulty].title();
+        } catch ( Exception ex ) {
+            return ""; // Invalid difficulty
+        }
+    }
 
-    public static final String[] HARD_DESC = {
-            "- Potion of healing heals 75% max hp.",
-            "- Mobs are Strong, do 10% extra damage, take 10% less damage and have 20% more HP.",
-            "- Champion spawn rate set to 30%."
-    };
+    public static int getNormalizedDifficulty ( int diff ) {
+        return diff == 0 ? 1 : ( diff == 1 ? 0 : diff );
+    }
 
-    public static final String[] HELL_DESC = {
-            "- Potion of healing heals 50% max hp.",
-            "- Mobs are Immortal, do 25% more damage, take 20% less damage and have 35% more HP.",
-            "- Champion spawn rate set to 40%.",
-            "- Hero starts with 4 less maxHP.",
-            "- Hero gains 1 less maxHP on leveling."
-    };
-
-    public static final String[] SUICIDE_DESC = {
-            "- Potion of healing heals 25% max hp.",
-            "- Mobs are Godlike, do 45% more damage, take 30% less damage and have 60% more HP.",
-            "- Champion spawn rate set to 50%.",
-            "- Hero starts with 8 less maxHP.",
-            "- Hero gains 3 less maxHP on leveling."
-    };
-
-    public static final String[] JUST_KILL_ME_DESC = {
-            "- Potion of healing heals 10% max hp.",
-            "- Mobs are Deities, do 60% more damage, take 40% less damage and have 75% more HP.",
-            "- Champion spawn rate set to 100%.",
-            "- Hero starts with 8 less maxHP.",
-            "- Hero gains 3 less maxHP on leveling."
-    };
-
+    static String join ( String delim, String... data ) {
+        StringBuilder sb = new StringBuilder();
+        for ( int i = 0; i < data.length; i++ ) {
+            sb.append( data[i] );
+            if ( i >= data.length - 1 ) {
+                break;
+            }
+            sb.append( delim );
+        }
+        return sb.toString();
+    }
 
     public String title () {
 
@@ -138,22 +157,6 @@ public enum Difficulties {
         return "";
     }
 
-    public static String description ( int difficulty ) {
-        try {
-            return Difficulties.values()[difficulty].description();
-        } catch ( Exception ex ) {
-            return ""; // Invalid difficulty
-        }
-    }
-
-    public static String title ( int difficulty ) {
-        try {
-            return Difficulties.values()[difficulty].title();
-        } catch ( Exception ex ) {
-            return ""; // Invalid difficulty
-        }
-    }
-
     public int championChance () {
         return championChanceNatural() + championOffset;
     }
@@ -199,7 +202,6 @@ public enum Difficulties {
         }
         return 1f;
     }
-
 
     public float mobDefenceModifier () {
 
@@ -278,7 +280,6 @@ public enum Difficulties {
         return "Your wounds are partially healed.";
     }
 
-
     public int difficultyHPLevelPenalty () {
         switch ( this ) {
             case EASY:
@@ -322,7 +323,6 @@ public enum Difficulties {
         }
     }
 
-
     public void reset () {
         championOffset = 0;
         defenceOffset = 0;
@@ -333,8 +333,22 @@ public enum Difficulties {
 
     public void changeDefenceOffset ( float change ) {
         defenceOffset += change;
-        if ( mobDefenceModifier() > naturalMobDefenceModifier() ) {
-            defenceOffset = 0;
+        if ( mobDefenceModifier() > ( naturalMobDefenceModifier() + 0.3f ) ) {
+            /* The below formula will make sure you can take the defence down to 30% below what it starts
+             * at. The below comments show thr basic formula for it.
+             *
+             * y = z - x
+             * or, another way
+             * -y + z = x
+             * y = naturalMobDefenceModifier
+             * x = What we need to subtract from naturalMobDefenceModifier to get down to 0.3f
+             * z = The lowest we want to go on the modifier (currently 0.3 (30 percent) below)
+             *
+             * x = naturalMobDefenceModifier + (0.3)
+             * hpOffset = naturalMobDefenceModifier - x
+             *
+             */
+            defenceOffset = Math.round( ( naturalMobDefenceModifier() + ( ( -1 * naturalMobDefenceModifier() ) + 0.3f ) ) * 100 ) / 100f;
         }
         if ( mobDefenceModifier() < 0.1f ) {
             defenceOffset = 0.1f - naturalMobDefenceModifier();
@@ -353,8 +367,22 @@ public enum Difficulties {
 
     public void changeHPOffset ( float change ) {
         hpOffset += change;
-        if ( mobHPModifier() < naturalMobHPModifier() ) {
-            hpOffset = 0;
+        if ( mobHPModifier() < ( naturalMobHPModifier() - 0.3f ) ) {
+            /* The below formula will make sure you can take the HP down to 30% below what it starts
+             * at. The below comments show thr basic formula for it.
+             *
+             * y = x - z
+             * or, another way
+             * y - x = z
+             * y = naturalMobHPModifier
+             * x = What we need to subtract from naturalMobHPModifier to get down to -0.3f
+             * z = The lowest we want to go on the modifier (currently -0.3 (30 percent) below)
+             *
+             * x = naturalMobHPModifier - (-0.3)
+             * hpOffset = naturalMobHPModifier - x
+             *
+             */
+            hpOffset = Math.round( ( naturalMobHPModifier() - ( naturalMobHPModifier() - ( -0.03f ) ) ) * 100 ) / 10f;
         }
         if ( mobHPModifier() > 2f ) {
             hpOffset = 2f - naturalMobHPModifier();
@@ -363,8 +391,22 @@ public enum Difficulties {
 
     public void changeDamageOffset ( float change ) {
         attOffset += change;
-        if ( damageModifier() < naturalDamageModifier() ) {
-            attOffset = 0;
+        if ( damageModifier() < ( naturalDamageModifier() - 0.3f ) ) {
+            /* The below formula will make sure you can take the attack down to 30% below what it starts
+             * at. The below comments show thr basic formula for it.
+             *
+             * y = x - z
+             * or, another way
+             * y - x = z
+             * y = naturalDamageModifier
+             * x = What we need to subtract from naturalDamageModifier to get down to -0.3f
+             * z = The lowest we want to go on the modifier (currently -0.3 (30 percent) below)
+             *
+             * x = naturalDamageModifier - (-0.3)
+             * hpOffset = naturalDamageModifier - x
+             *
+             */
+            attOffset = Math.round( ( naturalDamageModifier() - ( naturalDamageModifier() - ( -0.03f ) ) ) * 100 ) / 10f;
         }
         if ( damageModifier() > 2f ) {
             attOffset = 2f - naturalDamageModifier();
@@ -439,19 +481,5 @@ public enum Difficulties {
         return "error";
     }
 
-    public static int getNormalizedDifficulty ( int diff ) {
-        return diff == 0 ? 1 : ( diff == 1 ? 0 : diff );
-    }
-
-    static String join ( String delim, String... data ) {
-        StringBuilder sb = new StringBuilder();
-        for ( int i = 0; i < data.length; i++ ) {
-            sb.append( data[i] );
-            if ( i >= data.length - 1 ) {
-                break;
-            }
-            sb.append( delim );
-        }
-        return sb.toString();
-    }
+    public enum isNightOverwrite {DEFAULT, ALWAYS_DAY, ALWAYS_NIGHT}
 }

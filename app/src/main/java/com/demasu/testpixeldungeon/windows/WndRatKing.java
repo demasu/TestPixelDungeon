@@ -18,6 +18,7 @@
 package com.demasu.testpixeldungeon.windows;
 
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.watabou.noosa.BitmapTextMultiline;
 import com.watabou.noosa.Camera;
@@ -74,6 +75,7 @@ public class WndRatKing extends WndTabbed {
         this.mode = mode;
 
         if ( mode == Mode.NORMAL ) {
+            Log.i( "TPD", "Mode is: " + mode );
             Component titlebar = new IconTitle( Icons.RAT_KING.get(), TXT_TRUE_KING_TITLE );
             titlebar.setRect( 0, 0, WIDTH, 0 );
             add( titlebar );
@@ -95,6 +97,7 @@ public class WndRatKing extends WndTabbed {
 
             resize( WIDTH, maxHeight );
         } else if ( mode == Mode.CHAMPIONS ) {
+            Log.i( "TPD", "Mode is: " + mode );
             CheckBox btnImmersive = null;
 
 
@@ -186,7 +189,8 @@ public class WndRatKing extends WndTabbed {
             btnFoul.checked( Dungeon.getCurrentDifficulty().disableChampion( Champ.CHAMP_FOUL ) );
             add( btnFoul );
 
-            if ( !Difficulties.canDisableChampions ) {
+            if ( Difficulties.canDisableChampions ) {
+            } else {
                 btnFoul.enable( false );
                 btnChief.enable( false );
                 btnVamp.enable( false );
@@ -200,6 +204,7 @@ public class WndRatKing extends WndTabbed {
             resize( WIDTH, maxHeight );
 
         } else if ( mode == Mode.HERO ) {
+            Log.i( "TPD", "Mode is: " + mode );
             CheckBox btnImmersive = null;
 
 
@@ -356,9 +361,9 @@ public class WndRatKing extends WndTabbed {
     }
 
     private void updateMobStats () {
-        btMobHP.text( String.format( "HP: %s", ( (int) ( Dungeon.getCurrentDifficulty().mobHPModifier() * 100 ) + "%" ) ) );
-        btMobAtt.text( String.format( "ATT: %s", ( (int) ( Dungeon.getCurrentDifficulty().damageModifier() * 100 ) + "%" ) ) );
-        btMobDef.text( String.format( "Def: %s", ( (int) ( ( 2 - Dungeon.getCurrentDifficulty().mobDefenceModifier() ) * 100 ) + "%" ) ) );
+        btMobHP.text( String.format( "HP: %s", ( Math.round( ( Dungeon.getCurrentDifficulty().mobHPModifier() * 100 ) ) + "%" ) ) );
+        btMobAtt.text( String.format( "ATT: %s", ( Math.round( ( Dungeon.getCurrentDifficulty().damageModifier() * 100 ) ) + "%" ) ) );
+        btMobDef.text( String.format( "Def: %s", ( Math.round( ( ( 2 - Dungeon.getCurrentDifficulty().mobDefenceModifier() ) * 100 ) ) + "%" ) ) );
         btDayNight.text( Dungeon.getCurrentDifficulty().GetToggleNightDesc() );
     }
 
