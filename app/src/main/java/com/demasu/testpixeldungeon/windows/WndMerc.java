@@ -37,6 +37,7 @@ import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.armor.Armor;
 import com.demasu.testpixeldungeon.items.bags.Bag;
 import com.demasu.testpixeldungeon.items.bags.Keyring;
+import com.demasu.testpixeldungeon.items.bags.PotionBelt;
 import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
@@ -227,6 +228,8 @@ public class WndMerc extends WndTabbed {
                 return Icons.get( Icons.SCROLL_HOLDER );
             } else if ( bag instanceof WandHolster ) {
                 return Icons.get( Icons.WAND_HOLSTER );
+            } else if ( bag instanceof PotionBelt ) {
+                return Icons.get( Icons.POTION_BELT );
             } else if ( bag instanceof Keyring ) {
                 return Icons.get( Icons.KEYRING );
             } else {

@@ -34,6 +34,8 @@ public class PotionBelt extends Bag{
         image = ItemSpriteSheet.BELT;
         //noinspection MagicNumber
         setSellPrice( 50 );
+        //noinspection MagicNumber
+        size = 14;
     }
 
     private int sellPrice;
@@ -52,7 +54,7 @@ public class PotionBelt extends Bag{
     public String info() {
         return
             "You can store a significant number of potions in the curiously made containers " +
-            "which go around this wondrous sash. It would not only save room in your backpack, " +
+            "which go around this wondrous belt. It would not only save room in your backpack, " +
             "but also protect these potions from breaking.";
     }
 

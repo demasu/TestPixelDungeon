@@ -19,6 +19,7 @@ package com.demasu.testpixeldungeon.windows;
 
 import android.graphics.RectF;
 
+import com.demasu.testpixeldungeon.items.bags.PotionBelt;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.ColorBlock;
 import com.watabou.noosa.Image;
@@ -197,6 +198,8 @@ public class WndSkills extends WndTabbed {
                 return Icons.get( Icons.SCROLL_HOLDER );
             } else if ( bag instanceof WandHolster ) {
                 return Icons.get( Icons.WAND_HOLSTER );
+            } else if ( bag  instanceof PotionBelt ) {
+                return Icons.get( Icons.POTION_BELT );
             } else if ( bag instanceof Keyring ) {
                 return Icons.get( Icons.KEYRING );
             } else {

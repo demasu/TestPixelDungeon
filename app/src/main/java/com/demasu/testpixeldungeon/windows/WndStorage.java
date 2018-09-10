@@ -19,6 +19,7 @@ package com.demasu.testpixeldungeon.windows;
 
 import android.graphics.RectF;
 
+import com.demasu.testpixeldungeon.items.bags.PotionBelt;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.ColorBlock;
@@ -70,22 +71,17 @@ public class WndStorage extends WndTabbed {
     protected static final int TAB_WIDTH = 25;
 
     protected static final int TITLE_HEIGHT = 12;
-
-    private Listener listener;
-    private WndStorage.Mode mode;
-    private String title;
-
-    private int nCols;
-    private int nRows;
-
+    private static Mode lastMode;
+    private static Storage lastBag;
+    public boolean noDegrade = !PixelDungeon.itemDeg();
     protected int count;
     protected int col;
     protected int row;
-
-    private static Mode lastMode;
-    private static Storage lastBag;
-
-    public boolean noDegrade = !PixelDungeon.itemDeg();
+    private Listener listener;
+    private WndStorage.Mode mode;
+    private String title;
+    private int nCols;
+    private int nRows;
 
     public WndStorage ( Storage bag, Listener listener, Mode mode, String title ) {
 
@@ -181,6 +177,30 @@ public class WndStorage extends WndTabbed {
         return 20;
     }
 
+    public interface Listener {
+        void onSelect ( Item item );
+    }
+
+    private static class Placeholder extends Item {
+        {
+            name = null;
+        }
+
+        public Placeholder ( int image ) {
+            this.image = image;
+        }
+
+        @Override
+        public boolean isIdentified () {
+            return true;
+        }
+
+        @Override
+        public boolean isEquipped ( Hero hero ) {
+            return true;
+        }
+    }
+
     private class BagTab extends Tab {
 
         private Image icon;
@@ -224,31 +244,13 @@ public class WndStorage extends WndTabbed {
                 return Icons.get( Icons.SCROLL_HOLDER );
             } else if ( bag instanceof WandHolster ) {
                 return Icons.get( Icons.WAND_HOLSTER );
+            } else if ( bag  instanceof PotionBelt ) {
+                return Icons.get( Icons.POTION_BELT );
             } else if ( bag instanceof Keyring ) {
                 return Icons.get( Icons.KEYRING );
             } else {
                 return Icons.get( Icons.BACKPACK );
             }
-        }
-    }
-
-    private static class Placeholder extends Item {
-        {
-            name = null;
-        }
-
-        public Placeholder ( int image ) {
-            this.image = image;
-        }
-
-        @Override
-        public boolean isIdentified () {
-            return true;
-        }
-
-        @Override
-        public boolean isEquipped ( Hero hero ) {
-            return true;
         }
     }
 
@@ -370,9 +372,5 @@ public class WndStorage extends WndTabbed {
             return false;
 
         }
-    }
-
-    public interface Listener {
-        void onSelect ( Item item );
     }
 }

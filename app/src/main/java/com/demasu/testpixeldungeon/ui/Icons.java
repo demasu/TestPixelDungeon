@@ -17,62 +17,59 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
-import com.watabou.noosa.Image;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.hero.HeroClass;
+import com.watabou.noosa.Image;
 
 public enum Icons {
 
-    SKULL,
-    BUSY,
-    COMPASS,
-    PREFS,
-    WARNING,
-    TARGET,
-    WATA,
-    WARRIOR,
-    MAGE,
-    ROGUE,
-    HUNTRESS,
-    CLOSE,
-    DEPTH,
-    SLEEP,
     ALERT,
-    SUPPORT,
-    SUPPORTED,
-    BACKPACK,
-    SEED_POUCH,
-    SCROLL_HOLDER,
-    WAND_HOLSTER,
-    KEYRING,
-    CHECKED,
-    UNCHECKED,
-    EXIT,
-    CHALLENGE_OFF,
-    CHALLENGE_ON,
-    RESUME,
-    SKILL_NOT_AVAILABLE,
-    SKILL_AVAILABLE,
-    SKILLS,
-    ARCHER_MAIDEN,
-    BRUTE,
-    THIEF,
-    WIZARD,
+    ALL_MERCS,
     ARCHER,
-    ARCHER_MAIDEN_SKILL,
-    ARCHER_MAIDEN_SKILL_B,
+    ARCHER_MAIDEN,
     ARCHER_MAIDEN_BOW,
     ARCHER_MAIDEN_POTION,
-    ALL_MERCS,
-    RAT_KING,
-    MOB,
+    ARCHER_MAIDEN_SKILL,
+    ARCHER_MAIDEN_SKILL_B,
+    BACKPACK,
+    BRUTE,
+    BUSY,
+    CHALLENGE_OFF,
+    CHALLENGE_ON,
     CHAMP_HALO,
+    CHECKED,
+    CLOSE,
+    COMPASS,
+    DEPTH,
+    EXIT,
     GAME,
-    VIDEO;
-
-    public Image get () {
-        return get( this );
-    }
+    HUNTRESS,
+    KEYRING,
+    MAGE,
+    MOB,
+    POTION_BELT,
+    PREFS,
+    RAT_KING,
+    RESUME,
+    ROGUE,
+    SCROLL_HOLDER,
+    SEED_POUCH,
+    SKILL_AVAILABLE,
+    SKILL_NOT_AVAILABLE,
+    SKILLS,
+    SKULL,
+    SLEEP,
+    SUPPORT,
+    SUPPORTED,
+    TARGET,
+    THIEF,
+    UNCHECKED,
+    VIDEO,
+    WAND_HOLSTER,
+    WARNING,
+    WARRIOR,
+    WATA,
+    WIZARD;
 
     public static Image get ( Icons type ) {
         Image icon = new Image( Assets.ICONS );
@@ -215,6 +212,9 @@ public enum Icons {
             case VIDEO:
                 icon.frame( icon.texture.uvRect( 73, 83, 93, 96 ) );
                 break;
+            case POTION_BELT:
+                icon.frame( icon.texture.uvRect( 55, 101, 72, 116 ) );
+                break;
 
         }
         return icon;
@@ -233,5 +233,9 @@ public enum Icons {
             default:
                 return null;
         }
+    }
+
+    public Image get () {
+        return get( this );
     }
 }

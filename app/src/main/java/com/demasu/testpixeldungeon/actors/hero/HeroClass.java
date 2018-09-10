@@ -29,6 +29,7 @@ import com.demasu.testpixeldungeon.items.TomeOfMastery;
 import com.demasu.testpixeldungeon.items.armor.Armor;
 import com.demasu.testpixeldungeon.items.armor.DebugArmor;
 import com.demasu.testpixeldungeon.items.bags.Keyring;
+import com.demasu.testpixeldungeon.items.bags.PotionBelt;
 import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
@@ -243,6 +244,7 @@ public enum HeroClass {
         new SeedPouch().collect();
         new WandHolster().collect();
         new MerchantsBeacon().collect();
+        new PotionBelt().collect();
         // new PotionOfMindVision().collect();
         // new ArmorKit().collect();
         // new ScrollOfMagicMapping().identify().collect();

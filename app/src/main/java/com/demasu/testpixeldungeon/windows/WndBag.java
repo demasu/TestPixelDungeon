@@ -75,7 +75,8 @@ public class WndBag extends WndTabbed {
     protected static final int COLS_P = 4;
     protected static final int COLS_L = 6;
 
-    protected static final int SLOT_SIZE = 28;
+    protected static final int SLOT_WIDTH  = 28;
+    protected static final int SLOT_HEIGHT = 28;
     protected static final int SLOT_MARGIN = 1;
 
     protected static final int TAB_WIDTH = 25;
@@ -112,8 +113,8 @@ public class WndBag extends WndTabbed {
         nCols = PixelDungeon.landscape() ? COLS_L : COLS_P;
         nRows = ( Belongings.BACKPACK_SIZE + 4 + 1 ) / nCols + ( ( Belongings.BACKPACK_SIZE + 4 + 1 ) % nCols > 0 ? 1 : 0 );
 
-        int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * ( nCols - 1 );
-        int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * ( nRows - 1 );
+        int slotsWidth = SLOT_WIDTH * nCols + SLOT_MARGIN * ( nCols - 1 );
+        int slotsHeight = SLOT_HEIGHT * nRows + SLOT_MARGIN * ( nRows - 1 );
 
         BitmapText txtTitle = PixelScene.createText( title != null ? title : Utils.capitalize( bag.name() ), 9 );
         txtTitle.hardlight( TITLE_COLOR );
@@ -132,13 +133,15 @@ public class WndBag extends WndTabbed {
                 stuff.getItem( SeedPouch.class ),
                 stuff.getItem( ScrollHolder.class ),
                 stuff.getItem( WandHolster.class ),
-                stuff.getItem( Keyring.class ),
-                stuff.getItem( PotionBelt.class ) };
+                stuff.getItem( PotionBelt.class ),
+                stuff.getItem( Keyring.class ) };
 
+        int totalTabSpace = 125;
+        int tabWidth = totalTabSpace / bags.length + ((totalTabSpace % bags.length == 0) ? 0 : 1);
         for ( Bag b : bags ) {
             if ( b != null ) {
                 BagTab tab = new BagTab( b );
-                tab.setSize( TAB_WIDTH, tabHeight() );
+                tab.setSize( tabWidth, tabHeight() );
                 add( tab );
 
                 tab.select( b == bag );
@@ -204,8 +207,8 @@ public class WndBag extends WndTabbed {
 
     protected void placeItem ( final Item item ) {
 
-        int x = col * ( SLOT_SIZE + SLOT_MARGIN );
-        int y = TITLE_HEIGHT + row * ( SLOT_SIZE + SLOT_MARGIN );
+        int x = col * ( SLOT_WIDTH + SLOT_MARGIN );
+        int y = TITLE_HEIGHT + row * ( SLOT_HEIGHT + SLOT_MARGIN );
 
         add( new ItemButton( item ).setPos( x, y ) );
 
@@ -286,6 +289,8 @@ public class WndBag extends WndTabbed {
                 return Icons.get( Icons.SCROLL_HOLDER );
             } else if ( bag instanceof WandHolster ) {
                 return Icons.get( Icons.WAND_HOLSTER );
+            } else if ( bag instanceof PotionBelt ) {
+                return Icons.get( Icons.POTION_BELT );
             } else if ( bag instanceof Keyring ) {
                 return Icons.get( Icons.KEYRING );
             } else {
@@ -335,12 +340,13 @@ public class WndBag extends WndTabbed {
                 bg.visible = false;
             }
 
-            width = height = SLOT_SIZE;
+            width = SLOT_WIDTH;
+            height = SLOT_HEIGHT;
         }
 
         @Override
         protected void createChildren () {
-            bg = new ColorBlock( SLOT_SIZE, SLOT_SIZE, NORMAL );
+            bg = new ColorBlock( SLOT_WIDTH, SLOT_HEIGHT, NORMAL );
             add( bg );
 
             super.createChildren();
