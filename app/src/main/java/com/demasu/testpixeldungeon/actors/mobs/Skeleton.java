@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.ResultDescriptions;
@@ -31,11 +28,19 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.sprites.SkeletonSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
+
+import java.util.HashSet;
 
 public class Skeleton extends Mob {
 
     private static final String TXT_HERO_KILLED = "You were killed by the explosion of bones...";
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( Death.class );
+    }
 
     {
         name = "skeleton";
@@ -129,12 +134,6 @@ public class Skeleton extends Mob {
                 "Skeletons are composed of corpses bones from unlucky adventurers and inhabitants of the dungeon, " +
                         "animated by emanations of evil magic from the depths below. After they have been " +
                         "damaged enough, they disintegrate in an explosion of bones.";
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Death.class );
     }
 
     @Override

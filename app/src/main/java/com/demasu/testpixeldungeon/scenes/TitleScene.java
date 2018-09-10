@@ -17,17 +17,8 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.opengl.GLES20;
 
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.audio.Music;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.ui.Button;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.VersionNewsInfo;
@@ -36,6 +27,15 @@ import com.demasu.testpixeldungeon.effects.Fireball;
 import com.demasu.testpixeldungeon.ui.Archs;
 import com.demasu.testpixeldungeon.ui.ExitButton;
 import com.demasu.testpixeldungeon.ui.PrefsButton;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.ui.Button;
+
+import javax.microedition.khronos.opengles.GL10;
 
 
 public class TitleScene extends PixelScene {

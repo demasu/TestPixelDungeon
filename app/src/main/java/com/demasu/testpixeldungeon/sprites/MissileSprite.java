@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.tweeners.PosTweener;
-import com.watabou.noosa.tweeners.Tweener;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.items.Item;
+import com.watabou.noosa.tweeners.PosTweener;
+import com.watabou.noosa.tweeners.Tweener;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
 

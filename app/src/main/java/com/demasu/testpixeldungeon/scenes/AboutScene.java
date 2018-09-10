@@ -20,18 +20,18 @@ package com.demasu.testpixeldungeon.scenes;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.watabou.input.Touchscreen.Touch;
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.TouchArea;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.effects.Flare;
 import com.demasu.testpixeldungeon.ui.Archs;
 import com.demasu.testpixeldungeon.ui.ExitButton;
 import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.Window;
+import com.watabou.input.Touchscreen.Touch;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.TouchArea;
 
 public class AboutScene extends PixelScene {
 

@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs.npcs;
 
-import java.util.Collection;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -39,8 +36,11 @@ import com.demasu.testpixeldungeon.sprites.BlacksmithSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.windows.WndBlacksmith;
 import com.demasu.testpixeldungeon.windows.WndQuest;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
+
+import java.util.Collection;
 
 public class Blacksmith extends NPC {
 
@@ -70,6 +70,68 @@ public class Blacksmith extends NPC {
     {
         name = "troll blacksmith";
         spriteClass = BlacksmithSprite.class;
+    }
+
+    public static String verify ( Item item1, Item item2 ) {
+
+        if ( item1 == item2 ) {
+            return "Select 2 different items, not the same item twice!";
+        }
+
+        if ( item1.getClass() != item2.getClass() ) {
+            return "Select 2 items of the same type!";
+        }
+
+        if ( !item1.isIdentified() || !item2.isIdentified() ) {
+            return "I need to know what I'm working with, identify them first!";
+        }
+
+        if ( item1.cursed || item2.cursed ) {
+            return "I don't work with cursed items!";
+        }
+
+        if ( item1.level() < 0 || item2.level() < 0 ) {
+            return "It's a junk, the quality is too poor!";
+        }
+
+        if ( !item1.isUpgradable() || !item2.isUpgradable() ) {
+            return "I can't reforge these items!";
+        }
+
+        return null;
+    }
+
+    public static void upgrade ( Item item1, Item item2 ) {
+
+        Item first, second;
+        if ( item2.level() > item1.level() ) {
+            first = item2;
+            second = item1;
+        } else {
+            first = item1;
+            second = item2;
+        }
+
+        Sample.INSTANCE.play( Assets.SND_EVOKE );
+        ScrollOfUpgrade.upgrade( Dungeon.getHero() );
+        Item.evoke( Dungeon.getHero() );
+
+        if ( first.isEquipped( Dungeon.getHero() ) ) {
+            ( (EquipableItem) first ).doUnequip( Dungeon.getHero(), true );
+        }
+        first.upgrade();
+        GLog.p( TXT_LOOKS_BETTER, first.name() );
+        Dungeon.getHero().spendAndNext( 2f );
+        Badges.validateItemLevelAquired( first );
+
+        if ( second.isEquipped( Dungeon.getHero() ) ) {
+            ( (EquipableItem) second ).doUnequip( Dungeon.getHero(), false );
+        }
+        second.detachAll( Dungeon.getHero().belongings.backpack );
+
+        Quest.reforged = true;
+
+        Journal.remove( Journal.Feature.TROLL );
     }
 
     @Override
@@ -162,68 +224,6 @@ public class Blacksmith extends NPC {
         GameScene.show( new WndQuest( this, text ) );
     }
 
-    public static String verify ( Item item1, Item item2 ) {
-
-        if ( item1 == item2 ) {
-            return "Select 2 different items, not the same item twice!";
-        }
-
-        if ( item1.getClass() != item2.getClass() ) {
-            return "Select 2 items of the same type!";
-        }
-
-        if ( !item1.isIdentified() || !item2.isIdentified() ) {
-            return "I need to know what I'm working with, identify them first!";
-        }
-
-        if ( item1.cursed || item2.cursed ) {
-            return "I don't work with cursed items!";
-        }
-
-        if ( item1.level() < 0 || item2.level() < 0 ) {
-            return "It's a junk, the quality is too poor!";
-        }
-
-        if ( !item1.isUpgradable() || !item2.isUpgradable() ) {
-            return "I can't reforge these items!";
-        }
-
-        return null;
-    }
-
-    public static void upgrade ( Item item1, Item item2 ) {
-
-        Item first, second;
-        if ( item2.level() > item1.level() ) {
-            first = item2;
-            second = item1;
-        } else {
-            first = item1;
-            second = item2;
-        }
-
-        Sample.INSTANCE.play( Assets.SND_EVOKE );
-        ScrollOfUpgrade.upgrade( Dungeon.getHero() );
-        Item.evoke( Dungeon.getHero() );
-
-        if ( first.isEquipped( Dungeon.getHero() ) ) {
-            ( (EquipableItem) first ).doUnequip( Dungeon.getHero(), true );
-        }
-        first.upgrade();
-        GLog.p( TXT_LOOKS_BETTER, first.name() );
-        Dungeon.getHero().spendAndNext( 2f );
-        Badges.validateItemLevelAquired( first );
-
-        if ( second.isEquipped( Dungeon.getHero() ) ) {
-            ( (EquipableItem) second ).doUnequip( Dungeon.getHero(), false );
-        }
-        second.detachAll( Dungeon.getHero().belongings.backpack );
-
-        Quest.reforged = true;
-
-        Journal.remove( Journal.Feature.TROLL );
-    }
-
     @Override
     public int defenseSkill ( Char enemy ) {
         return 1000;
@@ -251,8 +251,13 @@ public class Blacksmith extends NPC {
 
     public static class Quest {
 
+        private static final String NODE = "blacksmith";
+        private static final String SPAWNED = "spawned";
+        private static final String ALTERNATIVE = "alternative";
+        private static final String GIVEN = "given";
+        private static final String COMPLETED = "completed";
+        private static final String REFORGED = "reforged";
         private static boolean spawned;
-
         private static boolean alternative;
         private static boolean given;
         private static boolean completed;
@@ -264,14 +269,6 @@ public class Blacksmith extends NPC {
             completed = false;
             reforged = false;
         }
-
-        private static final String NODE = "blacksmith";
-
-        private static final String SPAWNED = "spawned";
-        private static final String ALTERNATIVE = "alternative";
-        private static final String GIVEN = "given";
-        private static final String COMPLETED = "completed";
-        private static final String REFORGED = "reforged";
 
         public static void storeInBundle ( Bundle bundle ) {
 

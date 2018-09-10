@@ -19,11 +19,6 @@ package com.demasu.testpixeldungeon.windows;
 
 import android.graphics.RectF;
 
-import com.watabou.gltextures.TextureCache;
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.ColorBlock;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
@@ -54,51 +49,33 @@ import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.ItemSlot;
 import com.demasu.testpixeldungeon.ui.SkillSlot;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.gltextures.TextureCache;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.ColorBlock;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.audio.Sample;
 
 public class WndMerc extends WndTabbed {
 
-    public enum Mode {
-        ALL,
-        UNIDENTIFED,
-        UPGRADEABLE,
-        QUICKSLOT,
-        FOR_SALE,
-        WEAPON,
-        ARMOR,
-        ENCHANTABLE,
-        WAND,
-        SEED
-    }
-
     protected static final int COLS_P = 4;
     protected static final int COLS_L = 6;
-
     protected static final int SLOT_SIZE = 28;
     protected static final int SLOT_MARGIN = 1;
-
     protected static final int TAB_WIDTH = 25;
-
     protected static final int TITLE_HEIGHT = 12;
-
-    private Listener listener;
-    private WndMerc.Mode mode;
-    private String title;
-
-    private int nCols;
-    private int nRows;
-
+    private static final int WIDTH = 120;
+    private static final float GAP = 2;
+    private static Mode lastMode;
+    private static Storage lastBag;
+    public boolean noDegrade = !PixelDungeon.itemDeg();
     protected int count;
     protected int col;
     protected int row;
-
-    private static Mode lastMode;
-    private static Storage lastBag;
-
-    private static final int WIDTH = 120;
-
-    public boolean noDegrade = !PixelDungeon.itemDeg();
-    private static final float GAP = 2;
-
+    private Listener listener;
+    private WndMerc.Mode mode;
+    private String title;
+    private int nCols;
+    private int nRows;
     public WndMerc ( Storage bag, Listener listener ) {
 
         super();
@@ -158,7 +135,6 @@ public class WndMerc extends WndTabbed {
 
     }
 
-
     @Override
     public void onMenuPressed () {
         if ( listener == null ) {
@@ -183,6 +159,43 @@ public class WndMerc extends WndTabbed {
     @Override
     protected int tabHeight () {
         return 20;
+    }
+
+    public enum Mode {
+        ALL,
+        UNIDENTIFED,
+        UPGRADEABLE,
+        QUICKSLOT,
+        FOR_SALE,
+        WEAPON,
+        ARMOR,
+        ENCHANTABLE,
+        WAND,
+        SEED
+    }
+
+    public interface Listener {
+        void onSelect ( Item item );
+    }
+
+    private static class Placeholder extends Item {
+        {
+            name = null;
+        }
+
+        public Placeholder ( int image ) {
+            this.image = image;
+        }
+
+        @Override
+        public boolean isIdentified () {
+            return true;
+        }
+
+        @Override
+        public boolean isEquipped ( Hero hero ) {
+            return true;
+        }
     }
 
     private class BagTab extends Tab {
@@ -238,39 +251,16 @@ public class WndMerc extends WndTabbed {
         }
     }
 
-    private static class Placeholder extends Item {
-        {
-            name = null;
-        }
-
-        public Placeholder ( int image ) {
-            this.image = image;
-        }
-
-        @Override
-        public boolean isIdentified () {
-            return true;
-        }
-
-        @Override
-        public boolean isEquipped ( Hero hero ) {
-            return true;
-        }
-    }
-
     private class ItemButton extends ItemSlot implements WndBag.Listener {
 
         private static final int NORMAL = 0xFF4A4D44;
         private static final int EQUIPPED = 0xFF63665B;
 
         private static final int NBARS = 3;
-
+        public boolean holdOnly = false;
         private Item item;
         private ColorBlock bg;
-
         private ColorBlock durability[];
-
-        public boolean holdOnly = false;
 
         public ItemButton ( Item item, boolean holdOnly ) {
 
@@ -489,9 +479,5 @@ public class WndMerc extends WndTabbed {
             GameScene.show( ( new WndSkill( null, skill ) ) );
             return true;
         }
-    }
-
-    public interface Listener {
-        void onSelect ( Item item );
     }
 }

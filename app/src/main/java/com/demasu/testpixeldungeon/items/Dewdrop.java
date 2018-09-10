@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
@@ -25,6 +24,7 @@ import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.noosa.audio.Sample;
 
 public class Dewdrop extends Item {
 

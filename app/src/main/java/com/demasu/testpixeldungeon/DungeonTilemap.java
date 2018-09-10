@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon;
 
+import com.demasu.testpixeldungeon.levels.Level;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.Tilemap;
 import com.watabou.noosa.tweeners.AlphaTweener;
-import com.demasu.testpixeldungeon.levels.Level;
 import com.watabou.utils.Point;
 import com.watabou.utils.PointF;
 
@@ -38,6 +38,22 @@ public class DungeonTilemap extends Tilemap {
         map( Dungeon.getLevel().map, Level.WIDTH );
 
         instance = this;
+    }
+
+    public static PointF tileToWorld ( int pos ) {
+        return new PointF( pos % Level.WIDTH, pos / Level.WIDTH ).scale( SIZE );
+    }
+
+    public static PointF tileCenterToWorld ( int pos ) {
+        return new PointF(
+                ( pos % Level.WIDTH + 0.5f ) * SIZE,
+                ( pos / Level.WIDTH + 0.5f ) * SIZE );
+    }
+
+    public static Image tile ( int index ) {
+        Image img = new Image( instance.texture );
+        img.frame( instance.tileset.get( index ) );
+        return img;
     }
 
     public int screenToTile ( int x, int y ) {
@@ -70,22 +86,6 @@ public class DungeonTilemap extends Tilemap {
             }
 
         } );
-    }
-
-    public static PointF tileToWorld ( int pos ) {
-        return new PointF( pos % Level.WIDTH, pos / Level.WIDTH ).scale( SIZE );
-    }
-
-    public static PointF tileCenterToWorld ( int pos ) {
-        return new PointF(
-                ( pos % Level.WIDTH + 0.5f ) * SIZE,
-                ( pos / Level.WIDTH + 0.5f ) * SIZE );
-    }
-
-    public static Image tile ( int index ) {
-        Image img = new Image( instance.texture );
-        img.frame( instance.tileset.get( index ) );
-        return img;
     }
 
     @Override

@@ -17,14 +17,11 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
-import com.demasu.testpixeldungeon.Statistics;
 import com.demasu.testpixeldungeon.Badges.Badge;
 import com.demasu.testpixeldungeon.Dungeon;
+import com.demasu.testpixeldungeon.Statistics;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.blobs.ToxicGas;
@@ -43,11 +40,24 @@ import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.mechanics.Ballistica;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.TenguSprite;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
+
+import java.util.HashSet;
 
 public class Tengu extends Mob {
 
     private static final int JUMP_DELAY = 5;
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( ToxicGas.class );
+        RESISTANCES.add( Poison.class );
+        RESISTANCES.add( Death.class );
+        RESISTANCES.add( ScrollOfPsionicBlast.class );
+    }
+
+    private int timeToJump = JUMP_DELAY;
 
     {
         name = Dungeon.getDepth() == Statistics.deepestFloor ? "Tengu" : "memory of Tengu";
@@ -61,8 +71,6 @@ public class Tengu extends Mob {
         HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
-
-    private int timeToJump = JUMP_DELAY;
 
     @Override
     public int damageRoll () {
@@ -184,15 +192,6 @@ public class Tengu extends Mob {
         return
                 "Tengu are members of the ancient assassins clan, which is also called Tengu. " +
                         "These assassins are noted for extensive use of shuriken and traps.";
-    }
-
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( ToxicGas.class );
-        RESISTANCES.add( Poison.class );
-        RESISTANCES.add( Death.class );
-        RESISTANCES.add( ScrollOfPsionicBlast.class );
     }
 
     @Override

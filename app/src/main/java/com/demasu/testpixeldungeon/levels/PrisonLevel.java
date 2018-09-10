@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import com.watabou.noosa.Scene;
-import com.watabou.noosa.particles.Emitter;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
@@ -26,6 +24,8 @@ import com.demasu.testpixeldungeon.actors.mobs.npcs.Wandmaker;
 import com.demasu.testpixeldungeon.effects.Halo;
 import com.demasu.testpixeldungeon.effects.particles.FlameParticle;
 import com.demasu.testpixeldungeon.levels.Room.Type;
+import com.watabou.noosa.Scene;
+import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
@@ -34,6 +34,14 @@ public class PrisonLevel extends RegularLevel {
     {
         color1 = 0x6a723d;
         color2 = 0x88924c;
+    }
+
+    public static void addVisuals ( Level level, Scene scene ) {
+        for ( int i = 0; i < LENGTH; i++ ) {
+            if ( level.map[i] == Terrain.WALL_DECO ) {
+                scene.add( new Torch( i ) );
+            }
+        }
     }
 
     @Override
@@ -152,14 +160,6 @@ public class PrisonLevel extends RegularLevel {
     public void addVisuals ( Scene scene ) {
         super.addVisuals( scene );
         addVisuals( this, scene );
-    }
-
-    public static void addVisuals ( Level level, Scene scene ) {
-        for ( int i = 0; i < LENGTH; i++ ) {
-            if ( level.map[i] == Terrain.WALL_DECO ) {
-                scene.add( new Torch( i ) );
-            }
-        }
     }
 
     private static class Torch extends Emitter {

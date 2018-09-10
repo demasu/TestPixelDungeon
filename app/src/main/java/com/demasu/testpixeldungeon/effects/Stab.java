@@ -19,37 +19,27 @@ package com.demasu.testpixeldungeon.effects;
 
 import android.graphics.Color;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.tweeners.PosTweener;
-import com.watabou.noosa.tweeners.Tweener;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.tweeners.PosTweener;
+import com.watabou.noosa.tweeners.Tweener;
 import com.watabou.utils.PointF;
 
 public class Stab extends ItemSprite implements Tweener.Listener {
     private static final int SIZE = 16;
-
-    private enum Phase {
-        FADE_IN, STATIC, FADE_OUT
-    }
-
     private static final float FADE_IN_TIME = 0.2f;
     private static final float STATIC_TIME = 0.4f;
     private static final float FADE_OUT_TIME = 0.2f;
-
     private static final float ALPHA = 0.6f;
-
     private int color;
-
     private Char source;
     private Char target;
-
     private Phase phase;
     private float duration;
     private float passed;
-
     public Stab ( Item item ) {
         super( item.image(), null );
         originToCenter();
@@ -63,6 +53,19 @@ public class Stab extends ItemSprite implements Tweener.Listener {
         phase = Phase.FADE_IN;
         duration = FADE_IN_TIME;
         passed = 0;
+    }
+
+    public static void show ( Char ch, Char ch2, Item item ) {
+
+        if ( !ch.sprite.visible ) {
+            return;
+        }
+
+        Stab sprite = new Stab( item );
+        sprite.source = ch;
+        sprite.target = ch2;
+        sprite.rotateEffect();
+        ch.sprite.parent.add( sprite );
     }
 
     @Override
@@ -130,21 +133,12 @@ public class Stab extends ItemSprite implements Tweener.Listener {
         source.sprite.parent.add( tweener );
     }
 
-    public static void show ( Char ch, Char ch2, Item item ) {
-
-        if ( !ch.sprite.visible ) {
-            return;
-        }
-
-        Stab sprite = new Stab( item );
-        sprite.source = ch;
-        sprite.target = ch2;
-        sprite.rotateEffect();
-        ch.sprite.parent.add( sprite );
-    }
-
     @Override
     public void onComplete ( Tweener tweener ) {
         kill();
+    }
+
+    private enum Phase {
+        FADE_IN, STATIC, FADE_OUT
     }
 }

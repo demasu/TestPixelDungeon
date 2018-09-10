@@ -46,10 +46,13 @@ public class Burning extends Buff implements Hero.Doom {
     private static final String TXT_BURNED_TO_DEATH = "You burned to death...";
 
     private static final float DURATION = 8f;
-
+    private static final String LEFT = "left";
     private float left;
 
-    private static final String LEFT = "left";
+    public static float duration ( Char ch ) {
+        Resistance r = ch.buff( Resistance.class );
+        return r != null ? r.durationFactor() * DURATION : DURATION;
+    }
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -136,11 +139,6 @@ public class Burning extends Buff implements Hero.Doom {
     @Override
     public String toString () {
         return "Burning";
-    }
-
-    public static float duration ( Char ch ) {
-        Resistance r = ch.buff( Resistance.class );
-        return r != null ? r.durationFactor() * DURATION : DURATION;
     }
 
     @Override

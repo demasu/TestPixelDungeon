@@ -1,9 +1,8 @@
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
-import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.effects.ArcherMaidenHalo;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.TextureFilm;
 
 /**
  * Created by Moussa on 04-Feb-17.

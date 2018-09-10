@@ -17,13 +17,13 @@
  */
 package com.demasu.testpixeldungeon.effects.particles;
 
+import com.demasu.testpixeldungeon.Dungeon;
+import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.particles.Emitter;
-import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.noosa.particles.Emitter.Factory;
-import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.DungeonTilemap;
+import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 

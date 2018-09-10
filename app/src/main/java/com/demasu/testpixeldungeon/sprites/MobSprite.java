@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.tweeners.AlphaTweener;
-import com.watabou.noosa.tweeners.ScaleTweener;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
+import com.watabou.noosa.tweeners.AlphaTweener;
+import com.watabou.noosa.tweeners.ScaleTweener;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 

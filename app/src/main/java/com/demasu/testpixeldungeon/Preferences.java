@@ -17,9 +17,9 @@
  */
 package com.demasu.testpixeldungeon;
 
-import com.watabou.noosa.Game;
-
 import android.content.SharedPreferences;
+
+import com.watabou.noosa.Game;
 
 enum Preferences {
 

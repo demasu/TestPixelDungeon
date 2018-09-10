@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels.features;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
@@ -27,6 +26,7 @@ import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.windows.WndMessage;
+import com.watabou.noosa.audio.Sample;
 
 public class Sign {
 

@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
@@ -26,6 +25,7 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.ui.StatusPane;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class ScrollOfBloodyRitual extends Scroll {

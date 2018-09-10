@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -33,10 +32,13 @@ import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class RemoteBombGround extends Item {
+
+    public int pos = 0;
 
     {
         name = "remote bomb";
@@ -45,8 +47,6 @@ public class RemoteBombGround extends Item {
         stackable = true;
 
     }
-
-    public int pos = 0;
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

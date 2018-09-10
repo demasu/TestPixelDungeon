@@ -31,18 +31,14 @@ import com.watabou.utils.Random;
 
 public class Hunger extends Buff implements Hero.Doom {
 
-    private static final float STEP = 10f;
-
     public static final float HUNGRY = 260f;
     public static final float STARVING = 360f;
-
+    private static final float STEP = 10f;
     private static final String TXT_HUNGRY = "You are hungry.";
     private static final String TXT_STARVING = "You are starving!";
     private static final String TXT_DEATH = "You starved to death...";
-
-    private float level;
-
     private static final String LEVEL = "level";
+    private float level;
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

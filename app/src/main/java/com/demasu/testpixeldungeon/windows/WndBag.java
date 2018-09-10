@@ -19,11 +19,6 @@ package com.demasu.testpixeldungeon.windows;
 
 import android.graphics.RectF;
 
-import com.watabou.gltextures.TextureCache;
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.ColorBlock;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
@@ -52,52 +47,33 @@ import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.ItemSlot;
 import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.gltextures.TextureCache;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.ColorBlock;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.GameMath;
 
 public class WndBag extends WndTabbed {
 
-    public enum Mode {
-        ALL,
-        UNIDENTIFED,
-        UPGRADEABLE,
-        QUICKSLOT,
-        FOR_SALE,
-        WEAPON,
-        ARMOR,
-        ENCHANTABLE,
-        WAND,
-        SEED,
-        BOW,
-        HEALING_POTION,
-        BRUTE_HOLD
-    }
-
     protected static final int COLS_P = 4;
     protected static final int COLS_L = 6;
-
-    protected static final int SLOT_WIDTH  = 28;
+    protected static final int SLOT_WIDTH = 28;
     protected static final int SLOT_HEIGHT = 28;
     protected static final int SLOT_MARGIN = 1;
-
     protected static final int TAB_WIDTH = 25;
-
     protected static final int TITLE_HEIGHT = 12;
-
-    private Listener listener;
-    private WndBag.Mode mode;
-    private String title;
-
-    private int nCols;
-    private int nRows;
-
+    private static Mode lastMode;
+    private static Bag lastBag;
+    public boolean noDegrade = PixelDungeon.itemDeg();
     protected int count;
     protected int col;
     protected int row;
-
-    private static Mode lastMode;
-    private static Bag lastBag;
-
-    public boolean noDegrade = PixelDungeon.itemDeg();
+    private Listener listener;
+    private WndBag.Mode mode;
+    private String title;
+    private int nCols;
+    private int nRows;
 
     public WndBag ( Bag bag, Listener listener, Mode mode, String title ) {
 
@@ -137,7 +113,7 @@ public class WndBag extends WndTabbed {
                 stuff.getItem( Keyring.class ) };
 
         int totalTabSpace = 125;
-        int tabWidth = totalTabSpace / bags.length + ((totalTabSpace % bags.length == 0) ? 0 : 1);
+        int tabWidth = totalTabSpace / bags.length + ( ( totalTabSpace % bags.length == 0 ) ? 0 : 1 );
         for ( Bag b : bags ) {
             if ( b != null ) {
                 BagTab tab = new BagTab( b );
@@ -246,6 +222,46 @@ public class WndBag extends WndTabbed {
         return 20;
     }
 
+    public enum Mode {
+        ALL,
+        UNIDENTIFED,
+        UPGRADEABLE,
+        QUICKSLOT,
+        FOR_SALE,
+        WEAPON,
+        ARMOR,
+        ENCHANTABLE,
+        WAND,
+        SEED,
+        BOW,
+        HEALING_POTION,
+        BRUTE_HOLD
+    }
+
+    public interface Listener {
+        void onSelect ( Item item );
+    }
+
+    private static class Placeholder extends Item {
+        {
+            name = null;
+        }
+
+        public Placeholder ( int image ) {
+            this.image = image;
+        }
+
+        @Override
+        public boolean isIdentified () {
+            return true;
+        }
+
+        @Override
+        public boolean isEquipped ( Hero hero ) {
+            return true;
+        }
+    }
+
     private class BagTab extends Tab {
 
         private Image icon;
@@ -296,26 +312,6 @@ public class WndBag extends WndTabbed {
             } else {
                 return Icons.get( Icons.BACKPACK );
             }
-        }
-    }
-
-    private static class Placeholder extends Item {
-        {
-            name = null;
-        }
-
-        public Placeholder ( int image ) {
-            this.image = image;
-        }
-
-        @Override
-        public boolean isIdentified () {
-            return true;
-        }
-
-        @Override
-        public boolean isEquipped ( Hero hero ) {
-            return true;
         }
     }
 
@@ -468,9 +464,5 @@ public class WndBag extends WndTabbed {
                 return false;
             }
         }
-    }
-
-    public interface Listener {
-        void onSelect ( Item item );
     }
 }

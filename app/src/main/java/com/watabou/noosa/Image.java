@@ -17,22 +17,20 @@
 
 package com.watabou.noosa;
 
-import java.nio.FloatBuffer;
-
 import android.graphics.RectF;
 
-import com.watabou.gltextures.TextureCache;
 import com.watabou.gltextures.SmartTexture;
+import com.watabou.gltextures.TextureCache;
 import com.watabou.glwrap.Quad;
+
+import java.nio.FloatBuffer;
 
 public class Image extends Visual {
 
     public SmartTexture texture;
-    protected RectF frame;
-
     public boolean flipHorizontal;
     public boolean flipVertical;
-
+    protected RectF frame;
     protected float[] vertices;
     protected FloatBuffer verticesBuffer;
 

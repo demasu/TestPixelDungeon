@@ -17,9 +17,9 @@
 
 package com.watabou.gltextures;
 
-import java.util.HashMap;
-
 import android.graphics.RectF;
+
+import java.util.HashMap;
 
 public class Atlas {
 
@@ -39,6 +39,14 @@ public class Atlas {
         tx.atlas = this;
 
         namedFrames = new HashMap<Object, RectF>();
+    }
+
+    public static RectF uvRect ( SmartTexture tx, int left, int top, int right, int bottom ) {
+        return new RectF(
+                (float) left / tx.width,
+                (float) top / tx.height,
+                (float) right / tx.width,
+                (float) bottom / tx.height );
     }
 
     public void add ( Object key, int left, int top, int right, int bottom ) {
@@ -83,13 +91,5 @@ public class Atlas {
 
     public float height ( RectF rect ) {
         return rect.height() * tx.height;
-    }
-
-    public static RectF uvRect ( SmartTexture tx, int left, int top, int right, int bottom ) {
-        return new RectF(
-                (float) left / tx.width,
-                (float) top / tx.height,
-                (float) right / tx.width,
-                (float) bottom / tx.height );
     }
 }

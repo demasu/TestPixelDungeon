@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.armor;
 
-import com.watabou.noosa.Camera;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -36,49 +35,15 @@ import com.demasu.testpixeldungeon.scenes.CellSelector;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.Camera;
 import com.watabou.utils.Callback;
 
 public class WarriorArmor extends ClassArmor {
 
+    private static final String AC_SPECIAL = "HEROIC LEAP";
+    private static final String TXT_NOT_WARRIOR = "Only warriors can use this armor!";
     private static int LEAP_TIME = 1;
     private static int SHOCK_TIME = 3;
-
-    private static final String AC_SPECIAL = "HEROIC LEAP";
-
-    private static final String TXT_NOT_WARRIOR = "Only warriors can use this armor!";
-
-    {
-        name = "warrior suit of armor";
-        image = ItemSpriteSheet.ARMOR_WARRIOR;
-    }
-
-    @Override
-    public String special () {
-        return AC_SPECIAL;
-    }
-
-    @Override
-    public void doSpecial () {
-        GameScene.selectCell( leaper );
-    }
-
-    @Override
-    public boolean doEquip ( Hero hero ) {
-        if ( hero.getHeroClass() == HeroClass.WARRIOR ) {
-            return super.doEquip( hero );
-        } else {
-            GLog.w( TXT_NOT_WARRIOR );
-            return false;
-        }
-    }
-
-    @Override
-    public String desc () {
-        return
-                "While this armor looks heavy, it allows a warrior to perform heroic leap towards " +
-                        "a targeted location, slamming down to stun all neighbouring enemies.";
-    }
-
     protected static CellSelector.Listener leaper = new CellSelector.Listener() {
 
         @Override
@@ -127,4 +92,36 @@ public class WarriorArmor extends ClassArmor {
             return "Choose direction to leap";
         }
     };
+
+    {
+        name = "warrior suit of armor";
+        image = ItemSpriteSheet.ARMOR_WARRIOR;
+    }
+
+    @Override
+    public String special () {
+        return AC_SPECIAL;
+    }
+
+    @Override
+    public void doSpecial () {
+        GameScene.selectCell( leaper );
+    }
+
+    @Override
+    public boolean doEquip ( Hero hero ) {
+        if ( hero.getHeroClass() == HeroClass.WARRIOR ) {
+            return super.doEquip( hero );
+        } else {
+            GLog.w( TXT_NOT_WARRIOR );
+            return false;
+        }
+    }
+
+    @Override
+    public String desc () {
+        return
+                "While this armor looks heavy, it allows a warrior to perform heroic leap towards " +
+                        "a targeted location, slamming down to stun all neighbouring enemies.";
+    }
 }

@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -32,7 +30,18 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.sprites.CursePersonificationSprite;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class CursePersonification extends Mob {
+
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( Death.class );
+        IMMUNITIES.add( Terror.class );
+        IMMUNITIES.add( Paralysis.class );
+        IMMUNITIES.add( Roots.class );
+    }
 
     {
         name = "curse personification";
@@ -111,15 +120,6 @@ public class CursePersonification extends Mob {
         return
                 "This creature resembles the sad ghost, but it swirls with darkness. " +
                         "Its face bears an expression of despair.";
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Death.class );
-        IMMUNITIES.add( Terror.class );
-        IMMUNITIES.add( Paralysis.class );
-        IMMUNITIES.add( Roots.class );
     }
 
     @Override

@@ -17,14 +17,14 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.opengl.GLES20;
 
 import com.watabou.noosa.Group;
 import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class Degradation extends Group {
 
@@ -77,6 +77,14 @@ public class Degradation extends Group {
             +2, -1
     };
 
+    private Degradation ( PointF p, int[] matrix ) {
+
+        for ( int i = 0; i < matrix.length; i += 2 ) {
+            add( new Speck( p.x, p.y, matrix[i], matrix[i + 1] ) );
+            add( new Speck( p.x, p.y, matrix[i], matrix[i + 1] ) );
+        }
+    }
+
     public static Degradation weapon ( PointF p ) {
         return new Degradation( p, WEAPON );
     }
@@ -91,14 +99,6 @@ public class Degradation extends Group {
 
     public static Degradation wand ( PointF p ) {
         return new Degradation( p, WAND );
-    }
-
-    private Degradation ( PointF p, int[] matrix ) {
-
-        for ( int i = 0; i < matrix.length; i += 2 ) {
-            add( new Speck( p.x, p.y, matrix[i], matrix[i + 1] ) );
-            add( new Speck( p.x, p.y, matrix[i], matrix[i + 1] ) );
-        }
     }
 
     @Override

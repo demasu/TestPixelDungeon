@@ -17,26 +17,23 @@
 
 package com.watabou.noosa;
 
-import java.nio.FloatBuffer;
+import android.graphics.Bitmap;
+import android.graphics.RectF;
 
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.glwrap.Matrix;
 import com.watabou.glwrap.Quad;
 
-import android.graphics.Bitmap;
-import android.graphics.RectF;
+import java.nio.FloatBuffer;
 
 public class BitmapText extends Visual {
 
+    public int realLength;
     protected String text;
     protected Font font;
-
     protected float[] vertices = new float[16];
     protected FloatBuffer quads;
-
-    public int realLength;
-
     protected boolean dirty = true;
 
     public BitmapText () {
@@ -262,6 +259,18 @@ public class BitmapText extends Visual {
             lineHeight = baseLine = height;
         }
 
+        public static Font colorMarked ( Bitmap bmp, int color, String chars ) {
+            Font font = new Font( TextureCache.get( bmp ) );
+            font.splitBy( bmp, bmp.getHeight(), color, chars );
+            return font;
+        }
+
+        public static Font colorMarked ( Bitmap bmp, int height, int color, String chars ) {
+            Font font = new Font( TextureCache.get( bmp ) );
+            font.splitBy( bmp, height, color, chars );
+            return font;
+        }
+
         protected void splitBy ( Bitmap bitmap, int height, int color, String chars ) {
 
             autoUppercase = chars.equals( LATIN_UPPER );
@@ -310,18 +319,6 @@ public class BitmapText extends Visual {
             }
 
             lineHeight = baseLine = height( frames.get( chars.charAt( 0 ) ) );
-        }
-
-        public static Font colorMarked ( Bitmap bmp, int color, String chars ) {
-            Font font = new Font( TextureCache.get( bmp ) );
-            font.splitBy( bmp, bmp.getHeight(), color, chars );
-            return font;
-        }
-
-        public static Font colorMarked ( Bitmap bmp, int height, int color, String chars ) {
-            Font font = new Font( TextureCache.get( bmp ) );
-            font.splitBy( bmp, height, color, chars );
-            return font;
         }
 
         public RectF get ( char ch ) {

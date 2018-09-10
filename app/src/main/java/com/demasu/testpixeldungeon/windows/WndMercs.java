@@ -19,12 +19,6 @@ package com.demasu.testpixeldungeon.windows;
 
 import android.graphics.RectF;
 
-import com.watabou.input.Touchscreen;
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.TouchArea;
-import com.watabou.noosa.ui.Component;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -50,30 +44,21 @@ import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.input.Touchscreen;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.TouchArea;
+import com.watabou.noosa.ui.Component;
 
 import java.util.ArrayList;
 
 public class WndMercs extends WndTabbed {
 
-    public enum Mode {
-        ALL,
-        BRUTE,
-        WIZARD,
-        THIEF,
-        ARCHER,
-        ARCHERMAIDEN
-    }
-
-    float pos = 5;
-    float GAP = 2;
-
+    protected static final int TAB_WIDTH = 25;
     private static final int WIDTH_P = 120;
     private static final int WIDTH_L = 144;
-
-    protected static final int TAB_WIDTH = 25;
-
     private static final String TXT_TITLE = "Hire A Mercenary";
-
     private static final String TXT_MERCENARIES_DETAIL = "Mercenaries will fight for you in exchange for a fee.\n \n"
             + "There are five mercenary classes each with strengths and weaknesses. \n"
             + "Each class has one skill with the exception of the Archer Maiden who knows two.\n"
@@ -82,11 +67,10 @@ public class WndMercs extends WndTabbed {
             + "You can unequip an item from a merc by tapping on it and holding down. \n \n"
             + "Mercs will consume any healing potion equipped on them if about to die. \n \n"
             + "You cannot hire the mercenary equivalent of your class.";
-
-
     private static final String TXT_NO_GOLD = "Insufficient Gold";
-
     public static int maxHeight = 0;
+    float pos = 5;
+    float GAP = 2;
 
     public WndMercs ( final Mode mode ) {
         super();
@@ -750,11 +734,55 @@ public class WndMercs extends WndTabbed {
         hide();
     }
 
+    public enum Mode {
+        ALL,
+        BRUTE,
+        WIZARD,
+        THIEF,
+        ARCHER,
+        ARCHERMAIDEN
+    }
+
+    private static class MercenaryTitle extends Component {
+
+        private static final int GAP = 2;
+
+        private SkillSprite image;
+        private BitmapText title;
+
+
+        public MercenaryTitle ( int image, String name ) {
+
+
+            this.image = new SkillSprite( image );
+
+
+            title = PixelScene.createText( Utils.capitalize( name ), 9 );
+            title.hardlight( TITLE_COLOR );
+            title.measure();
+            add( title );
+            add( this.image );
+
+        }
+
+        @Override
+        protected void layout () {
+
+            image.x = 0;
+            image.y = Math.max( 0, title.height() + GAP - image.height );
+
+            title.x = image.width + GAP;
+            title.y = image.height - GAP - title.baseLine();
+
+
+            height = image.y + image.height();
+        }
+    }
+
     private class MercenaryTab extends Tab {
 
-        private Image icon;
-
         Mode mode = Mode.BRUTE;
+        private Image icon;
 
         public MercenaryTab ( Mode mode ) {
             super();
@@ -805,42 +833,6 @@ public class WndMercs extends WndTabbed {
                 icon.frame( frame );
                 icon.y = y;
             }
-        }
-    }
-
-    private static class MercenaryTitle extends Component {
-
-        private static final int GAP = 2;
-
-        private SkillSprite image;
-        private BitmapText title;
-
-
-        public MercenaryTitle ( int image, String name ) {
-
-
-            this.image = new SkillSprite( image );
-
-
-            title = PixelScene.createText( Utils.capitalize( name ), 9 );
-            title.hardlight( TITLE_COLOR );
-            title.measure();
-            add( title );
-            add( this.image );
-
-        }
-
-        @Override
-        protected void layout () {
-
-            image.x = 0;
-            image.y = Math.max( 0, title.height() + GAP - image.height );
-
-            title.x = image.width + GAP;
-            title.y = image.height - GAP - title.baseLine();
-
-
-            height = image.y + image.height();
         }
     }
 

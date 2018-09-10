@@ -17,8 +17,6 @@
 
 package com.watabou.gltextures;
 
-import java.util.HashMap;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -29,6 +27,8 @@ import android.graphics.Paint;
 import android.graphics.Shader.TileMode;
 
 import com.watabou.glwrap.Texture;
+
+import java.util.HashMap;
 
 public class TextureCache {
 

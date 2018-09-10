@@ -19,11 +19,6 @@ package com.demasu.testpixeldungeon.sprites;
 
 import android.graphics.Bitmap;
 
-import com.watabou.gltextures.TextureCache;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.MovieClip;
-import com.watabou.noosa.TextureFilm;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
@@ -35,6 +30,11 @@ import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.gltextures.TextureCache;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.MovieClip;
+import com.watabou.noosa.TextureFilm;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
@@ -70,6 +70,14 @@ public class ItemSprite extends MovieClip {
         }
 
         view( image, glowing );
+    }
+
+    public static int pick ( int index, int x, int y ) {
+        Bitmap bmp = TextureCache.get( Assets.ITEMS ).bitmap;
+        int rows = bmp.getWidth() / SIZE;
+        int row = index / rows;
+        int col = index % rows;
+        return bmp.getPixel( col * SIZE + x, row * SIZE + y );
     }
 
     public void originToCenter () {
@@ -199,14 +207,6 @@ public class ItemSprite extends MovieClip {
             ga = glowing.green * value;
             ba = glowing.blue * value;
         }
-    }
-
-    public static int pick ( int index, int x, int y ) {
-        Bitmap bmp = TextureCache.get( Assets.ITEMS ).bitmap;
-        int rows = bmp.getWidth() / SIZE;
-        int row = index / rows;
-        int col = index % rows;
-        return bmp.getPixel( col * SIZE + x, row * SIZE + y );
     }
 
     public static class Glowing {

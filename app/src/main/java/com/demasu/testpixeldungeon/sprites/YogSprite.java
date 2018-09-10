@@ -17,9 +17,9 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.effects.Splash;
+import com.watabou.noosa.TextureFilm;
 
 public class YogSprite extends MobSprite {
 

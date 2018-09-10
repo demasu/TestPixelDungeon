@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.wands;
 
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -36,46 +34,12 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.MissionScene;
 import com.demasu.testpixeldungeon.sprites.WraithSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 public class WandOfMagicCasting extends Wand {
-
-    {
-        name = "Wand of Hax";
-    }
-
-    public void castSpell ( CAST_TYPES casting ) {
-        this.casting = casting;
-        MissionScene.selectCell( zapper );
-    }
-
-
-    public void castSpellCost () {
-        switch ( casting ) {
-            case DARK_BOLT:
-                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.passiveB2.getManaCost();
-                Dungeon.getHero().heroSkills.passiveB2.castTextYell();
-                break;
-            case DOMINANCE:
-                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.passiveB3.getManaCost();
-                Dungeon.getHero().heroSkills.passiveB3.castTextYell();
-                break;
-            case SOUL_SPARK:
-                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.active2.getManaCost();
-                Dungeon.getHero().heroSkills.active2.castTextYell();
-                break;
-            case SPARK:
-                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.active2.getManaCost();
-                Dungeon.getHero().heroSkills.active2.castTextYell();
-                break;
-
-        }
-    }
-
-    public enum CAST_TYPES {DARK_BOLT, DOMINANCE, SOUL_SPARK, SPARK}
-
-    public CAST_TYPES casting = CAST_TYPES.DARK_BOLT;
 
     protected static CellSelector.Listener zapper = new CellSelector.Listener() {
 
@@ -113,6 +77,38 @@ public class WandOfMagicCasting extends Wand {
             return "Choose direction to cast";
         }
     };
+    public CAST_TYPES casting = CAST_TYPES.DARK_BOLT;
+
+    {
+        name = "Wand of Hax";
+    }
+
+    public void castSpell ( CAST_TYPES casting ) {
+        this.casting = casting;
+        MissionScene.selectCell( zapper );
+    }
+
+    public void castSpellCost () {
+        switch ( casting ) {
+            case DARK_BOLT:
+                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.passiveB2.getManaCost();
+                Dungeon.getHero().heroSkills.passiveB2.castTextYell();
+                break;
+            case DOMINANCE:
+                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.passiveB3.getManaCost();
+                Dungeon.getHero().heroSkills.passiveB3.castTextYell();
+                break;
+            case SOUL_SPARK:
+                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.active2.getManaCost();
+                Dungeon.getHero().heroSkills.active2.castTextYell();
+                break;
+            case SPARK:
+                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.active2.getManaCost();
+                Dungeon.getHero().heroSkills.active2.castTextYell();
+                break;
+
+        }
+    }
 
     @Override
     protected void onZap ( int cell ) {
@@ -188,4 +184,6 @@ public class WandOfMagicCasting extends Wand {
                         "damage until the effect ends. The duration of the effect increases " +
                         "with the level of the staff.";
     }
+
+    public enum CAST_TYPES {DARK_BOLT, DOMINANCE, SOUL_SPARK, SPARK}
 }

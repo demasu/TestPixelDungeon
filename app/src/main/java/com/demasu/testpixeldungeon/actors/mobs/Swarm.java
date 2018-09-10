@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.ArrayList;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -35,7 +33,13 @@ import com.demasu.testpixeldungeon.sprites.SwarmSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+
 public class Swarm extends Mob {
+
+    private static final float SPLIT_DELAY = 1f;
+    private static final String GENERATION = "generation";
+    int generation = 0;
 
     {
         name = "swarm of flies";
@@ -52,12 +56,6 @@ public class Swarm extends Mob {
         HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
-
-    private static final float SPLIT_DELAY = 1f;
-
-    int generation = 0;
-
-    private static final String GENERATION = "generation";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

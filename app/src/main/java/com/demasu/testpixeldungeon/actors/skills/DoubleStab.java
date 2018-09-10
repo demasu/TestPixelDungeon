@@ -7,6 +7,8 @@ import com.demasu.testpixeldungeon.ui.StatusPane;
 
 public class DoubleStab extends ActiveSkill2 {
 
+    private boolean onDouble = false; // prevent infinite loop
+
     {
         name = "Double Stab";
         castText = "Got 'em'";
@@ -14,8 +16,6 @@ public class DoubleStab extends ActiveSkill2 {
         tier = 2;
         mana = 5;
     }
-
-    private boolean onDouble = false; // prevent infinite loop
 
     @Override
     public void execute ( Hero hero, String action ) {

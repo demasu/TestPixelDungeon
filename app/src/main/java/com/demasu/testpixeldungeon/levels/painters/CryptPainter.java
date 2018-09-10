@@ -18,8 +18,8 @@
 package com.demasu.testpixeldungeon.levels.painters;
 
 import com.demasu.testpixeldungeon.items.Generator;
-import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.Heap.Type;
+import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.keys.IronKey;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.Room;

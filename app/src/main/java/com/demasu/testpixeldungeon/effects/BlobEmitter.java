@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import com.watabou.noosa.particles.Emitter;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.actors.blobs.Blob;
+import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Random;
 
 public class BlobEmitter extends Emitter {

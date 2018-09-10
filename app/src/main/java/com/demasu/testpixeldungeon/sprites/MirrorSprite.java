@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.MirrorImage;
+import com.watabou.noosa.TextureFilm;
 
 public class MirrorSprite extends MobSprite {
 

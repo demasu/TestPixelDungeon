@@ -17,22 +17,44 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.windows.WndBag;
 import com.demasu.testpixeldungeon.windows.WndOptions;
+import com.watabou.noosa.audio.Sample;
 
 public abstract class InventoryScroll extends Scroll {
-
-    protected String inventoryTitle = "Select an item";
-    protected WndBag.Mode mode = WndBag.Mode.ALL;
 
     private static final String TXT_WARNING = "Do you really want to cancel this scroll usage? It will be consumed anyway.";
     private static final String TXT_YES = "Yes, I'm positive";
     private static final String TXT_NO = "No, I changed my mind";
+    protected static boolean identifiedByUse = false;
+    protected static WndBag.Listener itemSelector = new WndBag.Listener() {
+        @Override
+        public void onSelect ( Item item ) {
+            if ( item != null ) {
+
+                ( (InventoryScroll) curItem ).onItemSelected( item );
+                ( (InventoryScroll) curItem ).readAnimation();
+
+                Sample.INSTANCE.play( Assets.SND_READ );
+                Invisibility.dispel();
+
+            } else if ( identifiedByUse ) {
+
+                ( (InventoryScroll) curItem ).confirmCancelation();
+
+            } else {
+
+                curItem.collect( curUser.belongings.backpack );
+
+            }
+        }
+    };
+    protected String inventoryTitle = "Select an item";
+    protected WndBag.Mode mode = WndBag.Mode.ALL;
 
     @Override
     protected void doRead () {
@@ -69,28 +91,4 @@ public abstract class InventoryScroll extends Scroll {
     }
 
     protected abstract void onItemSelected ( Item item );
-
-    protected static boolean identifiedByUse = false;
-    protected static WndBag.Listener itemSelector = new WndBag.Listener() {
-        @Override
-        public void onSelect ( Item item ) {
-            if ( item != null ) {
-
-                ( (InventoryScroll) curItem ).onItemSelected( item );
-                ( (InventoryScroll) curItem ).readAnimation();
-
-                Sample.INSTANCE.play( Assets.SND_READ );
-                Invisibility.dispel();
-
-            } else if ( identifiedByUse ) {
-
-                ( (InventoryScroll) curItem ).confirmCancelation();
-
-            } else {
-
-                curItem.collect( curUser.belongings.backpack );
-
-            }
-        }
-    };
 }

@@ -17,10 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.wands;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
-import com.watabou.noosa.Camera;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.ResultDescriptions;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -33,19 +29,22 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.traps.LightningTrap;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.Camera;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public class WandOfLightning extends Wand {
+
+    private ArrayList<Char> affected = new ArrayList<Char>();
+    private int[] points = new int[20];
+    private int nPoints;
 
     {
         name = "Wand of Lightning";
     }
-
-    private ArrayList<Char> affected = new ArrayList<Char>();
-
-    private int[] points = new int[20];
-    private int nPoints;
 
     @Override
     protected void onZap ( int cell ) {

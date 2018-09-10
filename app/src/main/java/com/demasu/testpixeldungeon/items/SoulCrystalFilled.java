@@ -17,13 +17,8 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import android.util.Log;
-
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.Actor;
-import com.demasu.testpixeldungeon.actors.mobs.Mob;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.SummonedPet;
 import com.demasu.testpixeldungeon.effects.Pushing;
 import com.demasu.testpixeldungeon.levels.Level;
@@ -31,13 +26,22 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.sprites.RatSprite;
-import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
 public class SoulCrystalFilled extends Item {
+
+    private static final String SPRITE = "sprite";
+    private static final String HEALTH = "HT";
+    private static final String DEFENCE_SKILL = "defenceskill";
+    private static final String CAPTURED_NAME = "capturedname";
+    public Class<? extends CharSprite> minionSprite;
+    public int HT, defenceSkill;
+    public String captured;
 
     {
         name = "soul crystal";
@@ -46,14 +50,10 @@ public class SoulCrystalFilled extends Item {
         quantity = 1;
     }
 
-    public Class<? extends CharSprite> minionSprite;
-    public int HT, defenceSkill;
-    public String captured;
 
     public SoulCrystalFilled () {
         this( RatSprite.class, 5, 1, "Rat" );
     }
-
     public SoulCrystalFilled ( Class<? extends CharSprite> minionSprite, int HT, int defenceSkill, String captured ) {
         super();
         this.minionSprite = minionSprite;
@@ -61,7 +61,6 @@ public class SoulCrystalFilled extends Item {
         this.defenceSkill = defenceSkill;
         this.captured = captured;
     }
-
 
     @Override
     protected void onThrow ( int cell ) {
@@ -107,12 +106,6 @@ public class SoulCrystalFilled extends Item {
             minion.sprite.parent.add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
         }
     }
-
-
-    private static final String SPRITE = "sprite";
-    private static final String HEALTH = "HT";
-    private static final String DEFENCE_SKILL = "defenceskill";
-    private static final String CAPTURED_NAME = "capturedname";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

@@ -17,8 +17,12 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import java.nio.FloatBuffer;
-
+import com.demasu.testpixeldungeon.Assets;
+import com.demasu.testpixeldungeon.Badges;
+import com.demasu.testpixeldungeon.Dungeon;
+import com.demasu.testpixeldungeon.actors.hero.HeroClass;
+import com.demasu.testpixeldungeon.ui.Archs;
+import com.demasu.testpixeldungeon.ui.RedButton;
 import com.watabou.gltextures.Gradient;
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.glwrap.Matrix;
@@ -35,14 +39,10 @@ import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.TouchArea;
 import com.watabou.noosa.Visual;
 import com.watabou.noosa.audio.Music;
-import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.Badges;
-import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.actors.hero.HeroClass;
-import com.demasu.testpixeldungeon.ui.Archs;
-import com.demasu.testpixeldungeon.ui.RedButton;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
+
+import java.nio.FloatBuffer;
 
 public class SurfaceScene extends PixelScene {
 

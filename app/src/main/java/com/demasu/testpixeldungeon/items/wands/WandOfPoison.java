@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.wands;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -26,6 +25,7 @@ import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Poison;
 import com.demasu.testpixeldungeon.effects.MagicMissile;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 
 public class WandOfPoison extends Wand {

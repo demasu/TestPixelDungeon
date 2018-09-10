@@ -17,14 +17,6 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import java.util.Locale;
-
-import com.watabou.gltextures.SmartTexture;
-import com.watabou.gltextures.TextureCache;
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.Group;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.Statistics;
@@ -35,6 +27,14 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.BuffIndicator;
 import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.gltextures.SmartTexture;
+import com.watabou.gltextures.TextureCache;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.Group;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.TextureFilm;
+
+import java.util.Locale;
 
 public class WndHero extends WndTabbed {
 

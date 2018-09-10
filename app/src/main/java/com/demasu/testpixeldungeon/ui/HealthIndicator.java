@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
+import com.demasu.testpixeldungeon.actors.Char;
+import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.actors.Char;
-import com.demasu.testpixeldungeon.sprites.CharSprite;
 
 public class HealthIndicator extends Component {
 

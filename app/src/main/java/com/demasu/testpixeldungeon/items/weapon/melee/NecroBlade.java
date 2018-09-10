@@ -17,9 +17,7 @@
  */
 package com.demasu.testpixeldungeon.items.weapon.melee;
 
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.actors.Actor;
-import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.Skeleton;
 import com.demasu.testpixeldungeon.effects.CellEmitter;
@@ -30,6 +28,7 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
@@ -40,13 +39,12 @@ public class NecroBlade extends MeleeWeapon {
     public static final String AC_HEAL = "Heal";
     public static final String AC_SUMMON = "Summon";
     public static final String AC_UPGRADE = "Consume";
+    public int charge = 100;
 
     {
         name = "necroblade";
         image = ItemSpriteSheet.NecroBlade5;
     }
-
-    public int charge = 100;
 
     public NecroBlade () {
         super( 1, 0.7f, 1f );

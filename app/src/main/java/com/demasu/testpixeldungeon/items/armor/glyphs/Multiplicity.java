@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.armor.glyphs;
 
-import java.util.ArrayList;
-
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
@@ -31,6 +29,8 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSprite.Glowing;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Multiplicity extends Glyph {
 

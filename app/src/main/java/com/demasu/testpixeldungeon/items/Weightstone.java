@@ -17,10 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.items.weapon.Weapon;
@@ -33,6 +29,10 @@ import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
 import com.demasu.testpixeldungeon.windows.IconTitle;
 import com.demasu.testpixeldungeon.windows.WndBag;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.audio.Sample;
+
+import java.util.ArrayList;
 
 public class Weightstone extends Item {
 
@@ -43,6 +43,14 @@ public class Weightstone extends Item {
     private static final float TIME_TO_APPLY = 2;
 
     private static final String AC_APPLY = "APPLY";
+    private final WndBag.Listener itemSelector = new WndBag.Listener() {
+        @Override
+        public void onSelect ( Item item ) {
+            if ( item != null ) {
+                GameScene.show( new WndBalance( (Weapon) item ) );
+            }
+        }
+    };
 
     {
         name = "weightstone";
@@ -112,15 +120,6 @@ public class Weightstone extends Item {
         return
                 "Using a weightstone, you can balance your melee weapon to increase its speed or accuracy.";
     }
-
-    private final WndBag.Listener itemSelector = new WndBag.Listener() {
-        @Override
-        public void onSelect ( Item item ) {
-            if ( item != null ) {
-                GameScene.show( new WndBalance( (Weapon) item ) );
-            }
-        }
-    };
 
     public class WndBalance extends Window {
 

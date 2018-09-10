@@ -17,12 +17,12 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
+import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.watabou.input.Touchscreen.Touch;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.ColorBlock;
 import com.watabou.noosa.TouchArea;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.watabou.utils.Point;
 import com.watabou.utils.PointF;
 
@@ -106,6 +106,8 @@ public class ScrollPane extends Component {
     public class TouchController extends TouchArea {
 
         private float dragThreshold;
+        private boolean dragging = false;
+        private PointF lastPos = new PointF();
 
         public TouchController () {
             super( 0, 0, 0, 0 );
@@ -126,9 +128,6 @@ public class ScrollPane extends Component {
 
             }
         }
-
-        private boolean dragging = false;
-        private PointF lastPos = new PointF();
 
         @Override
         protected void onDrag ( Touch t ) {

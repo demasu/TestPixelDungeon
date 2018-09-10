@@ -24,9 +24,13 @@ import com.watabou.utils.Bundle;
 
 public class Charm extends FlavourBuff {
 
+    private static final String OBJECT = "object";
     public int object = 0;
 
-    private static final String OBJECT = "object";
+    public static float durationFactor ( Char ch ) {
+        Resistance r = ch.buff( Resistance.class );
+        return r != null ? r.durationFactor() : 1;
+    }
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -49,10 +53,5 @@ public class Charm extends FlavourBuff {
     @Override
     public String toString () {
         return "Charmed";
-    }
-
-    public static float durationFactor ( Char ch ) {
-        Resistance r = ch.buff( Resistance.class );
-        return r != null ? r.durationFactor() : 1;
     }
 }

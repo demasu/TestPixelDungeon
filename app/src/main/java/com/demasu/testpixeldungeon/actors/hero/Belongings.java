@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.hero;
 
-import java.util.Iterator;
-
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.items.Item;
@@ -34,21 +32,26 @@ import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.Iterator;
+
 public class Belongings implements Iterable<Item> {
 
     public static final int BACKPACK_SIZE = 18; // Took one out for bow
-
-    private Hero owner;
-
+    private static final String WEAPON = "weapon";
+    private static final String ARMOR = "armor";
+    private static final String MERC_WEAPON = "mercweapon";
+    private static final String MERC_ARMOR = "mercarmor";
+    private static final String MERC_ITEM = "mercitem";
+    private static final String RING1 = "ring1";
+    private static final String RING2 = "ring2";
+    private static final String BOW = "bow";
     public Bag backpack;
-
     public KindOfWeapon weapon = null;
     public Armor armor = null;
     public Ring ring1 = null;
     public Ring ring2 = null;
     public Bow bow = null;
-
-
+    private Hero owner;
     public Belongings ( Hero owner ) {
         this.owner = owner;
 
@@ -58,15 +61,6 @@ public class Belongings implements Iterable<Item> {
         }};
         backpack.owner = owner;
     }
-
-    private static final String WEAPON = "weapon";
-    private static final String ARMOR = "armor";
-    private static final String MERC_WEAPON = "mercweapon";
-    private static final String MERC_ARMOR = "mercarmor";
-    private static final String MERC_ITEM = "mercitem";
-    private static final String RING1 = "ring1";
-    private static final String RING2 = "ring2";
-    private static final String BOW = "bow";
 
     public void storeInBundle ( Bundle bundle ) {
 

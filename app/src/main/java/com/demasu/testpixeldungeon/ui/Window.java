@@ -18,6 +18,9 @@
 package com.demasu.testpixeldungeon.ui;
 
 
+import com.demasu.testpixeldungeon.Chrome;
+import com.demasu.testpixeldungeon.effects.ShadowBox;
+import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.watabou.input.Keys;
 import com.watabou.input.Keys.Key;
 import com.watabou.input.Touchscreen.Touch;
@@ -26,21 +29,16 @@ import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.TouchArea;
-import com.demasu.testpixeldungeon.Chrome;
-import com.demasu.testpixeldungeon.effects.ShadowBox;
-import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.watabou.utils.Signal;
 
 public class Window extends Group implements Signal.Listener<Key> {
 
+    public static final int TITLE_COLOR = 0xFFFF44;
     protected int width;
     protected int height;
-
     protected TouchArea blocker;
     protected ShadowBox shadow;
     protected NinePatch chrome;
-
-    public static final int TITLE_COLOR = 0xFFFF44;
 
     public Window () {
         this( 0, 0, Chrome.get( Chrome.Type.WINDOW ) );

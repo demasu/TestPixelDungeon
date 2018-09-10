@@ -17,11 +17,6 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Group;
-import com.watabou.noosa.particles.Emitter;
-import com.watabou.noosa.particles.PixelParticle;
-import com.watabou.noosa.particles.PixelParticle.Shrinking;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.effects.particles.FlameParticle;
 import com.demasu.testpixeldungeon.effects.particles.LeafParticle;
@@ -29,6 +24,11 @@ import com.demasu.testpixeldungeon.effects.particles.PoisonParticle;
 import com.demasu.testpixeldungeon.effects.particles.PurpleParticle;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
 import com.demasu.testpixeldungeon.effects.particles.WoolParticle;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Group;
+import com.watabou.noosa.particles.Emitter;
+import com.watabou.noosa.particles.PixelParticle;
+import com.watabou.noosa.particles.PixelParticle.Shrinking;
 import com.watabou.utils.Callback;
 import com.watabou.utils.ColorMath;
 import com.watabou.utils.PointF;
@@ -43,36 +43,6 @@ public class MagicMissile extends Emitter {
     private float sx;
     private float sy;
     private float time;
-
-    public void reset ( int from, int to, Callback callback ) {
-        reset( from, to, SPEED, callback );
-    }
-
-    public void reset ( int from, int to, float velocity, Callback callback ) {
-        this.callback = callback;
-
-        revive();
-
-        PointF pf = DungeonTilemap.tileCenterToWorld( from );
-        PointF pt = DungeonTilemap.tileCenterToWorld( to );
-
-        x = pf.x;
-        y = pf.y;
-        width = 0;
-        height = 0;
-
-        PointF d = PointF.diff( pt, pf );
-        PointF speed = new PointF( d ).normalize().scale( velocity );
-        sx = speed.x;
-        sy = speed.y;
-        time = d.length() / velocity;
-    }
-
-    public void size ( float size ) {
-        x -= size / 2;
-        y -= size / 2;
-        width = height = size;
-    }
 
     public static void blueLight ( Group group, int from, int to, Callback callback ) {
         MagicMissile missile = ( (MagicMissile) group.recycle( MagicMissile.class ) );
@@ -161,6 +131,36 @@ public class MagicMissile extends Emitter {
         missile.reset( from, to, callback );
         missile.size( size );
         missile.pour( ShadowParticle.MISSILE, 0.01f );
+    }
+
+    public void reset ( int from, int to, Callback callback ) {
+        reset( from, to, SPEED, callback );
+    }
+
+    public void reset ( int from, int to, float velocity, Callback callback ) {
+        this.callback = callback;
+
+        revive();
+
+        PointF pf = DungeonTilemap.tileCenterToWorld( from );
+        PointF pt = DungeonTilemap.tileCenterToWorld( to );
+
+        x = pf.x;
+        y = pf.y;
+        width = 0;
+        height = 0;
+
+        PointF d = PointF.diff( pt, pf );
+        PointF speed = new PointF( d ).normalize().scale( velocity );
+        sx = speed.x;
+        sy = speed.y;
+        time = d.length() / velocity;
+    }
+
+    public void size ( float size ) {
+        x -= size / 2;
+        y -= size / 2;
+        width = height = size;
     }
 
     @Override
@@ -292,8 +292,6 @@ public class MagicMissile extends Emitter {
 
     public static class SlowParticle extends PixelParticle {
 
-        private Emitter emitter;
-
         public static final Emitter.Factory FACTORY = new Factory() {
             @Override
             public void emit ( Emitter emitter, int index, float x, float y ) {
@@ -306,6 +304,7 @@ public class MagicMissile extends Emitter {
             }
 
         };
+        private Emitter emitter;
 
         public SlowParticle () {
             super();

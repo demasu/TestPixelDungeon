@@ -17,10 +17,10 @@
 
 package com.watabou.glscripts;
 
-import java.util.HashMap;
-
 import com.watabou.glwrap.Program;
 import com.watabou.glwrap.Shader;
+
+import java.util.HashMap;
 
 public class Script extends Program {
 

@@ -17,17 +17,8 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.nio.ShortBuffer;
-
-import javax.microedition.khronos.opengles.GL10;
-
 import android.annotation.SuppressLint;
 import android.opengl.GLES20;
-
-import java.lang.Math;
 
 import com.watabou.gltextures.Gradient;
 import com.watabou.gltextures.SmartTexture;
@@ -36,6 +27,13 @@ import com.watabou.noosa.Group;
 import com.watabou.noosa.NoosaScript;
 import com.watabou.noosa.Visual;
 import com.watabou.utils.PointF;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class Flare extends Visual {
 

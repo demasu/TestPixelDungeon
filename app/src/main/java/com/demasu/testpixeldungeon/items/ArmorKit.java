@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.effects.Speck;
@@ -30,6 +27,9 @@ import com.demasu.testpixeldungeon.sprites.HeroSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.windows.WndBag;
+import com.watabou.noosa.audio.Sample;
+
+import java.util.ArrayList;
 
 public class ArmorKit extends Item {
 
@@ -39,6 +39,14 @@ public class ArmorKit extends Item {
     private static final float TIME_TO_UPGRADE = 2;
 
     private static final String AC_APPLY = "APPLY";
+    private final WndBag.Listener itemSelector = new WndBag.Listener() {
+        @Override
+        public void onSelect ( Item item ) {
+            if ( item != null ) {
+                ArmorKit.this.upgrade( (Armor) item );
+            }
+        }
+    };
 
     {
         name = "armor kit";
@@ -112,13 +120,4 @@ public class ArmorKit extends Item {
                         "which will keep all properties of the original armor, but will also provide its wearer a special ability " +
                         "depending on his class. No skills in tailoring, leatherworking or blacksmithing are required.";
     }
-
-    private final WndBag.Listener itemSelector = new WndBag.Listener() {
-        @Override
-        public void onSelect ( Item item ) {
-            if ( item != null ) {
-                ArmorKit.this.upgrade( (Armor) item );
-            }
-        }
-    };
 }

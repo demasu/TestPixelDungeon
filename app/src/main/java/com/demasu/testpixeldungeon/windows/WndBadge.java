@@ -17,13 +17,13 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.Image;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.effects.BadgeBanner;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.Window;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.Image;
 
 public class WndBadge extends Window {
 

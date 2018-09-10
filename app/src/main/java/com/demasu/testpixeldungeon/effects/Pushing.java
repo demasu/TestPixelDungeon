@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Visual;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Visual;
 import com.watabou.utils.PointF;
 
 public class Pushing extends Actor {

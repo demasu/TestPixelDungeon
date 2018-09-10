@@ -1,10 +1,5 @@
 package com.demasu.testpixeldungeon.actors.skills;
 
-import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.actors.hero.Hero;
-
-import java.util.ArrayList;
-
 /**
  * Created by Moussa on 20-Jan-17.
  */

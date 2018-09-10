@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.items.wands.WandOfBlink;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfHome extends Scroll {
 

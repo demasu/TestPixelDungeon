@@ -17,18 +17,20 @@
  */
 package com.demasu.testpixeldungeon.items;
 
+import com.watabou.utils.Bundle;
+import com.watabou.utils.Random;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import com.watabou.utils.Bundle;
-import com.watabou.utils.Random;
-
 public class ItemStatusHandler<T extends Item> {
 
+    private static final String PFX_IMAGE = "_image";
+    private static final String PFX_LABEL = "_label";
+    private static final String PFX_KNOWN = "_known";
     private Class<? extends T>[] items;
-
     private HashMap<Class<? extends T>, Integer> images;
     private HashMap<Class<? extends T>, String> labels;
     private HashSet<Class<? extends T>> known;
@@ -66,7 +68,6 @@ public class ItemStatusHandler<T extends Item> {
 
         }
     }
-
     public ItemStatusHandler ( Class<? extends T>[] items, String[] allLabels, Integer[] allImages ) {
 
         this.items = items;
@@ -91,7 +92,6 @@ public class ItemStatusHandler<T extends Item> {
             imagesLeft.remove( index );
         }
     }
-
     public ItemStatusHandler ( Class<? extends T>[] items, String[] labels, Integer[] images, Bundle bundle ) {
 
         this.items = items;
@@ -102,10 +102,6 @@ public class ItemStatusHandler<T extends Item> {
 
         restore( bundle, labels, images );
     }
-
-    private static final String PFX_IMAGE = "_image";
-    private static final String PFX_LABEL = "_label";
-    private static final String PFX_KNOWN = "_known";
 
     public void save ( Bundle bundle ) {
         for ( int i = 0; i < items.length; i++ ) {

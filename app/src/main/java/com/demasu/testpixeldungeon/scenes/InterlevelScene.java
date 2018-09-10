@@ -17,13 +17,6 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import java.io.FileNotFoundException;
-
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.audio.Music;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.Statistics;
@@ -36,6 +29,13 @@ import com.demasu.testpixeldungeon.levels.MovieLevel;
 import com.demasu.testpixeldungeon.ui.GameLog;
 import com.demasu.testpixeldungeon.windows.WndError;
 import com.demasu.testpixeldungeon.windows.WndStory;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
+
+import java.io.FileNotFoundException;
 
 public class InterlevelScene extends PixelScene {
 
@@ -51,29 +51,14 @@ public class InterlevelScene extends PixelScene {
 
     private static final String ERR_FILE_NOT_FOUND = "File not found. For some reason.";
     private static final String ERR_GENERIC = "Something went wrong...";
-
-    public enum Mode {
-        DESCEND, ASCEND, CONTINUE, RESURRECT, RETURN, FALL, NONE, TELEPORT, TELEPORT_BACK, MOVIE, MOVIE_OUT, MISSION
-    }
-
     public static Mode mode;
-
     public static int returnDepth;
     public static int returnPos;
-
     public static boolean noStory = false;
-
     public static boolean fallIntoPit;
-
-    private enum Phase {
-        FADE_IN, STATIC, FADE_OUT
-    }
-
     private Phase phase;
     private float timeLeft;
-
     private BitmapText message;
-
     private Thread thread;
     private String error = null;
 
@@ -426,5 +411,13 @@ public class InterlevelScene extends PixelScene {
     @Override
     protected void onBackPressed () {
         // Do nothing
+    }
+
+    public enum Mode {
+        DESCEND, ASCEND, CONTINUE, RESURRECT, RETURN, FALL, NONE, TELEPORT, TELEPORT_BACK, MOVIE, MOVIE_OUT, MISSION
+    }
+
+    private enum Phase {
+        FADE_IN, STATIC, FADE_OUT
     }
 }

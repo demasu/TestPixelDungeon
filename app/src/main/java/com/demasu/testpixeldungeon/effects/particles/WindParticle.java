@@ -17,28 +17,26 @@
  */
 package com.demasu.testpixeldungeon.effects.particles;
 
+import com.demasu.testpixeldungeon.Dungeon;
+import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.particles.Emitter;
-import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.noosa.particles.Emitter.Factory;
-import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.DungeonTilemap;
+import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
 public class WindParticle extends PixelParticle {
 
+    private static float angle = Random.Float( PointF.PI2 );
+    private static PointF speed = new PointF().polar( angle, 5 );
     public static final Emitter.Factory FACTORY = new Factory() {
         @Override
         public void emit ( Emitter emitter, int index, float x, float y ) {
             ( (WindParticle) emitter.recycle( WindParticle.class ) ).reset( x, y );
         }
     };
-
-    private static float angle = Random.Float( PointF.PI2 );
-    private static PointF speed = new PointF().polar( angle, 5 );
-
     private float size;
 
     public WindParticle () {

@@ -17,33 +17,35 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.ui.Component;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.ui.Component;
 import com.watabou.utils.Signal;
+
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class GameLog extends Component implements Signal.Listener<String> {
 
     private static final int MAX_LINES = 3;
 
     private static final Pattern PUNCTUATION = Pattern.compile( ".*[.,;?! ]$" );
-
+    private static ArrayList<Entry> entries = new ArrayList<Entry>();
     private BitmapTextMultiline lastEntry;
     private int lastColor;
-
-    private static ArrayList<Entry> entries = new ArrayList<Entry>();
 
     public GameLog () {
         super();
         GLog.update.add( this );
 
         recreateLines();
+    }
+
+    public static void wipe () {
+        entries.clear();
     }
 
     private void recreateLines () {
@@ -147,9 +149,5 @@ public class GameLog extends Component implements Signal.Listener<String> {
             this.text = text;
             this.color = color;
         }
-    }
-
-    public static void wipe () {
-        entries.clear();
     }
 }

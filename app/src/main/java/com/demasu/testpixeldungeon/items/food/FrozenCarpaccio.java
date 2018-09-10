@@ -39,6 +39,12 @@ public class FrozenCarpaccio extends Food {
         energy = Hunger.STARVING - Hunger.HUNGRY;
     }
 
+    public static Food cook ( MysteryMeat ingredient ) {
+        FrozenCarpaccio result = new FrozenCarpaccio();
+        result.quantity = ingredient.quantity();
+        return result;
+    }
+
     @Override
     public void execute ( Hero hero, String action ) {
 
@@ -82,11 +88,5 @@ public class FrozenCarpaccio extends Food {
 
     public int price () {
         return 10 * quantity;
-    }
-
-    public static Food cook ( MysteryMeat ingredient ) {
-        FrozenCarpaccio result = new FrozenCarpaccio();
-        result.quantity = ingredient.quantity();
-        return result;
     }
 }

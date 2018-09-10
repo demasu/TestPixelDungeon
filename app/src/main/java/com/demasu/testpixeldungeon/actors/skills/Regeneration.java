@@ -1,8 +1,6 @@
 package com.demasu.testpixeldungeon.actors.skills;
 
 
-import com.demasu.testpixeldungeon.Dungeon;
-
 /**
  * Created by Moussa on 20-Jan-17.
  */

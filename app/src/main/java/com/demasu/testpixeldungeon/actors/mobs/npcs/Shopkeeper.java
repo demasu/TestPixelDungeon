@@ -30,9 +30,23 @@ import com.demasu.testpixeldungeon.windows.WndTradeItem;
 
 public class Shopkeeper extends NPC {
 
+    private static WndBag.Listener itemSelector = new WndBag.Listener() {
+        @Override
+        public void onSelect ( Item item ) {
+            if ( item != null ) {
+                WndBag parentWnd = sell();
+                GameScene.show( new WndTradeItem( item, parentWnd ) );
+            }
+        }
+    };
+
     {
         name = "shopkeeper";
         spriteClass = ShopkeeperSprite.class;
+    }
+
+    public static WndBag sell () {
+        return GameScene.selectItem( itemSelector, WndBag.Mode.FOR_SALE, "Select an item to sell" );
     }
 
     @Override
@@ -80,20 +94,6 @@ public class Shopkeeper extends NPC {
                 "This stout guy looks more appropriate for a trade district in some large city " +
                         "than for a dungeon. His prices explain why he prefers to do business here.";
     }
-
-    public static WndBag sell () {
-        return GameScene.selectItem( itemSelector, WndBag.Mode.FOR_SALE, "Select an item to sell" );
-    }
-
-    private static WndBag.Listener itemSelector = new WndBag.Listener() {
-        @Override
-        public void onSelect ( Item item ) {
-            if ( item != null ) {
-                WndBag parentWnd = sell();
-                GameScene.show( new WndTradeItem( item, parentWnd ) );
-            }
-        }
-    };
 
     @Override
     public void interact () {

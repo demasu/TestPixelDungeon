@@ -17,12 +17,6 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Group;
-import com.watabou.noosa.SkinnedBlock;
-import com.watabou.noosa.audio.Music;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -54,6 +48,12 @@ import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.windows.WndBag.Mode;
 import com.demasu.testpixeldungeon.windows.WndGame;
 import com.demasu.testpixeldungeon.windows.WndStory;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Group;
+import com.watabou.noosa.SkinnedBlock;
+import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -61,8 +61,8 @@ import java.util.ArrayList;
 public class MissionScene extends GameScene {
 
 
-    public LegendSprite hero;
     public static boolean scenePause = false;
+    public LegendSprite hero;
     protected MissionToolbar toolbar;
 
 

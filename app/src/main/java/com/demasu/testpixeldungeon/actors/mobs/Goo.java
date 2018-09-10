@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.Statistics;
@@ -41,9 +39,21 @@ import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Goo extends Mob {
 
     private static final float PUMP_UP_DELAY = 2f;
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( ToxicGas.class );
+        RESISTANCES.add( Death.class );
+        RESISTANCES.add( ScrollOfPsionicBlast.class );
+    }
+
+    private boolean pumpedUp = false;
+    private boolean jumped = false;
 
     {
         name = Dungeon.getDepth() == Statistics.deepestFloor ? "Goo" : "spawn of Goo";
@@ -60,9 +70,6 @@ public class Goo extends Mob {
         HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
-
-    private boolean pumpedUp = false;
-    private boolean jumped = false;
 
     @Override
     public int damageRoll () {
@@ -221,14 +228,6 @@ public class Goo extends Mob {
         return
                 "Little known about The Goo. It's quite possible that it is not even a creature, but rather a " +
                         "conglomerate of substances from the sewers that gained rudiments of free will.";
-    }
-
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( ToxicGas.class );
-        RESISTANCES.add( Death.class );
-        RESISTANCES.add( ScrollOfPsionicBlast.class );
     }
 
     @Override

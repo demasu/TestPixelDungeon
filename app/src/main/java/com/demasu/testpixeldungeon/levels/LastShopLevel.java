@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import java.util.List;
-
-import com.watabou.noosa.Scene;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Bones;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -27,8 +24,11 @@ import com.demasu.testpixeldungeon.actors.mobs.npcs.Imp;
 import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.levels.Room.Type;
+import com.watabou.noosa.Scene;
 import com.watabou.utils.Graph;
 import com.watabou.utils.Random;
+
+import java.util.List;
 
 public class LastShopLevel extends RegularLevel {
 

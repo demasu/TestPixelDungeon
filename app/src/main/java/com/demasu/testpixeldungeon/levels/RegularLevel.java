@@ -17,11 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-
 import com.demasu.testpixeldungeon.Bones;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -34,23 +29,27 @@ import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.demasu.testpixeldungeon.levels.Room.Type;
-import com.demasu.testpixeldungeon.levels.painters.*;
+import com.demasu.testpixeldungeon.levels.painters.Painter;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Graph;
 import com.watabou.utils.Random;
 import com.watabou.utils.Rect;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+
 public abstract class RegularLevel extends Level {
 
+    public int secretDoors;
     protected HashSet<Room> rooms;
-
     protected Room roomEntrance;
     protected Room roomExit;
-
     protected ArrayList<Room.Type> specials;
-
-    public int secretDoors;
+    protected int minRoomSize = 7;
+    protected int maxRoomSize = 9;
 
     @Override
     protected boolean build () {
@@ -342,9 +341,6 @@ public abstract class RegularLevel extends Level {
         float[] chances = { 1, 1, 1, 1, 1, 1, 1, 1 };
         return chances;
     }
-
-    protected int minRoomSize = 7;
-    protected int maxRoomSize = 9;
 
     protected void split ( Rect rect ) {
 

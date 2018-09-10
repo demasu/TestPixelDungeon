@@ -20,10 +20,6 @@ package com.demasu.testpixeldungeon.windows;
 import android.graphics.RectF;
 import android.util.Log;
 
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.ui.Component;
 import com.demasu.testpixeldungeon.Difficulties;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.buffs.Champ;
@@ -33,41 +29,30 @@ import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.ui.Component;
 
 public class WndRatKing extends WndTabbed {
 
-    public enum Mode {
-        NORMAL,
-        CHAMPIONS,
-        HERO
-    }
-
-    public Mode mode = Mode.NORMAL;
-
+    protected static final int TAB_WIDTH = 25;
     private static final String TXT_PLUS = "+";
     private static final String TXT_MINUS = "-";
     private static final String TXT_CHAMPION_CHANCE = "Champions: %s";
-
-
     private static final String TXT_TRUE_KING_TITLE = "A King.. I Think";
-
-
     private static final int WIDTH = 112;
     private static final int BTN_HEIGHT = 20;
     private static final int GAP = 2;
-
+    public static int maxHeight = 0;
+    public Mode mode = Mode.NORMAL;
     private RedButton btnZoomOut;
     private RedButton btnZoomIn;
     private RedButton btnChamps;
-
     private RedButton btMobHP;
     private RedButton btMobAtt;
     private RedButton btMobDef;
     private RedButton btDayNight;
-
-    protected static final int TAB_WIDTH = 25;
-
-    public static int maxHeight = 0;
 
     public WndRatKing ( Mode mode ) {
         super();
@@ -352,7 +337,6 @@ public class WndRatKing extends WndTabbed {
         hide();
     }
 
-
     private void updateEnabled () {
         float zoom = Camera.main.zoom;
         btnZoomIn.enable( zoom < PixelScene.maxZoom );
@@ -367,11 +351,16 @@ public class WndRatKing extends WndTabbed {
         btDayNight.text( Dungeon.getCurrentDifficulty().GetToggleNightDesc() );
     }
 
+    public enum Mode {
+        NORMAL,
+        CHAMPIONS,
+        HERO
+    }
 
     private class StatsControl extends Tab {
 
-        private Image icon = null;
         Mode mode = Mode.NORMAL;
+        private Image icon = null;
 
         public StatsControl ( Mode mode ) {
             super();

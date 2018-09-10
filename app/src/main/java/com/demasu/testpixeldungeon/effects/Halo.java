@@ -27,10 +27,8 @@ import com.watabou.noosa.Image;
 
 public class Halo extends Image {
 
-    private static final Object CACHE_KEY = Halo.class;
-
     protected static final int RADIUS = 64;
-
+    private static final Object CACHE_KEY = Halo.class;
     protected float radius = RADIUS;
     protected float brightness = 1;
 

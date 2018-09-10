@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.armor.glyphs;
 
-import com.watabou.noosa.Camera;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Roots;
@@ -28,6 +27,7 @@ import com.demasu.testpixeldungeon.items.armor.Armor.Glyph;
 import com.demasu.testpixeldungeon.plants.Earthroot;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSprite.Glowing;
+import com.watabou.noosa.Camera;
 import com.watabou.utils.Random;
 
 public class Entanglement extends Glyph {

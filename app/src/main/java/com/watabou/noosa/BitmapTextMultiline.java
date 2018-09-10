@@ -17,26 +17,22 @@
 
 package com.watabou.noosa;
 
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-
 import android.graphics.RectF;
 
 import com.watabou.glwrap.Quad;
 import com.watabou.utils.PointF;
 
-public class BitmapTextMultiline extends BitmapText {
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
-    public int maxWidth = Integer.MAX_VALUE;
+public class BitmapTextMultiline extends BitmapText {
 
     protected static final Pattern PARAGRAPH = Pattern.compile( "\n" );
     protected static final Pattern WORD = Pattern.compile( "\\s+" );
-
-    protected float spaceSize;
-
+    public int maxWidth = Integer.MAX_VALUE;
     public int nLines = 0;
-
     public boolean[] mask;
+    protected float spaceSize;
 
     public BitmapTextMultiline ( Font font ) {
         this( "", font );

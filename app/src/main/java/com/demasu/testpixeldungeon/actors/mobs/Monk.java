@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Amok;
@@ -32,9 +30,17 @@ import com.demasu.testpixeldungeon.sprites.MonkSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Monk extends Mob {
 
     public static final String TXT_DISARM = "%s has knocked the %s from your hands!";
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( Amok.class );
+        IMMUNITIES.add( Terror.class );
+    }
 
     {
         name = "dwarf monk";
@@ -112,13 +118,6 @@ public class Monk extends Mob {
         return
                 "These monks are fanatics, who devoted themselves to protecting their city's secrets from all aliens. " +
                         "They don't use any armor or weapons, relying solely on the art of hand-to-hand combat.";
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Amok.class );
-        IMMUNITIES.add( Terror.class );
     }
 
     @Override

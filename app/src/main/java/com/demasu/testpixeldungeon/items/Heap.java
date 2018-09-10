@@ -17,11 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import java.util.Collection;
-import java.util.LinkedList;
-
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -46,9 +41,14 @@ import com.demasu.testpixeldungeon.plants.Plant.Seed;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
+
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class Heap implements Bundlable {
 
@@ -57,26 +57,22 @@ public class Heap implements Bundlable {
     private static final int SEEDS_TO_POTION = 3;
 
     private static final float FADE_TIME = 0.6f;
+    private static final String POS = "pos";
+    private static final String TYPE = "type";
+    private static final String ITEMS = "items";
+    public Type type = Type.HEAP;
+    public int pos = 0;
+    public ItemSprite sprite;
+    public LinkedList<Item> items = new LinkedList<Item>();
 
-    public enum Type {
-        HEAP,
-        FOR_SALE,
-        CHEST,
-        LOCKED_CHEST,
-        CRYSTAL_CHEST,
-        TOMB,
-        SKELETON,
-        MIMIC,
-        HIDDEN
+    public static void burnFX ( int pos ) {
+        CellEmitter.get( pos ).burst( ElmoParticle.FACTORY, 6 );
+        Sample.INSTANCE.play( Assets.SND_BURNING );
     }
 
-    public Type type = Type.HEAP;
-
-    public int pos = 0;
-
-    public ItemSprite sprite;
-
-    public LinkedList<Item> items = new LinkedList<Item>();
+    public static void evaporateFX ( int pos ) {
+        CellEmitter.get( pos ).burst( Speck.factory( Speck.STEAM ), 5 );
+    }
 
     public int image () {
         switch ( type ) {
@@ -340,15 +336,6 @@ public class Heap implements Bundlable {
         }
     }
 
-    public static void burnFX ( int pos ) {
-        CellEmitter.get( pos ).burst( ElmoParticle.FACTORY, 6 );
-        Sample.INSTANCE.play( Assets.SND_BURNING );
-    }
-
-    public static void evaporateFX ( int pos ) {
-        CellEmitter.get( pos ).burst( Speck.factory( Speck.STEAM ), 5 );
-    }
-
     public boolean isEmpty () {
         return items == null || items.size() == 0;
     }
@@ -361,10 +348,6 @@ public class Heap implements Bundlable {
         items.clear();
         items = null;
     }
-
-    private static final String POS = "pos";
-    private static final String TYPE = "type";
-    private static final String ITEMS = "items";
 
     @SuppressWarnings ( "unchecked" )
     @Override
@@ -392,6 +375,18 @@ public class Heap implements Bundlable {
         bundle.put( POS, pos );
         bundle.put( TYPE, type.toString() );
         bundle.put( ITEMS, items );
+    }
+
+    public enum Type {
+        HEAP,
+        FOR_SALE,
+        CHEST,
+        LOCKED_CHEST,
+        CRYSTAL_CHEST,
+        TOMB,
+        SKELETON,
+        MIMIC,
+        HIDDEN
     }
 
 }

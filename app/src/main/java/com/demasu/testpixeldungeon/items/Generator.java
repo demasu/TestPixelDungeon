@@ -17,60 +17,116 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import java.util.HashMap;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
-import com.demasu.testpixeldungeon.items.armor.*;
+import com.demasu.testpixeldungeon.items.armor.Armor;
+import com.demasu.testpixeldungeon.items.armor.ClothArmor;
+import com.demasu.testpixeldungeon.items.armor.LeatherArmor;
+import com.demasu.testpixeldungeon.items.armor.MailArmor;
+import com.demasu.testpixeldungeon.items.armor.PlateArmor;
+import com.demasu.testpixeldungeon.items.armor.ScaleArmor;
 import com.demasu.testpixeldungeon.items.bags.Bag;
 import com.demasu.testpixeldungeon.items.food.Food;
 import com.demasu.testpixeldungeon.items.food.MysteryMeat;
 import com.demasu.testpixeldungeon.items.food.Pasty;
-import com.demasu.testpixeldungeon.items.potions.*;
-import com.demasu.testpixeldungeon.items.rings.*;
-import com.demasu.testpixeldungeon.items.scrolls.*;
-import com.demasu.testpixeldungeon.items.wands.*;
-import com.demasu.testpixeldungeon.items.weapon.*;
-import com.demasu.testpixeldungeon.items.weapon.melee.*;
-import com.demasu.testpixeldungeon.items.weapon.missiles.*;
-import com.demasu.testpixeldungeon.plants.*;
+import com.demasu.testpixeldungeon.items.potions.Potion;
+import com.demasu.testpixeldungeon.items.potions.PotionOfExperience;
+import com.demasu.testpixeldungeon.items.potions.PotionOfFrost;
+import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
+import com.demasu.testpixeldungeon.items.potions.PotionOfInvisibility;
+import com.demasu.testpixeldungeon.items.potions.PotionOfLevitation;
+import com.demasu.testpixeldungeon.items.potions.PotionOfLiquidFlame;
+import com.demasu.testpixeldungeon.items.potions.PotionOfMana;
+import com.demasu.testpixeldungeon.items.potions.PotionOfMight;
+import com.demasu.testpixeldungeon.items.potions.PotionOfMindVision;
+import com.demasu.testpixeldungeon.items.potions.PotionOfParalyticGas;
+import com.demasu.testpixeldungeon.items.potions.PotionOfPurity;
+import com.demasu.testpixeldungeon.items.potions.PotionOfStrength;
+import com.demasu.testpixeldungeon.items.potions.PotionOfToxicGas;
+import com.demasu.testpixeldungeon.items.rings.Ring;
+import com.demasu.testpixeldungeon.items.rings.RingOfAccuracy;
+import com.demasu.testpixeldungeon.items.rings.RingOfDetection;
+import com.demasu.testpixeldungeon.items.rings.RingOfElements;
+import com.demasu.testpixeldungeon.items.rings.RingOfEvasion;
+import com.demasu.testpixeldungeon.items.rings.RingOfHaggler;
+import com.demasu.testpixeldungeon.items.rings.RingOfHaste;
+import com.demasu.testpixeldungeon.items.rings.RingOfHerbalism;
+import com.demasu.testpixeldungeon.items.rings.RingOfMending;
+import com.demasu.testpixeldungeon.items.rings.RingOfPower;
+import com.demasu.testpixeldungeon.items.rings.RingOfSatiety;
+import com.demasu.testpixeldungeon.items.rings.RingOfShadows;
+import com.demasu.testpixeldungeon.items.rings.RingOfThorns;
+import com.demasu.testpixeldungeon.items.scrolls.Scroll;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfBloodyRitual;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfChallenge;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfEnchantment;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfHome;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfIdentify;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfLullaby;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfMagicMapping;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfMirrorImage;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfPsionicBlast;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfRecharging;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfRemoveCurse;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfSacrifice;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfSkill;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfTeleportation;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfTerror;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.demasu.testpixeldungeon.items.wands.Wand;
+import com.demasu.testpixeldungeon.items.wands.WandOfAmok;
+import com.demasu.testpixeldungeon.items.wands.WandOfAvalanche;
+import com.demasu.testpixeldungeon.items.wands.WandOfBlink;
+import com.demasu.testpixeldungeon.items.wands.WandOfDisintegration;
+import com.demasu.testpixeldungeon.items.wands.WandOfFirebolt;
+import com.demasu.testpixeldungeon.items.wands.WandOfFlock;
+import com.demasu.testpixeldungeon.items.wands.WandOfLightning;
+import com.demasu.testpixeldungeon.items.wands.WandOfMagicMissile;
+import com.demasu.testpixeldungeon.items.wands.WandOfPoison;
+import com.demasu.testpixeldungeon.items.wands.WandOfReach;
+import com.demasu.testpixeldungeon.items.wands.WandOfRegrowth;
+import com.demasu.testpixeldungeon.items.wands.WandOfSlowness;
+import com.demasu.testpixeldungeon.items.wands.WandOfTeleportation;
+import com.demasu.testpixeldungeon.items.weapon.Weapon;
+import com.demasu.testpixeldungeon.items.weapon.melee.BattleAxe;
+import com.demasu.testpixeldungeon.items.weapon.melee.Dagger;
+import com.demasu.testpixeldungeon.items.weapon.melee.DualSwords;
+import com.demasu.testpixeldungeon.items.weapon.melee.Glaive;
+import com.demasu.testpixeldungeon.items.weapon.melee.Knuckles;
+import com.demasu.testpixeldungeon.items.weapon.melee.Longsword;
+import com.demasu.testpixeldungeon.items.weapon.melee.Mace;
+import com.demasu.testpixeldungeon.items.weapon.melee.NecroBlade;
+import com.demasu.testpixeldungeon.items.weapon.melee.Quarterstaff;
+import com.demasu.testpixeldungeon.items.weapon.melee.ShortSword;
+import com.demasu.testpixeldungeon.items.weapon.melee.Spear;
+import com.demasu.testpixeldungeon.items.weapon.melee.Sword;
+import com.demasu.testpixeldungeon.items.weapon.melee.WarHammer;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
+import com.demasu.testpixeldungeon.items.weapon.missiles.BombArrow;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Boomerang;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
+import com.demasu.testpixeldungeon.items.weapon.missiles.CurareDart;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Dart;
+import com.demasu.testpixeldungeon.items.weapon.missiles.FlameBow;
+import com.demasu.testpixeldungeon.items.weapon.missiles.FrostBow;
+import com.demasu.testpixeldungeon.items.weapon.missiles.IncendiaryDart;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Javelin;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Shuriken;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Tamahawk;
+import com.demasu.testpixeldungeon.plants.Dreamweed;
+import com.demasu.testpixeldungeon.plants.Earthroot;
+import com.demasu.testpixeldungeon.plants.Fadeleaf;
+import com.demasu.testpixeldungeon.plants.Firebloom;
+import com.demasu.testpixeldungeon.plants.Icecap;
+import com.demasu.testpixeldungeon.plants.Plant;
+import com.demasu.testpixeldungeon.plants.Rotberry;
+import com.demasu.testpixeldungeon.plants.Sorrowmoss;
+import com.demasu.testpixeldungeon.plants.Sungrass;
 import com.watabou.utils.Random;
 
+import java.util.HashMap;
+
 public class Generator {
-
-    public enum Category {
-        WEAPON( 15, Weapon.class ),
-        ARMOR( 10, Armor.class ),
-        POTION( 50, Potion.class ),
-        SCROLL( 40, Scroll.class ),
-        WAND( 4, Wand.class ),
-        RING( 2, Ring.class ),
-        SEED( 5, Plant.Seed.class ),
-        FOOD( 0, Food.class ),
-        GOLD( 50, Gold.class ),
-        MISC( 5, Item.class );
-
-        public Class<?>[] classes;
-        public float[] probs;
-
-        public float prob;
-        public Class<? extends Item> superClass;
-
-        Category ( float prob, Class<? extends Item> superClass ) {
-            this.prob = prob;
-            this.superClass = superClass;
-        }
-
-        public static int order ( Item item ) {
-            for ( int i = 0; i < values().length; i++ ) {
-                if ( values()[i].superClass.isInstance( item ) ) {
-                    return i;
-                }
-            }
-
-            return item instanceof Bag ? Integer.MAX_VALUE : Integer.MAX_VALUE - 1;
-        }
-    }
 
     private static HashMap<Category, Float> categoryProbs = new HashMap<Generator.Category, Float>();
 
@@ -277,5 +333,39 @@ public class Generator {
         w2.random();
 
         return Math.abs( curStr - w1.STR ) < Math.abs( curStr - w2.STR ) ? w1 : w2;
+    }
+
+    public enum Category {
+        WEAPON( 15, Weapon.class ),
+        ARMOR( 10, Armor.class ),
+        POTION( 50, Potion.class ),
+        SCROLL( 40, Scroll.class ),
+        WAND( 4, Wand.class ),
+        RING( 2, Ring.class ),
+        SEED( 5, Plant.Seed.class ),
+        FOOD( 0, Food.class ),
+        GOLD( 50, Gold.class ),
+        MISC( 5, Item.class );
+
+        public Class<?>[] classes;
+        public float[] probs;
+
+        public float prob;
+        public Class<? extends Item> superClass;
+
+        Category ( float prob, Class<? extends Item> superClass ) {
+            this.prob = prob;
+            this.superClass = superClass;
+        }
+
+        public static int order ( Item item ) {
+            for ( int i = 0; i < values().length; i++ ) {
+                if ( values()[i].superClass.isInstance( item ) ) {
+                    return i;
+                }
+            }
+
+            return item instanceof Bag ? Integer.MAX_VALUE : Integer.MAX_VALUE - 1;
+        }
     }
 }

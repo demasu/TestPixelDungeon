@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
@@ -28,6 +26,8 @@ import com.demasu.testpixeldungeon.ui.CheckBox;
 import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.Toolbar;
 import com.demasu.testpixeldungeon.ui.Window;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.audio.Sample;
 
 public class WndSettings extends Window {
 

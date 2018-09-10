@@ -25,32 +25,6 @@ public class Buff extends Actor {
 
     public Char target;
 
-    public boolean attachTo ( Char target ) {
-
-        if ( target.immunities().contains( getClass() ) ) {
-            return false;
-        }
-
-        this.target = target;
-        target.add( this );
-
-        return true;
-    }
-
-    public void detach () {
-        target.remove( this );
-    }
-
-    @Override
-    public boolean act () {
-        diactivate();
-        return true;
-    }
-
-    public int icon () {
-        return BuffIndicator.NONE;
-    }
-
     public static <T extends Buff> T append ( Char target, Class<T> buffClass ) {
         try {
             T buff = buffClass.newInstance();
@@ -96,5 +70,31 @@ public class Buff extends Actor {
 
     public static void detach ( Char target, Class<? extends Buff> cl ) {
         detach( target.buff( cl ) );
+    }
+
+    public boolean attachTo ( Char target ) {
+
+        if ( target.immunities().contains( getClass() ) ) {
+            return false;
+        }
+
+        this.target = target;
+        target.add( this );
+
+        return true;
+    }
+
+    public void detach () {
+        target.remove( this );
+    }
+
+    @Override
+    public boolean act () {
+        diactivate();
+        return true;
+    }
+
+    public int icon () {
+        return BuffIndicator.NONE;
     }
 }

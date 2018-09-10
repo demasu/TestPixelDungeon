@@ -17,10 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.wands;
 
-import java.util.ArrayList;
-import java.util.Locale;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -42,16 +38,18 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
 public abstract class Wand extends KindOfWeapon {
 
-    private static final int USAGES_TO_KNOW = 40;
-
     public static final String AC_ZAP = "ZAP";
-
+    private static final int USAGES_TO_KNOW = 40;
     private static final String TXT_WOOD = "This thin %s wand is warm to the touch. Who knows what it will do when used?";
     private static final String TXT_DAMAGE = "When this wand is used as a melee weapon, its average damage is %d points per hit.";
     private static final String TXT_WEAPON = "You can use this wand as a melee weapon.";
@@ -62,18 +60,6 @@ public abstract class Wand extends KindOfWeapon {
     private static final String TXT_IDENTIFY = "You are now familiar enough with your %s.";
 
     private static final float TIME_TO_ZAP = 1f;
-
-    public int maxCharges = initialCharges();
-    public int curCharges = maxCharges;
-
-    protected Charger charger;
-
-    private boolean curChargeKnown = false;
-
-    private int usagesToKnow = USAGES_TO_KNOW;
-
-    protected boolean hitChars = true;
-
     private static final Class<?>[] wands = {
             WandOfTeleportation.class,
             WandOfSlowness.class,
@@ -103,13 +89,84 @@ public abstract class Wand extends KindOfWeapon {
             ItemSpriteSheet.WAND_PURPLEHEART,
             ItemSpriteSheet.WAND_OAK,
             ItemSpriteSheet.WAND_BIRCH };
-
+    private static final String UNFAMILIRIARITY = "unfamiliarity";
+    private static final String MAX_CHARGES = "maxCharges";
+    private static final String CUR_CHARGES = "curCharges";
+    private static final String CUR_CHARGE_KNOWN = "curChargeKnown";
     private static ItemStatusHandler<Wand> handler;
+    protected static CellSelector.Listener zapper = new CellSelector.Listener() {
 
+        @Override
+        public void onSelect ( Integer target ) {
+
+            if ( target != null ) {
+
+                if ( target == curUser.pos ) {
+                    GLog.i( TXT_SELF_TARGET );
+                    return;
+                }
+
+                final Wand curWand = (Wand) Wand.curItem;
+
+                curWand.setKnown();
+
+                final int cell = Ballistica.cast( curUser.pos, target, true, curWand.hitChars );
+                curUser.sprite.zap( cell );
+
+                QuickSlot.target( curItem, Actor.findChar( cell ) );
+
+                if ( curWand.curCharges > 0 ) {
+
+                    curUser.busy();
+
+                    curWand.fx( cell, new Callback() {
+                        @Override
+                        public void call () {
+                            curWand.onZap( cell );
+                            curWand.wandUsed();
+                        }
+                    } );
+
+                    Invisibility.dispel();
+
+                } else {
+
+                    curUser.spendAndNext( TIME_TO_ZAP );
+                    GLog.w( TXT_FIZZLES );
+                    curWand.levelKnown = true;
+
+                    curWand.updateQuickslot();
+                }
+
+            }
+        }
+
+        @Override
+        public String prompt () {
+            return "Choose direction to zap";
+        }
+    };
+    public int maxCharges = initialCharges();
+    public int curCharges = maxCharges;
+    protected Charger charger;
+    protected boolean hitChars = true;
+    private boolean curChargeKnown = false;
+    private int usagesToKnow = USAGES_TO_KNOW;
     private String wood;
 
     {
         defaultAction = AC_ZAP;
+    }
+
+    public Wand () {
+        super();
+
+        try {
+            image = handler.image( this );
+            wood = handler.label( this );
+        } catch ( Exception e ) {
+            // Wand of Magic Missile
+        }
     }
 
     @SuppressWarnings ( "unchecked" )
@@ -126,15 +183,8 @@ public abstract class Wand extends KindOfWeapon {
         handler = new ItemStatusHandler<Wand>( (Class<? extends Wand>[]) wands, woods, images, bundle );
     }
 
-    public Wand () {
-        super();
-
-        try {
-            image = handler.image( this );
-            wood = handler.label( this );
-        } catch ( Exception e ) {
-            // Wand of Magic Missile
-        }
+    public static boolean allKnown () {
+        return handler.known().size() == wands.length;
     }
 
     @Override
@@ -374,19 +424,10 @@ public abstract class Wand extends KindOfWeapon {
         return this;
     }
 
-    public static boolean allKnown () {
-        return handler.known().size() == wands.length;
-    }
-
     @Override
     public int price () {
         return considerState( 50 );
     }
-
-    private static final String UNFAMILIRIARITY = "unfamiliarity";
-    private static final String MAX_CHARGES = "maxCharges";
-    private static final String CUR_CHARGES = "curCharges";
-    private static final String CUR_CHARGE_KNOWN = "curChargeKnown";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -407,59 +448,6 @@ public abstract class Wand extends KindOfWeapon {
         curCharges = bundle.getInt( CUR_CHARGES );
         curChargeKnown = bundle.getBoolean( CUR_CHARGE_KNOWN );
     }
-
-    protected static CellSelector.Listener zapper = new CellSelector.Listener() {
-
-        @Override
-        public void onSelect ( Integer target ) {
-
-            if ( target != null ) {
-
-                if ( target == curUser.pos ) {
-                    GLog.i( TXT_SELF_TARGET );
-                    return;
-                }
-
-                final Wand curWand = (Wand) Wand.curItem;
-
-                curWand.setKnown();
-
-                final int cell = Ballistica.cast( curUser.pos, target, true, curWand.hitChars );
-                curUser.sprite.zap( cell );
-
-                QuickSlot.target( curItem, Actor.findChar( cell ) );
-
-                if ( curWand.curCharges > 0 ) {
-
-                    curUser.busy();
-
-                    curWand.fx( cell, new Callback() {
-                        @Override
-                        public void call () {
-                            curWand.onZap( cell );
-                            curWand.wandUsed();
-                        }
-                    } );
-
-                    Invisibility.dispel();
-
-                } else {
-
-                    curUser.spendAndNext( TIME_TO_ZAP );
-                    GLog.w( TXT_FIZZLES );
-                    curWand.levelKnown = true;
-
-                    curWand.updateQuickslot();
-                }
-
-            }
-        }
-
-        @Override
-        public String prompt () {
-            return "Choose direction to zap";
-        }
-    };
 
     protected class Charger extends Buff {
 

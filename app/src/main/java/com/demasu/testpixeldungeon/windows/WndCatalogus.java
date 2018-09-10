@@ -17,10 +17,6 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.ui.Component;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.potions.Potion;
@@ -31,6 +27,10 @@ import com.demasu.testpixeldungeon.sprites.ItemSprite;
 import com.demasu.testpixeldungeon.ui.ScrollPane;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.ui.Component;
+
+import java.util.ArrayList;
 
 public class WndCatalogus extends WndTabbed {
 
@@ -47,13 +47,10 @@ public class WndCatalogus extends WndTabbed {
     private static final String TXT_POTIONS = "Potions";
     private static final String TXT_SCROLLS = "Scrolls";
     private static final String TXT_TITLE = "Catalogus";
-
+    private static boolean showPotions = true;
     private BitmapText txtTitle;
     private ScrollPane list;
-
     private ArrayList<ListItem> items = new ArrayList<WndCatalogus.ListItem>();
-
-    private static boolean showPotions = true;
 
     public WndCatalogus () {
 

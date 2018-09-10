@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
+import com.watabou.noosa.TextureFilm;
 
 public class SuccubusSprite extends MobSprite {
 

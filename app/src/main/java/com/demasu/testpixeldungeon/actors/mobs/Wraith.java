@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -29,12 +26,22 @@ import com.demasu.testpixeldungeon.items.weapon.enchantments.Death;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.WraithSprite;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
+
+import java.util.HashSet;
 
 public class Wraith extends Mob {
 
     private static final float SPAWN_DELAY = 2f;
+    private static final String LEVEL = "level";
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( Death.class );
+        IMMUNITIES.add( Terror.class );
+    }
 
     private int level;
 
@@ -48,7 +55,34 @@ public class Wraith extends Mob {
         flying = true;
     }
 
-    private static final String LEVEL = "level";
+    public static void spawnAround ( int pos ) {
+        for ( int n : Level.NEIGHBOURS4 ) {
+            int cell = pos + n;
+            if ( Level.passable[cell] && Actor.findChar( cell ) == null ) {
+                spawnAt( cell );
+            }
+        }
+    }
+
+    public static Wraith spawnAt ( int pos ) {
+        if ( Level.passable[pos] && Actor.findChar( pos ) == null ) {
+
+            Wraith w = new Wraith();
+            w.adjustStats( Dungeon.getDepth() );
+            w.pos = pos;
+            w.state = w.HUNTING;
+            GameScene.add( w, SPAWN_DELAY );
+
+            w.sprite.alpha( 0 );
+            w.sprite.parent.add( new AlphaTweener( w.sprite, 1, 0.5f ) );
+
+            w.sprite.emitter().burst( ShadowParticle.CURSE, 5 );
+
+            return w;
+        } else {
+            return null;
+        }
+    }
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -95,42 +129,6 @@ public class Wraith extends Mob {
         return
                 "A wraith is a vengeful spirit of a sinner, whose grave or tomb was disturbed. " +
                         "Being an ethereal entity, it is very hard to hit with a regular weapon.";
-    }
-
-    public static void spawnAround ( int pos ) {
-        for ( int n : Level.NEIGHBOURS4 ) {
-            int cell = pos + n;
-            if ( Level.passable[cell] && Actor.findChar( cell ) == null ) {
-                spawnAt( cell );
-            }
-        }
-    }
-
-    public static Wraith spawnAt ( int pos ) {
-        if ( Level.passable[pos] && Actor.findChar( pos ) == null ) {
-
-            Wraith w = new Wraith();
-            w.adjustStats( Dungeon.getDepth() );
-            w.pos = pos;
-            w.state = w.HUNTING;
-            GameScene.add( w, SPAWN_DELAY );
-
-            w.sprite.alpha( 0 );
-            w.sprite.parent.add( new AlphaTweener( w.sprite, 1, 0.5f ) );
-
-            w.sprite.emitter().burst( ShadowParticle.CURSE, 5 );
-
-            return w;
-        } else {
-            return null;
-        }
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Death.class );
-        IMMUNITIES.add( Terror.class );
     }
 
     @Override

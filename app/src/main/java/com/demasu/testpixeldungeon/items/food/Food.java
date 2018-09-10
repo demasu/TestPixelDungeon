@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.food;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Statistics;
@@ -31,13 +28,14 @@ import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
+
+import java.util.ArrayList;
 
 public class Food extends Item {
 
-    private static final float TIME_TO_EAT = 3f;
-
     public static final String AC_EAT = "EAT";
-
+    private static final float TIME_TO_EAT = 3f;
     public float energy = Hunger.HUNGRY;
     public String message = "That food tasted delicious!";
 

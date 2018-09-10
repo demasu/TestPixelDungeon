@@ -17,13 +17,13 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.items.wands.WandOfBlink;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfTeleportation extends Scroll {
 
@@ -35,18 +35,6 @@ public class ScrollOfTeleportation extends Scroll {
 
     {
         name = "Scroll of Teleportation";
-    }
-
-    @Override
-    protected void doRead () {
-
-        Sample.INSTANCE.play( Assets.SND_READ );
-        Invisibility.dispel();
-
-        teleportHero( curUser );
-        setKnown();
-
-        readAnimation();
     }
 
     public static void teleportHero ( Hero hero ) {
@@ -73,6 +61,18 @@ public class ScrollOfTeleportation extends Scroll {
             GLog.i( TXT_TELEPORTED );
 
         }
+    }
+
+    @Override
+    protected void doRead () {
+
+        Sample.INSTANCE.play( Assets.SND_READ );
+        Invisibility.dispel();
+
+        teleportHero( curUser );
+        setKnown();
+
+        readAnimation();
     }
 
     @Override

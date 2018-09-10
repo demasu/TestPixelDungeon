@@ -17,14 +17,14 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.particles.Emitter;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.levels.Level;
+import com.watabou.noosa.TextureFilm;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.particles.Emitter;
 
 public class BlacksmithSprite extends MobSprite {
 

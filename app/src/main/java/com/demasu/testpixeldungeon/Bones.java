@@ -17,17 +17,17 @@
  */
 package com.demasu.testpixeldungeon;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.items.Gold;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.rings.Ring;
+import com.watabou.noosa.Game;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class Bones {
 

@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.ResultDescriptions;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -38,9 +36,25 @@ import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Eye extends Mob {
 
     private static final String TXT_DEATHGAZE_KILLED = "%s's deathgaze killed you...";
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( WandOfDisintegration.class );
+        RESISTANCES.add( Death.class );
+        RESISTANCES.add( Leech.class );
+    }
+
+    static {
+        IMMUNITIES.add( Terror.class );
+    }
+
+    private int hitCell;
 
     {
         name = "evil eye";
@@ -67,8 +81,6 @@ public class Eye extends Mob {
     public int dr () {
         return 10;
     }
-
-    private int hitCell;
 
     @Override
     protected boolean canAttack ( Char enemy ) {
@@ -154,23 +166,9 @@ public class Eye extends Mob {
                         "it uses its deathgaze recklessly, often ignoring its allies and wounding them.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( WandOfDisintegration.class );
-        RESISTANCES.add( Death.class );
-        RESISTANCES.add( Leech.class );
-    }
-
     @Override
     public HashSet<Class<?>> resistances () {
         return RESISTANCES;
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Terror.class );
     }
 
     @Override

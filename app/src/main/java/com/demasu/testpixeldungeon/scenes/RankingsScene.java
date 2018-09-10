@@ -17,12 +17,6 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.audio.Music;
-import com.watabou.noosa.ui.Button;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.Rankings;
@@ -35,6 +29,12 @@ import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.windows.WndError;
 import com.demasu.testpixeldungeon.windows.WndRanking;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.ui.Button;
 
 public class RankingsScene extends PixelScene {
 

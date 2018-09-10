@@ -17,17 +17,10 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import com.watabou.noosa.Image;
 import com.demasu.testpixeldungeon.Assets;
+import com.watabou.noosa.Image;
 
 public class Effects {
-
-    public enum Type {
-        RIPPLE,
-        LIGHTNING,
-        WOUND,
-        RAY
-    }
 
     public static Image get ( Type type ) {
         Image icon = new Image( Assets.EFFECTS );
@@ -46,5 +39,12 @@ public class Effects {
                 break;
         }
         return icon;
+    }
+
+    public enum Type {
+        RIPPLE,
+        LIGHTNING,
+        WOUND,
+        RAY
     }
 }

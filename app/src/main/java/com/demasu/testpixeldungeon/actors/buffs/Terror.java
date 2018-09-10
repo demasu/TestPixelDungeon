@@ -24,10 +24,15 @@ import com.watabou.utils.Bundle;
 public class Terror extends FlavourBuff {
 
     public static final float DURATION = 10f;
-
+    private static final String OBJECT = "object";
     public int object = 0;
 
-    private static final String OBJECT = "object";
+    public static void recover ( Char target ) {
+        Terror terror = target.buff( Terror.class );
+        if ( terror != null && terror.cooldown() < DURATION ) {
+            target.remove( terror );
+        }
+    }
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -50,12 +55,5 @@ public class Terror extends FlavourBuff {
     @Override
     public String toString () {
         return "Terror";
-    }
-
-    public static void recover ( Char target ) {
-        Terror terror = target.buff( Terror.class );
-        if ( terror != null && terror.cooldown() < DURATION ) {
-            target.remove( terror );
-        }
     }
 }

@@ -17,12 +17,12 @@
  */
 package com.demasu.testpixeldungeon.levels.painters;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.Room;
 import com.watabou.utils.Point;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class PassagePainter extends Painter {
 

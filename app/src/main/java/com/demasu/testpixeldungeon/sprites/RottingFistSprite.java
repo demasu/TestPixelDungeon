@@ -17,9 +17,9 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
+import com.demasu.testpixeldungeon.Assets;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.TextureFilm;
-import com.demasu.testpixeldungeon.Assets;
 
 public class RottingFistSprite extends MobSprite {
 

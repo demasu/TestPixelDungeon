@@ -17,17 +17,17 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import java.util.ArrayList;
-
+import com.demasu.testpixeldungeon.Assets;
+import com.demasu.testpixeldungeon.Chrome;
+import com.demasu.testpixeldungeon.scenes.PixelScene;
+import com.demasu.testpixeldungeon.ui.Window;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.ui.Button;
-import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.Chrome;
-import com.demasu.testpixeldungeon.scenes.PixelScene;
-import com.demasu.testpixeldungeon.ui.Window;
+
+import java.util.ArrayList;
 
 public class WndTabbed extends Window {
 

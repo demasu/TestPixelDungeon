@@ -17,13 +17,6 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.MovieClip;
-import com.watabou.noosa.Visual;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.particles.Emitter;
-import com.watabou.noosa.tweeners.PosTweener;
-import com.watabou.noosa.tweeners.Tweener;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -43,6 +36,13 @@ import com.demasu.testpixeldungeon.items.potions.PotionOfInvisibility;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.MovieClip;
+import com.watabou.noosa.Visual;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.particles.Emitter;
+import com.watabou.noosa.tweeners.PosTweener;
+import com.watabou.noosa.tweeners.Tweener;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
@@ -57,46 +57,30 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 
     private static final float MOVE_INTERVAL = 0.1f;
     private static final float FLASH_INTERVAL = 0.05f;
-
-    public enum State {
-        BURNING, LEVITATING, INVISIBLE, PARALYSED, FROZEN, ILLUMINATED, CHAMPRED, CHAMPBLACK, CHAMPWHITE, CHAMPYELLOW, ARCHERMAIDEN
-    }
-
+    public ChampRedHalo champRedHalo;
+    public ChampYellowHalo champYellowHalo;
+    public ChampBlackHalo champBlackHalo;
+    public ChampWhiteHalo champWhiteHalo;
+    public ArcherMaidenHalo archerMaidenHalo;
+    public Char ch;
+    public boolean isMoving = false;
     protected Animation idle;
     protected Animation run;
     protected Animation attack;
     protected Animation operate;
     protected Animation zap;
     protected Animation die;
-
     protected Callback animCallback;
-
     protected Tweener motion;
-
     protected Emitter burning;
     protected Emitter levitation;
-
     protected IceBlock iceBlock;
     protected TorchHalo halo;
-
-    public ChampRedHalo champRedHalo;
-    public ChampYellowHalo champYellowHalo;
-    public ChampBlackHalo champBlackHalo;
-    public ChampWhiteHalo champWhiteHalo;
-    public ArcherMaidenHalo archerMaidenHalo;
-
     protected EmoIcon emo;
-
+    protected boolean sleeping = false;
     private Tweener jumpTweener;
     private Callback jumpCallback;
-
     private float flashTime = 0;
-
-    protected boolean sleeping = false;
-
-    public Char ch;
-
-    public boolean isMoving = false;
 
     public CharSprite () {
         super();
@@ -473,6 +457,10 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
             }
 
         }
+    }
+
+    public enum State {
+        BURNING, LEVITATING, INVISIBLE, PARALYSED, FROZEN, ILLUMINATED, CHAMPRED, CHAMPBLACK, CHAMPWHITE, CHAMPYELLOW, ARCHERMAIDEN
     }
 
     private static class JumpTweener extends Tweener {

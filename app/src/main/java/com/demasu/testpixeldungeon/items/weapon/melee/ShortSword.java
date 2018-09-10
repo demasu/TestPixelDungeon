@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.weapon.melee;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
@@ -30,6 +27,9 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.windows.WndBag;
+import com.watabou.noosa.audio.Sample;
+
+import java.util.ArrayList;
 
 public class ShortSword extends MeleeWeapon {
 
@@ -45,6 +45,36 @@ public class ShortSword extends MeleeWeapon {
     private static final float TIME_TO_REFORGE = 2f;
 
     private boolean equipped;
+    private final WndBag.Listener itemSelector = new WndBag.Listener() {
+        @Override
+        public void onSelect ( Item item ) {
+            if ( item != null && !( item instanceof Boomerang ) ) {
+
+                Sample.INSTANCE.play( Assets.SND_EVOKE );
+                ScrollOfUpgrade.upgrade( curUser );
+                evoke( curUser );
+
+                GLog.w( TXT_REFORGED, item.name() );
+
+                ( (MeleeWeapon) item ).safeUpgrade();
+                curUser.spendAndNext( TIME_TO_REFORGE );
+
+                Badges.validateItemLevelAquired( item );
+
+            } else {
+
+                if ( item instanceof Boomerang ) {
+                    GLog.w( TXT_NOT_BOOMERANG );
+                }
+
+                if ( equipped ) {
+                    curUser.belongings.weapon = ShortSword.this;
+                } else {
+                    collect( curUser.belongings.backpack );
+                }
+            }
+        }
+    };
 
     {
         name = "short sword";
@@ -99,35 +129,4 @@ public class ShortSword extends MeleeWeapon {
         return
                 "It is indeed quite short, just a few inches longer, than a dagger.";
     }
-
-    private final WndBag.Listener itemSelector = new WndBag.Listener() {
-        @Override
-        public void onSelect ( Item item ) {
-            if ( item != null && !( item instanceof Boomerang ) ) {
-
-                Sample.INSTANCE.play( Assets.SND_EVOKE );
-                ScrollOfUpgrade.upgrade( curUser );
-                evoke( curUser );
-
-                GLog.w( TXT_REFORGED, item.name() );
-
-                ( (MeleeWeapon) item ).safeUpgrade();
-                curUser.spendAndNext( TIME_TO_REFORGE );
-
-                Badges.validateItemLevelAquired( item );
-
-            } else {
-
-                if ( item instanceof Boomerang ) {
-                    GLog.w( TXT_NOT_BOOMERANG );
-                }
-
-                if ( equipped ) {
-                    curUser.belongings.weapon = ShortSword.this;
-                } else {
-                    collect( curUser.belongings.backpack );
-                }
-            }
-        }
-    };
 }

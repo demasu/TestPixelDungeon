@@ -40,11 +40,6 @@ import com.watabou.utils.Random;
 
 public class Imp extends NPC {
 
-    {
-        name = "ambitious imp";
-        spriteClass = ImpSprite.class;
-    }
-
     private static final String TXT_GOLEMS1 =
             "Are you an adventurer? I love adventurers! You can always rely on them " +
                     "if something needs to be killed. Am I right? For a bounty, of course ;)\n" +
@@ -52,7 +47,6 @@ public class Imp extends NPC {
                     "little business here, but these stupid golems are bad for business! " +
                     "It's very hard to negotiate with wandering lumps of granite, damn them! " +
                     "So please, kill... let's say _6 of them_ and a reward is yours.";
-
     private static final String TXT_MONKS1 =
             "Are you an adventurer? I love adventurers! You can always rely on them " +
                     "if something needs to be killed. Am I right? For a bounty, of course ;)\n" +
@@ -60,18 +54,19 @@ public class Imp extends NPC {
                     "little business here, but these lunatics don't buy anything themselves and " +
                     "will scare away other customers. " +
                     "So please, kill... let's say _8 of them_ and a reward is yours.";
-
     private static final String TXT_GOLEMS2 =
             "How is your golem safari going?";
-
     private static final String TXT_MONKS2 =
             "Oh, you are still alive! I knew that your kung-fu is stronger ;) " +
                     "Just don't forget to grab these monks' tokens.";
-
     private static final String TXT_CYA = "See you, %s!";
     private static final String TXT_HEY = "Psst, %s!";
-
     private boolean seenBefore = false;
+
+    {
+        name = "ambitious imp";
+        spriteClass = ImpSprite.class;
+    }
 
     @Override
     protected boolean act () {
@@ -157,27 +152,23 @@ public class Imp extends NPC {
 
     public static class Quest {
 
+        private static final String NODE = "demon";
+        private static final String ALTERNATIVE = "alternative";
+        private static final String SPAWNED = "spawned";
+        private static final String GIVEN = "given";
+        private static final String COMPLETED = "completed";
+        private static final String REWARD = "reward";
+        public static Ring reward;
         private static boolean alternative;
-
         private static boolean spawned;
         private static boolean given;
         private static boolean completed;
-
-        public static Ring reward;
 
         public static void reset () {
             spawned = false;
 
             reward = null;
         }
-
-        private static final String NODE = "demon";
-
-        private static final String ALTERNATIVE = "alternative";
-        private static final String SPAWNED = "spawned";
-        private static final String GIVEN = "given";
-        private static final String COMPLETED = "completed";
-        private static final String REWARD = "reward";
 
         public static void storeInBundle ( Bundle bundle ) {
 

@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.bags;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
@@ -29,21 +26,23 @@ import com.demasu.testpixeldungeon.windows.WndBag;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Bag extends Item implements Iterable<Item> {
 
     public static final String AC_OPEN = "OPEN";
+    private static final String ITEMS = "inventory";
+    private static final String ITEMS2 = "inventory2";
+    public Char owner;
+    public ArrayList<Item> items = new ArrayList<Item>();
+    public int size = 1;
 
     {
         image = 11;
 
         defaultAction = AC_OPEN;
     }
-
-    public Char owner;
-
-    public ArrayList<Item> items = new ArrayList<Item>();
-
-    public int size = 1;
 
     @Override
     public ArrayList<String> actions ( Hero hero ) {
@@ -103,9 +102,6 @@ public class Bag extends Item implements Iterable<Item> {
     public void clear () {
         items.clear();
     }
-
-    private static final String ITEMS = "inventory";
-    private static final String ITEMS2 = "inventory2";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

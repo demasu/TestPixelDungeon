@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs.npcs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Poison;
@@ -29,7 +27,18 @@ import com.demasu.testpixeldungeon.utils.Utils;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Bee extends NPC {
+
+    private static final String LEVEL = "level";
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( Poison.class );
+    }
+
+    private int level;
 
     {
         name = "golden bee";
@@ -42,10 +51,6 @@ public class Bee extends NPC {
         flying = true;
         state = WANDERING;
     }
-
-    private int level;
-
-    private static final String LEVEL = "level";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -134,12 +139,6 @@ public class Bee extends NPC {
 
         Dungeon.getHero().spend( 1 / Dungeon.getHero().speed() );
         Dungeon.getHero().busy();
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Poison.class );
     }
 
     @Override

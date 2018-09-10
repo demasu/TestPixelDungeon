@@ -32,6 +32,15 @@ import java.util.HashSet;
 /* Retired class, use SummonedPet.java*/
 public class Skeleton extends NPC {
 
+    private static final String LEVEL = "level";
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( Poison.class );
+    }
+
+    private int level;
+
     {
         name = "Summoned skeleton";
         spriteClass = SkeletonSprite.class;
@@ -43,10 +52,6 @@ public class Skeleton extends NPC {
         flying = true;
         state = WANDERING;
     }
-
-    private int level;
-
-    private static final String LEVEL = "level";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -134,12 +139,6 @@ public class Skeleton extends NPC {
 
         Dungeon.getHero().spend( 1 / Dungeon.getHero().speed() );
         Dungeon.getHero().busy();
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Poison.class );
     }
 
     @Override

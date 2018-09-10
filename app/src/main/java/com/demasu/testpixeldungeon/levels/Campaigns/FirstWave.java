@@ -17,11 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels.Campaigns;
 
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Scene;
-import com.watabou.noosa.audio.Music;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -55,6 +50,11 @@ import com.demasu.testpixeldungeon.sprites.SkeletonSprite;
 import com.demasu.testpixeldungeon.sprites.SoldierWarriorSprite;
 import com.demasu.testpixeldungeon.sprites.VanguardWarriorSprite;
 import com.demasu.testpixeldungeon.windows.PersistentWndOptions;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Scene;
+import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
@@ -62,6 +62,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class FirstWave extends Level {
+
+    private static final int ROOM_LEFT = WIDTH / 2 - 2;
+    private static final int ROOM_RIGHT = WIDTH / 2 + 2;
+    private static final int ROOM_TOP = HEIGHT / 2 - 2;
+    private static final int ROOM_BOTTOM = HEIGHT / 2 + 2;
+    private static final String DOOR = "door";
+    private static final String ENTERED = "entered";
+    private static final String DROPPED = "droppped";
+    public Maestro maestro;
+    public EnemyAI enemyAI;
+    private int arenaDoor;
+    private boolean enteredArena = false;
+    private boolean keyDropped = false;
 
     {
         color1 = 0x534f3e;
@@ -72,18 +85,6 @@ public class FirstWave extends Level {
         Arrays.fill( fieldOfView, true );
     }
 
-    public Maestro maestro;
-    public EnemyAI enemyAI;
-
-    private static final int ROOM_LEFT = WIDTH / 2 - 2;
-    private static final int ROOM_RIGHT = WIDTH / 2 + 2;
-    private static final int ROOM_TOP = HEIGHT / 2 - 2;
-    private static final int ROOM_BOTTOM = HEIGHT / 2 + 2;
-
-    private int arenaDoor;
-    private boolean enteredArena = false;
-    private boolean keyDropped = false;
-
     @Override
     public String tilesTex () {
         return Assets.TILES_CITY;
@@ -93,10 +94,6 @@ public class FirstWave extends Level {
     public String waterTex () {
         return Assets.WATER_CAVES;
     }
-
-    private static final String DOOR = "door";
-    private static final String ENTERED = "entered";
-    private static final String DROPPED = "droppped";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -312,14 +309,14 @@ public class FirstWave extends Level {
     public class MovieMaiden extends Mob {
 
 
+        public Char tmp = null;
+
         {
             spriteClass = RedGirlSprite.class;
             state = HUNTING;
             hostile = false;
             screams = false;
         }
-
-        public Char tmp = null;
 
         @Override
         public void onAttackComplete () {
@@ -493,23 +490,20 @@ public class FirstWave extends Level {
 
     public class EnemyAI extends Mob {
 
+        public final int INTER_ACTION_TIME = 10;
+        public final int ENEMY_COUNT_LIMIT = 10;
         public int enemyCount = 0;
         public int enemyKilled = 0;
         public int internalClock = 0;
         public int lastAction = 0;
-
-        public final int INTER_ACTION_TIME = 10;
-        public final int ENEMY_COUNT_LIMIT = 10;
+        public boolean temariAdded = false;
+        public boolean generalAdded = false;
+        public boolean spawnEnemies = true;
 
         {
             hostile = false;
             spriteClass = RatSprite.class;
         }
-
-        public boolean temariAdded = false;
-        public boolean generalAdded = false;
-
-        public boolean spawnEnemies = true;
 
         public void finalWave () {
             spawnEnemies = false;
@@ -666,14 +660,14 @@ public class FirstWave extends Level {
     }
 
     public class General extends HiredMerc {
+        public boolean hasHalo = false;
+
         {
             mercType = MERC_TYPES.Brute;
             spriteClass = VanguardWarriorSprite.class;
             hackFix = true;
             screams = false;
         }
-
-        public boolean hasHalo = false;
 
         @Override
         public CharSprite sprite () {
@@ -730,12 +724,12 @@ public class FirstWave extends Level {
     }
 
     public class Temari extends HiredMerc {
+        public boolean hasHalo = false;
+
         {
             mercType = MERC_TYPES.ArcherMaiden;
             screams = false;
         }
-
-        public boolean hasHalo = false;
 
         @Override
         public boolean act () {
@@ -783,15 +777,9 @@ public class FirstWave extends Level {
     }
 
     public class Maestro extends ColdGirl {
-        int phase = 0;
         static final int END_MOVIE = 720;
+        int phase = 0;
         int counter = 0;
-
-        {
-            hostile = false;
-        }
-
-
         Char centerOfAttention = null;
         MovieGirl actress;
         Temari temari;
@@ -799,10 +787,12 @@ public class FirstWave extends Level {
         MovieMaiden actress2;
         VanguardWarrior vanguard;
         SoldierWarrior soldier1, soldier2, soldier3, soldier4, soldier5;
-
         SkelEnemy skeleton1, skeleton2, skeleton3, skeleton4, skeleton5, skeleton6, skeleton7;
-
         ArrayList<WraithEnemy> listWraiths = new ArrayList<>();
+
+        {
+            hostile = false;
+        }
 
         public void setCenterOfAttention ( Char who ) {
             centerOfAttention = who;

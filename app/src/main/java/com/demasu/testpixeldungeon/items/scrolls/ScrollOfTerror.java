@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
@@ -27,6 +26,7 @@ import com.demasu.testpixeldungeon.actors.mobs.Mob;
 import com.demasu.testpixeldungeon.effects.Flare;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfTerror extends Scroll {
 

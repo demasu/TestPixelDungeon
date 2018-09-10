@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.wands;
 
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -26,12 +24,30 @@ import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.effects.MagicMissile;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.mechanics.Ballistica;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Callback;
 
 public class WandOfBlink extends Wand {
 
     {
         name = "Wand of Blink";
+    }
+
+    public static void appear ( Char ch, int pos ) {
+
+        ch.sprite.interruptMotion();
+
+        ch.move( pos );
+        ch.sprite.place( pos );
+
+        if ( ch.invisible == 0 ) {
+            ch.sprite.alpha( 0 );
+            ch.sprite.parent.add( new AlphaTweener( ch.sprite, 1, 0.4f ) );
+        }
+
+        ch.sprite.emitter().start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
+        Sample.INSTANCE.play( Assets.SND_TELEPORT );
     }
 
     @Override
@@ -55,22 +71,6 @@ public class WandOfBlink extends Wand {
         MagicMissile.whiteLight( curUser.sprite.parent, curUser.pos, cell, callback );
         Sample.INSTANCE.play( Assets.SND_ZAP );
         curUser.sprite.visible = false;
-    }
-
-    public static void appear ( Char ch, int pos ) {
-
-        ch.sprite.interruptMotion();
-
-        ch.move( pos );
-        ch.sprite.place( pos );
-
-        if ( ch.invisible == 0 ) {
-            ch.sprite.alpha( 0 );
-            ch.sprite.parent.add( new AlphaTweener( ch.sprite, 1, 0.4f ) );
-        }
-
-        ch.sprite.emitter().start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
-        Sample.INSTANCE.play( Assets.SND_TELEPORT );
     }
 
     @Override

@@ -17,28 +17,21 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.plants.Plant;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.TextureFilm;
 
 public class PlantSprite extends Image {
 
     private static final float DELAY = 0.2f;
-
-    private enum State {
-        GROWING, NORMAL, WITHERING
-    }
-
+    private static TextureFilm frames;
     private State state = State.NORMAL;
     private float time;
-
-    private static TextureFilm frames;
-
     private int pos = -1;
 
     public PlantSprite () {
@@ -105,5 +98,9 @@ public class PlantSprite extends Image {
     public void kill () {
         state = State.WITHERING;
         time = DELAY;
+    }
+
+    private enum State {
+        GROWING, NORMAL, WITHERING
     }
 }

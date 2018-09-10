@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Image;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.levels.Level;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Image;
 
 public class Ripple extends Image {
 

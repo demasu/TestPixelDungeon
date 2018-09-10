@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.actors.buffs.Blindness;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
@@ -30,14 +27,14 @@ import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Bundle;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public abstract class Scroll extends Item {
 
-    private static final String TXT_BLINDED = "You can't read a scroll while blinded";
-
     public static final String AC_READ = "READ";
-
     protected static final float TIME_TO_READ = 1f;
-
+    private static final String TXT_BLINDED = "You can't read a scroll while blinded";
     private static final Class<?>[] scrolls = {
             ScrollOfIdentify.class,
             ScrollOfMagicMapping.class,
@@ -91,6 +88,12 @@ public abstract class Scroll extends Item {
         defaultAction = AC_READ;
     }
 
+    public Scroll () {
+        super();
+        image = handler.image( this );
+        rune = handler.label( this );
+    }
+
     @SuppressWarnings ( "unchecked" )
     public static void initLabels () {
         handler = new ItemStatusHandler<Scroll>( (Class<? extends Scroll>[]) scrolls, runes, images, 6 );
@@ -105,10 +108,16 @@ public abstract class Scroll extends Item {
         handler = new ItemStatusHandler<Scroll>( (Class<? extends Scroll>[]) scrolls, runes, images, bundle );
     }
 
-    public Scroll () {
-        super();
-        image = handler.image( this );
-        rune = handler.label( this );
+    public static HashSet<Class<? extends Scroll>> getKnown () {
+        return handler.known();
+    }
+
+    public static HashSet<Class<? extends Scroll>> getUnknown () {
+        return handler.unknown();
+    }
+
+    public static boolean allKnown () {
+        return handler.known().size() == scrolls.length;
     }
 
     @Override
@@ -184,18 +193,6 @@ public abstract class Scroll extends Item {
     @Override
     public boolean isIdentified () {
         return isKnown();
-    }
-
-    public static HashSet<Class<? extends Scroll>> getKnown () {
-        return handler.known();
-    }
-
-    public static HashSet<Class<? extends Scroll>> getUnknown () {
-        return handler.unknown();
-    }
-
-    public static boolean allKnown () {
-        return handler.known().size() == scrolls.length;
     }
 
     @Override

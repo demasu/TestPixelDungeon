@@ -13,11 +13,9 @@ public enum CurrentSkills {
     WARRIOR( "warrior" ), MAGE( "mage" ), ROGUE( "rogue" ), HUNTRESS( "huntress" ), HATSUNE( "hatsune" );
 
 
-    public enum BRANCHES {PASSIVEA, PASSIVEB, ACTIVE}
-
     public static final String TYPE = "TYPE";
     public static final String UNLOCKED = "unlocked";
-
+    public static Negotiations mercMenu = new Negotiations();
     public Skill branchPA = null;
     public Skill passiveA1 = null;
     public Skill passiveA2 = null;
@@ -36,13 +34,19 @@ public enum CurrentSkills {
     public Skill lastUsed = null;
 
     public boolean skillUnlocked = false;
-
-    public static Negotiations mercMenu = new Negotiations();
-
     private String type = "";
 
     CurrentSkills ( String type ) {
         this.type = type;
+    }
+
+    public static CurrentSkills restoreFromBundle ( Bundle bundle ) {
+        String value = bundle.getString( TYPE );
+        try {
+            return valueOf( value );
+        } catch ( Exception e ) {
+            return WARRIOR;
+        }
     }
 
     public void init () {
@@ -232,15 +236,6 @@ public enum CurrentSkills {
         active3.storeInBundle( bundle );
     }
 
-    public static CurrentSkills restoreFromBundle ( Bundle bundle ) {
-        String value = bundle.getString( TYPE );
-        try {
-            return valueOf( value );
-        } catch ( Exception e ) {
-            return WARRIOR;
-        }
-    }
-
     public void restoreSkillsFromBundle ( Bundle bundle ) {
         passiveA1.restoreInBundle( bundle );
         passiveA2.restoreInBundle( bundle );
@@ -297,4 +292,6 @@ public enum CurrentSkills {
 
         return "";
     }
+
+    public enum BRANCHES {PASSIVEA, PASSIVEB, ACTIVE}
 }

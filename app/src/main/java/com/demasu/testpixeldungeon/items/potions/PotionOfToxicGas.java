@@ -17,12 +17,12 @@
  */
 package com.demasu.testpixeldungeon.items.potions;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.blobs.Blob;
 import com.demasu.testpixeldungeon.actors.blobs.ToxicGas;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.audio.Sample;
 
 public class PotionOfToxicGas extends Potion {
 

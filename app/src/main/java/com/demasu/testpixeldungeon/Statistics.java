@@ -21,6 +21,16 @@ import com.watabou.utils.Bundle;
 
 public class Statistics {
 
+    private static final String GOLD = "score";
+    private static final String DEEPEST = "maxDepth";
+    private static final String SLAIN = "enemiesSlain";
+    private static final String FOOD = "foodEaten";
+    private static final String ALCHEMY = "potionsCooked";
+    private static final String PIRANHAS = "priranhas";
+    private static final String NIGHT = "nightHunt";
+    private static final String ANKHS = "ankhsUsed";
+    private static final String DURATION = "duration";
+    private static final String AMULET = "amuletObtained";
     public static int goldCollected;
     public static int deepestFloor;
     public static int enemiesSlain;
@@ -29,12 +39,9 @@ public class Statistics {
     public static int piranhasKilled;
     public static int nightHunt;
     public static int ankhsUsed;
-
     public static float duration;
-
     public static boolean qualifiedForNoKilling = false;
     public static boolean completedWithNoKilling = false;
-
     public static boolean amuletObtained = false;
 
     public static void reset () {
@@ -55,17 +62,6 @@ public class Statistics {
         amuletObtained = false;
 
     }
-
-    private static final String GOLD = "score";
-    private static final String DEEPEST = "maxDepth";
-    private static final String SLAIN = "enemiesSlain";
-    private static final String FOOD = "foodEaten";
-    private static final String ALCHEMY = "potionsCooked";
-    private static final String PIRANHAS = "priranhas";
-    private static final String NIGHT = "nightHunt";
-    private static final String ANKHS = "ankhsUsed";
-    private static final String DURATION = "duration";
-    private static final String AMULET = "amuletObtained";
 
     public static void storeInBundle ( Bundle bundle ) {
         bundle.put( GOLD, goldCollected );

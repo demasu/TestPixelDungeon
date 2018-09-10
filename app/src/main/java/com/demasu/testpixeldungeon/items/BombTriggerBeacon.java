@@ -29,7 +29,7 @@ public class BombTriggerBeacon extends Item {
 
 
     public static final float TIME_TO_USE = 1;
-
+    private static final Glowing WHITE = new Glowing( 0xFFFFFF );
 
     {
         name = "bomb trigger beacon";
@@ -37,7 +37,6 @@ public class BombTriggerBeacon extends Item {
 
         unique = true;
     }
-
 
     @Override
     public ArrayList<String> actions ( Hero hero ) {
@@ -85,7 +84,6 @@ public class BombTriggerBeacon extends Item {
         }
     }
 
-
     @Override
     public boolean isUpgradable () {
         return false;
@@ -95,9 +93,6 @@ public class BombTriggerBeacon extends Item {
     public boolean isIdentified () {
         return true;
     }
-
-    private static final Glowing WHITE = new Glowing( 0xFFFFFF );
-
 
     @Override
     public String info () {

@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.blobs.Blob;
@@ -29,7 +27,15 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.FetidRatSprite;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class FetidRat extends Mob {
+
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( Paralysis.class );
+    }
 
     {
         name = "fetid rat";
@@ -87,12 +93,6 @@ public class FetidRat extends Mob {
     public String description () {
         return
                 "This marsupial rat is much larger than a regular one. It is surrounded by a foul cloud.";
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Paralysis.class );
     }
 
     @Override

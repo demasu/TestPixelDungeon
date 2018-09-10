@@ -17,8 +17,8 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
+import com.watabou.noosa.TextureFilm;
 import com.watabou.utils.Random;
 
 public class SheepSprite extends MobSprite {

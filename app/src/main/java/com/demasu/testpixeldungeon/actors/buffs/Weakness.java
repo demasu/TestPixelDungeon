@@ -26,6 +26,11 @@ public class Weakness extends FlavourBuff {
 
     private static final float DURATION = 40f;
 
+    public static float duration ( Char ch ) {
+        Resistance r = ch.buff( Resistance.class );
+        return r != null ? r.durationFactor() * DURATION : DURATION;
+    }
+
     @Override
     public int icon () {
         return BuffIndicator.WEAKNESS;
@@ -53,10 +58,5 @@ public class Weakness extends FlavourBuff {
     public void detach () {
         super.detach();
         ( (Hero) target ).weakened = false;
-    }
-
-    public static float duration ( Char ch ) {
-        Resistance r = ch.buff( Resistance.class );
-        return r != null ? r.durationFactor() * DURATION : DURATION;
     }
 }

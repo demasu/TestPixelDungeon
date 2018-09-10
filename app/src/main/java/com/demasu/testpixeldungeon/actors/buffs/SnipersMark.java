@@ -22,9 +22,8 @@ import com.watabou.utils.Bundle;
 
 public class SnipersMark extends FlavourBuff {
 
-    public int object = 0;
-
     private static final String OBJECT = "object";
+    public int object = 0;
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

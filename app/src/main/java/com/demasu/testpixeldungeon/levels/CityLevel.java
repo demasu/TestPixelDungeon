@@ -17,14 +17,14 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import com.watabou.noosa.Scene;
-import com.watabou.noosa.particles.Emitter;
-import com.watabou.noosa.particles.PixelParticle;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.Imp;
 import com.demasu.testpixeldungeon.levels.Room.Type;
+import com.watabou.noosa.Scene;
+import com.watabou.noosa.particles.Emitter;
+import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
@@ -33,6 +33,14 @@ public class CityLevel extends RegularLevel {
     {
         color1 = 0x4b6636;
         color2 = 0xf2f2f2;
+    }
+
+    public static void addVisuals ( Level level, Scene scene ) {
+        for ( int i = 0; i < LENGTH; i++ ) {
+            if ( level.map[i] == Terrain.WALL_DECO ) {
+                scene.add( new Smoke( i ) );
+            }
+        }
     }
 
     @Override
@@ -131,17 +139,7 @@ public class CityLevel extends RegularLevel {
         addVisuals( this, scene );
     }
 
-    public static void addVisuals ( Level level, Scene scene ) {
-        for ( int i = 0; i < LENGTH; i++ ) {
-            if ( level.map[i] == Terrain.WALL_DECO ) {
-                scene.add( new Smoke( i ) );
-            }
-        }
-    }
-
     private static class Smoke extends Emitter {
-
-        private int pos;
 
         private static final Emitter.Factory factory = new Factory() {
 
@@ -151,6 +149,7 @@ public class CityLevel extends RegularLevel {
                 p.reset( x, y );
             }
         };
+        private int pos;
 
         public Smoke ( int pos ) {
             super();

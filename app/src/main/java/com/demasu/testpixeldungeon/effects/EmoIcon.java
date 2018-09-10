@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Image;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.ui.Icons;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Image;
 import com.watabou.utils.Random;
 
 public class EmoIcon extends Image {

@@ -17,9 +17,9 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
+import com.demasu.testpixeldungeon.Assets;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.particles.PixelParticle;
-import com.demasu.testpixeldungeon.Assets;
 
 public class ShopkeeperSprite extends MobSprite {
 

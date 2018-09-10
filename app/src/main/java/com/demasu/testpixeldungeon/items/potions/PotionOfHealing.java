@@ -34,14 +34,6 @@ public class PotionOfHealing extends Potion {
         name = "Potion of Healing";
     }
 
-    @Override
-    protected void apply ( Hero hero ) {
-        setKnown();
-        heal( Dungeon.getHero(), Dungeon.getCurrentDifficulty().healingPotionLimit() );
-        GLog.p( Dungeon.getCurrentDifficulty().healingPotionMessage() );
-        StatusPane.takingDamage = 0;
-    }
-
     public static void heal ( Hero hero ) {
 
         hero.HP = hero.HT;
@@ -66,6 +58,14 @@ public class PotionOfHealing extends Potion {
         Buff.detach( hero, Bleeding.class );
 
         hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
+    }
+
+    @Override
+    protected void apply ( Hero hero ) {
+        setKnown();
+        heal( Dungeon.getHero(), Dungeon.getCurrentDifficulty().healingPotionLimit() );
+        GLog.p( Dungeon.getCurrentDifficulty().healingPotionMessage() );
+        StatusPane.takingDamage = 0;
     }
 
     @Override

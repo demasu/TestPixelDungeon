@@ -20,7 +20,6 @@ package com.demasu.testpixeldungeon.actors.mobs.npcs;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
-
 import com.demasu.testpixeldungeon.sprites.RatKingSprite;
 
 public class RatKing extends NPC {

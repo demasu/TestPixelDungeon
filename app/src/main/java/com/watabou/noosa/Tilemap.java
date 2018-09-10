@@ -17,32 +17,28 @@
 
 package com.watabou.noosa;
 
-import java.nio.FloatBuffer;
+import android.graphics.RectF;
 
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.glwrap.Quad;
 import com.watabou.utils.Rect;
 
-import android.graphics.RectF;
+import java.nio.FloatBuffer;
 
 public class Tilemap extends Visual {
 
+    public Rect updated;
     protected SmartTexture texture;
     protected TextureFilm tileset;
-
     protected int[] data;
     protected int mapWidth;
     protected int mapHeight;
     protected int size;
-
-    private float cellW;
-    private float cellH;
-
     protected float[] vertices;
     protected FloatBuffer quads;
-
-    public Rect updated;
+    private float cellW;
+    private float cellH;
 
     public Tilemap ( Object tx, TextureFilm tileset ) {
 

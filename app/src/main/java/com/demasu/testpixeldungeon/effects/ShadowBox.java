@@ -17,9 +17,9 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
+import com.demasu.testpixeldungeon.Assets;
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.noosa.NinePatch;
-import com.demasu.testpixeldungeon.Assets;
 
 public class ShadowBox extends NinePatch {
 

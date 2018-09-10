@@ -25,7 +25,17 @@ import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.KindOfWeapon;
-import com.demasu.testpixeldungeon.items.weapon.enchantments.*;
+import com.demasu.testpixeldungeon.items.weapon.enchantments.Death;
+import com.demasu.testpixeldungeon.items.weapon.enchantments.Fire;
+import com.demasu.testpixeldungeon.items.weapon.enchantments.Horror;
+import com.demasu.testpixeldungeon.items.weapon.enchantments.Instability;
+import com.demasu.testpixeldungeon.items.weapon.enchantments.Leech;
+import com.demasu.testpixeldungeon.items.weapon.enchantments.Luck;
+import com.demasu.testpixeldungeon.items.weapon.enchantments.Paralysis;
+import com.demasu.testpixeldungeon.items.weapon.enchantments.Poison;
+import com.demasu.testpixeldungeon.items.weapon.enchantments.Shock;
+import com.demasu.testpixeldungeon.items.weapon.enchantments.Slow;
+import com.demasu.testpixeldungeon.items.weapon.enchantments.Tempering;
 import com.demasu.testpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.demasu.testpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;
@@ -46,20 +56,15 @@ abstract public class Weapon extends KindOfWeapon {
 
     private static final String TXT_TO_STRING = "%s :%d";
     private static final String TXT_BROKEN = "broken %s :%d";
-
+    private static final String UNFAMILIRIARITY = "unfamiliarity";
+    private static final String ENCHANTMENT = "enchantment";
+    private static final String IMBUE = "imbue";
     public int STR = 10;
     public float ACU = 1;
     public float DLY = 1f;
-
-    public enum Imbue {
-        NONE, SPEED, ACCURACY
-    }
-
     public Imbue imbue = Imbue.NONE;
-
-    private int hitsToKnow = HITS_TO_KNOW;
-
     protected Enchantment enchantment;
+    private int hitsToKnow = HITS_TO_KNOW;
 
     @Override
     public void proc ( Char attacker, Char defender, int damage ) {
@@ -78,10 +83,6 @@ abstract public class Weapon extends KindOfWeapon {
 
         use();
     }
-
-    private static final String UNFAMILIRIARITY = "unfamiliarity";
-    private static final String ENCHANTMENT = "enchantment";
-    private static final String IMBUE = "imbue";
 
     public int STR () {
         if ( Dungeon.getHero() != null && Dungeon.getHero().heroSkills != null && Dungeon.getHero().heroSkills.passiveA1 != null && this instanceof MeleeWeapon && Dungeon.getHero().belongings.weapon == this ) {
@@ -247,6 +248,10 @@ abstract public class Weapon extends KindOfWeapon {
         return enchantment != null ? enchantment.glowing() : null;
     }
 
+    public enum Imbue {
+        NONE, SPEED, ACCURACY
+    }
+
     public static abstract class Enchantment implements Bundlable {
 
         private static final Class<?>[] enchants = new Class<?>[] {
@@ -254,6 +259,15 @@ abstract public class Weapon extends KindOfWeapon {
                 Slow.class, Shock.class, Instability.class, Horror.class, Luck.class,
                 Tempering.class };
         private static final float[] chances = new float[] { 10, 10, 1, 2, 1, 2, 6, 3, 2, 2, 3 };
+
+        @SuppressWarnings ( "unchecked" )
+        public static Enchantment random () {
+            try {
+                return ( (Class<Enchantment>) enchants[Random.chances( chances )] ).newInstance();
+            } catch ( Exception e ) {
+                return null;
+            }
+        }
 
         public abstract boolean proc ( Weapon weapon, Char attacker, Char defender, int damage );
 
@@ -271,15 +285,6 @@ abstract public class Weapon extends KindOfWeapon {
 
         public ItemSprite.Glowing glowing () {
             return ItemSprite.Glowing.WHITE;
-        }
-
-        @SuppressWarnings ( "unchecked" )
-        public static Enchantment random () {
-            try {
-                return ( (Class<Enchantment>) enchants[Random.chances( chances )] ).newInstance();
-            } catch ( Exception e ) {
-                return null;
-            }
         }
 
     }

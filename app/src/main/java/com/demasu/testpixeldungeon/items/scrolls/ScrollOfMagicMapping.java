@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
@@ -28,6 +27,7 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfMagicMapping extends Scroll {
 
@@ -35,6 +35,10 @@ public class ScrollOfMagicMapping extends Scroll {
 
     {
         name = "Scroll of Magic Mapping";
+    }
+
+    public static void discover ( int cell ) {
+        CellEmitter.get( cell ).start( Speck.factory( Speck.DISCOVER ), 0.1f, 4 );
     }
 
     @Override
@@ -95,9 +99,5 @@ public class ScrollOfMagicMapping extends Scroll {
     @Override
     public int price () {
         return isKnown() ? 25 * quantity : super.price();
-    }
-
-    public static void discover ( int cell ) {
-        CellEmitter.get( cell ).start( Speck.factory( Speck.DISCOVER ), 0.1f, 4 );
     }
 }

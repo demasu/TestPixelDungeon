@@ -17,8 +17,8 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.windows.WndStory;
+import com.watabou.noosa.Game;
 
 public class IntroScene extends PixelScene {
 

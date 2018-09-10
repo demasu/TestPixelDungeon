@@ -17,13 +17,13 @@
 
 package com.watabou.glwrap;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.IntBuffer;
-
 import android.graphics.Bitmap;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.IntBuffer;
 
 public class Texture {
 
@@ -48,6 +48,27 @@ public class Texture {
 
     public static void activate ( int index ) {
         GLES20.glActiveTexture( GLES20.GL_TEXTURE0 + index );
+    }
+
+    public static Texture create ( Bitmap bmp ) {
+        Texture tex = new Texture();
+        tex.bitmap( bmp );
+
+        return tex;
+    }
+
+    public static Texture create ( int width, int height, int[] pixels ) {
+        Texture tex = new Texture();
+        tex.pixels( width, height, pixels );
+
+        return tex;
+    }
+
+    public static Texture create ( int width, int height, byte[] pixels ) {
+        Texture tex = new Texture();
+        tex.pixels( width, height, pixels );
+
+        return tex;
     }
 
     public void bind () {
@@ -149,26 +170,5 @@ public class Texture {
         pixels( w, h, pixels );
 
         premultiplied = false;
-    }
-
-    public static Texture create ( Bitmap bmp ) {
-        Texture tex = new Texture();
-        tex.bitmap( bmp );
-
-        return tex;
-    }
-
-    public static Texture create ( int width, int height, int[] pixels ) {
-        Texture tex = new Texture();
-        tex.pixels( width, height, pixels );
-
-        return tex;
-    }
-
-    public static Texture create ( int width, int height, byte[] pixels ) {
-        Texture tex = new Texture();
-        tex.pixels( width, height, pixels );
-
-        return tex;
     }
 }

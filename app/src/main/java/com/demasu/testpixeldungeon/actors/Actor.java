@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
 import android.util.SparseArray;
 
 import com.demasu.testpixeldungeon.Dungeon;
@@ -31,80 +28,21 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 public abstract class Actor implements Bundlable {
 
     public static final float TICK = 1f;
-
-    private float time;
-
-    private int id = 0;
-
-    protected abstract boolean act ();
-
-    protected void spend ( float time ) {
-        this.time += time;
-    }
-
-    protected void postpone ( float time ) {
-        if ( this.time < now + time ) {
-            this.time = now + time;
-        }
-    }
-
-    protected float cooldown () {
-        return time - now;
-    }
-
-    protected void diactivate () {
-        time = Float.MAX_VALUE;
-    }
-
-    protected void onAdd () {
-    }
-
-    protected void onRemove () {
-    }
-
     private static final String TIME = "time";
     private static final String ID = "id";
-
-    @Override
-    public void storeInBundle ( Bundle bundle ) {
-        bundle.put( TIME, time );
-        bundle.put( ID, id );
-    }
-
-    @Override
-    public void restoreFromBundle ( Bundle bundle ) {
-        time = bundle.getFloat( TIME );
-        id = bundle.getInt( ID );
-    }
-
-    public int id () {
-        if ( id > 0 ) {
-            return id;
-        } else {
-            int max = 0;
-            for ( Actor a : all ) {
-                if ( a.id > max ) {
-                    max = a.id;
-                }
-            }
-            return ( id = max + 1 );
-        }
-    }
-
-    // **********************
-    // *** Static members ***
-
     private static HashSet<Actor> all = new HashSet<Actor>();
     private static Actor current;
-
     private static SparseArray<Actor> ids = new SparseArray<Actor>();
-
     private static float now = 0;
-
     private static Char[] chars = new Char[Level.LENGTH];
+    private float time;
+    private int id = 0;
 
     public static void clear () {
 
@@ -157,12 +95,8 @@ public abstract class Actor implements Bundlable {
         chars[pos] = null;
     }
 
-    /*protected*/
-    public void next () {
-        if ( current == this ) {
-            current = null;
-        }
-    }
+    // **********************
+    // *** Static members ***
 
     public static void process () {
 
@@ -265,5 +199,64 @@ public abstract class Actor implements Bundlable {
 
     public static HashSet<Actor> all () {
         return all;
+    }
+
+    protected abstract boolean act ();
+
+    protected void spend ( float time ) {
+        this.time += time;
+    }
+
+    protected void postpone ( float time ) {
+        if ( this.time < now + time ) {
+            this.time = now + time;
+        }
+    }
+
+    protected float cooldown () {
+        return time - now;
+    }
+
+    protected void diactivate () {
+        time = Float.MAX_VALUE;
+    }
+
+    protected void onAdd () {
+    }
+
+    protected void onRemove () {
+    }
+
+    @Override
+    public void storeInBundle ( Bundle bundle ) {
+        bundle.put( TIME, time );
+        bundle.put( ID, id );
+    }
+
+    @Override
+    public void restoreFromBundle ( Bundle bundle ) {
+        time = bundle.getFloat( TIME );
+        id = bundle.getInt( ID );
+    }
+
+    public int id () {
+        if ( id > 0 ) {
+            return id;
+        } else {
+            int max = 0;
+            for ( Actor a : all ) {
+                if ( a.id > max ) {
+                    max = a.id;
+                }
+            }
+            return ( id = max + 1 );
+        }
+    }
+
+    /*protected*/
+    public void next () {
+        if ( current == this ) {
+            current = null;
+        }
     }
 }

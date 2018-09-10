@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
@@ -27,7 +24,10 @@ import com.demasu.testpixeldungeon.actors.mobs.npcs.MirrorImage;
 import com.demasu.testpixeldungeon.items.wands.WandOfBlink;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class ScrollOfMirrorImage extends Scroll {
 

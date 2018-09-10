@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.mobs.Shaman;
 import com.demasu.testpixeldungeon.effects.Lightning;
+import com.watabou.noosa.TextureFilm;
 
 public class ShamanSprite extends MobSprite {
 

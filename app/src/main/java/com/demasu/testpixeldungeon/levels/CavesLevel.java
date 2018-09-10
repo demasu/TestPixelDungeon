@@ -17,16 +17,16 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Group;
-import com.watabou.noosa.Scene;
-import com.watabou.noosa.particles.PixelParticle;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.Blacksmith;
 import com.demasu.testpixeldungeon.levels.Room.Type;
 import com.demasu.testpixeldungeon.levels.painters.Painter;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Group;
+import com.watabou.noosa.Scene;
+import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 import com.watabou.utils.Rect;
@@ -38,6 +38,14 @@ public class CavesLevel extends RegularLevel {
         color2 = 0xb9d661;
 
         viewDistance = 6;
+    }
+
+    public static void addVisuals ( Level level, Scene scene ) {
+        for ( int i = 0; i < LENGTH; i++ ) {
+            if ( level.map[i] == Terrain.WALL_DECO ) {
+                scene.add( new Vein( i ) );
+            }
+        }
     }
 
     @Override
@@ -218,14 +226,6 @@ public class CavesLevel extends RegularLevel {
     public void addVisuals ( Scene scene ) {
         super.addVisuals( scene );
         addVisuals( this, scene );
-    }
-
-    public static void addVisuals ( Level level, Scene scene ) {
-        for ( int i = 0; i < LENGTH; i++ ) {
-            if ( level.map[i] == Terrain.WALL_DECO ) {
-                scene.add( new Vein( i ) );
-            }
-        }
     }
 
     private static class Vein extends Group {

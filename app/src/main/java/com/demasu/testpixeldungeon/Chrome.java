@@ -21,18 +21,6 @@ import com.watabou.noosa.NinePatch;
 
 public class Chrome {
 
-    public enum Type {
-        TOAST,
-        TOAST_TR,
-        WINDOW,
-        BUTTON,
-        TAG,
-        SCROLL,
-        TAB_SET,
-        TAB_SELECTED,
-        TAB_UNSELECTED
-    }
-
     public static NinePatch get ( Type type ) {
         switch ( type ) {
             case WINDOW:
@@ -56,5 +44,17 @@ public class Chrome {
             default:
                 return null;
         }
+    }
+
+    public enum Type {
+        TOAST,
+        TOAST_TR,
+        WINDOW,
+        BUTTON,
+        TAG,
+        SCROLL,
+        TAB_SET,
+        TAB_SELECTED,
+        TAB_UNSELECTED
     }
 }

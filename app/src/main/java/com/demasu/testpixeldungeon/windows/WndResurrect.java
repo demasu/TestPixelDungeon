@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.Rankings;
 import com.demasu.testpixeldungeon.Statistics;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
@@ -28,6 +26,8 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;
 import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.Window;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.Game;
 
 public class WndResurrect extends Window {
 

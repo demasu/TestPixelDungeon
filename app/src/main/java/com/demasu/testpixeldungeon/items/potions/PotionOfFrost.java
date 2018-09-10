@@ -17,13 +17,13 @@
  */
 package com.demasu.testpixeldungeon.items.potions;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.blobs.Fire;
 import com.demasu.testpixeldungeon.actors.blobs.Freezing;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.utils.BArray;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PathFinder;
 
 public class PotionOfFrost extends Potion {

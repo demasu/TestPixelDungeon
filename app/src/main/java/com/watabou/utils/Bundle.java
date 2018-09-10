@@ -17,6 +17,11 @@
 
 package com.watabou.utils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -28,11 +33,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 
 public class Bundle {
 
@@ -46,12 +46,60 @@ public class Bundle {
         this( new JSONObject() );
     }
 
-    public String toString () {
-        return data.toString();
-    }
-
     private Bundle ( JSONObject data ) {
         this.data = data;
+    }
+
+    public static Bundle read ( InputStream stream ) {
+
+        try {
+            BufferedReader reader = new BufferedReader( new InputStreamReader( stream ) );
+
+            StringBuilder all = new StringBuilder();
+            String line = reader.readLine();
+            while ( line != null ) {
+                all.append( line );
+                line = reader.readLine();
+            }
+
+            JSONObject json = (JSONObject) new JSONTokener( all.toString() ).nextValue();
+            reader.close();
+
+            return new Bundle( json );
+        } catch ( Exception e ) {
+            return null;
+        }
+    }
+
+    public static Bundle read ( byte[] bytes ) {
+        try {
+
+            JSONObject json = (JSONObject) new JSONTokener( new String( bytes ) ).nextValue();
+            return new Bundle( json );
+
+        } catch ( JSONException e ) {
+            return null;
+        }
+    }
+
+    public static boolean write ( Bundle bundle, OutputStream stream ) {
+        try {
+            BufferedWriter writer = new BufferedWriter( new OutputStreamWriter( stream ) );
+            writer.write( bundle.data.toString() );
+            writer.close();
+
+            return true;
+        } catch ( IOException e ) {
+            return false;
+        }
+    }
+
+    public static void addAlias ( Class<?> cl, String alias ) {
+        aliases.put( alias, cl.getName() );
+    }
+
+    public String toString () {
+        return data.toString();
     }
 
     public boolean isNull () {
@@ -295,53 +343,5 @@ public class Bundle {
         } catch ( JSONException e ) {
 
         }
-    }
-
-    public static Bundle read ( InputStream stream ) {
-
-        try {
-            BufferedReader reader = new BufferedReader( new InputStreamReader( stream ) );
-
-            StringBuilder all = new StringBuilder();
-            String line = reader.readLine();
-            while ( line != null ) {
-                all.append( line );
-                line = reader.readLine();
-            }
-
-            JSONObject json = (JSONObject) new JSONTokener( all.toString() ).nextValue();
-            reader.close();
-
-            return new Bundle( json );
-        } catch ( Exception e ) {
-            return null;
-        }
-    }
-
-    public static Bundle read ( byte[] bytes ) {
-        try {
-
-            JSONObject json = (JSONObject) new JSONTokener( new String( bytes ) ).nextValue();
-            return new Bundle( json );
-
-        } catch ( JSONException e ) {
-            return null;
-        }
-    }
-
-    public static boolean write ( Bundle bundle, OutputStream stream ) {
-        try {
-            BufferedWriter writer = new BufferedWriter( new OutputStreamWriter( stream ) );
-            writer.write( bundle.data.toString() );
-            writer.close();
-
-            return true;
-        } catch ( IOException e ) {
-            return false;
-        }
-    }
-
-    public static void addAlias ( Class<?> cl, String alias ) {
-        aliases.put( alias, cl.getName() );
     }
 }

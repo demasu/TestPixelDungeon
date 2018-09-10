@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Terror;
@@ -29,9 +27,18 @@ import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Brute extends Mob {
 
     private static final String TXT_ENRAGED = "%s becomes enraged!";
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( Terror.class );
+    }
+
+    private boolean enraged = false;
 
     {
         name = "gnoll brute";
@@ -50,8 +57,6 @@ public class Brute extends Mob {
         HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
-
-    private boolean enraged = false;
 
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
@@ -101,12 +106,6 @@ public class Brute extends Mob {
         return
                 "Brutes are the largest, strongest and toughest of all gnolls. When severely wounded, " +
                         "they go berserk, inflicting even more damage to their enemies.";
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Terror.class );
     }
 
     @Override

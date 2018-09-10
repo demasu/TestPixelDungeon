@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels.painters;
 
-import java.util.ArrayList;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.ImpShopkeeper;
@@ -30,9 +28,11 @@ import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.MerchantsBeacon;
 import com.demasu.testpixeldungeon.items.Torch;
 import com.demasu.testpixeldungeon.items.Weightstone;
-import com.demasu.testpixeldungeon.items.armor.*;
+import com.demasu.testpixeldungeon.items.armor.LeatherArmor;
+import com.demasu.testpixeldungeon.items.armor.MailArmor;
+import com.demasu.testpixeldungeon.items.armor.PlateArmor;
+import com.demasu.testpixeldungeon.items.armor.ScaleArmor;
 import com.demasu.testpixeldungeon.items.bags.Bag;
-import com.demasu.testpixeldungeon.items.bags.PotionBelt;
 import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
@@ -42,7 +42,16 @@ import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfRemoveCurse;
-import com.demasu.testpixeldungeon.items.weapon.melee.*;
+import com.demasu.testpixeldungeon.items.weapon.melee.BattleAxe;
+import com.demasu.testpixeldungeon.items.weapon.melee.DualSwords;
+import com.demasu.testpixeldungeon.items.weapon.melee.Glaive;
+import com.demasu.testpixeldungeon.items.weapon.melee.Longsword;
+import com.demasu.testpixeldungeon.items.weapon.melee.Mace;
+import com.demasu.testpixeldungeon.items.weapon.melee.NecroBlade;
+import com.demasu.testpixeldungeon.items.weapon.melee.Quarterstaff;
+import com.demasu.testpixeldungeon.items.weapon.melee.Spear;
+import com.demasu.testpixeldungeon.items.weapon.melee.Sword;
+import com.demasu.testpixeldungeon.items.weapon.melee.WarHammer;
 import com.demasu.testpixeldungeon.items.weapon.missiles.SoulCrystal;
 import com.demasu.testpixeldungeon.levels.LastShopLevel;
 import com.demasu.testpixeldungeon.levels.Level;
@@ -50,6 +59,8 @@ import com.demasu.testpixeldungeon.levels.Room;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class ShopPainter extends Painter {
 

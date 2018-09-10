@@ -17,9 +17,9 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.particles.Emitter;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
+import com.watabou.noosa.particles.Emitter;
 
 public class CursePersonificationSprite extends WraithSprite {
 

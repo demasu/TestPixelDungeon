@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.weapon.enchantments;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.effects.Lightning;
@@ -29,9 +26,15 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.traps.LightningTrap;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public class Shock extends Weapon.Enchantment {
 
     private static final String TXT_SHOCKING = "shocking %s";
+    private ArrayList<Char> affected = new ArrayList<Char>();
+    private int[] points = new int[20];
+    private int nPoints;
 
     @Override
     public boolean proc ( Weapon weapon, Char attacker, Char defender, int damage ) {
@@ -65,11 +68,6 @@ public class Shock extends Weapon.Enchantment {
     public String name ( String weaponName ) {
         return String.format( TXT_SHOCKING, weaponName );
     }
-
-    private ArrayList<Char> affected = new ArrayList<Char>();
-
-    private int[] points = new int[20];
-    private int nPoints;
 
     private void hit ( Char ch, int damage ) {
 

@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.quest;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -32,12 +29,15 @@ import com.demasu.testpixeldungeon.items.weapon.Weapon;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.scenes.GameScene;
-import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.sprites.ItemSprite.Glowing;
+import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.ui.BuffIndicator;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
+
+import java.util.ArrayList;
 
 public class Pickaxe extends Weapon {
 
@@ -48,6 +48,8 @@ public class Pickaxe extends Weapon {
     private static final String TXT_NO_VEIN = "There is no dark gold vein near you to mine";
 
     private static final Glowing BLOODY = new Glowing( 0x550000 );
+    private static final String BLOODSTAINED = "bloodStained";
+    public boolean bloodStained = false;
 
     {
         name = "pickaxe";
@@ -59,8 +61,6 @@ public class Pickaxe extends Weapon {
 
         STR = 14;
     }
-
-    public boolean bloodStained = false;
 
     @Override
     public int min () {
@@ -155,8 +155,6 @@ public class Pickaxe extends Weapon {
             updateQuickslot();
         }
     }
-
-    private static final String BLOODSTAINED = "bloodStained";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

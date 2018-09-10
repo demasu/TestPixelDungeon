@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -47,6 +44,9 @@ import com.demasu.testpixeldungeon.sprites.MissileSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
 import com.demasu.testpixeldungeon.windows.PersistentWndOptions;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.GameMath;
@@ -56,6 +56,47 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class ColdGirl extends Mob {
+
+    public static final String TXT_DEATH = "Killed in the ice cave";
+    public static final int PASSIVE = 0;
+    public static final int HUNTING = 1;
+    public static final int SUPER_HUNTING = 2;
+    public static final int GOD_MODE = 3;
+    public static final int DONE_MODE = 4;
+    public static final int DISCUSSION_STEP = 10;
+    public static final int DISCUSSION_DEAD = 1000;
+    public static final int FROST_DEPTH = 1000;
+    private static final String TXT_SMB_MISSED = "%s %s %s's attack";
+    private static final String AI_STATE = "aistate";
+    private static final String CAME_FROM = "camefrom";
+    private static final String CAME_FROM_POS = "cameformpos";
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    public static int cameFrom = 1;
+    public static int cameFromPos = 1;
+
+    static {
+
+    }
+
+    static {
+        IMMUNITIES.add( Frost.class );
+        IMMUNITIES.add( Amok.class );
+        IMMUNITIES.add( Sleep.class );
+        IMMUNITIES.add( Terror.class );
+        IMMUNITIES.add( Burning.class );
+        IMMUNITIES.add( Affection.class );
+        IMMUNITIES.add( Poison.class );
+    }
+
+    public boolean isSister = false;
+    public int discussionProgress = 0;
+    public boolean firstSwap = true;
+    public boolean firstDamage = true;
+    public boolean firstComplaint = true;
+    public boolean firstTroll = true;
+    public boolean firstFetch = true;
+    public int skillCharge = 5;
 
     {
         name = "Cold Girl";
@@ -69,36 +110,6 @@ public class ColdGirl extends Mob {
         state = new ColdGirlAI();
         champ = 1;
     }
-
-    public boolean isSister = false;
-
-    private static final String TXT_SMB_MISSED = "%s %s %s's attack";
-    public static final String TXT_DEATH = "Killed in the ice cave";
-
-    public static final int PASSIVE = 0;
-    public static final int HUNTING = 1;
-    public static final int SUPER_HUNTING = 2;
-    public static final int GOD_MODE = 3;
-    public static final int DONE_MODE = 4;
-
-    public static final int DISCUSSION_STEP = 10;
-
-    public static final int DISCUSSION_DEAD = 1000;
-
-    public int discussionProgress = 0;
-
-    public boolean firstSwap = true;
-    public boolean firstDamage = true;
-    public boolean firstComplaint = true;
-    public boolean firstTroll = true;
-    public boolean firstFetch = true;
-
-    public static final int FROST_DEPTH = 1000;
-
-    public static int cameFrom = 1;
-    public static int cameFromPos = 1;
-    public int skillCharge = 5;
-
 
     public void turnToSis () {
         isSister = true;
@@ -132,7 +143,6 @@ public class ColdGirl extends Mob {
 
 
     }
-
 
     @Override
     public int attackProc ( Char enemy, int damage ) {
@@ -464,7 +474,6 @@ public class ColdGirl extends Mob {
 
     }
 
-
     public void discuss () {
         //Discussion("Cold Girl", "You don't belong here... leave", "Who are you?", "I belong where I want to");
         DiscussionNext( 0 );
@@ -481,10 +490,6 @@ public class ColdGirl extends Mob {
         return
                 "A young girl somewhat not affected by the cold.";
     }
-
-    private static final String AI_STATE = "aistate";
-    private static final String CAME_FROM = "camefrom";
-    private static final String CAME_FROM_POS = "cameformpos";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -509,12 +514,6 @@ public class ColdGirl extends Mob {
 
     public void heroSpeak ( String speakText ) {
         Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, speakText );
-    }
-
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-
     }
 
     @Override
@@ -604,18 +603,6 @@ public class ColdGirl extends Mob {
     @Override
     public HashSet<Class<?>> resistances () {
         return RESISTANCES;
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Frost.class );
-        IMMUNITIES.add( Amok.class );
-        IMMUNITIES.add( Sleep.class );
-        IMMUNITIES.add( Terror.class );
-        IMMUNITIES.add( Burning.class );
-        IMMUNITIES.add( Affection.class );
-        IMMUNITIES.add( Poison.class );
     }
 
     @Override

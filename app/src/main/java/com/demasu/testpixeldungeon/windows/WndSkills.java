@@ -19,11 +19,6 @@ package com.demasu.testpixeldungeon.windows;
 
 import android.graphics.RectF;
 
-import com.demasu.testpixeldungeon.items.bags.PotionBelt;
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.ColorBlock;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
@@ -31,6 +26,7 @@ import com.demasu.testpixeldungeon.actors.skills.BranchSkill;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.items.bags.Bag;
 import com.demasu.testpixeldungeon.items.bags.Keyring;
+import com.demasu.testpixeldungeon.items.bags.PotionBelt;
 import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
@@ -39,6 +35,10 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.SkillSlot;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.ColorBlock;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.audio.Sample;
 
 public class WndSkills extends WndTabbed {
 
@@ -52,19 +52,14 @@ public class WndSkills extends WndTabbed {
     protected static final int TAB_WIDTH = 25;
 
     protected static final int TITLE_HEIGHT = 12;
-
-    private Listener listener;
-    private String title;
-
-    private int nCols;
-    private int nRows;
-
+    public boolean noDegrade = PixelDungeon.itemDeg();
     protected int count;
     protected int col;
     protected int row;
-
-
-    public boolean noDegrade = PixelDungeon.itemDeg();
+    private Listener listener;
+    private String title;
+    private int nCols;
+    private int nRows;
 
     public WndSkills ( Listener listener, String title ) {
 
@@ -155,6 +150,20 @@ public class WndSkills extends WndTabbed {
         return 20;
     }
 
+    public interface Listener {
+        void onSelect ( Skill skill );
+    }
+
+    private static class Placeholder extends Skill {
+        {
+            name = null;
+        }
+
+        public Placeholder ( int image ) {
+            this.image = image;
+        }
+    }
+
     private class BagTab extends Tab {
 
         private Image icon;
@@ -198,23 +207,13 @@ public class WndSkills extends WndTabbed {
                 return Icons.get( Icons.SCROLL_HOLDER );
             } else if ( bag instanceof WandHolster ) {
                 return Icons.get( Icons.WAND_HOLSTER );
-            } else if ( bag  instanceof PotionBelt ) {
+            } else if ( bag instanceof PotionBelt ) {
                 return Icons.get( Icons.POTION_BELT );
             } else if ( bag instanceof Keyring ) {
                 return Icons.get( Icons.KEYRING );
             } else {
                 return Icons.get( Icons.BACKPACK );
             }
-        }
-    }
-
-    private static class Placeholder extends Skill {
-        {
-            name = null;
-        }
-
-        public Placeholder ( int image ) {
-            this.image = image;
         }
     }
 
@@ -310,9 +309,5 @@ public class WndSkills extends WndTabbed {
         protected boolean onLongClick () {
             return true;
         }
-    }
-
-    public interface Listener {
-        void onSelect ( Skill skill );
     }
 }

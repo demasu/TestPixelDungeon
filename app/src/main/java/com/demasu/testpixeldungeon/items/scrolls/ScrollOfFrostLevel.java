@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.scenes.InterlevelScene;
+import com.watabou.noosa.Game;
 
 public class ScrollOfFrostLevel extends Scroll {
 

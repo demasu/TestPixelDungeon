@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import com.watabou.noosa.Scene;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Bones;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -31,10 +30,22 @@ import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.keys.SkeletonKey;
 import com.demasu.testpixeldungeon.levels.painters.Painter;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.Scene;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class HallsBossLevel extends Level {
+
+    private static final int ROOM_LEFT = WIDTH / 2 - 1;
+    private static final int ROOM_RIGHT = WIDTH / 2 + 1;
+    private static final int ROOM_TOP = HEIGHT / 2 - 1;
+    private static final int ROOM_BOTTOM = HEIGHT / 2 + 1;
+    private static final String STAIRS = "stairs";
+    private static final String ENTERED = "entered";
+    private static final String DROPPED = "droppped";
+    private int stairs = -1;
+    private boolean enteredArena = false;
+    private boolean keyDropped = false;
 
     {
         color1 = 0x801500;
@@ -42,15 +53,6 @@ public class HallsBossLevel extends Level {
 
         viewDistance = 3;
     }
-
-    private static final int ROOM_LEFT = WIDTH / 2 - 1;
-    private static final int ROOM_RIGHT = WIDTH / 2 + 1;
-    private static final int ROOM_TOP = HEIGHT / 2 - 1;
-    private static final int ROOM_BOTTOM = HEIGHT / 2 + 1;
-
-    private int stairs = -1;
-    private boolean enteredArena = false;
-    private boolean keyDropped = false;
 
     @Override
     public String tilesTex () {
@@ -61,10 +63,6 @@ public class HallsBossLevel extends Level {
     public String waterTex () {
         return Assets.WATER_HALLS;
     }
-
-    private static final String STAIRS = "stairs";
-    private static final String ENTERED = "entered";
-    private static final String DROPPED = "droppped";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

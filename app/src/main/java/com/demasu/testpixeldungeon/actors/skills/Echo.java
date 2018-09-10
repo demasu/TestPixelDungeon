@@ -1,7 +1,6 @@
 package com.demasu.testpixeldungeon.actors.skills;
 
 
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
@@ -13,6 +12,7 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.MirrorSprite;
 import com.demasu.testpixeldungeon.ui.StatusPane;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;

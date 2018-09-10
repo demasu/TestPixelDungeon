@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.ResultDescriptions;
 import com.demasu.testpixeldungeon.Statistics;
@@ -54,7 +51,29 @@ import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public class Yog extends Mob {
+
+    private static final String TXT_DESC =
+            "Yog-Dzewa is an Old God, a powerful entity from the realms of chaos. A century ago, the ancient dwarves " +
+                    "barely won the war against its army of demons, but were unable to kill the god itself. Instead, they then " +
+                    "imprisoned it in the halls below their city, believing it to be too weak to rise ever again.";
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    private static int fistsCount = 0;
+
+    static {
+
+        IMMUNITIES.add( Death.class );
+        IMMUNITIES.add( Terror.class );
+        IMMUNITIES.add( Amok.class );
+        IMMUNITIES.add( Charm.class );
+        IMMUNITIES.add( Sleep.class );
+        IMMUNITIES.add( Burning.class );
+        IMMUNITIES.add( ToxicGas.class );
+        IMMUNITIES.add( ScrollOfPsionicBlast.class );
+    }
 
     {
         name = Dungeon.getDepth() == Statistics.deepestFloor ? "Yog-Dzewa" : "echo of Yog-Dzewa";
@@ -70,13 +89,6 @@ public class Yog extends Mob {
         HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
-
-    private static final String TXT_DESC =
-            "Yog-Dzewa is an Old God, a powerful entity from the realms of chaos. A century ago, the ancient dwarves " +
-                    "barely won the war against its army of demons, but were unable to kill the god itself. Instead, they then " +
-                    "imprisoned it in the halls below their city, believing it to be too weak to rise ever again.";
-
-    private static int fistsCount = 0;
 
     public Yog () {
         super();
@@ -169,20 +181,6 @@ public class Yog extends Mob {
 
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-
-        IMMUNITIES.add( Death.class );
-        IMMUNITIES.add( Terror.class );
-        IMMUNITIES.add( Amok.class );
-        IMMUNITIES.add( Charm.class );
-        IMMUNITIES.add( Sleep.class );
-        IMMUNITIES.add( Burning.class );
-        IMMUNITIES.add( ToxicGas.class );
-        IMMUNITIES.add( ScrollOfPsionicBlast.class );
-    }
-
     @Override
     public HashSet<Class<?>> immunities () {
         return IMMUNITIES;
@@ -191,6 +189,22 @@ public class Yog extends Mob {
     public static class RottingFist extends Mob {
 
         private static final int REGENERATION = 4;
+        private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+        static {
+            RESISTANCES.add( ToxicGas.class );
+            RESISTANCES.add( Death.class );
+            RESISTANCES.add( ScrollOfPsionicBlast.class );
+        }
+
+        static {
+            IMMUNITIES.add( Amok.class );
+            IMMUNITIES.add( Sleep.class );
+            IMMUNITIES.add( Terror.class );
+            IMMUNITIES.add( Poison.class );
+            IMMUNITIES.add( Vertigo.class );
+        }
 
         {
             name = "rotting fist";
@@ -257,27 +271,9 @@ public class Yog extends Mob {
 
         }
 
-        private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-        static {
-            RESISTANCES.add( ToxicGas.class );
-            RESISTANCES.add( Death.class );
-            RESISTANCES.add( ScrollOfPsionicBlast.class );
-        }
-
         @Override
         public HashSet<Class<?>> resistances () {
             return RESISTANCES;
-        }
-
-        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-        static {
-            IMMUNITIES.add( Amok.class );
-            IMMUNITIES.add( Sleep.class );
-            IMMUNITIES.add( Terror.class );
-            IMMUNITIES.add( Poison.class );
-            IMMUNITIES.add( Vertigo.class );
         }
 
         @Override
@@ -287,6 +283,22 @@ public class Yog extends Mob {
     }
 
     public static class BurningFist extends Mob {
+
+        private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+        static {
+            RESISTANCES.add( ToxicGas.class );
+            RESISTANCES.add( Death.class );
+            RESISTANCES.add( ScrollOfPsionicBlast.class );
+        }
+
+        static {
+            IMMUNITIES.add( Amok.class );
+            IMMUNITIES.add( Sleep.class );
+            IMMUNITIES.add( Terror.class );
+            IMMUNITIES.add( Burning.class );
+        }
 
         {
             name = "burning fist";
@@ -376,26 +388,9 @@ public class Yog extends Mob {
 
         }
 
-        private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-        static {
-            RESISTANCES.add( ToxicGas.class );
-            RESISTANCES.add( Death.class );
-            RESISTANCES.add( ScrollOfPsionicBlast.class );
-        }
-
         @Override
         public HashSet<Class<?>> resistances () {
             return RESISTANCES;
-        }
-
-        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-        static {
-            IMMUNITIES.add( Amok.class );
-            IMMUNITIES.add( Sleep.class );
-            IMMUNITIES.add( Terror.class );
-            IMMUNITIES.add( Burning.class );
         }
 
         @Override

@@ -17,16 +17,6 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Group;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.particles.BitmaskEmitter;
-import com.watabou.noosa.particles.Emitter;
-import com.watabou.noosa.ui.Button;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Difficulties;
@@ -45,6 +35,16 @@ import com.demasu.testpixeldungeon.windows.WndChallenges;
 import com.demasu.testpixeldungeon.windows.WndClass;
 import com.demasu.testpixeldungeon.windows.WndMessage;
 import com.demasu.testpixeldungeon.windows.WndOptions;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Group;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.particles.BitmaskEmitter;
+import com.watabou.noosa.particles.Emitter;
+import com.watabou.noosa.ui.Button;
 import com.watabou.utils.Callback;
 
 import java.util.HashMap;
@@ -75,19 +75,14 @@ public class MissionStartScene extends PixelScene {
 
     private static final float WIDTH_L = 224;
     private static final float HEIGHT_L = 124;
-
+    public static HeroClass curClass;
     private static HashMap<HeroClass, ClassShield> shields = new HashMap<HeroClass, ClassShield>();
-
     private float buttonX;
     private float buttonY;
-
     private GameButton btnLoad;
     private GameButton btnNewGame;
-
     private boolean huntressUnlocked;
     private Group unlock;
-
-    public static HeroClass curClass;
 
     @Override
     public void create () {

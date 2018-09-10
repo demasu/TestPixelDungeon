@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Shuriken;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.TextureFilm;
 import com.watabou.utils.Callback;
 
 public class TenguSprite extends MobSprite {

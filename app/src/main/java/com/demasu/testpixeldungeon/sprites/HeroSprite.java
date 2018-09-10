@@ -19,15 +19,15 @@ package com.demasu.testpixeldungeon.sprites;
 
 import android.graphics.RectF;
 
+import com.demasu.testpixeldungeon.Assets;
+import com.demasu.testpixeldungeon.Dungeon;
+import com.demasu.testpixeldungeon.actors.hero.Hero;
+import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.TextureFilm;
-import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.actors.hero.Hero;
-import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.watabou.utils.Callback;
 
 public class HeroSprite extends CharSprite {
@@ -51,6 +51,26 @@ public class HeroSprite extends CharSprite {
         updateArmor();
 
         idle();
+    }
+
+    public static TextureFilm tiers () {
+        if ( tiers == null ) {
+            SmartTexture texture = TextureCache.get( Assets.ROGUE );
+            tiers = new TextureFilm( texture, texture.width, FRAME_HEIGHT );
+        }
+
+        return tiers;
+    }
+
+    public static Image avatar ( HeroClass cl, int armorTier ) {
+
+        RectF patch = tiers().get( armorTier );
+        Image avatar = new Image( cl.spritesheet() );
+        RectF frame = avatar.texture.uvRect( 1, 0, FRAME_WIDTH, FRAME_HEIGHT );
+        frame.offset( patch.left, patch.top );
+        avatar.frame( frame );
+
+        return avatar;
     }
 
     public void updateArmor () {
@@ -123,25 +143,5 @@ public class HeroSprite extends CharSprite {
     public boolean sprint ( boolean on ) {
         run.delay = on ? 0.625f / RUN_FRAMERATE : 1f / RUN_FRAMERATE;
         return on;
-    }
-
-    public static TextureFilm tiers () {
-        if ( tiers == null ) {
-            SmartTexture texture = TextureCache.get( Assets.ROGUE );
-            tiers = new TextureFilm( texture, texture.width, FRAME_HEIGHT );
-        }
-
-        return tiers;
-    }
-
-    public static Image avatar ( HeroClass cl, int armorTier ) {
-
-        RectF patch = tiers().get( armorTier );
-        Image avatar = new Image( cl.spritesheet() );
-        RectF frame = avatar.texture.uvRect( 1, 0, FRAME_WIDTH, FRAME_HEIGHT );
-        frame.offset( patch.left, patch.top );
-        avatar.frame( frame );
-
-        return avatar;
     }
 }

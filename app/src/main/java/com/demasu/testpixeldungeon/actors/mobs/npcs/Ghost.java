@@ -17,10 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs.npcs;
 
-import java.util.HashSet;
-
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Challenges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -50,10 +46,129 @@ import com.demasu.testpixeldungeon.sprites.GhostSprite;
 import com.demasu.testpixeldungeon.utils.Utils;
 import com.demasu.testpixeldungeon.windows.WndQuest;
 import com.demasu.testpixeldungeon.windows.WndSadGhost;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Ghost extends NPC {
+
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    private static final QuestHandler roseQuest = new QuestHandler() {
+        private static final String TXT_ROSE1 =
+                "Hello adventurer... Once I was like you - strong and confident... " +
+                        "And now I'm dead... But I can't leave this place... Not until I have my _dried rose_... " +
+                        "It's very important to me... Some monster stole it from my body...";
+
+        private static final String TXT_ROSE2 =
+                "Please... Help me... _Find the rose_...";
+
+        private static final String TXT_ROSE3 =
+                "Yes! Yes!!! This is it! Please give it to me! " +
+                        "And you can take one of these items, maybe they " +
+                        "will be useful to you in your journey...";
+
+        public void interact ( Ghost ghost ) {
+            if ( Quest.given ) {
+
+                Item item = Dungeon.getHero().belongings.getItem( DriedRose.class );
+                if ( item != null ) {
+                    GameScene.show( new WndSadGhost( ghost, item, TXT_ROSE3 ) );
+                } else {
+                    GameScene.show( new WndQuest( ghost, TXT_ROSE2 ) );
+                    relocate( ghost );
+                }
+
+            } else {
+                GameScene.show( new WndQuest( ghost, TXT_ROSE1 ) );
+                Quest.given = true;
+
+                Journal.add( Journal.Feature.GHOST );
+            }
+        }
+    };
+    private static final QuestHandler ratQuest = new QuestHandler() {
+        private static final String TXT_RAT1 =
+                "Hello adventurer... Once I was like you - strong and confident... " +
+                        "And now I'm dead... But I can't leave this place... Not until I have my revenge... " +
+                        "Slay the _fetid rat_, that has taken my life...";
+
+        private static final String TXT_RAT2 =
+                "Please... Help me... _Slay the abomination_...";
+
+        private static final String TXT_RAT3 =
+                "Yes! The ugly creature is slain and I can finally rest... " +
+                        "Please take one of these items, maybe they " +
+                        "will be useful to you in your journey...";
+
+        public void interact ( Ghost ghost ) {
+            if ( Quest.given ) {
+
+                Item item = Dungeon.getHero().belongings.getItem( RatSkull.class );
+                if ( item != null ) {
+                    GameScene.show( new WndSadGhost( ghost, item, TXT_RAT3 ) );
+                } else {
+                    GameScene.show( new WndQuest( ghost, TXT_RAT2 ) );
+                    relocate( ghost );
+                }
+
+            } else {
+                GameScene.show( new WndQuest( ghost, TXT_RAT1 ) );
+                Quest.given = true;
+
+                Journal.add( Journal.Feature.GHOST );
+            }
+        }
+    };
+    private static final QuestHandler curseQuest = new QuestHandler() {
+        private static final String TXT_CURSE1 =
+                "Hello adventurer... Once I was like you - strong and confident... " +
+                        "And now I'm dead... But I can't leave this place, as I am bound by a horrid curse... " +
+                        "Please... Help me... _Destroy the curse_...";
+        private static final String TXT_CURSE2 =
+                "Thank you, %s! The curse is broken and I can finally rest... " +
+                        "Please take one of these items, maybe they " +
+                        "will be useful to you in your journey...";
+
+        private static final String TXT_YES = "Yes, I will do it for you";
+        private static final String TXT_NO = "No, I can't help you";
+
+        public void interact ( final Ghost ghost ) {
+            if ( Quest.given ) {
+
+                GameScene.show( new WndSadGhost( ghost, null, Utils.format( TXT_CURSE2, Dungeon.getHero().className() ) ) );
+
+            } else {
+                GameScene.show( new WndQuest( ghost, TXT_CURSE1, TXT_YES, TXT_NO ) {
+                    protected void onSelect ( int index ) {
+                        if ( index == 0 ) {
+                            Quest.given = true;
+
+                            CursePersonification d = new CursePersonification();
+                            Ghost.replace( ghost, d );
+
+                            d.sprite.emitter().burst( ShadowParticle.CURSE, 5 );
+                            Sample.INSTANCE.play( Assets.SND_GHOST );
+
+                            Dungeon.getHero().next();
+                        } else {
+                            relocate( ghost );
+                        }
+                    }
+
+                } );
+
+                Journal.add( Journal.Feature.GHOST );
+            }
+        }
+    };
+
+    static {
+        IMMUNITIES.add( Paralysis.class );
+        IMMUNITIES.add( Roots.class );
+    }
 
     {
         name = "sad ghost";
@@ -68,6 +183,26 @@ public class Ghost extends NPC {
         super();
 
         Sample.INSTANCE.load( Assets.SND_GHOST );
+    }
+
+    public static void replace ( final Mob a, final Mob b ) {
+        final float FADE_TIME = 0.5f;
+
+        a.destroy();
+        a.sprite.parent.add( new AlphaTweener( a.sprite, 0, FADE_TIME ) {
+            protected void onComplete () {
+                a.sprite.killAndErase();
+                parent.erase( this );
+            }
+
+        } );
+
+        b.pos = a.pos;
+        GameScene.add( b );
+
+        b.sprite.flipHorizontal = a.sprite.flipHorizontal;
+        b.sprite.alpha( 0 );
+        b.sprite.parent.add( new AlphaTweener( b.sprite, 1, FADE_TIME ) );
     }
 
     @Override
@@ -118,72 +253,14 @@ public class Ghost extends NPC {
                         "spot of faint light with a sorrowful face.";
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Paralysis.class );
-        IMMUNITIES.add( Roots.class );
-    }
-
     @Override
     public HashSet<Class<?>> immunities () {
         return IMMUNITIES;
     }
 
-    public static void replace ( final Mob a, final Mob b ) {
-        final float FADE_TIME = 0.5f;
-
-        a.destroy();
-        a.sprite.parent.add( new AlphaTweener( a.sprite, 0, FADE_TIME ) {
-            protected void onComplete () {
-                a.sprite.killAndErase();
-                parent.erase( this );
-            }
-
-        } );
-
-        b.pos = a.pos;
-        GameScene.add( b );
-
-        b.sprite.flipHorizontal = a.sprite.flipHorizontal;
-        b.sprite.alpha( 0 );
-        b.sprite.parent.add( new AlphaTweener( b.sprite, 1, FADE_TIME ) );
-    }
-
     public static class Quest {
 
-        enum Type {
-            ILLEGAL( null ), ROSE( roseQuest ), RAT( ratQuest ), CURSE( curseQuest );
-
-            public QuestHandler handler;
-
-            Type ( QuestHandler handler ) {
-                this.handler = handler;
-            }
-        }
-
-        private static Type type;
-
-        private static boolean spawned;
-        private static boolean given;
-        private static boolean processed;
-
-        private static int depth;
-
-        private static int left2kill;
-
-        public static Weapon weapon;
-        public static Armor armor;
-
-        public static void reset () {
-            spawned = false;
-
-            weapon = null;
-            armor = null;
-        }
-
         private static final String NODE = "sadGhost";
-
         private static final String SPAWNED = "spawned";
         private static final String TYPE = "type";
         private static final String ALTERNATIVE = "alternative";
@@ -193,6 +270,21 @@ public class Ghost extends NPC {
         private static final String DEPTH = "depth";
         private static final String WEAPON = "weapon";
         private static final String ARMOR = "armor";
+        public static Weapon weapon;
+        public static Armor armor;
+        private static Type type;
+        private static boolean spawned;
+        private static boolean given;
+        private static boolean processed;
+        private static int depth;
+        private static int left2kill;
+
+        public static void reset () {
+            spawned = false;
+
+            weapon = null;
+            armor = null;
+        }
 
         public static void storeInBundle ( Bundle bundle ) {
 
@@ -329,6 +421,16 @@ public class Ghost extends NPC {
 
             Journal.remove( Journal.Feature.GHOST );
         }
+
+        enum Type {
+            ILLEGAL( null ), ROSE( roseQuest ), RAT( ratQuest ), CURSE( curseQuest );
+
+            public QuestHandler handler;
+
+            Type ( QuestHandler handler ) {
+                this.handler = handler;
+            }
+        }
     }
 
     abstract public static class QuestHandler {
@@ -354,115 +456,4 @@ public class Ghost extends NPC {
             }
         }
     }
-
-    private static final QuestHandler roseQuest = new QuestHandler() {
-        private static final String TXT_ROSE1 =
-                "Hello adventurer... Once I was like you - strong and confident... " +
-                        "And now I'm dead... But I can't leave this place... Not until I have my _dried rose_... " +
-                        "It's very important to me... Some monster stole it from my body...";
-
-        private static final String TXT_ROSE2 =
-                "Please... Help me... _Find the rose_...";
-
-        private static final String TXT_ROSE3 =
-                "Yes! Yes!!! This is it! Please give it to me! " +
-                        "And you can take one of these items, maybe they " +
-                        "will be useful to you in your journey...";
-
-        public void interact ( Ghost ghost ) {
-            if ( Quest.given ) {
-
-                Item item = Dungeon.getHero().belongings.getItem( DriedRose.class );
-                if ( item != null ) {
-                    GameScene.show( new WndSadGhost( ghost, item, TXT_ROSE3 ) );
-                } else {
-                    GameScene.show( new WndQuest( ghost, TXT_ROSE2 ) );
-                    relocate( ghost );
-                }
-
-            } else {
-                GameScene.show( new WndQuest( ghost, TXT_ROSE1 ) );
-                Quest.given = true;
-
-                Journal.add( Journal.Feature.GHOST );
-            }
-        }
-    };
-
-    private static final QuestHandler ratQuest = new QuestHandler() {
-        private static final String TXT_RAT1 =
-                "Hello adventurer... Once I was like you - strong and confident... " +
-                        "And now I'm dead... But I can't leave this place... Not until I have my revenge... " +
-                        "Slay the _fetid rat_, that has taken my life...";
-
-        private static final String TXT_RAT2 =
-                "Please... Help me... _Slay the abomination_...";
-
-        private static final String TXT_RAT3 =
-                "Yes! The ugly creature is slain and I can finally rest... " +
-                        "Please take one of these items, maybe they " +
-                        "will be useful to you in your journey...";
-
-        public void interact ( Ghost ghost ) {
-            if ( Quest.given ) {
-
-                Item item = Dungeon.getHero().belongings.getItem( RatSkull.class );
-                if ( item != null ) {
-                    GameScene.show( new WndSadGhost( ghost, item, TXT_RAT3 ) );
-                } else {
-                    GameScene.show( new WndQuest( ghost, TXT_RAT2 ) );
-                    relocate( ghost );
-                }
-
-            } else {
-                GameScene.show( new WndQuest( ghost, TXT_RAT1 ) );
-                Quest.given = true;
-
-                Journal.add( Journal.Feature.GHOST );
-            }
-        }
-    };
-
-    private static final QuestHandler curseQuest = new QuestHandler() {
-        private static final String TXT_CURSE1 =
-                "Hello adventurer... Once I was like you - strong and confident... " +
-                        "And now I'm dead... But I can't leave this place, as I am bound by a horrid curse... " +
-                        "Please... Help me... _Destroy the curse_...";
-        private static final String TXT_CURSE2 =
-                "Thank you, %s! The curse is broken and I can finally rest... " +
-                        "Please take one of these items, maybe they " +
-                        "will be useful to you in your journey...";
-
-        private static final String TXT_YES = "Yes, I will do it for you";
-        private static final String TXT_NO = "No, I can't help you";
-
-        public void interact ( final Ghost ghost ) {
-            if ( Quest.given ) {
-
-                GameScene.show( new WndSadGhost( ghost, null, Utils.format( TXT_CURSE2, Dungeon.getHero().className() ) ) );
-
-            } else {
-                GameScene.show( new WndQuest( ghost, TXT_CURSE1, TXT_YES, TXT_NO ) {
-                    protected void onSelect ( int index ) {
-                        if ( index == 0 ) {
-                            Quest.given = true;
-
-                            CursePersonification d = new CursePersonification();
-                            Ghost.replace( ghost, d );
-
-                            d.sprite.emitter().burst( ShadowParticle.CURSE, 5 );
-                            Sample.INSTANCE.play( Assets.SND_GHOST );
-
-                            Dungeon.getHero().next();
-                        } else {
-                            relocate( ghost );
-                        }
-                    }
-
-                } );
-
-                Journal.add( Journal.Feature.GHOST );
-            }
-        }
-    };
 }

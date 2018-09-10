@@ -17,24 +17,23 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import java.util.Arrays;
-
-import com.watabou.noosa.Scene;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.items.Amulet;
 import com.demasu.testpixeldungeon.levels.painters.Painter;
+import com.watabou.noosa.Scene;
 import com.watabou.utils.Random;
+
+import java.util.Arrays;
 
 public class LastLevel extends Level {
 
     private static final int SIZE = 7;
+    private int pedestal;
 
     {
         color1 = 0x801500;
         color2 = 0xa68521;
     }
-
-    private int pedestal;
 
     @Override
     public String tilesTex () {

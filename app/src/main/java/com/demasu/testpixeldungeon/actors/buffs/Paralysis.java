@@ -25,6 +25,19 @@ public class Paralysis extends FlavourBuff {
 
     private static final float DURATION = 10f;
 
+    public static float duration ( Char ch ) {
+        Resistance r = ch.buff( Resistance.class );
+        return r != null ? r.durationFactor() * DURATION : DURATION;
+    }
+
+    public static void unfreeze ( Char ch ) {
+        if ( ch.buff( Paralysis.class ) == null &&
+                ch.buff( Frost.class ) == null ) {
+
+            ch.paralysed = false;
+        }
+    }
+
     @Override
     public boolean attachTo ( Char target ) {
         if ( super.attachTo( target ) ) {
@@ -49,18 +62,5 @@ public class Paralysis extends FlavourBuff {
     @Override
     public String toString () {
         return "Paralysed";
-    }
-
-    public static float duration ( Char ch ) {
-        Resistance r = ch.buff( Resistance.class );
-        return r != null ? r.durationFactor() * DURATION : DURATION;
-    }
-
-    public static void unfreeze ( Char ch ) {
-        if ( ch.buff( Paralysis.class ) == null &&
-                ch.buff( Frost.class ) == null ) {
-
-            ch.paralysed = false;
-        }
     }
 }

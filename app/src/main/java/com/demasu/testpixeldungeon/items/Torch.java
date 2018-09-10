@@ -17,14 +17,14 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.particles.Emitter;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Light;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.effects.particles.FlameParticle;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.noosa.particles.Emitter;
+
+import java.util.ArrayList;
 
 public class Torch extends Item {
 

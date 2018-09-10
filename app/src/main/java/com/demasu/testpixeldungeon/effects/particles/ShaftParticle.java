@@ -18,8 +18,8 @@
 package com.demasu.testpixeldungeon.effects.particles;
 
 import com.watabou.noosa.particles.Emitter;
-import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.noosa.particles.Emitter.Factory;
+import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.Random;
 
 public class ShaftParticle extends PixelParticle {
@@ -35,6 +35,7 @@ public class ShaftParticle extends PixelParticle {
             return true;
         }
     };
+    private float offs;
 
     public ShaftParticle () {
         super();
@@ -42,8 +43,6 @@ public class ShaftParticle extends PixelParticle {
         lifespan = 1.2f;
         speed.set( 0, -6 );
     }
-
-    private float offs;
 
     public void reset ( float x, float y ) {
         revive();

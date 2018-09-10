@@ -17,9 +17,9 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import com.watabou.noosa.particles.Emitter;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.PointF;
 
 public class CellEmitter {

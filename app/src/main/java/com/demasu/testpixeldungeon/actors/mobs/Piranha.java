@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.Statistics;
@@ -33,7 +31,19 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.sprites.PiranhaSprite;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Piranha extends Mob {
+
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( Burning.class );
+        IMMUNITIES.add( Paralysis.class );
+        IMMUNITIES.add( ToxicGas.class );
+        IMMUNITIES.add( Roots.class );
+        IMMUNITIES.add( Frost.class );
+    }
 
     {
         name = "giant piranha";
@@ -126,16 +136,6 @@ public class Piranha extends Mob {
         return
                 "These carnivorous fish are not natural inhabitants of underground pools. " +
                         "They were bred specifically to protect flooded treasure vaults.";
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Burning.class );
-        IMMUNITIES.add( Paralysis.class );
-        IMMUNITIES.add( ToxicGas.class );
-        IMMUNITIES.add( Roots.class );
-        IMMUNITIES.add( Frost.class );
     }
 
     @Override

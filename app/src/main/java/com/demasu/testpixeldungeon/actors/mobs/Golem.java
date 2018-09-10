@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Amok;
@@ -29,7 +27,22 @@ import com.demasu.testpixeldungeon.items.scrolls.ScrollOfPsionicBlast;
 import com.demasu.testpixeldungeon.sprites.GolemSprite;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Golem extends Mob {
+
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( ScrollOfPsionicBlast.class );
+    }
+
+    static {
+        IMMUNITIES.add( Amok.class );
+        IMMUNITIES.add( Terror.class );
+        IMMUNITIES.add( Sleep.class );
+    }
 
     {
         name = "golem";
@@ -92,23 +105,9 @@ public class Golem extends Mob {
                         "most controllable of all. Despite this, the tiniest mistake in the ritual could cause an outbreak.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( ScrollOfPsionicBlast.class );
-    }
-
     @Override
     public HashSet<Class<?>> resistances () {
         return RESISTANCES;
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Amok.class );
-        IMMUNITIES.add( Terror.class );
-        IMMUNITIES.add( Sleep.class );
     }
 
     @Override

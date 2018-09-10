@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.blobs.Blob;
 import com.demasu.testpixeldungeon.actors.blobs.Web;
@@ -31,7 +29,20 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.SpinnerSprite;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Spinner extends Mob {
+
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( Poison.class );
+    }
+
+    static {
+        IMMUNITIES.add( Roots.class );
+    }
 
     {
         name = "cave spinner";
@@ -96,7 +107,6 @@ public class Spinner extends Mob {
         super.move( step );
     }
 
-
     @Override
     public String description () {
         return
@@ -104,21 +114,9 @@ public class Spinner extends Mob {
                         "while their victim, entangled in the spinner's excreted cobweb, slowly dies from their poisonous bite.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( Poison.class );
-    }
-
     @Override
     public HashSet<Class<?>> resistances () {
         return RESISTANCES;
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Roots.class );
     }
 
     @Override

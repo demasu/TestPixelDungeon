@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.effects.Speck;
@@ -27,7 +25,15 @@ import com.demasu.testpixeldungeon.items.weapon.enchantments.Leech;
 import com.demasu.testpixeldungeon.sprites.BatSprite;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Bat extends Mob {
+
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( Leech.class );
+    }
 
     {
         name = "vampire bat";
@@ -90,12 +96,6 @@ public class Bat extends Mob {
         return
                 "These brisk and tenacious inhabitants of cave domes may defeat much larger opponents by " +
                         "replenishing their health with each successful attack.";
-    }
-
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( Leech.class );
     }
 
     @Override

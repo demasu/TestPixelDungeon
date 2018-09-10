@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -34,11 +31,24 @@ import com.demasu.testpixeldungeon.items.weapon.enchantments.Leech;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.mechanics.Ballistica;
 import com.demasu.testpixeldungeon.sprites.SuccubusSprite;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
+
+import java.util.HashSet;
 
 public class Succubus extends Mob {
 
     private static final int BLINK_DELAY = 5;
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( Leech.class );
+    }
+
+    static {
+        IMMUNITIES.add( Sleep.class );
+    }
 
     private int delay = 0;
 
@@ -120,21 +130,9 @@ public class Succubus extends Mob {
                         "can charm a hero, who will become unable to attack anything until the charm wears off.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( Leech.class );
-    }
-
     @Override
     public HashSet<Class<?>> resistances () {
         return RESISTANCES;
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Sleep.class );
     }
 
     @Override

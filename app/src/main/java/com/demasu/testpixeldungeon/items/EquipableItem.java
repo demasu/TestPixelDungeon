@@ -17,19 +17,23 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public abstract class EquipableItem extends Item {
 
-    private static final String TXT_UNEQUIP_CURSED = "You can't remove cursed %s!";
-
     public static final String AC_EQUIP = "EQUIP";
     public static final String AC_UNEQUIP = "UNEQUIP";
+    private static final String TXT_UNEQUIP_CURSED = "You can't remove cursed %s!";
+
+    protected static void equipCursed ( Hero hero ) {
+        hero.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
+        Sample.INSTANCE.play( Assets.SND_CURSED );
+    }
 
     @Override
     public void execute ( Hero hero, String action ) {
@@ -59,11 +63,6 @@ public abstract class EquipableItem extends Item {
         }
 
         super.cast( user, dst );
-    }
-
-    protected static void equipCursed ( Hero hero ) {
-        hero.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
-        Sample.INSTANCE.play( Assets.SND_CURSED );
     }
 
     protected float time2equip ( Hero hero ) {

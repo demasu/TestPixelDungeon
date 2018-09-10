@@ -28,6 +28,12 @@ public class ChargrilledMeat extends Food {
         energy = Hunger.STARVING - Hunger.HUNGRY;
     }
 
+    public static Food cook ( MysteryMeat ingredient ) {
+        ChargrilledMeat result = new ChargrilledMeat();
+        result.quantity = ingredient.quantity();
+        return result;
+    }
+
     @Override
     public String info () {
         return "It looks like a decent steak.";
@@ -36,11 +42,5 @@ public class ChargrilledMeat extends Food {
     @Override
     public int price () {
         return 5 * quantity;
-    }
-
-    public static Food cook ( MysteryMeat ingredient ) {
-        ChargrilledMeat result = new ChargrilledMeat();
-        result.quantity = ingredient.quantity();
-        return result;
     }
 }

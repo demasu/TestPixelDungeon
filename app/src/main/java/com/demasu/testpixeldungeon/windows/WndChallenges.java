@@ -17,14 +17,14 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.BitmapText;
 import com.demasu.testpixeldungeon.Challenges;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.CheckBox;
 import com.demasu.testpixeldungeon.ui.Window;
+import com.watabou.noosa.BitmapText;
+
+import java.util.ArrayList;
 
 public class WndChallenges extends Window {
 

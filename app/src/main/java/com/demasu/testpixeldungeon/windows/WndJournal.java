@@ -17,11 +17,6 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import java.util.Collections;
-
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.ui.Component;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.Journal;
 import com.demasu.testpixeldungeon.PixelDungeon;
@@ -29,6 +24,11 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.ScrollPane;
 import com.demasu.testpixeldungeon.ui.Window;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.ui.Component;
+
+import java.util.Collections;
 
 public class WndJournal extends Window {
 

@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.armor;
 
-import java.util.HashMap;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.hero.HeroClass;
@@ -31,19 +29,20 @@ import com.demasu.testpixeldungeon.sprites.MissileSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Callback;
 
+import java.util.HashMap;
+
 public class HuntressArmor extends ClassArmor {
 
     private static final String TXT_NO_ENEMIES = "No enemies in sight";
     private static final String TXT_NOT_HUNTRESS = "Only huntresses can use this armor!";
 
     private static final String AC_SPECIAL = "SPECTRAL BLADES";
+    private HashMap<Callback, Mob> targets = new HashMap<Callback, Mob>();
 
     {
         name = "huntress cloak";
         image = ItemSpriteSheet.ARMOR_HUNTRESS;
     }
-
-    private HashMap<Callback, Mob> targets = new HashMap<Callback, Mob>();
 
     @Override
     public String special () {

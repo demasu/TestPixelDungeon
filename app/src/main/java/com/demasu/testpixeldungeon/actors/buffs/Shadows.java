@@ -17,18 +17,17 @@
  */
 package com.demasu.testpixeldungeon.actors.buffs;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.ui.BuffIndicator;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 
 public class Shadows extends Invisibility {
 
-    protected float left;
-
     private static final String LEFT = "left";
+    protected float left;
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

@@ -28,13 +28,12 @@ import com.demasu.testpixeldungeon.utils.Utils;
 public class ImpShopkeeper extends Shopkeeper {
 
     private static final String TXT_GREETINGS = "Hello, friend!";
+    private boolean seenBefore = false;
 
     {
         name = "ambitious imp";
         spriteClass = ImpSprite.class;
     }
-
-    private boolean seenBefore = false;
 
     @Override
     protected boolean act () {

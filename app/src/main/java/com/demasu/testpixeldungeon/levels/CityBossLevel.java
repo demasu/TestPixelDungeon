@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import com.watabou.noosa.Scene;
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Bones;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -31,27 +29,38 @@ import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.keys.SkeletonKey;
 import com.demasu.testpixeldungeon.levels.painters.Painter;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.Scene;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class CityBossLevel extends Level {
+
+    private static final int TOP = 2;
+    private static final int HALL_WIDTH = 7;
+    private static final int HALL_HEIGHT = 15;
+    private static final int CHAMBER_HEIGHT = 3;
+    private static final int LEFT = ( WIDTH - HALL_WIDTH ) / 2;
+    private static final int CENTER = LEFT + HALL_WIDTH / 2;
+    private static final String DOOR = "door";
+    private static final String ENTERED = "entered";
+    private static final String DROPPED = "droppped";
+    private int arenaDoor;
+    private boolean enteredArena = false;
+    private boolean keyDropped = false;
 
     {
         color1 = 0x4b6636;
         color2 = 0xf2f2f2;
     }
 
-    private static final int TOP = 2;
-    private static final int HALL_WIDTH = 7;
-    private static final int HALL_HEIGHT = 15;
-    private static final int CHAMBER_HEIGHT = 3;
-
-    private static final int LEFT = ( WIDTH - HALL_WIDTH ) / 2;
-    private static final int CENTER = LEFT + HALL_WIDTH / 2;
-
-    private int arenaDoor;
-    private boolean enteredArena = false;
-    private boolean keyDropped = false;
+    public static int pedestal ( boolean left ) {
+        if ( left ) {
+            return ( TOP + HALL_HEIGHT / 2 ) * WIDTH + CENTER - 2;
+        } else {
+            return ( TOP + HALL_HEIGHT / 2 ) * WIDTH + CENTER + 2;
+        }
+    }
 
     @Override
     public String tilesTex () {
@@ -62,10 +71,6 @@ public class CityBossLevel extends Level {
     public String waterTex () {
         return Assets.WATER_CITY;
     }
-
-    private static final String DOOR = "door";
-    private static final String ENTERED = "entered";
-    private static final String DROPPED = "droppped";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -148,14 +153,6 @@ public class CityBossLevel extends Level {
 
         int sign = arenaDoor + WIDTH + 1;
         map[sign] = Terrain.SIGN;
-    }
-
-    public static int pedestal ( boolean left ) {
-        if ( left ) {
-            return ( TOP + HALL_HEIGHT / 2 ) * WIDTH + CENTER - 2;
-        } else {
-            return ( TOP + HALL_HEIGHT / 2 ) * WIDTH + CENTER + 2;
-        }
     }
 
     @Override

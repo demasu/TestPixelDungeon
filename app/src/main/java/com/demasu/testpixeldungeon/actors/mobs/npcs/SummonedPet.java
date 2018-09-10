@@ -23,98 +23,8 @@ import java.util.HashSet;
  */
 public class SummonedPet extends NPC {
 
-    public enum PET_TYPES {
-        RAT( "Rat" ), CRAB( "Crab" ), SKELETON( "Skeleton" ), SKELETON_ARCHER( "Skeleton Archer" ), SPECIAL( "Special" );
-        public String type = "Rat";
-
-        PET_TYPES ( String type ) {
-            this.type = type;
-        }
-
-        public String getName () {
-            return "Summoned " + type;
-        }
-
-        public int getHealth ( int level ) {
-            switch ( this ) {
-                case RAT:
-                    return 7 + level;
-                case CRAB:
-                    return 10 + 2 * level;
-                case SKELETON_ARCHER:
-                case SKELETON:
-                    return 15 + 3 * level;
-            }
-
-            return 1;
-        }
-
-        public int getDamage ( int level ) {
-            switch ( this ) {
-                case RAT:
-                    return Random.NormalIntRange( 1, 5 ) + level;
-                case CRAB:
-                    return Random.NormalIntRange( 2, 7 ) + level;
-                case SKELETON_ARCHER:
-                case SKELETON:
-                    return Random.NormalIntRange( 3, 10 ) + level;
-            }
-            return 1;
-        }
-
-        public int getDefence ( int level ) {
-            switch ( this ) {
-                case RAT:
-                    return level;
-                case CRAB:
-                    return 2 * level;
-                case SKELETON_ARCHER:
-                case SKELETON:
-                    return 3 * level;
-            }
-            return 1;
-        }
-
-        public String getDescription () {
-            switch ( this ) {
-                case RAT:
-                    return "Summoned rats will protect their master mage.";
-                case CRAB:
-                    return "Summoned crabs will protect their master mage.";
-                case SKELETON_ARCHER:
-                    return "Summoned skeleton archers will protect their master mage.";
-                case SKELETON:
-                    return "Summoned skeletons will protect their master mage.";
-            }
-            return "";
-        }
-
-        public Class<? extends CharSprite> getSprite () {
-            switch ( this ) {
-                case RAT:
-                    return RatSprite.class;
-                case CRAB:
-                    return CrabSprite.class;
-                case SKELETON_ARCHER:
-                case SKELETON:
-                    return SkeletonSprite.class;
-            }
-            return RatSprite.class;
-        }
-    }
-
     public static final int SUMMONED_PETS_LIMIT = 3;
     public static final int DEGRADE_RATE = 15;
-
-    public static int summonedPets = 0;
-
-    public PET_TYPES petType = PET_TYPES.RAT;
-
-
-    public int degradeCounter = 1;
-
-    public int range = 1;
-
     public static final String PET_TYPE = "pettype";
     public static final String NAME = "name";
     public static final String SKILL = "skill";
@@ -122,7 +32,18 @@ public class SummonedPet extends NPC {
     public static final String MAX_HEALTH = "maxhealth";
     public static final String HEALTH = "health";
     public static final String RANGE = "range";
+    private static final String LEVEL = "level";
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    public static int summonedPets = 0;
 
+    static {
+        IMMUNITIES.add( Poison.class );
+    }
+
+    public PET_TYPES petType = PET_TYPES.RAT;
+    public int degradeCounter = 1;
+    public int range = 1;
+    private int level;
 
     {
         name = "Summoned Rat";
@@ -135,11 +56,6 @@ public class SummonedPet extends NPC {
         flying = false;
         state = WANDERING;
     }
-
-    private int level;
-
-    private static final String LEVEL = "level";
-
 
     public SummonedPet () {
         super();
@@ -291,7 +207,6 @@ public class SummonedPet extends NPC {
         }
     }
 
-
     protected Char chooseEnemy () {
 
         if ( enemy == null || !enemy.isAlive() ) {
@@ -317,17 +232,106 @@ public class SummonedPet extends NPC {
                 petType.getDescription();
     }
 
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Poison.class );
-    }
-
     @Override
     public HashSet<Class<?>> immunities () {
         return IMMUNITIES;
     }
 
+    @Override
+    public void interact () {
+
+        int curPos = pos;
+
+        moveSprite( pos, Dungeon.getHero().pos );
+        move( Dungeon.getHero().pos );
+
+        Dungeon.getHero().sprite.move( Dungeon.getHero().pos, curPos );
+        Dungeon.getHero().move( curPos );
+
+        Dungeon.getHero().spend( 1 / Dungeon.getHero().speed() );
+        Dungeon.getHero().busy();
+    }
+
+
+    public enum PET_TYPES {
+        RAT( "Rat" ), CRAB( "Crab" ), SKELETON( "Skeleton" ), SKELETON_ARCHER( "Skeleton Archer" ), SPECIAL( "Special" );
+        public String type = "Rat";
+
+        PET_TYPES ( String type ) {
+            this.type = type;
+        }
+
+        public String getName () {
+            return "Summoned " + type;
+        }
+
+        public int getHealth ( int level ) {
+            switch ( this ) {
+                case RAT:
+                    return 7 + level;
+                case CRAB:
+                    return 10 + 2 * level;
+                case SKELETON_ARCHER:
+                case SKELETON:
+                    return 15 + 3 * level;
+            }
+
+            return 1;
+        }
+
+        public int getDamage ( int level ) {
+            switch ( this ) {
+                case RAT:
+                    return Random.NormalIntRange( 1, 5 ) + level;
+                case CRAB:
+                    return Random.NormalIntRange( 2, 7 ) + level;
+                case SKELETON_ARCHER:
+                case SKELETON:
+                    return Random.NormalIntRange( 3, 10 ) + level;
+            }
+            return 1;
+        }
+
+        public int getDefence ( int level ) {
+            switch ( this ) {
+                case RAT:
+                    return level;
+                case CRAB:
+                    return 2 * level;
+                case SKELETON_ARCHER:
+                case SKELETON:
+                    return 3 * level;
+            }
+            return 1;
+        }
+
+        public String getDescription () {
+            switch ( this ) {
+                case RAT:
+                    return "Summoned rats will protect their master mage.";
+                case CRAB:
+                    return "Summoned crabs will protect their master mage.";
+                case SKELETON_ARCHER:
+                    return "Summoned skeleton archers will protect their master mage.";
+                case SKELETON:
+                    return "Summoned skeletons will protect their master mage.";
+            }
+            return "";
+        }
+
+        public Class<? extends CharSprite> getSprite () {
+            switch ( this ) {
+                case RAT:
+                    return RatSprite.class;
+                case CRAB:
+                    return CrabSprite.class;
+                case SKELETON_ARCHER:
+                case SKELETON:
+                    return SkeletonSprite.class;
+            }
+            return RatSprite.class;
+        }
+    }
 
     private class Wandering implements AiState {
 
@@ -361,20 +365,5 @@ public class SummonedPet extends NPC {
         public String status () {
             return Utils.format( "This %s is wandering", name );
         }
-    }
-
-    @Override
-    public void interact () {
-
-        int curPos = pos;
-
-        moveSprite( pos, Dungeon.getHero().pos );
-        move( Dungeon.getHero().pos );
-
-        Dungeon.getHero().sprite.move( Dungeon.getHero().pos, curPos );
-        Dungeon.getHero().move( curPos );
-
-        Dungeon.getHero().spend( 1 / Dungeon.getHero().speed() );
-        Dungeon.getHero().busy();
     }
 }

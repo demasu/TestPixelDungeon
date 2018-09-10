@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
+import com.demasu.testpixeldungeon.Assets;
+import com.demasu.testpixeldungeon.windows.WndSettings;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.ui.Button;
-import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.windows.WndSettings;
 
 public class PrefsButton extends Button {
 

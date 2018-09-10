@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
+import com.demasu.testpixeldungeon.Assets;
+import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Gizmo;
 import com.watabou.noosa.audio.Sample;
-import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.sprites.CharSprite;
 
 public class IceBlock extends Gizmo {
 
@@ -34,6 +34,14 @@ public class IceBlock extends Gizmo {
 
         this.target = target;
         phase = 0;
+    }
+
+    public static IceBlock freeze ( CharSprite sprite ) {
+
+        IceBlock iceBlock = new IceBlock( sprite );
+        sprite.parent.add( iceBlock );
+
+        return iceBlock;
     }
 
     @Override
@@ -56,13 +64,5 @@ public class IceBlock extends Gizmo {
             Splash.at( target.center(), 0xFFB2D6FF, 5 );
             Sample.INSTANCE.play( Assets.SND_SHATTER );
         }
-    }
-
-    public static IceBlock freeze ( CharSprite sprite ) {
-
-        IceBlock iceBlock = new IceBlock( sprite );
-        sprite.parent.add( iceBlock );
-
-        return iceBlock;
     }
 }

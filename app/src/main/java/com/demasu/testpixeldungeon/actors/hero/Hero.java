@@ -18,13 +18,6 @@
 package com.demasu.testpixeldungeon.actors.hero;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Bones;
@@ -39,6 +32,7 @@ import com.demasu.testpixeldungeon.actors.buffs.Bleeding;
 import com.demasu.testpixeldungeon.actors.buffs.Blindness;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Burning;
+import com.demasu.testpixeldungeon.actors.buffs.Charm;
 import com.demasu.testpixeldungeon.actors.buffs.Combo;
 import com.demasu.testpixeldungeon.actors.buffs.Cripple;
 import com.demasu.testpixeldungeon.actors.buffs.Fletching;
@@ -54,7 +48,6 @@ import com.demasu.testpixeldungeon.actors.buffs.Paralysis;
 import com.demasu.testpixeldungeon.actors.buffs.Poison;
 import com.demasu.testpixeldungeon.actors.buffs.Regeneration;
 import com.demasu.testpixeldungeon.actors.buffs.Roots;
-import com.demasu.testpixeldungeon.actors.buffs.Charm;
 import com.demasu.testpixeldungeon.actors.buffs.Sleep;
 import com.demasu.testpixeldungeon.actors.buffs.SnipersMark;
 import com.demasu.testpixeldungeon.actors.buffs.Vertigo;
@@ -81,9 +74,9 @@ import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.KindOfWeapon;
 import com.demasu.testpixeldungeon.items.armor.Armor;
 import com.demasu.testpixeldungeon.items.keys.GoldenKey;
+import com.demasu.testpixeldungeon.items.keys.IronKey;
 import com.demasu.testpixeldungeon.items.keys.Key;
 import com.demasu.testpixeldungeon.items.keys.SkeletonKey;
-import com.demasu.testpixeldungeon.items.keys.IronKey;
 import com.demasu.testpixeldungeon.items.potions.Potion;
 import com.demasu.testpixeldungeon.items.potions.PotionOfMight;
 import com.demasu.testpixeldungeon.items.potions.PotionOfStrength;
@@ -95,10 +88,10 @@ import com.demasu.testpixeldungeon.items.rings.RingOfHaste;
 import com.demasu.testpixeldungeon.items.rings.RingOfShadows;
 import com.demasu.testpixeldungeon.items.rings.RingOfThorns;
 import com.demasu.testpixeldungeon.items.scrolls.Scroll;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfEnchantment;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfUpgrade;
-import com.demasu.testpixeldungeon.items.scrolls.ScrollOfEnchantment;
 import com.demasu.testpixeldungeon.items.wands.Wand;
 import com.demasu.testpixeldungeon.items.wands.WandOfMagicCasting;
 import com.demasu.testpixeldungeon.items.weapon.melee.MeleeWeapon;
@@ -123,78 +116,72 @@ import com.demasu.testpixeldungeon.windows.WndMessage;
 import com.demasu.testpixeldungeon.windows.WndResurrect;
 import com.demasu.testpixeldungeon.windows.WndStorage;
 import com.demasu.testpixeldungeon.windows.WndTradeItem;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+
 @SuppressWarnings ( "MagicNumber" )
 public class Hero extends Char {
 
+    public static final String TXT_YOU_NOW_HAVE = "You now have %s";
+    public static final int STARTING_STR = 30;
     private static final String TXT_LEAVE = "One does not simply leave Pixel Dungeon.";
-
     private static final String TXT_LEVEL_UP = "level up!";
     private static final String TXT_NEW_LEVEL =
             "Welcome to level %d! Now you are healthier and more focused. " +
                     "It's easier for you to hit enemies and dodge their attacks.";
-
-    public static final String TXT_YOU_NOW_HAVE = "You now have %s";
-
     private static final String TXT_SOMETHING_ELSE = "There is something else here";
     private static final String TXT_LOCKED_CHEST = "This chest is locked and you don't have matching key";
     private static final String TXT_LOCKED_DOOR = "You don't have a matching key";
     private static final String TXT_NOTICED_SMTH = "You noticed something";
-
     private static final String TXT_WAIT = "...";
     private static final String TXT_SEARCH = "search";
-
-    public static final int STARTING_STR = 30;
-
     private static final float TIME_TO_REST = 1f;
     private static final float TIME_TO_SEARCH = 1f;
-
-    private HeroClass heroClass = HeroClass.ROGUE;
+    private static final String ATTACK = "attackSkill";
+    private static final String DEFENSE = "defenseSkill";
+    private static final String STRENGTH = "STR";
+    private static final String LEVEL = "lvl";
+    private static final String EXPERIENCE = "exp";
+    private static final String DIFFICULTY = "editdifficulty";
+    private static final String VERSION_SAVE = "verisionofsave";
+    private static final String SKILLS_AVAILABLE = "availableskills";
+    private static final String MERC_TYPE = "merctype";
+    private static final String MERC_HEALTH = "merchealth";
+    private static final String MERC_SKILL = "mercskill";
+    private static final int skills_reset_version = 19;
+    public static WandOfMagicCasting haxWand = new WandOfMagicCasting();
     public HeroSubClass subClass = HeroSubClass.NONE;
-
     public CurrentSkills heroSkills = CurrentSkills.MAGE;
-
     public HiredMerc hiredMerc = null;
-
-    protected int attackSkill = 500;
-    protected int defenseSkill = 400;
-
     public boolean ready = false;
-
     public HeroAction curAction = null;
     public HeroAction lastAction = null;
-
-    private Char enemy;
-
     public Armor.Glyph killerGlyph = null;
-
-    private Item theKey;
-
     public boolean restoreHealth = false;
-
     public MissileWeapon rangedWeapon = null;
     public Belongings belongings;
     public Storage storage;
-
     public int STR;
     public boolean weakened = false;
-
     public float awareness;
-
     public int lvl = 1;
     public int exp = 0;
-
     public int difficulty = 0;
-
     public boolean checkMerc = false;
-
-
+    protected int attackSkill = 500;
+    protected int defenseSkill = 400;
+    private HeroClass heroClass = HeroClass.ROGUE;
+    private Char enemy;
+    private Item theKey;
     private ArrayList<Mob> visibleEnemies;
-    public static WandOfMagicCasting haxWand = new WandOfMagicCasting();
-
     public Hero () {
         super();
         name = "you";
@@ -212,27 +199,72 @@ public class Hero extends Char {
         visibleEnemies = new ArrayList<Mob>();
     }
 
+    public static void preview ( GamesInProgress.Info info, Bundle bundle ) {
+        info.level = bundle.getInt( LEVEL );
+    }
+
+    public static void reallyDie ( Object cause ) {
+
+        int length = Level.LENGTH;
+        int[] map = Dungeon.getLevel().map;
+        boolean[] visited = Dungeon.getLevel().visited;
+        boolean[] discoverable = Level.discoverable;
+
+        for ( int i = 0; i < length; i++ ) {
+
+            int terr = map[i];
+
+            if ( discoverable[i] ) {
+
+                visited[i] = true;
+                if ( ( Terrain.flags[terr] & Terrain.SECRET ) != 0 ) {
+                    Level.set( i, Terrain.discover( terr ) );
+                    GameScene.updateMap( i );
+                }
+            }
+        }
+
+        Bones.leave();
+
+        Dungeon.observe();
+
+        Dungeon.getHero().belongings.identify();
+
+        int pos = Dungeon.getHero().pos;
+
+        ArrayList<Integer> passable = new ArrayList<Integer>();
+        for ( Integer ofs : Level.NEIGHBOURS8 ) {
+            int cell = pos + ofs;
+            if ( ( Level.passable[cell] || Level.avoid[cell] ) && Dungeon.getLevel().heaps.get( cell ) == null ) {
+                passable.add( cell );
+            }
+        }
+        Collections.shuffle( passable );
+
+        ArrayList<Item> items = new ArrayList<Item>( Dungeon.getHero().belongings.backpack.items );
+        for ( Integer cell : passable ) {
+            if ( items.isEmpty() ) {
+                break;
+            }
+
+            Item item = Random.element( items );
+            Dungeon.getLevel().drop( item, cell ).sprite.drop( pos );
+            items.remove( item );
+        }
+
+        GameScene.gameOver();
+
+        if ( cause instanceof Hero.Doom ) {
+            ( (Hero.Doom) cause ).onDeath();
+        }
+
+        Dungeon.deleteGame( Dungeon.getHero().getHeroClass(), true );
+    }
+
     public int STR () {
         //return weakened ? STR - 2 : STR;
         return STR;
     }
-
-    private static final String ATTACK = "attackSkill";
-    private static final String DEFENSE = "defenseSkill";
-    private static final String STRENGTH = "STR";
-    private static final String LEVEL = "lvl";
-    private static final String EXPERIENCE = "exp";
-
-    private static final String DIFFICULTY = "editdifficulty";
-
-    private static final String VERSION_SAVE = "verisionofsave";
-    private static final String SKILLS_AVAILABLE = "availableskills";
-
-    private static final String MERC_TYPE = "merctype";
-    private static final String MERC_HEALTH = "merchealth";
-    private static final String MERC_SKILL = "mercskill";
-
-    private static final int skills_reset_version = 19;
 
     @SuppressWarnings ( "FeatureEnvy" )
     @Override
@@ -335,10 +367,6 @@ public class Hero extends Char {
             heroSkills.restoreSkillsFromBundle( bundle );
             Skill.availableSkill = bundle.getInt( SKILLS_AVAILABLE );
         }
-    }
-
-    public static void preview ( GamesInProgress.Info info, Bundle bundle ) {
-        info.level = bundle.getInt( LEVEL );
     }
 
     public String className () {
@@ -731,8 +759,7 @@ public class Hero extends Char {
                 Item item = heap.pickUp();
                 if ( item.doPickUp( this ) ) {
 
-                    if ( !(item instanceof Dewdrop) )
-                    {
+                    if ( !( item instanceof Dewdrop ) ) {
                         boolean important =
                                 ( ( item instanceof ScrollOfUpgrade || item instanceof ScrollOfEnchantment ) && ( (Scroll) item ).isKnown() ) ||
                                         ( ( item instanceof PotionOfStrength || item instanceof PotionOfMight ) && ( (Potion) item ).isKnown() );
@@ -1421,64 +1448,6 @@ public class Hero extends Char {
             }
 
         }
-    }
-
-    public static void reallyDie ( Object cause ) {
-
-        int length = Level.LENGTH;
-        int[] map = Dungeon.getLevel().map;
-        boolean[] visited = Dungeon.getLevel().visited;
-        boolean[] discoverable = Level.discoverable;
-
-        for ( int i = 0; i < length; i++ ) {
-
-            int terr = map[i];
-
-            if ( discoverable[i] ) {
-
-                visited[i] = true;
-                if ( ( Terrain.flags[terr] & Terrain.SECRET ) != 0 ) {
-                    Level.set( i, Terrain.discover( terr ) );
-                    GameScene.updateMap( i );
-                }
-            }
-        }
-
-        Bones.leave();
-
-        Dungeon.observe();
-
-        Dungeon.getHero().belongings.identify();
-
-        int pos = Dungeon.getHero().pos;
-
-        ArrayList<Integer> passable = new ArrayList<Integer>();
-        for ( Integer ofs : Level.NEIGHBOURS8 ) {
-            int cell = pos + ofs;
-            if ( ( Level.passable[cell] || Level.avoid[cell] ) && Dungeon.getLevel().heaps.get( cell ) == null ) {
-                passable.add( cell );
-            }
-        }
-        Collections.shuffle( passable );
-
-        ArrayList<Item> items = new ArrayList<Item>( Dungeon.getHero().belongings.backpack.items );
-        for ( Integer cell : passable ) {
-            if ( items.isEmpty() ) {
-                break;
-            }
-
-            Item item = Random.element( items );
-            Dungeon.getLevel().drop( item, cell ).sprite.drop( pos );
-            items.remove( item );
-        }
-
-        GameScene.gameOver();
-
-        if ( cause instanceof Hero.Doom ) {
-            ( (Hero.Doom) cause ).onDeath();
-        }
-
-        Dungeon.deleteGame( Dungeon.getHero().getHeroClass(), true );
     }
 
     @Override

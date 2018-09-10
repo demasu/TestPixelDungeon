@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.wands;
 
-import java.util.ArrayList;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -32,6 +30,8 @@ import com.demasu.testpixeldungeon.mechanics.Ballistica;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class WandOfDisintegration extends Wand {
 

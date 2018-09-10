@@ -21,11 +21,10 @@ import java.util.ArrayList;
 
 public class Group extends Gizmo {
 
-    protected ArrayList<Gizmo> members;
-
     // Accessing it is a little faster,
     // than calling memebers.getSize()
     public int length;
+    protected ArrayList<Gizmo> members;
 
     public Group () {
         members = new ArrayList<Gizmo>();

@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.effects.Speck;
@@ -29,7 +26,10 @@ import com.demasu.testpixeldungeon.sprites.ItemSprite.Glowing;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
+
+import java.util.ArrayList;
 
 public class DewVial extends Item {
 
@@ -46,6 +46,11 @@ public class DewVial extends Item {
     private static final String TXT_COLLECTED = "You collected a dewdrop into your dew vial.";
     private static final String TXT_FULL = "Your dew vial is full!";
     private static final String TXT_EMPTY = "Your dew vial is empty!";
+    private static final String VOLUME = "volume";
+    private static final double NUM = 20;
+    private static final double POW = Math.log10( NUM );
+    private static final Glowing WHITE = new Glowing( 0xFFFFCC );
+    private int volume = 0;
 
     {
         name = "dew vial";
@@ -56,9 +61,15 @@ public class DewVial extends Item {
         unique = true;
     }
 
-    private int volume = 0;
+    public static void autoDrink ( Hero hero ) {
+        DewVial vial = hero.belongings.getItem( DewVial.class );
+        if ( vial != null && vial.isFull() ) {
+            vial.execute( hero );
+            hero.sprite.emitter().start( ShaftParticle.FACTORY, 0.2f, 3 );
 
-    private static final String VOLUME = "volume";
+            GLog.w( TXT_AUTO_DRINK );
+        }
+    }
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -80,9 +91,6 @@ public class DewVial extends Item {
         }
         return actions;
     }
-
-    private static final double NUM = 20;
-    private static final double POW = Math.log10( NUM );
 
     @Override
     public void execute ( final Hero hero, String action ) {
@@ -149,18 +157,6 @@ public class DewVial extends Item {
         volume = MAX_VOLUME;
         updateQuickslot();
     }
-
-    public static void autoDrink ( Hero hero ) {
-        DewVial vial = hero.belongings.getItem( DewVial.class );
-        if ( vial != null && vial.isFull() ) {
-            vial.execute( hero );
-            hero.sprite.emitter().start( ShaftParticle.FACTORY, 0.2f, 3 );
-
-            GLog.w( TXT_AUTO_DRINK );
-        }
-    }
-
-    private static final Glowing WHITE = new Glowing( 0xFFFFCC );
 
     @Override
     public Glowing glowing () {

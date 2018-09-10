@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.utils.GLog;
 

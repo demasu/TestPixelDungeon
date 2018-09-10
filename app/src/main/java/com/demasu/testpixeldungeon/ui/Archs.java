@@ -17,22 +17,19 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
+import com.demasu.testpixeldungeon.Assets;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.SkinnedBlock;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.Assets;
 
 public class Archs extends Component {
 
     private static final float SCROLL_SPEED = 20f;
-
-    private SkinnedBlock arcsBg;
-    private SkinnedBlock arcsFg;
-
     private static float offsB = 0;
     private static float offsF = 0;
-
     public boolean reversed = false;
+    private SkinnedBlock arcsBg;
+    private SkinnedBlock arcsFg;
 
     @Override
     protected void createChildren () {

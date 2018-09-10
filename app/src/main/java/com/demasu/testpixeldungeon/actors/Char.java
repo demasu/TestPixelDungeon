@@ -17,10 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors;
 
-import java.util.HashSet;
-
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.ResultDescriptions;
@@ -30,21 +26,21 @@ import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Burning;
 import com.demasu.testpixeldungeon.actors.buffs.Champ;
 import com.demasu.testpixeldungeon.actors.buffs.Charm;
-import com.demasu.testpixeldungeon.actors.buffs.Vertigo;
 import com.demasu.testpixeldungeon.actors.buffs.Cripple;
 import com.demasu.testpixeldungeon.actors.buffs.Frost;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
-import com.demasu.testpixeldungeon.actors.buffs.Light;
-import com.demasu.testpixeldungeon.actors.buffs.Roots;
-import com.demasu.testpixeldungeon.actors.buffs.Shadows;
-import com.demasu.testpixeldungeon.actors.buffs.Sleep;
-import com.demasu.testpixeldungeon.actors.buffs.Speed;
 import com.demasu.testpixeldungeon.actors.buffs.Levitation;
+import com.demasu.testpixeldungeon.actors.buffs.Light;
 import com.demasu.testpixeldungeon.actors.buffs.MindVision;
 import com.demasu.testpixeldungeon.actors.buffs.Paralysis;
 import com.demasu.testpixeldungeon.actors.buffs.Poison;
+import com.demasu.testpixeldungeon.actors.buffs.Roots;
+import com.demasu.testpixeldungeon.actors.buffs.Shadows;
+import com.demasu.testpixeldungeon.actors.buffs.Sleep;
 import com.demasu.testpixeldungeon.actors.buffs.Slow;
+import com.demasu.testpixeldungeon.actors.buffs.Speed;
 import com.demasu.testpixeldungeon.actors.buffs.Terror;
+import com.demasu.testpixeldungeon.actors.buffs.Vertigo;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.hero.HeroSubClass;
 import com.demasu.testpixeldungeon.actors.mobs.Bestiary;
@@ -69,10 +65,14 @@ import com.demasu.testpixeldungeon.levels.features.Door;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.GameMath;
 import com.watabou.utils.Random;
+
+import java.util.HashSet;
 
 public abstract class Char extends Actor {
 
@@ -84,9 +84,28 @@ public abstract class Char extends Actor {
     private static final String TXT_SMB_MISSED = "%s %s %s's attack";
 
     private static final String TXT_OUT_OF_PARALYSIS = "The pain snapped %s out of paralysis";
-
+    private static final String POS = "pos";
+    private static final String TAG_HP = "HP";
+    private static final String TAG_HT = "HT";
+    private static final String TAG_MP = "MP";
+    private static final String TAG_MT = "MT";
+    private static final String BUFFS = "buffs";
+    private static final HashSet<Class<?>> EMPTY = new HashSet<Class<?>>();
     public boolean screams = true;
-
+    public int pos = 0;
+    public CharSprite sprite;
+    public String name = "mob";
+    public int HT;
+    public int HP;
+    public int MP = 0;
+    public int MMP = 1;
+    public int champ = -1;
+    public boolean paralysed = false;
+    public boolean rooted = false;
+    public boolean flying = false;
+    public int invisible = 0;
+    public int viewDistance = 8;
+    protected float baseSpeed = 1;
     private String[] MOB_DEATH_SCREAMS = {
             "...",
             "I will haunt your dreams...",
@@ -96,7 +115,6 @@ public abstract class Char extends Actor {
             "Mommy...",
             "I will be avenged..."
     };
-
     private String[] RAT_DEATH_SCREAMS = {
             "The Rat King will be victorious!",
             "The Rat King will avenge me!",
@@ -106,7 +124,6 @@ public abstract class Char extends Actor {
             "You know nothing...",
             "The world is ours... all of its cheese too..."
     };
-
     private String[] HERO_DEATH_SCREAM = {
             "Ouch!",
             "My face...",
@@ -114,40 +131,29 @@ public abstract class Char extends Actor {
             "This game blows...",
             "Nerf it..."
     };
-
     private String[] PET_FAREWELL = {
             "Farewell...",
             "I have failed you...",
             "I just wanted some love..."
     };
-
     private String[] MERC_FAREWELL = {
             "I didn't sign up for this...",
             "I want a raise..."
     };
-
-    public int pos = 0;
-
-    public CharSprite sprite;
-
-    public String name = "mob";
-
-    public int HT;
-    public int HP;
-    public int MP = 0;
-    public int MMP = 1;
-    public int champ = -1;
-
-    protected float baseSpeed = 1;
-
-    public boolean paralysed = false;
-    public boolean rooted = false;
-    public boolean flying = false;
-    public int invisible = 0;
-
-    public int viewDistance = 8;
-
     private HashSet<Buff> buffs = new HashSet<Buff>();
+
+    public static boolean hit ( Char attacker, Char defender, boolean magic ) {
+        float acuRoll = Random.Float( attacker.attackSkill( defender ) );
+        float defRoll = Random.Float( defender.defenseSkill( attacker ) );
+
+        //noinspection SimplifiableIfStatement
+        if ( defender instanceof Hero && Level.distance( attacker.pos, defender.pos ) > 1 && ( (Hero) defender ).heroSkills.passiveA3.dodgeChance() ) // <--- Huntress Awareness if present
+        {
+            return false;
+        }
+
+        return ( magic ? acuRoll * 2 : acuRoll ) >= defRoll;
+    }
 
     public String getDeathScream () {
         if ( this instanceof Hero ) {
@@ -170,13 +176,6 @@ public abstract class Char extends Actor {
         Dungeon.getLevel().updateFieldOfView( this );
         return false;
     }
-
-    private static final String POS = "pos";
-    private static final String TAG_HP = "HP";
-    private static final String TAG_HT = "HT";
-    private static final String TAG_MP = "MP";
-    private static final String TAG_MT = "MT";
-    private static final String BUFFS = "buffs";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -208,7 +207,6 @@ public abstract class Char extends Actor {
             }
         }
     }
-
 
     public boolean attack ( Char enemy ) {
 
@@ -360,19 +358,6 @@ public abstract class Char extends Actor {
             return false;
 
         }
-    }
-
-    public static boolean hit ( Char attacker, Char defender, boolean magic ) {
-        float acuRoll = Random.Float( attacker.attackSkill( defender ) );
-        float defRoll = Random.Float( defender.defenseSkill( attacker ) );
-
-        //noinspection SimplifiableIfStatement
-        if ( defender instanceof Hero && Level.distance( attacker.pos, defender.pos ) > 1 && ( (Hero) defender ).heroSkills.passiveA3.dodgeChance() ) // <--- Huntress Awareness if present
-        {
-            return false;
-        }
-
-        return ( magic ? acuRoll * 2 : acuRoll ) >= defRoll;
     }
 
     public int attackSkill ( Char target ) {
@@ -636,7 +621,6 @@ public abstract class Char extends Actor {
         }
     }
 
-
     @Override
     protected void onRemove () {
         for ( Buff buff : buffs.toArray( new Buff[0] ) ) {
@@ -705,8 +689,6 @@ public abstract class Char extends Actor {
     public void onOperateComplete () {
         next();
     }
-
-    private static final HashSet<Class<?>> EMPTY = new HashSet<Class<?>>();
 
     public HashSet<Class<?>> resistances () {
         return EMPTY;

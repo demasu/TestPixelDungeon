@@ -31,9 +31,13 @@ import com.watabou.utils.Bundle;
 
 public class Poison extends Buff implements Hero.Doom {
 
+    private static final String LEFT = "left";
     protected float left;
 
-    private static final String LEFT = "left";
+    public static float durationFactor ( Char ch ) {
+        Resistance r = ch.buff( Resistance.class );
+        return r != null ? r.durationFactor() : 1;
+    }
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -84,11 +88,6 @@ public class Poison extends Buff implements Hero.Doom {
         }
 
         return true;
-    }
-
-    public static float durationFactor ( Char ch ) {
-        Resistance r = ch.buff( Resistance.class );
-        return r != null ? r.durationFactor() : 1;
     }
 
     @Override

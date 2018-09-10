@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.Journal;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -34,7 +32,23 @@ import com.demasu.testpixeldungeon.sprites.StatueSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Statue extends Mob {
+
+    private static final String WEAPON = "weapon";
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( ToxicGas.class );
+        RESISTANCES.add( Poison.class );
+        RESISTANCES.add( Death.class );
+        RESISTANCES.add( ScrollOfPsionicBlast.class );
+        IMMUNITIES.add( Leech.class );
+    }
+
+    private Weapon weapon;
 
     {
         name = "animated statue";
@@ -43,8 +57,6 @@ public class Statue extends Mob {
         EXP = 0;
         state = PASSIVE;
     }
-
-    private Weapon weapon;
 
     public Statue () {
         super();
@@ -59,8 +71,6 @@ public class Statue extends Mob {
         HP = HT = 15 + Dungeon.getDepth() * 5;
         defenseSkill = 4 + Dungeon.getDepth();
     }
-
-    private static final String WEAPON = "weapon";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -146,17 +156,6 @@ public class Statue extends Mob {
         return
                 "You would think that it's just another ugly statue of this dungeon, but its red glowing eyes give itself away. " +
                         "While the statue itself is made of stone, the _" + weapon.name() + "_, it's wielding, looks real.";
-    }
-
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( ToxicGas.class );
-        RESISTANCES.add( Poison.class );
-        RESISTANCES.add( Death.class );
-        RESISTANCES.add( ScrollOfPsionicBlast.class );
-        IMMUNITIES.add( Leech.class );
     }
 
     @Override

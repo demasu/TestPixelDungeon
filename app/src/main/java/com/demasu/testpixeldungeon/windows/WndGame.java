@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import java.io.IOException;
-
-import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.hero.Legend;
@@ -30,6 +27,9 @@ import com.demasu.testpixeldungeon.scenes.TitleScene;
 import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.Window;
+import com.watabou.noosa.Game;
+
+import java.io.IOException;
 
 public class WndGame extends Window {
 

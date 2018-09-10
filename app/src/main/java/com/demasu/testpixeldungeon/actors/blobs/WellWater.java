@@ -33,6 +33,25 @@ public class WellWater extends Blob {
 
     protected int pos;
 
+    public static void affectCell ( int cell ) {
+
+        Class<?>[] waters = { WaterOfHealth.class, WaterOfAwareness.class, WaterOfTransmutation.class };
+
+        for ( Class<?> waterClass : waters ) {
+            WellWater water = (WellWater) Dungeon.getLevel().blobs.get( waterClass );
+            if ( water != null &&
+                    water.volume > 0 &&
+                    water.pos == cell &&
+                    water.affect() ) {
+
+                Level.set( cell, Terrain.EMPTY_WELL );
+                GameScene.updateMap( cell );
+
+                return;
+            }
+        }
+    }
+
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
         super.restoreFromBundle( bundle );
@@ -124,24 +143,5 @@ public class WellWater extends Blob {
         cur[pos] = 0;
         pos = cell;
         volume = cur[pos] = amount;
-    }
-
-    public static void affectCell ( int cell ) {
-
-        Class<?>[] waters = { WaterOfHealth.class, WaterOfAwareness.class, WaterOfTransmutation.class };
-
-        for ( Class<?> waterClass : waters ) {
-            WellWater water = (WellWater) Dungeon.getLevel().blobs.get( waterClass );
-            if ( water != null &&
-                    water.volume > 0 &&
-                    water.pos == cell &&
-                    water.affect() ) {
-
-                Level.set( cell, Terrain.EMPTY_WELL );
-                GameScene.updateMap( cell );
-
-                return;
-            }
-        }
     }
 }

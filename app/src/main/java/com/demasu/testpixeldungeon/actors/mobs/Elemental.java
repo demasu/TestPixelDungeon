@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
@@ -32,7 +30,18 @@ import com.demasu.testpixeldungeon.items.weapon.enchantments.Fire;
 import com.demasu.testpixeldungeon.sprites.ElementalSprite;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Elemental extends Mob {
+
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( Burning.class );
+        IMMUNITIES.add( Fire.class );
+        IMMUNITIES.add( WandOfFirebolt.class );
+        IMMUNITIES.add( ScrollOfPsionicBlast.class );
+    }
 
     {
         name = "fire elemental";
@@ -100,15 +109,6 @@ public class Elemental extends Mob {
         return
                 "Wandering fire elementals are a byproduct of summoning greater entities. " +
                         "They are too chaotic in their nature to be controlled by even the most powerful demonologist.";
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Burning.class );
-        IMMUNITIES.add( Fire.class );
-        IMMUNITIES.add( WandOfFirebolt.class );
-        IMMUNITIES.add( ScrollOfPsionicBlast.class );
     }
 
     @Override

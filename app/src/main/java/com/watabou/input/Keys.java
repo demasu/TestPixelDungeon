@@ -17,11 +17,11 @@
 
 package com.watabou.input;
 
-import java.util.ArrayList;
+import android.view.KeyEvent;
 
 import com.watabou.utils.Signal;
 
-import android.view.KeyEvent;
+import java.util.ArrayList;
 
 public class Keys {
 

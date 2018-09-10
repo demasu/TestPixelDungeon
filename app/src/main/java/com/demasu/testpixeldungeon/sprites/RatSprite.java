@@ -17,11 +17,10 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.items.weapon.missiles.Dart;
 import com.demasu.testpixeldungeon.items.weapon.missiles.MobProjectile;
 import com.demasu.testpixeldungeon.levels.Level;
+import com.watabou.noosa.TextureFilm;
 import com.watabou.utils.Callback;
 
 public class RatSprite extends MobSprite {

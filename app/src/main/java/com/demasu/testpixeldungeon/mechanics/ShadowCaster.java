@@ -17,9 +17,9 @@
  */
 package com.demasu.testpixeldungeon.mechanics;
 
-import java.util.Arrays;
-
 import com.demasu.testpixeldungeon.levels.Level;
+
+import java.util.Arrays;
 
 public final class ShadowCaster {
 
@@ -35,6 +35,7 @@ public final class ShadowCaster {
     private static boolean[] fieldOfView;
 
     private static int[][] rounding;
+    private static Obstacles obs = new Obstacles();
 
     static {
         rounding = new int[MAX_DISTANCE + 1][];
@@ -45,8 +46,6 @@ public final class ShadowCaster {
             }
         }
     }
-
-    private static Obstacles obs = new Obstacles();
 
     public static void castShadow ( int x, int y, boolean[] fieldOfView, int distance ) {
 

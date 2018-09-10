@@ -31,9 +31,6 @@ public class Visual extends Gizmo {
 
     public PointF scale;
     public PointF origin;
-
-    protected float[] matrix;
-
     public float rm;
     public float gm;
     public float bm;
@@ -42,12 +39,11 @@ public class Visual extends Gizmo {
     public float ga;
     public float ba;
     public float aa;
-
     public PointF speed;
     public PointF acc;
-
     public float angle;
     public float angularSpeed;
+    protected float[] matrix;
 
     public Visual ( float x, float y, float width, float height ) {
         this.x = x;

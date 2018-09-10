@@ -17,85 +17,29 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
 import com.watabou.utils.SparseArray;
+
+import java.util.ArrayList;
 
 public class FloatingText extends BitmapText {
 
     private static final float LIFESPAN = 1f;
     private static final float DISTANCE = DungeonTilemap.SIZE;
-
-    private float timeLeft;
-
-    private int key = -1;
-
-    private float cameraZoom = -1;
-
     private static SparseArray<ArrayList<FloatingText>> stacks = new SparseArray<ArrayList<FloatingText>>();
+    private float timeLeft;
+    private int key = -1;
+    private float cameraZoom = -1;
 
     public FloatingText () {
         super();
         speed.y = -DISTANCE / LIFESPAN;
     }
-
-    @Override
-    public void update () {
-        super.update();
-
-        if ( timeLeft > 0 ) {
-            if ( ( timeLeft -= Game.elapsed ) <= 0 ) {
-                kill();
-            } else {
-                float p = timeLeft / LIFESPAN;
-                alpha( p > 0.5f ? 1 : p * 2 );
-            }
-        }
-    }
-
-    @Override
-    public void kill () {
-        if ( key != -1 ) {
-            stacks.get( key ).remove( this );
-            key = -1;
-        }
-        super.kill();
-    }
-
-    @Override
-    public void destroy () {
-        kill();
-        super.destroy();
-    }
-
-    public void reset ( float x, float y, String text, int color ) {
-
-        revive();
-
-        if ( cameraZoom != Camera.main.zoom ) {
-            cameraZoom = Camera.main.zoom;
-            PixelScene.chooseFont( 9, cameraZoom );
-            font = PixelScene.font;
-            scale.set( PixelScene.scale );
-        }
-
-        text( text );
-        hardlight( color );
-
-        measure();
-        this.x = PixelScene.align( x - width() / 2 );
-        this.y = y - height();
-
-        timeLeft = LIFESPAN;
-    }
-
-    /* STATIC METHODS */
 
     public static void show ( float x, float y, String text, int color ) {
         GameScene.status().reset( x, y, text, color );
@@ -134,5 +78,57 @@ public class FloatingText extends BitmapText {
         }
 
         stack.add( txt );
+    }
+
+    @Override
+    public void update () {
+        super.update();
+
+        if ( timeLeft > 0 ) {
+            if ( ( timeLeft -= Game.elapsed ) <= 0 ) {
+                kill();
+            } else {
+                float p = timeLeft / LIFESPAN;
+                alpha( p > 0.5f ? 1 : p * 2 );
+            }
+        }
+    }
+
+    /* STATIC METHODS */
+
+    @Override
+    public void kill () {
+        if ( key != -1 ) {
+            stacks.get( key ).remove( this );
+            key = -1;
+        }
+        super.kill();
+    }
+
+    @Override
+    public void destroy () {
+        kill();
+        super.destroy();
+    }
+
+    public void reset ( float x, float y, String text, int color ) {
+
+        revive();
+
+        if ( cameraZoom != Camera.main.zoom ) {
+            cameraZoom = Camera.main.zoom;
+            PixelScene.chooseFont( 9, cameraZoom );
+            font = PixelScene.font;
+            scale.set( PixelScene.scale );
+        }
+
+        text( text );
+        hardlight( color );
+
+        measure();
+        this.x = PixelScene.align( x - width() / 2 );
+        this.y = y - height();
+
+        timeLeft = LIFESPAN;
     }
 }

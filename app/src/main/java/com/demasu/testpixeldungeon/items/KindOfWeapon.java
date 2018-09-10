@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import java.util.ArrayList;
-
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.HiredMerc;
@@ -26,11 +24,12 @@ import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+
 abstract public class KindOfWeapon extends EquipableItem {
 
-    private static final String TXT_EQUIP_CURSED = "you wince as your grip involuntarily tightens around your %s";
-
     protected static final float TIME_TO_EQUIP = 1f;
+    private static final String TXT_EQUIP_CURSED = "you wince as your grip involuntarily tightens around your %s";
 
     @Override
     public ArrayList<String> actions ( Hero hero ) {

@@ -1,8 +1,8 @@
 package com.demasu.testpixeldungeon.ui;
 
+import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.watabou.noosa.BitmapTextMultiline;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.watabou.utils.Highlighter;
 
 public class HighlightedText extends Component {

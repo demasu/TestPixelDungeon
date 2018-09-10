@@ -17,18 +17,14 @@
  */
 package com.demasu.testpixeldungeon.effects.particles;
 
-import com.watabou.noosa.particles.Emitter;
-import com.watabou.noosa.particles.PixelParticle;
-import com.watabou.noosa.particles.Emitter.Factory;
 import com.demasu.testpixeldungeon.Dungeon;
+import com.watabou.noosa.particles.Emitter;
+import com.watabou.noosa.particles.Emitter.Factory;
+import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.ColorMath;
 import com.watabou.utils.Random;
 
 public class LeafParticle extends PixelParticle.Shrinking {
-
-    public static int color1;
-    public static int color2;
-
 
     public static final Emitter.Factory GENERAL = new Factory() {
         @Override
@@ -38,7 +34,6 @@ public class LeafParticle extends PixelParticle.Shrinking {
             p.reset( x, y );
         }
     };
-
     public static final Emitter.Factory LEVEL_SPECIFIC = new Factory() {
         @Override
         public void emit ( Emitter emitter, int index, float x, float y ) {
@@ -47,6 +42,8 @@ public class LeafParticle extends PixelParticle.Shrinking {
             p.reset( x, y );
         }
     };
+    public static int color1;
+    public static int color2;
 
     public LeafParticle () {
         super();

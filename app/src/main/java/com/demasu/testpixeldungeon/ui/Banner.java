@@ -22,18 +22,11 @@ import com.watabou.noosa.Image;
 
 public class Banner extends Image {
 
-    private enum State {
-        FADE_IN, STATIC, FADE_OUT
-    }
-
     private State state;
-
     private float time;
-
     private int color;
     private float fadeTime;
     private float showTime;
-
     public Banner ( Image sample ) {
         super();
         copy( sample );
@@ -98,5 +91,9 @@ public class Banner extends Image {
             }
 
         }
+    }
+
+    private enum State {
+        FADE_IN, STATIC, FADE_OUT
     }
 }

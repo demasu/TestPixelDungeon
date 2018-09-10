@@ -17,33 +17,24 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
+import com.demasu.testpixeldungeon.Assets;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.audio.Sample;
-import com.demasu.testpixeldungeon.Assets;
 import com.watabou.utils.PointF;
 
 public class BadgeBanner extends Image {
 
-    private enum State {
-        FADE_IN, STATIC, FADE_OUT
-    }
-
-    private State state;
-
     private static final float DEFAULT_SCALE = 3;
-
     private static final float FADE_IN_TIME = 0.2f;
     private static final float STATIC_TIME = 1f;
     private static final float FADE_OUT_TIME = 1.0f;
-
+    private static TextureFilm atlas;
+    private static BadgeBanner current;
+    private State state;
     private int index;
     private float time;
-
-    private static TextureFilm atlas;
-
-    private static BadgeBanner current;
 
     private BadgeBanner ( int index ) {
 
@@ -65,56 +56,6 @@ public class BadgeBanner extends Image {
         time = FADE_IN_TIME;
 
         Sample.INSTANCE.play( Assets.SND_BADGE );
-    }
-
-    @Override
-    public void update () {
-        super.update();
-
-        time -= Game.elapsed;
-        if ( time >= 0 ) {
-
-            switch ( state ) {
-                case FADE_IN:
-                    float p = time / FADE_IN_TIME;
-                    scale.set( ( 1 + p ) * DEFAULT_SCALE );
-                    alpha( 1 - p );
-                    break;
-                case STATIC:
-                    break;
-                case FADE_OUT:
-                    alpha( time / FADE_OUT_TIME );
-                    break;
-            }
-
-        } else {
-
-            switch ( state ) {
-                case FADE_IN:
-                    time = STATIC_TIME;
-                    state = State.STATIC;
-                    scale.set( DEFAULT_SCALE );
-                    alpha( 1 );
-                    highlight( this, index );
-                    break;
-                case STATIC:
-                    time = FADE_OUT_TIME;
-                    state = State.FADE_OUT;
-                    break;
-                case FADE_OUT:
-                    killAndErase();
-                    break;
-            }
-
-        }
-    }
-
-    @Override
-    public void kill () {
-        if ( current == this ) {
-            current = null;
-        }
-        super.kill();
     }
 
     public static void highlight ( Image image, int index ) {
@@ -284,5 +225,59 @@ public class BadgeBanner extends Image {
         }
         image.frame( atlas.get( index ) );
         return image;
+    }
+
+    @Override
+    public void update () {
+        super.update();
+
+        time -= Game.elapsed;
+        if ( time >= 0 ) {
+
+            switch ( state ) {
+                case FADE_IN:
+                    float p = time / FADE_IN_TIME;
+                    scale.set( ( 1 + p ) * DEFAULT_SCALE );
+                    alpha( 1 - p );
+                    break;
+                case STATIC:
+                    break;
+                case FADE_OUT:
+                    alpha( time / FADE_OUT_TIME );
+                    break;
+            }
+
+        } else {
+
+            switch ( state ) {
+                case FADE_IN:
+                    time = STATIC_TIME;
+                    state = State.STATIC;
+                    scale.set( DEFAULT_SCALE );
+                    alpha( 1 );
+                    highlight( this, index );
+                    break;
+                case STATIC:
+                    time = FADE_OUT_TIME;
+                    state = State.FADE_OUT;
+                    break;
+                case FADE_OUT:
+                    killAndErase();
+                    break;
+            }
+
+        }
+    }
+
+    @Override
+    public void kill () {
+        if ( current == this ) {
+            current = null;
+        }
+        super.kill();
+    }
+
+    private enum State {
+        FADE_IN, STATIC, FADE_OUT
     }
 }

@@ -17,40 +17,31 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Scene;
-import com.watabou.noosa.audio.Music;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.Bones;
-import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
-import com.demasu.testpixeldungeon.actors.mobs.EnslavedSouls;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
-import com.demasu.testpixeldungeon.effects.CellEmitter;
 import com.demasu.testpixeldungeon.effects.Pushing;
-import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
 import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Item;
-import com.demasu.testpixeldungeon.items.keys.SkeletonKey;
 import com.demasu.testpixeldungeon.levels.painters.Painter;
-import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.InterlevelScene;
 import com.demasu.testpixeldungeon.scenes.MissionScene;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.sprites.ColdGirlSisterSprite;
 import com.demasu.testpixeldungeon.sprites.CursePersonificationSprite;
-import com.demasu.testpixeldungeon.sprites.MercSprite;
 import com.demasu.testpixeldungeon.sprites.RedGirlSprite;
 import com.demasu.testpixeldungeon.sprites.SkeletonSprite;
 import com.demasu.testpixeldungeon.sprites.SoldierWarriorSprite;
 import com.demasu.testpixeldungeon.sprites.VanguardWarriorSprite;
-import com.demasu.testpixeldungeon.sprites.WraithSprite;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Scene;
+import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
@@ -58,6 +49,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MovieLevel extends Level {
+
+    private static final int ROOM_LEFT = WIDTH / 2 - 2;
+    private static final int ROOM_RIGHT = WIDTH / 2 + 2;
+    private static final int ROOM_TOP = HEIGHT / 2 - 2;
+    private static final int ROOM_BOTTOM = HEIGHT / 2 + 2;
+    private static final String DOOR = "door";
+    private static final String ENTERED = "entered";
+    private static final String DROPPED = "droppped";
+    public Maestro maestro;
+    private int arenaDoor;
+    private boolean enteredArena = false;
+    private boolean keyDropped = false;
 
     {
         color1 = 0x534f3e;
@@ -68,18 +71,6 @@ public class MovieLevel extends Level {
         Arrays.fill( fieldOfView, true );
     }
 
-    public Maestro maestro;
-
-
-    private static final int ROOM_LEFT = WIDTH / 2 - 2;
-    private static final int ROOM_RIGHT = WIDTH / 2 + 2;
-    private static final int ROOM_TOP = HEIGHT / 2 - 2;
-    private static final int ROOM_BOTTOM = HEIGHT / 2 + 2;
-
-    private int arenaDoor;
-    private boolean enteredArena = false;
-    private boolean keyDropped = false;
-
     @Override
     public String tilesTex () {
         return Assets.TILES_CITY;
@@ -89,10 +80,6 @@ public class MovieLevel extends Level {
     public String waterTex () {
         return Assets.WATER_CAVES;
     }
-
-    private static final String DOOR = "door";
-    private static final String ENTERED = "entered";
-    private static final String DROPPED = "droppped";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -275,13 +262,13 @@ public class MovieLevel extends Level {
     public class MovieMaiden extends Mob {
 
 
+        public Char tmp = null;
+
         {
             spriteClass = RedGirlSprite.class;
             state = HUNTING;
             hostile = false;
         }
-
-        public Char tmp = null;
 
         @Override
         public void onAttackComplete () {
@@ -410,20 +397,16 @@ public class MovieLevel extends Level {
     public class Maestro extends ColdGirl {
         static final int END_MOVIE = 632;
         int counter = 0;
-
-        {
-            hostile = false;
-        }
-
-
         MovieGirl actress;
         MovieMaiden actress2;
         VanguardWarrior vanguard;
         SoldierWarrior soldier1, soldier2, soldier3, soldier4, soldier5;
-
         SkelEnemy skeleton1, skeleton2, skeleton3, skeleton4, skeleton5, skeleton6, skeleton7;
-
         ArrayList<WraithEnemy> listWraiths = new ArrayList<>();
+
+        {
+            hostile = false;
+        }
 
         @Override
         public boolean act () {

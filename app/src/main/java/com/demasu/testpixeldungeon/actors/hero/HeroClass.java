@@ -47,32 +47,18 @@ import com.demasu.testpixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfSacrifice;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfSkill;
 import com.demasu.testpixeldungeon.items.wands.WandOfMagicMissile;
-import com.demasu.testpixeldungeon.items.weapon.melee.Dagger;
-import com.demasu.testpixeldungeon.items.weapon.melee.DualSwords;
-import com.demasu.testpixeldungeon.items.weapon.melee.Knuckles;
-import com.demasu.testpixeldungeon.items.weapon.melee.ShortSword;
-import com.demasu.testpixeldungeon.items.weapon.melee.Sword;
 import com.demasu.testpixeldungeon.items.weapon.melee.SwordOfDebug;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Boomerang;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Dart;
-import com.demasu.testpixeldungeon.items.weapon.missiles.Boomerang;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Shuriken;
 import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.watabou.utils.Bundle;
 
-import java.nio.file.WatchEvent;
-
 public enum HeroClass {
 
     WARRIOR( "warrior" ), MAGE( "mage" ), ROGUE( "rogue" ), HUNTRESS( "huntress" ), HATSUNE( "hatsune" );
-
-    private static final int FOOD = 298;
-    private String title;
-
-    HeroClass ( String title ) {
-        this.title = title;
-    }
 
     public static final String[] WAR_PERKS = {
             "Warriors start with 11 points of Strength.",
@@ -81,7 +67,6 @@ public enum HeroClass {
             "Any piece of food restores some health when eaten.",
             "Potions of Strength are identified from the beginning.",
     };
-
     public static final String[] MAG_PERKS = {
             "Mages start with a unique Wand of Magic Missile. This wand can be later \"disenchanted\" to upgrade another wand.",
             "Mages recharge their wands faster.",
@@ -90,7 +75,6 @@ public enum HeroClass {
             "Scrolls of Identify are identified from the beginning.",
             "Master of magic."
     };
-
     public static final String[] ROG_PERKS = {
             "Rogues start with a Ring of Shadows+1.",
             "Rogues identify a type of a ring on equipping it.",
@@ -99,7 +83,6 @@ public enum HeroClass {
             "Rogues can go without food longer.",
             "Scrolls of Magic Mapping are identified from the beginning."
     };
-
     public static final String[] HUN_PERKS = {
             "Huntresses start with 15 points of Health.",
             "Huntresses start with a unique upgradeable boomerang.",
@@ -107,7 +90,6 @@ public enum HeroClass {
             "Huntresses gain more health from dewdrops.",
             "Huntresses sense neighbouring monsters even if they are hidden behind obstacles."
     };
-
     public static final String[] LEGEND_PERKS = {
             "Hatsune is believed to be a descendant of an Avatar who broke the rules and interacted with mortals.",
             "She is best known for leading the failed defence of the town of Boonamai.",
@@ -115,36 +97,12 @@ public enum HeroClass {
             "She excels in tactics and has mastered both light and dark arts.",
             "Her hair has turned blue from her massive spiritual strength."
     };
+    private static final int FOOD = 298;
+    private static final String CLASS = "class";
+    private String title;
 
-    public void initHero ( Hero hero ) {
-
-        hero.setHeroClass( this );
-
-        initCommon( hero );
-
-        switch ( this ) {
-            case WARRIOR:
-                initWarrior( hero );
-                break;
-
-            case MAGE:
-                initMage( hero );
-                break;
-
-            case ROGUE:
-                initRogue( hero );
-                break;
-
-            case HUNTRESS:
-                initHuntress( hero );
-                break;
-        }
-
-        if ( Badges.isUnlocked( masteryBadge() ) ) {
-            new TomeOfMastery().collect();
-        }
-
-        hero.updateAwareness();
+    HeroClass ( String title ) {
+        this.title = title;
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
@@ -153,7 +111,7 @@ public enum HeroClass {
         getStarterItems( hero );
     }
 
-    public static void initStarterStats (Hero hero ) {
+    public static void initStarterStats ( Hero hero ) {
         Dungeon.getHero().HP -= Dungeon.getCurrentDifficulty().difficultyHPStartPenalty();
         Dungeon.getHero().HT -= Dungeon.getCurrentDifficulty().difficultyHPStartPenalty();
         Dungeon.getCurrentDifficulty().difficultyStartItemBonus();
@@ -191,7 +149,7 @@ public enum HeroClass {
         //new SoulCrystalFilled( EyeSprite.class, 50, 20, "Captured Evil Eye" ).collect();
     }
 
-    @SuppressWarnings( "FeatureEnvy" )
+    @SuppressWarnings ( "FeatureEnvy" )
     public static void collectFood () {
         new Food().identify().collect();
         for ( int i = 1; i <= FOOD; i++ ) {
@@ -222,8 +180,8 @@ public enum HeroClass {
         new ScrollOfSkill().collect();
     }
 
-    @SuppressWarnings( "FeatureEnvy" )
-    public static void collectDebugArmor ( Hero hero) {
+    @SuppressWarnings ( "FeatureEnvy" )
+    public static void collectDebugArmor ( Hero hero ) {
         Armor armor = (Armor) new DebugArmor().identify();
         for ( int i = 1; i <= 15; i++ ) {
             armor.upgrade();
@@ -232,7 +190,7 @@ public enum HeroClass {
         hero.belongings.armor = armor;
     }
 
-    @SuppressWarnings( "FeatureEnvy" )
+    @SuppressWarnings ( "FeatureEnvy" )
     public static void collectDebugWeapon ( Hero hero ) {
         KindOfWeapon sword = (KindOfWeapon) new SwordOfDebug().identify();
         for ( int i = 1; i <= 15; i++ ) {
@@ -265,7 +223,7 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectDebugPotions () {
-        for (int i = 1; i <= 50; i++ ) {
+        for ( int i = 1; i <= 50; i++ ) {
             new PotionOfHealing().collect();
         }
     }
@@ -284,10 +242,46 @@ public enum HeroClass {
         }
     }
 
-    @SuppressWarnings( "FeatureEnvy" )
+    public static HeroClass restoreInBundle ( Bundle bundle ) {
+        String value = bundle.getString( CLASS );
+        return value.length() > 0 ? valueOf( value ) : ROGUE;
+    }
+
+    public void initHero ( Hero hero ) {
+
+        hero.setHeroClass( this );
+
+        initCommon( hero );
+
+        switch ( this ) {
+            case WARRIOR:
+                initWarrior( hero );
+                break;
+
+            case MAGE:
+                initMage( hero );
+                break;
+
+            case ROGUE:
+                initRogue( hero );
+                break;
+
+            case HUNTRESS:
+                initHuntress( hero );
+                break;
+        }
+
+        if ( Badges.isUnlocked( masteryBadge() ) ) {
+            new TomeOfMastery().collect();
+        }
+
+        hero.updateAwareness();
+    }
+
+    @SuppressWarnings ( "FeatureEnvy" )
     public void equipStarterWeapon ( Hero hero ) {
         // Actions commented out for debugging
-        switch (this) {
+        switch ( this ) {
             case WARRIOR:
                 //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify();
                 //break;
@@ -323,8 +317,8 @@ public enum HeroClass {
     @SuppressWarnings ( "FeatureEnvy" )
     private void initWarrior ( Hero hero ) {
         hero.STR += 1;
-        hero.MP   = 200;
-        hero.MMP  = 200;
+        hero.MP = 200;
+        hero.MMP = 200;
         //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify();  // For debug
         // TODO: Replace the above assignment with a generalized function
         //new Dart( 8 ).identify().collect();                                   // For debug
@@ -440,14 +434,7 @@ public enum HeroClass {
         return null;
     }
 
-    private static final String CLASS = "class";
-
     public void storeInBundle ( Bundle bundle ) {
         bundle.put( CLASS, toString() );
-    }
-
-    public static HeroClass restoreInBundle ( Bundle bundle ) {
-        String value = bundle.getString( CLASS );
-        return value.length() > 0 ? valueOf( value ) : ROGUE;
     }
 }

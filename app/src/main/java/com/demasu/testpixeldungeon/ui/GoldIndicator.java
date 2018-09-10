@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
+import com.demasu.testpixeldungeon.Dungeon;
+import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.scenes.PixelScene;
 
 public class GoldIndicator extends Component {
 

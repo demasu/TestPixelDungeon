@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels.traps;
 
-import java.util.ArrayList;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -28,6 +26,8 @@ import com.demasu.testpixeldungeon.items.wands.WandOfBlink;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class SummoningTrap {
 

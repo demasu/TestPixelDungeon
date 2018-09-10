@@ -17,14 +17,16 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import com.watabou.noosa.particles.Emitter;
-import com.watabou.noosa.particles.PixelParticle;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.particles.Emitter;
+import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
 public class Splash {
+
+    private static final SplashFactory FACTORY = new SplashFactory();
 
     public static void at ( int cell, final int color, int n ) {
         at( DungeonTilemap.tileCenterToWorld( cell ), color, n );
@@ -59,8 +61,6 @@ public class Splash {
         FACTORY.cone = cone;
         emitter.burst( FACTORY, n );
     }
-
-    private static final SplashFactory FACTORY = new SplashFactory();
 
     private static class SplashFactory extends Emitter.Factory {
 

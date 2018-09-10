@@ -18,10 +18,6 @@
  */
 package com.demasu.testpixeldungeon.items.potions;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -36,7 +32,11 @@ import com.demasu.testpixeldungeon.sprites.ItemSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.windows.WndOptions;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Potion extends Item {
 
@@ -95,6 +95,12 @@ public class Potion extends Item {
         defaultAction = AC_DRINK;
     }
 
+    public Potion () {
+        super();
+        image = handler.image( this );
+        color = handler.label( this );
+    }
+
     @SuppressWarnings ( "unchecked" )
     public static void initColors () {
         handler = new ItemStatusHandler<Potion>( (Class<? extends Potion>[]) potions, colors, images, 1 );
@@ -109,10 +115,16 @@ public class Potion extends Item {
         handler = new ItemStatusHandler<Potion>( (Class<? extends Potion>[]) potions, colors, images, bundle );
     }
 
-    public Potion () {
-        super();
-        image = handler.image( this );
-        color = handler.label( this );
+    public static HashSet<Class<? extends Potion>> getKnown () {
+        return handler.known();
+    }
+
+    public static HashSet<Class<? extends Potion>> getUnknown () {
+        return handler.unknown();
+    }
+
+    public static boolean allKnown () {
+        return handler.known().size() == potions.length;
     }
 
     @Override
@@ -268,18 +280,6 @@ public class Potion extends Item {
     @Override
     public boolean isUpgradable () {
         return false;
-    }
-
-    public static HashSet<Class<? extends Potion>> getKnown () {
-        return handler.known();
-    }
-
-    public static HashSet<Class<? extends Potion>> getUnknown () {
-        return handler.unknown();
-    }
-
-    public static boolean allKnown () {
-        return handler.known().size() == potions.length;
     }
 
     protected void splash ( int cell ) {

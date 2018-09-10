@@ -17,20 +17,20 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.opengl.GLES20;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Group;
-import com.watabou.noosa.Scene;
-import com.watabou.noosa.particles.PixelParticle;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.items.Torch;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Group;
+import com.watabou.noosa.Scene;
+import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class HallsLevel extends RegularLevel {
 
@@ -41,6 +41,14 @@ public class HallsLevel extends RegularLevel {
 
         color1 = 0x801500;
         color2 = 0xa68521;
+    }
+
+    public static void addVisuals ( Level level, Scene scene ) {
+        for ( int i = 0; i < LENGTH; i++ ) {
+            if ( level.map[i] == 63 ) {
+                scene.add( new Stream( i ) );
+            }
+        }
     }
 
     @Override
@@ -138,14 +146,6 @@ public class HallsLevel extends RegularLevel {
     public void addVisuals ( Scene scene ) {
         super.addVisuals( scene );
         addVisuals( this, scene );
-    }
-
-    public static void addVisuals ( Level level, Scene scene ) {
-        for ( int i = 0; i < LENGTH; i++ ) {
-            if ( level.map[i] == 63 ) {
-                scene.add( new Stream( i ) );
-            }
-        }
     }
 
     private static class Stream extends Group {

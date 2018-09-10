@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import com.watabou.noosa.BitmapTextMultiline;
 import com.demasu.testpixeldungeon.plants.Plant;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.sprites.PlantSprite;
 import com.demasu.testpixeldungeon.ui.Window;
+import com.watabou.noosa.BitmapTextMultiline;
 
 public class WndInfoPlant extends Window {
 

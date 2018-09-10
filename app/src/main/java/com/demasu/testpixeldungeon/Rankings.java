@@ -17,19 +17,19 @@
  */
 package com.demasu.testpixeldungeon;
 
+import com.demasu.testpixeldungeon.actors.hero.HeroClass;
+import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.Game;
+import com.watabou.utils.Bundlable;
+import com.watabou.utils.Bundle;
+import com.watabou.utils.SystemTime;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
-import com.watabou.noosa.Game;
-import com.demasu.testpixeldungeon.actors.hero.HeroClass;
-import com.demasu.testpixeldungeon.utils.Utils;
-import com.watabou.utils.Bundlable;
-import com.watabou.utils.Bundle;
-import com.watabou.utils.SystemTime;
 
 public enum Rankings {
 
@@ -39,12 +39,20 @@ public enum Rankings {
 
     public static final String RANKINGS_FILE = "rankings.dat";
     public static final String DETAILS_FILE = "game_%d.dat";
-
+    private static final String RECORDS = "records";
+    private static final String LATEST = "latest";
+    private static final String TOTAL = "total";
+    private static final String WON = "won";
+    private static final Comparator<Record> scoreComparator = new Comparator<Rankings.Record>() {
+        @Override
+        public int compare ( Record lhs, Record rhs ) {
+            return (int) Math.signum( rhs.score - lhs.score );
+        }
+    };
     public ArrayList<Record> records;
     public int lastRecord;
     public int totalNumber;
     public int wonNumber;
-
 
     public void submit ( boolean win ) {
 
@@ -100,11 +108,6 @@ public enum Rankings {
     private int score ( boolean win ) {
         return ( Statistics.goldCollected + Dungeon.getHero().lvl * Statistics.deepestFloor * 100 ) * ( win ? 2 : 1 );
     }
-
-    private static final String RECORDS = "records";
-    private static final String LATEST = "latest";
-    private static final String TOTAL = "total";
-    private static final String WON = "won";
 
     public void save () {
         Bundle bundle = new Bundle();
@@ -204,11 +207,4 @@ public enum Rankings {
             bundle.put( GAME, gameFile );
         }
     }
-
-    private static final Comparator<Record> scoreComparator = new Comparator<Rankings.Record>() {
-        @Override
-        public int compare ( Record lhs, Record rhs ) {
-            return (int) Math.signum( rhs.score - lhs.score );
-        }
-    };
 }

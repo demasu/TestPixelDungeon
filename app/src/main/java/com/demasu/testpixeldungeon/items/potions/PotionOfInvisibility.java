@@ -17,14 +17,14 @@
  */
 package com.demasu.testpixeldungeon.items.potions;
 
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.tweeners.AlphaTweener;
 
 public class PotionOfInvisibility extends Potion {
 
@@ -32,6 +32,14 @@ public class PotionOfInvisibility extends Potion {
 
     {
         name = "Potion of Invisibility";
+    }
+
+    public static void melt ( Char ch ) {
+        if ( ch.sprite.parent != null ) {
+            ch.sprite.parent.add( new AlphaTweener( ch.sprite, ALPHA, 0.4f ) );
+        } else {
+            ch.sprite.alpha( ALPHA );
+        }
     }
 
     @Override
@@ -53,13 +61,5 @@ public class PotionOfInvisibility extends Potion {
     @Override
     public int price () {
         return isKnown() ? 40 * quantity : super.price();
-    }
-
-    public static void melt ( Char ch ) {
-        if ( ch.sprite.parent != null ) {
-            ch.sprite.parent.add( new AlphaTweener( ch.sprite, ALPHA, 0.4f ) );
-        } else {
-            ch.sprite.alpha( ALPHA );
-        }
     }
 }

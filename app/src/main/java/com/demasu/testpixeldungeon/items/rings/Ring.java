@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.rings;
 
-import java.util.ArrayList;
-
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
@@ -36,6 +34,8 @@ import com.demasu.testpixeldungeon.windows.WndOptions;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+
 public class Ring extends EquipableItem {
 
     private static final int TICKS_TO_KNOW = 200;
@@ -49,9 +49,6 @@ public class Ring extends EquipableItem {
     private static final String TXT_UNEQUIP_MESSAGE =
             "You can only wear two rings at a time. " +
                     "Unequip one of your equipped rings.";
-
-    protected Buff buff;
-
     private static final Class<?>[] rings = {
             RingOfMending.class,
             RingOfDetection.class,
@@ -81,12 +78,16 @@ public class Ring extends EquipableItem {
             ItemSpriteSheet.RING_SAPPHIRE,
             ItemSpriteSheet.RING_QUARTZ,
             ItemSpriteSheet.RING_AGATE };
-
+    private static final String UNFAMILIRIARITY = "unfamiliarity";
     private static ItemStatusHandler<Ring> handler;
-
+    protected Buff buff;
     private String gem;
-
     private int ticksToKnow = TICKS_TO_KNOW;
+
+    public Ring () {
+        super();
+        syncGem();
+    }
 
     @SuppressWarnings ( "unchecked" )
     public static void initGems () {
@@ -102,9 +103,8 @@ public class Ring extends EquipableItem {
         handler = new ItemStatusHandler<Ring>( (Class<? extends Ring>[]) rings, gems, images, bundle );
     }
 
-    public Ring () {
-        super();
-        syncGem();
+    public static boolean allKnown () {
+        return handler.known().size() == rings.length - 2;
     }
 
     public void syncGem () {
@@ -314,10 +314,6 @@ public class Ring extends EquipableItem {
         return this;
     }
 
-    public static boolean allKnown () {
-        return handler.known().size() == rings.length - 2;
-    }
-
     @Override
     public int price () {
         return considerState( 80 );
@@ -326,8 +322,6 @@ public class Ring extends EquipableItem {
     protected RingBuff buff () {
         return null;
     }
-
-    private static final String UNFAMILIRIARITY = "unfamiliarity";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

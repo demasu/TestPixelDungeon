@@ -17,15 +17,15 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.Group;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.demasu.testpixeldungeon.actors.hero.HeroSubClass;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.HighlightedText;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.Group;
 
 public class WndClass extends WndTabbed {
 

@@ -78,9 +78,8 @@ public class Viscosity extends Glyph {
 
     public static class DeferedDamage extends Buff {
 
-        protected int damage = 0;
-
         private static final String DAMAGE = "damage";
+        protected int damage = 0;
 
         @Override
         public void storeInBundle ( Bundle bundle ) {

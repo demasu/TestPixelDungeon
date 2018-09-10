@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import com.watabou.noosa.Scene;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Bones;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -32,10 +31,22 @@ import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.keys.SkeletonKey;
 import com.demasu.testpixeldungeon.levels.painters.Painter;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.Scene;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class FrostLevel extends Level {
+
+    private static final int ROOM_LEFT = WIDTH / 2 - 2;
+    private static final int ROOM_RIGHT = WIDTH / 2 + 2;
+    private static final int ROOM_TOP = HEIGHT / 2 - 2;
+    private static final int ROOM_BOTTOM = HEIGHT / 2 + 2;
+    private static final String DOOR = "door";
+    private static final String ENTERED = "entered";
+    private static final String DROPPED = "droppped";
+    private int arenaDoor;
+    private boolean enteredArena = false;
+    private boolean keyDropped = false;
 
     {
         color1 = 0x534f3e;
@@ -43,15 +54,6 @@ public class FrostLevel extends Level {
 
         viewDistance = 6;
     }
-
-    private static final int ROOM_LEFT = WIDTH / 2 - 2;
-    private static final int ROOM_RIGHT = WIDTH / 2 + 2;
-    private static final int ROOM_TOP = HEIGHT / 2 - 2;
-    private static final int ROOM_BOTTOM = HEIGHT / 2 + 2;
-
-    private int arenaDoor;
-    private boolean enteredArena = false;
-    private boolean keyDropped = false;
 
     @Override
     public String tilesTex () {
@@ -62,10 +64,6 @@ public class FrostLevel extends Level {
     public String waterTex () {
         return Assets.WATER_CAVES;
     }
-
-    private static final String DOOR = "door";
-    private static final String ENTERED = "entered";
-    private static final String DROPPED = "droppped";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

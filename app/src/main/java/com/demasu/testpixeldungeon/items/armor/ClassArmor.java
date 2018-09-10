@@ -17,17 +17,18 @@
  */
 package com.demasu.testpixeldungeon.items.armor;
 
-import java.util.ArrayList;
-
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.watabou.utils.Bundle;
+
+import java.util.ArrayList;
 
 abstract public class ClassArmor extends Armor {
 
     private static final String TXT_LOW_HEALTH = "Your health is too low!";
     private static final String TXT_NOT_EQUIPPED = "You need to be wearing this armor to use its special power!";
-
+    private static final String ARMOR_STR = "STR";
+    private static final String ARMOR_DR = "DR";
     private int DR;
 
     {
@@ -66,9 +67,6 @@ abstract public class ClassArmor extends Armor {
 
         return classArmor;
     }
-
-    private static final String ARMOR_STR = "STR";
-    private static final String ARMOR_DR = "DR";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

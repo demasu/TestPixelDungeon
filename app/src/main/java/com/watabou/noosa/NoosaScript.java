@@ -17,9 +17,6 @@
 
 package com.watabou.noosa;
 
-import java.nio.FloatBuffer;
-import java.nio.ShortBuffer;
-
 import android.opengl.GLES20;
 
 import com.watabou.glscripts.Script;
@@ -27,8 +24,33 @@ import com.watabou.glwrap.Attribute;
 import com.watabou.glwrap.Quad;
 import com.watabou.glwrap.Uniform;
 
+import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
+
 public class NoosaScript extends Script {
 
+    private static final String SHADER =
+
+            "uniform mat4 uCamera;" +
+                    "uniform mat4 uModel;" +
+                    "attribute vec4 aXYZW;" +
+                    "attribute vec2 aUV;" +
+                    "varying vec2 vUV;" +
+                    "void main() {" +
+                    "  gl_Position = uCamera * uModel * aXYZW;" +
+                    "  vUV = aUV;" +
+                    "}" +
+
+                    "//\n" +
+
+                    "precision mediump float;" +
+                    "varying vec2 vUV;" +
+                    "uniform sampler2D uTex;" +
+                    "uniform vec4 uColorM;" +
+                    "uniform vec4 uColorA;" +
+                    "void main() {" +
+                    "  gl_FragColor = texture2D( uTex, vUV ) * uColorM + uColorA;" +
+                    "}";
     public Uniform uCamera;
     public Uniform uModel;
     public Uniform uTex;
@@ -36,7 +58,6 @@ public class NoosaScript extends Script {
     public Uniform uColorA;
     public Attribute aXY;
     public Attribute aUV;
-
     private Camera lastCamera;
 
     public NoosaScript () {
@@ -52,6 +73,10 @@ public class NoosaScript extends Script {
         aXY = attribute( "aXYZW" );
         aUV = attribute( "aUV" );
 
+    }
+
+    public static NoosaScript get () {
+        return Script.use( NoosaScript.class );
     }
 
     @Override
@@ -133,35 +158,7 @@ public class NoosaScript extends Script {
         }
     }
 
-    public static NoosaScript get () {
-        return Script.use( NoosaScript.class );
-    }
-
-
     protected String shader () {
         return SHADER;
     }
-
-    private static final String SHADER =
-
-            "uniform mat4 uCamera;" +
-                    "uniform mat4 uModel;" +
-                    "attribute vec4 aXYZW;" +
-                    "attribute vec2 aUV;" +
-                    "varying vec2 vUV;" +
-                    "void main() {" +
-                    "  gl_Position = uCamera * uModel * aXYZW;" +
-                    "  vUV = aUV;" +
-                    "}" +
-
-                    "//\n" +
-
-                    "precision mediump float;" +
-                    "varying vec2 vUV;" +
-                    "uniform sampler2D uTex;" +
-                    "uniform vec4 uColorM;" +
-                    "uniform vec4 uColorA;" +
-                    "void main() {" +
-                    "  gl_FragColor = texture2D( uTex, vUV ) * uColorM + uColorA;" +
-                    "}";
 }

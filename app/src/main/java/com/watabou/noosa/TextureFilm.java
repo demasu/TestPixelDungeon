@@ -17,21 +17,19 @@
 
 package com.watabou.noosa;
 
-import java.util.HashMap;
+import android.graphics.RectF;
 
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
 
-import android.graphics.RectF;
+import java.util.HashMap;
 
 public class TextureFilm {
 
     private static final RectF FULL = new RectF( 0, 0, 1, 1 );
-
+    protected HashMap<Object, RectF> frames = new HashMap<Object, RectF>();
     private int texWidth;
     private int texHeight;
-
-    protected HashMap<Object, RectF> frames = new HashMap<Object, RectF>();
 
     public TextureFilm ( Object tx ) {
 

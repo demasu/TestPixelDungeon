@@ -36,6 +36,15 @@ public class Bow extends MissileWeapon {
         stackable = false;
     }
 
+    public Bow () {
+        this( 1 );
+    }
+
+    public Bow ( int number ) {
+        super();
+        quantity = number;
+    }
+
     @Override
     public boolean doEquip ( final Hero hero ) {
 
@@ -74,16 +83,6 @@ public class Bow extends MissileWeapon {
             return false;
         }
     }
-
-    public Bow () {
-        this( 1 );
-    }
-
-    public Bow ( int number ) {
-        super();
-        quantity = number;
-    }
-
 
     @Override
     public String desc () {

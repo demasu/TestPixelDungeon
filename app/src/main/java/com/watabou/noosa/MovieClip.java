@@ -21,14 +21,12 @@ import android.graphics.RectF;
 
 public class MovieClip extends Image {
 
+    public boolean paused = false;
+    public Listener listener;
     protected Animation curAnim;
     protected int curFrame;
     protected float frameTimer;
     protected boolean finished;
-
-    public boolean paused = false;
-
-    public Listener listener;
 
     public MovieClip () {
         super();
@@ -100,6 +98,10 @@ public class MovieClip extends Image {
         }
     }
 
+    public interface Listener {
+        void onComplete ( Animation anim );
+    }
+
     public static class Animation {
 
         public float delay;
@@ -128,9 +130,5 @@ public class MovieClip extends Image {
         public Animation clone () {
             return new Animation( Math.round( 1 / delay ), looped ).frames( frames );
         }
-    }
-
-    public interface Listener {
-        void onComplete ( Animation anim );
     }
 }

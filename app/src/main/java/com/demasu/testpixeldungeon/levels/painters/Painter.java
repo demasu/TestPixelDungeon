@@ -17,12 +17,12 @@
  */
 package com.demasu.testpixeldungeon.levels.painters;
 
-import java.util.Arrays;
-
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.Room;
 import com.watabou.utils.Point;
 import com.watabou.utils.Rect;
+
+import java.util.Arrays;
 
 public class Painter {
 

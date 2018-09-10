@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.weapon.missiles;
 
-import java.util.ArrayList;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -28,6 +26,8 @@ import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.weapon.Weapon;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.windows.WndOptions;
+
+import java.util.ArrayList;
 
 abstract public class MissileWeapon extends Weapon {
 

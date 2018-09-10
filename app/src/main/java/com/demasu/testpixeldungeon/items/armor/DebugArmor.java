@@ -5,8 +5,8 @@ import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 public class DebugArmor extends Armor {
 
     {
-        name  = "Debug armor";
-        image =  ItemSpriteSheet.ARMOR_PLATE;
+        name = "Debug armor";
+        image = ItemSpriteSheet.ARMOR_PLATE;
     }
 
     public DebugArmor () {

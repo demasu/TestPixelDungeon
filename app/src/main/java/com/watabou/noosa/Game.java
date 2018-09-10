@@ -17,21 +17,6 @@
 
 package com.watabou.noosa;
 
-import java.util.ArrayList;
-
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-
-import com.watabou.glscripts.Script;
-import com.watabou.gltextures.TextureCache;
-import com.watabou.input.Keys;
-import com.watabou.input.Touchscreen;
-import com.watabou.noosa.audio.Music;
-import com.watabou.noosa.audio.Sample;
-import com.demasu.testpixeldungeon.VersionNewsInfo;
-import com.watabou.utils.BitmapCache;
-import com.watabou.utils.SystemTime;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -45,6 +30,21 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
+
+import com.demasu.testpixeldungeon.VersionNewsInfo;
+import com.watabou.glscripts.Script;
+import com.watabou.gltextures.TextureCache;
+import com.watabou.input.Keys;
+import com.watabou.input.Touchscreen;
+import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.BitmapCache;
+import com.watabou.utils.SystemTime;
+
+import java.util.ArrayList;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
 
 @SuppressLint ( "Registered" )
 public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTouchListener {
@@ -62,7 +62,8 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     public static String version;
     public static int versionBuild;
     public static String vanillaVersion = "Vanilla PD v 1.9.2a";
-
+    public static float timeScale = 1f;
+    public static float elapsed = 0f;
     // Current scene
     protected Scene scene;
     // New scene we are going to switch to
@@ -71,15 +72,10 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     protected boolean requestedReset = true;
     // New scene class
     protected Class<? extends Scene> sceneClass;
-
     // Current time in milliseconds
     protected long now;
     // Milliseconds passed since previous update
     protected long step;
-
-    public static float timeScale = 1f;
-    public static float elapsed = 0f;
-
     protected GLSurfaceView view;
     protected SurfaceHolder holder;
 
@@ -92,6 +88,23 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     public Game ( Class<? extends Scene> c ) {
         super();
         sceneClass = c;
+    }
+
+    public static void resetScene () {
+        switchScene( instance.sceneClass );
+    }
+
+    public static void switchScene ( Class<? extends Scene> c ) {
+        instance.sceneClass = c;
+        instance.requestedReset = true;
+    }
+
+    public static Scene scene () {
+        return instance.scene;
+    }
+
+    public static void vibrate ( int milliseconds ) {
+        ( (Vibrator) instance.getSystemService( VIBRATOR_SERVICE ) ).vibrate( milliseconds );
     }
 
     @SuppressLint ( "ClickableViewAccessibility" )
@@ -253,19 +266,6 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         instance = null;
     }
 
-    public static void resetScene () {
-        switchScene( instance.sceneClass );
-    }
-
-    public static void switchScene ( Class<? extends Scene> c ) {
-        instance.sceneClass = c;
-        instance.requestedReset = true;
-    }
-
-    public static Scene scene () {
-        return instance.scene;
-    }
-
     protected void step () {
 
         if ( requestedReset ) {
@@ -313,9 +313,5 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
         scene.update();
         Camera.updateAll();
-    }
-
-    public static void vibrate ( int milliseconds ) {
-        ( (Vibrator) instance.getSystemService( VIBRATOR_SERVICE ) ).vibrate( milliseconds );
     }
 }

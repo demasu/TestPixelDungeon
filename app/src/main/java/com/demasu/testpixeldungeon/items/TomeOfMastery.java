@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -35,14 +32,15 @@ import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
 import com.demasu.testpixeldungeon.windows.WndChooseWay;
+import com.watabou.noosa.audio.Sample;
+
+import java.util.ArrayList;
 
 public class TomeOfMastery extends Item {
 
-    private static final String TXT_BLINDED = "You can't read while blinded";
-
     public static final float TIME_TO_READ = 10;
-
     public static final String AC_READ = "READ";
+    private static final String TXT_BLINDED = "You can't read while blinded";
 
     {
         stackable = false;

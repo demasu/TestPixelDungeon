@@ -29,6 +29,17 @@ public class Alchemy extends Blob {
 
     protected int pos;
 
+    public static void transmute ( int cell ) {
+        Heap heap = Dungeon.getLevel().heaps.get( cell );
+        if ( heap != null ) {
+
+            Item result = heap.transmute();
+            if ( result != null ) {
+                Dungeon.getLevel().drop( result, cell ).sprite.drop( cell );
+            }
+        }
+    }
+
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
         super.restoreFromBundle( bundle );
@@ -55,17 +66,6 @@ public class Alchemy extends Blob {
         cur[pos] = 0;
         pos = cell;
         volume = cur[pos] = amount;
-    }
-
-    public static void transmute ( int cell ) {
-        Heap heap = Dungeon.getLevel().heaps.get( cell );
-        if ( heap != null ) {
-
-            Item result = heap.transmute();
-            if ( result != null ) {
-                Dungeon.getLevel().drop( result, cell ).sprite.drop( cell );
-            }
-        }
     }
 
     @Override

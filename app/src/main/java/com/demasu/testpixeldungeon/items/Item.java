@@ -17,11 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -50,60 +45,88 @@ import com.demasu.testpixeldungeon.sprites.MissileSprite;
 import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class Item implements Bundlable {
-
-    private static final String TXT_PACK_FULL = "Your pack is too full for the %s";
-
-    private static final String TXT_BROKEN = "Because of frequent use, your %s has broken.";
-    private static final String TXT_GONNA_BREAK = "Because of frequent use, your %s is going to break soon.";
-
-    private static final String TXT_TO_STRING = "%s";
-    private static final String TXT_TO_STRING_X = "%s x%d";
-    private static final String TXT_TO_STRING_LVL = "%s%+d";
-    private static final String TXT_TO_STRING_LVL_X = "%s%+d x%d";
-
-    private static final float DURABILITY_WARNING_LEVEL = 1 / 6f;
-
-    protected static final float TIME_TO_THROW = 1.0f;
-    protected static final float TIME_TO_PICK_UP = 1.0f;
-    protected static final float TIME_TO_DROP = 0.5f;
 
     public static final String AC_DROP = "DROP";
     public static final String AC_THROW = "THROW";
     public static final String AC_STORE = "STORE";
     public static final String AC_STORE_TAKE = "STORETAKE";
+    protected static final float TIME_TO_THROW = 1.0f;
+    protected static final float TIME_TO_PICK_UP = 1.0f;
+    protected static final float TIME_TO_DROP = 0.5f;
+    private static final String TXT_PACK_FULL = "Your pack is too full for the %s";
+    private static final String TXT_BROKEN = "Because of frequent use, your %s has broken.";
+    private static final String TXT_GONNA_BREAK = "Because of frequent use, your %s is going to break soon.";
+    private static final String TXT_TO_STRING = "%s";
+    private static final String TXT_TO_STRING_X = "%s x%d";
+    private static final String TXT_TO_STRING_LVL = "%s%+d";
+    private static final String TXT_TO_STRING_LVL_X = "%s%+d x%d";
+    private static final float DURABILITY_WARNING_LEVEL = 1 / 6f;
+    private static final String QUANTITY = "quantity";
+    private static final String LEVEL = "level";
+    private static final String LEVEL_KNOWN = "levelKnown";
+    private static final String CURSED = "cursed";
+    private static final String CURSED_KNOWN = "cursedKnown";
+    private static final String DURABILITY = "durability";
+    protected static Hero curUser = null;
+    protected static Item curItem = null;
+    protected static CellSelector.Listener thrower = new CellSelector.Listener() {
+        @Override
+        public void onSelect ( Integer target ) {
+            if ( target != null ) {
+                curItem.cast( curUser, target );
+            }
+        }
 
-    public String defaultAction;
-
-    protected String name = "smth";
-    protected int image = 0;
-
-
-    public boolean stackable = false;
-    protected int quantity = 1;
-
-    public boolean noDegrade = PixelDungeon.itemDeg();
-
-    public int level = 0;
-    private int durability = maxDurability();
-    public boolean levelKnown = false;
-
-    public boolean cursed;
-    public boolean cursedKnown;
-
-    public boolean unique = false;
-
+        @Override
+        public String prompt () {
+            return "Choose direction of throw";
+        }
+    };
     private static Comparator<Item> itemComparator = new Comparator<Item>() {
         @Override
         public int compare ( Item lhs, Item rhs ) {
             return Generator.Category.order( lhs ) - Generator.Category.order( rhs );
         }
     };
+    public String defaultAction;
+    public boolean stackable = false;
+    public boolean noDegrade = PixelDungeon.itemDeg();
+    public int level = 0;
+    public boolean levelKnown = false;
+    public boolean cursed;
+    public boolean cursedKnown;
+    public boolean unique = false;
+    protected String name = "smth";
+    protected int image = 0;
+    protected int quantity = 1;
+    private int durability = maxDurability();
+
+    public static void evoke ( Hero hero ) {
+        hero.sprite.emitter().burst( Speck.factory( Speck.EVOKE ), 5 );
+    }
+
+    public static Item virtual ( Class<? extends Item> cl ) {
+        try {
+
+            Item item = (Item) cl.newInstance();
+            item.quantity = 0;
+            return item;
+
+        } catch ( Exception e ) {
+            return null;
+        }
+    }
 
     public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = new ArrayList<String>();
@@ -114,7 +137,6 @@ public class Item implements Bundlable {
         }
         return actions;
     }
-
 
     public boolean doPickUp ( Hero hero ) {
         if ( collect( hero.belongings.backpack ) ) {
@@ -436,10 +458,6 @@ public class Item implements Bundlable {
         return this;
     }
 
-    public static void evoke ( Hero hero ) {
-        hero.sprite.emitter().burst( Speck.factory( Speck.EVOKE ), 5 );
-    }
-
     @Override
     public String toString () {
 
@@ -515,18 +533,6 @@ public class Item implements Bundlable {
         return price;
     }
 
-    public static Item virtual ( Class<? extends Item> cl ) {
-        try {
-
-            Item item = (Item) cl.newInstance();
-            item.quantity = 0;
-            return item;
-
-        } catch ( Exception e ) {
-            return null;
-        }
-    }
-
     public Item random () {
         return this;
     }
@@ -546,13 +552,6 @@ public class Item implements Bundlable {
             QuickSlot.refresh();
         }
     }
-
-    private static final String QUANTITY = "quantity";
-    private static final String LEVEL = "level";
-    private static final String LEVEL_KNOWN = "levelKnown";
-    private static final String CURSED = "cursed";
-    private static final String CURSED_KNOWN = "cursedKnown";
-    private static final String DURABILITY = "durability";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -717,20 +716,4 @@ public class Item implements Bundlable {
                     }
                 } );
     }
-
-    protected static Hero curUser = null;
-    protected static Item curItem = null;
-    protected static CellSelector.Listener thrower = new CellSelector.Listener() {
-        @Override
-        public void onSelect ( Integer target ) {
-            if ( target != null ) {
-                curItem.cast( curUser, target );
-            }
-        }
-
-        @Override
-        public String prompt () {
-            return "Choose direction of throw";
-        }
-    };
 }

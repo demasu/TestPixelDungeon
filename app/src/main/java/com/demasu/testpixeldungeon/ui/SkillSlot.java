@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.ui.Button;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.sprites.SkillSprite;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.ui.Button;
 
 public class SkillSlot extends Button {
 

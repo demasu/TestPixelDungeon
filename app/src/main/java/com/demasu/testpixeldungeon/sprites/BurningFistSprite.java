@@ -17,13 +17,15 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.effects.MagicMissile;
+import com.watabou.noosa.TextureFilm;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 
 public class BurningFistSprite extends MobSprite {
+
+    private int posToShoot;
 
     public BurningFistSprite () {
         super();
@@ -46,8 +48,6 @@ public class BurningFistSprite extends MobSprite {
 
         play( idle );
     }
-
-    private int posToShoot;
 
     @Override
     public void attack ( int cell ) {

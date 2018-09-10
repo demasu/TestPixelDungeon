@@ -17,32 +17,22 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;
+import com.watabou.noosa.Game;
 
 public class Enchanting extends ItemSprite {
     private static final int SIZE = 16;
-
-    private enum Phase {
-        FADE_IN, STATIC, FADE_OUT
-    }
-
     private static final float FADE_IN_TIME = 0.2f;
     private static final float STATIC_TIME = 1.0f;
     private static final float FADE_OUT_TIME = 0.4f;
-
     private static final float ALPHA = 0.6f;
-
     private int color;
-
     private Char target;
-
     private Phase phase;
     private float duration;
     private float passed;
-
     public Enchanting ( Item item ) {
         super( item.image(), null );
         originToCenter();
@@ -52,6 +42,17 @@ public class Enchanting extends ItemSprite {
         phase = Phase.FADE_IN;
         duration = FADE_IN_TIME;
         passed = 0;
+    }
+
+    public static void show ( Char ch, Item item ) {
+
+        if ( !ch.sprite.visible ) {
+            return;
+        }
+
+        Enchanting sprite = new Enchanting( item );
+        sprite.target = ch;
+        ch.sprite.parent.add( sprite );
     }
 
     @Override
@@ -94,14 +95,7 @@ public class Enchanting extends ItemSprite {
         }
     }
 
-    public static void show ( Char ch, Item item ) {
-
-        if ( !ch.sprite.visible ) {
-            return;
-        }
-
-        Enchanting sprite = new Enchanting( item );
-        sprite.target = ch;
-        ch.sprite.parent.add( sprite );
+    private enum Phase {
+        FADE_IN, STATIC, FADE_OUT
     }
 }

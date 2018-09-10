@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -26,14 +24,18 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.audio.Music;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.scenes.TitleScene;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class PixelDungeon extends Game {
+
+    private static boolean immersiveModeChanged = false;
 
     public PixelDungeon () {
         super( TitleScene.class );
@@ -122,91 +124,10 @@ public class PixelDungeon extends Game {
                 "com.watabou.pixeldungeon.items.wands.WandOfTelekinesis" );
     }
 
-    @Override
-    protected void onCreate ( Bundle savedInstanceState ) {
-        super.onCreate( savedInstanceState );
-
-        updateImmersiveMode();
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        instance.getWindowManager().getDefaultDisplay().getMetrics( metrics );
-        boolean landscape = metrics.widthPixels > metrics.heightPixels;
-
-        if ( Preferences.INSTANCE.getBoolean( Preferences.KEY_LANDSCAPE, false ) != landscape ) {
-            landscape( !landscape );
-        }
-
-        Music.INSTANCE.enable( music() );
-        Sample.INSTANCE.enable( soundFx() );
-
-        Sample.INSTANCE.load(
-                Assets.SND_CLICK,
-                Assets.SND_BADGE,
-                Assets.SND_GOLD,
-
-                Assets.SND_DESCEND,
-                Assets.SND_STEP,
-                Assets.SND_WATER,
-                Assets.SND_OPEN,
-                Assets.SND_UNLOCK,
-                Assets.SND_ITEM,
-                Assets.SND_DEWDROP,
-                Assets.SND_HIT,
-                Assets.SND_MISS,
-                Assets.SND_EAT,
-                Assets.SND_READ,
-                Assets.SND_LULLABY,
-                Assets.SND_DRINK,
-                Assets.SND_SHATTER,
-                Assets.SND_ZAP,
-                Assets.SND_LIGHTNING,
-                Assets.SND_LEVELUP,
-                Assets.SND_DEATH,
-                Assets.SND_CHALLENGE,
-                Assets.SND_CURSED,
-                Assets.SND_EVOKE,
-                Assets.SND_TRAP,
-                Assets.SND_TOMB,
-                Assets.SND_ALERT,
-                Assets.SND_MELD,
-                Assets.SND_BOSS,
-                Assets.SND_BLAST,
-                Assets.SND_PLANT,
-                Assets.SND_RAY,
-                Assets.SND_BEACON,
-                Assets.SND_TELEPORT,
-                Assets.SND_CHARMS,
-                Assets.SND_MASTERY,
-                Assets.SND_PUFF,
-                Assets.SND_ROCKS,
-                Assets.SND_BURNING,
-                Assets.SND_FALLING,
-                Assets.SND_GHOST,
-                Assets.SND_SECRET,
-                Assets.SND_BONES,
-                Assets.SND_BEE,
-                Assets.SND_DEGRADE,
-                Assets.SND_MIMIC );
-    }
-
-    @Override
-    public void onWindowFocusChanged ( boolean hasFocus ) {
-
-        super.onWindowFocusChanged( hasFocus );
-
-        if ( hasFocus ) {
-            updateImmersiveMode();
-        }
-    }
-
     public static void switchNoFade ( Class<? extends PixelScene> c ) {
         PixelScene.noFade = true;
         switchScene( c );
     }
-
-    /*
-     * ---> Prefernces
-     */
 
     public static void landscape ( boolean value ) {
         Game.instance.setRequestedOrientation( value ?
@@ -215,13 +136,13 @@ public class PixelDungeon extends Game {
         Preferences.INSTANCE.put( Preferences.KEY_LANDSCAPE, value );
     }
 
+    /*
+     * ---> Prefernces
+     */
+
     public static boolean landscape () {
         return width > height;
     }
-
-    // *** IMMERSIVE MODE ****
-
-    private static boolean immersiveModeChanged = false;
 
     @SuppressLint ( "NewApi" )
     public static void immerse ( boolean value ) {
@@ -236,15 +157,7 @@ public class PixelDungeon extends Game {
         } );
     }
 
-    @Override
-    public void onSurfaceChanged ( GL10 gl, int width, int height ) {
-        super.onSurfaceChanged( gl, width, height );
-
-        if ( immersiveModeChanged ) {
-            requestedReset = true;
-            immersiveModeChanged = false;
-        }
-    }
+    // *** IMMERSIVE MODE ****
 
     @SuppressLint ( "NewApi" )
     public static void updateImmersiveMode () {
@@ -269,8 +182,6 @@ public class PixelDungeon extends Game {
         return Preferences.INSTANCE.getBoolean( Preferences.KEY_IMMERSIVE, false );
     }
 
-    // *****************************
-
     public static void scaleUp ( boolean value ) {
         Preferences.INSTANCE.put( Preferences.KEY_SCALE_UP, value );
         switchScene( TitleScene.class );
@@ -283,6 +194,8 @@ public class PixelDungeon extends Game {
     public static void zoom ( int value ) {
         Preferences.INSTANCE.put( Preferences.KEY_ZOOM, value );
     }
+
+    // *****************************
 
     public static int zoom () {
         return Preferences.INSTANCE.getInt( Preferences.KEY_ZOOM, 0 );
@@ -373,11 +286,98 @@ public class PixelDungeon extends Game {
         return Preferences.INSTANCE.getBoolean( Preferences.KEY_INTRO, true );
     }
 
+    public static void reportException ( Throwable tr ) {
+        Log.e( "PD", Log.getStackTraceString( tr ) );
+    }
+
+    @Override
+    protected void onCreate ( Bundle savedInstanceState ) {
+        super.onCreate( savedInstanceState );
+
+        updateImmersiveMode();
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        instance.getWindowManager().getDefaultDisplay().getMetrics( metrics );
+        boolean landscape = metrics.widthPixels > metrics.heightPixels;
+
+        if ( Preferences.INSTANCE.getBoolean( Preferences.KEY_LANDSCAPE, false ) != landscape ) {
+            landscape( !landscape );
+        }
+
+        Music.INSTANCE.enable( music() );
+        Sample.INSTANCE.enable( soundFx() );
+
+        Sample.INSTANCE.load(
+                Assets.SND_CLICK,
+                Assets.SND_BADGE,
+                Assets.SND_GOLD,
+
+                Assets.SND_DESCEND,
+                Assets.SND_STEP,
+                Assets.SND_WATER,
+                Assets.SND_OPEN,
+                Assets.SND_UNLOCK,
+                Assets.SND_ITEM,
+                Assets.SND_DEWDROP,
+                Assets.SND_HIT,
+                Assets.SND_MISS,
+                Assets.SND_EAT,
+                Assets.SND_READ,
+                Assets.SND_LULLABY,
+                Assets.SND_DRINK,
+                Assets.SND_SHATTER,
+                Assets.SND_ZAP,
+                Assets.SND_LIGHTNING,
+                Assets.SND_LEVELUP,
+                Assets.SND_DEATH,
+                Assets.SND_CHALLENGE,
+                Assets.SND_CURSED,
+                Assets.SND_EVOKE,
+                Assets.SND_TRAP,
+                Assets.SND_TOMB,
+                Assets.SND_ALERT,
+                Assets.SND_MELD,
+                Assets.SND_BOSS,
+                Assets.SND_BLAST,
+                Assets.SND_PLANT,
+                Assets.SND_RAY,
+                Assets.SND_BEACON,
+                Assets.SND_TELEPORT,
+                Assets.SND_CHARMS,
+                Assets.SND_MASTERY,
+                Assets.SND_PUFF,
+                Assets.SND_ROCKS,
+                Assets.SND_BURNING,
+                Assets.SND_FALLING,
+                Assets.SND_GHOST,
+                Assets.SND_SECRET,
+                Assets.SND_BONES,
+                Assets.SND_BEE,
+                Assets.SND_DEGRADE,
+                Assets.SND_MIMIC );
+    }
+
+    @Override
+    public void onWindowFocusChanged ( boolean hasFocus ) {
+
+        super.onWindowFocusChanged( hasFocus );
+
+        if ( hasFocus ) {
+            updateImmersiveMode();
+        }
+    }
+
     /*
      * <--- Preferences
      */
 
-    public static void reportException ( Throwable tr ) {
-        Log.e( "PD", Log.getStackTraceString( tr ) );
+    @Override
+    public void onSurfaceChanged ( GL10 gl, int width, int height ) {
+        super.onSurfaceChanged( gl, width, height );
+
+        if ( immersiveModeChanged ) {
+            requestedReset = true;
+            immersiveModeChanged = false;
+        }
     }
 }

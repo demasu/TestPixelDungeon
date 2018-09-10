@@ -27,6 +27,15 @@ public class Program {
         handle = GLES20.glCreateProgram();
     }
 
+    public static Program create ( Shader... shaders ) {
+        Program program = new Program();
+        for ( int i = 0; i < shaders.length; i++ ) {
+            program.attach( shaders[i] );
+        }
+        program.link();
+        return program;
+    }
+
     public int handle () {
         return handle;
     }
@@ -59,14 +68,5 @@ public class Program {
 
     public void delete () {
         GLES20.glDeleteProgram( handle );
-    }
-
-    public static Program create ( Shader... shaders ) {
-        Program program = new Program();
-        for ( int i = 0; i < shaders.length; i++ ) {
-            program.attach( shaders[i] );
-        }
-        program.link();
-        return program;
     }
 }

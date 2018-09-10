@@ -24,17 +24,11 @@ public class Skill {
     public static final String FAIL_ADVANCE = "You do not have enough skill points to advance in this branch.";
 
     public static final String SKILL_LEVEL = "LEVEL";
-
-    public String tag = "";
-
     public static final int MAX_LEVEL = 3;
-
     public static final int STARTING_SKILL = 30;
-
-    public static int availableSkill = STARTING_SKILL;
-
     public static final float TIME_TO_USE = 1f;
-
+    public static int availableSkill = STARTING_SKILL;
+    public String tag = "";
     public String name = "Skill";
     public String castText = "";
     public int level = 0;

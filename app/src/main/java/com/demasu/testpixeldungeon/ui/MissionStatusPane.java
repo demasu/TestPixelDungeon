@@ -17,16 +17,6 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
-import com.watabou.input.Touchscreen.Touch;
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.NinePatch;
-import com.watabou.noosa.TouchArea;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.particles.BitmaskEmitter;
-import com.watabou.noosa.particles.Emitter;
-import com.watabou.noosa.ui.Button;
-import com.watabou.noosa.ui.Component;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.effects.Speck;
@@ -37,28 +27,33 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.sprites.HeroSprite;
 import com.demasu.testpixeldungeon.windows.WndGame;
 import com.demasu.testpixeldungeon.windows.WndHero;
+import com.watabou.input.Touchscreen.Touch;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.NinePatch;
+import com.watabou.noosa.TouchArea;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.particles.BitmaskEmitter;
+import com.watabou.noosa.particles.Emitter;
+import com.watabou.noosa.ui.Button;
+import com.watabou.noosa.ui.Component;
 
 public class MissionStatusPane extends Component {
 
+    private static final int TAKING_DAMAGE_COOLDOWN_INTERVAL = 3;
+    public static float takingDamage = 0;
+    public static float manaDropping = 0;
     private NinePatch shield;
     private Image avatar;
     private Emitter blood;
-
     private int lastTier = 0;
-
     private Image hp;
     private Image hp_dropping;
     private Image mp_dropping;
     private Image mp;
     private Image exp;
-
-    public static float takingDamage = 0;
-    public static float manaDropping = 0;
-
     private int takingDamageCooldownCounter = 0;
     private int manaDroppingCooldownCounter = 0;
-    private static final int TAKING_DAMAGE_COOLDOWN_INTERVAL = 3;
-
     private int lastLvl = -1;
 
 
@@ -69,6 +64,9 @@ public class MissionStatusPane extends Component {
 
 
     private MenuButton btnMenu;
+    private boolean tagDanger = false;
+    private boolean tagLoot = false;
+    private boolean tagResume = false;
 
     @Override
     protected void createChildren () {
@@ -179,10 +177,6 @@ public class MissionStatusPane extends Component {
             resume.setPos( width - resume.width(), pos );
         }
     }
-
-    private boolean tagDanger = false;
-    private boolean tagLoot = false;
-    private boolean tagResume = false;
 
     @Override
     public void update () {

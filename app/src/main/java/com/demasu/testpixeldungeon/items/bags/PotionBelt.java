@@ -27,7 +27,9 @@ import com.demasu.testpixeldungeon.items.potions.Potion;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 
 @SuppressWarnings ( "WeakerAccess" )
-public class PotionBelt extends Bag{
+public class PotionBelt extends Bag {
+
+    private int sellPrice;
 
     {
         name = "potion belt";
@@ -38,30 +40,28 @@ public class PotionBelt extends Bag{
         size = 14;
     }
 
-    private int sellPrice;
-
     @Override
-    public boolean grab( Item item ) {
+    public boolean grab ( Item item ) {
         return item instanceof Potion;
     }
 
     @Override
-    public int price() {
+    public int price () {
         return getSellPrice();
     }
 
     @Override
-    public String info() {
+    public String info () {
         return
-            "You can store a significant number of potions in the curiously made containers " +
-            "which go around this wondrous belt. It would not only save room in your backpack, " +
-            "but also protect these potions from breaking.";
+                "You can store a significant number of potions in the curiously made containers " +
+                        "which go around this wondrous belt. It would not only save room in your backpack, " +
+                        "but also protect these potions from breaking.";
     }
 
     @Override
-    public boolean doPickUp( Hero hero ) {
+    public boolean doPickUp ( Hero hero ) {
 
-        return hero.belongings.getItem( PotionBelt.class ) == null && super.doPickUp( hero ) ;
+        return hero.belongings.getItem( PotionBelt.class ) == null && super.doPickUp( hero );
 
     }
 

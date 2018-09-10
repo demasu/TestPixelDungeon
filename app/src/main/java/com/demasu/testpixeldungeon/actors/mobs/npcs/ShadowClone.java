@@ -6,11 +6,11 @@ import com.demasu.testpixeldungeon.actors.Char;
  * Created by Moussa on 22-Jan-17.
  */
 public class ShadowClone extends MirrorImage {
+    int lifeSpan = 3;
+
     {
         name = "Shadow Clone";
     }
-
-    int lifeSpan = 3;
 
     @Override
     public int attackProc ( Char enemy, int damage ) {

@@ -19,21 +19,19 @@ package com.demasu.testpixeldungeon.effects;
 
 import android.opengl.GLES20;
 
-import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
+import com.watabou.noosa.Game;
 
 import javax.microedition.khronos.opengles.GL10;
 
 public class ChampWhiteHalo extends Halo {
 
-    private CharSprite target;
-
-    private float phase = 0;
-
     static final int RED = 0xb70202;
     static final int YELLOW = 0xe4ff00;
     static final int WHITE = 0xffffff;
     static final int BLACK = 0x000000;
+    private CharSprite target;
+    private float phase = 0;
 
 
     public ChampWhiteHalo ( CharSprite sprite ) {

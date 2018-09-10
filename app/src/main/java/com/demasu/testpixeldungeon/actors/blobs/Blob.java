@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.blobs;
 
-import java.util.Arrays;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -27,19 +25,19 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.utils.BArray;
 import com.watabou.utils.Bundle;
 
+import java.util.Arrays;
+
 public class Blob extends Actor {
 
     public static final int WIDTH = Level.WIDTH;
     public static final int HEIGHT = Level.HEIGHT;
     public static final int LENGTH = Level.LENGTH;
-
+    private static final String CUR = "cur";
+    private static final String START = "start";
     public int volume = 0;
-
     public int[] cur;
-    protected int[] off;
-
     public BlobEmitter emitter;
-
+    protected int[] off;
     protected Blob () {
 
         cur = new int[LENGTH];
@@ -48,8 +46,25 @@ public class Blob extends Actor {
         volume = 0;
     }
 
-    private static final String CUR = "cur";
-    private static final String START = "start";
+    @SuppressWarnings ( "unchecked" )
+    public static <T extends Blob> T seed ( int cell, int amount, Class<T> type ) {
+        try {
+
+            T gas = (T) Dungeon.getLevel().blobs.get( type );
+            if ( gas == null ) {
+                gas = type.newInstance();
+                Dungeon.getLevel().blobs.put( type, gas );
+            }
+
+            gas.seed( cell, amount );
+
+            return gas;
+
+        } catch ( Exception e ) {
+            PixelDungeon.reportException( e );
+            return null;
+        }
+    }
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -188,25 +203,5 @@ public class Blob extends Actor {
 
     public String tileDesc () {
         return null;
-    }
-
-    @SuppressWarnings ( "unchecked" )
-    public static <T extends Blob> T seed ( int cell, int amount, Class<T> type ) {
-        try {
-
-            T gas = (T) Dungeon.getLevel().blobs.get( type );
-            if ( gas == null ) {
-                gas = type.newInstance();
-                Dungeon.getLevel().blobs.put( type, gas );
-            }
-
-            gas.seed( cell, amount );
-
-            return gas;
-
-        } catch ( Exception e ) {
-            PixelDungeon.reportException( e );
-            return null;
-        }
     }
 }

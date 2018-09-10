@@ -17,11 +17,11 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.effects.DeathRay;
+import com.watabou.noosa.TextureFilm;
 
 public class EyeSprite extends MobSprite {
 

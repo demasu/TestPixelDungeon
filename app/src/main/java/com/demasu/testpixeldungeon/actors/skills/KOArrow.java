@@ -1,8 +1,6 @@
 package com.demasu.testpixeldungeon.actors.skills;
 
 
-import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.ui.StatusPane;
 import com.watabou.utils.Random;
 
 /**

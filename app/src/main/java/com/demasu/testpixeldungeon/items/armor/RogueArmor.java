@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.armor;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -34,6 +33,7 @@ import com.demasu.testpixeldungeon.scenes.CellSelector;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class RogueArmor extends ClassArmor {
 
@@ -41,39 +41,6 @@ public class RogueArmor extends ClassArmor {
     private static final String TXT_NOT_ROGUE = "Only rogues can use this armor!";
 
     private static final String AC_SPECIAL = "SMOKE BOMB";
-
-    {
-        name = "rogue garb";
-        image = ItemSpriteSheet.ARMOR_ROGUE;
-    }
-
-    @Override
-    public String special () {
-        return AC_SPECIAL;
-    }
-
-    @Override
-    public void doSpecial () {
-        GameScene.selectCell( teleporter );
-    }
-
-    @Override
-    public boolean doEquip ( Hero hero ) {
-        if ( hero.getHeroClass() == HeroClass.ROGUE ) {
-            return super.doEquip( hero );
-        } else {
-            GLog.w( TXT_NOT_ROGUE );
-            return false;
-        }
-    }
-
-    @Override
-    public String desc () {
-        return
-                "Wearing this dark garb, a rogue can perform a trick, that is called \"smoke bomb\" " +
-                        "(though no real explosives are used): he blinds enemies who could see him and jumps aside.";
-    }
-
     protected static CellSelector.Listener teleporter = new CellSelector.Listener() {
 
         @Override
@@ -113,4 +80,36 @@ public class RogueArmor extends ClassArmor {
             return "Choose a location to jump to";
         }
     };
+
+    {
+        name = "rogue garb";
+        image = ItemSpriteSheet.ARMOR_ROGUE;
+    }
+
+    @Override
+    public String special () {
+        return AC_SPECIAL;
+    }
+
+    @Override
+    public void doSpecial () {
+        GameScene.selectCell( teleporter );
+    }
+
+    @Override
+    public boolean doEquip ( Hero hero ) {
+        if ( hero.getHeroClass() == HeroClass.ROGUE ) {
+            return super.doEquip( hero );
+        } else {
+            GLog.w( TXT_NOT_ROGUE );
+            return false;
+        }
+    }
+
+    @Override
+    public String desc () {
+        return
+                "Wearing this dark garb, a rogue can perform a trick, that is called \"smoke bomb\" " +
+                        "(though no real explosives are used): he blinds enemies who could see him and jumps aside.";
+    }
 }

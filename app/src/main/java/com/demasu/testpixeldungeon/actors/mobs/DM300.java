@@ -17,10 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -43,9 +39,25 @@ import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.DM300Sprite;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class DM300 extends Mob {
+
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( Death.class );
+        RESISTANCES.add( ScrollOfPsionicBlast.class );
+    }
+
+    static {
+        IMMUNITIES.add( ToxicGas.class );
+    }
 
     {
         name = Dungeon.getDepth() == Statistics.deepestFloor ? "DM-300" : "DM-350";
@@ -153,22 +165,9 @@ public class DM300 extends Mob {
                         "machines were typically used for construction and mining, and in some cases, for city defense.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( Death.class );
-        RESISTANCES.add( ScrollOfPsionicBlast.class );
-    }
-
     @Override
     public HashSet<Class<?>> resistances () {
         return RESISTANCES;
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( ToxicGas.class );
     }
 
     @Override

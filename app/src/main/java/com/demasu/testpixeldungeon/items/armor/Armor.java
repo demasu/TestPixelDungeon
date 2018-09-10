@@ -17,15 +17,23 @@
  */
 package com.demasu.testpixeldungeon.items.armor;
 
-import java.util.ArrayList;
-
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.items.EquipableItem;
 import com.demasu.testpixeldungeon.items.Item;
-import com.demasu.testpixeldungeon.items.armor.glyphs.*;
+import com.demasu.testpixeldungeon.items.armor.glyphs.Affection;
+import com.demasu.testpixeldungeon.items.armor.glyphs.AntiEntropy;
+import com.demasu.testpixeldungeon.items.armor.glyphs.AutoRepair;
+import com.demasu.testpixeldungeon.items.armor.glyphs.Bounce;
+import com.demasu.testpixeldungeon.items.armor.glyphs.Displacement;
+import com.demasu.testpixeldungeon.items.armor.glyphs.Entanglement;
+import com.demasu.testpixeldungeon.items.armor.glyphs.Metabolism;
+import com.demasu.testpixeldungeon.items.armor.glyphs.Multiplicity;
+import com.demasu.testpixeldungeon.items.armor.glyphs.Potential;
+import com.demasu.testpixeldungeon.items.armor.glyphs.Stench;
+import com.demasu.testpixeldungeon.items.armor.glyphs.Viscosity;
 import com.demasu.testpixeldungeon.sprites.HeroSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
@@ -33,6 +41,8 @@ import com.demasu.testpixeldungeon.utils.Utils;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Armor extends EquipableItem {
 
@@ -47,23 +57,18 @@ public class Armor extends EquipableItem {
 
     private static final String TXT_INCOMPATIBLE =
             "Interaction of different types of magic has erased the glyph on this armor!";
-
+    private static final String UNFAMILIRIARITY = "unfamiliarity";
+    private static final String GLYPH = "glyph";
     public int tier;
     public int STR;
-
-    private int hitsToKnow = HITS_TO_KNOW;
-
     public Glyph glyph;
-
+    private int hitsToKnow = HITS_TO_KNOW;
     public Armor ( int tier ) {
 
         this.tier = tier;
 
         STR = typicalSTR();
     }
-
-    private static final String UNFAMILIRIARITY = "unfamiliarity";
-    private static final String GLYPH = "glyph";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -337,6 +342,15 @@ public class Armor extends EquipableItem {
 
         private static final float[] chances = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
+        @SuppressWarnings ( "unchecked" )
+        public static Glyph random () {
+            try {
+                return ( (Class<Glyph>) glyphs[Random.chances( chances )] ).newInstance();
+            } catch ( Exception e ) {
+                return null;
+            }
+        }
+
         public abstract int proc ( Armor armor, Char attacker, Char defender, int damage );
 
         public String name ( String armorName ) {
@@ -364,15 +378,6 @@ public class Armor extends EquipableItem {
 
             } else {
                 return false;
-            }
-        }
-
-        @SuppressWarnings ( "unchecked" )
-        public static Glyph random () {
-            try {
-                return ( (Class<Glyph>) glyphs[Random.chances( chances )] ).newInstance();
-            } catch ( Exception e ) {
-                return null;
             }
         }
 

@@ -17,15 +17,6 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import java.util.List;
-
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.audio.Music;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.ui.Button;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.PixelDungeon;
@@ -34,8 +25,17 @@ import com.demasu.testpixeldungeon.ui.Archs;
 import com.demasu.testpixeldungeon.ui.ExitButton;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.windows.WndBadge;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.ui.Button;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
+
+import java.util.List;
 
 public class BadgesScene extends PixelScene {
 

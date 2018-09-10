@@ -17,10 +17,6 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.NinePatch;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.ui.Component;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Chrome;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
@@ -32,6 +28,10 @@ import com.demasu.testpixeldungeon.ui.ItemSlot;
 import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.NinePatch;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.ui.Component;
 
 public class WndBlacksmith extends Window {
 
@@ -39,13 +39,6 @@ public class WndBlacksmith extends Window {
     private static final float GAP = 2;
     private static final float BTN_GAP = 10;
     private static final int WIDTH = 116;
-
-    private ItemButton btnPressed;
-
-    private ItemButton btnItem1;
-    private ItemButton btnItem2;
-    private RedButton btnReforge;
-
     private static final String TXT_PROMPT =
             "Ok, a deal is a deal, dat's what I can do for you: I can reforge " +
                     "2 items and turn them into one of a better quality.";
@@ -53,6 +46,28 @@ public class WndBlacksmith extends Window {
             "Select an item to reforge";
     private static final String TXT_REFORGE =
             "Reforge them";
+    private ItemButton btnPressed;
+    private ItemButton btnItem1;
+    private ItemButton btnItem2;
+    private RedButton btnReforge;
+    protected WndBag.Listener itemSelector = new WndBag.Listener() {
+        @Override
+        public void onSelect ( Item item ) {
+            if ( item != null ) {
+                btnPressed.item( item );
+
+                if ( btnItem1.item != null && btnItem2.item != null ) {
+                    String result = Blacksmith.verify( btnItem1.item, btnItem2.item );
+                    if ( result != null ) {
+                        GameScene.show( new WndMessage( result ) );
+                        btnReforge.enable( false );
+                    } else {
+                        btnReforge.enable( true );
+                    }
+                }
+            }
+        }
+    };
 
     public WndBlacksmith ( Blacksmith troll, Hero hero ) {
 
@@ -105,31 +120,11 @@ public class WndBlacksmith extends Window {
         resize( WIDTH, (int) btnReforge.bottom() );
     }
 
-    protected WndBag.Listener itemSelector = new WndBag.Listener() {
-        @Override
-        public void onSelect ( Item item ) {
-            if ( item != null ) {
-                btnPressed.item( item );
-
-                if ( btnItem1.item != null && btnItem2.item != null ) {
-                    String result = Blacksmith.verify( btnItem1.item, btnItem2.item );
-                    if ( result != null ) {
-                        GameScene.show( new WndMessage( result ) );
-                        btnReforge.enable( false );
-                    } else {
-                        btnReforge.enable( true );
-                    }
-                }
-            }
-        }
-    };
-
     public static class ItemButton extends Component {
 
+        public Item item = null;
         protected NinePatch bg;
         protected ItemSlot slot;
-
-        public Item item = null;
 
         @Override
         protected void createChildren () {

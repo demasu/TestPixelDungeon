@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
@@ -33,7 +31,16 @@ import com.demasu.testpixeldungeon.mechanics.Ballistica;
 import com.demasu.testpixeldungeon.sprites.ScorpioSprite;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Scorpio extends Mob {
+
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( Leech.class );
+        RESISTANCES.add( Poison.class );
+    }
 
     {
         name = "scorpio";
@@ -108,13 +115,6 @@ public class Scorpio extends Mob {
         return
                 "These huge arachnid-like demonic creatures avoid close combat by all means, " +
                         "firing crippling serrated spikes from long distances.";
-    }
-
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( Leech.class );
-        RESISTANCES.add( Poison.class );
     }
 
     @Override

@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Visual;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -27,6 +24,9 @@ import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Visual;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PointF;
 
 public class Swap extends Actor {

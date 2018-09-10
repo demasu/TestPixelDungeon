@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.plants;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -36,17 +33,19 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.sprites.PlantSprite;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+
 public class Plant implements Bundlable {
 
+    private static final String POS = "pos";
     public String plantName;
-
     public int image;
     public int pos;
-
     public PlantSprite sprite;
 
     public void activate ( Char ch ) {
@@ -76,8 +75,6 @@ public class Plant implements Bundlable {
         }
     }
 
-    private static final String POS = "pos";
-
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
         pos = bundle.getInt( POS );
@@ -99,16 +96,14 @@ public class Plant implements Bundlable {
         private static final String TXT_INFO = "Throw this seed to the place where you want to grow %s.\n\n%s";
 
         private static final float TIME_TO_PLANT = 1f;
+        public Class<? extends Item> alchemyClass;
+        protected Class<? extends Plant> plantClass;
+        protected String plantName;
 
         {
             stackable = true;
             defaultAction = AC_THROW;
         }
-
-        protected Class<? extends Plant> plantClass;
-        protected String plantName;
-
-        public Class<? extends Item> alchemyClass;
 
         @Override
         public ArrayList<String> actions ( Hero hero ) {

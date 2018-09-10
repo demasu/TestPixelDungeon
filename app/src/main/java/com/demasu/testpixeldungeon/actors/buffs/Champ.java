@@ -25,14 +25,12 @@ import com.watabou.utils.Random;
 
 public class Champ extends Buff {
 
-    private static final String TYPE = "type";
-    private static final String BONUS_APPLIED = "bonusApplied";
-
     public static final int CHAMP_CHIEF = 1;
     public static final int CHAMP_CURSED = 2;
     public static final int CHAMP_FOUL = 3;
     public static final int CHAMP_VAMPERIC = 4;
-
+    private static final String TYPE = "type";
+    private static final String BONUS_APPLIED = "bonusApplied";
     public int type = Random.Int( 1, 5 );
 
     private boolean bonusApplied = false;

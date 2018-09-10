@@ -20,10 +20,10 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.Shopkeeper;
+import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 import java.util.ArrayList;

@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import java.util.Arrays;
-
 import com.demasu.testpixeldungeon.Assets;
 import com.watabou.utils.Random;
+
+import java.util.Arrays;
 
 public class DeadEndLevel extends Level {
 

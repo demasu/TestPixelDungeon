@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.wands;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -34,7 +31,10 @@ import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
 import com.demasu.testpixeldungeon.windows.WndBag;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class WandOfMagicMissile extends Wand {
 
@@ -48,6 +48,32 @@ public class WandOfMagicMissile extends Wand {
     private static final float TIME_TO_DISENCHANT = 2f;
 
     private boolean disenchantEquipped;
+    private final WndBag.Listener itemSelector = new WndBag.Listener() {
+        @Override
+        public void onSelect ( Item item ) {
+            if ( item != null ) {
+
+                Sample.INSTANCE.play( Assets.SND_EVOKE );
+                ScrollOfUpgrade.upgrade( curUser );
+                evoke( curUser );
+
+                GLog.w( TXT_DISENCHANTED, item.name() );
+
+                item.upgrade();
+                curUser.spendAndNext( TIME_TO_DISENCHANT );
+
+                Badges.validateItemLevelAquired( item );
+
+            } else {
+                if ( disenchantEquipped ) {
+                    curUser.belongings.weapon = WandOfMagicMissile.this;
+                    WandOfMagicMissile.this.updateQuickslot();
+                } else {
+                    collect( curUser.belongings.backpack );
+                }
+            }
+        }
+    };
 
     {
         name = "Wand of Magic Missile";
@@ -122,31 +148,4 @@ public class WandOfMagicMissile extends Wand {
         return
                 "This wand launches missiles of pure magical energy, dealing moderate damage to a target creature.";
     }
-
-    private final WndBag.Listener itemSelector = new WndBag.Listener() {
-        @Override
-        public void onSelect ( Item item ) {
-            if ( item != null ) {
-
-                Sample.INSTANCE.play( Assets.SND_EVOKE );
-                ScrollOfUpgrade.upgrade( curUser );
-                evoke( curUser );
-
-                GLog.w( TXT_DISENCHANTED, item.name() );
-
-                item.upgrade();
-                curUser.spendAndNext( TIME_TO_DISENCHANT );
-
-                Badges.validateItemLevelAquired( item );
-
-            } else {
-                if ( disenchantEquipped ) {
-                    curUser.belongings.weapon = WandOfMagicMissile.this;
-                    WandOfMagicMissile.this.updateQuickslot();
-                } else {
-                    collect( curUser.belongings.backpack );
-                }
-            }
-        }
-    };
 }

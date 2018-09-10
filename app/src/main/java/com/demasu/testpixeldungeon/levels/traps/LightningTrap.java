@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels.traps;
 
-import com.watabou.noosa.Camera;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.ResultDescriptions;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -28,13 +27,15 @@ import com.demasu.testpixeldungeon.effects.particles.SparkParticle;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.Camera;
 import com.watabou.utils.Random;
 
 public class LightningTrap {
 
-    private static final String name = "lightning trap";
+    public static final Electricity LIGHTNING = new Electricity();
 
     // 00x66CCEE
+    private static final String name = "lightning trap";
 
     public static void trigger ( int pos, Char ch ) {
 
@@ -66,8 +67,6 @@ public class LightningTrap {
         CellEmitter.center( pos ).burst( SparkParticle.FACTORY, Random.IntRange( 3, 4 ) );
 
     }
-
-    public static final Electricity LIGHTNING = new Electricity();
 
     public static class Electricity {
     }

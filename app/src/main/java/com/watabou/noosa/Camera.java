@@ -17,44 +17,53 @@
 
 package com.watabou.noosa;
 
-import java.util.ArrayList;
-
 import com.watabou.glwrap.Matrix;
 import com.watabou.utils.Point;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+
 public class Camera extends Gizmo {
 
+    public static Camera main;
     protected static ArrayList<Camera> all = new ArrayList<Camera>();
-
     protected static float invW2;
     protected static float invH2;
-
-    public static Camera main;
-
     public float zoom;
 
     public int x;
     public int y;
     public int width;
     public int height;
-
-    int screenWidth;
-    int screenHeight;
-
     public float[] matrix;
-
     public PointF scroll;
     public Visual target;
-
+    protected float shakeX;
+    protected float shakeY;
+    int screenWidth;
+    int screenHeight;
     private float shakeMagX = 10f;
     private float shakeMagY = 10f;
     private float shakeTime = 0f;
     private float shakeDuration = 1f;
 
-    protected float shakeX;
-    protected float shakeY;
+    public Camera ( int x, int y, int width, int height, float zoom ) {
+
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.zoom = zoom;
+
+        screenWidth = (int) ( width * zoom );
+        screenHeight = (int) ( height * zoom );
+
+        scroll = new PointF();
+
+        matrix = new float[16];
+        Matrix.setIdentity( matrix );
+    }
 
     public static Camera reset () {
         return reset( createFullscreen( 1 ) );
@@ -101,23 +110,6 @@ public class Camera extends Gizmo {
                 (int) ( Game.width - w * zoom ) / 2,
                 (int) ( Game.height - h * zoom ) / 2,
                 w, h, zoom );
-    }
-
-    public Camera ( int x, int y, int width, int height, float zoom ) {
-
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.zoom = zoom;
-
-        screenWidth = (int) ( width * zoom );
-        screenHeight = (int) ( height * zoom );
-
-        scroll = new PointF();
-
-        matrix = new float[16];
-        Matrix.setIdentity( matrix );
     }
 
     @Override

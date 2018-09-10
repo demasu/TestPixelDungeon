@@ -1,6 +1,5 @@
 package com.demasu.testpixeldungeon.plants;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -16,6 +15,7 @@ import com.demasu.testpixeldungeon.items.potions.PotionOfStrength;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class Rotberry extends Plant {
 

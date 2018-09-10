@@ -18,7 +18,6 @@
  */
 package com.demasu.testpixeldungeon.windows;
 
-import com.watabou.noosa.BitmapTextMultiline;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.scenes.PixelScene;
@@ -27,6 +26,7 @@ import com.demasu.testpixeldungeon.ui.ItemSlot;
 import com.demasu.testpixeldungeon.ui.RedButton;
 import com.demasu.testpixeldungeon.ui.Window;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.BitmapTextMultiline;
 
 public class WndItem extends Window {
 

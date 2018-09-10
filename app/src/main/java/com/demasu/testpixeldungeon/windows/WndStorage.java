@@ -19,12 +19,6 @@ package com.demasu.testpixeldungeon.windows;
 
 import android.graphics.RectF;
 
-import com.demasu.testpixeldungeon.items.bags.PotionBelt;
-import com.watabou.gltextures.TextureCache;
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.ColorBlock;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
@@ -35,6 +29,7 @@ import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.armor.Armor;
 import com.demasu.testpixeldungeon.items.bags.Bag;
 import com.demasu.testpixeldungeon.items.bags.Keyring;
+import com.demasu.testpixeldungeon.items.bags.PotionBelt;
 import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
@@ -46,30 +41,19 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.ui.Icons;
 import com.demasu.testpixeldungeon.ui.ItemSlot;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.gltextures.TextureCache;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.ColorBlock;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.audio.Sample;
 
 public class WndStorage extends WndTabbed {
 
-    public enum Mode {
-        ALL,
-        UNIDENTIFED,
-        UPGRADEABLE,
-        QUICKSLOT,
-        FOR_SALE,
-        WEAPON,
-        ARMOR,
-        ENCHANTABLE,
-        WAND,
-        SEED
-    }
-
     protected static final int COLS_P = 4;
     protected static final int COLS_L = 6;
-
     protected static final int SLOT_SIZE = 28;
     protected static final int SLOT_MARGIN = 1;
-
     protected static final int TAB_WIDTH = 25;
-
     protected static final int TITLE_HEIGHT = 12;
     private static Mode lastMode;
     private static Storage lastBag;
@@ -82,7 +66,6 @@ public class WndStorage extends WndTabbed {
     private String title;
     private int nCols;
     private int nRows;
-
     public WndStorage ( Storage bag, Listener listener, Mode mode, String title ) {
 
         super();
@@ -112,7 +95,6 @@ public class WndStorage extends WndTabbed {
         resize( slotsWidth, slotsHeight + TITLE_HEIGHT );
 
     }
-
 
     protected void placeItems ( Storage container ) {
 
@@ -175,6 +157,19 @@ public class WndStorage extends WndTabbed {
     @Override
     protected int tabHeight () {
         return 20;
+    }
+
+    public enum Mode {
+        ALL,
+        UNIDENTIFED,
+        UPGRADEABLE,
+        QUICKSLOT,
+        FOR_SALE,
+        WEAPON,
+        ARMOR,
+        ENCHANTABLE,
+        WAND,
+        SEED
     }
 
     public interface Listener {
@@ -244,7 +239,7 @@ public class WndStorage extends WndTabbed {
                 return Icons.get( Icons.SCROLL_HOLDER );
             } else if ( bag instanceof WandHolster ) {
                 return Icons.get( Icons.WAND_HOLSTER );
-            } else if ( bag  instanceof PotionBelt ) {
+            } else if ( bag instanceof PotionBelt ) {
                 return Icons.get( Icons.POTION_BELT );
             } else if ( bag instanceof Keyring ) {
                 return Icons.get( Icons.KEYRING );

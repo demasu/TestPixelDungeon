@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import java.util.List;
-
-import com.watabou.noosa.Scene;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Bones;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -34,23 +31,29 @@ import com.demasu.testpixeldungeon.items.keys.SkeletonKey;
 import com.demasu.testpixeldungeon.levels.Room.Type;
 import com.demasu.testpixeldungeon.levels.painters.Painter;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.Scene;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Graph;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 
+import java.util.List;
+
 public class PrisonBossLevel extends RegularLevel {
+
+    private static final String ARENA = "arena";
+    private static final String DOOR = "door";
+    private static final String ENTERED = "entered";
+    private static final String DROPPED = "droppped";
+    private Room anteroom;
+    private int arenaDoor;
+    private boolean enteredArena = false;
+    private boolean keyDropped = false;
 
     {
         color1 = 0x6a723d;
         color2 = 0x88924c;
     }
-
-    private Room anteroom;
-    private int arenaDoor;
-
-    private boolean enteredArena = false;
-    private boolean keyDropped = false;
 
     @Override
     public String tilesTex () {
@@ -61,11 +64,6 @@ public class PrisonBossLevel extends RegularLevel {
     public String waterTex () {
         return Assets.WATER_PRISON;
     }
-
-    private static final String ARENA = "arena";
-    private static final String DOOR = "door";
-    private static final String ENTERED = "entered";
-    private static final String DROPPED = "droppped";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

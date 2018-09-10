@@ -17,16 +17,16 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import com.watabou.noosa.BitmapTextMultiline;
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Image;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.ResultDescriptions;
 import com.demasu.testpixeldungeon.effects.Flare;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.ui.RedButton;
+import com.watabou.noosa.BitmapTextMultiline;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Image;
 import com.watabou.utils.Random;
 
 public class AmuletScene extends PixelScene {
@@ -48,6 +48,7 @@ public class AmuletScene extends PixelScene {
     public static boolean noText = false;
 
     private Image amulet;
+    private float timer = 0;
 
     @Override
     public void create () {
@@ -117,8 +118,6 @@ public class AmuletScene extends PixelScene {
         InterlevelScene.mode = InterlevelScene.Mode.CONTINUE;
         Game.switchScene( InterlevelScene.class );
     }
-
-    private float timer = 0;
 
     @Override
     public void update () {

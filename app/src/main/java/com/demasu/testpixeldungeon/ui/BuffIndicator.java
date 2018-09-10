@@ -17,16 +17,16 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
+import com.demasu.testpixeldungeon.Assets;
+import com.demasu.testpixeldungeon.Dungeon;
+import com.demasu.testpixeldungeon.actors.Char;
+import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.Dungeon;
-import com.demasu.testpixeldungeon.actors.Char;
-import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.watabou.utils.SparseArray;
 
 public class BuffIndicator extends Component {
@@ -86,6 +86,12 @@ public class BuffIndicator extends Component {
         }
     }
 
+    public static void refreshHero () {
+        if ( heroInstance != null ) {
+            heroInstance.layout();
+        }
+    }
+
     @Override
     public void destroy () {
         super.destroy();
@@ -137,11 +143,5 @@ public class BuffIndicator extends Component {
         }
 
         icons = newIcons;
-    }
-
-    public static void refreshHero () {
-        if ( heroInstance != null ) {
-            heroInstance.layout();
-        }
     }
 }

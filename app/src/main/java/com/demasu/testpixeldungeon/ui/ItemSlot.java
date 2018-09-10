@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
-import com.watabou.noosa.BitmapText;
-import com.watabou.noosa.ui.Button;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.armor.Armor;
@@ -28,27 +26,14 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.sprites.ItemSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.ui.Button;
 
 public class ItemSlot extends Button {
 
     public static final int DEGRADED = 0xFF4444;
     public static final int UPGRADED = 0x44FF44;
     public static final int WARNING = 0xFF8800;
-
-    private static final float ENABLED = 1.0f;
-    private static final float DISABLED = 0.3f;
-
-    protected ItemSprite icon;
-    protected BitmapText topLeft;
-    protected BitmapText topRight;
-    protected BitmapText bottomRight;
-
-    private static final String TXT_STRENGTH = ":%d";
-    private static final String TXT_TYPICAL_STR = "%d?";
-
-    private static final String TXT_LEVEL = "%+d";
-    private static final String TXT_CURSED = "";//"-";
-
     // Special "virtual items"
     public static final Item CHEST = new Item() {
         public int image () {
@@ -74,6 +59,17 @@ public class ItemSlot extends Button {
         }
 
     };
+    private static final float ENABLED = 1.0f;
+    private static final float DISABLED = 0.3f;
+    private static final String TXT_STRENGTH = ":%d";
+    private static final String TXT_TYPICAL_STR = "%d?";
+
+    private static final String TXT_LEVEL = "%+d";
+    private static final String TXT_CURSED = "";//"-";
+    protected ItemSprite icon;
+    protected BitmapText topLeft;
+    protected BitmapText topRight;
+    protected BitmapText bottomRight;
 
     public ItemSlot () {
         super();

@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.plants;
 
-import com.watabou.noosa.Camera;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
@@ -26,6 +25,7 @@ import com.demasu.testpixeldungeon.effects.particles.EarthParticle;
 import com.demasu.testpixeldungeon.items.potions.PotionOfParalyticGas;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.ui.BuffIndicator;
+import com.watabou.noosa.Camera;
 import com.watabou.utils.Bundle;
 
 public class Earthroot extends Plant {
@@ -78,7 +78,8 @@ public class Earthroot extends Plant {
     public static class Armor extends Buff {
 
         private static final float STEP = 1f;
-
+        private static final String POS = "pos";
+        private static final String LEVEL = "level";
         private int pos;
         private int level;
 
@@ -122,9 +123,6 @@ public class Earthroot extends Plant {
         public String toString () {
             return "Herbal armor";
         }
-
-        private static final String POS = "pos";
-        private static final String LEVEL = "level";
 
         @Override
         public void storeInBundle ( Bundle bundle ) {

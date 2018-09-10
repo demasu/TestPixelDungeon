@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import com.watabou.input.Touchscreen.Touch;
-import com.watabou.noosa.TouchArea;
 import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.demasu.testpixeldungeon.PixelDungeon;
+import com.watabou.input.Touchscreen.Touch;
+import com.watabou.noosa.TouchArea;
 import com.watabou.utils.GameMath;
 import com.watabou.utils.PointF;
 
@@ -31,7 +31,12 @@ public class CellSelector extends TouchArea {
     public boolean enabled;
 
     private float dragThreshold;
-
+    private boolean pinching = false;
+    private Touch another;
+    private float startZoom;
+    private float startSpan;
+    private boolean dragging = false;
+    private PointF lastPos = new PointF();
     public CellSelector ( DungeonTilemap map ) {
         super( map );
         camera = map.camera();
@@ -65,11 +70,6 @@ public class CellSelector extends TouchArea {
 
         }
     }
-
-    private boolean pinching = false;
-    private Touch another;
-    private float startZoom;
-    private float startSpan;
 
     @Override
     protected void onTouchDown ( Touch t ) {
@@ -110,9 +110,6 @@ public class CellSelector extends TouchArea {
             lastPos.set( touch.current );
         }
     }
-
-    private boolean dragging = false;
-    private PointF lastPos = new PointF();
 
     @Override
     protected void onDrag ( Touch t ) {

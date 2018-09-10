@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -29,8 +26,11 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Gold extends Item {
 
@@ -39,6 +39,7 @@ public class Gold extends Item {
     private static final String TXT_INFO_1 = "One gold coin. " + TXT_COLLECT;
     private static final String TXT_VALUE = "%+d";
     private static final String TXT_VALUE_LOOT = "%+d (%+d loot!)";
+    private static final String VALUE = "value";
 
     {
         name = "gold";
@@ -107,8 +108,6 @@ public class Gold extends Item {
         quantity = Random.Int( 20 + Dungeon.getDepth() * 10, 40 + Dungeon.getDepth() * 20 );
         return this;
     }
-
-    private static final String VALUE = "value";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.quest;
 
-import java.util.ArrayList;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.buffs.Buff;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
@@ -27,6 +24,9 @@ import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
+
+import java.util.ArrayList;
 
 public class PhantomFish extends Item {
 

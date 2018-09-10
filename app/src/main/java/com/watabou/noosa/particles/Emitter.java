@@ -17,8 +17,6 @@
 
 package com.watabou.noosa.particles;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.opengl.GLES20;
 
 import com.watabou.noosa.Game;
@@ -27,24 +25,20 @@ import com.watabou.noosa.Visual;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
-public class Emitter extends Group {
+import javax.microedition.khronos.opengles.GL10;
 
-    protected boolean lightMode = false;
+public class Emitter extends Group {
 
     public float x;
     public float y;
     public float width;
     public float height;
-
+    public boolean on = false;
+    public boolean autoKill = true;
+    protected boolean lightMode = false;
     protected Visual target;
-
     protected float interval;
     protected int quantity;
-
-    public boolean on = false;
-
-    public boolean autoKill = true;
-
     protected int count;
     protected float time;
 

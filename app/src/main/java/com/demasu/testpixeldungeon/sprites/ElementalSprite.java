@@ -17,9 +17,9 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.Char;
+import com.watabou.noosa.TextureFilm;
 
 public class ElementalSprite extends MobSprite {
 

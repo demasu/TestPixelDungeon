@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.wands;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -31,13 +30,14 @@ import com.demasu.testpixeldungeon.items.potions.Potion;
 import com.demasu.testpixeldungeon.items.potions.PotionOfMight;
 import com.demasu.testpixeldungeon.items.potions.PotionOfStrength;
 import com.demasu.testpixeldungeon.items.scrolls.Scroll;
-import com.demasu.testpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfEnchantment;
+import com.demasu.testpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.levels.Terrain;
 import com.demasu.testpixeldungeon.mechanics.Ballistica;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 
 public class WandOfReach extends Wand {

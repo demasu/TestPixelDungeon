@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.blobs;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
@@ -37,6 +36,7 @@ import com.demasu.testpixeldungeon.items.scrolls.ScrollOfWipeOut;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.ui.BuffIndicator;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
@@ -47,6 +47,42 @@ public class SacrificialFire extends Blob {
     private static final String TXT_REWARD = "\"Your sacrifice is worthy and so you are!\" ";
 
     protected int pos;
+
+    public static void sacrifice ( Char ch ) {
+
+        Wound.hit( ch );
+
+        SacrificialFire fire = (SacrificialFire) Dungeon.getLevel().blobs.get( SacrificialFire.class );
+        if ( fire != null ) {
+
+            int exp = 0;
+            if ( ch instanceof Mob ) {
+                exp = ( (Mob) ch ).exp() * Random.IntRange( 1, 3 );
+            } else if ( ch instanceof Hero ) {
+                exp = ( (Hero) ch ).maxExp();
+            }
+
+            if ( exp > 0 ) {
+
+                int volume = fire.volume - exp;
+                if ( volume > 0 ) {
+                    fire.seed( fire.pos, volume );
+                    GLog.w( TXT_WORTHY );
+                } else {
+                    fire.seed( fire.pos, 0 );
+                    Journal.remove( Feature.SACRIFICIAL_FIRE );
+
+                    GLog.w( TXT_REWARD );
+                    GameScene.effect( new Flare( 7, 32 ).color( 0x66FFFF, true ).show( ch.sprite.parent, DungeonTilemap.tileCenterToWorld( fire.pos ), 2f ) );
+                    Dungeon.getLevel().drop( new ScrollOfWipeOut(), fire.pos ).sprite.drop();
+                }
+            } else {
+
+                GLog.w( TXT_UNWORTHY );
+
+            }
+        }
+    }
 
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
@@ -88,42 +124,6 @@ public class SacrificialFire extends Blob {
         super.use( emitter );
 
         emitter.pour( SacrificialParticle.FACTORY, 0.04f );
-    }
-
-    public static void sacrifice ( Char ch ) {
-
-        Wound.hit( ch );
-
-        SacrificialFire fire = (SacrificialFire) Dungeon.getLevel().blobs.get( SacrificialFire.class );
-        if ( fire != null ) {
-
-            int exp = 0;
-            if ( ch instanceof Mob ) {
-                exp = ( (Mob) ch ).exp() * Random.IntRange( 1, 3 );
-            } else if ( ch instanceof Hero ) {
-                exp = ( (Hero) ch ).maxExp();
-            }
-
-            if ( exp > 0 ) {
-
-                int volume = fire.volume - exp;
-                if ( volume > 0 ) {
-                    fire.seed( fire.pos, volume );
-                    GLog.w( TXT_WORTHY );
-                } else {
-                    fire.seed( fire.pos, 0 );
-                    Journal.remove( Feature.SACRIFICIAL_FIRE );
-
-                    GLog.w( TXT_REWARD );
-                    GameScene.effect( new Flare( 7, 32 ).color( 0x66FFFF, true ).show( ch.sprite.parent, DungeonTilemap.tileCenterToWorld( fire.pos ), 2f ) );
-                    Dungeon.getLevel().drop( new ScrollOfWipeOut(), fire.pos ).sprite.drop();
-                }
-            } else {
-
-                GLog.w( TXT_UNWORTHY );
-
-            }
-        }
     }
 
     @Override

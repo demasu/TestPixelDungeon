@@ -18,16 +18,13 @@
 package com.demasu.testpixeldungeon.effects;
 
 import android.annotation.SuppressLint;
-
-import java.lang.Math;
-
 import android.util.SparseArray;
 
+import com.demasu.testpixeldungeon.Assets;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.particles.Emitter;
-import com.demasu.testpixeldungeon.Assets;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
@@ -62,14 +59,11 @@ public class Speck extends Image {
     public static final int CONFUSION = 111;
 
     private static final int SIZE = 7;
-
+    private static TextureFilm film;
+    private static SparseArray<Emitter.Factory> factories = new SparseArray<Emitter.Factory>();
     private int type;
     private float lifespan;
     private float left;
-
-    private static TextureFilm film;
-
-    private static SparseArray<Emitter.Factory> factories = new SparseArray<Emitter.Factory>();
 
     public Speck () {
         super();
@@ -80,6 +74,33 @@ public class Speck extends Image {
         }
 
         origin.set( SIZE / 2f );
+    }
+
+    public static Emitter.Factory factory ( final int type ) {
+        return factory( type, false );
+    }
+
+    public static Emitter.Factory factory ( final int type, final boolean lightMode ) {
+
+        Emitter.Factory factory = factories.get( type );
+
+        if ( factory == null ) {
+            factory = new Emitter.Factory() {
+                @Override
+                public void emit ( Emitter emitter, int index, float x, float y ) {
+                    Speck p = (Speck) emitter.recycle( Speck.class );
+                    p.reset( index, x, y, type );
+                }
+
+                @Override
+                public boolean lightMode () {
+                    return lightMode;
+                }
+            };
+            factories.put( type, factory );
+        }
+
+        return factory;
     }
 
     public void reset ( int index, float x, float y, int type ) {
@@ -409,32 +430,5 @@ public class Speck extends Image {
                     break;
             }
         }
-    }
-
-    public static Emitter.Factory factory ( final int type ) {
-        return factory( type, false );
-    }
-
-    public static Emitter.Factory factory ( final int type, final boolean lightMode ) {
-
-        Emitter.Factory factory = factories.get( type );
-
-        if ( factory == null ) {
-            factory = new Emitter.Factory() {
-                @Override
-                public void emit ( Emitter emitter, int index, float x, float y ) {
-                    Speck p = (Speck) emitter.recycle( Speck.class );
-                    p.reset( index, x, y, type );
-                }
-
-                @Override
-                public boolean lightMode () {
-                    return lightMode;
-                }
-            };
-            factories.put( type, factory );
-        }
-
-        return factory;
     }
 }

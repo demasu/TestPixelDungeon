@@ -17,33 +17,30 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.opengl.GLES20;
 
+import com.demasu.testpixeldungeon.Assets;
+import com.demasu.testpixeldungeon.DungeonTilemap;
+import com.demasu.testpixeldungeon.levels.Level;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
-import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.DungeonTilemap;
-import com.demasu.testpixeldungeon.levels.Level;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class Lightning extends Group {
 
     private static final float DURATION = 0.3f;
-
+    private static final double A = 180 / Math.PI;
     private float life;
-
     private int length;
     private float[] cx;
     private float[] cy;
-
     private Image[] arcsS;
     private Image[] arcsE;
-
     private Callback callback;
 
     public Lightning ( int[] cells, int length, Callback callback ) {
@@ -86,8 +83,6 @@ public class Lightning extends Group {
 
         Sample.INSTANCE.play( Assets.SND_LIGHTNING );
     }
-
-    private static final double A = 180 / Math.PI;
 
     @Override
     public void update () {

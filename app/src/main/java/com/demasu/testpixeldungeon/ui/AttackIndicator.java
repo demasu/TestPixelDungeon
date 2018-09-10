@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
-import java.util.ArrayList;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.mobs.Mob;
@@ -27,17 +25,18 @@ import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+
 public class AttackIndicator extends Tag {
 
     private static final float ENABLED = 1.0f;
     private static final float DISABLED = 0.3f;
 
     private static AttackIndicator instance;
-
-    private CharSprite sprite = null;
-
     private static Mob lastTarget = null;
+    private CharSprite sprite = null;
     private ArrayList<Mob> candidates = new ArrayList<Mob>();
+    private boolean enabled = true;
 
     public AttackIndicator () {
         super( DangerIndicator.COLOR );
@@ -47,6 +46,17 @@ public class AttackIndicator extends Tag {
         setSize( 24, 24 );
         visible( false );
         enable( false );
+    }
+
+    public static void target ( Char target ) {
+        lastTarget = (Mob) target;
+        instance.updateImage();
+
+        HealthIndicator.instance.target( target );
+    }
+
+    public static void updateState () {
+        instance.checkEnemies();
     }
 
     @Override
@@ -132,8 +142,6 @@ public class AttackIndicator extends Tag {
         }
     }
 
-    private boolean enabled = true;
-
     private void enable ( boolean value ) {
         enabled = value;
         if ( sprite != null ) {
@@ -153,16 +161,5 @@ public class AttackIndicator extends Tag {
         if ( enabled ) {
             Dungeon.getHero().handle( lastTarget.pos );
         }
-    }
-
-    public static void target ( Char target ) {
-        lastTarget = (Mob) target;
-        instance.updateImage();
-
-        HealthIndicator.instance.target( target );
-    }
-
-    public static void updateState () {
-        instance.checkEnemies();
     }
 }

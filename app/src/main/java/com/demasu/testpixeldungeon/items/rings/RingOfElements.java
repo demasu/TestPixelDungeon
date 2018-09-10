@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.rings;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.actors.blobs.ToxicGas;
 import com.demasu.testpixeldungeon.actors.buffs.Burning;
 import com.demasu.testpixeldungeon.actors.buffs.Poison;
@@ -28,7 +26,23 @@ import com.demasu.testpixeldungeon.actors.mobs.Yog;
 import com.demasu.testpixeldungeon.levels.traps.LightningTrap;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class RingOfElements extends Ring {
+
+    private static final HashSet<Class<?>> EMPTY = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> FULL;
+
+    static {
+        FULL = new HashSet<Class<?>>();
+        FULL.add( Burning.class );
+        FULL.add( ToxicGas.class );
+        FULL.add( Poison.class );
+        FULL.add( LightningTrap.Electricity.class );
+        FULL.add( Warlock.class );
+        FULL.add( Eye.class );
+        FULL.add( Yog.BurningFist.class );
+    }
 
     {
         name = "Ring of Elements";
@@ -45,20 +59,6 @@ public class RingOfElements extends Ring {
                 "This ring provides resistance to different elements, such as fire, " +
                         "electricity, gases etc. Also it decreases duration of negative effects." :
                 super.desc();
-    }
-
-    private static final HashSet<Class<?>> EMPTY = new HashSet<Class<?>>();
-    private static final HashSet<Class<?>> FULL;
-
-    static {
-        FULL = new HashSet<Class<?>>();
-        FULL.add( Burning.class );
-        FULL.add( ToxicGas.class );
-        FULL.add( Poison.class );
-        FULL.add( LightningTrap.Electricity.class );
-        FULL.add( Warlock.class );
-        FULL.add( Eye.class );
-        FULL.add( Yog.BurningFist.class );
     }
 
     public class Resistance extends RingBuff {

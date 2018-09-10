@@ -50,12 +50,22 @@ public enum HeroSubClass {
             "Having a strong connection with forces of nature gives _Wardens_ an ability to gather dewdrops and " +
                     "seeds from plants. Also trampling a high grass grants them a temporary armor buff." );
 
+    private static final String SUBCLASS = "subClass";
     private String title;
     private String desc;
 
     HeroSubClass ( String title, String desc ) {
         this.title = title;
         this.desc = desc;
+    }
+
+    public static HeroSubClass restoreInBundle ( Bundle bundle ) {
+        String value = bundle.getString( SUBCLASS );
+        try {
+            return valueOf( value );
+        } catch ( Exception e ) {
+            return NONE;
+        }
     }
 
     public String title () {
@@ -66,19 +76,8 @@ public enum HeroSubClass {
         return desc;
     }
 
-    private static final String SUBCLASS = "subClass";
-
     public void storeInBundle ( Bundle bundle ) {
         bundle.put( SUBCLASS, toString() );
-    }
-
-    public static HeroSubClass restoreInBundle ( Bundle bundle ) {
-        String value = bundle.getString( SUBCLASS );
-        try {
-            return valueOf( value );
-        } catch ( Exception e ) {
-            return NONE;
-        }
     }
 
 }

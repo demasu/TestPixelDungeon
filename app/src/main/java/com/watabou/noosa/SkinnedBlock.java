@@ -17,19 +17,17 @@
 
 package com.watabou.noosa;
 
-import com.watabou.glwrap.Texture;
-
 import android.graphics.RectF;
+
+import com.watabou.glwrap.Texture;
 
 public class SkinnedBlock extends Image {
 
+    public boolean autoAdjust = false;
     protected float scaleX;
     protected float scaleY;
-
     protected float offsetX;
     protected float offsetY;
-
-    public boolean autoAdjust = false;
 
     public SkinnedBlock ( float width, float height, Object tx ) {
         super( tx );

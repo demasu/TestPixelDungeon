@@ -17,18 +17,22 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.effects.SpellSprite;
 import com.demasu.testpixeldungeon.effects.particles.EnergyParticle;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfRecharging extends Scroll {
 
     {
         name = "Scroll of Recharging";
+    }
+
+    public static void charge ( Hero hero ) {
+        hero.sprite.centerEmitter().burst( EnergyParticle.FACTORY, 15 );
     }
 
     @Override
@@ -56,10 +60,6 @@ public class ScrollOfRecharging extends Scroll {
         return
                 "The raw magical power bound up in this parchment will, when released, " +
                         "recharge all of the reader's wands to full power.";
-    }
-
-    public static void charge ( Hero hero ) {
-        hero.sprite.centerEmitter().burst( EnergyParticle.FACTORY, 15 );
     }
 
     @Override

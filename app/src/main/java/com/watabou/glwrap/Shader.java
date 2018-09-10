@@ -30,6 +30,13 @@ public class Shader {
         handle = GLES20.glCreateShader( type );
     }
 
+    public static Shader createCompiled ( int type, String src ) {
+        Shader shader = new Shader( type );
+        shader.source( src );
+        shader.compile();
+        return shader;
+    }
+
     public int handle () {
         return handle;
     }
@@ -50,12 +57,5 @@ public class Shader {
 
     public void delete () {
         GLES20.glDeleteShader( handle );
-    }
-
-    public static Shader createCompiled ( int type, String src ) {
-        Shader shader = new Shader( type );
-        shader.source( src );
-        shader.compile();
-        return shader;
     }
 }

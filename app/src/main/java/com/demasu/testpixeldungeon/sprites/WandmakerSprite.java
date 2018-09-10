@@ -17,18 +17,18 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.opengl.GLES20;
 
-import com.watabou.noosa.Game;
-import com.watabou.noosa.TextureFilm;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.effects.Halo;
 import com.demasu.testpixeldungeon.effects.particles.ElmoParticle;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.TextureFilm;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PointF;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class WandmakerSprite extends MobSprite {
 

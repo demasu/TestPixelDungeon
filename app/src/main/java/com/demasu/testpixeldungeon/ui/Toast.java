@@ -17,12 +17,11 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
-import com.watabou.noosa.BitmapText;
+import com.demasu.testpixeldungeon.Chrome;
+import com.demasu.testpixeldungeon.scenes.PixelScene;
 import com.watabou.noosa.BitmapTextMultiline;
 import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.Chrome;
-import com.demasu.testpixeldungeon.scenes.PixelScene;
 
 public class Toast extends Component {
 

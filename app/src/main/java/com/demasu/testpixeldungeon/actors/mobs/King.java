@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -43,13 +40,33 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.KingSprite;
 import com.demasu.testpixeldungeon.sprites.UndeadSprite;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class King extends Mob {
 
     private static final int MAX_ARMY_SIZE = 5;
+    private static final String PEDESTAL = "pedestal";
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( ToxicGas.class );
+        RESISTANCES.add( Death.class );
+        RESISTANCES.add( ScrollOfPsionicBlast.class );
+        RESISTANCES.add( WandOfDisintegration.class );
+    }
+
+    static {
+        IMMUNITIES.add( Paralysis.class );
+        IMMUNITIES.add( Vertigo.class );
+    }
+
+    private boolean nextPedestal = true;
 
     {
         name = Dungeon.getDepth() == Statistics.deepestFloor ? "King of Dwarves" : "undead King of Dwarves";
@@ -65,10 +82,6 @@ public class King extends Mob {
         HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
-
-    private boolean nextPedestal = true;
-
-    private static final String PEDESTAL = "pedestal";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -214,25 +227,9 @@ public class King extends Mob {
                         "as a bonus.";
     }
 
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( ToxicGas.class );
-        RESISTANCES.add( Death.class );
-        RESISTANCES.add( ScrollOfPsionicBlast.class );
-        RESISTANCES.add( WandOfDisintegration.class );
-    }
-
     @Override
     public HashSet<Class<?>> resistances () {
         return RESISTANCES;
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Paralysis.class );
-        IMMUNITIES.add( Vertigo.class );
     }
 
     @Override
@@ -242,7 +239,13 @@ public class King extends Mob {
 
     public static class Undead extends Mob {
 
+        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
         public static int count = 0;
+
+        static {
+            IMMUNITIES.add( Death.class );
+            IMMUNITIES.add( Paralysis.class );
+        }
 
         {
             name = "undead dwarf";
@@ -319,13 +322,6 @@ public class King extends Mob {
             return
                     "These undead dwarves, risen by the will of the King of Dwarves, were members of his court. " +
                             "They appear as skeletons with a stunning amount of facial hair.";
-        }
-
-        private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-        static {
-            IMMUNITIES.add( Death.class );
-            IMMUNITIES.add( Paralysis.class );
         }
 
         @Override

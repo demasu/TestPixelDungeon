@@ -17,9 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
-import com.watabou.noosa.Camera;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.ResultDescriptions;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -32,14 +29,22 @@ import com.demasu.testpixeldungeon.sprites.CharSprite;
 import com.demasu.testpixeldungeon.sprites.ShamanSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
 import com.demasu.testpixeldungeon.utils.Utils;
+import com.watabou.noosa.Camera;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
+
+import java.util.HashSet;
 
 public class Shaman extends Mob implements Callback {
 
     private static final float TIME_TO_ZAP = 2f;
 
     private static final String TXT_LIGHTNING_KILLED = "%s's lightning bolt killed you...";
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( LightningTrap.Electricity.class );
+    }
 
     {
         name = "gnoll shaman";
@@ -140,12 +145,6 @@ public class Shaman extends Mob implements Callback {
                 "The most intelligent gnolls can master shamanistic magic. Gnoll shamans prefer " +
                         "battle spells to compensate for lack of might, not hesitating to use them " +
                         "on those who question their status in a tribe.";
-    }
-
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( LightningTrap.Electricity.class );
     }
 
     @Override

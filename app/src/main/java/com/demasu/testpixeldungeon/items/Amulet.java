@@ -17,16 +17,16 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.Statistics;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.scenes.AmuletScene;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.noosa.Game;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Amulet extends Item {
 

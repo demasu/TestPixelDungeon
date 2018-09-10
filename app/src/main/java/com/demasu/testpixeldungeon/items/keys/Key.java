@@ -24,19 +24,17 @@ import com.watabou.utils.Bundle;
 public class Key extends Item {
 
     public static final float TIME_TO_UNLOCK = 1f;
+    private static final String DEPTH = "depth";
+    public int depth;
 
     {
         stackable = false;
     }
 
-    public int depth;
-
     public Key () {
         super();
         depth = Dungeon.getDepth();
     }
-
-    private static final String DEPTH = "depth";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

@@ -19,8 +19,6 @@ package com.watabou.utils;
 
 import android.annotation.SuppressLint;
 
-import java.lang.Math;
-
 @SuppressLint ( "FloatMath" )
 public class PointF {
 
@@ -47,6 +45,28 @@ public class PointF {
     public PointF ( Point p ) {
         this.x = p.x;
         this.y = p.y;
+    }
+
+    public static PointF sum ( PointF a, PointF b ) {
+        return new PointF( a.x + b.x, a.y + b.y );
+    }
+
+    public static PointF diff ( PointF a, PointF b ) {
+        return new PointF( a.x - b.x, a.y - b.y );
+    }
+
+    public static PointF inter ( PointF a, PointF b, float d ) {
+        return new PointF( a.x + ( b.x - a.x ) * d, a.y + ( b.y - a.y ) * d );
+    }
+
+    public static float distance ( PointF a, PointF b ) {
+        float dx = a.x - b.x;
+        float dy = a.y - b.y;
+        return (float) Math.sqrt( dx * dx + dy * dy );
+    }
+
+    public static float angle ( PointF start, PointF end ) {
+        return (float) Math.atan2( end.y - start.y, end.x - start.x );
     }
 
     @SuppressWarnings ( "MethodDoesntCallSuperMethod" )
@@ -121,28 +141,6 @@ public class PointF {
 
     public float length () {
         return (float) Math.sqrt( x * x + y * y );
-    }
-
-    public static PointF sum ( PointF a, PointF b ) {
-        return new PointF( a.x + b.x, a.y + b.y );
-    }
-
-    public static PointF diff ( PointF a, PointF b ) {
-        return new PointF( a.x - b.x, a.y - b.y );
-    }
-
-    public static PointF inter ( PointF a, PointF b, float d ) {
-        return new PointF( a.x + ( b.x - a.x ) * d, a.y + ( b.y - a.y ) * d );
-    }
-
-    public static float distance ( PointF a, PointF b ) {
-        float dx = a.x - b.x;
-        float dy = a.y - b.y;
-        return (float) Math.sqrt( dx * dx + dy * dy );
-    }
-
-    public static float angle ( PointF start, PointF end ) {
-        return (float) Math.atan2( end.y - start.y, end.x - start.x );
     }
 
     @Override

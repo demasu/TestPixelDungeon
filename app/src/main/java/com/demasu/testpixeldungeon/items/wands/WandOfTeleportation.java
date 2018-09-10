@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.wands;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -25,6 +24,7 @@ import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.effects.MagicMissile;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 
 public class WandOfTeleportation extends Wand {

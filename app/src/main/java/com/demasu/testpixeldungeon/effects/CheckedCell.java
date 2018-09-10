@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
+import com.demasu.testpixeldungeon.DungeonTilemap;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
-import com.demasu.testpixeldungeon.DungeonTilemap;
 
 public class CheckedCell extends Image {
 

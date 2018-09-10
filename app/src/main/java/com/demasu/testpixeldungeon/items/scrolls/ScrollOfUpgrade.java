@@ -35,6 +35,10 @@ public class ScrollOfUpgrade extends InventoryScroll {
         mode = WndBag.Mode.UPGRADEABLE;
     }
 
+    public static void upgrade ( Hero hero ) {
+        hero.sprite.emitter().start( Speck.factory( Speck.UP ), 0.2f, 3 );
+    }
+
     @Override
     protected void onItemSelected ( Item item ) {
 
@@ -49,10 +53,6 @@ public class ScrollOfUpgrade extends InventoryScroll {
         GLog.p( TXT_LOOKS_BETTER, item.name() );
 
         Badges.validateItemLevelAquired( item );
-    }
-
-    public static void upgrade ( Hero hero ) {
-        hero.sprite.emitter().start( Speck.factory( Speck.UP ), 0.2f, 3 );
     }
 
     @Override

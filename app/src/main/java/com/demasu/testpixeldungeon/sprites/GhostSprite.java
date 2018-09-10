@@ -17,14 +17,14 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.opengl.GLES20;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.effects.particles.ShaftParticle;
+import com.watabou.noosa.TextureFilm;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class GhostSprite extends MobSprite {
 

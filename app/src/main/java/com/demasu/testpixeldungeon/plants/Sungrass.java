@@ -75,7 +75,7 @@ public class Sungrass extends Plant {
     public static class Health extends Buff {
 
         private static final float STEP = 5f;
-
+        private static final String POS = "pos";
         private int pos;
 
         @Override
@@ -105,8 +105,6 @@ public class Sungrass extends Plant {
         public String toString () {
             return "Herbal healing";
         }
-
-        private static final String POS = "pos";
 
         @Override
         public void storeInBundle ( Bundle bundle ) {

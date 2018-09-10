@@ -17,13 +17,13 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
+import com.demasu.testpixeldungeon.Assets;
+import com.demasu.testpixeldungeon.PixelDungeon;
+import com.demasu.testpixeldungeon.scenes.TitleScene;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.ui.Button;
-import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.PixelDungeon;
-import com.demasu.testpixeldungeon.scenes.TitleScene;
 
 public class ExitButton extends Button {
 

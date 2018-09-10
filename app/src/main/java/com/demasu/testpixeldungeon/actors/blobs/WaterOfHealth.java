@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.blobs;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.Journal;
@@ -32,6 +31,7 @@ import com.demasu.testpixeldungeon.items.DewVial;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class WaterOfHealth extends WellWater {
 

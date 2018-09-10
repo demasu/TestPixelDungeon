@@ -19,16 +19,6 @@ package com.demasu.testpixeldungeon;
 
 import android.util.Log;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Locale;
-
-import com.watabou.noosa.Game;
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Amok;
@@ -39,8 +29,8 @@ import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.demasu.testpixeldungeon.actors.hero.Legend;
 import com.demasu.testpixeldungeon.actors.mobs.ColdGirl;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.Blacksmith;
-import com.demasu.testpixeldungeon.actors.mobs.npcs.Imp;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.Ghost;
+import com.demasu.testpixeldungeon.actors.mobs.npcs.Imp;
 import com.demasu.testpixeldungeon.actors.mobs.npcs.Wandmaker;
 import com.demasu.testpixeldungeon.actors.skills.CurrentSkills;
 import com.demasu.testpixeldungeon.items.Ankh;
@@ -71,41 +61,64 @@ import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.demasu.testpixeldungeon.utils.BArray;
 import com.demasu.testpixeldungeon.utils.Utils;
 import com.demasu.testpixeldungeon.windows.WndResurrect;
+import com.watabou.noosa.Game;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 import com.watabou.utils.SparseArray;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Locale;
+
 public class Dungeon {
 
+    private static final String RG_GAME_FILE = "game.dat";
+    private static final String RG_DEPTH_FILE = "depth%d.dat";
+    private static final String WR_GAME_FILE = "warrior.dat";
+    private static final String WR_DEPTH_FILE = "warrior%d.dat";
+    private static final String MG_GAME_FILE = "mage.dat";
+    private static final String MG_DEPTH_FILE = "mage%d.dat";
+    private static final String RN_GAME_FILE = "ranger.dat";
+    private static final String RN_DEPTH_FILE = "ranger%d.dat";
+    private static final String VERSION = "version";
+    private static final String CHALLENGES = "challenges";
+    private static final String HERO = "hero";
+    private static final String GOLD = "gold";
+    private static final String DEPTH = "depth";
+    private static final String LEVEL = "level";
+    private static final String DROPPED = "dropped%d";
+    private static final String POS = "potionsOfStrength";
+    private static final String SOU = "scrollsOfEnhancement";
+    private static final String SOE = "scrollsOfEnchantment";
+    private static final String DV = "dewVial";
+    private static final String CHAPTERS = "chapters";
+    private static final String QUESTS = "quests";
+    private static final String BADGES = "badges";
+    public static boolean[] passable = new boolean[Level.LENGTH];
     private static int potionOfStrength;
     private static int scrollsOfUpgrade;
     private static int scrollsOfEnchantment;
     private static boolean dewVial;        // true if the dew vial can be spawned
-
     private static int challenges;
-
     private static Hero hero;
     private static Level level;
-
     private static int depth;
     private static int gold;
-
-
     private static int difficulty;
     private static Difficulties currentDifficulty;
-
     // Reason of death
     private static String resultDescription;
-
     private static HashSet<Integer> chapters;
-
     // Hero's field of view
     private static boolean[] visible = new boolean[Level.LENGTH];
-
     private static boolean nightMode;
-
     private static SparseArray<ArrayList<Item>> droppedItems;
 
     public static void init () {
@@ -407,33 +420,6 @@ public class Dungeon {
         return false;
     }
 
-    private static final String RG_GAME_FILE = "game.dat";
-    private static final String RG_DEPTH_FILE = "depth%d.dat";
-
-    private static final String WR_GAME_FILE = "warrior.dat";
-    private static final String WR_DEPTH_FILE = "warrior%d.dat";
-
-    private static final String MG_GAME_FILE = "mage.dat";
-    private static final String MG_DEPTH_FILE = "mage%d.dat";
-
-    private static final String RN_GAME_FILE = "ranger.dat";
-    private static final String RN_DEPTH_FILE = "ranger%d.dat";
-
-    private static final String VERSION = "version";
-    private static final String CHALLENGES = "challenges";
-    private static final String HERO = "hero";
-    private static final String GOLD = "gold";
-    private static final String DEPTH = "depth";
-    private static final String LEVEL = "level";
-    private static final String DROPPED = "dropped%d";
-    private static final String POS = "potionsOfStrength";
-    private static final String SOU = "scrollsOfEnhancement";
-    private static final String SOE = "scrollsOfEnchantment";
-    private static final String DV = "dewVial";
-    private static final String CHAPTERS = "chapters";
-    private static final String QUESTS = "quests";
-    private static final String BADGES = "badges";
-
     public static String gameFile ( HeroClass cl ) {
         switch ( cl ) {
             case WARRIOR:
@@ -718,8 +704,6 @@ public class Dungeon {
 
         GameScene.afterObserve();
     }
-
-    public static boolean[] passable = new boolean[Level.LENGTH];
 
     public static int findPath ( Char ch, int from, int to, boolean pass[], boolean[] visible ) {
 

@@ -17,11 +17,10 @@
  */
 package com.demasu.testpixeldungeon.effects;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.graphics.RectF;
 import android.opengl.GLES20;
 
+import com.demasu.testpixeldungeon.Assets;
 import com.watabou.glwrap.Texture;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
@@ -29,9 +28,10 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.noosa.ui.Component;
-import com.demasu.testpixeldungeon.Assets;
 import com.watabou.utils.ColorMath;
 import com.watabou.utils.Random;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class Fireball extends Component {
 

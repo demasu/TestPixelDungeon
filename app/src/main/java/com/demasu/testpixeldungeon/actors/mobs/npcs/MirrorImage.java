@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs.npcs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.blobs.ToxicGas;
@@ -31,7 +29,23 @@ import com.demasu.testpixeldungeon.sprites.MirrorSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class MirrorImage extends NPC {
+
+    private static final String TIER = "tier";
+    private static final String ATTACK = "attack";
+    private static final String DAMAGE = "damage";
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( ToxicGas.class );
+        IMMUNITIES.add( Burning.class );
+    }
+
+    public int tier;
+    private int attack;
+    private int damage;
 
     {
         name = "mirror image";
@@ -39,15 +53,6 @@ public class MirrorImage extends NPC {
 
         state = HUNTING;
     }
-
-    public int tier;
-
-    private int attack;
-    private int damage;
-
-    private static final String TIER = "tier";
-    private static final String ATTACK = "attack";
-    private static final String DAMAGE = "damage";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
@@ -136,13 +141,6 @@ public class MirrorImage extends NPC {
 
         Dungeon.getHero().spend( 1 / Dungeon.getHero().speed() );
         Dungeon.getHero().busy();
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( ToxicGas.class );
-        IMMUNITIES.add( Burning.class );
     }
 
     @Override

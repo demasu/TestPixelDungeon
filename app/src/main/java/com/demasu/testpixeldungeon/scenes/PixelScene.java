@@ -17,10 +17,12 @@
  */
 package com.demasu.testpixeldungeon.scenes;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.opengl.GLES20;
 
+import com.demasu.testpixeldungeon.Assets;
+import com.demasu.testpixeldungeon.Badges;
+import com.demasu.testpixeldungeon.PixelDungeon;
+import com.demasu.testpixeldungeon.effects.BadgeBanner;
 import com.watabou.input.Touchscreen;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.BitmapText.Font;
@@ -30,11 +32,9 @@ import com.watabou.noosa.ColorBlock;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Scene;
 import com.watabou.noosa.Visual;
-import com.demasu.testpixeldungeon.Assets;
-import com.demasu.testpixeldungeon.Badges;
-import com.demasu.testpixeldungeon.PixelDungeon;
-import com.demasu.testpixeldungeon.effects.BadgeBanner;
 import com.watabou.utils.BitmapCache;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class PixelScene extends Scene {
 
@@ -57,91 +57,9 @@ public class PixelScene extends Scene {
     public static BitmapText.Font font2x;
     public static BitmapText.Font font25x;
     public static BitmapText.Font font3x;
-
-    @Override
-    public void create () {
-
-        super.create();
-
-        GameScene.scene = null;
-
-        float minWidth, minHeight;
-        if ( PixelDungeon.landscape() ) {
-            minWidth = MIN_WIDTH_L;
-            minHeight = MIN_HEIGHT_L;
-        } else {
-            minWidth = MIN_WIDTH_P;
-            minHeight = MIN_HEIGHT_P;
-        }
-
-        defaultZoom = (int) Math.ceil( Game.density * 2.5 );
-        while ( (
-                Game.width / defaultZoom < minWidth ||
-                        Game.height / defaultZoom < minHeight
-        ) && defaultZoom > 1 ) {
-
-            defaultZoom--;
-        }
-
-        if ( PixelDungeon.scaleUp() ) {
-            while (
-                    Game.width / ( defaultZoom + 1 ) >= minWidth &&
-                            Game.height / ( defaultZoom + 1 ) >= minHeight ) {
-
-                defaultZoom++;
-            }
-        }
-        minZoom = 1;
-        maxZoom = defaultZoom * 2;
-
-        Camera.reset( new PixelCamera( defaultZoom ) );
-
-        float uiZoom = defaultZoom;
-        uiCamera = Camera.createFullscreen( uiZoom );
-        Camera.add( uiCamera );
-
-        if ( font1x == null ) {
-
-            // 3x5 (6)
-            font1x = Font.colorMarked(
-                    BitmapCache.get( Assets.FONTS1X ), 0x00000000, BitmapText.Font.LATIN_FULL );
-            font1x.baseLine = 6;
-            font1x.tracking = -1;
-
-            // 5x8 (10)
-            font15x = Font.colorMarked(
-                    BitmapCache.get( Assets.FONTS15X ), 12, 0x00000000, BitmapText.Font.LATIN_FULL );
-            font15x.baseLine = 9;
-            font15x.tracking = -1;
-
-            // 6x10 (12)
-            font2x = Font.colorMarked(
-                    BitmapCache.get( Assets.FONTS2X ), 14, 0x00000000, BitmapText.Font.LATIN_FULL );
-            font2x.baseLine = 11;
-            font2x.tracking = -1;
-
-            // 7x12 (15)
-            font25x = Font.colorMarked(
-                    BitmapCache.get( Assets.FONTS25X ), 17, 0x00000000, BitmapText.Font.LATIN_FULL );
-            font25x.baseLine = 13;
-            font25x.tracking = -1;
-
-            // 9x15 (18)
-            font3x = Font.colorMarked(
-                    BitmapCache.get( Assets.FONTS3X ), 22, 0x00000000, BitmapText.Font.LATIN_FULL );
-            font3x.baseLine = 17;
-            font3x.tracking = -2;
-        }
-    }
-
-    @Override
-    public void destroy () {
-        super.destroy();
-        Touchscreen.event.removeAll();
-    }
-
     public static BitmapText.Font font;
     public static float scale;
+    public static boolean noFade = false;
 
     public static void chooseFont ( float size ) {
         chooseFont( size, defaultZoom );
@@ -248,7 +166,95 @@ public class PixelScene extends Scene {
         v.y = align( c, v.y );
     }
 
-    public static boolean noFade = false;
+    public static void showBadge ( Badges.Badge badge ) {
+        BadgeBanner banner = BadgeBanner.show( badge.image );
+        banner.camera = uiCamera;
+        banner.x = align( banner.camera, ( banner.camera.width - banner.width ) / 2 );
+        banner.y = align( banner.camera, ( banner.camera.height - banner.height ) / 3 );
+        Game.scene().add( banner );
+    }
+
+    @Override
+    public void create () {
+
+        super.create();
+
+        GameScene.scene = null;
+
+        float minWidth, minHeight;
+        if ( PixelDungeon.landscape() ) {
+            minWidth = MIN_WIDTH_L;
+            minHeight = MIN_HEIGHT_L;
+        } else {
+            minWidth = MIN_WIDTH_P;
+            minHeight = MIN_HEIGHT_P;
+        }
+
+        defaultZoom = (int) Math.ceil( Game.density * 2.5 );
+        while ( (
+                Game.width / defaultZoom < minWidth ||
+                        Game.height / defaultZoom < minHeight
+        ) && defaultZoom > 1 ) {
+
+            defaultZoom--;
+        }
+
+        if ( PixelDungeon.scaleUp() ) {
+            while (
+                    Game.width / ( defaultZoom + 1 ) >= minWidth &&
+                            Game.height / ( defaultZoom + 1 ) >= minHeight ) {
+
+                defaultZoom++;
+            }
+        }
+        minZoom = 1;
+        maxZoom = defaultZoom * 2;
+
+        Camera.reset( new PixelCamera( defaultZoom ) );
+
+        float uiZoom = defaultZoom;
+        uiCamera = Camera.createFullscreen( uiZoom );
+        Camera.add( uiCamera );
+
+        if ( font1x == null ) {
+
+            // 3x5 (6)
+            font1x = Font.colorMarked(
+                    BitmapCache.get( Assets.FONTS1X ), 0x00000000, BitmapText.Font.LATIN_FULL );
+            font1x.baseLine = 6;
+            font1x.tracking = -1;
+
+            // 5x8 (10)
+            font15x = Font.colorMarked(
+                    BitmapCache.get( Assets.FONTS15X ), 12, 0x00000000, BitmapText.Font.LATIN_FULL );
+            font15x.baseLine = 9;
+            font15x.tracking = -1;
+
+            // 6x10 (12)
+            font2x = Font.colorMarked(
+                    BitmapCache.get( Assets.FONTS2X ), 14, 0x00000000, BitmapText.Font.LATIN_FULL );
+            font2x.baseLine = 11;
+            font2x.tracking = -1;
+
+            // 7x12 (15)
+            font25x = Font.colorMarked(
+                    BitmapCache.get( Assets.FONTS25X ), 17, 0x00000000, BitmapText.Font.LATIN_FULL );
+            font25x.baseLine = 13;
+            font25x.tracking = -1;
+
+            // 9x15 (18)
+            font3x = Font.colorMarked(
+                    BitmapCache.get( Assets.FONTS3X ), 22, 0x00000000, BitmapText.Font.LATIN_FULL );
+            font3x.baseLine = 17;
+            font3x.tracking = -2;
+        }
+    }
+
+    @Override
+    public void destroy () {
+        super.destroy();
+        Touchscreen.event.removeAll();
+    }
 
     protected void fadeIn () {
         if ( noFade ) {
@@ -260,14 +266,6 @@ public class PixelScene extends Scene {
 
     protected void fadeIn ( int color, boolean light ) {
         add( new Fader( color, light ) );
-    }
-
-    public static void showBadge ( Badges.Badge badge ) {
-        BadgeBanner banner = BadgeBanner.show( badge.image );
-        banner.camera = uiCamera;
-        banner.x = align( banner.camera, ( banner.camera.width - banner.width ) / 2 );
-        banner.y = align( banner.camera, ( banner.camera.height - banner.height ) / 3 );
-        Game.scene().add( banner );
     }
 
     protected static class Fader extends ColorBlock {

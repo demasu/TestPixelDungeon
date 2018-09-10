@@ -17,9 +17,9 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
-import com.watabou.noosa.Image;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.scenes.MissionScene;
+import com.watabou.noosa.Image;
 
 public class BusyIndicator extends Image {
 

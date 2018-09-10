@@ -17,14 +17,21 @@
  */
 package com.demasu.testpixeldungeon.actors.buffs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.actors.blobs.ToxicGas;
 import com.demasu.testpixeldungeon.ui.BuffIndicator;
+
+import java.util.HashSet;
 
 public class GasesImmunity extends FlavourBuff {
 
     public static final float DURATION = 5f;
+    public static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+
+    static {
+        IMMUNITIES.add( Paralysis.class );
+        IMMUNITIES.add( ToxicGas.class );
+        IMMUNITIES.add( Vertigo.class );
+    }
 
     @Override
     public int icon () {
@@ -34,13 +41,5 @@ public class GasesImmunity extends FlavourBuff {
     @Override
     public String toString () {
         return "Immune to gases";
-    }
-
-    public static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Paralysis.class );
-        IMMUNITIES.add( ToxicGas.class );
-        IMMUNITIES.add( Vertigo.class );
     }
 }

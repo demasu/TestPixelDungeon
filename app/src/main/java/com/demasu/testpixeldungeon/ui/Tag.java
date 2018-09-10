@@ -17,19 +17,18 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
+import com.demasu.testpixeldungeon.Chrome;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.ui.Button;
-import com.demasu.testpixeldungeon.Chrome;
 
 public class Tag extends Button {
 
+    protected NinePatch bg;
+    protected float lightness = 0;
     private float r;
     private float g;
     private float b;
-    protected NinePatch bg;
-
-    protected float lightness = 0;
 
     public Tag ( int color ) {
         super();

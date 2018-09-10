@@ -17,12 +17,53 @@
  */
 package com.demasu.testpixeldungeon;
 
-import java.util.ArrayList;
-
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 
+import java.util.ArrayList;
+
 public class Journal {
+
+    private static final String JOURNAL = "journal";
+    public static ArrayList<Record> records;
+
+    public static void reset () {
+        records = new ArrayList<Journal.Record>();
+    }
+
+    public static void storeInBundle ( Bundle bundle ) {
+        bundle.put( JOURNAL, records );
+    }
+
+    public static void restoreFromBundle ( Bundle bundle ) {
+        records = new ArrayList<Record>();
+        for ( Bundlable rec : bundle.getCollection( JOURNAL ) ) {
+            records.add( (Record) rec );
+        }
+    }
+
+    public static void add ( Feature feature ) {
+        int size = records.size();
+        for ( int i = 0; i < size; i++ ) {
+            Record rec = records.get( i );
+            if ( rec.feature == feature && rec.depth == Dungeon.getDepth() ) {
+                return;
+            }
+        }
+
+        records.add( new Record( feature, Dungeon.getDepth() ) );
+    }
+
+    public static void remove ( Feature feature ) {
+        int size = records.size();
+        for ( int i = 0; i < size; i++ ) {
+            Record rec = records.get( i );
+            if ( rec.feature == feature && rec.depth == Dungeon.getDepth() ) {
+                records.remove( i );
+                return;
+            }
+        }
+    }
 
     public enum Feature {
         WELL_OF_HEALTH( "Well of Health" ),
@@ -76,48 +117,6 @@ public class Journal {
         public void storeInBundle ( Bundle bundle ) {
             bundle.put( FEATURE, feature.toString() );
             bundle.put( DEPTH, depth );
-        }
-    }
-
-    public static ArrayList<Record> records;
-
-    public static void reset () {
-        records = new ArrayList<Journal.Record>();
-    }
-
-    private static final String JOURNAL = "journal";
-
-    public static void storeInBundle ( Bundle bundle ) {
-        bundle.put( JOURNAL, records );
-    }
-
-    public static void restoreFromBundle ( Bundle bundle ) {
-        records = new ArrayList<Record>();
-        for ( Bundlable rec : bundle.getCollection( JOURNAL ) ) {
-            records.add( (Record) rec );
-        }
-    }
-
-    public static void add ( Feature feature ) {
-        int size = records.size();
-        for ( int i = 0; i < size; i++ ) {
-            Record rec = records.get( i );
-            if ( rec.feature == feature && rec.depth == Dungeon.getDepth() ) {
-                return;
-            }
-        }
-
-        records.add( new Record( feature, Dungeon.getDepth() ) );
-    }
-
-    public static void remove ( Feature feature ) {
-        int size = records.size();
-        for ( int i = 0; i < size; i++ ) {
-            Record rec = records.get( i );
-            if ( rec.feature == feature && rec.depth == Dungeon.getDepth() ) {
-                records.remove( i );
-                return;
-            }
         }
     }
 }

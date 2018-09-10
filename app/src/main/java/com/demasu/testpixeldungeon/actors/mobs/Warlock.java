@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon.actors.mobs;
 
-import java.util.HashSet;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.ResultDescriptions;
 import com.demasu.testpixeldungeon.actors.Char;
@@ -35,11 +33,18 @@ import com.demasu.testpixeldungeon.utils.Utils;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
+import java.util.HashSet;
+
 public class Warlock extends Mob implements Callback {
 
     private static final float TIME_TO_ZAP = 1f;
 
     private static final String TXT_SHADOWBOLT_KILLED = "%s's shadow bolt killed you...";
+    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
+
+    static {
+        RESISTANCES.add( Death.class );
+    }
 
     {
         name = "dwarf warlock";
@@ -141,12 +146,6 @@ public class Warlock extends Mob implements Callback {
                 "When dwarves' interests have shifted from engineering to arcane arts, " +
                         "warlocks have come to power in the city. They started with elemental magic, " +
                         "but soon switched to demonology and necromancy.";
-    }
-
-    private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
-
-    static {
-        RESISTANCES.add( Death.class );
     }
 
     @Override

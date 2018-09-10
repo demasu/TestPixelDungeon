@@ -17,9 +17,9 @@
 
 package com.watabou.glwrap;
 
-import java.nio.FloatBuffer;
-
 import android.opengl.GLES20;
+
+import java.nio.FloatBuffer;
 
 public class Attribute {
 

@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.armor;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -31,6 +30,7 @@ import com.demasu.testpixeldungeon.effects.particles.ElmoParticle;
 import com.demasu.testpixeldungeon.levels.Level;
 import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class MageArmor extends ClassArmor {
 

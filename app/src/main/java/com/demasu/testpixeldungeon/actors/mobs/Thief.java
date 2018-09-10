@@ -35,7 +35,7 @@ public class Thief extends Mob {
 
     protected static final String TXT_STOLE = "%s stole %s from you!";
     protected static final String TXT_CARRIES = "\n\n%s is carrying a _%s_. Stolen obviously.";
-
+    private static final String ITEM = "item";
     public Item item;
 
     {
@@ -57,8 +57,6 @@ public class Thief extends Mob {
         HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
         HP = HT;
     }
-
-    private static final String ITEM = "item";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

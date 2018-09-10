@@ -17,7 +17,6 @@
  */
 package com.demasu.testpixeldungeon.items.scrolls;
 
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.actors.buffs.Invisibility;
 import com.demasu.testpixeldungeon.actors.buffs.Weakness;
@@ -26,6 +25,7 @@ import com.demasu.testpixeldungeon.effects.Flare;
 import com.demasu.testpixeldungeon.effects.particles.ShadowParticle;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfRemoveCurse extends Scroll {
 
@@ -36,6 +36,24 @@ public class ScrollOfRemoveCurse extends Scroll {
 
     {
         name = "Scroll of Remove Curse";
+    }
+
+    public static boolean uncurse ( Hero hero, Item... items ) {
+
+        boolean procced = false;
+        for ( int i = 0; i < items.length; i++ ) {
+            Item item = items[i];
+            if ( item != null && item.cursed ) {
+                item.cursed = false;
+                procced = true;
+            }
+        }
+
+        if ( procced ) {
+            hero.sprite.emitter().start( ShadowParticle.UP, 0.05f, 10 );
+        }
+
+        return procced;
     }
 
     @Override
@@ -71,24 +89,6 @@ public class ScrollOfRemoveCurse extends Scroll {
                 "The incantation on this scroll will instantly strip from " +
                         "the reader's weapon, armor, rings and carried items any evil " +
                         "enchantments that might prevent the wearer from removing them.";
-    }
-
-    public static boolean uncurse ( Hero hero, Item... items ) {
-
-        boolean procced = false;
-        for ( int i = 0; i < items.length; i++ ) {
-            Item item = items[i];
-            if ( item != null && item.cursed ) {
-                item.cursed = false;
-                procced = true;
-            }
-        }
-
-        if ( procced ) {
-            hero.sprite.emitter().start( ShadowParticle.UP, 0.05f, 10 );
-        }
-
-        return procced;
     }
 
     @Override

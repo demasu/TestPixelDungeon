@@ -26,6 +26,8 @@ import com.demasu.testpixeldungeon.sprites.MissileSprite;
 
 public class Boomerang extends MissileWeapon {
 
+    private boolean throwEquiped;
+
     {
         name = "boomerang";
         image = ItemSpriteSheet.BOOMERANG;
@@ -94,8 +96,6 @@ public class Boomerang extends MissileWeapon {
             Dungeon.getLevel().drop( this, owner.pos ).sprite.drop();
         }
     }
-
-    private boolean throwEquiped;
 
     @Override
     public void cast ( Hero user, int dst ) {

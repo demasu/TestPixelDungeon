@@ -17,14 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-
-import com.watabou.noosa.Scene;
-import com.watabou.noosa.audio.Sample;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Challenges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -68,79 +60,42 @@ import com.demasu.testpixeldungeon.levels.features.Chasm;
 import com.demasu.testpixeldungeon.levels.features.Door;
 import com.demasu.testpixeldungeon.levels.features.HighGrass;
 import com.demasu.testpixeldungeon.levels.painters.Painter;
-import com.demasu.testpixeldungeon.levels.traps.*;
+import com.demasu.testpixeldungeon.levels.traps.AlarmTrap;
+import com.demasu.testpixeldungeon.levels.traps.FireTrap;
+import com.demasu.testpixeldungeon.levels.traps.GrippingTrap;
+import com.demasu.testpixeldungeon.levels.traps.LightningTrap;
+import com.demasu.testpixeldungeon.levels.traps.ParalyticTrap;
+import com.demasu.testpixeldungeon.levels.traps.PoisonTrap;
+import com.demasu.testpixeldungeon.levels.traps.SummoningTrap;
+import com.demasu.testpixeldungeon.levels.traps.ToxicTrap;
 import com.demasu.testpixeldungeon.mechanics.ShadowCaster;
 import com.demasu.testpixeldungeon.plants.Plant;
 import com.demasu.testpixeldungeon.scenes.GameScene;
 import com.demasu.testpixeldungeon.sprites.MercSprite;
 import com.demasu.testpixeldungeon.utils.GLog;
+import com.watabou.noosa.Scene;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 import com.watabou.utils.SparseArray;
 
-public abstract class Level implements Bundlable {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 
-    public enum Feeling {
-        NONE,
-        CHASM,
-        WATER,
-        GRASS
-    }
+public abstract class Level implements Bundlable {
 
     public static final int WIDTH = 32;
     public static final int HEIGHT = 32;
     public static final int LENGTH = WIDTH * HEIGHT;
-
     public static final int[] NEIGHBOURS4 = { -WIDTH, +1, +WIDTH, -1 };
     public static final int[] NEIGHBOURS8 = { +1, -1, +WIDTH, -WIDTH, +1 + WIDTH, +1 - WIDTH, -1 + WIDTH, -1 - WIDTH };
     public static final int[] NEIGHBOURS9 = { 0, +1, -1, +WIDTH, -WIDTH, +1 + WIDTH, +1 - WIDTH, -1 + WIDTH, -1 - WIDTH };
-
     protected static final float TIME_TO_RESPAWN = 50;
-
     private static final String TXT_HIDDEN_PLATE_CLICKS = "A hidden pressure plate clicks!";
-
-    public static boolean resizingNeeded;
-    public static int loadedMapSize;
-
-    public int[] map;
-    public boolean[] visited;
-    public boolean[] mapped;
-
-    public int viewDistance = Dungeon.isChallenged( Challenges.DARKNESS ) ? 3 : 8;
-
-    public static boolean[] fieldOfView = new boolean[LENGTH];
-
-    public static boolean[] passable = new boolean[LENGTH];
-    public static boolean[] losBlocking = new boolean[LENGTH];
-    public static boolean[] flamable = new boolean[LENGTH];
-    public static boolean[] secret = new boolean[LENGTH];
-    public static boolean[] solid = new boolean[LENGTH];
-    public static boolean[] avoid = new boolean[LENGTH];
-    public static boolean[] water = new boolean[LENGTH];
-    public static boolean[] pit = new boolean[LENGTH];
-
-    public static boolean[] discoverable = new boolean[LENGTH];
-
-    public Feeling feeling = Feeling.NONE;
-
-    public int entrance;
-    public int storage;
-    public int exit;
-
-    public HashSet<Mob> mobs;
-    public SparseArray<Heap> heaps;
-    public HashMap<Class<? extends Blob>, Blob> blobs;
-    public SparseArray<Plant> plants;
-
-    protected ArrayList<Item> itemsToSpawn = new ArrayList<Item>();
-
-    public int color1 = 0x004400;
-    public int color2 = 0x88CC44;
-
-    protected static boolean pitRoomNeeded = false;
-    protected static boolean weakFloorCreated = false;
-
     private static final String MAP = "map";
     private static final String VISITED = "visited";
     private static final String MAPPED = "mapped";
@@ -151,6 +106,62 @@ public abstract class Level implements Bundlable {
     private static final String PLANTS = "plants";
     private static final String MOBS = "mobs";
     private static final String BLOBS = "blobs";
+    public static boolean resizingNeeded;
+    public static int loadedMapSize;
+    public static boolean[] fieldOfView = new boolean[LENGTH];
+    public static boolean[] passable = new boolean[LENGTH];
+    public static boolean[] losBlocking = new boolean[LENGTH];
+    public static boolean[] flamable = new boolean[LENGTH];
+    public static boolean[] secret = new boolean[LENGTH];
+    public static boolean[] solid = new boolean[LENGTH];
+    public static boolean[] avoid = new boolean[LENGTH];
+    public static boolean[] water = new boolean[LENGTH];
+    public static boolean[] pit = new boolean[LENGTH];
+    public static boolean[] discoverable = new boolean[LENGTH];
+    protected static boolean pitRoomNeeded = false;
+    protected static boolean weakFloorCreated = false;
+    public int[] map;
+    public boolean[] visited;
+    public boolean[] mapped;
+    public int viewDistance = Dungeon.isChallenged( Challenges.DARKNESS ) ? 3 : 8;
+    public Feeling feeling = Feeling.NONE;
+    public int entrance;
+    public int storage;
+    public int exit;
+    public HashSet<Mob> mobs;
+    public SparseArray<Heap> heaps;
+    public HashMap<Class<? extends Blob>, Blob> blobs;
+    public SparseArray<Plant> plants;
+    public int color1 = 0x004400;
+    public int color2 = 0x88CC44;
+    protected ArrayList<Item> itemsToSpawn = new ArrayList<Item>();
+
+    public static void set ( int cell, int terrain ) {
+        Painter.set( Dungeon.getLevel(), cell, terrain );
+
+        int flags = Terrain.flags[terrain];
+        passable[cell] = ( flags & Terrain.PASSABLE ) != 0;
+        losBlocking[cell] = ( flags & Terrain.LOS_BLOCKING ) != 0;
+        flamable[cell] = ( flags & Terrain.FLAMABLE ) != 0;
+        secret[cell] = ( flags & Terrain.SECRET ) != 0;
+        solid[cell] = ( flags & Terrain.SOLID ) != 0;
+        avoid[cell] = ( flags & Terrain.AVOID ) != 0;
+        pit[cell] = ( flags & Terrain.PIT ) != 0;
+        water[cell] = terrain == Terrain.WATER || terrain >= Terrain.WATER_TILES;
+    }
+
+    public static int distance ( int a, int b ) {
+        int ax = a % WIDTH;
+        int ay = a / WIDTH;
+        int bx = b % WIDTH;
+        int by = b / WIDTH;
+        return Math.max( Math.abs( ax - bx ), Math.abs( ay - by ) );
+    }
+
+    public static boolean adjacent ( int a, int b ) {
+        int diff = Math.abs( a - b );
+        return diff == 1 || diff == WIDTH || diff == WIDTH + 1 || diff == WIDTH - 1;
+    }
 
     public void create () {
 
@@ -612,20 +623,6 @@ public abstract class Level implements Bundlable {
         }
     }
 
-    public static void set ( int cell, int terrain ) {
-        Painter.set( Dungeon.getLevel(), cell, terrain );
-
-        int flags = Terrain.flags[terrain];
-        passable[cell] = ( flags & Terrain.PASSABLE ) != 0;
-        losBlocking[cell] = ( flags & Terrain.LOS_BLOCKING ) != 0;
-        flamable[cell] = ( flags & Terrain.FLAMABLE ) != 0;
-        secret[cell] = ( flags & Terrain.SECRET ) != 0;
-        solid[cell] = ( flags & Terrain.SOLID ) != 0;
-        avoid[cell] = ( flags & Terrain.AVOID ) != 0;
-        pit[cell] = ( flags & Terrain.PIT ) != 0;
-        water[cell] = terrain == Terrain.WATER || terrain >= Terrain.WATER_TILES;
-    }
-
     public Heap drop ( Item item, int cell ) {
 
         if ( Dungeon.isChallenged( Challenges.NO_FOOD ) && item instanceof Food ) {
@@ -997,19 +994,6 @@ public abstract class Level implements Bundlable {
         return fieldOfView;
     }
 
-    public static int distance ( int a, int b ) {
-        int ax = a % WIDTH;
-        int ay = a / WIDTH;
-        int bx = b % WIDTH;
-        int by = b / WIDTH;
-        return Math.max( Math.abs( ax - bx ), Math.abs( ay - by ) );
-    }
-
-    public static boolean adjacent ( int a, int b ) {
-        int diff = Math.abs( a - b );
-        return diff == 1 || diff == WIDTH || diff == WIDTH + 1 || diff == WIDTH - 1;
-    }
-
     public String tileName ( int tile ) {
 
         if ( tile == Terrain.STORAGE ) {
@@ -1156,5 +1140,12 @@ public abstract class Level implements Bundlable {
                 }
                 return "";
         }
+    }
+
+    public enum Feeling {
+        NONE,
+        CHASM,
+        WATER,
+        GRASS
     }
 }

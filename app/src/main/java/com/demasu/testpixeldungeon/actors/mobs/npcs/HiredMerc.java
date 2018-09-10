@@ -46,6 +46,415 @@ import java.util.HashSet;
  */
 public class HiredMerc extends NPC {
 
+    public static final String MAIDEN_UNLOCK_BY = "Please consider donating to unlock this feature.";
+    public static final int COST_RATE = 15;
+    public static final String TXT_LEVEL_UP = "Stronger by the second...";
+    public static final String TXT_CANT_EQUIP = "Too heavy for me Sir";
+    public static final int RANGED_COOLDOWN = 5;
+    public static final String MERC_TYPE = "merctype";
+    private static final String LEVEL = "level";
+    private static final String WEAPON = "weapon";
+    private static final String ARMOR = "armor";
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    public static boolean archerMaidenUnlocked = false;
+
+    static {
+        IMMUNITIES.add( Poison.class );
+    }
+
+    public MERC_TYPES mercType = MERC_TYPES.Brute;
+    public int rangedAttackCooldown = 0;
+    public int skillCounter = 90;
+    public Skill skill = null;
+    public Skill skillb = null;
+    public Skill skillc = null;
+    public Item weapon = null;
+    public Item armor = null;
+    public Item carrying = null;
+    public boolean hackFix = false;
+    public int level;
+
+    {
+        name = "Brute";
+        spriteClass = MercSprite.class;
+
+        viewDistance = 4;
+
+        WANDERING = new Wandering();
+
+        flying = false;
+        state = WANDERING;
+    }
+
+    public HiredMerc () {
+
+    }
+
+    public HiredMerc ( MERC_TYPES merc ) {
+        this.mercType = merc;
+        //skill = mercType.getSkill();
+        mercType.setSkills( this );
+        // mercType.setEquipment(this); // done in hiring phase now
+        //skill.level++;
+    }
+
+    public void equipWeapon ( Item item ) {
+        unEquipWeapon();
+        weapon = item;
+
+        if ( !canEquip( weapon ) ) {
+            unEquipWeapon();
+            sprite.showStatus( CharSprite.NEGATIVE, TXT_CANT_EQUIP );
+        }
+    }
+
+    public void unEquipWeapon () {
+        if ( weapon != null ) {
+            Dungeon.getLevel().drop( weapon, pos ).sprite.drop();
+        }
+        weapon = null;
+    }
+
+    public void equipArmor ( Item item ) {
+        unEquipArmor();
+        armor = item;
+        if ( !canEquip( armor ) ) {
+            unEquipArmor();
+            sprite.showStatus( CharSprite.NEGATIVE, TXT_CANT_EQUIP );
+        } else {
+            ( (MercSprite) Dungeon.getHero().hiredMerc.sprite ).updateArmor();
+        }
+    }
+
+    public void unEquipArmor () {
+        if ( armor != null ) {
+            Dungeon.getLevel().drop( armor, pos ).sprite.drop();
+            armor = null;
+            if ( HP > 0 ) {
+                ( (MercSprite) Dungeon.getHero().hiredMerc.sprite ).updateArmor();
+            }
+        }
+    }
+
+    public void equipItem ( Item item ) {
+        unEquipItem();
+        carrying = item;
+    }
+
+    public void unEquipItem () {
+        if ( carrying != null ) {
+            Dungeon.getLevel().drop( carrying, pos ).sprite.drop();
+        }
+        carrying = null;
+    }
+
+    public int getArmorTier () {
+        if ( armor == null ) {
+            return 0;
+        }
+        return ( (Armor) armor ).tier;
+    }
+
+    @SuppressWarnings ( "SimplifiableIfStatement" )
+    public boolean canEquip ( Item item ) {
+        if ( item instanceof Weapon ) {
+            return mercType.getStrength( level ) >= ( (Weapon) item ).STR;
+        }
+        if ( item instanceof Armor ) {
+            return mercType.getStrength( level ) >= ( (Armor) item ).STR;
+        }
+        return false;
+    }
+
+    @Override
+    public int defenseProc ( Char enemy, int damage ) {
+        try {
+            if ( armor != null ) {
+                damage = ( (Armor) armor ).proc( enemy, this, damage );
+            }
+            damage *= skill.incomingDamageModifier();
+        } catch ( Exception ex ) {
+            // Being careful
+        }
+
+
+        return damage;
+    }
+
+    @Override
+    public int attackProc ( Char enemy, int damage ) {
+
+        rangedAttackCooldown = 0;
+
+        if ( enemy instanceof Mob ) {
+            if ( mercType != MERC_TYPES.Archer && mercType != MERC_TYPES.ArcherMaiden || Level.adjacent( pos, enemy.pos ) ) {
+                ( (Mob) enemy ).aggro( this );
+            }
+        }
+        try {
+            if ( weapon != null && !( weapon instanceof Bow ) ) {
+                ( (Weapon) weapon ).proc( this, enemy, damage );
+            }
+
+            if ( weapon instanceof Bow ) {
+                ( (Bow) weapon ).bowSpecial( enemy );
+            }
+        } catch ( Exception ex ) {
+            // Being careful
+        }
+
+        try {
+            if ( skill.venomousAttack() ) // <--- Venom when present
+            {
+                Buff.affect( enemy, Poison.class ).set( Poison.durationFactor( enemy ) );
+            }
+
+            if ( skill.cripple() ) // <-- KneeShot
+            {
+                Buff.affect( enemy, Cripple.class );
+            }
+        } catch ( Exception ex ) {
+            // never too careful
+        }
+
+        return damage;
+    }
+
+    @Override
+    public void storeInBundle ( Bundle bundle ) {
+        /*
+        super.storeInBundle( bundle );
+        bundle.put( LEVEL, level );
+        bundle.put( MERC_TYPE, mercType);
+        bundle.put( WEAPON, weapon );
+        bundle.put( ARMOR, armor );
+        */
+    }
+
+    @Override
+    public void restoreFromBundle ( Bundle bundle ) {
+         /*
+        super.restoreFromBundle( bundle );
+        mercType = MERC_TYPES.valueOf(bundle.getString(MERC_TYPE));
+        skill = mercType.getSkill();
+        weapon = (KindOfWeapon)bundle.get( WEAPON );
+
+        armor = (Armor)bundle.get( ARMOR );
+
+        spawn( bundle.getInt( LEVEL) , HP);
+        */
+    }
+
+    public void spawn ( int level ) {
+        this.level = level;
+
+        HT = mercType.getHealth( level );
+        HP = HT;
+        defenseSkill = mercType.getDefence( level );
+
+        name = mercType.getName();
+    }
+
+    public void spawn ( int level, int maintainHP ) {
+        this.level = level;
+
+        HT = mercType.getHealth( level );
+        HP = maintainHP;
+        name = mercType.getName();
+        defenseSkill = mercType.getDefence( level );
+
+    }
+
+    public void skillLevel ( int level ) {
+        if ( skill != null ) {
+            skill.level = level;
+        }
+    }
+
+    public void level () {
+        level++;
+        HT = mercType.getHealth( level );
+        HP = HT;
+        sprite.showStatus( CharSprite.POSITIVE, TXT_LEVEL_UP );
+
+        if ( skill.level < Skill.MAX_LEVEL ) {
+            skill.level++;
+        }
+    }
+
+    public String getNameAndLevel () {
+        return mercType.getName() + " (LvL " + level + ( mercType != MERC_TYPES.ArcherMaiden ? " STR: " + mercType.getStrength( level ) + ")" : ")" );
+    }
+
+    @Override
+    public CharSprite sprite () {
+        CharSprite s = super.sprite();
+        if ( s instanceof MercSprite ) {
+            ( (MercSprite) s ).updateArmor( mercType );
+        }
+        return s;
+    }
+
+    @Override
+    public int attackSkill ( Char target ) {
+        return defenseSkill;
+    }
+
+    @Override
+    public int damageRoll () {
+        if ( weapon == null ) {
+            return mercType.getDamage( level );
+        }
+
+        if ( weapon instanceof Bow ) {
+            return (int) ( mercType.getDamage( level ) * 1.2f );
+        }
+
+        if ( weapon instanceof Boomerang ) {
+            return ( (Boomerang) weapon ).damageRoll( this );
+        }
+
+        if ( weapon instanceof MeleeWeapon ) {
+            return ( (MeleeWeapon) weapon ).damageRoll( this );
+        }
+
+        return ( (Weapon) weapon ).damageRoll( this );
+    }
+
+    @Override
+    protected boolean canAttack ( Char enemy ) {
+
+        if ( mercType != MERC_TYPES.Archer && mercType != MERC_TYPES.ArcherMaiden ) {
+            return super.canAttack( enemy );
+        }
+
+        if ( mercType == MERC_TYPES.ArcherMaiden ) {
+            return Ballistica.castMaiden( pos, enemy.pos ) == enemy.pos;
+        }
+
+
+        return Ballistica.cast( pos, enemy.pos, false, true ) == enemy.pos;
+    }
+
+    @Override
+    public boolean doAttack ( Char enemy ) {
+        if ( Level.adjacent( pos, enemy.pos ) || mercType != MERC_TYPES.Archer && mercType != MERC_TYPES.ArcherMaiden ) {
+            return super.doAttack( enemy );
+        }
+
+        if ( rangedAttackCooldown < RANGED_COOLDOWN ) {
+            sprite.showStatus( CharSprite.NEUTRAL, "Reloading Sir" );
+            spend( attackDelay() );
+            next();
+            return false;
+        }
+
+        return super.doAttack( enemy );
+    }
+
+    @Override
+    protected boolean act () {
+
+        spend( 0.01f ); // Fail safe to prevent complete game freeze.
+
+        skillCounter++;
+        //  if(skillCounter % DEGRADE_RATE == 0)
+        //      HP--;
+
+        rangedAttackCooldown++;
+
+        if ( !hackFix ) {
+            ( (MercSprite) super.sprite ).updateArmor();
+            hackFix = true;
+        }
+
+        if ( mercType.getSpecialSkillTime() != -1 && skillCounter % mercType.getSpecialSkillTime() == 0 ) {
+            skill.mercSummon();
+        }
+
+
+        if ( HP <= 0 ) {
+
+            // if(((MercSprite)super.sprite()).halo != null)
+            //   ((MercSprite)super.sprite()).halo.putOut();
+            die( null );
+            return true;
+        } else {
+
+            return super.act();
+        }
+    }
+
+    @Override
+    public void die ( Object src ) {
+
+        if ( carrying instanceof PotionOfHealing ) {
+            GLog.p( " " + name + " consumed a Potion Of Healing " );
+            super.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
+            HP = HT;
+            carrying = null;
+            return;
+        }
+
+        super.die( src );
+
+        unEquipWeapon();
+        unEquipArmor();
+        unEquipItem();
+
+        Dungeon.getHero().hiredMerc = null;
+
+    }
+
+    protected Char chooseEnemy () {
+
+        if ( enemy == null || !enemy.isAlive() ) {
+            HashSet<Mob> enemies = new HashSet<Mob>();
+            for ( Mob mob : Dungeon.getLevel().mobs ) {
+                if ( mob.hostile && Level.fieldOfView[mob.pos] ) {
+                    enemies.add( mob );
+                }
+            }
+
+            return enemies.size() > 0 ? Random.element( enemies ) : null;
+
+        } else {
+
+            return enemy;
+
+        }
+    }
+
+    @Override
+    public String description () {
+        return
+                mercType.getDescription();
+    }
+
+    @Override
+    public HashSet<Class<?>> immunities () {
+        return IMMUNITIES;
+    }
+
+    @Override
+    public void interact () {
+        if ( pos == Dungeon.getHero().pos ) {
+            return;
+        }
+
+        int curPos = pos;
+
+        moveSprite( pos, Dungeon.getHero().pos );
+        move( Dungeon.getHero().pos );
+
+        Dungeon.getHero().sprite.move( Dungeon.getHero().pos, curPos );
+        Dungeon.getHero().move( curPos );
+
+        Dungeon.getHero().spend( 1 / Dungeon.getHero().speed() );
+        Dungeon.getHero().busy();
+    }
+
+
     public enum MERC_TYPES {
         Brute( "Brute" ), Wizard( "Wizard" ), Thief( "Thief" ), Archer( "Archer" ), ArcherMaiden( "ArcherMaiden" );
         public String type = "Brute";
@@ -261,419 +670,6 @@ public class HiredMerc extends NPC {
         }
     }
 
-    public static boolean archerMaidenUnlocked = false;
-    public static final String MAIDEN_UNLOCK_BY = "Please consider donating to unlock this feature.";
-    public static final int COST_RATE = 15;
-
-    public static final String TXT_LEVEL_UP = "Stronger by the second...";
-    public static final String TXT_CANT_EQUIP = "Too heavy for me Sir";
-
-    public MERC_TYPES mercType = MERC_TYPES.Brute;
-
-
-    public int rangedAttackCooldown = 0;
-    public static final int RANGED_COOLDOWN = 5;
-
-    public int skillCounter = 90;
-
-    public Skill skill = null;
-    public Skill skillb = null;
-    public Skill skillc = null;
-
-    public Item weapon = null;
-    public Item armor = null;
-
-    public Item carrying = null;
-
-    public boolean hackFix = false;
-
-
-    public static final String MERC_TYPE = "merctype";
-
-    {
-        name = "Brute";
-        spriteClass = MercSprite.class;
-
-        viewDistance = 4;
-
-        WANDERING = new Wandering();
-
-        flying = false;
-        state = WANDERING;
-    }
-
-    public int level;
-
-    private static final String LEVEL = "level";
-    private static final String WEAPON = "weapon";
-    private static final String ARMOR = "armor";
-
-    public HiredMerc () {
-
-    }
-
-    public HiredMerc ( MERC_TYPES merc ) {
-        this.mercType = merc;
-        //skill = mercType.getSkill();
-        mercType.setSkills( this );
-        // mercType.setEquipment(this); // done in hiring phase now
-        //skill.level++;
-    }
-
-    public void equipWeapon ( Item item ) {
-        unEquipWeapon();
-        weapon = item;
-
-        if ( !canEquip( weapon ) ) {
-            unEquipWeapon();
-            sprite.showStatus( CharSprite.NEGATIVE, TXT_CANT_EQUIP );
-        }
-    }
-
-    public void unEquipWeapon () {
-        if ( weapon != null ) {
-            Dungeon.getLevel().drop( weapon, pos ).sprite.drop();
-        }
-        weapon = null;
-    }
-
-    public void equipArmor ( Item item ) {
-        unEquipArmor();
-        armor = item;
-        if ( !canEquip( armor ) ) {
-            unEquipArmor();
-            sprite.showStatus( CharSprite.NEGATIVE, TXT_CANT_EQUIP );
-        } else {
-            ( (MercSprite) Dungeon.getHero().hiredMerc.sprite ).updateArmor();
-        }
-    }
-
-    public void unEquipArmor () {
-        if ( armor != null ) {
-            Dungeon.getLevel().drop( armor, pos ).sprite.drop();
-            armor = null;
-            if ( HP > 0 ) {
-                ( (MercSprite) Dungeon.getHero().hiredMerc.sprite ).updateArmor();
-            }
-        }
-    }
-
-    public void equipItem ( Item item ) {
-        unEquipItem();
-        carrying = item;
-    }
-
-
-    public void unEquipItem () {
-        if ( carrying != null ) {
-            Dungeon.getLevel().drop( carrying, pos ).sprite.drop();
-        }
-        carrying = null;
-    }
-
-
-    public int getArmorTier () {
-        if ( armor == null ) {
-            return 0;
-        }
-        return ( (Armor) armor ).tier;
-    }
-
-    @SuppressWarnings ( "SimplifiableIfStatement" )
-    public boolean canEquip ( Item item ) {
-        if ( item instanceof Weapon ) {
-            return mercType.getStrength( level ) >= ( (Weapon) item ).STR;
-        }
-        if ( item instanceof Armor ) {
-            return mercType.getStrength( level ) >= ( (Armor) item ).STR;
-        }
-        return false;
-    }
-
-
-    @Override
-    public int defenseProc ( Char enemy, int damage ) {
-        try {
-            if ( armor != null ) {
-                damage = ( (Armor) armor ).proc( enemy, this, damage );
-            }
-            damage *= skill.incomingDamageModifier();
-        } catch ( Exception ex ) {
-            // Being careful
-        }
-
-
-        return damage;
-    }
-
-    @Override
-    public int attackProc ( Char enemy, int damage ) {
-
-        rangedAttackCooldown = 0;
-
-        if ( enemy instanceof Mob ) {
-            if ( mercType != MERC_TYPES.Archer && mercType != MERC_TYPES.ArcherMaiden || Level.adjacent( pos, enemy.pos ) ) {
-                ( (Mob) enemy ).aggro( this );
-            }
-        }
-        try {
-            if ( weapon != null && !( weapon instanceof Bow ) ) {
-                ( (Weapon) weapon ).proc( this, enemy, damage );
-            }
-
-            if ( weapon instanceof Bow ) {
-                ( (Bow) weapon ).bowSpecial( enemy );
-            }
-        } catch ( Exception ex ) {
-            // Being careful
-        }
-
-        try {
-            if ( skill.venomousAttack() ) // <--- Venom when present
-            {
-                Buff.affect( enemy, Poison.class ).set( Poison.durationFactor( enemy ) );
-            }
-
-            if ( skill.cripple() ) // <-- KneeShot
-            {
-                Buff.affect( enemy, Cripple.class );
-            }
-        } catch ( Exception ex ) {
-            // never too careful
-        }
-
-        return damage;
-    }
-
-
-    @Override
-    public void storeInBundle ( Bundle bundle ) {
-        /*
-        super.storeInBundle( bundle );
-        bundle.put( LEVEL, level );
-        bundle.put( MERC_TYPE, mercType);
-        bundle.put( WEAPON, weapon );
-        bundle.put( ARMOR, armor );
-        */
-    }
-
-    @Override
-    public void restoreFromBundle ( Bundle bundle ) {
-         /*
-        super.restoreFromBundle( bundle );
-        mercType = MERC_TYPES.valueOf(bundle.getString(MERC_TYPE));
-        skill = mercType.getSkill();
-        weapon = (KindOfWeapon)bundle.get( WEAPON );
-
-        armor = (Armor)bundle.get( ARMOR );
-
-        spawn( bundle.getInt( LEVEL) , HP);
-        */
-    }
-
-
-    public void spawn ( int level ) {
-        this.level = level;
-
-        HT = mercType.getHealth( level );
-        HP = HT;
-        defenseSkill = mercType.getDefence( level );
-
-        name = mercType.getName();
-    }
-
-    public void spawn ( int level, int maintainHP ) {
-        this.level = level;
-
-        HT = mercType.getHealth( level );
-        HP = maintainHP;
-        name = mercType.getName();
-        defenseSkill = mercType.getDefence( level );
-
-    }
-
-    public void skillLevel ( int level ) {
-        if ( skill != null ) {
-            skill.level = level;
-        }
-    }
-
-
-    public void level () {
-        level++;
-        HT = mercType.getHealth( level );
-        HP = HT;
-        sprite.showStatus( CharSprite.POSITIVE, TXT_LEVEL_UP );
-
-        if ( skill.level < Skill.MAX_LEVEL ) {
-            skill.level++;
-        }
-    }
-
-    public String getNameAndLevel () {
-        return mercType.getName() + " (LvL " + level + ( mercType != MERC_TYPES.ArcherMaiden ? " STR: " + mercType.getStrength( level ) + ")" : ")" );
-    }
-
-    @Override
-    public CharSprite sprite () {
-        CharSprite s = super.sprite();
-        if ( s instanceof MercSprite ) {
-            ( (MercSprite) s ).updateArmor( mercType );
-        }
-        return s;
-    }
-
-    @Override
-    public int attackSkill ( Char target ) {
-        return defenseSkill;
-    }
-
-    @Override
-    public int damageRoll () {
-        if ( weapon == null ) {
-            return mercType.getDamage( level );
-        }
-
-        if ( weapon instanceof Bow ) {
-            return (int) ( mercType.getDamage( level ) * 1.2f );
-        }
-
-        if ( weapon instanceof Boomerang ) {
-            return ( (Boomerang) weapon ).damageRoll( this );
-        }
-
-        if ( weapon instanceof MeleeWeapon ) {
-            return ( (MeleeWeapon) weapon ).damageRoll( this );
-        }
-
-        return ( (Weapon) weapon ).damageRoll( this );
-    }
-
-
-    @Override
-    protected boolean canAttack ( Char enemy ) {
-
-        if ( mercType != MERC_TYPES.Archer && mercType != MERC_TYPES.ArcherMaiden ) {
-            return super.canAttack( enemy );
-        }
-
-        if ( mercType == MERC_TYPES.ArcherMaiden ) {
-            return Ballistica.castMaiden( pos, enemy.pos ) == enemy.pos;
-        }
-
-
-        return Ballistica.cast( pos, enemy.pos, false, true ) == enemy.pos;
-    }
-
-
-    @Override
-    public boolean doAttack ( Char enemy ) {
-        if ( Level.adjacent( pos, enemy.pos ) || mercType != MERC_TYPES.Archer && mercType != MERC_TYPES.ArcherMaiden ) {
-            return super.doAttack( enemy );
-        }
-
-        if ( rangedAttackCooldown < RANGED_COOLDOWN ) {
-            sprite.showStatus( CharSprite.NEUTRAL, "Reloading Sir" );
-            spend( attackDelay() );
-            next();
-            return false;
-        }
-
-        return super.doAttack( enemy );
-    }
-
-
-    @Override
-    protected boolean act () {
-
-        spend( 0.01f ); // Fail safe to prevent complete game freeze.
-
-        skillCounter++;
-        //  if(skillCounter % DEGRADE_RATE == 0)
-        //      HP--;
-
-        rangedAttackCooldown++;
-
-        if ( !hackFix ) {
-            ( (MercSprite) super.sprite ).updateArmor();
-            hackFix = true;
-        }
-
-        if ( mercType.getSpecialSkillTime() != -1 && skillCounter % mercType.getSpecialSkillTime() == 0 ) {
-            skill.mercSummon();
-        }
-
-
-        if ( HP <= 0 ) {
-
-            // if(((MercSprite)super.sprite()).halo != null)
-            //   ((MercSprite)super.sprite()).halo.putOut();
-            die( null );
-            return true;
-        } else {
-
-            return super.act();
-        }
-    }
-
-    @Override
-    public void die ( Object src ) {
-
-        if ( carrying instanceof PotionOfHealing ) {
-            GLog.p( " " + name + " consumed a Potion Of Healing " );
-            super.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
-            HP = HT;
-            carrying = null;
-            return;
-        }
-
-        super.die( src );
-
-        unEquipWeapon();
-        unEquipArmor();
-        unEquipItem();
-
-        Dungeon.getHero().hiredMerc = null;
-
-    }
-
-    protected Char chooseEnemy () {
-
-        if ( enemy == null || !enemy.isAlive() ) {
-            HashSet<Mob> enemies = new HashSet<Mob>();
-            for ( Mob mob : Dungeon.getLevel().mobs ) {
-                if ( mob.hostile && Level.fieldOfView[mob.pos] ) {
-                    enemies.add( mob );
-                }
-            }
-
-            return enemies.size() > 0 ? Random.element( enemies ) : null;
-
-        } else {
-
-            return enemy;
-
-        }
-    }
-
-    @Override
-    public String description () {
-        return
-                mercType.getDescription();
-    }
-
-    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
-
-    static {
-        IMMUNITIES.add( Poison.class );
-    }
-
-    @Override
-    public HashSet<Class<?>> immunities () {
-        return IMMUNITIES;
-    }
-
-
     private class Wandering implements AiState {
 
         @Override
@@ -711,23 +707,5 @@ public class HiredMerc extends NPC {
         public String status () {
             return Utils.format( "This %s is wandering", name );
         }
-    }
-
-    @Override
-    public void interact () {
-        if ( pos == Dungeon.getHero().pos ) {
-            return;
-        }
-
-        int curPos = pos;
-
-        moveSprite( pos, Dungeon.getHero().pos );
-        move( Dungeon.getHero().pos );
-
-        Dungeon.getHero().sprite.move( Dungeon.getHero().pos, curPos );
-        Dungeon.getHero().move( curPos );
-
-        Dungeon.getHero().spend( 1 / Dungeon.getHero().speed() );
-        Dungeon.getHero().busy();
     }
 }

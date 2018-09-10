@@ -10,6 +10,8 @@ import com.demasu.testpixeldungeon.ui.StatusPane;
 public class TripleShot extends ActiveSkill2 {
 
 
+    private int count = 0; // prevent infinite loop
+
     {
         name = "Triple Shot";
         castText = "Catch Sweetie";
@@ -17,8 +19,6 @@ public class TripleShot extends ActiveSkill2 {
         tier = 2;
         mana = 5;
     }
-
-    private int count = 0; // prevent infinite loop
 
     @Override
     public void execute ( Hero hero, String action ) {

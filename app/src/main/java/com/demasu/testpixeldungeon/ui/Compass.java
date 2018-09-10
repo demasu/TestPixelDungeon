@@ -17,10 +17,10 @@
  */
 package com.demasu.testpixeldungeon.ui;
 
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.Image;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.DungeonTilemap;
+import com.watabou.noosa.Camera;
+import com.watabou.noosa.Image;
 import com.watabou.utils.PointF;
 
 public class Compass extends Image {

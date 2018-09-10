@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
- /*
+/*
  * This weapong made for debugging by Demasu (5 September 2018)
  */
 
@@ -27,17 +27,17 @@ import com.demasu.testpixeldungeon.sprites.ItemSpriteSheet;
 public class SwordOfDebug extends MeleeWeapon {
 
     {
-      name = "Sword of debug";
-      image = ItemSpriteSheet.NecroBlade5;
+        name = "Sword of debug";
+        image = ItemSpriteSheet.NecroBlade5;
     }
-    
+
     public SwordOfDebug () {
-      super( 5, 1f, 1f);
+        super( 5, 1f, 1f );
     }
 
     @Override
     public String desc () {
-      return "A blade that should only be used for debugging the game\n" +
-      "This weapon should hit more often than not.";
+        return "A blade that should only be used for debugging the game\n" +
+                "This weapon should hit more often than not.";
     }
 }

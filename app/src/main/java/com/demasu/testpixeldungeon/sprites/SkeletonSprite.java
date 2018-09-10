@@ -17,12 +17,12 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.effects.Speck;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
 import com.demasu.testpixeldungeon.levels.Level;
+import com.watabou.noosa.TextureFilm;
 import com.watabou.utils.Callback;
 
 public class SkeletonSprite extends MobSprite {

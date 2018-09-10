@@ -17,16 +17,16 @@
 
 package com.watabou.noosa.audio;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-
-import com.watabou.noosa.Game;
-
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.SoundPool;
+
+import com.watabou.noosa.Game;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 public enum Sample implements SoundPool.OnLoadCompleteListener {
 
@@ -41,6 +41,7 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
             new HashMap<Object, Integer>();
 
     private boolean enabled = true;
+    private LinkedList<String> loadingQueue = new LinkedList<String>();
 
     public void reset () {
 
@@ -63,8 +64,6 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
             pool.autoResume();
         }
     }
-
-    private LinkedList<String> loadingQueue = new LinkedList<String>();
 
     public void load ( String... assets ) {
         for ( String asset : assets ) {

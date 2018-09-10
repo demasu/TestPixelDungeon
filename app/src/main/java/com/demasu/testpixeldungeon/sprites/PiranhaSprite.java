@@ -17,9 +17,9 @@
  */
 package com.demasu.testpixeldungeon.sprites;
 
-import com.watabou.noosa.TextureFilm;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.TextureFilm;
 
 public class PiranhaSprite extends MobSprite {
 

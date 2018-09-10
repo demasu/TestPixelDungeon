@@ -17,10 +17,6 @@
  */
 package com.demasu.testpixeldungeon.levels;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.watabou.noosa.Scene;
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Bones;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -31,18 +27,23 @@ import com.demasu.testpixeldungeon.items.Heap;
 import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.levels.Room.Type;
 import com.demasu.testpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.Scene;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Graph;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SewerBossLevel extends RegularLevel {
+
+    private static final String STAIRS = "stairs";
+    private int stairs = 0;
 
     {
         color1 = 0x48763c;
         color2 = 0x59994a;
     }
-
-    private int stairs = 0;
 
     @Override
     public String tilesTex () {
@@ -175,7 +176,6 @@ public class SewerBossLevel extends RegularLevel {
         SewerLevel.addVisuals( this, scene );
     }
 
-
     @Override
     protected void createMobs () {
         Mob mob = Bestiary.mob( Dungeon.getDepth() );
@@ -221,8 +221,6 @@ public class SewerBossLevel extends RegularLevel {
             GameScene.updateMap( entrance );
         }
     }
-
-    private static final String STAIRS = "stairs";
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
