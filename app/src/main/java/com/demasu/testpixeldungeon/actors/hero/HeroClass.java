@@ -37,6 +37,7 @@ import com.demasu.testpixeldungeon.items.food.Food;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 import com.demasu.testpixeldungeon.items.potions.PotionOfMana;
 import com.demasu.testpixeldungeon.items.potions.PotionOfStrength;
+import com.demasu.testpixeldungeon.items.rings.Ring;
 import com.demasu.testpixeldungeon.items.rings.RingOfShadows;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfBloodyRitual;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfFrostLevel;
@@ -49,6 +50,8 @@ import com.demasu.testpixeldungeon.items.wands.WandOfMagicMissile;
 import com.demasu.testpixeldungeon.items.weapon.melee.Dagger;
 import com.demasu.testpixeldungeon.items.weapon.melee.DualSwords;
 import com.demasu.testpixeldungeon.items.weapon.melee.Knuckles;
+import com.demasu.testpixeldungeon.items.weapon.melee.ShortSword;
+import com.demasu.testpixeldungeon.items.weapon.melee.Sword;
 import com.demasu.testpixeldungeon.items.weapon.melee.SwordOfDebug;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
@@ -57,6 +60,8 @@ import com.demasu.testpixeldungeon.items.weapon.missiles.Boomerang;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Shuriken;
 import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.watabou.utils.Bundle;
+
+import java.nio.file.WatchEvent;
 
 public enum HeroClass {
 
@@ -279,6 +284,28 @@ public enum HeroClass {
         }
     }
 
+    @SuppressWarnings( "FeatureEnvy" )
+    public void equipStarterWeapon ( Hero hero ) {
+        // Actions commented out for debugging
+        switch (this) {
+            case WARRIOR:
+                //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify();
+                //break;
+            case MAGE:
+                //hero.belongings.weapon = (KindOfWeapon) new Knuckles().identify();
+                //break;
+            case ROGUE:
+                //hero.belongings.weapon = (KindOfWeapon) new DualSwords().identify();
+                //break;
+            case HUNTRESS:
+                //hero.belongings.weapon = (KindOfWeapon) new Dagger().identify();
+                //break;
+            default:
+                collectDebugWeapon( hero ); // For debug
+                //hero.belongings.weapon = (KindOfWeapon) new Dagger().degrade().degrade().identify();
+        }
+    }
+
     public Badges.Badge masteryBadge () {
         switch ( this ) {
             case WARRIOR:
@@ -294,12 +321,14 @@ public enum HeroClass {
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
-    private static void initWarrior ( Hero hero ) {
+    private void initWarrior ( Hero hero ) {
         hero.STR += 1;
         hero.MP   = 200;
         hero.MMP  = 200;
         //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify();  // For debug
+        // TODO: Replace the above assignment with a generalized function
         //new Dart( 8 ).identify().collect();                                   // For debug
+        equipStarterWeapon( hero );
 
         QuickSlot.primaryValue = Dart.class;
 
@@ -314,10 +343,11 @@ public enum HeroClass {
         hero.heroSkills.init();
     }
 
-    private static void initMage ( Hero hero ) {
+    private void initMage ( Hero hero ) {
         hero.MP = hero.MMP = 40;
 
-        ( hero.belongings.weapon = new Knuckles() ).identify();
+        //( hero.belongings.weapon = new Knuckles() ).identify();
+        equipStarterWeapon( hero );
 
         WandOfMagicMissile wand = new WandOfMagicMissile();
         wand.identify().collect();
@@ -331,11 +361,12 @@ public enum HeroClass {
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
-    private static void initRogue ( Hero hero ) {
+    private void initRogue ( Hero hero ) {
         hero.MP = hero.MMP = 30;
         //(hero.belongings.weapon = new Dagger()).identify();
-        ( hero.belongings.weapon = new DualSwords() ).identify();
-        ( hero.belongings.ring1 = new RingOfShadows() ).upgrade().identify();
+        //( hero.belongings.weapon = new DualSwords() ).identify();
+        equipStarterWeapon( hero );
+        hero.belongings.ring1 = (Ring) new RingOfShadows().upgrade().identify();
         new Dart( 8 ).identify().collect();
         new Shuriken( 10 ).identify().collect();
         hero.belongings.ring1.activate( hero );
@@ -349,13 +380,19 @@ public enum HeroClass {
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
-    private static void initHuntress ( Hero hero ) {
-        hero.MP = hero.MMP = 35;
-        hero.HP = ( hero.HT -= 5 );
+    private void initHuntress ( Hero hero ) {
+        hero.MP = 35;
+        hero.MMP = 35;
+        hero.HP -= 5;
+        hero.HT -= 5;
 
-        ( hero.belongings.weapon = new Dagger() ).identify();
-        Boomerang boomerang = new Boomerang();
-        boomerang.identify().collect();
+        //( hero.belongings.weapon = new Dagger() ).identify();
+        equipStarterWeapon( hero );
+        Boomerang boomerang = (Boomerang) new Boomerang().identify();
+        for ( int i = 1; i <= 15; i++ ) {
+            boomerang.upgrade();
+        }
+        boomerang.collect();
 
         QuickSlot.primaryValue = boomerang;
 
