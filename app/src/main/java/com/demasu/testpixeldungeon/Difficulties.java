@@ -1,6 +1,7 @@
 package com.demasu.testpixeldungeon;
 
 
+import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.food.Food;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 
@@ -315,11 +316,10 @@ public enum Difficulties {
     public void difficultyStartItemBonus () {
         switch ( this ) {
             case EASY:
-                new PotionOfHealing().identify().collect();
-                new PotionOfHealing().identify().collect();
-                new Food().identify().collect();
-                new Food().identify().collect();
-                Dungeon.setGold( 200 );
+                final int GOLD = 200;
+                Item.collectAndIdentify( "PotionOfHealing", 2 );
+                Item.collectAndIdentify( "Food", 2 );
+                Dungeon.setGold( GOLD );
         }
     }
 

@@ -17,6 +17,8 @@
  */
 package com.demasu.testpixeldungeon.items;
 
+import android.util.Log;
+
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -586,6 +588,32 @@ public class Item implements Bundlable {
         }
 
         QuickSlot.restore( bundle, this );
+    }
+
+    public static void collectAndIdentify ( String name, int num ) {
+        Class cls;
+        try {
+            String fullPath = "com.demasu.testpixeldungeon.items." + name;
+            cls = Class.forName( fullPath );
+        } catch ( ClassNotFoundException e ) {
+            Log.d( "TPD", "Was not able to find class with name: " + name );
+            return;
+        }
+
+        Item item = null;
+        try {
+            item = (Item) cls.newInstance();
+        } catch ( IllegalAccessException e ) {
+            Log.d( "TPD", "Illegal Access On " + cls.getCanonicalName() );
+            e.printStackTrace();
+        } catch ( InstantiationException e ) {
+            Log.d( "TPD", "Instantiation Exception On " + cls.getCanonicalName() );
+            e.printStackTrace();
+        }
+
+        for ( int i = 0; i < num; i++ ) {
+            item.identify().collect();
+        }
     }
 
     public void cast ( final Hero user, int dst ) {
