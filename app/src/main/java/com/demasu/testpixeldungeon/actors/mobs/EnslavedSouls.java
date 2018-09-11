@@ -13,7 +13,8 @@ public class EnslavedSouls extends Mob {
         name = "enslaved spirit";
         spriteClass = CursePersonificationSprite.class;
 
-        setHP( setHT( 1 ) );
+        setHP( 1 );
+        setHT( 1 );
         defenseSkill = 1;
 
         EXP = 0;
