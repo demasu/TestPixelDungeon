@@ -26,7 +26,8 @@ import com.watabou.utils.Random;
 public abstract class NPC extends Mob {
 
     {
-        setHP( setHT( 1 ) );
+        setHP( 1 );
+        setHT( 1 );
         EXP = 0;
 
         hostile = false;

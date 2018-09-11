@@ -63,7 +63,8 @@ public class DM300 extends Mob {
         name = Dungeon.getDepth() == Statistics.deepestFloor ? "DM-300" : "DM-350";
         spriteClass = DM300Sprite.class;
 
-        setHP( setHT( 200 ) );
+        setHP( 200 );
+        setHT( 200 );
         EXP = 30;
         defenseSkill = 18;
 
@@ -71,7 +72,7 @@ public class DM300 extends Mob {
         lootChance = 0.333f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

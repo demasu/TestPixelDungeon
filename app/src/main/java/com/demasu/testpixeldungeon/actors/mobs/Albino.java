@@ -31,10 +31,11 @@ public class Albino extends Rat {
         name = "albino rat";
         spriteClass = AlbinoSprite.class;
 
-        setHP( setHT( 15 ) );
+        setHP( 15 );
+        setHT( 15 );
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

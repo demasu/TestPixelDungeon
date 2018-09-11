@@ -79,14 +79,15 @@ public class Yog extends Mob {
         name = Dungeon.getDepth() == Statistics.deepestFloor ? "Yog-Dzewa" : "echo of Yog-Dzewa";
         spriteClass = YogSprite.class;
 
-        setHP( setHT( 300 ) );
+        setHP( 300 );
+        setHT( 300 );
 
         EXP = 50;
 
         state = PASSIVE;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 
@@ -210,7 +211,8 @@ public class Yog extends Mob {
             name = "rotting fist";
             spriteClass = RottingFistSprite.class;
 
-            setHP( setHT( 300 ) );
+            setHP( 300 );
+            setHT( 300 );
             defenseSkill = 25;
 
             EXP = 0;
@@ -304,7 +306,8 @@ public class Yog extends Mob {
             name = "burning fist";
             spriteClass = BurningFistSprite.class;
 
-            setHP( setHT( 200 ) );
+            setHP( 200 );
+            setHT( 200 );
             defenseSkill = 25;
 
             EXP = 0;
@@ -405,7 +408,8 @@ public class Yog extends Mob {
             name = "god's larva";
             spriteClass = LarvaSprite.class;
 
-            setHP( setHT( 25 ) );
+            setHP( 25 );
+            setHT( 25 );
             defenseSkill = 20;
 
             EXP = 0;

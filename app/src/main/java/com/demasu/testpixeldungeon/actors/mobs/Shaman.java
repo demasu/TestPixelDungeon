@@ -50,7 +50,8 @@ public class Shaman extends Mob implements Callback {
         name = "gnoll shaman";
         spriteClass = ShamanSprite.class;
 
-        setHP( setHT( 18 ) );
+        setHP( 18 );
+        setHT( 18 );
         defenseSkill = 8;
 
         EXP = 6;
@@ -60,7 +61,7 @@ public class Shaman extends Mob implements Callback {
         lootChance = 0.33f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

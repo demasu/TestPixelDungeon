@@ -44,7 +44,8 @@ public class Brute extends Mob {
         name = "gnoll brute";
         spriteClass = BruteSprite.class;
 
-        setHP( setHT( 40 ) );
+        setHP( 40 );
+        setHT( 40 );
         defenseSkill = 15;
 
         EXP = 8;
@@ -54,7 +55,7 @@ public class Brute extends Mob {
         lootChance = 0.5f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

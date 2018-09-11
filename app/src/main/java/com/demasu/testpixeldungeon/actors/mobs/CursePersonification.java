@@ -47,7 +47,8 @@ public class CursePersonification extends Mob {
         name = "curse personification";
         spriteClass = CursePersonificationSprite.class;
 
-        setHP( setHT( 10 + Dungeon.getDepth() * 3 ) );
+        setHP( 10 + Dungeon.getDepth() * 3 );
+        setHT( 10 + Dungeon.getDepth() * 3 );
         defenseSkill = 10 + Dungeon.getDepth();
 
         EXP = 3;

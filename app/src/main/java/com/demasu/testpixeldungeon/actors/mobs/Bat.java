@@ -39,7 +39,8 @@ public class Bat extends Mob {
         name = "vampire bat";
         spriteClass = BatSprite.class;
 
-        setHP( setHT( 30 ) );
+        setHP( 30 );
+        setHT( 30 );
         defenseSkill = 15;
         baseSpeed = 2f;
 
@@ -52,7 +53,7 @@ public class Bat extends Mob {
         lootChance = 0.125f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

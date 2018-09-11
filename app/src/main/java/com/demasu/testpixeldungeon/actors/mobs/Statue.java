@@ -68,7 +68,8 @@ public class Statue extends Mob {
         weapon.identify();
         weapon.enchant();
 
-        setHP( setHT( 15 + Dungeon.getDepth() * 5 ) );
+        setHP( 15 + Dungeon.getDepth() * 5 );
+        setHT( 15 + Dungeon.getDepth() * 5 );
         defenseSkill = 4 + Dungeon.getDepth();
     }
 

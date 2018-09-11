@@ -60,7 +60,8 @@ public class Eye extends Mob {
         name = "evil eye";
         spriteClass = EyeSprite.class;
 
-        setHP( setHT( 100 ) );
+        setHP( 100 );
+        setHT( 100 );
         defenseSkill = 20;
         viewDistance = Light.DISTANCE;
 
@@ -73,7 +74,7 @@ public class Eye extends Mob {
         lootChance = 0.5f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

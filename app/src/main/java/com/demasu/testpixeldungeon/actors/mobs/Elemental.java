@@ -47,7 +47,8 @@ public class Elemental extends Mob {
         name = "fire elemental";
         spriteClass = ElementalSprite.class;
 
-        setHP( setHT( 65 ) );
+        setHP( 65 );
+        setHT( 65 );
         defenseSkill = 20;
 
         EXP = 10;
@@ -59,7 +60,7 @@ public class Elemental extends Mob {
         lootChance = 0.1f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

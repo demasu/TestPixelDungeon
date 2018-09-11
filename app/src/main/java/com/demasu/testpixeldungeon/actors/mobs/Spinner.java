@@ -48,7 +48,8 @@ public class Spinner extends Mob {
         name = "cave spinner";
         spriteClass = SpinnerSprite.class;
 
-        setHP( setHT( 50 ) );
+        setHP( 50 );
+        setHT( 50 );
         defenseSkill = 14;
 
         EXP = 9;

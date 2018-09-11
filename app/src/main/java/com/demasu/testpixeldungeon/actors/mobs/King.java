@@ -72,14 +72,15 @@ public class King extends Mob {
         name = Dungeon.getDepth() == Statistics.deepestFloor ? "King of Dwarves" : "undead King of Dwarves";
         spriteClass = KingSprite.class;
 
-        setHP( setHT( 300 ) );
+        setHP( 300 );
+        setHT( 300 );
         EXP = 40;
         defenseSkill = 25;
 
         Undead.count = 0;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 
@@ -251,7 +252,8 @@ public class King extends Mob {
             name = "undead dwarf";
             spriteClass = UndeadSprite.class;
 
-            setHP( setHT( 28 ) );
+            setHP( 28 );
+            setHT( 28 );
             defenseSkill = 15;
 
             EXP = 0;

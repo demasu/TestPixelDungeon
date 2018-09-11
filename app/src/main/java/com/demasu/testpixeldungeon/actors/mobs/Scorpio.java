@@ -46,7 +46,8 @@ public class Scorpio extends Mob {
         name = "scorpio";
         spriteClass = ScorpioSprite.class;
 
-        setHP( setHT( 95 ) );
+        setHP( 95 );
+        setHT( 95 );
         defenseSkill = 24;
         viewDistance = Light.DISTANCE;
 
@@ -57,7 +58,7 @@ public class Scorpio extends Mob {
         lootChance = 0.125f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

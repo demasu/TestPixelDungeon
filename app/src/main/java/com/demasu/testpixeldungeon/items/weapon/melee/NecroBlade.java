@@ -70,7 +70,7 @@ public class NecroBlade extends MeleeWeapon {
     public void execute ( Hero hero, String action ) {
         if ( action.equals( AC_HEAL ) ) {
 
-            hero.setHP( hero.getHP() + hero.getHT() * 0.35 );
+            hero.setHP( (int) (hero.getHP() + hero.getHT() * 0.35) );
             if ( hero.getHP() > hero.getHT() ) {
                 hero.setHP( hero.getHT() );
             }

@@ -46,7 +46,8 @@ public class Monk extends Mob {
         name = "dwarf monk";
         spriteClass = MonkSprite.class;
 
-        setHP( setHT( 70 ) );
+        setHP( 70 );
+        setHT( 70 );
         defenseSkill = 30;
 
         EXP = 11;
@@ -56,7 +57,7 @@ public class Monk extends Mob {
         lootChance = 0.083f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

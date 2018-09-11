@@ -74,7 +74,7 @@ public class Champ extends Buff {
                     type = CHAMP_VAMPERIC;
                 case CHAMP_VAMPERIC: //red
                     this.target.name = "Vampiric " + this.target.name;
-                    this.target.setHT( this.target.getHT() * 1.5 );
+                    this.target.setHT( (int) (this.target.getHT() * 1.5) );
                     this.target.setHP( this.target.getHT() );
                     ( (Mob) this.target ).defenseSkill *= 1.1;
                     if ( target.sprite != null ) {
@@ -96,7 +96,7 @@ public class Champ extends Buff {
                     break;
                 case CHAMP_CURSED: //black
                     this.target.name = "Cursed " + this.target.name;
-                    this.target.setHT( this.target.getHT() * 1.5 );
+                    this.target.setHT( (int) (this.target.getHT() * 1.5) );
                     this.target.setHP( this.target.getHT() );
                     ( (Mob) this.target ).defenseSkill *= 1.15;
                     if ( target.sprite != null ) {
@@ -107,7 +107,7 @@ public class Champ extends Buff {
                     break;
                 case CHAMP_FOUL: //yellow
                     this.target.name = "Foul " + this.target.name;
-                    this.target.setHT( this.target.getHT() * 1.5 );
+                    this.target.setHT( (int) (this.target.getHT() * 1.5) );
                     this.target.setHP( this.target.getHT() );
                     ( (Mob) this.target ).defenseSkill *= 1.2;
                     if ( target.sprite != null ) {

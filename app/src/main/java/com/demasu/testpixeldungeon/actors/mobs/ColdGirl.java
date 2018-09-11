@@ -102,7 +102,8 @@ public class ColdGirl extends Mob {
         name = "Cold Girl";
         spriteClass = ColdGirlSprite.class;
 
-        setHP( setHT( 30 ) );
+        setHP( 30 );
+        setHT( 30 );
         EXP = 20;
         defenseSkill = 1;
         baseSpeed = 3;
@@ -695,7 +696,8 @@ public class ColdGirl extends Mob {
 
     public class ColdGirlSkel extends Skeleton {
         {
-            setHP( setHT( 10 ) );
+            setHP( 10 );
+            setHT( 10 );
             defenseSkill = 1;
             EXP = 0;
             state = HUNTING;
@@ -730,7 +732,8 @@ public class ColdGirl extends Mob {
         {
             name = "enslaved spirit";
 
-            setHP( setHT( 1 ) );
+            setHP( 1 );
+            setHT( 1 );
             defenseSkill = 1;
 
             EXP = 0;

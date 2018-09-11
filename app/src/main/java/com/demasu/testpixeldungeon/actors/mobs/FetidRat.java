@@ -41,7 +41,8 @@ public class FetidRat extends Mob {
         name = "fetid rat";
         spriteClass = FetidRatSprite.class;
 
-        setHP( setHT( 15 ) );
+        setHP( 15 );
+        setHT( 15 );
         defenseSkill = 5;
 
         EXP = 3;
@@ -50,7 +51,7 @@ public class FetidRat extends Mob {
         state = WANDERING;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

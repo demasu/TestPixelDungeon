@@ -50,7 +50,8 @@ public class Warlock extends Mob implements Callback {
         name = "dwarf warlock";
         spriteClass = WarlockSprite.class;
 
-        setHP( setHT( 70 ) );
+        setHP( 70 );
+        setHT( 70 );
         defenseSkill = 18;
 
         EXP = 11;
@@ -60,7 +61,7 @@ public class Warlock extends Mob implements Callback {
         lootChance = 0.83f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

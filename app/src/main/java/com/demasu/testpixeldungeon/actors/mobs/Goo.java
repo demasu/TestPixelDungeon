@@ -58,7 +58,8 @@ public class Goo extends Mob {
     {
         name = Dungeon.getDepth() == Statistics.deepestFloor ? "Goo" : "spawn of Goo";
 
-        setHP( setHT( 80 ) );
+        setHP( 80 );
+        setHT( 80 );
         EXP = 10;
         defenseSkill = 12;
         spriteClass = GooSprite.class;
@@ -67,7 +68,7 @@ public class Goo extends Mob {
         lootChance = 0.333f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

@@ -49,7 +49,8 @@ public class Wraith extends Mob {
         name = "wraith";
         spriteClass = WraithSprite.class;
 
-        setHP( setHT( 1 ) );
+        setHP( 1 );
+        setHT( 1 );
         EXP = 0;
 
         flying = true;

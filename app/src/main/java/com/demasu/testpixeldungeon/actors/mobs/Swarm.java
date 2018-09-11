@@ -45,7 +45,8 @@ public class Swarm extends Mob {
         name = "swarm of flies";
         spriteClass = SwarmSprite.class;
 
-        setHP( setHT( 80 ) );
+        setHP( 80 );
+        setHT( 80 );
         defenseSkill = 5;
 
         maxLvl = 10;
@@ -53,7 +54,7 @@ public class Swarm extends Mob {
         flying = true;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 

@@ -56,7 +56,8 @@ public class Succubus extends Mob {
         name = "succubus";
         spriteClass = SuccubusSprite.class;
 
-        setHP( setHT( 80 ) );
+        setHP( 80 );
+        setHT( 80 );
         defenseSkill = 25;
         viewDistance = Light.DISTANCE;
 

@@ -634,7 +634,8 @@ public class FirstWave extends Level {
         }
 
         public void initStats () {
-            setHP( setHT( 40 ) );
+            setHP( 40 );
+            setHT( 40 );
             level = 10;
             mercType.setSkills( this );
             name = "Militia";
@@ -688,7 +689,8 @@ public class FirstWave extends Level {
         }
 
         public void initStats () {
-            setHP( setHT( 100 ) );
+            setHP( 100 );
+            setHT( 100 );
             level = 100;
             mercType.setSkills( this );
             name = "General";
@@ -743,7 +745,8 @@ public class FirstWave extends Level {
         }
 
         public void initStats () {
-            setHP( setHT( 100 ) );
+            setHP( 100 );
+            setHT( 100 );
             level = 100;
             mercType.setSkills( this );
             name = "Temari";

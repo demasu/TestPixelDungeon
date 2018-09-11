@@ -42,7 +42,8 @@ public class Thief extends Mob {
         name = "crazy thief";
         spriteClass = ThiefSprite.class;
 
-        setHP( setHT( 20 ) );
+        setHP( 20 );
+        setHT( 20 );
         defenseSkill = 12;
 
         EXP = 5;
@@ -54,7 +55,7 @@ public class Thief extends Mob {
         FLEEING = new Fleeing();
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 
