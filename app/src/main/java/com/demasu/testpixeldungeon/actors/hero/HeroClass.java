@@ -320,7 +320,6 @@ public enum HeroClass {
         hero.setMP( 200 );
         hero.setMMP( 200 );
         //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify();  // For debug
-        // TODO: Replace the above assignment with a generalized function
         //new Dart( 8 ).identify().collect();                                   // For debug
         equipStarterWeapon( hero );
 
