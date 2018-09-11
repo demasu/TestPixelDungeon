@@ -29,7 +29,7 @@ public class ScrollOfSacrifice extends Scroll {
     @Override
     protected void doRead () {
 
-        Dungeon.getHero().STR++;
+        Dungeon.getHero().setSTR( Dungeon.getHero().getSTR() + 1 );
         if ( Dungeon.getHero().HT > 3 ) {
 
             Dungeon.getHero().HT -= 3;

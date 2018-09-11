@@ -316,7 +316,7 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     private void initWarrior ( Hero hero ) {
-        hero.STR += 1;
+        hero.setSTR( hero.getSTR() + 1 );
         hero.setMP( 200 );
         hero.setMMP( 200 );
         //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify();  // For debug

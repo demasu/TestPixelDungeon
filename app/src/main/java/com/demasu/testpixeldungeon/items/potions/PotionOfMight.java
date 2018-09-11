@@ -32,7 +32,7 @@ public class PotionOfMight extends PotionOfStrength {
     protected void apply ( Hero hero ) {
         setKnown();
 
-        hero.STR++;
+        hero.setSTR( hero.getSTR() + 1 );
         hero.HT += 5;
         hero.HP += 5;
         hero.sprite.showStatus( CharSprite.POSITIVE, "+1 str, +5 ht" );

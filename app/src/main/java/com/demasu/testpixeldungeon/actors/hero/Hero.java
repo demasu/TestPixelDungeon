@@ -169,7 +169,7 @@ public class Hero extends Char {
     public MissileWeapon rangedWeapon = null;
     public Belongings belongings;
     public Storage storage;
-    public int STR;
+    private int STR;
     public boolean weakened = false;
     public float awareness;
     public int lvl = 1;
@@ -190,7 +190,7 @@ public class Hero extends Char {
         HP = health;
         HT = health;
 
-        STR = STARTING_STR;
+        setSTR( STARTING_STR );
         awareness = 10.0f;
 
         belongings = new Belongings( this );
@@ -263,7 +263,7 @@ public class Hero extends Char {
 
     public int STR () {
         //return weakened ? STR - 2 : STR;
-        return STR;
+        return getSTR();
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
@@ -283,7 +283,7 @@ public class Hero extends Char {
         bundle.put( ATTACK, attackSkill );
         bundle.put( DEFENSE, defenseSkill );
 
-        bundle.put( STRENGTH, STR );
+        bundle.put( STRENGTH, getSTR() );
 
         bundle.put( LEVEL, lvl );
         bundle.put( EXPERIENCE, exp );
@@ -315,7 +315,7 @@ public class Hero extends Char {
         attackSkill = bundle.getInt( ATTACK );
         defenseSkill = bundle.getInt( DEFENSE );
 
-        STR = bundle.getInt( STRENGTH );
+        setSTR( bundle.getInt( STRENGTH ) );
         updateAwareness();
 
         lvl = bundle.getInt( LEVEL );
@@ -1669,6 +1669,14 @@ public class Hero extends Char {
 
     public void setHeroClass ( HeroClass heroClass ) {
         this.heroClass = heroClass;
+    }
+
+    public int getSTR () {
+        return STR;
+    }
+
+    public void setSTR ( int STR ) {
+        this.STR = STR;
     }
 
     public interface Doom {

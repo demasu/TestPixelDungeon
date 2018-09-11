@@ -201,19 +201,19 @@ public class Badges {
     public static void validateStrengthAttained () {
         Badge badge = null;
 
-        if ( !local.contains( Badge.STRENGTH_ATTAINED_1 ) && Dungeon.getHero().STR >= 13 ) {
+        if ( !local.contains( Badge.STRENGTH_ATTAINED_1 ) && Dungeon.getHero().getSTR() >= 13 ) {
             badge = Badge.STRENGTH_ATTAINED_1;
             local.add( badge );
         }
-        if ( !local.contains( Badge.STRENGTH_ATTAINED_2 ) && Dungeon.getHero().STR >= 15 ) {
+        if ( !local.contains( Badge.STRENGTH_ATTAINED_2 ) && Dungeon.getHero().getSTR() >= 15 ) {
             badge = Badge.STRENGTH_ATTAINED_2;
             local.add( badge );
         }
-        if ( !local.contains( Badge.STRENGTH_ATTAINED_3 ) && Dungeon.getHero().STR >= 17 ) {
+        if ( !local.contains( Badge.STRENGTH_ATTAINED_3 ) && Dungeon.getHero().getSTR() >= 17 ) {
             badge = Badge.STRENGTH_ATTAINED_3;
             local.add( badge );
         }
-        if ( !local.contains( Badge.STRENGTH_ATTAINED_4 ) && Dungeon.getHero().STR >= 19 ) {
+        if ( !local.contains( Badge.STRENGTH_ATTAINED_4 ) && Dungeon.getHero().getSTR() >= 19 ) {
             badge = Badge.STRENGTH_ATTAINED_4;
             local.add( badge );
         }
