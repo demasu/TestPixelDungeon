@@ -1296,8 +1296,8 @@ public class Hero extends Char {
 
             HT += 5 - Dungeon.getCurrentDifficulty().difficultyHPLevelPenalty();
             HP += 5 - Dungeon.getCurrentDifficulty().difficultyHPLevelPenalty();
-            MP += 5;
-            MMP += 5;
+            setMP( getMP() + 5 );
+            setMMP( getMMP() + 5 );
             Skill.availableSkill += 2;
             GLog.p( "Gained 2 skill points!" );
             attackSkill++;

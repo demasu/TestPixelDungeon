@@ -32,7 +32,7 @@ public class PotionOfMana extends Potion {
         setKnown();
 
         GLog.p( "You feel your spiritual energy being replenished." );
-        hero.MP = hero.MMP;
+        hero.setMP( hero.getMMP() );
         StatusPane.manaDropping = 0;
     }
 

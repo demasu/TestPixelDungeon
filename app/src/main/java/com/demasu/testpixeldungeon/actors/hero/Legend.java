@@ -49,7 +49,7 @@ public class Legend extends Hero {
         lvl = 100;
         HP = HT = 100;
         STR = 25;
-        MP = MMP = 100;
+        setMP( setMMP( 100 ) );
         attackSkill = 40;
         defenseSkill = 25;
         Item tmp = new Longsword().identify();

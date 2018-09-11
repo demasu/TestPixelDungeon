@@ -28,12 +28,12 @@ public class ManaRegeneration extends Buff {
     public boolean act () {
         if ( target.isAlive() ) {
 
-            if ( target.MP < target.MMP ) {
-                target.MP += 1;
+            if ( target.getMP() < target.getMMP() ) {
+                target.setMP( target.getMP() + 1 );
             }
             if ( ( (Hero) target ).getHeroClass() == HeroClass.MAGE ) {
-                if ( target.MP < target.MMP ) {
-                    target.MP += 1;
+                if ( target.getMP() < target.getMMP() ) {
+                    target.setMP( target.getMP() + 1 );
                 }
             }
 

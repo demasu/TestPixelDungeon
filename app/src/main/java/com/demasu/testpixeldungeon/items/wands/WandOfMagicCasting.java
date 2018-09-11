@@ -91,19 +91,19 @@ public class WandOfMagicCasting extends Wand {
     public void castSpellCost () {
         switch ( casting ) {
             case DARK_BOLT:
-                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.passiveB2.getManaCost();
+                Dungeon.getHero().setMP( Dungeon.getHero().getMP() - Dungeon.getHero().heroSkills.passiveB2.getManaCost() );
                 Dungeon.getHero().heroSkills.passiveB2.castTextYell();
                 break;
             case DOMINANCE:
-                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.passiveB3.getManaCost();
+                Dungeon.getHero().setMP( Dungeon.getHero().getMP() - Dungeon.getHero().heroSkills.passiveB3.getManaCost() );
                 Dungeon.getHero().heroSkills.passiveB3.castTextYell();
                 break;
             case SOUL_SPARK:
-                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.active2.getManaCost();
+                Dungeon.getHero().setMP( Dungeon.getHero().getMP() - Dungeon.getHero().heroSkills.active2.getManaCost() );
                 Dungeon.getHero().heroSkills.active2.castTextYell();
                 break;
             case SPARK:
-                Dungeon.getHero().MP -= Dungeon.getHero().heroSkills.active2.getManaCost();
+                Dungeon.getHero().setMP( Dungeon.getHero().getMP() - Dungeon.getHero().heroSkills.active2.getManaCost() );
                 Dungeon.getHero().heroSkills.active2.castTextYell();
                 break;
 

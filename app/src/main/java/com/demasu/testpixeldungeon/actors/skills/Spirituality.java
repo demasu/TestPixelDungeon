@@ -16,8 +16,8 @@ public class Spirituality extends PassiveSkillA1 {
 
     @Override
     protected boolean upgrade () {
-        Dungeon.getHero().MP += 5;
-        Dungeon.getHero().MMP += 5;
+        Dungeon.getHero().setMP( Dungeon.getHero().getMP() + 5 );
+        Dungeon.getHero().setMMP( Dungeon.getHero().getMMP() + 5 );
         return true;
     }
 

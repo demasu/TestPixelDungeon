@@ -97,8 +97,8 @@ public abstract class Char extends Actor {
     public String name = "mob";
     public int HT;
     public int HP;
-    public int MP = 0;
-    public int MMP = 1;
+    private int MP = 0;
+    private int MMP = 1;
     public int champ = -1;
     public boolean paralysed = false;
     public boolean rooted = false;
@@ -185,8 +185,8 @@ public abstract class Char extends Actor {
         bundle.put( POS, pos );
         bundle.put( TAG_HP, HP );
         bundle.put( TAG_HT, HT );
-        bundle.put( TAG_MP, MP );
-        bundle.put( TAG_MT, MMP );
+        bundle.put( TAG_MP, getMP() );
+        bundle.put( TAG_MT, getMMP() );
         bundle.put( BUFFS, buffs );
     }
 
@@ -198,8 +198,8 @@ public abstract class Char extends Actor {
         pos = bundle.getInt( POS );
         HP = bundle.getInt( TAG_HP );
         HT = bundle.getInt( TAG_HT );
-        MP = bundle.getInt( TAG_MP );
-        MMP = bundle.getInt( TAG_MT );
+        setMP( bundle.getInt( TAG_MP ) );
+        setMMP( bundle.getInt( TAG_MT ) );
 
         for ( Bundlable b : bundle.getCollection( BUFFS ) ) {
             if ( b != null ) {
@@ -696,5 +696,21 @@ public abstract class Char extends Actor {
 
     public HashSet<Class<?>> immunities () {
         return EMPTY;
+    }
+
+    public int getMP () {
+        return MP;
+    }
+
+    public void setMP ( int MP ) {
+        this.MP = MP;
+    }
+
+    public int getMMP () {
+        return MMP;
+    }
+
+    public void setMMP ( int MMP ) {
+        this.MMP = MMP;
     }
 }

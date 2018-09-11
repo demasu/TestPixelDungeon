@@ -31,7 +31,7 @@ public class SummonRat extends ActiveSkill1 {
     @Override
     public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = new ArrayList<String>();
-        if ( level > 0 && hero.MP >= getManaCost() ) {
+        if ( level > 0 && hero.getMP() >= getManaCost() ) {
             actions.add( AC_SUMMON );
         }
         return actions;
@@ -71,7 +71,7 @@ public class SummonRat extends ActiveSkill1 {
             }
 
             if ( spawned ) {
-                hero.MP -= getManaCost();
+                hero.setMP( hero.getMP() - getManaCost() );
                 StatusPane.manaDropping += getManaCost();
                 castTextYell();
                 hero.spend( TIME_TO_USE );

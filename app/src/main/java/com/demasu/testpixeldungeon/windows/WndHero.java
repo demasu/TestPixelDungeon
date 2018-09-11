@@ -142,7 +142,7 @@ public class WndHero extends WndTabbed {
 
             statSlot( TXT_STR, hero.STR() );
             statSlot( TXT_HEALTH, hero.HP + "/" + hero.HT );
-            statSlot( TXT_MANA, hero.MP + "/" + hero.MMP );
+            statSlot( TXT_MANA, hero.getMP() + "/" + hero.getMMP() );
             statSlot( TXT_EXP, hero.exp + "/" + hero.maxExp() );
 
             pos += GAP;

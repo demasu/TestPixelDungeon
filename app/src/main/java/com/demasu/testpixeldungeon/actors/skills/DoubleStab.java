@@ -27,12 +27,12 @@ public class DoubleStab extends ActiveSkill2 {
 
     @Override
     public boolean doubleStab () {
-        if ( !active || Dungeon.getHero().MP < getManaCost() ) {
+        if ( !active || Dungeon.getHero().getMP() < getManaCost() ) {
             return false;
         } else if ( !onDouble ) {
             onDouble = true;
             castTextYell();
-            Dungeon.getHero().MP -= getManaCost();
+            Dungeon.getHero().setMP( Dungeon.getHero().getMP() - getManaCost() );
             StatusPane.manaDropping += getManaCost();
             return true;
         }

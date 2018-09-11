@@ -55,11 +55,11 @@ public class SpiritArmor extends PassiveSkillA3 {
             maxReduction = 1;
         }
 
-        if ( Dungeon.getHero().MP > maxReduction ) {
-            Dungeon.getHero().MP -= maxReduction;
+        if ( Dungeon.getHero().getMP() > maxReduction ) {
+            Dungeon.getHero().setMP( Dungeon.getHero().getMP() - maxReduction );
         } else {
-            maxReduction = Dungeon.getHero().MP;
-            Dungeon.getHero().MP = 0;
+            maxReduction = Dungeon.getHero().getMP();
+            Dungeon.getHero().setMP( 0 );
         }
 
         if ( maxReduction != 0 ) {

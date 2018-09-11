@@ -31,7 +31,7 @@ public class DarkBolt extends ActiveSkill3 {
     @Override
     public ArrayList<String> actions ( Hero hero ) {
         ArrayList<String> actions = new ArrayList<String>();
-        if ( level > 0 && hero.MP >= getManaCost() ) {
+        if ( level > 0 && hero.getMP() >= getManaCost() ) {
             actions.add( AC_CAST );
         }
         return actions;
@@ -39,7 +39,7 @@ public class DarkBolt extends ActiveSkill3 {
 
     @Override
     public void execute ( Hero hero, String action ) {
-        if ( action == Skill.AC_CAST && hero.MP >= getManaCost() ) {
+        if ( action == Skill.AC_CAST && hero.getMP() >= getManaCost() ) {
             //hero.MP -= getManaCost();
             //castTextYell();
             Legend.haxWand.castSpell( WandOfMagicCasting.CAST_TYPES.DARK_BOLT );

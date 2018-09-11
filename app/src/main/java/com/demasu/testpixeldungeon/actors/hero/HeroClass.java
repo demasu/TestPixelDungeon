@@ -317,8 +317,8 @@ public enum HeroClass {
     @SuppressWarnings ( "FeatureEnvy" )
     private void initWarrior ( Hero hero ) {
         hero.STR += 1;
-        hero.MP = 200;
-        hero.MMP = 200;
+        hero.setMP( 200 );
+        hero.setMMP( 200 );
         //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify();  // For debug
         // TODO: Replace the above assignment with a generalized function
         //new Dart( 8 ).identify().collect();                                   // For debug
@@ -338,7 +338,8 @@ public enum HeroClass {
     }
 
     private void initMage ( Hero hero ) {
-        hero.MP = hero.MMP = 40;
+        hero.setMP( 40 );
+        hero.setMMP( 40 );
 
         //( hero.belongings.weapon = new Knuckles() ).identify();
         equipStarterWeapon( hero );
@@ -356,7 +357,8 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     private void initRogue ( Hero hero ) {
-        hero.MP = hero.MMP = 30;
+        hero.setMP( 30 );
+        hero.setMMP( 30 );
         //(hero.belongings.weapon = new Dagger()).identify();
         //( hero.belongings.weapon = new DualSwords() ).identify();
         equipStarterWeapon( hero );
@@ -375,8 +377,8 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     private void initHuntress ( Hero hero ) {
-        hero.MP = 35;
-        hero.MMP = 35;
+        hero.setMP( 35 );
+        hero.setMMP( 35 );
         hero.HP -= 5;
         hero.HT -= 5;
 

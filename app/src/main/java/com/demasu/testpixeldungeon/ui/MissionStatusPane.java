@@ -224,15 +224,15 @@ public class MissionStatusPane extends Component {
 
         exp.scale.x = ( width / exp.width ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp();
 
-        float mana = (float) Dungeon.getHero().MP / Dungeon.getHero().MMP;
+        float mana = (float) Dungeon.getHero().getMP() / Dungeon.getHero().getMMP();
 
-        float mana_drop = manaDropping / Dungeon.getHero().MMP;
+        float mana_drop = manaDropping / Dungeon.getHero().getMMP();
 
         mp.scale.x = mana;
         mp_dropping.x = mp.x + mp.width() - 20 * mana;
         mp_dropping.scale.x = mana_drop;
 
-        if ( Dungeon.getHero().MMP == 0 ) {
+        if ( Dungeon.getHero().getMMP() == 0 ) {
             manaDropping = 0;
         }
 

@@ -254,15 +254,15 @@ public class StatusPane extends Component {
 
         exp.scale.x = ( width / exp.width ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp();
 
-        float mana = (float) Dungeon.getHero().MP / Dungeon.getHero().MMP;
+        float mana = (float) Dungeon.getHero().getMP() / Dungeon.getHero().getMMP();
 
-        float mana_drop = manaDropping / Dungeon.getHero().MMP;
+        float mana_drop = manaDropping / Dungeon.getHero().getMMP();
 
         mp.scale.x = mana;
         mp_dropping.x = mp.x + mp.width() - 20 * mana;
         mp_dropping.scale.x = mana_drop;
 
-        if ( Dungeon.getHero().MP == 0 ) {
+        if ( Dungeon.getHero().getMP() == 0 ) {
             manaDropping = 0;
         }
 

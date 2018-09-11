@@ -42,11 +42,11 @@ public class Smite extends Smash {
 
     @Override
     public float damageModifier () {
-        if ( !active || Dungeon.getHero().MP < getManaCost() ) {
+        if ( !active || Dungeon.getHero().getMP() < getManaCost() ) {
             return 1f;
         } else {
             castTextYell();
-            Dungeon.getHero().MP -= getManaCost();
+            Dungeon.getHero().setMP( Dungeon.getHero().getMP() - getManaCost() );
             StatusPane.manaDropping += getManaCost();
             return 1f + 0.2f * level;
         }
