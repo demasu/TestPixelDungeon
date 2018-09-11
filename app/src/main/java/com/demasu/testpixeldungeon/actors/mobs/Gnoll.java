@@ -30,7 +30,7 @@ public class Gnoll extends Mob {
         name = "gnoll scout";
         spriteClass = GnollSprite.class;
 
-        HP = HT = 12;
+        setHP( setHT( 12 ) );
         defenseSkill = 4;
 
         EXP = 2;
@@ -40,8 +40,8 @@ public class Gnoll extends Mob {
         lootChance = 0.5f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
-        HP = HT;
+        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHP( getHT() );
     }
 
     @Override

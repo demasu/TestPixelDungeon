@@ -510,7 +510,7 @@ public class WndMercs extends WndTabbed {
                                 Dungeon.setGold( Dungeon.getGold() - getGoldCost( mode ) );
                                 Dungeon.getHero().hiredMerc = new HiredMerc( getMercType( mode ) );
                                 Dungeon.getHero().hiredMerc.spawn( Dungeon.getHero().lvl );
-                                Dungeon.getHero().hiredMerc.HP = Dungeon.getHero().hiredMerc.mercType.getHealth( Dungeon.getHero().lvl );
+                                Dungeon.getHero().hiredMerc.setHP( Dungeon.getHero().hiredMerc.mercType.getHealth( Dungeon.getHero().lvl ) );
                                 Dungeon.getHero().hiredMerc.mercType.setEquipment( Dungeon.getHero().hiredMerc );
                                 Dungeon.getHero().hiredMerc.pos = respawnPoints.get( 0 );
                                 GameScene.add( Dungeon.getHero().hiredMerc );

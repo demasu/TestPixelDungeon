@@ -124,8 +124,8 @@ public class WandOfMagicCasting extends Wand {
                 SummonedPet minion = new SummonedPet( WraithSprite.class );
                 minion.name = "Consumed Soul";
                 minion.screams = false;
-                minion.HT = ch.HT;
-                minion.HP = minion.HT;
+                minion.setHT( ch.getHT() );
+                minion.setHP( minion.getHT() );
                 minion.defenseSkill = 5;
                 minion.pos = cell;
                 GameScene.add( minion );
@@ -139,8 +139,8 @@ public class WandOfMagicCasting extends Wand {
                 SummonedPet minion = new SummonedPet( ch.sprite.getClass() );
                 minion.name = "Enslaved " + ch.name;
                 minion.screams = false;
-                minion.HT = ch.HT;
-                minion.HP = minion.HT;
+                minion.setHT( ch.getHT() );
+                minion.setHP( minion.getHT() );
                 minion.defenseSkill = ch.defenseSkill( Dungeon.getHero() );
                 minion.pos = cell;
                 GameScene.add( minion );
@@ -149,7 +149,7 @@ public class WandOfMagicCasting extends Wand {
                 ch.sprite.visible = false;
                 ch.die( null );
             } else if ( casting == CAST_TYPES.SOUL_SPARK ) {
-                ch.HP = ch.HT;
+                ch.setHP( ch.getHT() );
                 ch.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
             } else if ( casting == CAST_TYPES.SPARK ) {
                 ch.damage( Random.Int( Dungeon.getHero().heroSkills.active2.level * 3, Dungeon.getHero().heroSkills.active2.level * 5 ), Dungeon.getHero() );

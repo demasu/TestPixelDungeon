@@ -222,13 +222,13 @@ public class StatusPane extends Component {
             layoutTags();
         }
 
-        float health = (float) ( Dungeon.getHero().HP ) / Dungeon.getHero().HT;
+        float health = (float) ( Dungeon.getHero().getHP() ) / Dungeon.getHero().getHT();
 
-        if ( Dungeon.getHero().HP == 0 ) {
+        if ( Dungeon.getHero().getHP() == 0 ) {
             takingDamage = 0;
         }
 
-        float health_drop = takingDamage / Dungeon.getHero().HT;
+        float health_drop = takingDamage / Dungeon.getHero().getHT();
 
         if ( takingDamage > 0 ) {
             takingDamageCooldownCounter++;

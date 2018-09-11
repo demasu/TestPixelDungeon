@@ -70,11 +70,11 @@ public class NecroBlade extends MeleeWeapon {
     public void execute ( Hero hero, String action ) {
         if ( action.equals( AC_HEAL ) ) {
 
-            hero.HP += hero.HT * 0.35;
-            if ( hero.HP > hero.HT ) {
-                hero.HP = hero.HT;
+            hero.setHP( hero.getHP() + hero.getHT() * 0.35 );
+            if ( hero.getHP() > hero.getHT() ) {
+                hero.setHP( hero.getHT() );
             }
-            GLog.p( "NecroBlade heals " + ( (int) ( hero.HT * 0.35 ) ) + " HP" );
+            GLog.p( "NecroBlade heals " + ( (int) ( hero.getHT() * 0.35 ) ) + " HP" );
             updateCharge( -25 );
 
             CellEmitter.center( hero.pos ).burst( Speck.factory( Speck.HEALING ), 1 );
@@ -106,7 +106,7 @@ public class NecroBlade extends MeleeWeapon {
                 }
                 skelLevel = 7;
                 skel.spawn( skelLevel );
-                skel.HP = skel.HT;
+                skel.setHP( skel.getHT() );
                 skel.pos = newPos;
 
                 GameScene.add( skel );

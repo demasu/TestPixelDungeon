@@ -48,15 +48,15 @@ public class Golem extends Mob {
         name = "golem";
         spriteClass = GolemSprite.class;
 
-        HP = HT = 85;
+        setHP( setHT( 85 ) );
         defenseSkill = 18;
 
         EXP = 12;
         maxLvl = 22;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
-        HP = HT;
+        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHP( getHT() );
     }
 
     @Override

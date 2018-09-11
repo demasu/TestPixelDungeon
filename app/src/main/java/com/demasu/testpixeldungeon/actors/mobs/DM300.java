@@ -63,7 +63,7 @@ public class DM300 extends Mob {
         name = Dungeon.getDepth() == Statistics.deepestFloor ? "DM-300" : "DM-350";
         spriteClass = DM300Sprite.class;
 
-        HP = HT = 200;
+        setHP( setHT( 200 ) );
         EXP = 30;
         defenseSkill = 18;
 
@@ -71,8 +71,8 @@ public class DM300 extends Mob {
         lootChance = 0.333f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
-        HP = HT;
+        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHP( getHT() );
     }
 
     @Override
@@ -100,9 +100,9 @@ public class DM300 extends Mob {
     public void move ( int step ) {
         super.move( step );
 
-        if ( Dungeon.getLevel().map[step] == Terrain.INACTIVE_TRAP && HP < HT ) {
+        if ( Dungeon.getLevel().map[step] == Terrain.INACTIVE_TRAP && getHP() < getHT() ) {
 
-            HP += Random.Int( 1, HT - HP );
+            setHP( getHP() + Random.Int( 1, getHT() - getHP() ) );
             sprite.emitter().burst( ElmoParticle.FACTORY, 5 );
 
             if ( Dungeon.getVisible()[step] && Dungeon.getHero().isAlive() ) {

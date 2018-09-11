@@ -35,8 +35,8 @@ public class Bandit extends Thief {
         spriteClass = BanditSprite.class;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
-        HP = HT;
+        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHP( getHT() );
     }
 
     @Override

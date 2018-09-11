@@ -30,7 +30,7 @@ public class Crab extends Mob {
         name = "sewer crab";
         spriteClass = CrabSprite.class;
 
-        HP = HT = 15;
+        setHP( setHT( 15 ) );
         defenseSkill = 5;
         baseSpeed = 2f;
 
@@ -41,8 +41,8 @@ public class Crab extends Mob {
         lootChance = 0.167f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
-        HP = HT;
+        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHP( getHT() );
     }
 
     @Override

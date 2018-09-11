@@ -29,14 +29,14 @@ public class Rat extends Mob {
         name = "marsupial rat";
         spriteClass = RatSprite.class;
 
-        HP = HT = 8;
+        setHP( setHT( 8 ) );
         defenseSkill = 3;
 
         maxLvl = 5;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
-        HP = HT;
+        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHP( getHT() );
 
         range = 2;
     }

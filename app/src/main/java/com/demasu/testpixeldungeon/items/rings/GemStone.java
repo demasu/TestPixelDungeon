@@ -52,14 +52,14 @@ public class GemStone extends Ring {
     public void execute ( Hero hero, String action ) {
         if ( action.equals( "Activate" ) ) {
             image = ItemSpriteSheet.GemStone;
-            Dungeon.getHero().HP += charge;
-            if ( Dungeon.getHero().HP > Dungeon.getHero().HT ) {
-                Dungeon.getHero().HP = Dungeon.getHero().HT;
+            Dungeon.getHero().setHP( Dungeon.getHero().getHP() + charge );
+            if ( Dungeon.getHero().getHP() > Dungeon.getHero().getHT() ) {
+                Dungeon.getHero().setHP( Dungeon.getHero().getHT() );
             }
             CellEmitter.center( hero.pos ).burst( Speck.factory( Speck.HEALING ), 1 );
             if ( charge == 40 ) {
                 GLog.p( "Gemstone fully healed you!" );
-                Dungeon.getHero().HP = Dungeon.getHero().HT;
+                Dungeon.getHero().setHP( Dungeon.getHero().getHT() );
             } else {
                 GLog.p( "Gemstone heals for " + charge + "HP!" );
             }

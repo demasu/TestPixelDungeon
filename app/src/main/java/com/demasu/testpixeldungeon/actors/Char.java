@@ -95,8 +95,8 @@ public abstract class Char extends Actor {
     public int pos = 0;
     public CharSprite sprite;
     public String name = "mob";
-    public int HT;
-    public int HP;
+    private int HT;
+    private int HP;
     private int MP = 0;
     private int MMP = 1;
     public int champ = -1;
@@ -183,8 +183,8 @@ public abstract class Char extends Actor {
         super.storeInBundle( bundle );
 
         bundle.put( POS, pos );
-        bundle.put( TAG_HP, HP );
-        bundle.put( TAG_HT, HT );
+        bundle.put( TAG_HP, getHP() );
+        bundle.put( TAG_HT, getHT() );
         bundle.put( TAG_MP, getMP() );
         bundle.put( TAG_MT, getMMP() );
         bundle.put( BUFFS, buffs );
@@ -196,8 +196,8 @@ public abstract class Char extends Actor {
         super.restoreFromBundle( bundle );
 
         pos = bundle.getInt( POS );
-        HP = bundle.getInt( TAG_HP );
-        HT = bundle.getInt( TAG_HT );
+        setHP( bundle.getInt( TAG_HP ) );
+        setHT( bundle.getInt( TAG_HT ) );
         setMP( bundle.getInt( TAG_MP ) );
         setMMP( bundle.getInt( TAG_MT ) );
 
@@ -249,7 +249,7 @@ public abstract class Char extends Actor {
                     }
 
                     if ( !Bestiary.isBoss( enemy ) && enemy instanceof Mob && ( (Mob) enemy ).state instanceof Mob.Sleeping && Dungeon.getHero().heroSkills.passiveB3.instantKill() ) {
-                        dmg = ( (Mob) enemy ).HP + dr;
+                        dmg = ( (Mob) enemy ).getHP() + dr;
                     }
                 }
                 if ( this == Dungeon.getHero() ) {
@@ -270,9 +270,9 @@ public abstract class Char extends Actor {
             enemy.damage( effectiveDamage, this );
 
 
-            if ( !Bestiary.isBoss( enemy ) && this == Dungeon.getHero() && Dungeon.getHero().heroSkills.active2.damageBonus( enemy.HP ) > 0 && Dungeon.getHero().rangedWeapon instanceof Shuriken ) // <-- Rogue Deadeye when present
+            if ( !Bestiary.isBoss( enemy ) && this == Dungeon.getHero() && Dungeon.getHero().heroSkills.active2.damageBonus( enemy.getHP() ) > 0 && Dungeon.getHero().rangedWeapon instanceof Shuriken ) // <-- Rogue Deadeye when present
             {
-                enemy.damage( Dungeon.getHero().heroSkills.active2.damageBonus( enemy.HP, true ), this );
+                enemy.damage( Dungeon.getHero().heroSkills.active2.damageBonus( enemy.getHP(), true ), this );
             }
 
             if ( !Bestiary.isBoss( enemy ) && this == Dungeon.getHero() && Dungeon.getHero().heroSkills.passiveB2.cripple() && Dungeon.getHero().rangedWeapon != null ) // <-- Huntress knee shot when present
@@ -286,8 +286,8 @@ public abstract class Char extends Actor {
 
             if ( enemy == Dungeon.getHero() ) {
                 Dungeon.getHero().interrupt();
-                if ( effectiveDamage > enemy.HT / 4 ) {
-                    Camera.main.shake( GameMath.gate( 1, effectiveDamage / ( enemy.HT / 4 ), 5 ), 0.3f );
+                if ( effectiveDamage > enemy.getHT() / 4 ) {
+                    Camera.main.shake( GameMath.gate( 1, effectiveDamage / ( enemy.getHT() / 4 ), 5 ), 0.3f );
                 }
             }
 
@@ -308,7 +308,7 @@ public abstract class Char extends Actor {
 
             if ( this instanceof Hero && ( (Hero) this ).rangedWeapon == null && ( (Hero) this ).belongings.weapon instanceof NecroBlade ) {
                 if ( !enemy.isAlive() ) {
-                    ( (NecroBlade) Dungeon.getHero().belongings.weapon ).updateCharge( enemy.HT > 22 ? (int) Math.floor( enemy.HT / 22 ) : 1 );
+                    ( (NecroBlade) Dungeon.getHero().belongings.weapon ).updateCharge( enemy.getHT() > 22 ? (int) Math.floor( enemy.getHT() / 22 ) : 1 );
                     GLog.p( "NecroBlade absored a portion of " + enemy.name + "'s life energy." );
 
                 }
@@ -394,7 +394,7 @@ public abstract class Char extends Actor {
 
     public void damage ( int dmg, Object src ) {
 
-        if ( HP <= 0 ) {
+        if ( getHP() <= 0 ) {
             return;
         }
 
@@ -420,7 +420,7 @@ public abstract class Char extends Actor {
         }
 
         if ( buff( Paralysis.class ) != null ) {
-            if ( Random.Int( dmg ) >= Random.Int( HP ) ) {
+            if ( Random.Int( dmg ) >= Random.Int( getHP() ) ) {
                 Buff.detach( this, Paralysis.class );
                 if ( Dungeon.getVisible()[pos] ) {
                     GLog.i( TXT_OUT_OF_PARALYSIS, name );
@@ -436,20 +436,20 @@ public abstract class Char extends Actor {
             }
         }
 
-        HP -= dmg;
+        setHP( getHP() - dmg );
         if ( dmg > 0 || src instanceof Char ) {
-            sprite.showStatus( HP > HT / 2 ?
+            sprite.showStatus( getHP() > getHT() / 2 ?
                             CharSprite.WARNING :
                             CharSprite.NEGATIVE,
                     Integer.toString( dmg ) );
         }
-        if ( HP <= 0 ) {
+        if ( getHP() <= 0 ) {
             die( src );
         }
     }
 
     public void destroy () {
-        HP = 0;
+        setHP( 0 );
         Actor.remove( this );
         Actor.freeCell( pos );
     }
@@ -464,7 +464,7 @@ public abstract class Char extends Actor {
     }
 
     public boolean isAlive () {
-        return HP > 0;
+        return getHP() > 0;
     }
 
     @Override
@@ -712,5 +712,21 @@ public abstract class Char extends Actor {
 
     public void setMMP ( int MMP ) {
         this.MMP = MMP;
+    }
+
+    public int getHT () {
+        return HT;
+    }
+
+    public void setHT ( int HT ) {
+        this.HT = HT;
+    }
+
+    public int getHP () {
+        return HP;
+    }
+
+    public void setHP ( int HP ) {
+        this.HP = HP;
     }
 }

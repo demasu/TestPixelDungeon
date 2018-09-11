@@ -97,7 +97,7 @@ public class WndMerc extends WndTabbed {
         IconTitle titlebar = new IconTitle();
         titlebar.icon( new SkillSprite( Dungeon.getHero().hiredMerc.mercType.getImage() ) );
         titlebar.label( Utils.capitalize( Dungeon.getHero().hiredMerc.getNameAndLevel() ) );
-        titlebar.health( (float) Dungeon.getHero().hiredMerc.HP / Dungeon.getHero().hiredMerc.HT );
+        titlebar.health( (float) Dungeon.getHero().hiredMerc.getHP() / Dungeon.getHero().hiredMerc.getHT() );
         titlebar.setRect( 0, 0, WIDTH, 0 );
         add( titlebar );
 

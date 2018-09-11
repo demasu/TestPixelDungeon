@@ -62,8 +62,8 @@ public class Echo extends ActiveSkill3 {
                 SummonedPet minion = new SummonedPet( MirrorSprite.class );
                 minion.name = "Hatsune's Echo";
                 minion.screams = false;
-                minion.HT = 50;
-                minion.HP = 50;
+                minion.setHT( 50 );
+                minion.setHP( 50 );
                 minion.defenseSkill = Dungeon.getHero().defenseSkill( Dungeon.getHero() );
                 GameScene.add( minion );
                 WandOfBlink.appear( minion, respawnPoints.get( index ) );

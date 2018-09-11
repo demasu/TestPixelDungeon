@@ -130,7 +130,7 @@ public class HiredMerc extends NPC {
         if ( armor != null ) {
             Dungeon.getLevel().drop( armor, pos ).sprite.drop();
             armor = null;
-            if ( HP > 0 ) {
+            if ( getHP() > 0 ) {
                 ( (MercSprite) Dungeon.getHero().hiredMerc.sprite ).updateArmor();
             }
         }
@@ -248,8 +248,8 @@ public class HiredMerc extends NPC {
     public void spawn ( int level ) {
         this.level = level;
 
-        HT = mercType.getHealth( level );
-        HP = HT;
+        setHT( mercType.getHealth( level ) );
+        setHP( getHT() );
         defenseSkill = mercType.getDefence( level );
 
         name = mercType.getName();
@@ -258,8 +258,8 @@ public class HiredMerc extends NPC {
     public void spawn ( int level, int maintainHP ) {
         this.level = level;
 
-        HT = mercType.getHealth( level );
-        HP = maintainHP;
+        setHT( mercType.getHealth( level ) );
+        setHP( maintainHP );
         name = mercType.getName();
         defenseSkill = mercType.getDefence( level );
 
@@ -273,8 +273,8 @@ public class HiredMerc extends NPC {
 
     public void level () {
         level++;
-        HT = mercType.getHealth( level );
-        HP = HT;
+        setHT( mercType.getHealth( level ) );
+        setHP( getHT() );
         sprite.showStatus( CharSprite.POSITIVE, TXT_LEVEL_UP );
 
         if ( skill.level < Skill.MAX_LEVEL ) {
@@ -373,7 +373,7 @@ public class HiredMerc extends NPC {
         }
 
 
-        if ( HP <= 0 ) {
+        if ( getHP() <= 0 ) {
 
             // if(((MercSprite)super.sprite()).halo != null)
             //   ((MercSprite)super.sprite()).halo.putOut();
@@ -391,7 +391,7 @@ public class HiredMerc extends NPC {
         if ( carrying instanceof PotionOfHealing ) {
             GLog.p( " " + name + " consumed a Potion Of Healing " );
             super.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
-            HP = HT;
+            setHP( getHT() );
             carrying = null;
             return;
         }

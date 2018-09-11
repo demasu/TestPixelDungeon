@@ -450,10 +450,10 @@ public abstract class Mob extends Char {
         try {
             if ( champ != -1 ) {
                 if ( champ == Champ.CHAMP_VAMPERIC ) {
-                    int reg = Math.min( damage, HT - HP );
+                    int reg = Math.min( damage, getHT() - getHP() );
 
                     if ( reg > 0 ) {
-                        HP += reg;
+                        setHP( getHP() + reg );
                         sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
                     }
                 } else if ( champ == Champ.CHAMP_CURSED ) {

@@ -63,7 +63,7 @@ public class WndInfoMob extends WndTitledMessage {
             add( image );
 
             health = new HealthBar();
-            health.level( (float) mob.HP / mob.HT );
+            health.level( (float) mob.getHP() / mob.getHT() );
             add( health );
 
             buffs = new BuffIndicator( mob );

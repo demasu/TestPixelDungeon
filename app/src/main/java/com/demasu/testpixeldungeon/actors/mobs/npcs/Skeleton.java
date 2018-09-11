@@ -68,7 +68,7 @@ public class Skeleton extends NPC {
     public void spawn ( int level ) {
         this.level = level;
 
-        HT = ( 3 + level ) * 5;
+        setHT( ( 3 + level ) * 5 );
         defenseSkill = 6 + level;
     }
 
@@ -79,7 +79,7 @@ public class Skeleton extends NPC {
 
     @Override
     public int damageRoll () {
-        return Random.NormalIntRange( HT / 10, HT / 4 );
+        return Random.NormalIntRange( getHT() / 10, getHT() / 4 );
     }
 
     @Override
@@ -92,8 +92,8 @@ public class Skeleton extends NPC {
 
     @Override
     protected boolean act () {
-        HP--;
-        if ( HP <= 0 ) {
+        setHP( getHP() - 1 );
+        if ( getHP() <= 0 ) {
             die( null );
             return true;
         } else {

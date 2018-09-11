@@ -46,15 +46,15 @@ public class Skeleton extends Mob {
         name = "skeleton";
         spriteClass = SkeletonSprite.class;
 
-        HP = HT = 25;
+        setHP( setHT( 25 ) );
         defenseSkill = 9;
 
         EXP = 5;
         maxLvl = 10;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
-        HP = HT;
+        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHP( getHT() );
     }
 
     @Override

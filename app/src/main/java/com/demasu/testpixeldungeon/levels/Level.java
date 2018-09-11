@@ -456,7 +456,7 @@ public abstract class Level implements Bundlable {
                                 Actor.addDelayed( new Pushing( tmp, Dungeon.getHero().pos, newPos ), -1 );
                                 tmp.weapon = Dungeon.getHero().hiredMerc.weapon;
                                 tmp.armor = Dungeon.getHero().hiredMerc.armor;
-                                tmp.HP = Dungeon.getHero().hiredMerc.HP;
+                                tmp.setHP( Dungeon.getHero().hiredMerc.getHP() );
                                 tmp.skill.level = Dungeon.getHero().hiredMerc.skill.level;
                                 tmp.carrying = Dungeon.getHero().hiredMerc.carrying;
                                 ( (MercSprite) tmp.sprite ).updateArmor();
@@ -476,7 +476,7 @@ public abstract class Level implements Bundlable {
     private HiredMerc checkMerc () {
 
         for ( Mob mob : Dungeon.getLevel().mobs ) {
-            if ( mob instanceof HiredMerc && mob.HP > 0 ) {
+            if ( mob instanceof HiredMerc && mob.getHP() > 0 ) {
                 return (HiredMerc) mob;
             }
         }

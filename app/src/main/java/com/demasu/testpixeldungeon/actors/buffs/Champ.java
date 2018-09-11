@@ -74,8 +74,8 @@ public class Champ extends Buff {
                     type = CHAMP_VAMPERIC;
                 case CHAMP_VAMPERIC: //red
                     this.target.name = "Vampiric " + this.target.name;
-                    this.target.HT *= 1.5;
-                    this.target.HP = this.target.HT;
+                    this.target.setHT( this.target.getHT() * 1.5 );
+                    this.target.setHP( this.target.getHT() );
                     ( (Mob) this.target ).defenseSkill *= 1.1;
                     if ( target.sprite != null ) {
                         if ( target.sprite.champRedHalo == null ) {
@@ -85,8 +85,8 @@ public class Champ extends Buff {
                     break;
                 case CHAMP_CHIEF: //white
                     this.target.name = "Chief " + this.target.name;
-                    this.target.HT *= 2;
-                    this.target.HP = this.target.HT;
+                    this.target.setHT( this.target.getHT() * 2 );
+                    this.target.setHP( this.target.getHT() );
                     ( (Mob) this.target ).defenseSkill *= 1.3;
                     if ( target.sprite != null ) {
                         if ( target.sprite.champWhiteHalo == null ) {
@@ -96,8 +96,8 @@ public class Champ extends Buff {
                     break;
                 case CHAMP_CURSED: //black
                     this.target.name = "Cursed " + this.target.name;
-                    this.target.HT *= 1.5;
-                    this.target.HP = this.target.HT;
+                    this.target.setHT( this.target.getHT() * 1.5 );
+                    this.target.setHP( this.target.getHT() );
                     ( (Mob) this.target ).defenseSkill *= 1.15;
                     if ( target.sprite != null ) {
                         if ( target.sprite.champBlackHalo == null ) {
@@ -107,8 +107,8 @@ public class Champ extends Buff {
                     break;
                 case CHAMP_FOUL: //yellow
                     this.target.name = "Foul " + this.target.name;
-                    this.target.HT *= 1.5;
-                    this.target.HP = this.target.HT;
+                    this.target.setHT( this.target.getHT() * 1.5 );
+                    this.target.setHP( this.target.getHT() );
                     ( (Mob) this.target ).defenseSkill *= 1.2;
                     if ( target.sprite != null ) {
                         if ( target.sprite.champYellowHalo == null ) {

@@ -39,7 +39,7 @@ public class Bat extends Mob {
         name = "vampire bat";
         spriteClass = BatSprite.class;
 
-        HP = HT = 30;
+        setHP( setHT( 30 ) );
         defenseSkill = 15;
         baseSpeed = 2f;
 
@@ -52,8 +52,8 @@ public class Bat extends Mob {
         lootChance = 0.125f;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
-        HP = HT;
+        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHP( getHT() );
     }
 
     @Override
@@ -79,10 +79,10 @@ public class Bat extends Mob {
     @Override
     public int attackProc ( Char enemy, int damage ) {
 
-        int reg = Math.min( damage, HT - HP );
+        int reg = Math.min( damage, getHT() - getHP() );
 
         if ( reg > 0 ) {
-            HP += reg;
+            setHP( getHP() + reg );
             sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
         }
 

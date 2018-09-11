@@ -187,8 +187,8 @@ public class Hero extends Char {
         name = "you";
 
         int health = 500;
-        HP = health;
-        HT = health;
+        setHP( health );
+        setHT( health );
 
         setSTR( STARTING_STR );
         awareness = 10.0f;
@@ -294,7 +294,7 @@ public class Hero extends Char {
 
         if ( hiredMerc != null ) {
             bundle.put( MERC_TYPE, hiredMerc.mercType );
-            bundle.put( MERC_HEALTH, hiredMerc.HP );
+            bundle.put( MERC_HEALTH, hiredMerc.getHP() );
             bundle.put( MERC_SKILL, hiredMerc.skill.level );
         }
 
@@ -545,7 +545,7 @@ public class Hero extends Char {
         if ( curAction == null ) {
 
             if ( restoreHealth ) {
-                if ( isStarving() || HP >= HT ) {
+                if ( isStarving() || getHP() >= getHT() ) {
                     restoreHealth = false;
                 } else {
                     spend( TIME_TO_REST );
@@ -1133,7 +1133,7 @@ public class Hero extends Char {
 
         StatusPane.takingDamage += dmg;
 
-        if ( subClass == HeroSubClass.BERSERKER && 0 < HP && HP <= HT * Fury.LEVEL ) {
+        if ( subClass == HeroSubClass.BERSERKER && 0 < getHP() && getHP() <= getHT() * Fury.LEVEL ) {
             Buff.affect( this, Fury.class );
         }
     }
@@ -1294,8 +1294,8 @@ public class Hero extends Char {
             this.exp -= maxExp();
             lvl++;
 
-            HT += 5 - Dungeon.getCurrentDifficulty().difficultyHPLevelPenalty();
-            HP += 5 - Dungeon.getCurrentDifficulty().difficultyHPLevelPenalty();
+            setHT( getHT() + 5 - Dungeon.getCurrentDifficulty().difficultyHPLevelPenalty() );
+            setHP( getHP() + 5 - Dungeon.getCurrentDifficulty().difficultyHPLevelPenalty() );
             setMP( getMP() + 5 );
             setMMP( getMMP() + 5 );
             Skill.availableSkill += 2;
@@ -1325,9 +1325,9 @@ public class Hero extends Char {
 
         if ( subClass == HeroSubClass.WARLOCK ) {
 
-            int value = Math.min( HT - HP, 1 + ( Dungeon.getDepth() - 1 ) / 5 );
+            int value = Math.min( getHT() - getHP(), 1 + ( Dungeon.getDepth() - 1 ) / 5 );
             if ( value > 0 ) {
-                HP += value;
+                setHP( getHP() + value );
                 sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
             }
 
@@ -1480,7 +1480,7 @@ public class Hero extends Char {
         attack( enemy );
 
 
-        if ( enemy.HP > 0 ) {
+        if ( enemy.getHP() > 0 ) {
             sprite.attack( enemy.pos );
             heroSkills.active2.castTextYell();
         } else {
@@ -1637,7 +1637,7 @@ public class Hero extends Char {
 
     public void resurrect ( int resetLevel ) {
 
-        HP = HT;
+        setHP( getHT() );
         Dungeon.setGold( 0 );
         exp = 0;
 

@@ -40,7 +40,7 @@ public class LightningTrap {
     public static void trigger ( int pos, Char ch ) {
 
         if ( ch != null ) {
-            ch.damage( Math.max( 1, Random.Int( ch.HP / 3, 2 * ch.HP / 3 ) ), LIGHTNING );
+            ch.damage( Math.max( 1, Random.Int( ch.getHP() / 3, 2 * ch.getHP() / 3 ) ), LIGHTNING );
             if ( ch == Dungeon.getHero() ) {
 
                 Camera.main.shake( 2, 0.3f );

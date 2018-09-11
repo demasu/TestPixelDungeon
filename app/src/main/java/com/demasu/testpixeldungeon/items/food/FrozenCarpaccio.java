@@ -59,7 +59,7 @@ public class FrozenCarpaccio extends Food {
                     break;
                 case 1:
                     GLog.i( "You feel your skin hardens!" );
-                    Buff.affect( hero, Barkskin.class ).level( hero.HT / 4 );
+                    Buff.affect( hero, Barkskin.class ).level( hero.getHT() / 4 );
                     break;
                 case 2:
                     GLog.i( "Refreshing!" );
@@ -70,8 +70,8 @@ public class FrozenCarpaccio extends Food {
                     break;
                 case 3:
                     GLog.i( "You feel better!" );
-                    if ( hero.HP < hero.HT ) {
-                        hero.HP = Math.min( hero.HP + hero.HT / 4, hero.HT );
+                    if ( hero.getHP() < hero.getHT() ) {
+                        hero.setHP( Math.min( hero.getHP() + hero.getHT() / 4, hero.getHT() ) );
                         hero.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
                     }
                     break;

@@ -94,8 +94,8 @@ public class SoulCrystalFilled extends Item {
 
             SummonedPet minion = new SummonedPet( minionSprite );
             minion.name = captured;
-            minion.HT = HT;
-            minion.HP = minion.HT;
+            minion.setHT( HT );
+            minion.setHP( minion.getHT() );
             minion.defenseSkill = defenceSkill;
             minion.pos = newPos;
 

@@ -83,8 +83,8 @@ public class SummonedPet extends NPC {
         bundle.put( PET_TYPE, petType );
         bundle.put( NAME, name );
         bundle.put( SKILL, defenseSkill );
-        bundle.put( HEALTH, HP );
-        bundle.put( MAX_HEALTH, HT );
+        bundle.put( HEALTH, getHP() );
+        bundle.put( MAX_HEALTH, getHT() );
         bundle.put( RANGE, range );
         bundle.put( SPRITE, spriteClass.toString().replace( "class ", "" ) );
         summonedPets = 0; // Game is saving, set summoned pets to 0
@@ -111,16 +111,16 @@ public class SummonedPet extends NPC {
         spawn( level );
 
         defenseSkill = bundle.getInt( SKILL );
-        HP = bundle.getInt( HEALTH );
-        HT = bundle.getInt( MAX_HEALTH );
+        setHP( bundle.getInt( HEALTH ) );
+        setHT( bundle.getInt( MAX_HEALTH ) );
         range = bundle.getInt( RANGE );
     }
 
     public void spawn ( int level ) {
         this.level = level;
 
-        HT = petType.getHealth( level );
-        HP = HT;
+        setHT( petType.getHealth( level ) );
+        setHP( getHT() );
         defenseSkill = petType.getDefence( level );
 
         if ( petType != PET_TYPES.SPECIAL ) {
@@ -136,8 +136,8 @@ public class SummonedPet extends NPC {
     public void spawn ( int level, int maintainHP ) {
         this.level = level;
 
-        HT = petType.getHealth( level );
-        HP = maintainHP;
+        setHT( petType.getHealth( level ) );
+        setHP( maintainHP );
         defenseSkill = petType.getDefence( level );
 
         spriteClass = petType.getSprite();
@@ -191,15 +191,15 @@ public class SummonedPet extends NPC {
         degradeCounter++;
         if ( petType != PET_TYPES.SPECIAL ) {
             if ( degradeCounter % DEGRADE_RATE == 0 ) {
-                HP--;
+                setHP( getHP() - 1 );
             }
 
             if ( summonedPets > SUMMONED_PETS_LIMIT + Dungeon.getHero().heroSkills.passiveB3.summoningLimitBonus() ) {
-                HP = 0;
+                setHP( 0 );
             }
         }
 
-        if ( HP <= 0 ) {
+        if ( getHP() <= 0 ) {
             die( null );
             return true;
         } else {

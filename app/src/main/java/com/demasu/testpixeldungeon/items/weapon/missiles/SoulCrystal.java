@@ -79,13 +79,13 @@ public class SoulCrystal extends MissileWeapon {
 
     @Override
     protected void onThrow ( int cell ) {
-        if ( Actor.findChar( cell ) != null && Actor.findChar( cell ) instanceof Mob && ( !( Actor.findChar( cell ) instanceof NPC ) || Actor.findChar( cell ) instanceof SummonedPet ) && Actor.findChar( cell ).champ == -1 && !Bestiary.isBoss( Actor.findChar( cell ) ) && ( Random.Int( 10, 20 ) > Actor.findChar( cell ).HP || Actor.findChar( cell ) instanceof SummonedPet ) ) {
+        if ( Actor.findChar( cell ) != null && Actor.findChar( cell ) instanceof Mob && ( !( Actor.findChar( cell ) instanceof NPC ) || Actor.findChar( cell ) instanceof SummonedPet ) && Actor.findChar( cell ).champ == -1 && !Bestiary.isBoss( Actor.findChar( cell ) ) && ( Random.Int( 10, 20 ) > Actor.findChar( cell ).getHP() || Actor.findChar( cell ) instanceof SummonedPet ) ) {
             Actor.findChar( cell ).sprite.emitter().burst( ShadowParticle.CURSE, 6 );
             Sample.INSTANCE.play( Assets.SND_CURSED );
             GLog.p( "Captured " + Actor.findChar( cell ).name + "!" );
-            SoulCrystalFilled crystal = new SoulCrystalFilled( ( (Mob) Actor.findChar( cell ) ).spriteClass, Actor.findChar( cell ).HT, ( (Mob) Actor.findChar( cell ) ).defenseSkill, Actor.findChar( cell ).name );
+            SoulCrystalFilled crystal = new SoulCrystalFilled( ( (Mob) Actor.findChar( cell ) ).spriteClass, Actor.findChar( cell ).getHT(), ( (Mob) Actor.findChar( cell ) ).defenseSkill, Actor.findChar( cell ).name );
             Dungeon.getLevel().drop( crystal, cell ).sprite.drop();
-            Actor.findChar( cell ).damage( Actor.findChar( cell ).HP, Dungeon.getHero() );
+            Actor.findChar( cell ).damage( Actor.findChar( cell ).getHP(), Dungeon.getHero() );
 
         } else if ( Dungeon.getVisible()[cell] ) {
             GLog.i( "The " + name + " shatters" );

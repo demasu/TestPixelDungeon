@@ -72,15 +72,15 @@ public class King extends Mob {
         name = Dungeon.getDepth() == Statistics.deepestFloor ? "King of Dwarves" : "undead King of Dwarves";
         spriteClass = KingSprite.class;
 
-        HP = HT = 300;
+        setHP( setHT( 300 ) );
         EXP = 40;
         defenseSkill = 25;
 
         Undead.count = 0;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        HT *= Dungeon.getCurrentDifficulty().mobHPModifier();
-        HP = HT;
+        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHP( getHT() );
     }
 
     @Override
@@ -165,7 +165,7 @@ public class King extends Mob {
     }
 
     private int maxArmySize () {
-        return 1 + MAX_ARMY_SIZE * ( HT - HP ) / HT;
+        return 1 + MAX_ARMY_SIZE * ( getHT() - getHP() ) / getHT();
     }
 
     private void summon () {
@@ -251,7 +251,7 @@ public class King extends Mob {
             name = "undead dwarf";
             spriteClass = UndeadSprite.class;
 
-            HP = HT = 28;
+            setHP( setHT( 28 ) );
             defenseSkill = 15;
 
             EXP = 0;

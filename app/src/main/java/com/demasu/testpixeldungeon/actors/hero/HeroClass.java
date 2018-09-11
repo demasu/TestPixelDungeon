@@ -112,8 +112,8 @@ public enum HeroClass {
     }
 
     public static void initStarterStats () {
-        Dungeon.getHero().HP -= Dungeon.getCurrentDifficulty().difficultyHPStartPenalty();
-        Dungeon.getHero().HT -= Dungeon.getCurrentDifficulty().difficultyHPStartPenalty();
+        Dungeon.getHero().setHP( Dungeon.getHero().getHP() - Dungeon.getCurrentDifficulty().difficultyHPStartPenalty() );
+        Dungeon.getHero().setHT( Dungeon.getHero().getHT() - Dungeon.getCurrentDifficulty().difficultyHPStartPenalty() );
         Dungeon.getCurrentDifficulty().difficultyStartItemBonus();
         Dungeon.setGold( Dungeon.getGold() + 10000 ); // For debug
 
@@ -378,8 +378,8 @@ public enum HeroClass {
     private void initHuntress ( Hero hero ) {
         hero.setMP( 35 );
         hero.setMMP( 35 );
-        hero.HP -= 5;
-        hero.HT -= 5;
+        hero.setHP( hero.getHP() - 5 );
+        hero.setHT( hero.getHT() - 5 );
 
         //( hero.belongings.weapon = new Dagger() ).identify();
         equipStarterWeapon( hero );

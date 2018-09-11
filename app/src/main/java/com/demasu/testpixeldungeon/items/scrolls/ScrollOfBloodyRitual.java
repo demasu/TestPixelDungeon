@@ -42,7 +42,7 @@ public class ScrollOfBloodyRitual extends Scroll {
         Sample.INSTANCE.play( Assets.SND_BLAST );
         Invisibility.dispel();
 
-        int damage = (int) Math.round( Dungeon.getHero().HT * 0.2 );
+        int damage = (int) Math.round( Dungeon.getHero().getHT() * 0.2 );
 
         for ( Mob mob : Dungeon.getLevel().mobs.toArray( new Mob[0] ) ) {
             if ( Level.fieldOfView[mob.pos] ) {
@@ -50,8 +50,8 @@ public class ScrollOfBloodyRitual extends Scroll {
             }
         }
 
-        Dungeon.getHero().HT -= damage;
-        Dungeon.getHero().HP = Dungeon.getHero().HT;
+        Dungeon.getHero().setHT( Dungeon.getHero().getHT() - damage );
+        Dungeon.getHero().setHP( Dungeon.getHero().getHT() );
         StatusPane.takingDamage = 0;
 
         GLog.n( "Scroll of bloody ritual took away " + damage + " of your max hp!" );

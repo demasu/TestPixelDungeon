@@ -634,7 +634,7 @@ public class FirstWave extends Level {
         }
 
         public void initStats () {
-            HP = HT = 40;
+            setHP( setHT( 40 ) );
             level = 10;
             mercType.setSkills( this );
             name = "Militia";
@@ -688,7 +688,7 @@ public class FirstWave extends Level {
         }
 
         public void initStats () {
-            HP = HT = 100;
+            setHP( setHT( 100 ) );
             level = 100;
             mercType.setSkills( this );
             name = "General";
@@ -708,7 +708,7 @@ public class FirstWave extends Level {
 
         @Override
         public void die ( Object cause ) {
-            HP = 1;
+            setHP( 1 );
             speak( "I cannot fail" );
         }
 
@@ -743,7 +743,7 @@ public class FirstWave extends Level {
         }
 
         public void initStats () {
-            HP = HT = 100;
+            setHP( setHT( 100 ) );
             level = 100;
             mercType.setSkills( this );
             name = "Temari";
@@ -761,7 +761,7 @@ public class FirstWave extends Level {
 
         @Override
         public void die ( Object cause ) {
-            HP = 1;
+            setHP( 1 );
             speak( "You enjoying this Hatsune?" );
         }
 

@@ -102,7 +102,7 @@ public class ColdGirl extends Mob {
         name = "Cold Girl";
         spriteClass = ColdGirlSprite.class;
 
-        HP = HT = 30;
+        setHP( setHT( 30 ) );
         EXP = 20;
         defenseSkill = 1;
         baseSpeed = 3;
@@ -147,7 +147,7 @@ public class ColdGirl extends Mob {
     @Override
     public int attackProc ( Char enemy, int damage ) {
 
-        if ( Level.adjacent( pos, enemy.pos ) && damage < HP )  // Curse
+        if ( Level.adjacent( pos, enemy.pos ) && damage < getHP() )  // Curse
         {
             if ( firstDamage ) {
                 speak( "I have to feel your pain too?!" );
@@ -157,7 +157,7 @@ public class ColdGirl extends Mob {
             damage( damage, this );
         }
 
-        if ( damage < enemy.HP && Random.Int( 5 ) < 2 && ( ( (ColdGirlAI) ColdGirl.this.state ).aiStatus == SUPER_HUNTING ) && Level.adjacent( pos, enemy.pos ) ) {
+        if ( damage < enemy.getHP() && Random.Int( 5 ) < 2 && ( ( (ColdGirlAI) ColdGirl.this.state ).aiStatus == SUPER_HUNTING ) && Level.adjacent( pos, enemy.pos ) ) {
             ArrayList<Integer> skelSpawns = new ArrayList<>();
             for ( int i = 0; i < Level.NEIGHBOURS8.length; i++ ) {
                 int ofs = Level.NEIGHBOURS8[i];
@@ -183,7 +183,7 @@ public class ColdGirl extends Mob {
                             Dungeon.getLevel().press( newPos, enemy );
                         }
 
-                        enemy.sprite.bloodBurstA( sprite.center(), enemy.HP );
+                        enemy.sprite.bloodBurstA( sprite.center(), enemy.getHP() );
                     }
 
                     for ( int s = 0; s < skelSpawns.size(); s++ ) {
@@ -205,13 +205,13 @@ public class ColdGirl extends Mob {
             }
         }
 
-        if ( damage >= enemy.HP && enemy instanceof Hero ) {
+        if ( damage >= enemy.getHP() && enemy instanceof Hero ) {
             if ( ( (ColdGirlAI) state ).aiStatus < GOD_MODE ) {
                 speak( "Baka.." );
                 return super.attackProc( enemy, damage );
             } else {
                 Sample.INSTANCE.play( Assets.SND_HIT, 1, 1, Random.Float( 0.8f, 1.25f ) );
-                enemy.sprite.bloodBurstA( sprite.center(), enemy.HP );
+                enemy.sprite.bloodBurstA( sprite.center(), enemy.getHP() );
                 speak( "Are you done yet?!" );
                 hostile = false;
                 if ( Level.adjacent( pos, enemy.pos ) )  // Knockback
@@ -232,7 +232,7 @@ public class ColdGirl extends Mob {
                                     Dungeon.getLevel().press( newPos, enemy );
                                 }
 
-                                enemy.sprite.bloodBurstA( sprite.center(), enemy.HP );
+                                enemy.sprite.bloodBurstA( sprite.center(), enemy.getHP() );
                             }
                             break;
                         }
@@ -294,7 +294,7 @@ public class ColdGirl extends Mob {
                 Sample.INSTANCE.play( Assets.SND_GHOST );
                 enemy.damage( damage, enemy );
                 Sample.INSTANCE.play( Assets.SND_HIT, 1, 1, Random.Float( 0.8f, 1.25f ) );
-                enemy.sprite.bloodBurstA( sprite.center(), enemy.HP );
+                enemy.sprite.bloodBurstA( sprite.center(), enemy.getHP() );
                 if ( firstSwap ) {
                     speak( "I have no time for this" );
                     heroSpeak( "EH?!" );
@@ -372,15 +372,15 @@ public class ColdGirl extends Mob {
         }
         minion.damage( 9999, this );
         Sample.INSTANCE.play( Assets.SND_HIT, 1, 1, Random.Float( 0.8f, 1.25f ) );
-        minion.sprite.bloodBurstA( sprite.center(), minion.HP );
+        minion.sprite.bloodBurstA( sprite.center(), minion.getHP() );
     }
 
     @Override
     public void die ( Object cause ) {
 
         if ( ( (ColdGirlAI) state ).aiStatus == HUNTING ) {
-            HT = 100;
-            HP = 100;
+            setHT( 100 );
+            setHP( 100 );
             defenseSkill = 11;
             ( (ColdGirlAI) state ).aiStatus = SUPER_HUNTING;
             GameScene.flash( 0x0042ff );
@@ -395,7 +395,7 @@ public class ColdGirl extends Mob {
             for ( int i = 0; i < cells.length; i++ ) {
                 int cell = cells[i];
                 Char ch = Actor.findChar( cell );
-                if ( ch != null && ch != this && ch != Dungeon.getHero() && !( ch instanceof HiredMerc ) && ch.HP > 0 ) {
+                if ( ch != null && ch != this && ch != Dungeon.getHero() && !( ch instanceof HiredMerc ) && ch.getHP() > 0 ) {
                     trollMinion( ch );
                 }
             }
@@ -433,8 +433,8 @@ public class ColdGirl extends Mob {
             ( (ColdGirlAI) state ).aiStatus = DONE_MODE;
             ( (ColdGirlSprite) sprite ).haloUp();
 
-            HT = 10000;
-            HP = 10000;
+            setHT( 10000 );
+            setHP( 10000 );
             defenseSkill = 1000;
             if ( Level.adjacent( pos, enemy.pos ) )  // Knockback
             {
@@ -469,7 +469,7 @@ public class ColdGirl extends Mob {
         }
 
 
-        HP = 10000;
+        setHP( 10000 );
         speak( "In your dreams fool" );
 
     }
@@ -551,8 +551,8 @@ public class ColdGirl extends Mob {
 
             if ( enemy == Dungeon.getHero() ) {
                 Dungeon.getHero().interrupt();
-                if ( effectiveDamage > enemy.HT / 4 ) {
-                    Camera.main.shake( GameMath.gate( 1, effectiveDamage / ( enemy.HT / 4 ), 5 ), 0.3f );
+                if ( effectiveDamage > enemy.getHT() / 4 ) {
+                    Camera.main.shake( GameMath.gate( 1, effectiveDamage / ( enemy.getHT() / 4 ), 5 ), 0.3f );
                 }
             }
 
@@ -695,7 +695,7 @@ public class ColdGirl extends Mob {
 
     public class ColdGirlSkel extends Skeleton {
         {
-            HP = HT = 10;
+            setHP( setHT( 10 ) );
             defenseSkill = 1;
             EXP = 0;
             state = HUNTING;
@@ -730,7 +730,7 @@ public class ColdGirl extends Mob {
         {
             name = "enslaved spirit";
 
-            HP = HT = 1;
+            setHP( setHT( 1 ) );
             defenseSkill = 1;
 
             EXP = 0;
