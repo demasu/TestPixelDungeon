@@ -107,11 +107,11 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     private static void initCommon ( Hero hero ) {
-        initStarterStats( hero );
+        initStarterStats();
         getStarterItems( hero );
     }
 
-    public static void initStarterStats ( Hero hero ) {
+    public static void initStarterStats () {
         Dungeon.getHero().HP -= Dungeon.getCurrentDifficulty().difficultyHPStartPenalty();
         Dungeon.getHero().HT -= Dungeon.getCurrentDifficulty().difficultyHPStartPenalty();
         Dungeon.getCurrentDifficulty().difficultyStartItemBonus();
