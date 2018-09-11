@@ -26,11 +26,11 @@ import com.watabou.utils.Random;
 public class Acidic extends Scorpio {
 
     {
-        name = "acidic scorpio";
+        name = "acidic scorpion";
         spriteClass = AcidicSprite.class;
 
         name = Dungeon.getCurrentDifficulty().mobPrefix() + name;
-        setHT( getHT() * Dungeon.getCurrentDifficulty().mobHPModifier() );
+        setHT( (int) (getHT() * Dungeon.getCurrentDifficulty().mobHPModifier()) );
         setHP( getHT() );
     }
 
