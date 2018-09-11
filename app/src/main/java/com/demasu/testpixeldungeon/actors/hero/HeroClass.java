@@ -421,15 +421,15 @@ public enum HeroClass {
 
         switch ( this ) {
             case WARRIOR:
-                return WAR_PERKS;
+                return WAR_PERKS.clone();
             case MAGE:
-                return MAG_PERKS;
+                return MAG_PERKS.clone();
             case ROGUE:
-                return ROG_PERKS;
+                return ROG_PERKS.clone();
             case HUNTRESS:
-                return HUN_PERKS;
+                return HUN_PERKS.clone();
             case HATSUNE:
-                return LEGEND_PERKS;
+                return LEGEND_PERKS.clone();
         }
 
         return null;
