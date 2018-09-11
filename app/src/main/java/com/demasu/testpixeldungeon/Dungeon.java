@@ -863,4 +863,11 @@ public class Dungeon {
     public static void setDroppedItems ( SparseArray<ArrayList<Item>> droppedItems ) {
         Dungeon.droppedItems = droppedItems;
     }
+
+    public static void setBeginningHealth () {
+        Hero hero = getHero();
+        Difficulties diff = getCurrentDifficulty();
+        int bonus         = diff.difficultyHPStartPenalty();
+        hero.setStartingHealth( bonus );
+    }
 }

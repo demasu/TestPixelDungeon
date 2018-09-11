@@ -112,6 +112,7 @@ public enum HeroClass {
     }
 
     public static void initStarterStats () {
+        Dungeon.setBeginningHealth();
         Dungeon.getHero().setHP( Dungeon.getHero().getHP() - Dungeon.getCurrentDifficulty().difficultyHPStartPenalty() );
         Dungeon.getHero().setHT( Dungeon.getHero().getHT() - Dungeon.getCurrentDifficulty().difficultyHPStartPenalty() );
         Dungeon.getCurrentDifficulty().difficultyStartItemBonus();
@@ -417,6 +418,7 @@ public enum HeroClass {
         return null;
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     public String[] perks () {
 
         switch ( this ) {

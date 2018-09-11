@@ -729,4 +729,9 @@ public abstract class Char extends Actor {
     public void setHP ( int HP ) {
         this.HP = HP;
     }
+
+    public void setStartingHealth ( int bonus ) {
+        setHP( getHP() - bonus );
+        setHT( getHT() - bonus );
+    }
 }
