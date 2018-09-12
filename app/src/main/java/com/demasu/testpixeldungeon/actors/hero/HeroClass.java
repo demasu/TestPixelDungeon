@@ -55,14 +55,14 @@ public enum HeroClass {
 
     WARRIOR( "warrior" ), MAGE( "mage" ), ROGUE( "rogue" ), HUNTRESS( "huntress" ), HATSUNE( "hatsune" );
 
-    public static final String[] WAR_PERKS = {
+    private static final String[] WAR_PERKS = {
             "Warriors start with 11 points of Strength.",
             "Warriors start with a unique short sword. This sword can be later \"reforged\" to upgrade another melee weapon.",
             "Warriors are less proficient with missile weapons.",
             "Any piece of food restores some health when eaten.",
             "Potions of Strength are identified from the beginning.",
     };
-    public static final String[] MAG_PERKS = {
+    private static final String[] MAG_PERKS = {
             "Mages start with a unique Wand of Magic Missile. This wand can be later \"disenchanted\" to upgrade another wand.",
             "Mages recharge their wands faster.",
             "When eaten, any piece of food restores 1 charge for all wands in the inventory.",
@@ -70,7 +70,7 @@ public enum HeroClass {
             "Scrolls of Identify are identified from the beginning.",
             "Master of magic."
     };
-    public static final String[] ROG_PERKS = {
+    private static final String[] ROG_PERKS = {
             "Rogues start with a Ring of Shadows+1.",
             "Rogues identify a type of a ring on equipping it.",
             "Rogues are proficient with light armor, dodging better while wearing one.",
@@ -78,14 +78,14 @@ public enum HeroClass {
             "Rogues can go without food longer.",
             "Scrolls of Magic Mapping are identified from the beginning."
     };
-    public static final String[] HUN_PERKS = {
+    private static final String[] HUN_PERKS = {
             "Huntresses start with 15 points of Health.",
             "Huntresses start with a unique upgradeable boomerang.",
             "Huntresses are proficient with missile weapons and get a damage bonus for excessive strength when using them.",
             "Huntresses gain more health from dewdrops.",
             "Huntresses sense neighbouring monsters even if they are hidden behind obstacles."
     };
-    public static final String[] LEGEND_PERKS = {
+    private static final String[] LEGEND_PERKS = {
             "Hatsune is believed to be a descendant of an Avatar who broke the rules and interacted with mortals.",
             "She is best known for leading the failed defence of the town of Boonamai.",
             "She is the first to give birth to twin daughters instead of one. A first in a lineage of over 10 generations.",
@@ -94,7 +94,7 @@ public enum HeroClass {
     };
     private static final int FOOD = 300;
     private static final String CLASS = "class";
-    private String title;
+    private final String title;
 
     HeroClass ( String title ) {
         this.title = title;
@@ -105,13 +105,13 @@ public enum HeroClass {
         getStarterItems( hero );
     }
 
-    public static void initStarterStats () {
+    private static void initStarterStats () {
         Dungeon.initStartingStats();
 
         Skill.availableSkill = Skill.STARTING_SKILL;
     }
 
-    public static void getStarterItems ( Hero hero ) {
+    private static void getStarterItems ( Hero hero ) {
         collectStarterItems( hero );
         Scroll.collectStarterScrolls();
         Potion.collectStarterPotions();
@@ -121,22 +121,21 @@ public enum HeroClass {
         collectDebugWeapon( hero ); // For debugging
     }
 
-    public static void collectStarterItems ( Hero hero ) {
+    private static void collectStarterItems ( Hero hero ) {
         collectArmor( hero );
         collectFood();
         Item.collectStarterItems( hero );
     }
 
     @SuppressWarnings ( "FeatureEnvy" ) // Suppressed until this becomes the non-debug one
-    public static void collectFood () {
+    private static void collectFood () {
         new Food().identify().collect();
         for ( int i = 1; i <= FOOD; i++ ) { // Default is 1 food
             new Food().collect();
         }
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
-    public static void collectDebugArmor ( Hero hero ) {
+    private static void collectDebugArmor ( Hero hero ) {
         // Method for debugging only
         // Remove when done debugging
         Armor armor = (Armor) new DebugArmor().identify();
@@ -148,8 +147,7 @@ public enum HeroClass {
         hero.belongings.armor = armor;
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
-    public static void collectDebugWeapon ( Hero hero ) {
+    private static void collectDebugWeapon ( Hero hero ) {
         // Method for debugging only
         // Remove when done debugging
         KindOfWeapon sword = (KindOfWeapon) new SwordOfDebug().identify();
@@ -162,7 +160,7 @@ public enum HeroClass {
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
-    public static void collectDebugItems () {
+    private static void collectDebugItems () {
         // Method for debugging only
         // Remove when done debugging
         new Ankh().collect();
@@ -173,15 +171,14 @@ public enum HeroClass {
         new PotionBelt().collect();
     }
 
-    public static void collectDebugScrolls () {
+    private static void collectDebugScrolls () {
         // Method for debugging only
         // Remove when done debugging
         collectIdentifyScrolls();
         collectSkillScrolls();
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
-    public static void collectDebugPotions () {
+    private static void collectDebugPotions () {
         // Method for debugging only
         // Remove when done debugging
         final int NUMPOH = 50;
@@ -190,16 +187,14 @@ public enum HeroClass {
         }
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
-    public static void collectSkillScrolls () {
+    private static void collectSkillScrolls () {
         final int NUMSKILLSCROLLS = 50; // There was 1 before
         for ( int i = 1; i <= NUMSKILLSCROLLS; i++ ) {
             new ScrollOfSkill().collect();
         }
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
-    public static void collectIdentifyScrolls () {
+    private static void collectIdentifyScrolls () {
         // There were no identify scrolls before debugging
         // Remove when done debugging
         final int NUMIDENTSCROLLS = 100;
@@ -244,12 +239,12 @@ public enum HeroClass {
         hero.updateAwareness();
     }
 
-    public static void collectArmor ( Hero hero ) {
+    private static void collectArmor ( Hero hero ) {
         //hero.belongings.armor = (Armor) new ClothArmor().identify();
         collectDebugArmor( hero ); // For debug
     }
 
-    public void equipStarterWeapon ( Hero hero ) {
+    private void equipStarterWeapon ( Hero hero ) {
         // Actions commented out for debugging
         switch ( this ) {
             case WARRIOR:
