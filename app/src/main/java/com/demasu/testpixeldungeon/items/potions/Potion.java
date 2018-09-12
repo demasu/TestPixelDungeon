@@ -291,4 +291,15 @@ public class Potion extends Item {
     public int price () {
         return 20 * quantity;
     }
+
+    public static void collectStarterPotions () {
+        new PotionOfHealing().setKnown();
+        new PotionOfMana().setKnown();
+
+        //new PotionOfMana().collect(); // For debugging
+        //new PotionOfMana().collect(); // For debugging
+        //new PotionOfMana().collect(); // For debugging
+
+        new PotionOfHealing().collect();
+    }
 }

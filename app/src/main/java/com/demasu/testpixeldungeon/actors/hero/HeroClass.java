@@ -34,6 +34,7 @@ import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.items.food.Food;
+import com.demasu.testpixeldungeon.items.potions.Potion;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 import com.demasu.testpixeldungeon.items.potions.PotionOfMana;
 import com.demasu.testpixeldungeon.items.potions.PotionOfStrength;
@@ -119,7 +120,7 @@ public enum HeroClass {
     public static void getStarterItems ( Hero hero ) {
         collectStarterItems( hero );
         Scroll.collectStarterScrolls();
-        collectStarterPotions();
+        Potion.collectStarterPotions();
         collectDebugScrolls();      // For debugging
         collectDebugPotions();      // For debugging
         collectDebugItems();        // For debugging
@@ -138,17 +139,6 @@ public enum HeroClass {
         for ( int i = 1; i <= FOOD; i++ ) { // Default is 1 food
             new Food().collect();
         }
-    }
-
-    public static void collectStarterPotions () {
-        new PotionOfHealing().setKnown();
-        new PotionOfMana().setKnown();
-
-        //new PotionOfMana().collect(); // For debugging
-        //new PotionOfMana().collect(); // For debugging
-        //new PotionOfMana().collect(); // For debugging
-
-        new PotionOfHealing().collect();
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
