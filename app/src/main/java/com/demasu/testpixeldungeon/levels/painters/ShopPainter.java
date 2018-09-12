@@ -33,6 +33,7 @@ import com.demasu.testpixeldungeon.items.armor.MailArmor;
 import com.demasu.testpixeldungeon.items.armor.PlateArmor;
 import com.demasu.testpixeldungeon.items.armor.ScaleArmor;
 import com.demasu.testpixeldungeon.items.bags.Bag;
+import com.demasu.testpixeldungeon.items.bags.PotionBelt;
 import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
 import com.demasu.testpixeldungeon.items.bags.WandHolster;
@@ -140,7 +141,7 @@ public class ShopPainter extends Painter {
                 items.add( new ScrollHolder() );
                 items.add( new Weightstone() );
                 items.add( new MerchantsBeacon() );
-                items.add( new Potion() );
+                items.add( new PotionBelt() );
                 break;
 
             case 16:
