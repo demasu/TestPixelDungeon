@@ -39,8 +39,8 @@ public class QuickSlot extends Button implements WndBag.Listener {
     private static final String TXT_SELECT_ITEM = "Select an item for the quickslot";
     private static final String QUICKSLOT1 = "quickslot";
     private static final String QUICKSLOT2 = "quickslot2";
-    public static Object primaryValue;
-    public static Object secondaryValue;
+    private static Object primaryValue;
+    private static Object secondaryValue;
     private static QuickSlot primary;
     private static QuickSlot secondary;
     private static Char lastTarget = null;
@@ -83,36 +83,36 @@ public class QuickSlot extends Button implements WndBag.Listener {
     public static void save ( Bundle bundle ) {
         Belongings stuff = Dungeon.getHero().belongings;
 
-        if ( primaryValue instanceof Class &&
-                stuff.getItem( (Class<? extends Item>) primaryValue ) != null ) {
+        if ( getPrimaryValue() instanceof Class &&
+                stuff.getItem( (Class<? extends Item>) getPrimaryValue() ) != null ) {
 
-            bundle.put( QUICKSLOT1, ( (Class<?>) primaryValue ).getName() );
+            bundle.put( QUICKSLOT1, ( (Class<?>) getPrimaryValue() ).getName() );
         }
-        if ( QuickSlot.secondaryValue instanceof Class &&
-                stuff.getItem( (Class<? extends Item>) secondaryValue ) != null &&
+        if ( QuickSlot.getSecondaryValue() instanceof Class &&
+                stuff.getItem( (Class<? extends Item>) getSecondaryValue() ) != null &&
                 Toolbar.secondQuickslot() ) {
 
-            bundle.put( QUICKSLOT2, ( (Class<?>) secondaryValue ).getName() );
+            bundle.put( QUICKSLOT2, ( (Class<?>) getSecondaryValue() ).getName() );
         }
     }
 
     public static void save ( Bundle bundle, Item item ) {
-        if ( item == primaryValue ) {
+        if ( item == getPrimaryValue() ) {
             bundle.put( QuickSlot.QUICKSLOT1, true );
         }
-        if ( item == secondaryValue && Toolbar.secondQuickslot() ) {
+        if ( item == getSecondaryValue() && Toolbar.secondQuickslot() ) {
             bundle.put( QuickSlot.QUICKSLOT2, true );
         }
     }
 
     public static void restore ( Bundle bundle ) {
-        primaryValue = null;
-        secondaryValue = null;
+        setPrimaryValue( null );
+        setSecondaryValue( null );
 
         String qsClass = bundle.getString( QUICKSLOT1 );
         if ( qsClass != null ) {
             try {
-                primaryValue = Class.forName( qsClass );
+                setPrimaryValue( Class.forName( qsClass ) );
             } catch ( ClassNotFoundException e ) {
             }
         }
@@ -120,7 +120,7 @@ public class QuickSlot extends Button implements WndBag.Listener {
         qsClass = bundle.getString( QUICKSLOT2 );
         if ( qsClass != null ) {
             try {
-                secondaryValue = Class.forName( qsClass );
+                setSecondaryValue( Class.forName( qsClass ) );
             } catch ( ClassNotFoundException e ) {
             }
         }
@@ -128,20 +128,36 @@ public class QuickSlot extends Button implements WndBag.Listener {
 
     public static void restore ( Bundle bundle, Item item ) {
         if ( bundle.getBoolean( QUICKSLOT1 ) ) {
-            primaryValue = item;
+            setPrimaryValue( item );
         }
         if ( bundle.getBoolean( QUICKSLOT2 ) ) {
-            secondaryValue = item;
+            setSecondaryValue( item );
         }
     }
 
     public static void compress () {
-        if ( ( primaryValue == null && secondaryValue != null ) ||
-                ( primaryValue == secondaryValue ) ) {
+        if ( ( getPrimaryValue() == null && getSecondaryValue() != null ) ||
+                ( getPrimaryValue() == getSecondaryValue() ) ) {
 
-            primaryValue = secondaryValue;
-            secondaryValue = null;
+            setPrimaryValue( getSecondaryValue() );
+            setSecondaryValue( null );
         }
+    }
+
+    public static Object getPrimaryValue () {
+        return primaryValue;
+    }
+
+    public static void setPrimaryValue ( Object primaryValue ) {
+        QuickSlot.primaryValue = primaryValue;
+    }
+
+    public static Object getSecondaryValue () {
+        return secondaryValue;
+    }
+
+    public static void setSecondaryValue ( Object secondaryValue ) {
+        QuickSlot.secondaryValue = secondaryValue;
     }
 
     public void primary () {
@@ -231,7 +247,7 @@ public class QuickSlot extends Button implements WndBag.Listener {
     @SuppressWarnings ( "unchecked" )
     private Item select () {
 
-        Object content = ( this == primary ? primaryValue : secondaryValue );
+        Object content = ( this == primary ? getPrimaryValue() : getSecondaryValue() );
         if ( content instanceof Item ) {
 
             return (Item) content;
@@ -252,9 +268,9 @@ public class QuickSlot extends Button implements WndBag.Listener {
     public void onSelect ( Item item ) {
         if ( item != null ) {
             if ( this == primary ) {
-                primaryValue = ( item.stackable ? item.getClass() : item );
+                setPrimaryValue( ( item.stackable ? item.getClass() : item ) );
             } else {
-                secondaryValue = ( item.stackable ? item.getClass() : item );
+                setSecondaryValue( ( item.stackable ? item.getClass() : item ) );
             }
             refresh();
         }

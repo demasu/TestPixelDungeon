@@ -550,10 +550,10 @@ public class Item implements Bundlable {
 
         if ( stackable ) {
             Class<? extends Item> cl = getClass();
-            if ( QuickSlot.primaryValue == cl || QuickSlot.secondaryValue == cl ) {
+            if ( QuickSlot.getPrimaryValue() == cl || QuickSlot.getSecondaryValue() == cl ) {
                 QuickSlot.refresh();
             }
-        } else if ( QuickSlot.primaryValue == this || QuickSlot.secondaryValue == this ) {
+        } else if ( QuickSlot.getPrimaryValue() == this || QuickSlot.getSecondaryValue() == this ) {
             QuickSlot.refresh();
         }
     }

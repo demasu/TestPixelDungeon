@@ -154,8 +154,8 @@ public class Dungeon {
 
         Room.shuffleTypes();
 
-        QuickSlot.primaryValue = null;
-        QuickSlot.secondaryValue = null;
+        QuickSlot.setPrimaryValue( null );
+        QuickSlot.setSecondaryValue( null );
 
         setHero( new Hero() );
         getHero().difficulty = getDifficulty();
@@ -225,8 +225,8 @@ public class Dungeon {
 
         Room.shuffleTypes();
 
-        QuickSlot.primaryValue = null;
-        QuickSlot.secondaryValue = null;
+        QuickSlot.setPrimaryValue( null );
+        QuickSlot.setSecondaryValue( null );
 
         setHero( new Legend() );
         getHero().difficulty = getDifficulty();

@@ -255,7 +255,7 @@ public class MissionToolbar extends Component {
 
         add( btnQuick1 = new QuickslotTool( 83, 7, 22, 25, true ) );
         add( btnQuick2 = new QuickslotTool( 83, 7, 22, 25, false ) );
-        btnQuick2.visible = ( QuickSlot.secondaryValue != null );
+        btnQuick2.visible = ( QuickSlot.getSecondaryValue() != null );
 
         add( pickedUp = new PickedUpItem() );
     }

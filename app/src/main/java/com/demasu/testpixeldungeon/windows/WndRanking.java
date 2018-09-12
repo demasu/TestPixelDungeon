@@ -271,8 +271,8 @@ public class WndRanking extends WndTabbed {
                 addItem( stuff.ring2 );
             }
 
-            Item primary = getQuickslot( QuickSlot.primaryValue );
-            Item secondary = getQuickslot( QuickSlot.secondaryValue );
+            Item primary = getQuickslot( QuickSlot.getPrimaryValue() );
+            Item secondary = getQuickslot( QuickSlot.getSecondaryValue() );
 
             if ( count >= 4 && primary != null && secondary != null ) {
 

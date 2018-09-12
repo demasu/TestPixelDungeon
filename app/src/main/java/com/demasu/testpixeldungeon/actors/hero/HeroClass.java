@@ -36,23 +36,17 @@ import com.demasu.testpixeldungeon.items.bags.WandHolster;
 import com.demasu.testpixeldungeon.items.food.Food;
 import com.demasu.testpixeldungeon.items.potions.Potion;
 import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
-import com.demasu.testpixeldungeon.items.potions.PotionOfMana;
 import com.demasu.testpixeldungeon.items.potions.PotionOfStrength;
 import com.demasu.testpixeldungeon.items.rings.Ring;
 import com.demasu.testpixeldungeon.items.rings.RingOfShadows;
 import com.demasu.testpixeldungeon.items.scrolls.Scroll;
-import com.demasu.testpixeldungeon.items.scrolls.ScrollOfBloodyRitual;
-import com.demasu.testpixeldungeon.items.scrolls.ScrollOfFrostLevel;
-import com.demasu.testpixeldungeon.items.scrolls.ScrollOfHome;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfMagicMapping;
-import com.demasu.testpixeldungeon.items.scrolls.ScrollOfSacrifice;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfSkill;
 import com.demasu.testpixeldungeon.items.wands.WandOfMagicMissile;
 import com.demasu.testpixeldungeon.items.weapon.melee.SwordOfDebug;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Boomerang;
-import com.demasu.testpixeldungeon.items.weapon.missiles.Dart;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Shuriken;
 import com.demasu.testpixeldungeon.ui.QuickSlot;
 import com.watabou.utils.Bundle;
@@ -284,7 +278,7 @@ public enum HeroClass {
         equipStarterWeapon( hero );
 
         //QuickSlot.primaryValue = Dart.class;
-        QuickSlot.primaryValue = Arrow.class;
+        QuickSlot.setPrimaryValue( Arrow.class );
 
         new PotionOfStrength().setKnown();
         new PotionOfStrength().collect();
@@ -307,7 +301,7 @@ public enum HeroClass {
         WandOfMagicMissile wand = new WandOfMagicMissile();
         wand.identify().collect();
 
-        QuickSlot.primaryValue = wand;
+        QuickSlot.setPrimaryValue( wand );
 
         new ScrollOfIdentify().setKnown();
 
@@ -328,7 +322,7 @@ public enum HeroClass {
         hero.belongings.ring1.activate( hero );
 
         //QuickSlot.primaryValue = Dart.class;
-        QuickSlot.primaryValue = Shuriken.class;
+        QuickSlot.setPrimaryValue( Shuriken.class );
 
         new ScrollOfMagicMapping().setKnown();
 
@@ -351,7 +345,7 @@ public enum HeroClass {
         }
         boomerang.collect();
 
-        QuickSlot.primaryValue = boomerang;
+        QuickSlot.setPrimaryValue( boomerang );
 
         hero.heroSkills = CurrentSkills.HUNTRESS;
         hero.heroSkills.init();

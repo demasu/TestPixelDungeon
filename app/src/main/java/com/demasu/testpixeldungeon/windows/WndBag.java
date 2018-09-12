@@ -457,7 +457,7 @@ public class WndBag extends WndTabbed {
         protected boolean onLongClick () {
             if ( listener == null && item.defaultAction != null ) {
                 hide();
-                QuickSlot.primaryValue = item.stackable ? item.getClass() : item;
+                QuickSlot.setPrimaryValue( item.stackable ? item.getClass() : item );
                 QuickSlot.refresh();
                 return true;
             } else {
