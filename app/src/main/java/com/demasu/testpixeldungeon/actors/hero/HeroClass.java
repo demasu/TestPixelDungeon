@@ -181,6 +181,7 @@ public enum HeroClass {
     private static void collectDebugPotions () {
         // Method for debugging only
         // Remove when done debugging
+        //noinspection SpellCheckingInspection
         final int NUMPOH = 50;
         for ( int i = 1; i <= NUMPOH; i++ ) {
             new PotionOfHealing().collect();
@@ -188,6 +189,7 @@ public enum HeroClass {
     }
 
     private static void collectSkillScrolls () {
+        //noinspection SpellCheckingInspection
         final int NUMSKILLSCROLLS = 50; // There was 1 before
         for ( int i = 1; i <= NUMSKILLSCROLLS; i++ ) {
             new ScrollOfSkill().collect();
@@ -197,6 +199,7 @@ public enum HeroClass {
     private static void collectIdentifyScrolls () {
         // There were no identify scrolls before debugging
         // Remove when done debugging
+        //noinspection SpellCheckingInspection
         final int NUMIDENTSCROLLS = 100;
         for ( int i = 1; i <= NUMIDENTSCROLLS; i++ ) {
             new ScrollOfIdentify().collect();
@@ -281,6 +284,7 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     private void initWarrior ( Hero hero ) {
+        //noinspection SpellCheckingInspection
         final int WARMP = 200; //Originally 20
         hero.setSTR( hero.getSTR() + 1 );
         hero.setMP( WARMP );
@@ -303,6 +307,7 @@ public enum HeroClass {
     }
 
     private void initMage ( Hero hero ) {
+        //noinspection SpellCheckingInspection
         final int MAGEMP = 40;
         hero.setMP( MAGEMP );
         hero.setMMP( MAGEMP );
@@ -323,6 +328,7 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     private void initRogue ( Hero hero ) {
+        //noinspection SpellCheckingInspection
         final int ROGUEMP = 30;
         final int SHURIKEN = 100; // Originally was 10
         hero.setMP( ROGUEMP );
@@ -346,6 +352,7 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     private void initHuntress ( Hero hero ) {
+        //noinspection SpellCheckingInspection
         final int HUNTMP                  = 35;
         final int HUNTRESS_HEALTH_PENALTY = 5;
         hero.setMP( HUNTMP );
