@@ -168,9 +168,10 @@ public class Dungeon {
     }
 
     public static void initStartingStats () {
+        final int GOLD = 10_000;
         setBeginningHealth();
         getCurrentDifficulty().difficultyStartItemBonus();
-        setGold( Dungeon.getGold() + 10000 ); // For debug
+        setGold( Dungeon.getGold() + GOLD ); // For debug
     }
 
     public static int getGold () {
