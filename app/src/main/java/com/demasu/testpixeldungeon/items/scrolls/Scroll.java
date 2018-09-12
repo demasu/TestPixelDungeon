@@ -199,4 +199,17 @@ public abstract class Scroll extends Item {
     public int price () {
         return 15 * quantity;
     }
+
+    public static void collectStarterScrolls () {
+        // Set known the ones we want
+        new ScrollOfHome().setKnown();
+        new ScrollOfSacrifice().setKnown();
+        new ScrollOfBloodyRitual().setKnown();
+        new ScrollOfSkill().setKnown();
+        new ScrollOfFrostLevel().setKnown();
+
+        // Actually collect the scrolls we want
+        //new ScrollOfHome().collect();         // For debugging
+        new ScrollOfSkill().collect();
+    }
 }

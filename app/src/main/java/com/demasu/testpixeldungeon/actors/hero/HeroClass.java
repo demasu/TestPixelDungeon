@@ -39,6 +39,7 @@ import com.demasu.testpixeldungeon.items.potions.PotionOfMana;
 import com.demasu.testpixeldungeon.items.potions.PotionOfStrength;
 import com.demasu.testpixeldungeon.items.rings.Ring;
 import com.demasu.testpixeldungeon.items.rings.RingOfShadows;
+import com.demasu.testpixeldungeon.items.scrolls.Scroll;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfBloodyRitual;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfFrostLevel;
 import com.demasu.testpixeldungeon.items.scrolls.ScrollOfHome;
@@ -117,7 +118,7 @@ public enum HeroClass {
 
     public static void getStarterItems ( Hero hero ) {
         collectStarterItems( hero );
-        collectStarterScrolls();
+        Scroll.collectStarterScrolls();
         collectStarterPotions();
         collectDebugScrolls();      // For debugging
         collectDebugPotions();      // For debugging
@@ -131,6 +132,7 @@ public enum HeroClass {
         Item.collectStarterItems( hero );
     }
 
+    @SuppressWarnings ( "FeatureEnvy" ) // Suppressed until this becomes the non-debug one
     public static void collectFood () {
         new Food().identify().collect();
         for ( int i = 1; i <= FOOD; i++ ) { // Default is 1 food
@@ -147,16 +149,6 @@ public enum HeroClass {
         //new PotionOfMana().collect(); // For debugging
 
         new PotionOfHealing().collect();
-    }
-
-    public static void collectStarterScrolls () {
-        new ScrollOfHome().setKnown();
-        new ScrollOfSacrifice().setKnown();
-        new ScrollOfBloodyRitual().setKnown();
-        new ScrollOfSkill().setKnown();
-        new ScrollOfFrostLevel().setKnown();
-        //new ScrollOfHome().collect();         // For debugging
-        new ScrollOfSkill().collect();
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
