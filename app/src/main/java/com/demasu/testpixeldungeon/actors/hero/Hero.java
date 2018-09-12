@@ -191,7 +191,7 @@ public class Hero extends Char {
         setHT( health );
 
         setSTR( STARTING_STR );
-        awareness = 10.0f;
+        awareness = 100.0f;
 
         belongings = new Belongings( this );
         storage = new Storage( this );
@@ -1340,10 +1340,11 @@ public class Hero extends Char {
     }
 
     void updateAwareness () {
-        awareness = (float) ( 1 - Math.pow(
-                ( getHeroClass() == HeroClass.ROGUE ? 0.85 : 0.90 ),
-                ( 1 + Math.min( lvl, 9 ) ) * 0.5
-        ) );
+        //awareness = (float) ( 1 - Math.pow(
+        //        ( getHeroClass() == HeroClass.ROGUE ? 0.85 : 0.90 ),
+        //        ( 1 + Math.min( lvl, 9 ) ) * 0.5
+        //) );
+        awareness = 100.0f;
     }
 
     public boolean isStarving () {
