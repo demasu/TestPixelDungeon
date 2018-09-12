@@ -236,7 +236,7 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectIdentifyScrolls () {
-        for ( int i = 1; i <= 50; i++ ) {
+        for ( int i = 1; i <= 100; i++ ) {
             new ScrollOfIdentify().collect();
         }
     }
