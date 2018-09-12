@@ -17,10 +17,9 @@
  */
 package com.demasu.testpixeldungeon.items;
 
-import android.util.Log;
-
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
+import com.demasu.testpixeldungeon.ClassFinder;
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.PixelDungeon;
 import com.demasu.testpixeldungeon.actors.Actor;
@@ -37,6 +36,7 @@ import com.demasu.testpixeldungeon.items.wands.Wand;
 import com.demasu.testpixeldungeon.items.weapon.Weapon;
 import com.demasu.testpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
+import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.demasu.testpixeldungeon.mechanics.Ballistica;
 import com.demasu.testpixeldungeon.scenes.CellSelector;
@@ -53,9 +53,12 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import static com.demasu.testpixeldungeon.ClassFinder.findClassByName;
 
 public class Item implements Bundlable {
 
@@ -590,30 +593,102 @@ public class Item implements Bundlable {
         QuickSlot.restore( bundle, this );
     }
 
-    public static void collectAndIdentify ( String name, int num ) {
+    public static void collectItem ( String name, int num, boolean identify ) {
         Class cls;
         try {
             String fullPath = "com.demasu.testpixeldungeon.items." + name;
             cls = Class.forName( fullPath );
         } catch ( ClassNotFoundException e ) {
-            Log.d( "TPD", "Was not able to find class with name: " + name );
-            return;
+            try {
+                cls = ClassFinder.findClassByName( name );
+            } catch ( ClassNotFoundException cnfe ) {
+               cnfe.printStackTrace();
+               return;
+            }
         }
 
         Item item = null;
         try {
             item = (Item) cls.newInstance();
-        } catch ( IllegalAccessException e ) {
-            Log.d( "TPD", "Illegal Access On " + cls.getCanonicalName() );
-            e.printStackTrace();
-        } catch ( InstantiationException e ) {
-            Log.d( "TPD", "Instantiation Exception On " + cls.getCanonicalName() );
+        } catch ( IllegalAccessException | InstantiationException e ) {
             e.printStackTrace();
         }
 
         for ( int i = 0; i < num; i++ ) {
-            item.identify().collect();
+            if ( item != null ) {
+                if ( identify ) {
+                    item.identify();
+                }
+                item.collect();
+            }
         }
+    }
+
+    private static void collectItem ( String name, int num, boolean identify, ArrayList<String> args ) {
+        // This is mainly for the Filled Soul Crystal, could be useful later.
+        Class cls;
+        try {
+            String fullPath = "com.demasu.testpixeldungeon.items." + name;
+            cls = Class.forName( fullPath );
+        } catch ( ClassNotFoundException e ) {
+            e.printStackTrace();
+            return;
+        }
+
+        Item item = null;
+        try {
+            Constructor constructor = cls.getConstructor( Class.class, Integer.TYPE, Integer.TYPE, String.class );
+
+            Class<?> mobSprite = findClassByName( args.remove( 0 ) );
+
+            String other = "";
+            if ( args.get( args.size() - 1 ) != null ) {
+                other = args.remove( args.size() - 1 );
+            }
+
+            ArrayList<Integer> numbers = new ArrayList<Integer>();
+            for ( String elem : args ) {
+                try {
+                    numbers.add( Integer.parseInt( elem ) );
+                } catch (NumberFormatException e ) {
+                    // Ignore since we don't care
+                }
+            }
+
+            item = (SoulCrystalFilled) constructor.newInstance( new Object[] { mobSprite.getClass(), numbers.get(0), numbers.get(1), other } );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for ( int i = 0; i < num; i++ ) {
+            if ( item != null ) {
+                if ( identify ) {
+                    item.identify();
+                }
+                item.collect();
+            }
+        }
+
+    }
+
+    public static void collectStarterItems ( Hero hero ) {
+        Bag.collectStartingBag();
+
+        Bow bow = new Bow();
+        bow.collect();
+        bow.doEquip( hero );
+
+        MissileWeapon.collectStarterMissiles();
+
+        // Below lines are commented out for debugging
+        //ArrayList<String> params = new ArrayList<String>() {{
+        //    add( "EyeSprite" );
+        //    add( "50" );
+        //    add( "20" );
+        //    add( "Captured Evil Eye" );
+        //}};
+        //collectItem( "SoulCrystalFilled", 1, false, params );
     }
 
     public void cast ( final Hero user, int dst ) {

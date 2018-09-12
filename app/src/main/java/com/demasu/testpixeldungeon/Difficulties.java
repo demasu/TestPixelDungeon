@@ -2,8 +2,6 @@ package com.demasu.testpixeldungeon;
 
 
 import com.demasu.testpixeldungeon.items.Item;
-import com.demasu.testpixeldungeon.items.food.Food;
-import com.demasu.testpixeldungeon.items.potions.PotionOfHealing;
 
 import java.util.ArrayList;
 
@@ -317,8 +315,8 @@ public enum Difficulties {
         switch ( this ) {
             case EASY:
                 final int GOLD = 200;
-                Item.collectAndIdentify( "PotionOfHealing", 2 );
-                Item.collectAndIdentify( "Food", 2 );
+                Item.collectItem( "PotionOfHealing", 2, true );
+                Item.collectItem( "Food", 2, true );
                 Dungeon.setGold( GOLD );
         }
     }

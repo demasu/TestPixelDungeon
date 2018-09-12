@@ -17,8 +17,6 @@
  */
 package com.demasu.testpixeldungeon;
 
-import android.util.Log;
-
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Amok;
@@ -167,6 +165,12 @@ public class Dungeon {
 
         StartScene.curClass.initHero( getHero() );
 
+    }
+
+    public static void initStartingStats () {
+        setBeginningHealth();
+        getCurrentDifficulty().difficultyStartItemBonus();
+        setGold( Dungeon.getGold() + 10000 ); // For debug
     }
 
     public static int getGold () {
@@ -601,9 +605,6 @@ public class Dungeon {
 
         setHero( null );
         setHero( (Hero) bundle.get( HERO ) );
-        if ( getHero() == null ) {
-            Log.d( "", "null hero" );
-        }
         QuickSlot.compress();
 
         setGold( bundle.getInt( GOLD ) );

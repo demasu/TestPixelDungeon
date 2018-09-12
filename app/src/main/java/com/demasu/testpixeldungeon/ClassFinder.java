@@ -1,6 +1,7 @@
 package com.demasu.testpixeldungeon;
 
 public class ClassFinder {
+
     private static final String[] searchPackages = {
         "com.demasu.testpixeldungeon",
         "com.demasu.testpixeldungeon.actors",
@@ -49,14 +50,12 @@ public class ClassFinder {
         "com.watabou.noosa.ui"
     };
 
-    public Class<?> findClassByName ( String name ) throws ClassNotFoundException {
+    public static Class<?> findClassByName ( String name ) throws ClassNotFoundException {
         for ( String path : searchPackages ) {
             try {
                 return Class.forName( path + "." + name );
-            } catch ( ClassNotFoundException e ) {
-                // Ignore it
             } catch ( Exception e ) {
-                // Undecided if I want to do anything here
+                // Don't much care for exceptions here
             }
         }
 

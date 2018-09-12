@@ -140,6 +140,34 @@ public class Bag extends Item implements Iterable<Item> {
         return false;
     }
 
+    private static void collectBag ( String name, int num ) {
+        Class cls;
+        try {
+            String fullPath = "com.demasu.testpixeldungeon.items.bags." + name;
+            cls = Class.forName( fullPath );
+        } catch ( ClassNotFoundException e ) {
+            e.printStackTrace();
+            return;
+        }
+
+        Item item = null;
+        try {
+            item = (Item) cls.newInstance();
+        } catch ( IllegalAccessException | InstantiationException e ) {
+            e.printStackTrace();
+        }
+
+        for ( int i = 0; i < num; i++ ) {
+            if ( item != null ) {
+                item.collect();
+            }
+        }
+    }
+
+    public static void collectStartingBag () {
+        collectBag( "Keyring", 1 );
+    }
+
     public boolean grab ( Item item ) {
         return false;
     }

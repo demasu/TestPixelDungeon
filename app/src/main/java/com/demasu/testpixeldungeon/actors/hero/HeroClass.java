@@ -23,12 +23,12 @@ import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.skills.CurrentSkills;
 import com.demasu.testpixeldungeon.actors.skills.Skill;
 import com.demasu.testpixeldungeon.items.Ankh;
+import com.demasu.testpixeldungeon.items.Item;
 import com.demasu.testpixeldungeon.items.KindOfWeapon;
 import com.demasu.testpixeldungeon.items.MerchantsBeacon;
 import com.demasu.testpixeldungeon.items.TomeOfMastery;
 import com.demasu.testpixeldungeon.items.armor.Armor;
 import com.demasu.testpixeldungeon.items.armor.DebugArmor;
-import com.demasu.testpixeldungeon.items.bags.Keyring;
 import com.demasu.testpixeldungeon.items.bags.PotionBelt;
 import com.demasu.testpixeldungeon.items.bags.ScrollHolder;
 import com.demasu.testpixeldungeon.items.bags.SeedPouch;
@@ -50,7 +50,6 @@ import com.demasu.testpixeldungeon.items.wands.WandOfMagicMissile;
 import com.demasu.testpixeldungeon.items.weapon.melee.SwordOfDebug;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Arrow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Boomerang;
-import com.demasu.testpixeldungeon.items.weapon.missiles.Bow;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Dart;
 import com.demasu.testpixeldungeon.items.weapon.missiles.Shuriken;
 import com.demasu.testpixeldungeon.ui.QuickSlot;
@@ -97,7 +96,7 @@ public enum HeroClass {
             "She excels in tactics and has mastered both light and dark arts.",
             "Her hair has turned blue from her massive spiritual strength."
     };
-    private static final int FOOD = 298;
+    private static final int FOOD = 300;
     private static final String CLASS = "class";
     private String title;
 
@@ -105,16 +104,13 @@ public enum HeroClass {
         this.title = title;
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
     private static void initCommon ( Hero hero ) {
         initStarterStats();
         getStarterItems( hero );
     }
 
     public static void initStarterStats () {
-        Dungeon.setBeginningHealth();
-        Dungeon.getCurrentDifficulty().difficultyStartItemBonus();
-        Dungeon.setGold( Dungeon.getGold() + 10000 ); // For debug
+        Dungeon.initStartingStats();
 
         Skill.availableSkill = Skill.STARTING_SKILL;
     }
@@ -129,34 +125,19 @@ public enum HeroClass {
         collectDebugWeapon( hero ); // For debugging
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
     public static void collectStarterItems ( Hero hero ) {
-        //hero.belongings.armor = (Armor) new ClothArmor().identify(); // For debug
-        collectDebugArmor( hero );
+        collectArmor( hero );
         collectFood();
-        //new Food().identify().collect(); // For debug
-        new Keyring().collect();
-
-        Bow tmp = new Bow( 1 );
-        tmp.collect();
-        tmp.doEquip( hero );
-
-        new Arrow( 15 ).collect();
-        // Commented out the below as they aren't needed for debugging
-        //new CupidArrow( 5 ).collect();
-        //new SoulCrystal( 3 ).collect();
-        //new SoulCrystalFilled( EyeSprite.class, 50, 20, "Captured Evil Eye" ).collect();
+        Item.collectStarterItems( hero );
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
     public static void collectFood () {
         new Food().identify().collect();
-        for ( int i = 1; i <= FOOD; i++ ) {
+        for ( int i = 1; i <= FOOD; i++ ) { // Default is 1 food
             new Food().collect();
         }
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
     public static void collectStarterPotions () {
         new PotionOfHealing().setKnown();
         new PotionOfMana().setKnown();
@@ -168,7 +149,6 @@ public enum HeroClass {
         new PotionOfHealing().collect();
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
     public static void collectStarterScrolls () {
         new ScrollOfHome().setKnown();
         new ScrollOfSacrifice().setKnown();
@@ -192,7 +172,8 @@ public enum HeroClass {
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectDebugWeapon ( Hero hero ) {
         KindOfWeapon sword = (KindOfWeapon) new SwordOfDebug().identify();
-        for ( int i = 1; i <= 15; i++ ) {
+        final int LVL = 15;
+        for ( int i = 1; i <= LVL; i++ ) {
             sword.upgrade();
         }
 
@@ -207,17 +188,11 @@ public enum HeroClass {
         new WandHolster().collect();
         new MerchantsBeacon().collect();
         new PotionBelt().collect();
-        // new PotionOfMindVision().collect();
-        // new ArmorKit().collect();
-        // new ScrollOfMagicMapping().identify().collect();
-        // new ScrollOfFrostLevel().collect();
     }
 
     public static void collectDebugScrolls () {
         collectIdentifyScrolls();
         collectSkillScrolls();
-        // new ScrollOfSacrifice().collect();
-        // new ScrollOfBloodyRitual().collect();
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
@@ -277,7 +252,11 @@ public enum HeroClass {
         hero.updateAwareness();
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
+    public static void collectArmor ( Hero hero ) {
+        //hero.belongings.armor = (Armor) new ClothArmor().identify();
+        collectDebugArmor( hero ); // For debug
+    }
+
     public void equipStarterWeapon ( Hero hero ) {
         // Actions commented out for debugging
         switch ( this ) {
@@ -322,7 +301,8 @@ public enum HeroClass {
         //new Dart( 8 ).identify().collect();                                   // For debug
         equipStarterWeapon( hero );
 
-        QuickSlot.primaryValue = Dart.class;
+        //QuickSlot.primaryValue = Dart.class;
+        QuickSlot.primaryValue = Arrow.class;
 
         new PotionOfStrength().setKnown();
         new PotionOfStrength().collect();
@@ -361,11 +341,12 @@ public enum HeroClass {
         //( hero.belongings.weapon = new DualSwords() ).identify();
         equipStarterWeapon( hero );
         hero.belongings.ring1 = (Ring) new RingOfShadows().upgrade().identify();
-        new Dart( 8 ).identify().collect();
-        new Shuriken( 10 ).identify().collect();
+        //new Dart( 8 ).identify().collect();
+        new Shuriken( 100 ).identify().collect();
         hero.belongings.ring1.activate( hero );
 
-        QuickSlot.primaryValue = Dart.class;
+        //QuickSlot.primaryValue = Dart.class;
+        QuickSlot.primaryValue = Shuriken.class;
 
         new ScrollOfMagicMapping().setKnown();
 

@@ -123,7 +123,7 @@ abstract public class MissileWeapon extends Weapon {
 
         int min = min();
         int max = max();
-        info.append( "\n\nAverage damage of this weapon equals to " + ( min + ( max - min ) / 2 ) + " points per hit. " );
+        info.append( "\n\nAverage damage of this weapon equals to " ).append( min + ( max - min ) / 2 ).append( " points per hit. " );
 
         if ( Dungeon.getHero().belongings.backpack.items.contains( this ) ) {
             if ( STR > Dungeon.getHero().STR() ) {
@@ -143,5 +143,38 @@ abstract public class MissileWeapon extends Weapon {
         }
 
         return info.toString();
+    }
+
+
+    public static void collectStarterMissiles () {
+        final int ARROWS      = 15;
+        final int CUPIDARROWS = 5;
+        collectMissile( "Arrow", ARROWS );
+        // Commented out the below as they aren't needed for debugging
+        //collectMissile( "CupidArrow", CUPIDARROWS );
+    }
+
+    private static void collectMissile ( String name, int num ) {
+        Class cls;
+        try {
+            String fullPath = "com.demasu.testpixeldungeon.items.weapon.missiles." + name;
+            cls = Class.forName( fullPath );
+        } catch ( ClassNotFoundException e ) {
+            e.printStackTrace();
+            return;
+        }
+
+        Item item = null;
+        try {
+            item = (Item) cls.newInstance();
+        } catch ( IllegalAccessException | InstantiationException e ) {
+            e.printStackTrace();
+        }
+
+        for ( int i = 0; i < num; i++ ) {
+            if ( item != null ) {
+                item.collect();
+            }
+        }
     }
 }
