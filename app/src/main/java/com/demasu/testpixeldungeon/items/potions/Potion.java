@@ -299,7 +299,5 @@ public class Potion extends Item {
         //new PotionOfMana().collect(); // For debugging
         //new PotionOfMana().collect(); // For debugging
         //new PotionOfMana().collect(); // For debugging
-
-        new PotionOfHealing().collect();
     }
 }

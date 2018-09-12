@@ -137,8 +137,11 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectDebugArmor ( Hero hero ) {
+        // Method for debugging only
+        // Remove when done debugging
         Armor armor = (Armor) new DebugArmor().identify();
-        for ( int i = 1; i <= 15; i++ ) {
+        final int LVL = 15;
+        for ( int i = 1; i <= LVL; i++ ) {
             armor.upgrade();
         }
 
@@ -147,6 +150,8 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectDebugWeapon ( Hero hero ) {
+        // Method for debugging only
+        // Remove when done debugging
         KindOfWeapon sword = (KindOfWeapon) new SwordOfDebug().identify();
         final int LVL = 15;
         for ( int i = 1; i <= LVL; i++ ) {
@@ -158,6 +163,8 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectDebugItems () {
+        // Method for debugging only
+        // Remove when done debugging
         new Ankh().collect();
         new ScrollHolder().collect();
         new SeedPouch().collect();
@@ -167,27 +174,36 @@ public enum HeroClass {
     }
 
     public static void collectDebugScrolls () {
+        // Method for debugging only
+        // Remove when done debugging
         collectIdentifyScrolls();
         collectSkillScrolls();
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectDebugPotions () {
-        for ( int i = 1; i <= 50; i++ ) {
+        // Method for debugging only
+        // Remove when done debugging
+        final int NUMPOH = 50;
+        for ( int i = 1; i <= NUMPOH; i++ ) {
             new PotionOfHealing().collect();
         }
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectSkillScrolls () {
-        for ( int i = 1; i <= 30; i++ ) {
+        final int NUMSKILLSCROLLS = 50; // There was 1 before
+        for ( int i = 1; i <= NUMSKILLSCROLLS; i++ ) {
             new ScrollOfSkill().collect();
         }
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void collectIdentifyScrolls () {
-        for ( int i = 1; i <= 100; i++ ) {
+        // There were no identify scrolls before debugging
+        // Remove when done debugging
+        final int NUMIDENTSCROLLS = 100;
+        for ( int i = 1; i <= NUMIDENTSCROLLS; i++ ) {
             new ScrollOfIdentify().collect();
         }
     }
@@ -270,10 +286,10 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     private void initWarrior ( Hero hero ) {
+        final int WARMP = 200; //Originally 20
         hero.setSTR( hero.getSTR() + 1 );
-        hero.setMP( 200 );
-        hero.setMMP( 200 );
-        //hero.belongings.weapon = (KindOfWeapon) new ShortSword().identify();  // For debug
+        hero.setMP( WARMP );
+        hero.setMMP( WARMP );
         //new Dart( 8 ).identify().collect();                                   // For debug
         equipStarterWeapon( hero );
 
@@ -292,8 +308,9 @@ public enum HeroClass {
     }
 
     private void initMage ( Hero hero ) {
-        hero.setMP( 40 );
-        hero.setMMP( 40 );
+        final int MAGEMP = 40;
+        hero.setMP( MAGEMP );
+        hero.setMMP( MAGEMP );
 
         //( hero.belongings.weapon = new Knuckles() ).identify();
         equipStarterWeapon( hero );
@@ -311,14 +328,16 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     private void initRogue ( Hero hero ) {
-        hero.setMP( 30 );
-        hero.setMMP( 30 );
+        final int ROGUEMP = 30;
+        final int SHURIKEN = 100; // Originally was 10
+        hero.setMP( ROGUEMP );
+        hero.setMMP( ROGUEMP );
         //(hero.belongings.weapon = new Dagger()).identify();
         //( hero.belongings.weapon = new DualSwords() ).identify();
         equipStarterWeapon( hero );
         hero.belongings.ring1 = (Ring) new RingOfShadows().upgrade().identify();
         //new Dart( 8 ).identify().collect();
-        new Shuriken( 100 ).identify().collect();
+        new Shuriken( SHURIKEN ).identify().collect();
         hero.belongings.ring1.activate( hero );
 
         //QuickSlot.primaryValue = Dart.class;
@@ -332,15 +351,18 @@ public enum HeroClass {
 
     @SuppressWarnings ( "FeatureEnvy" )
     private void initHuntress ( Hero hero ) {
-        hero.setMP( 35 );
-        hero.setMMP( 35 );
-        hero.setHP( hero.getHP() - 5 );
-        hero.setHT( hero.getHT() - 5 );
+        final int HUNTMP                  = 35;
+        final int HUNTRESS_HEALTH_PENALTY = 5;
+        hero.setMP( HUNTMP );
+        hero.setMMP( HUNTMP );
+        hero.setHP( hero.getHP() - HUNTRESS_HEALTH_PENALTY );
+        hero.setHT( hero.getHT() - HUNTRESS_HEALTH_PENALTY );
 
         //( hero.belongings.weapon = new Dagger() ).identify();
         equipStarterWeapon( hero );
         Boomerang boomerang = (Boomerang) new Boomerang().identify();
-        for ( int i = 1; i <= 15; i++ ) {
+        final int LVL = 15; //Originally none
+        for ( int i = 1; i <= LVL; i++ ) {
             boomerang.upgrade();
         }
         boomerang.collect();

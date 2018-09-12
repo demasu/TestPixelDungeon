@@ -168,10 +168,10 @@ public class Dungeon {
     }
 
     public static void initStartingStats () {
-        final int GOLD = 10_000;
+        final int GOLD = 10_000; // Remove when done debugging
         setBeginningHealth();
         getCurrentDifficulty().difficultyStartItemBonus();
-        setGold( Dungeon.getGold() + GOLD ); // For debug
+        setGold( Dungeon.getGold() + GOLD ); // For debug, remove when done debugging
     }
 
     public static int getGold () {
