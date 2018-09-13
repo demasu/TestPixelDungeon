@@ -1,8 +1,6 @@
 package com.demasu.testpixeldungeon.actors.skills;
 
 
-import android.util.Log;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.scenes.GameScene;
@@ -226,13 +224,7 @@ public enum CurrentSkills {
 
     public void storeInBundle ( Bundle bundle ) {
         bundle.put( TYPE, toString() );
-        Log.d( "TPD", "CURRENTSKILL: Put the following in the bundle" );
-        Log.d( "TPD", "CURRENTSKILL: Type: " + TYPE );
-        Log.d( "TPD", "CURRENTSKILL: String? " + toString() );
         bundle.put( UNLOCKED, skillUnlocked );
-        Log.d( "TPD", "CURRENTSKILL: Put the following in the bundle" );
-        Log.d( "TPD", "CURRENTSKILL: Type: " + UNLOCKED );
-        Log.d( "TPD", "CURRENTSKILL: Skill unlocked: " + skillUnlocked );
         passiveA1.storeInBundle( bundle );
         passiveA2.storeInBundle( bundle );
         passiveA3.storeInBundle( bundle );
@@ -256,7 +248,6 @@ public enum CurrentSkills {
         active3.restoreInBundle( bundle );
         skillUnlocked = bundle.getBoolean( UNLOCKED );
         if ( skillUnlocked ) {
-            Log.d( "TPD", "CURRENTSKILL: Unlocking " + this.toString() );
             unlockSkill();
         }
     }

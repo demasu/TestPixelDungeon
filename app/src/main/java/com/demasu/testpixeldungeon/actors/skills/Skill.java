@@ -1,8 +1,6 @@
 package com.demasu.testpixeldungeon.actors.skills;
 
 
-import android.util.Log;
-
 import com.demasu.testpixeldungeon.Dungeon;
 import com.demasu.testpixeldungeon.actors.hero.Hero;
 import com.demasu.testpixeldungeon.sprites.CharSprite;
@@ -243,19 +241,10 @@ public class Skill {
     }
 
     public void storeInBundle ( Bundle bundle ) {
-        Log.d( "TPD", "SKILL: Put the following in to the bundle" );
-        Log.d( "TPD", "SKILL: Skill level: " + SKILL_LEVEL );
-        Log.d( "TPD", "SKILL: Tag: " + tag );
-        Log.d( "TPD", "SKILL: Level: " + level );
         bundle.put( SKILL_LEVEL + " " + tag, level );
     }
 
     public void restoreInBundle ( Bundle bundle ) {
-        Log.d( "TPD", "SKILL: Reading from bundle" );
-        Log.d( "TPD", "SKILL: Skill level is: " + SKILL_LEVEL );
-        Log.d( "TPD", "SKILL: Tag is: " + tag );
         level = bundle.getInt( SKILL_LEVEL + " " + tag );
-        Log.d( "TPD", "SKILL: Read the following from the bundle" );
-        Log.d( "TPD", "SKILL: Level: " + level );
     }
 }
