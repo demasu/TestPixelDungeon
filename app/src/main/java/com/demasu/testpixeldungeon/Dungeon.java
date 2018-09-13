@@ -353,15 +353,11 @@ public class Dungeon {
 
         setNightMode( new Date().getHours() < 7 );
 
-        try {
-            if ( Dungeon.getCurrentDifficulty().isNight == Difficulties.isNightOverwrite.ALWAYS_NIGHT ) {
-                setNightMode( true );
-            }
-            if ( Dungeon.getCurrentDifficulty().isNight == Difficulties.isNightOverwrite.ALWAYS_DAY ) {
-                setNightMode( false );
-            }
-        } catch ( Exception e ) {
-
+        if ( Dungeon.getCurrentDifficulty().isNight == Difficulties.isNightOverwrite.ALWAYS_NIGHT ) {
+            setNightMode( true );
+        }
+        if ( Dungeon.getCurrentDifficulty().isNight == Difficulties.isNightOverwrite.ALWAYS_DAY ) {
+            setNightMode( false );
         }
         Dungeon.setLevel( level );
         Actor.init();
