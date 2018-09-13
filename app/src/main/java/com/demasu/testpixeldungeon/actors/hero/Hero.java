@@ -151,12 +151,10 @@ public class Hero extends Char {
     private static final String LEVEL = "lvl";
     private static final String EXPERIENCE = "exp";
     private static final String DIFFICULTY = "editdifficulty";
-    private static final String VERSION_SAVE = "verisionofsave";
     private static final String SKILLS_AVAILABLE = "availableskills";
     private static final String MERC_TYPE = "merctype";
     private static final String MERC_HEALTH = "merchealth";
     private static final String MERC_SKILL = "mercskill";
-    private static final int skills_reset_version = 19;
     public static WandOfMagicCasting haxWand = new WandOfMagicCasting();
     public HeroSubClass subClass = HeroSubClass.NONE;
     public CurrentSkills heroSkills = CurrentSkills.MAGE;
@@ -290,8 +288,6 @@ public class Hero extends Char {
 
         bundle.put( DIFFICULTY, difficulty );
 
-        bundle.put( VERSION_SAVE, Game.versionBuild );
-
         if ( hiredMerc != null ) {
             bundle.put( MERC_TYPE, hiredMerc.mercType );
             bundle.put( MERC_HEALTH, hiredMerc.getHP() );
@@ -344,29 +340,10 @@ public class Hero extends Char {
         belongings.restoreFromBundle( bundle );
         storage.restoreFromBundle( bundle );
 
-        if ( bundle.getInt( VERSION_SAVE ) < skills_reset_version ) {
-            switch ( getHeroClass() ) {
-                case WARRIOR:
-                    heroSkills = CurrentSkills.WARRIOR;
-                    break;
-                case MAGE:
-                    heroSkills = CurrentSkills.MAGE;
-                    break;
-                case ROGUE:
-                    heroSkills = CurrentSkills.ROGUE;
-                    break;
-                case HUNTRESS:
-                    heroSkills = CurrentSkills.HUNTRESS;
-                    break;
-            }
-            heroSkills.init( this );
-            Skill.availableSkill = Skill.STARTING_SKILL + lvl * 2;
-        } else {
-            heroSkills = CurrentSkills.restoreFromBundle( bundle );
-            heroSkills.init( this );
-            heroSkills.restoreSkillsFromBundle( bundle );
-            Skill.availableSkill = bundle.getInt( SKILLS_AVAILABLE );
-        }
+        heroSkills = CurrentSkills.restoreFromBundle( bundle );
+        heroSkills.init( this );
+        heroSkills.restoreSkillsFromBundle( bundle );
+        Skill.availableSkill = bundle.getInt( SKILLS_AVAILABLE );
     }
 
     public String className () {
