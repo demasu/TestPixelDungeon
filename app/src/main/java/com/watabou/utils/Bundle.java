@@ -17,6 +17,8 @@
 
 package com.watabou.utils;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +49,16 @@ public class Bundle {
     }
 
     private Bundle ( JSONObject data ) {
+        Log.d( "TPD", "BUNDLE: Showing JSON Data: " );
+        try {
+            StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+            for ( StackTraceElement e : stackTraceElements ) {
+                Log.d( "TPD", "BUNDLE: " + e.toString() );
+            }
+            Log.d( "TPD", data.toString( 4 ) );
+        } catch (Exception e ) {
+            //don't care
+        }
         this.data = data;
     }
 
@@ -127,6 +139,8 @@ public class Bundle {
     }
 
     public int getInt ( String key ) {
+        Log.d( "TPD", "BUNDLE: Getting key: " + key );
+        Log.d( "TPD", "BUNDLE: Key is: " + data.optInt( key ) );
         return data.optInt( key );
     }
 
@@ -261,7 +275,8 @@ public class Bundle {
         try {
             data.put( key, value );
         } catch ( JSONException e ) {
-
+            Log.d( "TPD", "BUNDLE: Failed to put data with key: " + key );
+            Log.d( "TPD", "BUNDLE: Failed to put data with value: " + value );
         }
     }
 

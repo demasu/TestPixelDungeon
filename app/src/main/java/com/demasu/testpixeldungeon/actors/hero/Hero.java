@@ -18,6 +18,8 @@
 package com.demasu.testpixeldungeon.actors.hero;
 
 
+import android.util.Log;
+
 import com.demasu.testpixeldungeon.Assets;
 import com.demasu.testpixeldungeon.Badges;
 import com.demasu.testpixeldungeon.Bones;
@@ -344,29 +346,39 @@ public class Hero extends Char {
         belongings.restoreFromBundle( bundle );
         storage.restoreFromBundle( bundle );
 
-        if ( bundle.getInt( VERSION_SAVE ) < skills_reset_version ) {
-            switch ( getHeroClass() ) {
-                case WARRIOR:
-                    heroSkills = CurrentSkills.WARRIOR;
-                    break;
-                case MAGE:
-                    heroSkills = CurrentSkills.MAGE;
-                    break;
-                case ROGUE:
-                    heroSkills = CurrentSkills.ROGUE;
-                    break;
-                case HUNTRESS:
-                    heroSkills = CurrentSkills.HUNTRESS;
-                    break;
-            }
-            heroSkills.init( this );
-            Skill.availableSkill = Skill.STARTING_SKILL + lvl * 2;
-        } else {
+        Log.d( "TPD", "HERO: Attempting to restore skills" );
+        Log.d( "TPD", "HERO: Version is: " + VERSION_SAVE );
+        Log.d( "TPD", "HERO: Skills reset version is: " + skills_reset_version );
+        Log.d( "TPD", "HERO: Value of saved VERSION_SAVE is: " + bundle.getInt( VERSION_SAVE ) );
+        //if ( bundle.getInt( VERSION_SAVE ) < skills_reset_version ) {
+        //    Log.d( "TPD", "HERO: Save is older than skills_reset_version" );
+        //    switch ( getHeroClass() ) {
+        //        case WARRIOR:
+        //            Log.d( "TPD", "HERO: Got Warrior" );
+        //            heroSkills = CurrentSkills.WARRIOR;
+        //            break;
+        //        case MAGE:
+        //            Log.d( "TPD", "HERO: Got Mage" );
+        //            heroSkills = CurrentSkills.MAGE;
+        //            break;
+        //        case ROGUE:
+        //            Log.d( "TPD", "HERO: Got ROGUE" );
+        //            heroSkills = CurrentSkills.ROGUE;
+        //            break;
+        //        case HUNTRESS:
+        //            Log.d( "TPD", "HERO: Got Huntress" );
+        //            heroSkills = CurrentSkills.HUNTRESS;
+        //            break;
+        //    }
+        //    heroSkills.init( this );
+        //    Skill.availableSkill = Skill.STARTING_SKILL + lvl * 2;
+        //} else {
+            Log.d( "TPD", "HERO: Version save is newer than skills_reset_version" );
             heroSkills = CurrentSkills.restoreFromBundle( bundle );
             heroSkills.init( this );
             heroSkills.restoreSkillsFromBundle( bundle );
             Skill.availableSkill = bundle.getInt( SKILLS_AVAILABLE );
-        }
+        //}
     }
 
     public String className () {
