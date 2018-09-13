@@ -232,7 +232,7 @@ public abstract class Mob extends Char {
         }
 
         try {
-            PathFinder.Path tmp = PathFinder.find( pos, newPos, Dungeon.passable );
+            PathFinder.Path tmp = PathFinder.find( pos, newPos, Dungeon.getPassable() );
             return tmp != null && tmp.size() < 3;
         } catch ( Exception ex ) {
             return false; // Prevents crash if out of bounds

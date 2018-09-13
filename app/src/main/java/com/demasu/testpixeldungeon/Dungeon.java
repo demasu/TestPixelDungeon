@@ -99,7 +99,7 @@ public class Dungeon {
     private static final String CHAPTERS = "chapters";
     private static final String QUESTS = "quests";
     private static final String BADGES = "badges";
-    public static boolean[] passable = new boolean[Level.LENGTH];
+    private static boolean[] passable = new boolean[Level.LENGTH];
     private static int potionOfStrength;
     private static int scrollsOfUpgrade;
     private static int scrollsOfEnchantment;
@@ -714,43 +714,43 @@ public class Dungeon {
         }
 
         if ( ch.flying || ch.buff( Amok.class ) != null || ch.buff( Rage.class ) != null ) {
-            BArray.or( pass, Level.avoid, passable );
+            BArray.or( pass, Level.avoid, getPassable() );
         } else {
-            System.arraycopy( pass, 0, passable, 0, Level.LENGTH );
+            System.arraycopy( pass, 0, getPassable(), 0, Level.LENGTH );
         }
 
         for ( Actor actor : Actor.all() ) {
             if ( actor instanceof Char ) {
                 int pos = ( (Char) actor ).pos;
                 if ( visible[pos] ) {
-                    passable[pos] = false;
+                    getPassable()[pos] = false;
                 }
             }
         }
 
-        return PathFinder.getStep( from, to, passable );
+        return PathFinder.getStep( from, to, getPassable() );
 
     }
 
     public static int flee ( Char ch, int cur, int from, boolean pass[], boolean[] visible ) {
 
         if ( ch.flying ) {
-            BArray.or( pass, Level.avoid, passable );
+            BArray.or( pass, Level.avoid, getPassable() );
         } else {
-            System.arraycopy( pass, 0, passable, 0, Level.LENGTH );
+            System.arraycopy( pass, 0, getPassable(), 0, Level.LENGTH );
         }
 
         for ( Actor actor : Actor.all() ) {
             if ( actor instanceof Char ) {
                 int pos = ( (Char) actor ).pos;
                 if ( visible[pos] ) {
-                    passable[pos] = false;
+                    getPassable()[pos] = false;
                 }
             }
         }
-        passable[cur] = true;
+        getPassable()[cur] = true;
 
-        return PathFinder.getStepBack( cur, from, passable );
+        return PathFinder.getStepBack( cur, from, getPassable() );
 
     }
 
@@ -871,5 +871,13 @@ public class Dungeon {
         Difficulties diff = getCurrentDifficulty();
         int bonus         = diff.difficultyHPStartPenalty();
         hero.setStartingHealth( bonus );
+    }
+
+    public static boolean[] getPassable () {
+        return passable;
+    }
+
+    public static void setPassable ( boolean[] passable ) {
+        Dungeon.passable = passable;
     }
 }
