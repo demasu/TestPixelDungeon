@@ -387,7 +387,7 @@ public class Dungeon {
 
     public static void dropToChasm ( Item item ) {
         int depth = Dungeon.getDepth() + 1;
-        ArrayList<Item> dropped = (ArrayList<Item>) Dungeon.getDroppedItems().get( depth );
+        ArrayList<Item> dropped = Dungeon.getDroppedItems().get( depth );
         if ( dropped == null ) {
             Dungeon.getDroppedItems().put( depth, dropped = new ArrayList<Item>() );
         }
