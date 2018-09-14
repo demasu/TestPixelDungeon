@@ -873,10 +873,12 @@ public class Dungeon {
         Dungeon.chapters = chapters;
     }
 
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     public static boolean[] getVisible () {
         return visible;
     }
 
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     public static void setVisible ( boolean[] visible ) {
         Dungeon.visible = visible;
     }
@@ -905,10 +907,12 @@ public class Dungeon {
         hero.setStartingHealth( bonus );
     }
 
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     public static boolean[] getPassable () {
         return passable;
     }
 
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     public static void setPassable ( boolean[] passable ) {
         Dungeon.passable = passable;
     }
