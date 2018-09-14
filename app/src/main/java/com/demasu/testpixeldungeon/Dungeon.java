@@ -75,9 +75,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
 
 public class Dungeon {
 
@@ -520,6 +521,8 @@ public class Dungeon {
         output.close();
     }
 
+    // TODO: Remove warning if I can figure out how to abstract it properly
+    @SuppressWarnings ( "FeatureEnvy" )
     public static void saveAll () throws IOException {
         if ( getHero().isAlive() ) {
 
@@ -527,7 +530,13 @@ public class Dungeon {
             saveGame( gameFile( getHero().getHeroClass() ) );
             saveLevel();
 
-            GamesInProgress.set( getHero().getHeroClass(), getDepth(), getHero().lvl, getChallenges() != 0 );
+            //Map data = new HashMap<>();
+            //data = getHero().getData( data );
+            //data.put( "Depth", getDepth() );
+            //data.put( "Challenges", getChallenges() != 0 );
+
+
+            GamesInProgress.set( getHero().getHeroClass(), getDepth(), getHero().getLvl(), getChallenges() != 0 );
 
         } else if ( WndResurrect.instance != null ) {
 

@@ -88,7 +88,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                         } else {
                             hero.hiredMerc = action == TXT_HIRE_BRUTE ? new HiredMerc( HiredMerc.MERC_TYPES.Brute ) : ( action == TXT_HIRE_THIEF ? new HiredMerc( HiredMerc.MERC_TYPES.Thief ) : new HiredMerc( HiredMerc.MERC_TYPES.Wizard ) );
                         }
-                        hero.hiredMerc.spawn( Dungeon.getHero().lvl );
+                        hero.hiredMerc.spawn( Dungeon.getHero().getLvl() );
                         hero.hiredMerc.pos = newPos;
                         GameScene.add( hero.hiredMerc );
                         Actor.addDelayed( new Pushing( hero.hiredMerc, hero.pos, newPos ), -1 );
@@ -112,7 +112,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
 
             if ( newPos != -1 ) {
                 HiredMerc tmp = new HiredMerc( hero.hiredMerc.mercType );
-                tmp.spawn( Dungeon.getHero().lvl );
+                tmp.spawn( Dungeon.getHero().getLvl() );
                 tmp.pos = newPos;
                 GameScene.add( tmp );
                 Actor.addDelayed( new Pushing( tmp, hero.pos, newPos ), -1 );
@@ -129,11 +129,11 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
     }
 
     public int getGoldCost () {
-        return Dungeon.getHero().lvl * 0;
+        return Dungeon.getHero().getLvl() * 0;
     }
 
     public String getHireText () {
-        return "\nHiring a level " + Dungeon.getHero().lvl + " merc costs " + getGoldCost() + " gold.";
+        return "\nHiring a level " + Dungeon.getHero().getLvl() + " merc costs " + getGoldCost() + " gold.";
     }
 
     @Override

@@ -509,8 +509,8 @@ public class WndMercs extends WndTabbed {
                             if ( respawnPoints.size() > 0 ) {
                                 Dungeon.setGold( Dungeon.getGold() - getGoldCost( mode ) );
                                 Dungeon.getHero().hiredMerc = new HiredMerc( getMercType( mode ) );
-                                Dungeon.getHero().hiredMerc.spawn( Dungeon.getHero().lvl );
-                                Dungeon.getHero().hiredMerc.setHP( Dungeon.getHero().hiredMerc.mercType.getHealth( Dungeon.getHero().lvl ) );
+                                Dungeon.getHero().hiredMerc.spawn( Dungeon.getHero().getLvl() );
+                                Dungeon.getHero().hiredMerc.setHP( Dungeon.getHero().hiredMerc.mercType.getHealth( Dungeon.getHero().getLvl() ) );
                                 Dungeon.getHero().hiredMerc.mercType.setEquipment( Dungeon.getHero().hiredMerc );
                                 Dungeon.getHero().hiredMerc.pos = respawnPoints.get( 0 );
                                 GameScene.add( Dungeon.getHero().hiredMerc );
@@ -713,15 +713,15 @@ public class WndMercs extends WndTabbed {
     private int getGoldCost ( Mode mode ) {
         switch ( mode ) {
             case BRUTE:
-                return 100 + Dungeon.getHero().lvl * 25;
+                return 100 + Dungeon.getHero().getLvl() * 25;
             case WIZARD:
-                return 80 + Dungeon.getHero().lvl * 20;
+                return 80 + Dungeon.getHero().getLvl() * 20;
             case THIEF:
-                return 75 + Dungeon.getHero().lvl * 15;
+                return 75 + Dungeon.getHero().getLvl() * 15;
             case ARCHER:
-                return 90 + Dungeon.getHero().lvl * 20;
+                return 90 + Dungeon.getHero().getLvl() * 20;
             case ARCHERMAIDEN:
-                return 90 + Dungeon.getHero().lvl * 25;
+                return 90 + Dungeon.getHero().getLvl() * 25;
         }
 
         return 0;

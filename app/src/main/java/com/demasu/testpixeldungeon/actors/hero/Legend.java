@@ -46,7 +46,7 @@ public class Legend extends Hero {
         Buff.affect( this, Regeneration.class );
         Buff.affect( this, Regeneration.class );
 
-        lvl = 100;
+        setLvl( 100 );
         setHP( 100 );
         setHT( 100 );
         setSTR( 25 );
