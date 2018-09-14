@@ -18,7 +18,6 @@
 package com.demasu.testpixeldungeon.windows;
 
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.demasu.testpixeldungeon.Difficulties;
 import com.demasu.testpixeldungeon.Dungeon;
@@ -60,7 +59,6 @@ public class WndRatKing extends WndTabbed {
         this.mode = mode;
 
         if ( mode == Mode.NORMAL ) {
-            Log.i( "TPD", "Mode is: " + mode );
             Component titlebar = new IconTitle( Icons.RAT_KING.get(), TXT_TRUE_KING_TITLE );
             titlebar.setRect( 0, 0, WIDTH, 0 );
             add( titlebar );
@@ -82,7 +80,6 @@ public class WndRatKing extends WndTabbed {
 
             resize( WIDTH, maxHeight );
         } else if ( mode == Mode.CHAMPIONS ) {
-            Log.i( "TPD", "Mode is: " + mode );
             CheckBox btnImmersive = null;
 
 
@@ -189,7 +186,6 @@ public class WndRatKing extends WndTabbed {
             resize( WIDTH, maxHeight );
 
         } else if ( mode == Mode.HERO ) {
-            Log.i( "TPD", "Mode is: " + mode );
             CheckBox btnImmersive = null;
 
 
