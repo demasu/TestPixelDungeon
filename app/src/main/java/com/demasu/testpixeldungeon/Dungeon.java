@@ -453,7 +453,12 @@ public class Dungeon {
         }
     }
 
-    public static void saveGame ( String fileName ) throws IOException {
+    /*
+    TODO: Abstract this out so you can call bundle the minimal amount of times
+    Good luck future me.
+    */
+    @SuppressWarnings ( "FeatureEnvy" )
+    public static void saveGame ( String fileName ) {
         try {
             Bundle bundle = new Bundle();
 
@@ -554,6 +559,11 @@ public class Dungeon {
         loadGame( fileName, false );
     }
 
+    /*
+    TODO: Abstract this out so you can call bundle the minimal amount of times
+    Good luck future me.
+    */
+    @SuppressWarnings ( "FeatureEnvy" )
     public static void loadGame ( String fileName, boolean fullLoad ) throws IOException {
 
         Bundle bundle = gameBundle( fileName );
@@ -675,11 +685,16 @@ public class Dungeon {
         return bundle;
     }
 
+    /*
+    TODO: Abstract this out so you can call bundle the minimal amount of times
+    Good luck future me.
+    */
+    @SuppressWarnings ( "FeatureEnvy" )
     public static void preview ( GamesInProgress.Info info, Bundle bundle ) {
         info.depth = bundle.getInt( DEPTH );
         info.challenges = ( bundle.getInt( CHALLENGES ) != 0 );
         if ( info.depth == -1 ) {
-            info.depth = bundle.getInt( "maxDepth" );    // FIXME
+            info.depth = bundle.getInt( "maxDepth" );    // FIXME // If only I knew the intent here.
         }
         Hero.preview( info, bundle.getBundle( HERO ) );
     }
