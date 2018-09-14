@@ -170,6 +170,7 @@ public class InterlevelScene extends PixelScene {
 
                 } catch ( Exception e ) {
 
+                    e.printStackTrace();
                     error = ERR_GENERIC + " in " + mode + "\n" + e;
 
                 }
