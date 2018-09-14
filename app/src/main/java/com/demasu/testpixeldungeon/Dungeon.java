@@ -17,6 +17,8 @@
  */
 package com.demasu.testpixeldungeon;
 
+import android.util.Log;
+
 import com.demasu.testpixeldungeon.actors.Actor;
 import com.demasu.testpixeldungeon.actors.Char;
 import com.demasu.testpixeldungeon.actors.buffs.Amok;
@@ -65,6 +67,8 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 import com.watabou.utils.SparseArray;
+
+import org.joda.time.DateTime;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -245,6 +249,7 @@ public class Dungeon {
         return ( getChallenges() & mask ) != 0;
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static Level newLevel () {
 
         Dungeon.setLevel( null );
@@ -336,6 +341,7 @@ public class Dungeon {
         switchLevel( getLevel(), getLevel().entrance );
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static boolean shopOnLevel () {
         return getDepth() == 1 || getDepth() == 6 || getDepth() == 11 || getDepth() == 16;
     }
@@ -344,14 +350,15 @@ public class Dungeon {
         return bossLevel( getDepth() );
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static boolean bossLevel ( int depth ) {
         return depth == 5 || depth == 10 || depth == 15 || depth == 20 || depth == 25 || depth == ColdGirl.FROST_DEPTH || depth == 0;
     }
 
-    @SuppressWarnings ( "deprecation" )
     public static void switchLevel ( final Level level, int pos ) {
 
-        setNightMode( new Date().getHours() < 7 );
+        final int NIGHT_STOP = 7;
+        setNightMode( new DateTime().getHourOfDay() < NIGHT_STOP );
 
         if ( Dungeon.getCurrentDifficulty().isNight == Difficulties.isNightOverwrite.ALWAYS_NIGHT ) {
             setNightMode( true );
@@ -394,16 +401,19 @@ public class Dungeon {
         dropped.add( item );
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static boolean posNeeded () {
         int[] quota = { 16, 8, 36, 16, 56, 24, 76, 32, 96, 36 };
         return chance( quota, getPotionOfStrength() );
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static boolean souNeeded () {
         int[] quota = { 20, 12, 40, 24, 60, 36, 80, 48, 100, 52 };
         return chance( quota, getScrollsOfUpgrade() );
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static boolean soeNeeded () {
         return Random.Int( 12 * ( 1 + getScrollsOfEnchantment() ) ) < getDepth();
     }
@@ -855,6 +865,7 @@ public class Dungeon {
     }
 
     public static void setNightMode ( boolean nightMode ) {
+        Log.d( "TPD", "Night mode is set to: " + nightMode );
         Dungeon.nightMode = nightMode;
     }
 
