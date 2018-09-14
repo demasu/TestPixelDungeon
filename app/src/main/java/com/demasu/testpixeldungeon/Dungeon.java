@@ -867,8 +867,9 @@ public class Dungeon {
         Dungeon.resultDescription = resultDescription;
     }
 
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     public static Set<Integer> getChapters () {
-        return Collections.unmodifiableSet( chapters );
+        return chapters;
     }
 
     private static void setChapters ( HashSet<Integer> chapters ) {
