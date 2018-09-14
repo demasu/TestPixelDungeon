@@ -392,7 +392,8 @@ public class Dungeon {
         int depth = Dungeon.getDepth() + 1;
         ArrayList<Item> dropped = Dungeon.getDroppedItems().get( depth );
         if ( dropped == null ) {
-            Dungeon.getDroppedItems().put( depth, dropped = new ArrayList<>() );
+            dropped = new ArrayList<>();
+            Dungeon.getDroppedItems().put( depth, dropped );
         }
         dropped.add( item );
     }
@@ -480,7 +481,8 @@ public class Dungeon {
             int count = 0;
             int ids[] = new int[getChapters().size()];
             for ( Integer id : getChapters() ) {
-                ids[count++] = id;
+                ids[count] = id;
+                count++;
             }
             bundle.put( CHAPTERS, ids );
 
