@@ -622,7 +622,7 @@ public class Dungeon {
         }
     }
 
-    public static Level loadLevel ( HeroClass cl ) throws IOException {
+    public static Level loadLevel ( HeroClass cl ) throws Exception {
 
         Dungeon.setLevel( null );
         Actor.clear();
@@ -631,7 +631,11 @@ public class Dungeon {
         Bundle bundle = Bundle.read( input );
         input.close();
 
-        return (Level) bundle.get( "level" );
+        if ( bundle != null ) {
+            return (Level) bundle.get( "level" );
+        }
+
+        throw new Exception( "Could not load level" );
     }
 
     public static void deleteGame ( HeroClass cl, boolean deleteLevels ) {
