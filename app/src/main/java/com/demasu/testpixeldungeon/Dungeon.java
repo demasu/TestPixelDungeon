@@ -389,7 +389,7 @@ public class Dungeon {
         int depth = Dungeon.getDepth() + 1;
         ArrayList<Item> dropped = Dungeon.getDroppedItems().get( depth );
         if ( dropped == null ) {
-            Dungeon.getDroppedItems().put( depth, dropped = new ArrayList<Item>() );
+            Dungeon.getDroppedItems().put( depth, dropped = new ArrayList<>() );
         }
         dropped.add( item );
     }
@@ -612,7 +612,7 @@ public class Dungeon {
 
         setDroppedItems( new SparseArray<ArrayList<Item>>() );
         for ( int i = 2; i <= Statistics.deepestFloor + 1; i++ ) {
-            ArrayList<Item> dropped = new ArrayList<Item>();
+            ArrayList<Item> dropped = new ArrayList<>();
             for ( Bundlable b : bundle.getCollection( String.format( Locale.US, DROPPED, i ) ) ) {
                 dropped.add( (Item) b );
             }
