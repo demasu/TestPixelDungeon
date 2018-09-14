@@ -565,7 +565,7 @@ public class Dungeon {
     Good luck future me.
     */
     @SuppressWarnings ( "FeatureEnvy" )
-    public static void loadGame ( String fileName, boolean fullLoad ) throws IOException {
+    private static void loadGame ( String fileName, boolean fullLoad ) throws IOException {
 
         Bundle bundle = gameBundle( fileName );
 
@@ -820,7 +820,7 @@ public class Dungeon {
         return challenges;
     }
 
-    public static void setChallenges ( int challenges ) {
+    private static void setChallenges ( int challenges ) {
         Dungeon.challenges = challenges;
     }
 
@@ -840,7 +840,7 @@ public class Dungeon {
         Dungeon.level = level;
     }
 
-    public static int getDifficulty () {
+    private static int getDifficulty () {
         return difficulty;
     }
 
@@ -860,7 +860,7 @@ public class Dungeon {
         return resultDescription;
     }
 
-    public static void setResultDescription ( String resultDescription ) {
+    private static void setResultDescription ( String resultDescription ) {
         Dungeon.resultDescription = resultDescription;
     }
 
@@ -887,7 +887,7 @@ public class Dungeon {
         return nightMode;
     }
 
-    public static void setNightMode ( boolean nightMode ) {
+    private static void setNightMode ( boolean nightMode ) {
         Log.d( "TPD", "Night mode is set to: " + nightMode );
         Dungeon.nightMode = nightMode;
     }
@@ -896,11 +896,11 @@ public class Dungeon {
         return droppedItems;
     }
 
-    public static void setDroppedItems ( SparseArray<ArrayList<Item>> droppedItems ) {
+    private static void setDroppedItems ( SparseArray<ArrayList<Item>> droppedItems ) {
         Dungeon.droppedItems = droppedItems;
     }
 
-    public static void setBeginningHealth () {
+    private static void setBeginningHealth () {
         Hero hero = getHero();
         Difficulties diff = getCurrentDifficulty();
         int bonus         = diff.difficultyHPStartPenalty();
