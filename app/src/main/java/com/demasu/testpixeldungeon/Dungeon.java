@@ -371,7 +371,7 @@ public class Dungeon {
 
         boolean addMercRespawner = ( getDepth() != ColdGirl.FROST_DEPTH && getDepth() != 0 );
 
-        ArrayList<Actor> spawners = new ArrayList<Actor>();
+        ArrayList<Actor> spawners = new ArrayList<>();
         spawners.add( level.respawner() );
         if ( addMercRespawner ) spawners.add( level.mercRespawner() );
         Actor.addRespawner( spawners );
