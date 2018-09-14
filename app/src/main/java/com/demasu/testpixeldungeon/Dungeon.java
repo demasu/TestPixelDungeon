@@ -874,11 +874,11 @@ public class Dungeon {
     }
 
     public static boolean[] getVisible () {
-        return visible;
+        return visible.clone();
     }
 
     public static void setVisible ( boolean[] visible ) {
-        Dungeon.visible = visible;
+        Dungeon.visible = visible.clone();
     }
 
     public static boolean isNightMode () {
@@ -906,10 +906,10 @@ public class Dungeon {
     }
 
     public static boolean[] getPassable () {
-        return passable;
+        return passable.clone();
     }
 
     public static void setPassable ( boolean[] passable ) {
-        Dungeon.passable = passable;
+        Dungeon.passable = passable.clone();
     }
 }
