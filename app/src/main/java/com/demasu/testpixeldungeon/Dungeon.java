@@ -878,11 +878,6 @@ public class Dungeon {
         return visible;
     }
 
-    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
-    public static void setVisible ( boolean[] visible ) {
-        Dungeon.visible = visible;
-    }
-
     public static boolean isNightMode () {
         return nightMode;
     }
@@ -910,10 +905,5 @@ public class Dungeon {
     @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     public static boolean[] getPassable () {
         return passable;
-    }
-
-    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
-    public static void setPassable ( boolean[] passable ) {
-        Dungeon.passable = passable;
     }
 }
