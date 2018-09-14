@@ -21,6 +21,7 @@ import com.demasu.testpixeldungeon.actors.hero.HeroClass;
 import com.watabou.utils.Bundle;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class GamesInProgress {
 
@@ -49,6 +50,17 @@ public class GamesInProgress {
             return info;
 
         }
+    }
+
+    public static void set ( Map data ) {
+        Info info = new Info();
+
+        info.depth      = (Integer) data.get( "Depth" );
+        info.level      = (Integer) data.get( "Level" );
+        info.challenges = (boolean) data.get( "Challenges" );
+
+        state.put( (HeroClass) data.get( "Class" ), info );
+
     }
 
     public static void set ( HeroClass cl, int depth, int level, boolean challenges ) {

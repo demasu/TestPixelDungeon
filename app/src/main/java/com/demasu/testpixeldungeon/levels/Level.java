@@ -450,7 +450,7 @@ public abstract class Level implements Bundlable {
                             newPos = candidates.size() > 0 ? Random.element( candidates ) : -1;
                             if ( newPos != -1 ) {
                                 HiredMerc tmp = new HiredMerc( Dungeon.getHero().hiredMerc.mercType );
-                                tmp.spawn( Dungeon.getHero().lvl );
+                                tmp.spawn( Dungeon.getHero().getLvl() );
                                 tmp.pos = newPos;
                                 GameScene.add( tmp );
                                 Actor.addDelayed( new Pushing( tmp, Dungeon.getHero().pos, newPos ), -1 );

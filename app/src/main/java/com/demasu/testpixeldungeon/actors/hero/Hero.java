@@ -126,6 +126,7 @@ import com.watabou.utils.Random;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 
 @SuppressWarnings ( "MagicNumber" )
 public class Hero extends Char {
@@ -170,7 +171,7 @@ public class Hero extends Char {
     private int STR;
     public boolean weakened = false;
     public float awareness;
-    public int lvl = 1;
+    private int lvl = 1;
     public int exp = 0;
     public int difficulty = 0;
     public boolean checkMerc = false;
@@ -283,7 +284,7 @@ public class Hero extends Char {
 
         bundle.put( STRENGTH, getSTR() );
 
-        bundle.put( LEVEL, lvl );
+        bundle.put( LEVEL, getLvl() );
         bundle.put( EXPERIENCE, exp );
 
         bundle.put( DIFFICULTY, difficulty );
@@ -314,7 +315,7 @@ public class Hero extends Char {
         setSTR( bundle.getInt( STRENGTH ) );
         updateAwareness();
 
-        lvl = bundle.getInt( LEVEL );
+        setLvl( bundle.getInt( LEVEL ) );
         exp = bundle.getInt( EXPERIENCE );
 
         difficulty = bundle.getInt( DIFFICULTY );
@@ -329,7 +330,7 @@ public class Hero extends Char {
                 HiredMerc.MERC_TYPES tmpType = HiredMerc.MERC_TYPES.valueOf( tmp );
                 hiredMerc = new HiredMerc( tmpType );
                 checkMerc = true;
-                hiredMerc.spawn( lvl, bundle.getInt( MERC_HEALTH ) );
+                hiredMerc.spawn( getLvl(), bundle.getInt( MERC_HEALTH ) );
                 hiredMerc.skillLevel( bundle.getInt( MERC_SKILL ) );
             } catch ( Exception ex ) {
 
@@ -1269,7 +1270,7 @@ public class Hero extends Char {
         boolean levelUp = false;
         while ( this.exp >= maxExp() ) {
             this.exp -= maxExp();
-            lvl++;
+            setLvl( getLvl() + 1 );
 
             setHT( getHT() + 5 - Dungeon.getCurrentDifficulty().difficultyHPLevelPenalty() );
             setHP( getHP() + 5 - Dungeon.getCurrentDifficulty().difficultyHPLevelPenalty() );
@@ -1280,7 +1281,7 @@ public class Hero extends Char {
             attackSkill++;
             defenseSkill++;
 
-            if ( lvl < 10 ) {
+            if ( getLvl() < 10 ) {
                 updateAwareness();
             }
 
@@ -1289,7 +1290,7 @@ public class Hero extends Char {
 
         if ( levelUp ) {
 
-            GLog.p( TXT_NEW_LEVEL, lvl );
+            GLog.p( TXT_NEW_LEVEL, getLvl() );
             sprite.showStatus( CharSprite.POSITIVE, TXT_LEVEL_UP );
             Sample.INSTANCE.play( Assets.SND_LEVELUP );
 
@@ -1313,7 +1314,7 @@ public class Hero extends Char {
     }
 
     public int maxExp () {
-        return 5 + lvl * 5;
+        return 5 + getLvl() * 5;
     }
 
     void updateAwareness () {
@@ -1655,6 +1656,21 @@ public class Hero extends Char {
 
     public void setSTR ( int STR ) {
         this.STR = STR;
+    }
+
+    public Map getData ( Map data ) {
+        data.put( "Class", getHeroClass() );
+        data.put( "Level", getLvl() );
+
+        return data;
+    }
+
+    public int getLvl () {
+        return lvl;
+    }
+
+    public void setLvl ( int lvl ) {
+        this.lvl = lvl;
     }
 
     public interface Doom {

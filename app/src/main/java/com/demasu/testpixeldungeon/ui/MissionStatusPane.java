@@ -243,7 +243,7 @@ public class MissionStatusPane extends Component {
             }
         }
 
-        if ( Dungeon.getHero().lvl != lastLvl ) {
+        if ( Dungeon.getHero().getLvl() != lastLvl ) {
 
             if ( lastLvl != -1 ) {
                 Emitter emitter = (Emitter) recycle( Emitter.class );
@@ -252,7 +252,7 @@ public class MissionStatusPane extends Component {
                 emitter.burst( Speck.factory( Speck.STAR ), 12 );
             }
 
-            lastLvl = Dungeon.getHero().lvl;
+            lastLvl = Dungeon.getHero().getLvl();
 
         }
 

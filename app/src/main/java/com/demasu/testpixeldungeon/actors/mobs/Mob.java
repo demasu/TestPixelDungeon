@@ -370,7 +370,7 @@ public abstract class Mob extends Char {
     }
 
     public int exp () {
-        return Dungeon.getHero().lvl <= maxLvl ? EXP : 0;
+        return Dungeon.getHero().getLvl() <= maxLvl ? EXP : 0;
     }
 
     @Override
@@ -386,7 +386,7 @@ public abstract class Mob extends Char {
             dropLootGuaranteed();
         }
 
-        if ( Dungeon.getHero().lvl <= maxLvl + 2 ) {
+        if ( Dungeon.getHero().getLvl() <= maxLvl + 2 ) {
             dropLoot();
         }
 

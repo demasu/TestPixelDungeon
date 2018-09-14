@@ -273,7 +273,7 @@ public class StatusPane extends Component {
             }
         }
 
-        if ( Dungeon.getHero().lvl != lastLvl ) {
+        if ( Dungeon.getHero().getLvl() != lastLvl ) {
 
             if ( lastLvl != -1 ) {
                 Emitter emitter = (Emitter) recycle( Emitter.class );
@@ -282,7 +282,7 @@ public class StatusPane extends Component {
                 emitter.burst( Speck.factory( Speck.STAR ), 12 );
             }
 
-            lastLvl = Dungeon.getHero().lvl;
+            lastLvl = Dungeon.getHero().getLvl();
             level.text( Integer.toString( lastLvl ) );
             level.measure();
             level.x = PixelScene.align( 27.5f - level.width() / 2 );

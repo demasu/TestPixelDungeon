@@ -106,7 +106,7 @@ public enum Rankings {
     }
 
     private int score ( boolean win ) {
-        return ( Statistics.goldCollected + Dungeon.getHero().lvl * Statistics.deepestFloor * 100 ) * ( win ? 2 : 1 );
+        return ( Statistics.goldCollected + Dungeon.getHero().getLvl() * Statistics.deepestFloor * 100 ) * ( win ? 2 : 1 );
     }
 
     public void save () {
