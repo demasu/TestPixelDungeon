@@ -369,20 +369,15 @@ public class Dungeon {
         Dungeon.setLevel( level );
         Actor.init();
 
+        boolean addMercRespawner = ( getDepth() != ColdGirl.FROST_DEPTH && getDepth() != 0 );
 
-        Actor respawner = level.respawner();
-        if ( respawner != null ) {
-            Actor.add( level.respawner() );
-        }
+        ArrayList<Actor> spawners = new ArrayList<Actor>();
+        spawners.add( level.respawner() );
+        if ( addMercRespawner ) spawners.add( level.mercRespawner() );
+        Actor.addRespawner( spawners );
 
         if ( getHero().hiredMerc != null ) {
             getHero().checkMerc = true;
-        }
-        if ( getDepth() != ColdGirl.FROST_DEPTH && getDepth() != 0 ) {
-            Actor mercRespawn = level.mercRespawner();
-            if ( mercRespawn != null ) {
-                Actor.add( mercRespawn );
-            }
         }
         getHero().pos = pos != -1 ? pos : level.exit;
 

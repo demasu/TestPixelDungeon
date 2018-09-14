@@ -28,6 +28,7 @@ import com.demasu.testpixeldungeon.levels.Level;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -155,6 +156,10 @@ public abstract class Actor implements Bundlable {
 
     private static void add ( Actor actor, float time ) {
 
+        if ( actor == null ) {
+            return;
+        }
+
         if ( all.contains( actor ) ) {
             return;
         }
@@ -174,6 +179,12 @@ public abstract class Actor implements Bundlable {
                 all.add( buff );
                 buff.onAdd();
             }
+        }
+    }
+
+    public static void addRespawner ( ArrayList<Actor> respawners ) {
+        for ( Actor spawner : respawners ) {
+            add( spawner, now );
         }
     }
 
