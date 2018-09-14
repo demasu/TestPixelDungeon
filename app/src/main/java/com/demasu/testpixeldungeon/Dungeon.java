@@ -75,10 +75,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 public class Dungeon {
 
@@ -865,11 +867,11 @@ public class Dungeon {
         Dungeon.resultDescription = resultDescription;
     }
 
-    public static HashSet<Integer> getChapters () {
-        return chapters;
+    public static Set<Integer> getChapters () {
+        return Collections.unmodifiableSet( chapters );
     }
 
-    public static void setChapters ( HashSet<Integer> chapters ) {
+    private static void setChapters ( HashSet<Integer> chapters ) {
         Dungeon.chapters = chapters;
     }
 
