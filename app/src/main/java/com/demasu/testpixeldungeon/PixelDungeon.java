@@ -37,6 +37,10 @@ public class PixelDungeon extends Game {
 
     private static boolean immersiveModeChanged = false;
 
+    /*
+    TODO: Abstract out the bundle calls if possible
+     */
+    @SuppressWarnings ( "FeatureEnvy" )
     public PixelDungeon () {
         super( TitleScene.class );
 
