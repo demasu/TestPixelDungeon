@@ -30,7 +30,7 @@ public class BitmapCache {
 
     private static final String DEFAULT = "__default";
     @SuppressLint ( "StaticFieldLeak" )
-    public static Context context;
+    private static Context context;
     private static HashMap<String, Layer> layers = new HashMap<String, BitmapCache.Layer>();
     private static BitmapFactory.Options opts = new BitmapFactory.Options();
 
@@ -57,7 +57,7 @@ public class BitmapCache {
         } else {
 
             try {
-                InputStream stream = context.getResources().getAssets().open( assetName );
+                InputStream stream = getContext().getResources().getAssets().open( assetName );
                 Bitmap bmp = BitmapFactory.decodeStream( stream, null, opts );
                 layer.put( assetName, bmp );
                 return bmp;
@@ -86,7 +86,7 @@ public class BitmapCache {
             return layer.get( resID );
         } else {
 
-            Bitmap bmp = BitmapFactory.decodeResource( context.getResources(), resID );
+            Bitmap bmp = BitmapFactory.decodeResource( getContext().getResources(), resID );
             layer.put( resID, bmp );
             return bmp;
 
@@ -105,6 +105,14 @@ public class BitmapCache {
             layer.clear();
         }
         layers.clear();
+    }
+
+    public static Context getContext () {
+        return context;
+    }
+
+    public static void setContext ( Context context ) {
+        BitmapCache.context = context;
     }
 
     @SuppressWarnings ( "serial" )
