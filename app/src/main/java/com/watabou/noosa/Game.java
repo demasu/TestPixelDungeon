@@ -136,6 +136,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         view.setEGLContextClientVersion( 2 );
         view.setEGLConfigChooser( false );
         // Addresses java.lang.IllegalArgumentException: No config chosen
+        //noinspection MagicNumber
         view.setEGLConfigChooser( 8, 8, 8, 8, 16, 0 );
         view.setRenderer( this );
         view.setOnTouchListener( this );
@@ -301,7 +302,8 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     }
 
     protected void update () {
-        Game.elapsed = Game.timeScale * step * 0.001f;
+        final float TIME_SCALE = 0.001f;
+        Game.elapsed = Game.timeScale * step * TIME_SCALE;
 
         synchronized (motionEvents) {
             Touchscreen.processTouchEvents( motionEvents );
