@@ -36,6 +36,7 @@ public class Touchscreen {
     public static float y;
     public static boolean touched;
 
+    @SuppressWarnings ( "FeatureEnvy" )
     public static void processTouchEvents ( ArrayList<MotionEvent> events ) {
 
         int size = events.size();
