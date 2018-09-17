@@ -42,6 +42,7 @@ import com.watabou.utils.BitmapCache;
 import com.watabou.utils.SystemTime;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -104,7 +105,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     }
 
     public static void vibrate ( int milliseconds ) {
-        ( (Vibrator) instance.getSystemService( VIBRATOR_SERVICE ) ).vibrate( milliseconds );
+        ( (Vibrator) Objects.requireNonNull( instance.getSystemService( VIBRATOR_SERVICE ) ) ).vibrate( milliseconds );
     }
 
     @SuppressLint ( "ClickableViewAccessibility" )
