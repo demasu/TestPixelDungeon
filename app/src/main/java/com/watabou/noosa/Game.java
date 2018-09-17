@@ -84,7 +84,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     protected final ArrayList<MotionEvent> motionEvents = new ArrayList<MotionEvent>();
 
     // Accumulated key events
-    protected ArrayList<KeyEvent> keysEvents = new ArrayList<KeyEvent>();
+    protected final ArrayList<KeyEvent> keysEvents = new ArrayList<KeyEvent>();
 
     public Game ( Class<? extends Scene> c ) {
         super();
