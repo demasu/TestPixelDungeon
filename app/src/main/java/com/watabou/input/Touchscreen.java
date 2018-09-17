@@ -91,7 +91,7 @@ public class Touchscreen {
         private PointF current;
         private boolean down;
 
-        public Touch ( MotionEvent e, int index ) {
+        Touch ( MotionEvent e, int index ) {
 
             float x = e.getX( index );
             float y = e.getY( index );
