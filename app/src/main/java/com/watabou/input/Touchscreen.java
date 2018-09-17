@@ -31,7 +31,7 @@ public class Touchscreen {
 
     private static SparseArray<Touch> pointers = new SparseArray<>();
 
-    public static float x;
+    private static float x;
     public static float y;
     public static boolean touched;
 
@@ -91,6 +91,14 @@ public class Touchscreen {
 
     public static void setEvent ( Signal<Touch> event ) {
         Touchscreen.event = event;
+    }
+
+    public static float getX () {
+        return x;
+    }
+
+    public static void setX ( float x ) {
+        Touchscreen.x = x;
     }
 
     public static class Touch {
