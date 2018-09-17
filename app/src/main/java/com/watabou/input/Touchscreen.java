@@ -89,30 +89,6 @@ public class Touchscreen {
         return event;
     }
 
-    public static void setEvent ( Signal<Touch> event ) {
-        Touchscreen.event = event;
-    }
-
-    public static float getX () {
-        return x;
-    }
-
-    public static void setX ( float x ) {
-        Touchscreen.x = x;
-    }
-
-    public static float getY () {
-        return y;
-    }
-
-    public static void setY ( float y ) {
-        Touchscreen.y = y;
-    }
-
-    public static boolean isTouched () {
-        return touched;
-    }
-
     public static void setTouched ( boolean touched ) {
         Touchscreen.touched = touched;
     }
