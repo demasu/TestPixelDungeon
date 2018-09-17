@@ -19,19 +19,27 @@ public class VersionNewsInfo {
             + "- Enchanted weapons and armors equiped onto mercs take full effect.\n"
             + "Have fun :D";
 
-    public static boolean alreadySeen = false;
+    private static boolean alreadySeen = false;
 
     public static boolean haveMessage () {
-        return !alreadySeen;
+        return !isAlreadySeen();
     }
 
     public static String getMessage () {
-        alreadySeen = true;
+        setAlreadySeen( true );
         return message;
     }
 
     public static Window getWelcomeWindow () {
-        alreadySeen = true;
+        setAlreadySeen( true );
         return ( new WndWelcome( message ) );
+    }
+
+    public static boolean isAlreadySeen () {
+        return alreadySeen;
+    }
+
+    public static void setAlreadySeen ( boolean alreadySeen ) {
+        VersionNewsInfo.alreadySeen = alreadySeen;
     }
 }

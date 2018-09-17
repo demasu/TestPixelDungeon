@@ -201,7 +201,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
             setVersionBuild( 0 );
         }
 
-        VersionNewsInfo.alreadySeen = false; // Static variables tend to stick between games
+        VersionNewsInfo.setAlreadySeen( false ); // Static variables tend to stick between games
 
         setVolumeControlStream( AudioManager.STREAM_MUSIC );
 
