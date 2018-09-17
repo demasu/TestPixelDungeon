@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class Touchscreen {
 
-    private static Signal<Touch> event = new Signal<>( true );
+    private static final Signal<Touch> event = new Signal<>( true );
 
     private static final SparseArray<Touch> pointers = new SparseArray<>();
 
