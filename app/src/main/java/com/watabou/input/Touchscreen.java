@@ -31,8 +31,6 @@ public class Touchscreen {
 
     private static final SparseArray<Touch> pointers = new SparseArray<>();
 
-    private static boolean touched;
-
     @SuppressWarnings ( "FeatureEnvy" )
     public static void processTouchEvents ( ArrayList<MotionEvent> events ) {
 
@@ -45,7 +43,6 @@ public class Touchscreen {
             switch ( e.getAction() & MotionEvent.ACTION_MASK ) {
 
                 case MotionEvent.ACTION_DOWN:
-                    setTouched( true );
                     touch = new Touch( e, 0 );
                     pointers.put( e.getPointerId( 0 ), touch );
                     getEvent().dispatch( touch );
@@ -72,7 +69,6 @@ public class Touchscreen {
                     break;
 
                 case MotionEvent.ACTION_UP:
-                    setTouched( false );
                     getEvent().dispatch( pointers.get( e.getPointerId( 0 ) ).up() );
                     pointers.delete( e.getPointerId( 0 ) );
                     break;
@@ -85,10 +81,6 @@ public class Touchscreen {
 
     public static Signal<Touch> getEvent () {
         return event;
-    }
-
-    public static void setTouched ( boolean touched ) {
-        Touchscreen.touched = touched;
     }
 
     // TODO: Look in to breaking this class out
