@@ -33,7 +33,7 @@ public class Touchscreen {
 
     private static float x;
     private static float y;
-    public static boolean touched;
+    private static boolean touched;
 
     @SuppressWarnings ( "FeatureEnvy" )
     public static void processTouchEvents ( ArrayList<MotionEvent> events ) {
@@ -47,7 +47,7 @@ public class Touchscreen {
             switch ( e.getAction() & MotionEvent.ACTION_MASK ) {
 
                 case MotionEvent.ACTION_DOWN:
-                    touched = true;
+                    setTouched( true );
                     touch = new Touch( e, 0 );
                     pointers.put( e.getPointerId( 0 ), touch );
                     getEvent().dispatch( touch );
@@ -74,7 +74,7 @@ public class Touchscreen {
                     break;
 
                 case MotionEvent.ACTION_UP:
-                    touched = false;
+                    setTouched( false );
                     getEvent().dispatch( pointers.get( e.getPointerId( 0 ) ).up() );
                     pointers.delete( e.getPointerId( 0 ) );
                     break;
@@ -107,6 +107,14 @@ public class Touchscreen {
 
     public static void setY ( float y ) {
         Touchscreen.y = y;
+    }
+
+    public static boolean isTouched () {
+        return touched;
+    }
+
+    public static void setTouched ( boolean touched ) {
+        Touchscreen.touched = touched;
     }
 
     public static class Touch {
