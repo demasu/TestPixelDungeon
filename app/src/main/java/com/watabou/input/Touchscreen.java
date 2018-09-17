@@ -28,7 +28,7 @@ import java.util.HashMap;
 
 public class Touchscreen {
 
-    public static Signal<Touch> event = new Signal<Touch>( true );
+    public static Signal<Touch> event = new Signal<>( true );
 
     private static SparseArray<Touch> pointers = new SparseArray<>();
 
