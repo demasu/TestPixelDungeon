@@ -31,8 +31,6 @@ public class Touchscreen {
 
     private static final SparseArray<Touch> pointers = new SparseArray<>();
 
-    private static float x;
-    private static float y;
     private static boolean touched;
 
     @SuppressWarnings ( "FeatureEnvy" )
