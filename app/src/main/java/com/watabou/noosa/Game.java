@@ -84,7 +84,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     private final ArrayList<MotionEvent> motionEvents = new ArrayList<>();
 
     // Accumulated key events
-    protected final ArrayList<KeyEvent> keysEvents = new ArrayList<>();
+    private final ArrayList<KeyEvent> keysEvents = new ArrayList<>();
 
     public Game ( Class<? extends Scene> c ) {
         super();
@@ -198,7 +198,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         }
 
         synchronized (getMotionEvents()) {
-            keysEvents.add( event );
+            getKeysEvents().add( event );
         }
         return true;
     }
@@ -213,7 +213,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         }
 
         synchronized (getMotionEvents()) {
-            keysEvents.add( event );
+            getKeysEvents().add( event );
         }
         return true;
     }
@@ -310,9 +310,9 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
             Touchscreen.processTouchEvents( getMotionEvents() );
             getMotionEvents().clear();
         }
-        synchronized (keysEvents) {
-            Keys.processTouchEvents( keysEvents );
-            keysEvents.clear();
+        synchronized (getKeysEvents()) {
+            Keys.processTouchEvents( getKeysEvents() );
+            getKeysEvents().clear();
         }
 
         getScene().update();
@@ -385,5 +385,9 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public ArrayList<MotionEvent> getMotionEvents () {
         return motionEvents;
+    }
+
+    public ArrayList<KeyEvent> getKeysEvents () {
+        return keysEvents;
     }
 }
