@@ -462,7 +462,7 @@ public class Dungeon {
         try {
             Bundle bundle = new Bundle();
 
-            bundle.put( VERSION, Game.version );
+            bundle.put( VERSION, Game.getVersion() );
             bundle.put( CHALLENGES, getChallenges() );
             bundle.put( HERO, getHero() );
             bundle.put( GOLD, getGold() );

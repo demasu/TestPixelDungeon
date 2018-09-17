@@ -60,7 +60,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     // Density: mdpi=1, hdpi=1.5, xhdpi=2...
     private static float density = 1;
 
-    public static String version;
+    private static String version;
     public static int versionBuild;
     public static String vanillaVersion = "Vanilla PD v 1.9.2a";
     public static float timeScale = 1f;
@@ -140,6 +140,14 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         Game.density = density;
     }
 
+    public static String getVersion () {
+        return version;
+    }
+
+    public static void setVersion ( String version ) {
+        Game.version = version;
+    }
+
     @SuppressLint ( "ClickableViewAccessibility" )
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
@@ -152,10 +160,10 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         setDensity( m.density );
 
         try {
-            version = getPackageManager().getPackageInfo( getPackageName(), 0 ).versionName;
+            setVersion( getPackageManager().getPackageInfo( getPackageName(), 0 ).versionName );
             versionBuild = getPackageManager().getPackageInfo( getPackageName(), 0 ).versionCode;
         } catch ( NameNotFoundException e ) {
-            version = "???";
+            setVersion( "???" );
             versionBuild = 0;
         }
 
