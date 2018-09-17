@@ -32,7 +32,7 @@ public class Touchscreen {
     private static SparseArray<Touch> pointers = new SparseArray<>();
 
     private static float x;
-    public static float y;
+    private static float y;
     public static boolean touched;
 
     @SuppressWarnings ( "FeatureEnvy" )
@@ -99,6 +99,14 @@ public class Touchscreen {
 
     public static void setX ( float x ) {
         Touchscreen.x = x;
+    }
+
+    public static float getY () {
+        return y;
+    }
+
+    public static void setY ( float y ) {
+        Touchscreen.y = y;
     }
 
     public static class Touch {
