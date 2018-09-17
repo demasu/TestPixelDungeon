@@ -117,6 +117,8 @@ public class Touchscreen {
         Touchscreen.touched = touched;
     }
 
+    // TODO: Look in to breaking this class out
+    @SuppressWarnings ( "PublicInnerClass" )
     public static class Touch {
 
         private PointF start;
