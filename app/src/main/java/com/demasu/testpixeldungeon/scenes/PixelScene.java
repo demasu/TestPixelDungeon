@@ -190,7 +190,7 @@ public class PixelScene extends Scene {
             minHeight = MIN_HEIGHT_P;
         }
 
-        defaultZoom = (int) Math.ceil( Game.density * 2.5 );
+        defaultZoom = (int) Math.ceil( Game.getDensity() * 2.5 );
         while ( (
                 Game.getWidth() / defaultZoom < minWidth ||
                         Game.getHeight() / defaultZoom < minHeight

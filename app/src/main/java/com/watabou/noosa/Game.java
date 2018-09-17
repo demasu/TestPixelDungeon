@@ -58,7 +58,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     private static int height;
 
     // Density: mdpi=1, hdpi=1.5, xhdpi=2...
-    public static float density = 1;
+    private static float density = 1;
 
     public static String version;
     public static int versionBuild;
@@ -132,6 +132,14 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         Game.height = height;
     }
 
+    public static float getDensity () {
+        return density;
+    }
+
+    public static void setDensity ( float density ) {
+        Game.density = density;
+    }
+
     @SuppressLint ( "ClickableViewAccessibility" )
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
@@ -141,7 +149,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
         DisplayMetrics m = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics( m );
-        density = m.density;
+        setDensity( m.density );
 
         try {
             version = getPackageManager().getPackageInfo( getPackageName(), 0 ).versionName;
