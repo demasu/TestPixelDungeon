@@ -178,6 +178,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return elapsed;
     }
 
+    @SuppressWarnings ( "unused" )
     public static void setElapsed ( float elapsed ) {
         Game.elapsed = elapsed;
     }
