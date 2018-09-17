@@ -69,7 +69,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     // New scene we are going to switch to
     protected Scene requestedScene;
     // true if scene switch is requested
-    protected boolean requestedReset = true;
+    private boolean requestedReset = true;
     // New scene class
     private Class<? extends Scene> sceneClass;
     // Current time in milliseconds
@@ -96,7 +96,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public static void switchScene ( Class<? extends Scene> c ) {
         instance.setSceneClass( c );
-        instance.requestedReset = true;
+        instance.setRequestedReset( true );
     }
 
     public static Scene scene () {
@@ -268,8 +268,8 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     protected void step () {
 
-        if ( requestedReset ) {
-            requestedReset = false;
+        if ( isRequestedReset() ) {
+            setRequestedReset( false );
             try {
                 requestedScene = getSceneClass().newInstance();
                 switchScene();
@@ -321,5 +321,13 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public void setSceneClass ( Class<? extends Scene> sceneClass ) {
         this.sceneClass = sceneClass;
+    }
+
+    public boolean isRequestedReset () {
+        return requestedReset;
+    }
+
+    public void setRequestedReset ( boolean requestedReset ) {
+        this.requestedReset = requestedReset;
     }
 }

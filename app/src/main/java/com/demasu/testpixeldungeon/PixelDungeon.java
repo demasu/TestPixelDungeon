@@ -364,7 +364,7 @@ public class PixelDungeon extends Game {
         super.onSurfaceChanged( gl, width, height );
 
         if ( isImmersiveModeChanged() ) {
-            requestedReset = true;
+            setRequestedReset( true );
             setImmersiveModeChanged( false );
         }
     }
