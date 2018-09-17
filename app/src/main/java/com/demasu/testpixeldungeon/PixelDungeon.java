@@ -294,11 +294,11 @@ public class PixelDungeon extends Game {
         Log.e( "PD", Log.getStackTraceString( tr ) );
     }
 
-    public static boolean isImmersiveModeChanged () {
+    private static boolean isImmersiveModeChanged () {
         return immersiveModeChanged;
     }
 
-    public static void setImmersiveModeChanged ( boolean immersiveModeChanged ) {
+    private static void setImmersiveModeChanged ( boolean immersiveModeChanged ) {
         PixelDungeon.immersiveModeChanged = immersiveModeChanged;
     }
 
