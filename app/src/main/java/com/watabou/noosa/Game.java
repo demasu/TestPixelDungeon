@@ -77,7 +77,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     private long now;
     // Milliseconds passed since previous update
     private long step;
-    protected GLSurfaceView view;
+    private GLSurfaceView view;
     protected SurfaceHolder holder;
 
     // Accumulated touch events
@@ -132,15 +132,15 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         setVolumeControlStream( AudioManager.STREAM_MUSIC );
 
 
-        view = new GLSurfaceView( this );
-        view.setEGLContextClientVersion( 2 );
-        view.setEGLConfigChooser( false );
+        setView( new GLSurfaceView( this ) );
+        getView().setEGLContextClientVersion( 2 );
+        getView().setEGLConfigChooser( false );
         // Addresses java.lang.IllegalArgumentException: No config chosen
         //noinspection MagicNumber
-        view.setEGLConfigChooser( 8, 8, 8, 8, 16, 0 );
-        view.setRenderer( this );
-        view.setOnTouchListener( this );
-        setContentView( view );
+        getView().setEGLConfigChooser( 8, 8, 8, 8, 16, 0 );
+        getView().setRenderer( this );
+        getView().setOnTouchListener( this );
+        setContentView( getView() );
     }
 
     @Override
@@ -148,7 +148,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         super.onResume();
 
         setNow( 0 );
-        view.onResume();
+        getView().onResume();
 
         Music.INSTANCE.resume();
         Sample.INSTANCE.resume();
@@ -162,7 +162,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
             getScene().pause();
         }
 
-        view.onPause();
+        getView().onPause();
         Script.reset();
 
         Music.INSTANCE.pause();
@@ -365,5 +365,13 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public void setStep ( long step ) {
         this.step = step;
+    }
+
+    public GLSurfaceView getView () {
+        return view;
+    }
+
+    public void setView ( GLSurfaceView view ) {
+        this.view = view;
     }
 }
