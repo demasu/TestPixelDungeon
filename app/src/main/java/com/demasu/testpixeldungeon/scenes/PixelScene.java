@@ -192,7 +192,7 @@ public class PixelScene extends Scene {
 
         defaultZoom = (int) Math.ceil( Game.density * 2.5 );
         while ( (
-                Game.width / defaultZoom < minWidth ||
+                Game.getWidth() / defaultZoom < minWidth ||
                         Game.height / defaultZoom < minHeight
         ) && defaultZoom > 1 ) {
 
@@ -201,7 +201,7 @@ public class PixelScene extends Scene {
 
         if ( PixelDungeon.scaleUp() ) {
             while (
-                    Game.width / ( defaultZoom + 1 ) >= minWidth &&
+                    Game.getWidth() / ( defaultZoom + 1 ) >= minWidth &&
                             Game.height / ( defaultZoom + 1 ) >= minHeight ) {
 
                 defaultZoom++;
@@ -316,9 +316,9 @@ public class PixelScene extends Scene {
 
         public PixelCamera ( float zoom ) {
             super(
-                    (int) ( Game.width - Math.ceil( Game.width / zoom ) * zoom ) / 2,
+                    (int) ( Game.getWidth() - Math.ceil( Game.getWidth() / zoom ) * zoom ) / 2,
                     (int) ( Game.height - Math.ceil( Game.height / zoom ) * zoom ) / 2,
-                    (int) Math.ceil( Game.width / zoom ),
+                    (int) Math.ceil( Game.getWidth() / zoom ),
                     (int) Math.ceil( Game.height / zoom ), zoom );
         }
 

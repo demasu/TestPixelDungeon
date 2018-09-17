@@ -145,7 +145,7 @@ public class PixelDungeon extends Game {
      */
 
     public static boolean landscape () {
-        return width > height;
+        return getWidth() > height;
     }
 
     @SuppressLint ( "NewApi" )
