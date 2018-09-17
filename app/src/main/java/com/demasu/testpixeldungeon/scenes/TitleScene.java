@@ -146,7 +146,7 @@ public class TitleScene extends PixelScene {
         version.y = h - version.height() - 9;
         add( version );
 
-        BitmapText versionPD = new BitmapText( Game.vanillaVersion, font1x );
+        BitmapText versionPD = new BitmapText( Game.getVanillaVersion(), font1x );
         versionPD.measure();
         versionPD.hardlight( 0x666666 );
         versionPD.x = w - versionPD.width();

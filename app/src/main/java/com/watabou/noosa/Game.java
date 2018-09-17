@@ -62,7 +62,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     private static String version;
     private static int versionBuild;
-    public static String vanillaVersion = "Vanilla PD v 1.9.2a";
+    private static String vanillaVersion = "Vanilla PD v 1.9.2a";
     public static float timeScale = 1f;
     public static float elapsed = 0f;
     // Current scene
@@ -154,6 +154,14 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public static void setVersionBuild ( int versionBuild ) {
         Game.versionBuild = versionBuild;
+    }
+
+    public static String getVanillaVersion () {
+        return vanillaVersion;
+    }
+
+    public static void setVanillaVersion ( String vanillaVersion ) {
+        Game.vanillaVersion = vanillaVersion;
     }
 
     @SuppressLint ( "ClickableViewAccessibility" )
