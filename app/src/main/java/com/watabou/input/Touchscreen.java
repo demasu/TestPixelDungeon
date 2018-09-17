@@ -29,7 +29,7 @@ public class Touchscreen {
 
     private static Signal<Touch> event = new Signal<>( true );
 
-    private static SparseArray<Touch> pointers = new SparseArray<>();
+    private static final SparseArray<Touch> pointers = new SparseArray<>();
 
     private static float x;
     private static float y;
