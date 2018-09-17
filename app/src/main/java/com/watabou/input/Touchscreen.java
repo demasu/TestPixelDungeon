@@ -24,7 +24,6 @@ import com.watabou.utils.Signal;
 import com.watabou.utils.SparseArray;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Touchscreen {
 
