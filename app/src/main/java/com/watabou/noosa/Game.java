@@ -71,7 +71,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     // true if scene switch is requested
     protected boolean requestedReset = true;
     // New scene class
-    protected Class<? extends Scene> sceneClass;
+    private Class<? extends Scene> sceneClass;
     // Current time in milliseconds
     protected long now;
     // Milliseconds passed since previous update
@@ -87,15 +87,15 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public Game ( Class<? extends Scene> c ) {
         super();
-        sceneClass = c;
+        setSceneClass( c );
     }
 
     public static void resetScene () {
-        switchScene( instance.sceneClass );
+        switchScene( instance.getSceneClass() );
     }
 
     public static void switchScene ( Class<? extends Scene> c ) {
-        instance.sceneClass = c;
+        instance.setSceneClass( c );
         instance.requestedReset = true;
     }
 
@@ -271,7 +271,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         if ( requestedReset ) {
             requestedReset = false;
             try {
-                requestedScene = sceneClass.newInstance();
+                requestedScene = getSceneClass().newInstance();
                 switchScene();
             } catch ( Exception e ) {
                 e.printStackTrace();
@@ -313,5 +313,13 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
         scene.update();
         Camera.updateAll();
+    }
+
+    public Class<? extends Scene> getSceneClass () {
+        return sceneClass;
+    }
+
+    public void setSceneClass ( Class<? extends Scene> sceneClass ) {
+        this.sceneClass = sceneClass;
     }
 }
