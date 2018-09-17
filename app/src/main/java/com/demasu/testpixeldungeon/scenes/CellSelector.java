@@ -76,7 +76,7 @@ public class CellSelector extends TouchArea {
 
         if ( t != touch && another == null ) {
 
-            if ( !touch.down ) {
+            if ( !touch.isDown() ) {
                 touch = t;
                 onTouchDown( t );
                 return;

@@ -57,7 +57,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
 
             Touchscreen.getEvent().cancel();
 
-            if ( touch.down ) {
+            if ( touch.isDown() ) {
 
                 if ( this.touch == null ) {
                     this.touch = touch;
@@ -79,7 +79,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
 
             if ( touch == null && this.touch != null ) {
                 onDrag( this.touch );
-            } else if ( this.touch != null && touch != null && !touch.down ) {
+            } else if ( this.touch != null && touch != null && !touch.isDown() ) {
                 onTouchUp( touch );
                 this.touch = null;
             }
