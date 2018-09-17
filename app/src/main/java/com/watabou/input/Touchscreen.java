@@ -102,11 +102,11 @@ public class Touchscreen {
             setDown( true );
         }
 
-        public void update ( MotionEvent e, int index ) {
+        void update ( MotionEvent e, int index ) {
             getCurrent().set( e.getX( index ), e.getY( index ) );
         }
 
-        public Touch up () {
+        Touch up () {
             setDown( false );
             return this;
         }
@@ -115,7 +115,7 @@ public class Touchscreen {
             return start;
         }
 
-        public void setStart ( PointF start ) {
+        void setStart ( PointF start ) {
             this.start = start;
         }
 
@@ -123,7 +123,7 @@ public class Touchscreen {
             return current;
         }
 
-        public void setCurrent ( PointF current ) {
+        void setCurrent ( PointF current ) {
             this.current = current;
         }
 
@@ -131,7 +131,7 @@ public class Touchscreen {
             return down;
         }
 
-        public void setDown ( boolean down ) {
+        void setDown ( boolean down ) {
             this.down = down;
         }
     }
