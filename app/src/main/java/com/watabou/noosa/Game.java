@@ -61,7 +61,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     private static float density = 1;
 
     private static String version;
-    public static int versionBuild;
+    private static int versionBuild;
     public static String vanillaVersion = "Vanilla PD v 1.9.2a";
     public static float timeScale = 1f;
     public static float elapsed = 0f;
@@ -148,6 +148,14 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         Game.version = version;
     }
 
+    public static int getVersionBuild () {
+        return versionBuild;
+    }
+
+    public static void setVersionBuild ( int versionBuild ) {
+        Game.versionBuild = versionBuild;
+    }
+
     @SuppressLint ( "ClickableViewAccessibility" )
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
@@ -161,10 +169,10 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
         try {
             setVersion( getPackageManager().getPackageInfo( getPackageName(), 0 ).versionName );
-            versionBuild = getPackageManager().getPackageInfo( getPackageName(), 0 ).versionCode;
+            setVersionBuild( getPackageManager().getPackageInfo( getPackageName(), 0 ).versionCode );
         } catch ( NameNotFoundException e ) {
             setVersion( "???" );
-            versionBuild = 0;
+            setVersionBuild( 0 );
         }
 
         VersionNewsInfo.alreadySeen = false; // Static variables tend to stick between games
