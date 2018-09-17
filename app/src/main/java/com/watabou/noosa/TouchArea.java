@@ -32,7 +32,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
         super( 0, 0, 0, 0 );
         this.target = target;
 
-        Touchscreen.event.add( this );
+        Touchscreen.getEvent().add( this );
     }
 
     public TouchArea ( float x, float y, float width, float height ) {
@@ -41,7 +41,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
 
         visible = false;
 
-        Touchscreen.event.add( this );
+        Touchscreen.getEvent().add( this );
     }
 
     @Override
@@ -55,7 +55,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
 
         if ( hit ) {
 
-            Touchscreen.event.cancel();
+            Touchscreen.getEvent().cancel();
 
             if ( touch.down ) {
 
@@ -105,7 +105,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
 
     @Override
     public void destroy () {
-        Touchscreen.event.remove( this );
+        Touchscreen.getEvent().remove( this );
         super.destroy();
     }
 }

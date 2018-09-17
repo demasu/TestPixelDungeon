@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class Touchscreen {
 
-    public static Signal<Touch> event = new Signal<>( true );
+    private static Signal<Touch> event = new Signal<>( true );
 
     private static SparseArray<Touch> pointers = new SparseArray<>();
 
@@ -50,14 +50,14 @@ public class Touchscreen {
                     touched = true;
                     touch = new Touch( e, 0 );
                     pointers.put( e.getPointerId( 0 ), touch );
-                    event.dispatch( touch );
+                    getEvent().dispatch( touch );
                     break;
 
                 case MotionEvent.ACTION_POINTER_DOWN:
                     int index = e.getActionIndex();
                     touch = new Touch( e, index );
                     pointers.put( e.getPointerId( index ), touch );
-                    event.dispatch( touch );
+                    getEvent().dispatch( touch );
                     break;
 
                 case MotionEvent.ACTION_MOVE:
@@ -65,17 +65,17 @@ public class Touchscreen {
                     for ( int j = 0; j < count; j++ ) {
                         pointers.get( e.getPointerId( j ) ).update( e, j );
                     }
-                    event.dispatch( null );
+                    getEvent().dispatch( null );
                     break;
 
                 case MotionEvent.ACTION_POINTER_UP:
-                    event.dispatch( pointers.get( e.getPointerId( e.getActionIndex() ) ).up() );
+                    getEvent().dispatch( pointers.get( e.getPointerId( e.getActionIndex() ) ).up() );
                     pointers.delete( e.getPointerId( e.getActionIndex() ) );
                     break;
 
                 case MotionEvent.ACTION_UP:
                     touched = false;
-                    event.dispatch( pointers.get( e.getPointerId( 0 ) ).up() );
+                    getEvent().dispatch( pointers.get( e.getPointerId( 0 ) ).up() );
                     pointers.delete( e.getPointerId( 0 ) );
                     break;
 
@@ -83,6 +83,14 @@ public class Touchscreen {
 
             e.recycle();
         }
+    }
+
+    public static Signal<Touch> getEvent () {
+        return event;
+    }
+
+    public static void setEvent ( Signal<Touch> event ) {
+        Touchscreen.event = event;
     }
 
     public static class Touch {

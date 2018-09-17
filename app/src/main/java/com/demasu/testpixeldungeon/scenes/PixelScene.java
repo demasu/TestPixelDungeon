@@ -253,7 +253,7 @@ public class PixelScene extends Scene {
     @Override
     public void destroy () {
         super.destroy();
-        Touchscreen.event.removeAll();
+        Touchscreen.getEvent().removeAll();
     }
 
     protected void fadeIn () {
