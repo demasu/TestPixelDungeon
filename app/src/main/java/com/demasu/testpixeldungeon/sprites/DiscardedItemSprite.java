@@ -41,7 +41,7 @@ public class DiscardedItemSprite extends ItemSprite {
         super.update();
 
         scale.set( scale.x * 0.9f );
-        if ( ( am -= Game.elapsed ) <= 0 ) {
+        if ( ( am -= Game.getElapsed() ) <= 0 ) {
             remove();
         }
     }

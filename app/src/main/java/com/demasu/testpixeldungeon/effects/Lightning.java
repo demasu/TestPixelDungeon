@@ -88,7 +88,7 @@ public class Lightning extends Group {
     public void update () {
         super.update();
 
-        if ( ( life -= Game.elapsed ) < 0 ) {
+        if ( ( life -= Game.getElapsed() ) < 0 ) {
 
             killAndErase();
             if ( callback != null ) {

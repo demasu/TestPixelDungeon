@@ -40,7 +40,7 @@ abstract public class Tweener extends Gizmo {
 
     @Override
     public void update () {
-        elapsed += Game.elapsed;
+        elapsed += Game.getElapsed();
         if ( elapsed >= interval ) {
             updateValues( 1 );
             onComplete();

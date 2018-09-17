@@ -96,7 +96,7 @@ public class FlowParticle extends PixelParticle {
 
                 super.update();
 
-                if ( ( delay -= Game.elapsed ) <= 0 ) {
+                if ( ( delay -= Game.getElapsed() ) <= 0 ) {
 
                     delay = Random.Float( DELAY );
 

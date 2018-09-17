@@ -292,7 +292,7 @@ public class PixelScene extends Scene {
 
             super.update();
 
-            if ( ( time -= Game.elapsed ) <= 0 ) {
+            if ( ( time -= Game.getElapsed() ) <= 0 ) {
                 alpha( 0f );
                 parent.remove( this );
             } else {

@@ -185,7 +185,7 @@ public class SewerLevel extends RegularLevel {
 
                 super.update();
 
-                if ( ( rippleDelay -= Game.elapsed ) <= 0 ) {
+                if ( ( rippleDelay -= Game.getElapsed() ) <= 0 ) {
                     GameScene.ripple( pos + WIDTH ).y -= DungeonTilemap.SIZE / 2;
                     rippleDelay = Random.Float( 0.2f, 0.3f );
                 }

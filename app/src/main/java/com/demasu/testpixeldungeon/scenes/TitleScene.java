@@ -80,7 +80,7 @@ public class TitleScene extends PixelScene {
             @Override
             public void update () {
                 super.update();
-                am = (float) Math.sin( -( time += Game.elapsed ) );
+                am = (float) Math.sin( -( time += Game.getElapsed() ) );
             }
 
             @Override

@@ -347,7 +347,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
             listener.onComplete( curAnim );
         }
 
-        if ( flashTime > 0 && ( flashTime -= Game.elapsed ) <= 0 ) {
+        if ( flashTime > 0 && ( flashTime -= Game.getElapsed() ) <= 0 ) {
             resetColor();
         }
 

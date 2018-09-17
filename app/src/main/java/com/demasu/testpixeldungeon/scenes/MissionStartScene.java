@@ -466,7 +466,7 @@ public class MissionStartScene extends PixelScene {
             super.update();
 
             if ( brightness < 1.0f && brightness > MIN_BRIGHTNESS ) {
-                if ( ( brightness -= Game.elapsed ) <= MIN_BRIGHTNESS ) {
+                if ( ( brightness -= Game.getElapsed() ) <= MIN_BRIGHTNESS ) {
                     brightness = MIN_BRIGHTNESS;
                 }
                 updateBrightness();

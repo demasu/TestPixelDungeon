@@ -76,7 +76,7 @@ public class PlantSprite extends Image {
 
         switch ( state ) {
             case GROWING:
-                if ( ( time -= Game.elapsed ) <= 0 ) {
+                if ( ( time -= Game.getElapsed() ) <= 0 ) {
                     state = State.NORMAL;
                     scale.set( 1 );
                 } else {
@@ -84,7 +84,7 @@ public class PlantSprite extends Image {
                 }
                 break;
             case WITHERING:
-                if ( ( time -= Game.elapsed ) <= 0 ) {
+                if ( ( time -= Game.getElapsed() ) <= 0 ) {
                     super.kill();
                 } else {
                     alpha( time / DELAY );

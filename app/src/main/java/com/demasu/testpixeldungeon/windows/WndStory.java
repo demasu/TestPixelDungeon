@@ -134,7 +134,7 @@ public class WndStory extends Window {
     public void update () {
         super.update();
 
-        if ( delay > 0 && ( delay -= Game.elapsed ) <= 0 ) {
+        if ( delay > 0 && ( delay -= Game.getElapsed() ) <= 0 ) {
             shadow.visible = chrome.visible = tf.visible = true;
         }
     }

@@ -313,7 +313,7 @@ public class MissionScene extends GameScene {
 
         super.update();
 
-        water.offset( 0, -5 * Game.elapsed );
+        water.offset( 0, -5 * Game.getElapsed() );
 
         Actor.process();
 

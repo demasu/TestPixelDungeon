@@ -557,7 +557,7 @@ public class GameScene extends PixelScene {
 
         super.update();
 
-        water.offset( 0, -5 * Game.elapsed );
+        water.offset( 0, -5 * Game.getElapsed() );
 
         Actor.process();
 

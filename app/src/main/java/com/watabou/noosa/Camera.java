@@ -148,7 +148,7 @@ public class Camera extends Gizmo {
             focusOn( target );
         }
 
-        if ( ( shakeTime -= Game.elapsed ) > 0 ) {
+        if ( ( shakeTime -= Game.getElapsed() ) > 0 ) {
             float damping = shakeTime / shakeDuration;
             shakeX = Random.Float( -shakeMagX, +shakeMagX ) * damping;
             shakeY = Random.Float( -shakeMagY, +shakeMagY ) * damping;

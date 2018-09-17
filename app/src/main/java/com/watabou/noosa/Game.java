@@ -64,7 +64,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     private static int versionBuild;
     private static String vanillaVersion = "Vanilla PD v 1.9.2a";
     private static float timeScale = 1f;
-    public static float elapsed = 0f;
+    private static float elapsed = 0f;
     // Current scene
     private Scene scene;
     // New scene we are going to switch to
@@ -170,6 +170,14 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public static void setTimeScale ( float timeScale ) {
         Game.timeScale = timeScale;
+    }
+
+    public static float getElapsed () {
+        return elapsed;
+    }
+
+    public static void setElapsed ( float elapsed ) {
+        Game.elapsed = elapsed;
     }
 
     @SuppressLint ( "ClickableViewAccessibility" )
@@ -362,13 +370,13 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         setScene( getRequestedScene() );
         getScene().create();
 
-        Game.elapsed = 0f;
+        Game.setElapsed( 0f );
         Game.setTimeScale( 1f );
     }
 
     protected void update () {
         final float TIME_SCALE = 0.001f;
-        Game.elapsed = Game.getTimeScale() * getStep() * TIME_SCALE;
+        Game.setElapsed( Game.getTimeScale() * getStep() * TIME_SCALE );
 
         synchronized (getMotionEvents()) {
             Touchscreen.processTouchEvents( getMotionEvents() );

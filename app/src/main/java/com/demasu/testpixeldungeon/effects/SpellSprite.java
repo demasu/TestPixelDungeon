@@ -100,7 +100,7 @@ public class SpellSprite extends Image {
                 break;
         }
 
-        if ( ( passed += Game.elapsed ) > duration ) {
+        if ( ( passed += Game.getElapsed() ) > duration ) {
             switch ( phase ) {
                 case FADE_IN:
                     phase = Phase.STATIC;

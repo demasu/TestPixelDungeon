@@ -47,14 +47,14 @@ public class ArcherMaidenHalo extends Halo {
         super.update();
 
         if ( phase < 0 ) {
-            if ( ( phase += Game.elapsed ) >= 0 ) {
+            if ( ( phase += Game.getElapsed() ) >= 0 ) {
                 killAndErase();
             } else {
                 scale.set( ( 2 + phase ) * radius / RADIUS );
                 am = -phase * brightness;
             }
         } else if ( phase < 1 ) {
-            if ( ( phase += Game.elapsed ) >= 1 ) {
+            if ( ( phase += Game.getElapsed() ) >= 1 ) {
                 phase = 1;
             }
             scale.set( phase * radius / RADIUS );

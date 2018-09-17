@@ -165,7 +165,7 @@ public class ItemSprite extends MovieClip {
 
         visible = ( heap == null || Dungeon.getVisible()[heap.pos] );
 
-        if ( dropInterval > 0 && ( dropInterval -= Game.elapsed ) <= 0 ) {
+        if ( dropInterval > 0 && ( dropInterval -= Game.getElapsed() ) <= 0 ) {
 
             speed.set( 0 );
             acc.set( 0 );
@@ -188,12 +188,12 @@ public class ItemSprite extends MovieClip {
         }
 
         if ( visible && glowing != null ) {
-            if ( glowUp && ( phase += Game.elapsed ) > glowing.period ) {
+            if ( glowUp && ( phase += Game.getElapsed() ) > glowing.period ) {
 
                 glowUp = false;
                 phase = glowing.period;
 
-            } else if ( !glowUp && ( phase -= Game.elapsed ) < 0 ) {
+            } else if ( !glowUp && ( phase -= Game.getElapsed() ) < 0 ) {
 
                 glowUp = true;
                 phase = 0;

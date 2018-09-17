@@ -371,7 +371,7 @@ public class SurfaceScene extends PixelScene {
         @Override
         public void update () {
             super.update();
-            a += Random.Float( Game.elapsed * 5 );
+            a += Random.Float( Game.getElapsed() * 5 );
             angle = ( 2 + Math.cos( a ) ) * ( forward ? +0.2 : -0.2 );
 
             scale.y = (float) Math.cos( angle );

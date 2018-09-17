@@ -58,7 +58,7 @@ public class Archs extends Component {
 
         super.update();
 
-        float shift = Game.elapsed * SCROLL_SPEED;
+        float shift = Game.getElapsed() * SCROLL_SPEED;
         if ( reversed ) {
             shift = -shift;
         }

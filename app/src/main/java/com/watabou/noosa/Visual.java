@@ -121,7 +121,7 @@ public class Visual extends Gizmo {
 
     protected void updateMotion () {
 
-        float elapsed = Game.elapsed;
+        float elapsed = Game.getElapsed();
 
         float d = ( GameMath.speed( speed.x, acc.x ) - speed.x ) / 2;
         speed.x += d;

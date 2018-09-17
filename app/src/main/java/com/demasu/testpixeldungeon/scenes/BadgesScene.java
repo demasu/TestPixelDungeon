@@ -151,7 +151,7 @@ public class BadgesScene extends PixelScene {
         public void update () {
             super.update();
 
-            if ( Random.Float() < Game.elapsed * 0.1 ) {
+            if ( Random.Float() < Game.getElapsed() * 0.1 ) {
                 BadgeBanner.highlight( icon, badge.image );
             }
         }

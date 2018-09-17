@@ -67,7 +67,7 @@ public class Button extends Component {
         hotArea.active = visible;
 
         if ( pressed ) {
-            if ( ( pressTime += Game.elapsed ) >= longClick ) {
+            if ( ( pressTime += Game.getElapsed() ) >= longClick ) {
                 pressed = false;
                 if ( onLongClick() ) {
 

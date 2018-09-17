@@ -49,7 +49,7 @@ public class MovieClip extends Image {
 
             int lastFrame = curFrame;
 
-            frameTimer += Game.elapsed;
+            frameTimer += Game.getElapsed();
             while ( frameTimer > curAnim.delay ) {
                 frameTimer -= curAnim.delay;
                 if ( curFrame == curAnim.frames.length - 1 ) {

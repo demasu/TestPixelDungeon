@@ -91,7 +91,7 @@ public class Emitter extends Group {
     public void update () {
 
         if ( on ) {
-            time += Game.elapsed;
+            time += Game.getElapsed();
             while ( time > interval ) {
                 time -= interval;
                 emit( count++ );

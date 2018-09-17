@@ -231,7 +231,7 @@ public class BadgeBanner extends Image {
     public void update () {
         super.update();
 
-        time -= Game.elapsed;
+        time -= Game.getElapsed();
         if ( time >= 0 ) {
 
             switch ( state ) {

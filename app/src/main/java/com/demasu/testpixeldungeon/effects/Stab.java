@@ -89,7 +89,7 @@ public class Stab extends ItemSprite implements Tweener.Listener {
                 break;
         }
 
-        if ( ( passed += Game.elapsed ) > duration ) {
+        if ( ( passed += Game.getElapsed() ) > duration ) {
             switch ( phase ) {
                 case FADE_IN:
                     phase = Phase.STATIC;

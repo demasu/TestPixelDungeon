@@ -54,7 +54,7 @@ public class GoldIndicator extends Component {
 
         if ( visible ) {
 
-            time -= Game.elapsed;
+            time -= Game.getElapsed();
             if ( time > 0 ) {
                 tf.alpha( time > TIME / 2 ? 1f : time * 2 / TIME );
             } else {

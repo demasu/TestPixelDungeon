@@ -61,7 +61,7 @@ public class DeathRay extends Image {
         alpha( p );
         scale.set( scale.x, p );
 
-        if ( ( timeLeft -= Game.elapsed ) <= 0 ) {
+        if ( ( timeLeft -= Game.getElapsed() ) <= 0 ) {
             killAndErase();
         }
     }

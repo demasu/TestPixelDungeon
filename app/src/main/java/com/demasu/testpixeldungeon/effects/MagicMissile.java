@@ -167,7 +167,7 @@ public class MagicMissile extends Emitter {
     public void update () {
         super.update();
         if ( on ) {
-            float d = Game.elapsed;
+            float d = Game.getElapsed();
             x += sx * d;
             y += sy * d;
             if ( ( time -= d ) <= 0 ) {

@@ -85,7 +85,7 @@ public class FloatingText extends BitmapText {
         super.update();
 
         if ( timeLeft > 0 ) {
-            if ( ( timeLeft -= Game.elapsed ) <= 0 ) {
+            if ( ( timeLeft -= Game.getElapsed() ) <= 0 ) {
                 kill();
             } else {
                 float p = timeLeft / LIFESPAN;

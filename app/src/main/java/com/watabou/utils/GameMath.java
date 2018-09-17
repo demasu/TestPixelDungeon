@@ -24,7 +24,7 @@ public class GameMath {
     public static float speed ( float speed, float acc ) {
 
         if ( acc != 0 ) {
-            speed += acc * Game.elapsed;
+            speed += acc * Game.getElapsed();
         }
 
         return speed;
