@@ -65,7 +65,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     public static float timeScale = 1f;
     public static float elapsed = 0f;
     // Current scene
-    protected Scene scene;
+    private Scene scene;
     // New scene we are going to switch to
     protected Scene requestedScene;
     // true if scene switch is requested
@@ -100,7 +100,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     }
 
     public static Scene scene () {
-        return instance.scene;
+        return instance.getScene();
     }
 
     public static void vibrate ( int milliseconds ) {
@@ -156,8 +156,8 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     public void onPause () {
         super.onPause();
 
-        if ( scene != null ) {
-            scene.pause();
+        if ( getScene() != null ) {
+            getScene().pause();
         }
 
         view.onPause();
@@ -258,9 +258,9 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     }
 
     protected void destroyGame () {
-        if ( scene != null ) {
-            scene.destroy();
-            scene = null;
+        if ( getScene() != null ) {
+            getScene().destroy();
+            setScene( null );
         }
 
         instance = null;
@@ -282,18 +282,18 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     }
 
     protected void draw () {
-        scene.draw();
+        getScene().draw();
     }
 
     protected void switchScene () {
 
         Camera.reset();
 
-        if ( scene != null ) {
-            scene.destroy();
+        if ( getScene() != null ) {
+            getScene().destroy();
         }
-        scene = requestedScene;
-        scene.create();
+        setScene( requestedScene );
+        getScene().create();
 
         Game.elapsed = 0f;
         Game.timeScale = 1f;
@@ -311,7 +311,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
             keysEvents.clear();
         }
 
-        scene.update();
+        getScene().update();
         Camera.updateAll();
     }
 
@@ -329,5 +329,13 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public void setRequestedReset ( boolean requestedReset ) {
         this.requestedReset = requestedReset;
+    }
+
+    public Scene getScene () {
+        return scene;
+    }
+
+    public void setScene ( Scene scene ) {
+        this.scene = scene;
     }
 }
