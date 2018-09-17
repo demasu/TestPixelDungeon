@@ -76,7 +76,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     // Current time in milliseconds
     private long now;
     // Milliseconds passed since previous update
-    protected long step;
+    private long step;
     protected GLSurfaceView view;
     protected SurfaceHolder holder;
 
@@ -227,7 +227,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
         SystemTime.tick();
         long rightNow = SystemTime.now;
-        step = ( getNow() == 0 ? 0 : rightNow - getNow() );
+        setStep( ( getNow() == 0 ? 0 : rightNow - getNow() ) );
         setNow( rightNow );
 
         step();
@@ -304,7 +304,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     protected void update () {
         final float TIME_SCALE = 0.001f;
-        Game.elapsed = Game.timeScale * step * TIME_SCALE;
+        Game.elapsed = Game.timeScale * getStep() * TIME_SCALE;
 
         synchronized (motionEvents) {
             Touchscreen.processTouchEvents( motionEvents );
@@ -357,5 +357,13 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public void setNow ( long now ) {
         this.now = now;
+    }
+
+    public long getStep () {
+        return step;
+    }
+
+    public void setStep ( long step ) {
+        this.step = step;
     }
 }
