@@ -81,7 +81,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     private SurfaceHolder holder;
 
     // Accumulated touch events
-    protected final ArrayList<MotionEvent> motionEvents = new ArrayList<>();
+    private final ArrayList<MotionEvent> motionEvents = new ArrayList<>();
 
     // Accumulated key events
     protected final ArrayList<KeyEvent> keysEvents = new ArrayList<>();
@@ -182,8 +182,8 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     @SuppressLint ( { "Recycle", "ClickableViewAccessibility" } )
     @Override
     public boolean onTouch ( View view, MotionEvent event ) {
-        synchronized (motionEvents) {
-            motionEvents.add( MotionEvent.obtain( event ) );
+        synchronized (getMotionEvents()) {
+            getMotionEvents().add( MotionEvent.obtain( event ) );
         }
         return true;
     }
@@ -197,7 +197,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
             return false;
         }
 
-        synchronized (motionEvents) {
+        synchronized (getMotionEvents()) {
             keysEvents.add( event );
         }
         return true;
@@ -212,7 +212,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
             return false;
         }
 
-        synchronized (motionEvents) {
+        synchronized (getMotionEvents()) {
             keysEvents.add( event );
         }
         return true;
@@ -306,9 +306,9 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         final float TIME_SCALE = 0.001f;
         Game.elapsed = Game.timeScale * getStep() * TIME_SCALE;
 
-        synchronized (motionEvents) {
-            Touchscreen.processTouchEvents( motionEvents );
-            motionEvents.clear();
+        synchronized (getMotionEvents()) {
+            Touchscreen.processTouchEvents( getMotionEvents() );
+            getMotionEvents().clear();
         }
         synchronized (keysEvents) {
             Keys.processTouchEvents( keysEvents );
@@ -381,5 +381,9 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public void setHolder ( SurfaceHolder holder ) {
         this.holder = holder;
+    }
+
+    public ArrayList<MotionEvent> getMotionEvents () {
+        return motionEvents;
     }
 }
