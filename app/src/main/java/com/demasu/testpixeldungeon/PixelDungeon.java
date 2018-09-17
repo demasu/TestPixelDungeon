@@ -242,30 +242,6 @@ public class PixelDungeon extends Game {
         return Preferences.INSTANCE.getBoolean( Preferences.KEY_BRIGHTNESS, false );
     }
 
-    public static void donated ( int value ) {
-        Preferences.INSTANCE.put( Preferences.KEY_DONATED, value );
-    }
-
-    public static int donated () {
-        return Preferences.INSTANCE.getInt( Preferences.KEY_DONATED, 0 );
-    }
-
-    public static void maidenUnlocked ( Boolean value ) {
-        Preferences.INSTANCE.put( Preferences.KEY_ARCHER_MAIDEN, value );
-    }
-
-    public static boolean maidenUnlocked () {
-        return Preferences.INSTANCE.getBoolean( Preferences.KEY_ARCHER_MAIDEN, false );
-    }
-
-    public static void disableChampionsUnlocked ( Boolean value ) {
-        Preferences.INSTANCE.put( Preferences.KEY_DISABLE_CHAMPIONS, value );
-    }
-
-    public static boolean disableChampionsUnlocked () {
-        return Preferences.INSTANCE.getBoolean( Preferences.KEY_DISABLE_CHAMPIONS, false );
-    }
-
     public static void lastClass ( int value ) {
         Preferences.INSTANCE.put( Preferences.KEY_LAST_CLASS, value );
     }
