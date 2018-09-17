@@ -84,7 +84,7 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
                         }
                     } );
 
-                    AssetManager manager = Game.instance.getAssets();
+                    AssetManager manager = Game.getInstance().getAssets();
                     AssetFileDescriptor fd = manager.openFd( asset );
                     int streamID = pool.load( fd, 1 );
                     ids.put( asset, streamID );

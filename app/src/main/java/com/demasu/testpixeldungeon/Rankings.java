@@ -24,7 +24,6 @@ import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.SystemTime;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -87,7 +86,7 @@ public enum Rankings {
             }
 
             if ( removedGame.gameFile.length() > 0 ) {
-                Game.instance.deleteFile( removedGame.gameFile );
+                Game.getInstance().deleteFile( removedGame.gameFile );
             }
         }
 
@@ -113,7 +112,7 @@ public enum Rankings {
         bundle.put( WON, wonNumber );
 
         try {
-            OutputStream output = Game.instance.openFileOutput( RANKINGS_FILE, Game.MODE_PRIVATE );
+            OutputStream output = Game.getInstance().openFileOutput( RANKINGS_FILE, Game.MODE_PRIVATE );
             Bundle.write( bundle, output );
             output.close();
         } catch ( Exception e ) {
@@ -129,7 +128,7 @@ public enum Rankings {
         records = new ArrayList<Rankings.Record>();
 
         try {
-            InputStream input = Game.instance.openFileInput( RANKINGS_FILE );
+            InputStream input = Game.getInstance().openFileInput( RANKINGS_FILE );
             Bundle bundle = Bundle.read( input );
             input.close();
 

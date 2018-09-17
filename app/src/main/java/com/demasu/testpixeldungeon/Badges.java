@@ -97,7 +97,7 @@ public class Badges {
     public static void loadGlobal () {
         if ( global == null ) {
             try {
-                InputStream input = Game.instance.openFileInput( BADGES_FILE );
+                InputStream input = Game.getInstance().openFileInput( BADGES_FILE );
                 Bundle bundle = Bundle.read( input );
                 input.close();
 
@@ -119,7 +119,7 @@ public class Badges {
             store( bundle, global );
 
             try {
-                OutputStream output = Game.instance.openFileOutput( BADGES_FILE, Game.MODE_PRIVATE );
+                OutputStream output = Game.getInstance().openFileOutput( BADGES_FILE, Game.MODE_PRIVATE );
                 Bundle.write( bundle, output );
                 output.close();
                 saveNeeded = false;

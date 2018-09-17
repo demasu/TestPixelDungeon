@@ -134,7 +134,7 @@ public class PixelDungeon extends Game {
     }
 
     public static void landscape ( boolean value ) {
-        Game.instance.setRequestedOrientation( value ?
+        Game.getInstance().setRequestedOrientation( value ?
                 ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE :
                 ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
         Preferences.INSTANCE.put( Preferences.KEY_LANDSCAPE, value );
@@ -152,7 +152,7 @@ public class PixelDungeon extends Game {
     public static void immerse ( boolean value ) {
         Preferences.INSTANCE.put( Preferences.KEY_IMMERSIVE, value );
 
-        instance.runOnUiThread( new Runnable() {
+        getInstance().runOnUiThread( new Runnable() {
             @Override
             public void run () {
                 updateImmersiveMode();
@@ -167,7 +167,7 @@ public class PixelDungeon extends Game {
     private static void updateImmersiveMode () {
         try {
             // Sometime NullPointerException happens here
-            instance.getWindow().getDecorView().setSystemUiVisibility(
+            getInstance().getWindow().getDecorView().setSystemUiVisibility(
                     immersed() ?
                             View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                                     View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
@@ -285,7 +285,7 @@ public class PixelDungeon extends Game {
         updateImmersiveMode();
 
         DisplayMetrics metrics = new DisplayMetrics();
-        instance.getWindowManager().getDefaultDisplay().getMetrics( metrics );
+        getInstance().getWindowManager().getDefaultDisplay().getMetrics( metrics );
         boolean landscape = metrics.widthPixels > metrics.heightPixels;
 
         if ( Preferences.INSTANCE.getBoolean( Preferences.KEY_LANDSCAPE, false ) != landscape ) {

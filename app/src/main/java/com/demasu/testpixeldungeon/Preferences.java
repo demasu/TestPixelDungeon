@@ -45,7 +45,7 @@ enum Preferences {
 
     private SharedPreferences get () {
         if ( prefs == null ) {
-            prefs = Game.instance.getPreferences( Game.MODE_PRIVATE );
+            prefs = Game.getInstance().getPreferences( Game.MODE_PRIVATE );
         }
         return prefs;
     }

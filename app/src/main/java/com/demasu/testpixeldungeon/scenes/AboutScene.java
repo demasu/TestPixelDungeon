@@ -99,7 +99,7 @@ public class AboutScene extends PixelScene {
             @Override
             protected void onClick ( Touch touch ) {
                 Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( LNK_SPD ) );
-                Game.instance.startActivity( intent );
+                Game.getInstance().startActivity( intent );
             }
         };
         add( hotArea_SPD );
@@ -124,7 +124,7 @@ public class AboutScene extends PixelScene {
             @Override
             protected void onClick ( Touch touch ) {
                 Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( LNK_SPD_WIKI ) );
-                Game.instance.startActivity( intent );
+                Game.getInstance().startActivity( intent );
             }
         };
         add( hotArea_SPD_WIKI );
@@ -193,7 +193,7 @@ public class AboutScene extends PixelScene {
             @Override
             protected void onClick ( Touch touch ) {
                 Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "http://" + LNK ) );
-                Game.instance.startActivity( intent );
+                Game.getInstance().startActivity( intent );
             }
         };
         add( hotArea );

@@ -51,7 +51,7 @@ import javax.microedition.khronos.opengles.GL10;
 public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTouchListener {
 
     @SuppressLint ( "StaticFieldLeak" )
-    public static Game instance;
+    private static Game instance;
 
     // Actual size of the screen
     public static int width;
@@ -92,20 +92,28 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     }
 
     public static void resetScene () {
-        switchScene( instance.getSceneClass() );
+        switchScene( getInstance().getSceneClass() );
     }
 
     public static void switchScene ( Class<? extends Scene> c ) {
-        instance.setSceneClass( c );
-        instance.setRequestedReset( true );
+        getInstance().setSceneClass( c );
+        getInstance().setRequestedReset( true );
     }
 
     public static Scene scene () {
-        return instance.getScene();
+        return getInstance().getScene();
     }
 
     public static void vibrate ( int milliseconds ) {
-        ( (Vibrator) Objects.requireNonNull( instance.getSystemService( VIBRATOR_SERVICE ) ) ).vibrate( milliseconds );
+        ( (Vibrator) Objects.requireNonNull( getInstance().getSystemService( VIBRATOR_SERVICE ) ) ).vibrate( milliseconds );
+    }
+
+    public static Game getInstance () {
+        return instance;
+    }
+
+    public static void setInstance ( Game instance ) {
+        Game.instance = instance;
     }
 
     @SuppressLint ( "ClickableViewAccessibility" )
@@ -113,7 +121,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
 
-        BitmapCache.context = TextureCache.context = instance = this;
+        BitmapCache.context = TextureCache.context = setInstance( this );
 
         DisplayMetrics m = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics( m );
@@ -266,7 +274,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
             setScene( null );
         }
 
-        instance = null;
+        setInstance( null );
     }
 
     protected void step () {

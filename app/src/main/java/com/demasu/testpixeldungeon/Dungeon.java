@@ -508,7 +508,7 @@ public class Dungeon {
             Badges.saveLocal( badges );
             bundle.put( BADGES, badges );
 
-            OutputStream output = Game.instance.openFileOutput( fileName, Game.MODE_PRIVATE );
+            OutputStream output = Game.getInstance().openFileOutput( fileName, Game.MODE_PRIVATE );
             Bundle.write( bundle, output );
             output.close();
 
@@ -522,7 +522,7 @@ public class Dungeon {
         Bundle bundle = new Bundle();
         bundle.put( LEVEL, getLevel() );
 
-        OutputStream output = Game.instance.openFileOutput( Utils.format( depthFile( getHero().getHeroClass() ), getDepth() ), Game.MODE_PRIVATE );
+        OutputStream output = Game.getInstance().openFileOutput( Utils.format( depthFile( getHero().getHeroClass() ), getDepth() ), Game.MODE_PRIVATE );
         Bundle.write( bundle, output );
         output.close();
     }
@@ -652,7 +652,7 @@ public class Dungeon {
         Dungeon.setLevel( null );
         Actor.clear();
 
-        InputStream input = Game.instance.openFileInput( Utils.format( depthFile( cl ), getDepth() ) );
+        InputStream input = Game.getInstance().openFileInput( Utils.format( depthFile( cl ), getDepth() ) );
         Bundle bundle = Bundle.read( input );
         input.close();
 
@@ -665,11 +665,11 @@ public class Dungeon {
 
     public static void deleteGame ( HeroClass cl, boolean deleteLevels ) {
 
-        Game.instance.deleteFile( gameFile( cl ) );
+        Game.getInstance().deleteFile( gameFile( cl ) );
 
         if ( deleteLevels ) {
             int depth = 1;
-            while ( Game.instance.deleteFile( Utils.format( depthFile( cl ), depth ) ) ) {
+            while ( Game.getInstance().deleteFile( Utils.format( depthFile( cl ), depth ) ) ) {
                 depth++;
             }
         }
@@ -679,7 +679,7 @@ public class Dungeon {
 
     public static Bundle gameBundle ( String fileName ) throws IOException {
 
-        InputStream input = Game.instance.openFileInput( fileName );
+        InputStream input = Game.getInstance().openFileInput( fileName );
         Bundle bundle = Bundle.read( input );
         input.close();
 

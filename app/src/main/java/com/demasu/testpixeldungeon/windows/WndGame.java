@@ -107,7 +107,7 @@ public class WndGame extends Window {
                 }, new RedButton( TXT_EXIT ) {
                     @Override
                     protected void onClick () {
-                        Game.instance.finish();
+                        Game.getInstance().finish();
                     }
                 }
         );
