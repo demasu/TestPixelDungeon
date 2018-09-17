@@ -78,7 +78,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     // Milliseconds passed since previous update
     private long step;
     private GLSurfaceView view;
-    protected SurfaceHolder holder;
+    private SurfaceHolder holder;
 
     // Accumulated touch events
     protected final ArrayList<MotionEvent> motionEvents = new ArrayList<>();
@@ -373,5 +373,13 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public void setView ( GLSurfaceView view ) {
         this.view = view;
+    }
+
+    public SurfaceHolder getHolder () {
+        return holder;
+    }
+
+    public void setHolder ( SurfaceHolder holder ) {
+        this.holder = holder;
     }
 }
