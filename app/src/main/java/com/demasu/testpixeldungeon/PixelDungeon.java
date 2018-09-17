@@ -156,7 +156,7 @@ public class PixelDungeon extends Game {
             @Override
             public void run () {
                 updateImmersiveMode();
-                immersiveModeChanged = true;
+                setImmersiveModeChanged( true );
             }
         } );
     }
@@ -294,6 +294,14 @@ public class PixelDungeon extends Game {
         Log.e( "PD", Log.getStackTraceString( tr ) );
     }
 
+    public static boolean isImmersiveModeChanged () {
+        return immersiveModeChanged;
+    }
+
+    public static void setImmersiveModeChanged ( boolean immersiveModeChanged ) {
+        PixelDungeon.immersiveModeChanged = immersiveModeChanged;
+    }
+
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
@@ -379,9 +387,9 @@ public class PixelDungeon extends Game {
     public void onSurfaceChanged ( GL10 gl, int width, int height ) {
         super.onSurfaceChanged( gl, width, height );
 
-        if ( immersiveModeChanged ) {
+        if ( isImmersiveModeChanged() ) {
             requestedReset = true;
-            immersiveModeChanged = false;
+            setImmersiveModeChanged( false );
         }
     }
 }
