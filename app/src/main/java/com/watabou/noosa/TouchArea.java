@@ -51,7 +51,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
             return;
         }
 
-        boolean hit = touch != null && target.overlapsScreenPoint( (int) touch.start.x, (int) touch.start.y );
+        boolean hit = touch != null && target.overlapsScreenPoint( (int) touch.getStart().x, (int) touch.getStart().y );
 
         if ( hit ) {
 

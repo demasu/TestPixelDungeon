@@ -153,7 +153,7 @@ public class ScrollPane extends Component {
 
                 lastPos.set( t.current );
 
-            } else if ( PointF.distance( t.current, t.start ) > dragThreshold ) {
+            } else if ( PointF.distance( t.current, t.getStart() ) > dragThreshold ) {
 
                 dragging = true;
                 lastPos.set( t.current );

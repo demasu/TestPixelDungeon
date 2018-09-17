@@ -126,7 +126,7 @@ public class CellSelector extends TouchArea {
 
         } else {
 
-            if ( !dragging && PointF.distance( t.current, t.start ) > dragThreshold ) {
+            if ( !dragging && PointF.distance( t.current, t.getStart() ) > dragThreshold ) {
 
                 dragging = true;
                 lastPos.set( t.current );
