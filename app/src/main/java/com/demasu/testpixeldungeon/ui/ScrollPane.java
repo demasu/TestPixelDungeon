@@ -123,7 +123,7 @@ public class ScrollPane extends Component {
 
             } else {
 
-                PointF p = content.camera.screenToCamera( (int) touch.current.x, (int) touch.current.y );
+                PointF p = content.camera.screenToCamera( (int) touch.getCurrent().x, (int) touch.getCurrent().y );
                 ScrollPane.this.onClick( p.x, p.y );
 
             }
@@ -135,7 +135,7 @@ public class ScrollPane extends Component {
 
                 Camera c = content.camera;
 
-                c.scroll.offset( PointF.diff( lastPos, t.current ).invScale( c.zoom ) );
+                c.scroll.offset( PointF.diff( lastPos, t.getCurrent() ).invScale( c.zoom ) );
                 if ( c.scroll.x + width > content.width() ) {
                     c.scroll.x = content.width() - width;
                 }
@@ -151,12 +151,12 @@ public class ScrollPane extends Component {
 
                 thumb.y = y + height * c.scroll.y / content.height();
 
-                lastPos.set( t.current );
+                lastPos.set( t.getCurrent() );
 
-            } else if ( PointF.distance( t.current, t.getStart() ) > dragThreshold ) {
+            } else if ( PointF.distance( t.getCurrent(), t.getStart() ) > dragThreshold ) {
 
                 dragging = true;
-                lastPos.set( t.current );
+                lastPos.set( t.getCurrent() );
                 thumb.am = 1;
 
             }

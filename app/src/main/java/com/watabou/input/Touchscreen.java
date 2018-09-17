@@ -120,7 +120,7 @@ public class Touchscreen {
     public static class Touch {
 
         private PointF start;
-        public PointF current;
+        private PointF current;
         public boolean down;
 
         public Touch ( MotionEvent e, int index ) {
@@ -129,13 +129,13 @@ public class Touchscreen {
             float y = e.getY( index );
 
             setStart( new PointF( x, y ) );
-            current = new PointF( x, y );
+            setCurrent( new PointF( x, y ) );
 
             down = true;
         }
 
         public void update ( MotionEvent e, int index ) {
-            current.set( e.getX( index ), e.getY( index ) );
+            getCurrent().set( e.getX( index ), e.getY( index ) );
         }
 
         public Touch up () {
@@ -149,6 +149,14 @@ public class Touchscreen {
 
         public void setStart ( PointF start ) {
             this.start = start;
+        }
+
+        public PointF getCurrent () {
+            return current;
+        }
+
+        public void setCurrent ( PointF current ) {
+            this.current = current;
         }
     }
 

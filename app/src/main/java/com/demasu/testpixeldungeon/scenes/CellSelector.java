@@ -53,8 +53,8 @@ public class CellSelector extends TouchArea {
         } else {
 
             select( ( (DungeonTilemap) target ).screenToTile(
-                    (int) touch.current.x,
-                    (int) touch.current.y ) );
+                    (int) touch.getCurrent().x,
+                    (int) touch.getCurrent().y ) );
         }
     }
 
@@ -85,7 +85,7 @@ public class CellSelector extends TouchArea {
             pinching = true;
 
             another = t;
-            startSpan = PointF.distance( touch.current, another.current );
+            startSpan = PointF.distance( touch.getCurrent(), another.getCurrent() );
             startZoom = camera.zoom;
 
             dragging = false;
@@ -107,7 +107,7 @@ public class CellSelector extends TouchArea {
                 touch = another;
             }
             another = null;
-            lastPos.set( touch.current );
+            lastPos.set( touch.getCurrent() );
         }
     }
 
@@ -118,7 +118,7 @@ public class CellSelector extends TouchArea {
 
         if ( pinching ) {
 
-            float curSpan = PointF.distance( touch.current, another.current );
+            float curSpan = PointF.distance( touch.getCurrent(), another.getCurrent() );
             camera.zoom( GameMath.gate(
                     PixelScene.minZoom,
                     startZoom * curSpan / startSpan,
@@ -126,14 +126,14 @@ public class CellSelector extends TouchArea {
 
         } else {
 
-            if ( !dragging && PointF.distance( t.current, t.getStart() ) > dragThreshold ) {
+            if ( !dragging && PointF.distance( t.getCurrent(), t.getStart() ) > dragThreshold ) {
 
                 dragging = true;
-                lastPos.set( t.current );
+                lastPos.set( t.getCurrent() );
 
             } else if ( dragging ) {
-                camera.scroll.offset( PointF.diff( lastPos, t.current ).invScale( camera.zoom ) );
-                lastPos.set( t.current );
+                camera.scroll.offset( PointF.diff( lastPos, t.getCurrent() ).invScale( camera.zoom ) );
+                lastPos.set( t.getCurrent() );
             }
         }
 
