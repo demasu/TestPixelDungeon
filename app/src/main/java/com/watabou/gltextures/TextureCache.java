@@ -33,7 +33,7 @@ import java.util.HashMap;
 public class TextureCache {
 
     @SuppressLint ( "StaticFieldLeak" )
-    public static Context context;
+    private static Context context;
 
     private static HashMap<Object, SmartTexture> all = new HashMap<Object, SmartTexture>();
 
@@ -132,12 +132,12 @@ public class TextureCache {
             if ( src instanceof Integer ) {
 
                 return BitmapFactory.decodeResource(
-                        context.getResources(), (Integer) src, bitmapOptions );
+                        getContext().getResources(), (Integer) src, bitmapOptions );
 
             } else if ( src instanceof String ) {
 
                 return BitmapFactory.decodeStream(
-                        context.getAssets().open( (String) src ), null, bitmapOptions );
+                        getContext().getAssets().open( (String) src ), null, bitmapOptions );
 
             } else if ( src instanceof Bitmap ) {
 
@@ -160,4 +160,11 @@ public class TextureCache {
         return all.containsKey( key );
     }
 
+    public static Context getContext () {
+        return context;
+    }
+
+    public static void setContext ( Context context ) {
+        TextureCache.context = context;
+    }
 }

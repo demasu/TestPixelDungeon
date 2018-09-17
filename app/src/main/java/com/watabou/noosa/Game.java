@@ -185,7 +185,9 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
 
-        BitmapCache.context = TextureCache.context = setInstance( this );
+        setInstance( this );
+        TextureCache.setContext( getInstance() );
+        BitmapCache.context = getInstance();
 
         DisplayMetrics m = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics( m );
