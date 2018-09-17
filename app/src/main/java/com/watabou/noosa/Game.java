@@ -160,6 +160,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return vanillaVersion;
     }
 
+    @SuppressWarnings ( "unused" )
     public static void setVanillaVersion ( String vanillaVersion ) {
         Game.vanillaVersion = vanillaVersion;
     }
@@ -168,6 +169,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return timeScale;
     }
 
+    @SuppressWarnings ( "unused" )
     public static void setTimeScale ( float timeScale ) {
         Game.timeScale = timeScale;
     }
