@@ -72,7 +72,7 @@ public class Camera extends Gizmo {
     public static Camera reset ( Camera newCamera ) {
 
         invW2 = 2f / Game.getWidth();
-        invH2 = 2f / Game.height;
+        invH2 = 2f / Game.getHeight();
 
         int length = all.size();
         for ( int i = 0; i < length; i++ ) {
@@ -105,10 +105,10 @@ public class Camera extends Gizmo {
 
     public static Camera createFullscreen ( float zoom ) {
         int w = (int) Math.ceil( Game.getWidth() / zoom );
-        int h = (int) Math.ceil( Game.height / zoom );
+        int h = (int) Math.ceil( Game.getHeight() / zoom );
         return new Camera(
                 (int) ( Game.getWidth() - w * zoom ) / 2,
-                (int) ( Game.height - h * zoom ) / 2,
+                (int) ( Game.getHeight() - h * zoom ) / 2,
                 w, h, zoom );
     }
 

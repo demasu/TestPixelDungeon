@@ -55,7 +55,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     // Actual size of the screen
     private static int width;
-    public static int height;
+    private static int height;
 
     // Density: mdpi=1, hdpi=1.5, xhdpi=2...
     public static float density = 1;
@@ -122,6 +122,14 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public static void setWidth ( int width ) {
         Game.width = width;
+    }
+
+    public static int getHeight () {
+        return height;
+    }
+
+    public static void setHeight ( int height ) {
+        Game.height = height;
     }
 
     @SuppressLint ( "ClickableViewAccessibility" )
@@ -237,7 +245,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     @Override
     public void onDrawFrame ( GL10 gl ) {
 
-        if ( getWidth() == 0 || height == 0 ) {
+        if ( getWidth() == 0 || getHeight() == 0 ) {
             return;
         }
 
@@ -249,7 +257,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         step();
 
         NoosaScript.get().resetCamera();
-        GLES20.glScissor( 0, 0, getWidth(), height );
+        GLES20.glScissor( 0, 0, getWidth(), getHeight() );
         GLES20.glClear( GLES20.GL_COLOR_BUFFER_BIT );
         draw();
     }
@@ -260,7 +268,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         GLES20.glViewport( 0, 0, width, height );
 
         Game.setWidth( width );
-        Game.height = height;
+        Game.setHeight( height );
 
     }
 

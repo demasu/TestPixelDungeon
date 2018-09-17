@@ -152,7 +152,7 @@ public class NoosaScript extends Script {
 
             GLES20.glScissor(
                     camera.x,
-                    Game.height - camera.screenHeight - camera.y,
+                    Game.getHeight() - camera.screenHeight - camera.y,
                     camera.screenWidth,
                     camera.screenHeight );
         }

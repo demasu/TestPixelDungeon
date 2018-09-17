@@ -88,7 +88,7 @@ public class Window extends Group implements Signal.Listener<Key> {
                 (int) chrome.height,
                 PixelScene.defaultZoom );
         camera.x = (int) ( Game.getWidth() - camera.width * camera.zoom ) / 2;
-        camera.y = (int) ( Game.height - camera.height * camera.zoom ) / 2;
+        camera.y = (int) ( Game.getHeight() - camera.height * camera.zoom ) / 2;
         camera.scroll.set( chrome.x, chrome.y );
         Camera.add( camera );
 
@@ -110,7 +110,7 @@ public class Window extends Group implements Signal.Listener<Key> {
 
         camera.resize( (int) chrome.width, (int) chrome.height );
         camera.x = (int) ( Game.getWidth() - camera.screenWidth() ) / 2;
-        camera.y = (int) ( Game.height - camera.screenHeight() ) / 2;
+        camera.y = (int) ( Game.getHeight() - camera.screenHeight() ) / 2;
 
         shadow.boxRect( camera.x / camera.zoom, camera.y / camera.zoom, chrome.width(), chrome.height );
     }
