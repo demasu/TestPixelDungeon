@@ -74,7 +74,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     // New scene class
     private Class<? extends Scene> sceneClass;
     // Current time in milliseconds
-    protected long now;
+    private long now;
     // Milliseconds passed since previous update
     protected long step;
     protected GLSurfaceView view;
@@ -147,7 +147,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
     public void onResume () {
         super.onResume();
 
-        now = 0;
+        setNow( 0 );
         view.onResume();
 
         Music.INSTANCE.resume();
@@ -227,8 +227,8 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
         SystemTime.tick();
         long rightNow = SystemTime.now;
-        step = ( now == 0 ? 0 : rightNow - now );
-        now = rightNow;
+        step = ( getNow() == 0 ? 0 : rightNow - getNow() );
+        setNow( rightNow );
 
         step();
 
@@ -349,5 +349,13 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     public void setRequestedScene ( Scene requestedScene ) {
         this.requestedScene = requestedScene;
+    }
+
+    public long getNow () {
+        return now;
+    }
+
+    public void setNow ( long now ) {
+        this.now = now;
     }
 }
