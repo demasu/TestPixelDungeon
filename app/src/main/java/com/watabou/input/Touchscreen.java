@@ -21,6 +21,7 @@ import android.view.MotionEvent;
 
 import com.watabou.utils.PointF;
 import com.watabou.utils.Signal;
+import com.watabou.utils.SparseArray;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +30,7 @@ public class Touchscreen {
 
     public static Signal<Touch> event = new Signal<Touch>( true );
 
-    public static HashMap<Integer, Touch> pointers = new HashMap<Integer, Touch>();
+    private static SparseArray<Touch> pointers = new SparseArray<>();
 
     public static float x;
     public static float y;
@@ -68,12 +69,14 @@ public class Touchscreen {
                     break;
 
                 case MotionEvent.ACTION_POINTER_UP:
-                    event.dispatch( pointers.remove( e.getPointerId( e.getActionIndex() ) ).up() );
+                    event.dispatch( pointers.get( e.getPointerId( e.getActionIndex() ) ).up() );
+                    pointers.delete( e.getPointerId( e.getActionIndex() ) );
                     break;
 
                 case MotionEvent.ACTION_UP:
                     touched = false;
-                    event.dispatch( pointers.remove( e.getPointerId( 0 ) ).up() );
+                    event.dispatch( pointers.get( e.getPointerId( 0 ) ).up() );
+                    pointers.delete( e.getPointerId( 0 ) );
                     break;
 
             }
