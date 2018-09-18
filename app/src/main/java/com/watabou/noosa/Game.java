@@ -459,12 +459,10 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         this.view = view;
     }
 
-    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     private ArrayList<MotionEvent> getMotionEvents () {
         return motionEvents;
     }
 
-    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     private ArrayList<KeyEvent> getKeysEvents () {
         return keysEvents;
     }
