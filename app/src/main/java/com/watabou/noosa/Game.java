@@ -220,6 +220,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         setContentView( getView() );
     }
 
+    @SuppressWarnings ( "unused" )
     @Override
     public void onResume () {
         super.onResume();
@@ -231,6 +232,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         Sample.INSTANCE.resume();
     }
 
+    @SuppressWarnings ( "unused" )
     @Override
     public void onPause () {
         super.onPause();
@@ -246,6 +248,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         Sample.INSTANCE.pause();
     }
 
+    @SuppressWarnings ( "unused" )
     @Override
     public void onDestroy () {
         super.onDestroy();
@@ -255,16 +258,16 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         Sample.INSTANCE.reset();
     }
 
-    @SuppressWarnings ( "SameReturnValue" )
+    @SuppressWarnings ( { "SameReturnValue", "unused" } )
     @SuppressLint ( { "Recycle", "ClickableViewAccessibility" } )
-    @Override
-    public boolean onTouch ( View view, MotionEvent event ) {
+    public boolean onTouch ( MotionEvent event ) {
         synchronized (getMotionEvents()) {
             getMotionEvents().add( MotionEvent.obtain( event ) );
         }
         return true;
     }
 
+    @SuppressWarnings ( "unused" )
     @Override
     public boolean onKeyDown ( int keyCode, KeyEvent event ) {
 
@@ -280,6 +283,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return true;
     }
 
+    @SuppressWarnings ( "unused" )
     @Override
     public boolean onKeyUp ( int keyCode, KeyEvent event ) {
 
@@ -295,6 +299,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return true;
     }
 
+    @SuppressWarnings ( "unused" )
     @Override
     public void onDrawFrame ( GL10 gl ) {
 
@@ -315,6 +320,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         draw();
     }
 
+    @SuppressWarnings ( "unused" )
     @Override
     public void onSurfaceChanged ( GL10 gl, int width, int height ) {
 
@@ -325,6 +331,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     }
 
+    @SuppressWarnings ( "unused" )
     @Override
     public void onSurfaceCreated ( GL10 gl, EGLConfig config ) {
         GLES20.glEnable( GL10.GL_BLEND );
