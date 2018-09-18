@@ -47,7 +47,6 @@ public class Script extends Program {
             }
 
             if ( curScript != null ) {
-                curScript.unuse();
             }
 
             curScript = script;
@@ -78,6 +77,4 @@ public class Script extends Program {
 
     }
 
-    public void unuse () {
-    }
 }
