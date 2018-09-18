@@ -459,14 +459,6 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         this.view = view;
     }
 
-    public SurfaceHolder getHolder () {
-        return holder;
-    }
-
-    public void setHolder ( SurfaceHolder holder ) {
-        this.holder = holder;
-    }
-
     @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     public ArrayList<MotionEvent> getMotionEvents () {
         return motionEvents;
