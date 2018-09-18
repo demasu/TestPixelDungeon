@@ -23,9 +23,9 @@ import java.util.HashMap;
 
 public class Atlas {
 
-    private SmartTexture tx;
+    private final SmartTexture tx;
 
-    private HashMap<Object, RectF> namedFrames;
+    private final HashMap<Object, RectF> namedFrames;
 
     private float uvLeft;
     private float uvTop;
