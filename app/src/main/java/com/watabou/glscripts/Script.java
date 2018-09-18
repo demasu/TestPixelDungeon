@@ -17,6 +17,8 @@
 
 package com.watabou.glscripts;
 
+import android.support.annotation.Nullable;
+
 import com.watabou.glwrap.Program;
 import com.watabou.glwrap.Shader;
 
@@ -28,7 +30,9 @@ public class Script extends Program {
     private static final HashMap<Class<? extends Script>, Script> all =
             new HashMap<>();
 
+    @Nullable
     private static Script curScript = null;
+    @Nullable
     private static Class<? extends Script> curScriptClass = null;
 
     @SuppressWarnings ( "unchecked" )
@@ -44,9 +48,6 @@ public class Script extends Program {
                     e.printStackTrace();
                 }
                 all.put( c, script );
-            }
-
-            if ( curScript != null ) {
             }
 
             curScript = script;
