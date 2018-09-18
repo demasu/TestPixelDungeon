@@ -21,6 +21,7 @@ import com.watabou.glwrap.Program;
 import com.watabou.glwrap.Shader;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Script extends Program {
 
@@ -51,7 +52,7 @@ public class Script extends Program {
 
             curScript = script;
             curScriptClass = c;
-            curScript.use();
+            Objects.requireNonNull( curScript ).use();
 
         }
 
