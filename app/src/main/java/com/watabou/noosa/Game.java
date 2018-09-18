@@ -112,7 +112,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return instance;
     }
 
-    public static void setInstance ( Game instance ) {
+    private static void setInstance ( Game instance ) {
         Game.instance = instance;
     }
 
@@ -120,7 +120,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return width;
     }
 
-    public static void setWidth ( int width ) {
+    private static void setWidth ( int width ) {
         Game.width = width;
     }
 
@@ -128,7 +128,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return height;
     }
 
-    public static void setHeight ( int height ) {
+    private static void setHeight ( int height ) {
         Game.height = height;
     }
 
@@ -136,7 +136,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return density;
     }
 
-    public static void setDensity ( float density ) {
+    private static void setDensity ( float density ) {
         Game.density = density;
     }
 
@@ -144,7 +144,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return version;
     }
 
-    public static void setVersion ( String version ) {
+    private static void setVersion ( String version ) {
         Game.version = version;
     }
 
@@ -152,7 +152,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         return versionBuild;
     }
 
-    public static void setVersionBuild ( int versionBuild ) {
+    private static void setVersionBuild ( int versionBuild ) {
         Game.versionBuild = versionBuild;
     }
 
@@ -165,7 +165,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         Game.vanillaVersion = vanillaVersion;
     }
 
-    public static float getTimeScale () {
+    private static float getTimeScale () {
         return timeScale;
     }
 
@@ -344,7 +344,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         TextureCache.reload();
     }
 
-    protected void destroyGame () {
+    private void destroyGame () {
         if ( getScene() != null ) {
             getScene().destroy();
             setScene( null );
@@ -353,7 +353,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         setInstance( null );
     }
 
-    protected void step () {
+    private void step () {
 
         if ( isRequestedReset() ) {
             setRequestedReset( false );
@@ -368,7 +368,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         update();
     }
 
-    protected void draw () {
+    private void draw () {
         getScene().draw();
     }
 
@@ -386,7 +386,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         Game.setTimeScale( 1f );
     }
 
-    protected void update () {
+    private void update () {
         final float TIME_SCALE = 0.001f;
         Game.setElapsed( Game.getTimeScale() * getStep() * TIME_SCALE );
 
@@ -403,15 +403,15 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         Camera.updateAll();
     }
 
-    public Class<? extends Scene> getSceneClass () {
+    private Class<? extends Scene> getSceneClass () {
         return sceneClass;
     }
 
-    public void setSceneClass ( Class<? extends Scene> sceneClass ) {
+    private void setSceneClass ( Class<? extends Scene> sceneClass ) {
         this.sceneClass = sceneClass;
     }
 
-    public boolean isRequestedReset () {
+    private boolean isRequestedReset () {
         return requestedReset;
     }
 
@@ -419,53 +419,53 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         this.requestedReset = requestedReset;
     }
 
-    public Scene getScene () {
+    private Scene getScene () {
         return scene;
     }
 
-    public void setScene ( Scene scene ) {
+    private void setScene ( Scene scene ) {
         this.scene = scene;
     }
 
-    public Scene getRequestedScene () {
+    private Scene getRequestedScene () {
         return requestedScene;
     }
 
-    public void setRequestedScene ( Scene requestedScene ) {
+    private void setRequestedScene ( Scene requestedScene ) {
         this.requestedScene = requestedScene;
     }
 
-    public long getNow () {
+    private long getNow () {
         return now;
     }
 
-    public void setNow ( long now ) {
+    private void setNow ( long now ) {
         this.now = now;
     }
 
-    public long getStep () {
+    private long getStep () {
         return step;
     }
 
-    public void setStep ( long step ) {
+    private void setStep ( long step ) {
         this.step = step;
     }
 
-    public GLSurfaceView getView () {
+    private GLSurfaceView getView () {
         return view;
     }
 
-    public void setView ( GLSurfaceView view ) {
+    private void setView ( GLSurfaceView view ) {
         this.view = view;
     }
 
     @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
-    public ArrayList<MotionEvent> getMotionEvents () {
+    private ArrayList<MotionEvent> getMotionEvents () {
         return motionEvents;
     }
 
     @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
-    public ArrayList<KeyEvent> getKeysEvents () {
+    private ArrayList<KeyEvent> getKeysEvents () {
         return keysEvents;
     }
 }
