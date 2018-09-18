@@ -23,15 +23,15 @@ import java.util.HashMap;
 
 public class Atlas {
 
-    public SmartTexture tx;
+    private SmartTexture tx;
 
-    protected HashMap<Object, RectF> namedFrames;
+    private HashMap<Object, RectF> namedFrames;
 
-    protected float uvLeft;
-    protected float uvTop;
-    protected float uvWidth;
-    protected float uvHeight;
-    protected int cols;
+    private float uvLeft;
+    private float uvTop;
+    private float uvWidth;
+    private float uvHeight;
+    private int cols;
 
     public Atlas ( SmartTexture tx ) {
 
@@ -41,7 +41,7 @@ public class Atlas {
         namedFrames = new HashMap<>();
     }
 
-    public static RectF uvRect ( SmartTexture tx, int left, int top, int right, int bottom ) {
+    private static RectF uvRect ( SmartTexture tx, int left, int top, int right, int bottom ) {
         return new RectF(
                 (float) left / tx.width,
                 (float) top / tx.height,
@@ -53,7 +53,7 @@ public class Atlas {
         add( key, uvRect( tx, left, top, right, bottom ) );
     }
 
-    public void add ( Object key, RectF rect ) {
+    private void add ( Object key, RectF rect ) {
         namedFrames.put( key, rect );
     }
 
@@ -61,11 +61,11 @@ public class Atlas {
         grid( width, tx.height );
     }
 
-    public void grid ( int width, int height ) {
+    private void grid ( int width, int height ) {
         grid( 0, 0, width, height, tx.width / width );
     }
 
-    public void grid ( int left, int top, int width, int height, int cols ) {
+    private void grid ( int left, int top, int width, int height, int cols ) {
         uvLeft = (float) left / tx.width;
         uvTop = (float) top / tx.height;
         uvWidth = (float) width / tx.width;
