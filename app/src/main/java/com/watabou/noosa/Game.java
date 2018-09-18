@@ -260,7 +260,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 
     @SuppressWarnings ( { "SameReturnValue", "unused" } )
     @SuppressLint ( { "Recycle", "ClickableViewAccessibility" } )
-    public boolean onTouch ( MotionEvent event ) {
+    public boolean onTouch ( View view, MotionEvent event ) {
         synchronized (getMotionEvents()) {
             getMotionEvents().add( MotionEvent.obtain( event ) );
         }
