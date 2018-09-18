@@ -62,12 +62,12 @@ public class Atlas {
     }
 
     private void grid ( int width, int height ) {
-        grid( 0, 0, width, height, tx.width / width );
+        grid( width, height, tx.width / width );
     }
 
-    private void grid ( int left, int top, int width, int height, int cols ) {
-        uvLeft = (float) left / tx.width;
-        uvTop = (float) top / tx.height;
+    private void grid ( int width, int height, int cols ) {
+        uvLeft = (float) 0 / tx.width;
+        uvTop = (float) 0 / tx.height;
         uvWidth = (float) width / tx.width;
         uvHeight = (float) height / tx.height;
         this.cols = cols;
