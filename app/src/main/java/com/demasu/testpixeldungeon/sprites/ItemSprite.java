@@ -73,7 +73,7 @@ public class ItemSprite extends MovieClip {
     }
 
     public static int pick ( int index, int x, int y ) {
-        Bitmap bmp = TextureCache.get( Assets.ITEMS ).bitmap;
+        Bitmap bmp = TextureCache.get( Assets.ITEMS ).getBitmap();
         int rows = bmp.getWidth() / SIZE;
         int row = index / rows;
         int col = index % rows;

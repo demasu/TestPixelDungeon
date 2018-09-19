@@ -37,8 +37,8 @@ public class BitmaskEmitter extends Emitter {
         this.target = target;
 
         map = target.texture;
-        mapW = map.bitmap.getWidth();
-        mapH = map.bitmap.getHeight();
+        mapW = map.getBitmap().getWidth();
+        mapH = map.getBitmap().getHeight();
     }
 
     @Override
@@ -53,7 +53,7 @@ public class BitmaskEmitter extends Emitter {
             x = Random.Float( frame.width() ) * mapW;
             y = Random.Float( frame.height() ) * mapH;
         }
-        while ( ( map.bitmap.getPixel( (int) ( x + ofsX ), (int) ( y + ofsY ) ) & 0x000000FF ) == 0 );
+        while ( ( map.getBitmap().getPixel( (int) ( x + ofsX ), (int) ( y + ofsY ) ) & 0x000000FF ) == 0 );
 
         factory.emit( this, index,
                 target.x + x * target.scale.x,

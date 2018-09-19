@@ -35,7 +35,7 @@ public class SmartTexture extends Texture {
     private int wModeV;
 
     @Nullable
-    public Bitmap bitmap;
+    private Bitmap bitmap;
 
     public Atlas atlas;
 
@@ -67,13 +67,13 @@ public class SmartTexture extends Texture {
     public void bitmap ( Bitmap bitmap ) {
         handMade( bitmap, true );
 
-        this.bitmap = bitmap;
+        this.setBitmap( bitmap );
         setWidth( bitmap.getWidth() );
         setHeight( bitmap.getHeight() );
     }
 
     public void reload () {
-        id = new SmartTexture( bitmap ).id;
+        id = new SmartTexture( getBitmap() ).id;
         filter( fModeMin, fModeMax );
         wrap( wModeH, wModeV );
     }
@@ -84,8 +84,8 @@ public class SmartTexture extends Texture {
 
         super.delete();
 
-        bitmap.recycle();
-        bitmap = null;
+        getBitmap().recycle();
+        setBitmap( null );
     }
 
     public RectF uvRect ( int left, int top, int right, int bottom ) {
@@ -110,5 +110,14 @@ public class SmartTexture extends Texture {
 
     public void setHeight ( int height ) {
         this.height = height;
+    }
+
+    @Nullable
+    public Bitmap getBitmap () {
+        return bitmap;
+    }
+
+    public void setBitmap ( @Nullable Bitmap bitmap ) {
+        this.bitmap = bitmap;
     }
 }
