@@ -28,11 +28,11 @@ public class SmartTexture extends Texture {
     public int width;
     public int height;
 
-    public int fModeMin;
-    public int fModeMax;
+    private int fModeMin;
+    private int fModeMax;
 
-    public int wModeH;
-    public int wModeV;
+    private int wModeH;
+    private int wModeV;
 
     @Nullable
     public Bitmap bitmap;
@@ -43,7 +43,7 @@ public class SmartTexture extends Texture {
         this( bitmap, NEAREST, CLAMP );
     }
 
-    public SmartTexture ( Bitmap bitmap, int filtering, int wrapping ) {
+    private SmartTexture ( Bitmap bitmap, int filtering, int wrapping ) {
 
         super();
 
@@ -72,7 +72,7 @@ public class SmartTexture extends Texture {
         bitmap( bitmap, false );
     }
 
-    public void bitmap ( Bitmap bitmap, boolean premultiplied ) {
+    private void bitmap ( Bitmap bitmap, boolean premultiplied ) {
         if ( premultiplied ) {
             super.bitmap( bitmap );
         } else {
