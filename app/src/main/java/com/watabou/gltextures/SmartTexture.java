@@ -19,6 +19,7 @@ package com.watabou.gltextures;
 
 import android.graphics.Bitmap;
 import android.graphics.RectF;
+import android.support.annotation.Nullable;
 
 import com.watabou.glwrap.Texture;
 
@@ -33,6 +34,7 @@ public class SmartTexture extends Texture {
     public int wModeH;
     public int wModeV;
 
+    @Nullable
     public Bitmap bitmap;
 
     public Atlas atlas;
@@ -53,12 +55,16 @@ public class SmartTexture extends Texture {
 
     @Override
     public void filter ( int minMode, int maxMode ) {
-        super.filter( fModeMin = minMode, fModeMax = maxMode );
+        fModeMin = minMode;
+        fModeMax = maxMode;
+        super.filter( fModeMin, fModeMax );
     }
 
     @Override
     public void wrap ( int s, int t ) {
-        super.wrap( wModeH = s, wModeV = t );
+        wModeH = s;
+        wModeV = t;
+        super.wrap( wModeH, wModeV );
     }
 
     @Override
@@ -84,6 +90,7 @@ public class SmartTexture extends Texture {
         wrap( wModeH, wModeV );
     }
 
+    //TODO: This is possibly unused since I'm not finding anything that uses this specific delete call
     @Override
     public void delete () {
 
