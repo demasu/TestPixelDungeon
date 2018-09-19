@@ -102,7 +102,7 @@ public class SmartTexture extends Texture {
         return width;
     }
 
-    public void setWidth ( int width ) {
+    private void setWidth ( int width ) {
         this.width = width;
     }
 
@@ -110,7 +110,7 @@ public class SmartTexture extends Texture {
         return height;
     }
 
-    public void setHeight ( int height ) {
+    private void setHeight ( int height ) {
         this.height = height;
     }
 
@@ -119,7 +119,7 @@ public class SmartTexture extends Texture {
         return bitmap;
     }
 
-    public void setBitmap ( @Nullable Bitmap bitmap ) {
+    private void setBitmap ( @Nullable Bitmap bitmap ) {
         this.bitmap = bitmap;
     }
 
