@@ -40,15 +40,15 @@ public class SmartTexture extends Texture {
     public Atlas atlas;
 
     public SmartTexture ( Bitmap bitmap ) {
-        this( bitmap, NEAREST, CLAMP );
+        this( bitmap, CLAMP );
     }
 
-    private SmartTexture ( Bitmap bitmap, int filtering, int wrapping ) {
+    private SmartTexture ( Bitmap bitmap, int wrapping ) {
 
         super();
 
         bitmap( bitmap );
-        filter( filtering, filtering );
+        filter( Texture.NEAREST, Texture.NEAREST );
         wrap( wrapping, wrapping );
 
     }
@@ -69,15 +69,7 @@ public class SmartTexture extends Texture {
 
     @Override
     public void bitmap ( Bitmap bitmap ) {
-        bitmap( bitmap, false );
-    }
-
-    private void bitmap ( Bitmap bitmap, boolean premultiplied ) {
-        if ( premultiplied ) {
-            super.bitmap( bitmap );
-        } else {
-            handMade( bitmap, true );
-        }
+        handMade( bitmap, true );
 
         this.bitmap = bitmap;
         width = bitmap.getWidth();
