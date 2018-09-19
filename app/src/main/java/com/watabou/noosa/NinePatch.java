@@ -59,7 +59,7 @@ public class NinePatch extends Visual {
         super( 0, 0, 0, 0 );
 
         texture = TextureCache.get( tx );
-        w = w == 0 ? texture.width : w;
+        w = w == 0 ? texture.getWidth() : w;
         h = h == 0 ? texture.height : h;
 
         nWidth = width = w;

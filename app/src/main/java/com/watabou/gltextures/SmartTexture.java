@@ -25,7 +25,7 @@ import com.watabou.glwrap.Texture;
 
 public class SmartTexture extends Texture {
 
-    public int width;
+    private int width;
     public int height;
 
     private int fModeMin;
@@ -68,7 +68,7 @@ public class SmartTexture extends Texture {
         handMade( bitmap, true );
 
         this.bitmap = bitmap;
-        width = bitmap.getWidth();
+        setWidth( bitmap.getWidth() );
         height = bitmap.getHeight();
     }
 
@@ -90,9 +90,17 @@ public class SmartTexture extends Texture {
 
     public RectF uvRect ( int left, int top, int right, int bottom ) {
         return new RectF(
-                (float) left / width,
+                (float) left / getWidth(),
                 (float) top / height,
-                (float) right / width,
+                (float) right / getWidth(),
                 (float) bottom / height );
+    }
+
+    public int getWidth () {
+        return width;
+    }
+
+    public void setWidth ( int width ) {
+        this.width = width;
     }
 }

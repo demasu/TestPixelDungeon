@@ -52,11 +52,11 @@ public class SkinnedBlock extends Image {
     protected void updateFrame () {
 
         if ( autoAdjust ) {
-            while ( offsetX > texture.width ) {
-                offsetX -= texture.width;
+            while ( offsetX > texture.getWidth() ) {
+                offsetX -= texture.getWidth();
             }
-            while ( offsetX < -texture.width ) {
-                offsetX += texture.width;
+            while ( offsetX < -texture.getWidth() ) {
+                offsetX += texture.getWidth();
             }
             while ( offsetY > texture.height ) {
                 offsetY -= texture.height;
@@ -66,7 +66,7 @@ public class SkinnedBlock extends Image {
             }
         }
 
-        float tw = 1f / texture.width;
+        float tw = 1f / texture.getWidth();
         float th = 1f / texture.height;
 
         float u0 = offsetX * tw;

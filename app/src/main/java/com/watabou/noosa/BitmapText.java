@@ -239,7 +239,7 @@ public class BitmapText extends Visual {
 
             int length = chars.length();
 
-            float uw = (float) width / tx.width;
+            float uw = (float) width / tx.getWidth();
             float vh = (float) height / tx.height;
 
             float left = 0;
