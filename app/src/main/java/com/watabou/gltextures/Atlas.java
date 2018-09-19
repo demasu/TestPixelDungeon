@@ -18,6 +18,7 @@
 package com.watabou.gltextures;
 
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.HashMap;
 
@@ -29,6 +30,7 @@ public class Atlas {
         tx.atlas = this;
 
         HashMap<Object, RectF> namedFrames = new HashMap<>();
+        Log.d( "TPD", "Call to the Atlas class" );
     }
 
 }
