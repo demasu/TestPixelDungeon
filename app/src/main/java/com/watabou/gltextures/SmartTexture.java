@@ -40,16 +40,12 @@ public class SmartTexture extends Texture {
     public Atlas atlas;
 
     public SmartTexture ( Bitmap bitmap ) {
-        this( bitmap, CLAMP );
-    }
-
-    private SmartTexture ( Bitmap bitmap, int wrapping ) {
 
         super();
 
         bitmap( bitmap );
         filter( Texture.NEAREST, Texture.NEAREST );
-        wrap( wrapping, wrapping );
+        wrap( CLAMP, CLAMP );
 
     }
 
