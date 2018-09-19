@@ -37,7 +37,7 @@ public class SmartTexture extends Texture {
     @Nullable
     private Bitmap bitmap;
 
-    public Atlas atlas;
+    private Atlas atlas;
 
     public SmartTexture ( Bitmap bitmap ) {
 
@@ -119,5 +119,13 @@ public class SmartTexture extends Texture {
 
     public void setBitmap ( @Nullable Bitmap bitmap ) {
         this.bitmap = bitmap;
+    }
+
+    public Atlas getAtlas () {
+        return atlas;
+    }
+
+    public void setAtlas ( Atlas atlas ) {
+        this.atlas = atlas;
     }
 }
