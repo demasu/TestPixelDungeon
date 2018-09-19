@@ -58,16 +58,16 @@ public class SkinnedBlock extends Image {
             while ( offsetX < -texture.getWidth() ) {
                 offsetX += texture.getWidth();
             }
-            while ( offsetY > texture.height ) {
-                offsetY -= texture.height;
+            while ( offsetY > texture.getHeight() ) {
+                offsetY -= texture.getHeight();
             }
-            while ( offsetY < -texture.height ) {
-                offsetY += texture.height;
+            while ( offsetY < -texture.getHeight() ) {
+                offsetY += texture.getHeight();
             }
         }
 
         float tw = 1f / texture.getWidth();
-        float th = 1f / texture.height;
+        float th = 1f / texture.getHeight();
 
         float u0 = offsetX * tw;
         float v0 = offsetY * th;

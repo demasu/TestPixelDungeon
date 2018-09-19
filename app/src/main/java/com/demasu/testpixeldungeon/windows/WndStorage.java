@@ -226,7 +226,7 @@ public class WndStorage extends WndTabbed {
             icon.y = y + ( height - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
             if ( !selected && icon.y < y + CUT ) {
                 RectF frame = icon.frame();
-                frame.top += ( y + CUT - icon.y ) / icon.texture.height;
+                frame.top += ( y + CUT - icon.y ) / icon.texture.getHeight();
                 icon.frame( frame );
                 icon.y = y + CUT;
             }

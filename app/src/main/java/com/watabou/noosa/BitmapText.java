@@ -227,7 +227,7 @@ public class BitmapText extends Visual {
         }
 
         public Font ( SmartTexture tx, int width, String chars ) {
-            this( tx, width, tx.height, chars );
+            this( tx, width, tx.getHeight(), chars );
         }
 
         public Font ( SmartTexture tx, int width, int height, String chars ) {
@@ -240,7 +240,7 @@ public class BitmapText extends Visual {
             int length = chars.length();
 
             float uw = (float) width / tx.getWidth();
-            float vh = (float) height / tx.height;
+            float vh = (float) height / tx.getHeight();
 
             float left = 0;
             float top = 0;

@@ -36,13 +36,13 @@ public class TextureFilm {
         SmartTexture texture = TextureCache.get( tx );
 
         texWidth = texture.getWidth();
-        texHeight = texture.height;
+        texHeight = texture.getHeight();
 
         add( null, FULL );
     }
 
     public TextureFilm ( SmartTexture texture, int width ) {
-        this( texture, width, texture.height );
+        this( texture, width, texture.getHeight() );
     }
 
     public TextureFilm ( Object tx, int width, int height ) {
@@ -50,7 +50,7 @@ public class TextureFilm {
         SmartTexture texture = TextureCache.get( tx );
 
         texWidth = texture.getWidth();
-        texHeight = texture.height;
+        texHeight = texture.getHeight();
 
         float uw = (float) width / texWidth;
         float vh = (float) height / texHeight;

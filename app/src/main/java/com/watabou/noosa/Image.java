@@ -67,7 +67,7 @@ public class Image extends Visual {
         this.frame = frame;
 
         width = frame.width() * texture.getWidth();
-        height = frame.height() * texture.height;
+        height = frame.height() * texture.getHeight();
 
         updateFrame();
         updateVertices();
