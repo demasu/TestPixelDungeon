@@ -84,7 +84,9 @@ public class SmartTexture extends Texture {
 
         super.delete();
 
-        getBitmap().recycle();
+        if ( getBitmap() != null ) {
+            getBitmap().recycle();
+        }
         setBitmap( null );
     }
 
