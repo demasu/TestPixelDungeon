@@ -23,73 +23,12 @@ import java.util.HashMap;
 
 public class Atlas {
 
-    private final SmartTexture tx;
-
-    private final HashMap<Object, RectF> namedFrames;
-
-    private float uvLeft;
-    private float uvTop;
-    private float uvWidth;
-    private float uvHeight;
-    private int cols;
-
+    //TODO: Investigate if this module is even used
     public Atlas ( SmartTexture tx ) {
 
-        this.tx = tx;
         tx.atlas = this;
 
-        namedFrames = new HashMap<>();
+        HashMap<Object, RectF> namedFrames = new HashMap<>();
     }
 
-    private static RectF uvRect ( SmartTexture tx, int left, int top, int right, int bottom ) {
-        return new RectF(
-                (float) left / tx.width,
-                (float) top / tx.height,
-                (float) right / tx.width,
-                (float) bottom / tx.height );
-    }
-
-    public void add ( Object key, int left, int top, int right, int bottom ) {
-        add( key, uvRect( tx, left, top, right, bottom ) );
-    }
-
-    private void add ( Object key, RectF rect ) {
-        namedFrames.put( key, rect );
-    }
-
-    public void grid ( int width ) {
-        grid( width, tx.height );
-    }
-
-    private void grid ( int width, int height ) {
-        grid( width, height, tx.width / width );
-    }
-
-    private void grid ( int width, int height, int cols ) {
-        uvLeft = (float) 0 / tx.width;
-        uvTop = (float) 0 / tx.height;
-        uvWidth = (float) width / tx.width;
-        uvHeight = (float) height / tx.height;
-        this.cols = cols;
-    }
-
-    public RectF get ( int index ) {
-        float x = index % cols;
-        float y = index / cols;
-        float l = uvLeft + x * uvWidth;
-        float t = uvTop + y * uvHeight;
-        return new RectF( l, t, l + uvWidth, t + uvHeight );
-    }
-
-    public RectF get ( Object key ) {
-        return namedFrames.get( key );
-    }
-
-    public float width ( RectF rect ) {
-        return rect.width() * tx.width;
-    }
-
-    public float height ( RectF rect ) {
-        return rect.height() * tx.height;
-    }
 }
