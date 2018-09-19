@@ -123,10 +123,6 @@ public class SmartTexture extends Texture {
         this.bitmap = bitmap;
     }
 
-    public Atlas getAtlas () {
-        return atlas;
-    }
-
     public void setAtlas ( Atlas atlas ) {
         this.atlas = atlas;
     }
