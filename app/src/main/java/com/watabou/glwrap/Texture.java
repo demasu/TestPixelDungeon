@@ -34,14 +34,14 @@ public class Texture {
     public static final int MIRROR = GLES20.GL_MIRRORED_REPEAT;
     public static final int CLAMP = GLES20.GL_CLAMP_TO_EDGE;
 
-    public int id;
+    private int id;
 
-    public boolean premultiplied = false;
+    private boolean premultiplied = false;
 
     public Texture () {
         int[] ids = new int[1];
         GLES20.glGenTextures( 1, ids, 0 );
-        id = ids[0];
+        setId( ids[0] );
 
         bind();
     }
@@ -72,7 +72,7 @@ public class Texture {
     }
 
     public void bind () {
-        GLES20.glBindTexture( GLES20.GL_TEXTURE_2D, id );
+        GLES20.glBindTexture( GLES20.GL_TEXTURE_2D, getId() );
     }
 
     public void filter ( int minMode, int maxMode ) {
@@ -88,7 +88,7 @@ public class Texture {
     }
 
     public void delete () {
-        int[] ids = { id };
+        int[] ids = { getId() };
         GLES20.glDeleteTextures( 1, ids, 0 );
     }
 
@@ -96,7 +96,7 @@ public class Texture {
         bind();
         GLUtils.texImage2D( GLES20.GL_TEXTURE_2D, 0, bitmap, 0 );
 
-        premultiplied = true;
+        setPremultiplied( true );
     }
 
     public void pixels ( int w, int h, int[] pixels ) {
@@ -156,19 +156,38 @@ public class Texture {
         int[] pixels = new int[w * h];
         bitmap.getPixels( pixels, 0, w, 0, 0, w, h );
 
+        final int AG_MASK   = 0xFF00FF00;
+        final int RB_MASK   = 0xFF;
+        final int BIT_SHIFT = 16;
         // recode - components reordering is needed
         if ( recode ) {
             for ( int i = 0; i < pixels.length; i++ ) {
                 int color = pixels[i];
-                int ag = color & 0xFF00FF00;
-                int r = ( color >> 16 ) & 0xFF;
-                int b = color & 0xFF;
-                pixels[i] = ag | ( b << 16 ) | r;
+                int ag = color & AG_MASK;
+                int r = ( color >> BIT_SHIFT ) & RB_MASK;
+                int b = color & RB_MASK;
+                pixels[i] = ag | ( b << BIT_SHIFT ) | r;
             }
         }
 
         pixels( w, h, pixels );
 
-        premultiplied = false;
+        setPremultiplied( false );
+    }
+
+    public int getId () {
+        return id;
+    }
+
+    public void setId ( int id ) {
+        this.id = id;
+    }
+
+    public boolean isPremultiplied () {
+        return premultiplied;
+    }
+
+    public void setPremultiplied ( boolean premultiplied ) {
+        this.premultiplied = premultiplied;
     }
 }

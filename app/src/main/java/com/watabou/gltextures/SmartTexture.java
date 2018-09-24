@@ -71,7 +71,7 @@ public class SmartTexture extends Texture {
     }
 
     public void reload () {
-        id = new SmartTexture( getBitmap() ).id;
+        setId( new SmartTexture( getBitmap() ).getId() );
         filter( fModeMin, fModeMax );
         wrap( wModeH, wModeV );
     }
