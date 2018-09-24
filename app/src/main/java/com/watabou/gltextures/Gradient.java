@@ -26,7 +26,9 @@ public class Gradient extends SmartTexture {
         super( Bitmap.createBitmap( colors.length, 1, Bitmap.Config.ARGB_8888 ) );
 
         for ( int i = 0; i < colors.length; i++ ) {
-            getBitmap().setPixel( i, 0, colors[i] );
+            if ( getBitmap() != null ) {
+                getBitmap().setPixel( i, 0, colors[i] );
+            }
         }
         bitmap( getBitmap() );
 
