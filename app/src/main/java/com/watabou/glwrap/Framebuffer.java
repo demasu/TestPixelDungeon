@@ -39,7 +39,7 @@ public class Framebuffer {
 
     }
 
-    public void bind () {
+    private void bind () {
         GLES20.glBindFramebuffer( GLES20.GL_FRAMEBUFFER, id );
     }
 
