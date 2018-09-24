@@ -21,14 +21,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Shader.TileMode;
 
-import com.watabou.glwrap.Texture;
-
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class TextureCache {
