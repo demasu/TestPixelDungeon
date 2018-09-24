@@ -88,7 +88,7 @@ public class TextureCache {
         }
     }
 
-    public static Bitmap getBitmap ( Object src ) {
+    private static Bitmap getBitmap ( Object src ) {
 
         try {
             if ( src instanceof Integer ) {
@@ -122,7 +122,7 @@ public class TextureCache {
         return all.containsKey( key );
     }
 
-    public static Context getContext () {
+    private static Context getContext () {
         return context;
     }
 
