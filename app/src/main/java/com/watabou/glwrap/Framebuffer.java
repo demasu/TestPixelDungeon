@@ -19,14 +19,11 @@ package com.watabou.glwrap;
 
 import android.opengl.GLES20;
 
-public class Framebuffer {
-
-    private int id;
+class Framebuffer {
 
     private Framebuffer () {
         int[] buffers = new int[1];
         GLES20.glGenBuffers( 1, buffers, 0 );
-        id = buffers[0];
     }
 
 }
