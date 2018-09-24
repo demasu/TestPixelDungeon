@@ -94,7 +94,7 @@ public class Texture {
 
     // If getConfig returns null (unsupported format?), GLUtils.texImage2D works
     // incorrectly. In this case we need to load pixels manually
-    public void handMade ( Bitmap bitmap, boolean recode ) {
+    protected void handMade ( Bitmap bitmap, boolean recode ) {
 
         int w = bitmap.getWidth();
         int h = bitmap.getHeight();
