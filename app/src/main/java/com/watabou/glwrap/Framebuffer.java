@@ -29,7 +29,7 @@ public class Framebuffer {
 
     private int id;
 
-    public Framebuffer () {
+    private Framebuffer () {
         int[] buffers = new int[1];
         GLES20.glGenBuffers( 1, buffers, 0 );
         id = buffers[0];
