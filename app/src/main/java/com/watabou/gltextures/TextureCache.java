@@ -89,15 +89,6 @@ public class TextureCache {
 
     }
 
-    public static void clear () {
-
-        for ( Texture txt : all.values() ) {
-            txt.delete();
-        }
-        all.clear();
-
-    }
-
     public static void reload () {
         for ( SmartTexture tx : all.values() ) {
             tx.reload();
