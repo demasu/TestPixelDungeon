@@ -29,16 +29,8 @@ public class Attribute {
         this.location = location;
     }
 
-    public int location () {
-        return location;
-    }
-
     public void enable () {
         GLES20.glEnableVertexAttribArray( location );
-    }
-
-    public void disable () {
-        GLES20.glDisableVertexAttribArray( location );
     }
 
     public void vertexPointer ( int size, int stride, FloatBuffer ptr ) {
