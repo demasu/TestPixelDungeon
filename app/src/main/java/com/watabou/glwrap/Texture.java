@@ -96,7 +96,7 @@ public class Texture {
                 imageBuffer );
     }
 
-    public void pixels ( int w, int h, byte[] pixels ) {
+    private void pixels ( int w, int h, byte[] pixels ) {
 
         bind();
 
@@ -157,7 +157,7 @@ public class Texture {
         this.id = id;
     }
 
-    public void setPremultiplied ( boolean premultiplied ) {
+    private void setPremultiplied ( boolean premultiplied ) {
         this.premultiplied = premultiplied;
     }
 }
