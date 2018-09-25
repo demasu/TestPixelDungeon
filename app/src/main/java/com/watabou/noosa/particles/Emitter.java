@@ -107,6 +107,7 @@ public class Emitter extends Group {
         super.update();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     protected void emit ( int index ) {
         if ( target == null ) {
             factory.emit(
