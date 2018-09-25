@@ -37,8 +37,10 @@ public class BitmaskEmitter extends Emitter {
         this.target = target;
 
         map = target.texture;
-        mapW = map.getBitmap().getWidth();
-        mapH = map.getBitmap().getHeight();
+        if ( map.getBitmap() != null ) {
+            mapW = map.getBitmap().getWidth();
+            mapH = map.getBitmap().getHeight();
+        }
     }
 
     @Override
