@@ -129,7 +129,4 @@ public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnError
         }
     }
 
-    public boolean isEnabled () {
-        return enabled;
-    }
 }
