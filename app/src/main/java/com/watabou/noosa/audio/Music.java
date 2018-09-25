@@ -20,10 +20,12 @@ package com.watabou.noosa.audio;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.support.annotation.Nullable;
 
 import com.watabou.noosa.Game;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener {
 
@@ -31,6 +33,7 @@ public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnError
 
     private MediaPlayer player;
 
+    @Nullable
     private String lastPlayed;
     private boolean lastLooping;
 
@@ -38,7 +41,7 @@ public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnError
 
     public void play ( String assetName, boolean looping ) {
 
-        if ( isPlaying() && lastPlayed.equals( assetName ) ) {
+        if ( isPlaying() && Objects.equals( lastPlayed, assetName ) ) {
             return;
         }
 
