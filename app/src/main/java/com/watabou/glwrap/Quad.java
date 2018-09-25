@@ -57,7 +57,7 @@ public class Quad {
 
             indexSize = size;
             indices = ByteBuffer.
-                    allocateDirect( size * SIZE * Short.SIZE / 8 ).
+                    allocateDirect( size * SIZE * Short.SIZE / BYTE_SIZE ).
                     order( ByteOrder.nativeOrder() ).
                     asShortBuffer();
 
@@ -86,6 +86,7 @@ public class Quad {
         return indices;
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static void fill ( float[] v,
                               float x1, float x2, float y1, float y2,
                               float u1, float u2, float v1, float v2 ) {
@@ -111,6 +112,7 @@ public class Quad {
         v[15] = v2;
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static void fillXY ( float[] v, float x1, float x2, float y1, float y2 ) {
 
         v[0] = x1;
@@ -126,6 +128,7 @@ public class Quad {
         v[13] = y2;
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static void fillUV ( float[] v, float u1, float u2, float v1, float v2 ) {
 
         v[2] = u1;
