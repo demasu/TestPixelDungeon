@@ -102,11 +102,11 @@ public class Texture {
         int[] pixels = new int[w * h];
         bitmap.getPixels( pixels, 0, w, 0, 0, w, h );
 
-        final int AG_MASK   = 0xFF00FF00;
-        final int RB_MASK   = 0xFF;
-        final int BIT_SHIFT = 16;
         // recode - components reordering is needed
         if ( recode ) {
+            final int AG_MASK = 0xFF00FF00;
+            final int RB_MASK = 0xFF;
+            final int BIT_SHIFT = 16;
             for ( int i = 0; i < pixels.length; i++ ) {
                 int color = pixels[i];
                 int ag = color & AG_MASK;
