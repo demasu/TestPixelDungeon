@@ -21,13 +21,13 @@ import android.opengl.GLES20;
 
 public class Program {
 
-    private int handle;
+    private final int handle;
 
     public Program () {
         handle = GLES20.glCreateProgram();
     }
 
-    public void attach ( Shader shader ) {
+    protected void attach ( Shader shader ) {
         GLES20.glAttachShader( handle, shader.handle() );
     }
 
