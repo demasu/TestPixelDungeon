@@ -37,6 +37,7 @@ public class BitmaskEmitter extends Emitter {
         this.target = target;
 
         map = target.texture;
+        //noinspection CaughtExceptionImmediatelyRethrown
         try {
             // TODO: Figure out more appropriate way of handling the potential NPE
             //noinspection ConstantConditions
@@ -56,6 +57,7 @@ public class BitmaskEmitter extends Emitter {
         float ofsY = frame.top * mapH;
 
         float x, y;
+        //noinspection CaughtExceptionImmediatelyRethrown
         try {
             // TODO: Figure out more appropriate way of handling the potential NPE
             //noinspection ConstantConditions
