@@ -37,9 +37,14 @@ public class BitmaskEmitter extends Emitter {
         this.target = target;
 
         map = target.texture;
-        if ( map.getBitmap() != null ) {
+        try {
+            // TODO: Figure out more appropriate way of handling the potential NPE
+            //noinspection ConstantConditions
             mapW = map.getBitmap().getWidth();
             mapH = map.getBitmap().getHeight();
+        }
+        catch ( NullPointerException e ) {
+            throw e;
         }
     }
 
@@ -51,12 +56,17 @@ public class BitmaskEmitter extends Emitter {
         float ofsY = frame.top * mapH;
 
         float x, y;
-        if ( map.getBitmap() != null ) {
+        try {
+            // TODO: Figure out more appropriate way of handling the potential NPE
+            //noinspection ConstantConditions
             do {
                 x = Random.Float( frame.width() ) * mapW;
                 y = Random.Float( frame.height() ) * mapH;
             }
             while ( ( map.getBitmap().getPixel( (int) ( x + ofsX ), (int) ( y + ofsY ) ) & 0x000000FF ) == 0 );
+        }
+        catch ( NullPointerException e ) {
+            throw e;
         }
 
         factory.emit( this, index,
