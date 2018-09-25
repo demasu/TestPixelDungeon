@@ -52,7 +52,7 @@ public class BlobEmitter extends Emitter {
             if ( map[i] > 0 && Dungeon.getVisible()[i] ) {
                 float x = ( ( i % WIDTH ) + Random.Float() ) * size;
                 float y = ( ( i / WIDTH ) + Random.Float() ) * size;
-                factory.emit( this, index, x, y );
+                getFactory().emit( this, index, x, y );
             }
         }
     }

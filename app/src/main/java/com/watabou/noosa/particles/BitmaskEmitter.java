@@ -34,7 +34,7 @@ public class BitmaskEmitter extends Emitter {
     public BitmaskEmitter ( Image target ) {
         super();
 
-        this.target = target;
+        this.setTarget( target );
 
         map = target.texture;
         //noinspection CaughtExceptionImmediatelyRethrown
@@ -52,7 +52,7 @@ public class BitmaskEmitter extends Emitter {
     @Override
     protected void emit ( int index ) {
 
-        RectF frame = ( (Image) target ).frame();
+        RectF frame = ( (Image) getTarget() ).frame();
         float ofsX = frame.left * mapW;
         float ofsY = frame.top * mapH;
 
@@ -73,8 +73,8 @@ public class BitmaskEmitter extends Emitter {
             throw e;
         }
 
-        factory.emit( this, index,
-                target.x + x * target.scale.x,
-                target.y + y * target.scale.y );
+        getFactory().emit( this, index,
+                getTarget().x + x * getTarget().scale.x,
+                getTarget().y + y * getTarget().scale.y );
     }
 }

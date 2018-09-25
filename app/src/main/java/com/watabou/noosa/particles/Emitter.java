@@ -36,13 +36,13 @@ public class Emitter extends Group {
     public boolean on = false;
     public boolean autoKill = true;
     private boolean lightMode = false;
-    protected Visual target;
+    private Visual target;
     private float interval;
     private int quantity;
     private int count;
     private float time;
 
-    protected Factory factory;
+    private Factory factory;
 
     public void pos ( float x, float y ) {
         pos( x, y, 0, 0 );
@@ -60,7 +60,7 @@ public class Emitter extends Group {
     }
 
     public void pos ( Visual target ) {
-        this.target = target;
+        this.setTarget( target );
     }
 
     public void burst ( Factory factory, int quantity ) {
@@ -73,7 +73,7 @@ public class Emitter extends Group {
 
     public void start ( Factory factory, float interval, int quantity ) {
 
-        this.factory = factory;
+        this.setFactory( factory );
         this.lightMode = factory.lightMode();
 
         this.interval = interval;
@@ -108,18 +108,18 @@ public class Emitter extends Group {
 
     @SuppressWarnings ( "FeatureEnvy" )
     protected void emit ( int index ) {
-        if ( target == null ) {
-            factory.emit(
+        if ( getTarget() == null ) {
+            getFactory().emit(
                     this,
                     index,
                     x + Random.Float( width ),
                     y + Random.Float( height ) );
         } else {
-            factory.emit(
+            getFactory().emit(
                     this,
                     index,
-                    target.x + Random.Float( target.width ),
-                    target.y + Random.Float( target.height ) );
+                    getTarget().x + Random.Float( getTarget().width ),
+                    getTarget().y + Random.Float( getTarget().height ) );
         }
     }
 
@@ -132,6 +132,22 @@ public class Emitter extends Group {
         } else {
             super.draw();
         }
+    }
+
+    public Visual getTarget () {
+        return target;
+    }
+
+    public void setTarget ( Visual target ) {
+        this.target = target;
+    }
+
+    public Factory getFactory () {
+        return factory;
+    }
+
+    private void setFactory ( Factory factory ) {
+        this.factory = factory;
     }
 
     abstract public static class Factory {
