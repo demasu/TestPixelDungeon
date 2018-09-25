@@ -35,12 +35,12 @@ public class Emitter extends Group {
     public float height;
     public boolean on = false;
     public boolean autoKill = true;
-    protected boolean lightMode = false;
+    private boolean lightMode = false;
     protected Visual target;
-    protected float interval;
-    protected int quantity;
-    protected int count;
-    protected float time;
+    private float interval;
+    private int quantity;
+    private int count;
+    private float time;
 
     protected Factory factory;
 
