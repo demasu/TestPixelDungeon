@@ -50,6 +50,8 @@ public class Keys {
         }
     }
 
+    // TODO: Move out of this file
+    @SuppressWarnings ( "PublicInnerClass" )
     public static class Key {
 
         public int code;
