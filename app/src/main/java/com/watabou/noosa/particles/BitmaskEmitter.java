@@ -59,13 +59,15 @@ public class BitmaskEmitter extends Emitter {
         float x, y;
         //noinspection CaughtExceptionImmediatelyRethrown
         try {
+            final int BITMASK = 0x000000FF;
+
             // TODO: Figure out more appropriate way of handling the potential NPE
             //noinspection ConstantConditions
             do {
                 x = Random.Float( frame.width() ) * mapW;
                 y = Random.Float( frame.height() ) * mapH;
             }
-            while ( ( map.getBitmap().getPixel( (int) ( x + ofsX ), (int) ( y + ofsY ) ) & 0x000000FF ) == 0 );
+            while ( ( map.getBitmap().getPixel( (int) ( x + ofsX ), (int) ( y + ofsY ) ) & BITMASK ) == 0 );
         }
         catch ( NullPointerException e ) {
             throw e;
