@@ -25,6 +25,7 @@ import android.media.SoundPool;
 import com.watabou.noosa.Game;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -66,9 +67,7 @@ public enum Sample implements SoundPool.OnLoadCompleteListener {
     }
 
     public void load ( String... assets ) {
-        for ( String asset : assets ) {
-            loadingQueue.add( asset );
-        }
+        Collections.addAll( loadingQueue, assets );
         loadNext();
     }
 
