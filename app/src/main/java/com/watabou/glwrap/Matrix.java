@@ -41,6 +41,7 @@ public class Matrix {
 
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static void setIdentity ( float[] m ) {
         for ( int i = 0; i < 16; i++ ) {
             m[i] = 0f;
@@ -88,6 +89,7 @@ public class Matrix {
         //	android.opengl.Matrix.scaleM( m, 0, x, y, 1 );
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static void translate ( float[] m, float x, float y ) {
         m[12] += m[0] * x + m[4] * y;
         m[13] += m[1] * x + m[5] * y;
