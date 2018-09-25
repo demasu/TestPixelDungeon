@@ -19,7 +19,7 @@ package com.watabou.glwrap;
 
 import android.opengl.GLES20;
 
-public class Renderbuffer {
+class Renderbuffer {
 
     public static final int RGBA8 = GLES20.GL_RGBA;    // ?
     public static final int DEPTH16 = GLES20.GL_DEPTH_COMPONENT16;
