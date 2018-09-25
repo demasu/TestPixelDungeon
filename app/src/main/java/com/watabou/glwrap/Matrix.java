@@ -21,28 +21,6 @@ public class Matrix {
 
     public static final float G2RAD = 0.01745329251994329576923690768489f;
 
-    public static float[] clone ( float[] m ) {
-
-        int n = m.length;
-        float[] res = new float[n];
-        do {
-            --n;
-            res[n] = m[n];
-        } while ( n > 0 );
-
-        return res;
-    }
-
-    public static void copy ( float[] src, float[] dst ) {
-
-        int n = src.length;
-        do {
-            --n;
-            dst[n] = src[n];
-        } while ( n > 0 );
-
-    }
-
     @SuppressWarnings ( "MagicNumber" )
     public static void setIdentity ( float[] m ) {
         for ( int i = 0; i < 16; i++ ) {
@@ -74,12 +52,6 @@ public class Matrix {
         m[5] += -m[1] * t;
     }
 
-    public static void skewY ( float[] m, float a ) {
-        double t = Math.tan( a * G2RAD );
-        m[0] += m[4] * t;
-        m[1] += m[5] * t;
-    }
-
     public static void scale ( float[] m, float x, float y ) {
         m[0] *= x;
         m[1] *= x;
@@ -98,7 +70,4 @@ public class Matrix {
         m[13] += m[1] * x + m[5] * y;
     }
 
-    public static void multiply ( float[] left, float right[], float[] result ) {
-        android.opengl.Matrix.multiplyMM( result, 0, left, 0, right, 0 );
-    }
 }
