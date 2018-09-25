@@ -54,9 +54,10 @@ public class Matrix {
     }
 
     public static void rotate ( float[] m, float a ) {
-        a *= G2RAD;
-        float sin = (float) Math.sin( a );
-        float cos = (float) Math.cos( a );
+        float a1 = a;
+        a1 *= G2RAD;
+        float sin = (float) Math.sin( a1 );
+        float cos = (float) Math.cos( a1 );
         float m0 = m[0];
         float m1 = m[1];
         float m4 = m[4];
