@@ -57,8 +57,6 @@ public class Emitter extends Group {
         this.y = y;
         this.width = width;
         this.height = height;
-
-        target = null;
     }
 
     public void pos ( Visual target ) {
