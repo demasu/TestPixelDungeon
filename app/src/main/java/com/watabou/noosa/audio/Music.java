@@ -66,8 +66,6 @@ public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnError
         } catch ( IOException e ) {
 
             player.release();
-            player = null;
-
         }
     }
 
@@ -85,7 +83,6 @@ public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnError
     public boolean onError ( MediaPlayer mp, int what, int extra ) {
         if ( player != null ) {
             player.release();
-            player = null;
         }
         return true;
     }
@@ -106,7 +103,6 @@ public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnError
         if ( player != null ) {
             player.stop();
             player.release();
-            player = null;
         }
     }
 
