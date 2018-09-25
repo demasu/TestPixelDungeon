@@ -57,7 +57,7 @@ public class Keys {
         public int code;
         public boolean pressed;
 
-        public Key ( int code, boolean pressed ) {
+        Key ( int code, boolean pressed ) {
             this.code = code;
             this.pressed = pressed;
         }
