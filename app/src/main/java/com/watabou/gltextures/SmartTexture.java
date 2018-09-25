@@ -63,7 +63,7 @@ public class SmartTexture extends Texture {
 
     @Override
     public void bitmap ( Bitmap bitmap ) {
-        handMade( bitmap, true );
+        handMade( bitmap );
 
         this.setBitmap( bitmap );
         setWidth( bitmap.getWidth() );

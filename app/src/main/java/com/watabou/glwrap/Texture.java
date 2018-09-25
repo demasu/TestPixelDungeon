@@ -31,7 +31,7 @@ public class Texture {
     public static final int LINEAR = GLES20.GL_LINEAR;
 
     public static final int REPEAT = GLES20.GL_REPEAT;
-    public static final int CLAMP = GLES20.GL_CLAMP_TO_EDGE;
+    protected static final int CLAMP = GLES20.GL_CLAMP_TO_EDGE;
 
     private int id;
 
@@ -94,7 +94,7 @@ public class Texture {
 
     // If getConfig returns null (unsupported format?), GLUtils.texImage2D works
     // incorrectly. In this case we need to load pixels manually
-    protected void handMade ( Bitmap bitmap, boolean recode ) {
+    protected void handMade ( Bitmap bitmap ) {
 
         int w = bitmap.getWidth();
         int h = bitmap.getHeight();
@@ -103,17 +103,15 @@ public class Texture {
         bitmap.getPixels( pixels, 0, w, 0, 0, w, h );
 
         // recode - components reordering is needed
-        if ( recode ) {
-            final int AG_MASK = 0xFF00FF00;
-            final int RB_MASK = 0xFF;
-            final int BIT_SHIFT = 16;
-            for ( int i = 0; i < pixels.length; i++ ) {
-                int color = pixels[i];
-                int ag = color & AG_MASK;
-                int r = ( color >> BIT_SHIFT ) & RB_MASK;
-                int b = color & RB_MASK;
-                pixels[i] = ag | ( b << BIT_SHIFT ) | r;
-            }
+        final int AG_MASK = 0xFF00FF00;
+        final int RB_MASK = 0xFF;
+        final int BIT_SHIFT = 16;
+        for ( int i = 0; i < pixels.length; i++ ) {
+            int color = pixels[i];
+            int ag = color & AG_MASK;
+            int r = ( color >> BIT_SHIFT ) & RB_MASK;
+            int b = color & RB_MASK;
+            pixels[i] = ag | ( b << BIT_SHIFT ) | r;
         }
 
         pixels( w, h, pixels );
