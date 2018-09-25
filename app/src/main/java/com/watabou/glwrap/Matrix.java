@@ -26,7 +26,8 @@ public class Matrix {
         int n = m.length;
         float[] res = new float[n];
         do {
-            res[--n] = m[n];
+            --n;
+            res[n] = m[n];
         } while ( n > 0 );
 
         return res;
@@ -36,7 +37,8 @@ public class Matrix {
 
         int n = src.length;
         do {
-            dst[--n] = src[n];
+            --n;
+            dst[n] = src[n];
         } while ( n > 0 );
 
     }
