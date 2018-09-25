@@ -55,7 +55,4 @@ public class Shader {
         }
     }
 
-    public void delete () {
-        GLES20.glDeleteShader( handle );
-    }
 }
