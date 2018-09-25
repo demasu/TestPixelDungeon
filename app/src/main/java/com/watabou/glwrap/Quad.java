@@ -30,20 +30,21 @@ public class Quad {
     public static final short[] VALUES = { 0, 1, 2, 0, 2, 3 };
 
     public static final int SIZE = VALUES.length;
+    private static final int BYTE_SIZE = 8;
 
     private static ShortBuffer indices;
     private static int indexSize = 0;
 
     public static FloatBuffer create () {
         return ByteBuffer.
-                allocateDirect( 16 * Float.SIZE / 8 ).
+                allocateDirect( 2 * Float.SIZE ).
                 order( ByteOrder.nativeOrder() ).
                 asFloatBuffer();
     }
 
     public static FloatBuffer createSet ( int size ) {
         return ByteBuffer.
-                allocateDirect( size * 16 * Float.SIZE / 8 ).
+                allocateDirect( size * 2 * Float.SIZE ).
                 order( ByteOrder.nativeOrder() ).
                 asFloatBuffer();
     }
