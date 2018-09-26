@@ -307,13 +307,13 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
         switch ( state ) {
             case BURNING:
                 if ( burning != null ) {
-                    burning.on = false;
+                    burning.setOn( false );
                     burning = null;
                 }
                 break;
             case LEVITATING:
                 if ( levitation != null ) {
-                    levitation.on = false;
+                    levitation.setOn( false );
                     levitation = null;
                 }
                 break;

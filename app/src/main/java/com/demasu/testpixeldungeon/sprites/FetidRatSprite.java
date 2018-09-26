@@ -50,7 +50,7 @@ public class FetidRatSprite extends RatSprite {
         super.die();
 
         if ( cloud != null ) {
-            cloud.on = false;
+            cloud.setOn( false );
         }
     }
 }

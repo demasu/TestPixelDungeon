@@ -29,12 +29,12 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class Emitter extends Group {
 
-    public float x;
-    public float y;
-    public float width;
-    public float height;
-    public boolean on = false;
-    public boolean autoKill = true;
+    private float x;
+    private float y;
+    private float width;
+    private float height;
+    private boolean on = false;
+    private boolean autoKill = true;
     private boolean lightMode = false;
     private Visual target;
     private float interval;
@@ -53,10 +53,10 @@ public class Emitter extends Group {
     }
 
     public void pos ( float x, float y, float width, float height ) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.setX( x );
+        this.setY( y );
+        this.setWidth( width );
+        this.setHeight( height );
     }
 
     public void pos ( Visual target ) {
@@ -82,24 +82,24 @@ public class Emitter extends Group {
         count = 0;
         time = Random.Float( interval );
 
-        on = true;
+        setOn( true );
     }
 
     @Override
     public void update () {
 
-        if ( on ) {
+        if ( isOn() ) {
             time += Game.getElapsed();
             while ( time > interval ) {
                 time -= interval;
                 emit( count );
                 count++;
                 if ( quantity > 0 && count >= quantity ) {
-                    on = false;
+                    setOn( false );
                     break;
                 }
             }
-        } else if ( autoKill && countLiving() == 0 ) {
+        } else if ( isAutoKill() && countLiving() == 0 ) {
             kill();
         }
 
@@ -112,8 +112,8 @@ public class Emitter extends Group {
             getFactory().emit(
                     this,
                     index,
-                    x + Random.Float( width ),
-                    y + Random.Float( height ) );
+                    getX() + Random.Float( getWidth() ),
+                    getY() + Random.Float( getHeight() ) );
         } else {
             getFactory().emit(
                     this,
@@ -148,6 +148,54 @@ public class Emitter extends Group {
 
     private void setFactory ( Factory factory ) {
         this.factory = factory;
+    }
+
+    public float getX () {
+        return x;
+    }
+
+    public void setX ( float x ) {
+        this.x = x;
+    }
+
+    public float getY () {
+        return y;
+    }
+
+    public void setY ( float y ) {
+        this.y = y;
+    }
+
+    private float getWidth () {
+        return width;
+    }
+
+    public void setWidth ( float width ) {
+        this.width = width;
+    }
+
+    private float getHeight () {
+        return height;
+    }
+
+    public void setHeight ( float height ) {
+        this.height = height;
+    }
+
+    public boolean isOn () {
+        return on;
+    }
+
+    public void setOn ( boolean on ) {
+        this.on = on;
+    }
+
+    private boolean isAutoKill () {
+        return autoKill;
+    }
+
+    public void setAutoKill ( boolean autoKill ) {
+        this.autoKill = autoKill;
     }
 
     // TODO: Move this to its own file

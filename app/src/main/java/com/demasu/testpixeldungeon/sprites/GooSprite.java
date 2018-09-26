@@ -72,7 +72,7 @@ public class GooSprite extends MobSprite {
             spray = centerEmitter();
             spray.pour( GooParticle.FACTORY, 0.04f );
         } else if ( spray != null ) {
-            spray.on = false;
+            spray.setOn( false );
             spray = null;
         }
     }

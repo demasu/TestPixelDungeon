@@ -100,8 +100,8 @@ public class StatusPane extends Component {
 
         blood = new BitmaskEmitter( avatar );
         blood.pour( BloodParticle.FACTORY, 0.3f );
-        blood.autoKill = false;
-        blood.on = false;
+        blood.setAutoKill( false );
+        blood.setOn( false );
         add( blood );
 
         compass = new Compass( Dungeon.getLevel().exit );
@@ -239,13 +239,13 @@ public class StatusPane extends Component {
 
         if ( health == 0 ) {
             avatar.tint( 0x000000, 0.6f );
-            blood.on = false;
+            blood.setOn( false );
         } else if ( health < 0.25f ) {
             avatar.tint( 0xcc0000, 0.4f );
-            blood.on = true;
+            blood.setOn( true );
         } else {
             avatar.resetColor();
-            blood.on = false;
+            blood.setOn( false );
         }
 
         hp.scale.x = health;
