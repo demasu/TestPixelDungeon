@@ -150,6 +150,8 @@ public class Emitter extends Group {
         this.factory = factory;
     }
 
+    // TODO: Move this to its own file
+    @SuppressWarnings ( "PublicInnerClass" )
     abstract public static class Factory {
 
         abstract public void emit ( Emitter emitter, int index, float x, float y );
