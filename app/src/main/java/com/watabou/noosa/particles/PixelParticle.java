@@ -54,6 +54,8 @@ public class PixelParticle extends PseudoPixel {
         }
     }
 
+    // TODO: Move to another file
+    @SuppressWarnings ( "PublicInnerClass" )
     public static class Shrinking extends PixelParticle {
         @Override
         public void update () {
