@@ -58,7 +58,7 @@ public class PixelParticle extends PseudoPixel {
         }
     }
 
-    public float getSize () {
+    float getSize () {
         return size;
     }
 
