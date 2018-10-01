@@ -30,7 +30,8 @@ public class PixelParticle extends PseudoPixel {
     public PixelParticle () {
         super();
 
-        origin.set( +0.5f );
+        final float OFFSET = +0.5f;
+        origin.set( OFFSET );
     }
 
     public void reset ( float x, float y, int color, float size, float lifespan ) {
