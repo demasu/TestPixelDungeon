@@ -40,16 +40,19 @@ public class PixelParticle extends PseudoPixel {
         this.y = y;
 
         color( color );
-        size( this.size = size );
+        this.size = size;
+        size( size );
 
-        this.left = this.lifespan = lifespan;
+        this.left = lifespan;
+        this.lifespan = lifespan;
     }
 
     @Override
     public void update () {
         super.update();
 
-        if ( ( left -= Game.getElapsed() ) <= 0 ) {
+        left -= Game.getElapsed();
+        if ( left <= 0 ) {
             kill();
         }
     }
