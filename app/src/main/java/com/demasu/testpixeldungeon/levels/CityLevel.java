@@ -185,13 +185,13 @@ public class CityLevel extends RegularLevel {
             this.x = x;
             this.y = y;
 
-            left = lifespan = 2f;
+            setLeft( setLifespan( 2f ) );
         }
 
         @Override
         public void update () {
             super.update();
-            float p = left / lifespan;
+            float p = getLeft() / getLifespan();
             am = p > 0.8f ? 1 - p : p * 0.25f;
             size( 8 - p * 4 );
         }

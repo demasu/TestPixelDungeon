@@ -196,7 +196,7 @@ public class MagicMissile extends Emitter {
             super();
 
             color( 0x88CCFF );
-            lifespan = 0.5f;
+            setLifespan( 0.5f );
 
             speed.set( Random.Float( -10, +10 ), Random.Float( -10, +10 ) );
         }
@@ -207,14 +207,14 @@ public class MagicMissile extends Emitter {
             this.x = x;
             this.y = y;
 
-            left = lifespan;
+            setLeft( getLifespan() );
         }
 
         @Override
         public void update () {
             super.update();
             // alpha: 1 -> 0; size: 1 -> 4
-            size( 4 - ( am = left / lifespan ) * 3 );
+            size( 4 - ( am = getLeft() / getLifespan() ) * 3 );
         }
     }
 
@@ -230,7 +230,7 @@ public class MagicMissile extends Emitter {
         public EarthParticle () {
             super();
 
-            lifespan = 0.5f;
+            setLifespan( 0.5f );
 
             color( ColorMath.random( 0x555555, 0x777766 ) );
 
@@ -243,8 +243,8 @@ public class MagicMissile extends Emitter {
             this.x = x;
             this.y = y;
 
-            left = lifespan;
-            size = 4;
+            setLeft( getLifespan() );
+            setSize( 4 );
 
             speed.set( Random.Float( -10, +10 ), Random.Float( -10, +10 ) );
         }
@@ -268,7 +268,7 @@ public class MagicMissile extends Emitter {
         public WhiteParticle () {
             super();
 
-            lifespan = 0.4f;
+            setLifespan( 0.4f );
 
             am = 0.5f;
         }
@@ -279,14 +279,14 @@ public class MagicMissile extends Emitter {
             this.x = x;
             this.y = y;
 
-            left = lifespan;
+            setLeft( getLifespan() );
         }
 
         @Override
         public void update () {
             super.update();
             // size: 3 -> 0
-            size( ( left / lifespan ) * 3 );
+            size( ( getLeft() / getLifespan() ) * 3 );
         }
     }
 
@@ -309,7 +309,7 @@ public class MagicMissile extends Emitter {
         public SlowParticle () {
             super();
 
-            lifespan = 0.6f;
+            setLifespan( 0.6f );
 
             color( 0x664422 );
             size( 2 );
@@ -322,7 +322,7 @@ public class MagicMissile extends Emitter {
             this.y = y;
             this.emitter = emitter;
 
-            left = lifespan;
+            setLeft( getLifespan() );
 
             acc.set( 0 );
             speed.set( Random.Float( -20, +20 ), Random.Float( -20, +20 ) );
@@ -332,7 +332,7 @@ public class MagicMissile extends Emitter {
         public void update () {
             super.update();
 
-            am = left / lifespan;
+            am = getLeft() / getLifespan();
             acc.set( ( emitter.getX() - x ) * 10, ( emitter.getY() - y ) * 10 );
         }
     }
@@ -350,15 +350,15 @@ public class MagicMissile extends Emitter {
             super.reset( x, y, 0xFFFFFF, 8, 0.5f );
 
             speed.polar( PointF.PI2 / 8 * index, 12 );
-            this.x -= speed.x * lifespan;
-            this.y -= speed.y * lifespan;
+            this.x -= speed.x * getLifespan();
+            this.y -= speed.y * getLifespan();
         }
 
         @Override
         public void update () {
             super.update();
 
-            am = ( 1 - left / lifespan ) / 2;
+            am = ( 1 - getLeft() / getLifespan() ) / 2;
         }
     }
 
@@ -380,7 +380,7 @@ public class MagicMissile extends Emitter {
         public ColdParticle () {
             super();
 
-            lifespan = 0.6f;
+            setLifespan( 0.6f );
 
             color( 0x2244FF );
         }
@@ -391,15 +391,15 @@ public class MagicMissile extends Emitter {
             this.x = x;
             this.y = y;
 
-            left = lifespan;
-            size = 8;
+            setLeft( getLifespan() );
+            setSize( 8 );
         }
 
         @Override
         public void update () {
             super.update();
 
-            am = 1 - left / lifespan;
+            am = 1 - getLeft() / getLifespan();
         }
     }
 }

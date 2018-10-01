@@ -38,7 +38,7 @@ public class EarthParticle extends PixelParticle {
         color( ColorMath.random( 0x444444, 0x777766 ) );
         angle = Random.Float( -30, 30 );
 
-        lifespan = 0.5f;
+        setLifespan( 0.5f );
     }
 
     public void reset ( float x, float y ) {
@@ -47,14 +47,14 @@ public class EarthParticle extends PixelParticle {
         this.x = x;
         this.y = y;
 
-        left = lifespan;
+        setLeft( getLifespan() );
     }
 
     @Override
     public void update () {
         super.update();
 
-        float p = left / lifespan;
+        float p = getLeft() / getLifespan();
         size( ( p < 0.5f ? p : 1 - p ) * 16 );
     }
 }

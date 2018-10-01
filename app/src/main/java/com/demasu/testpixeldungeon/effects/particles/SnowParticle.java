@@ -34,22 +34,22 @@ public class SnowParticle extends PixelParticle {
     public SnowParticle () {
         super();
         speed.set( 0, Random.Float( 5, 8 ) );
-        lifespan = 1.2f;
+        setLifespan( 1.2f );
     }
 
     public void reset ( float x, float y ) {
         revive();
 
         this.x = x;
-        this.y = y - speed.y * lifespan;
+        this.y = y - speed.y * getLifespan();
 
-        left = lifespan;
+        setLeft( getLifespan() );
     }
 
     @Override
     public void update () {
         super.update();
-        float p = left / lifespan;
+        float p = getLeft() / getLifespan();
         am = ( p < 0.5f ? p : 1 - p ) * 1.5f;
     }
 }

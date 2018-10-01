@@ -37,7 +37,7 @@ public class WebParticle extends PixelParticle {
         super();
 
         color( 0xCCCCCC );
-        lifespan = 2f;
+        setLifespan( 2f );
     }
 
     public void reset ( float x, float y ) {
@@ -46,7 +46,7 @@ public class WebParticle extends PixelParticle {
         this.x = x;
         this.y = y;
 
-        left = lifespan;
+        setLeft( getLifespan() );
         angle = Random.Float( 360 );
     }
 
@@ -54,7 +54,7 @@ public class WebParticle extends PixelParticle {
     public void update () {
         super.update();
 
-        float p = left / lifespan;
+        float p = getLeft() / getLifespan();
         am = p < 0.5f ? p : 1 - p;
         scale.y = 16 + p * 8;
     }

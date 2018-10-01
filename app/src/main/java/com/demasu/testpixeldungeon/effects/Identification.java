@@ -89,14 +89,14 @@ public class Identification extends Group {
             speed.set( dx, dy );
             acc.set( -dx / 4, -dy / 4 );
 
-            left = lifespan = 2f;
+            setLeft( setLifespan( 2f ) );
         }
 
         @Override
         public void update () {
             super.update();
 
-            am = 1 - Math.abs( left / lifespan - 0.5f ) * 2;
+            am = 1 - Math.abs( getLeft() / getLifespan() - 0.5f ) * 2;
             am *= am;
             size( am * SIZE );
         }

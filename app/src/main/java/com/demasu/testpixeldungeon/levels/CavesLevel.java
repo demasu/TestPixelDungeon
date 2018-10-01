@@ -270,14 +270,14 @@ public class CavesLevel extends RegularLevel {
             this.x = x;
             this.y = y;
 
-            left = lifespan = 0.5f;
+            setLeft( setLifespan( 0.5f ) );
         }
 
         @Override
         public void update () {
             super.update();
 
-            float p = left / lifespan;
+            float p = getLeft() / getLifespan();
             size( ( am = p < 0.5f ? p * 2 : ( 1 - p ) * 2 ) * 2 );
         }
     }

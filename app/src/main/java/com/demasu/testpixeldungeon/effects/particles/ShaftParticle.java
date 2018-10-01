@@ -40,7 +40,7 @@ public class ShaftParticle extends PixelParticle {
     public ShaftParticle () {
         super();
 
-        lifespan = 1.2f;
+        setLifespan( 1.2f );
         speed.set( 0, -6 );
     }
 
@@ -50,15 +50,15 @@ public class ShaftParticle extends PixelParticle {
         this.x = x;
         this.y = y;
 
-        offs = -Random.Float( lifespan );
-        left = lifespan - offs;
+        offs = -Random.Float( getLifespan() );
+        setLeft( getLifespan() - offs );
     }
 
     @Override
     public void update () {
         super.update();
 
-        float p = left / lifespan;
+        float p = getLeft() / getLifespan();
         am = p < 0.5f ? p : 1 - p;
         scale.x = ( 1 - p ) * 4;
         scale.y = 16 + ( 1 - p ) * 16;

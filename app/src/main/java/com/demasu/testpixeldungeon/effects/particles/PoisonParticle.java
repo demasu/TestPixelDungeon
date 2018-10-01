@@ -54,7 +54,7 @@ public class PoisonParticle extends PixelParticle {
     public PoisonParticle () {
         super();
 
-        lifespan = 0.6f;
+        setLifespan( 0.6f );
 
         acc.set( 0, +30 );
     }
@@ -65,7 +65,7 @@ public class PoisonParticle extends PixelParticle {
         this.x = x;
         this.y = y;
 
-        left = lifespan;
+        setLeft( getLifespan() );
 
         speed.polar( -Random.Float( 3.1415926f ), Random.Float( 6 ) );
     }
@@ -76,7 +76,7 @@ public class PoisonParticle extends PixelParticle {
         this.x = x;
         this.y = y;
 
-        left = lifespan;
+        setLeft( getLifespan() );
 
         speed.polar( Random.Float( 3.1415926f ), Random.Float( 10, 20 ) );
     }
@@ -85,7 +85,7 @@ public class PoisonParticle extends PixelParticle {
     public void update () {
         super.update();
         // alpha: 1 -> 0; size: 1 -> 4
-        size( 4 - ( am = left / lifespan ) * 3 );
+        size( 4 - ( am = getLeft() / getLifespan() ) * 3 );
         // color: 0x8844FF -> 0x00FF00
         color( ColorMath.interpolate( 0x00FF00, 0x8844FF, am ) );
     }

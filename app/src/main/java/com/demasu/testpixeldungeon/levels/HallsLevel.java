@@ -195,7 +195,7 @@ public class HallsLevel extends RegularLevel {
             super();
 
             color( 0xEE7722 );
-            lifespan = 1f;
+            setLifespan( 1f );
 
             acc.set( 0, +80 );
         }
@@ -206,16 +206,16 @@ public class HallsLevel extends RegularLevel {
             this.x = x;
             this.y = y;
 
-            left = lifespan;
+            setLeft( getLifespan() );
 
             speed.set( 0, -40 );
-            size = 4;
+            setSize( 4 );
         }
 
         @Override
         public void update () {
             super.update();
-            float p = left / lifespan;
+            float p = getLeft() / getLifespan();
             am = p > 0.8f ? ( 1 - p ) * 5 : 1;
         }
     }

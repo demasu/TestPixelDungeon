@@ -51,7 +51,7 @@ public class SparkParticle extends PixelParticle {
         this.x = x;
         this.y = y;
 
-        left = lifespan = Random.Float( 0.5f, 1.0f );
+        setLeft( setLifespan( Random.Float( 0.5f, 1.0f ) ) );
 
         speed.polar( -Random.Float( 3.1415926f ), Random.Float( 20, 40 ) );
     }
@@ -59,6 +59,6 @@ public class SparkParticle extends PixelParticle {
     @Override
     public void update () {
         super.update();
-        size( Random.Float( 5 * left / lifespan ) );
+        size( Random.Float( 5 * getLeft() / getLifespan() ) );
     }
 }

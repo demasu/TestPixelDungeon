@@ -40,7 +40,7 @@ public class ElmoParticle extends PixelParticle.Shrinking {
         super();
 
         color( 0x22EE66 );
-        lifespan = 0.6f;
+        setLifespan( 0.6f );
 
         acc.set( 0, -80 );
     }
@@ -51,16 +51,16 @@ public class ElmoParticle extends PixelParticle.Shrinking {
         this.x = x;
         this.y = y;
 
-        left = lifespan;
+        setLeft( getLifespan() );
 
-        size = 4;
+        setSize( 4 );
         speed.set( 0 );
     }
 
     @Override
     public void update () {
         super.update();
-        float p = left / lifespan;
+        float p = getLeft() / getLifespan();
         am = p > 0.8f ? ( 1 - p ) * 5 : 1;
     }
 }

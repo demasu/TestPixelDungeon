@@ -22,10 +22,10 @@ import com.watabou.noosa.PseudoPixel;
 
 public class PixelParticle extends PseudoPixel {
 
-    protected float size;
+    private float size;
 
-    protected float lifespan;
-    protected float left;
+    private float lifespan;
+    private float left;
 
     public PixelParticle () {
         super();
@@ -41,21 +41,45 @@ public class PixelParticle extends PseudoPixel {
         this.y = y;
 
         color( color );
-        this.size = size;
+        this.setSize( size );
         size( size );
 
-        this.left = lifespan;
-        this.lifespan = lifespan;
+        this.setLeft( lifespan );
+        this.setLifespan( lifespan );
     }
 
     @Override
     public void update () {
         super.update();
 
-        left -= Game.getElapsed();
-        if ( left <= 0 ) {
+        setLeft( getLeft() - Game.getElapsed() );
+        if ( getLeft() <= 0 ) {
             kill();
         }
+    }
+
+    public float getSize () {
+        return size;
+    }
+
+    public void setSize ( float size ) {
+        this.size = size;
+    }
+
+    public float getLifespan () {
+        return lifespan;
+    }
+
+    public void setLifespan ( float lifespan ) {
+        this.lifespan = lifespan;
+    }
+
+    public float getLeft () {
+        return left;
+    }
+
+    public void setLeft ( float left ) {
+        this.left = left;
     }
 
     // TODO: Move to another file
@@ -64,7 +88,7 @@ public class PixelParticle extends PseudoPixel {
         @Override
         public void update () {
             super.update();
-            size( size * left / lifespan );
+            size( getSize() * getLeft() / getLifespan() );
         }
     }
 }

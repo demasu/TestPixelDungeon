@@ -213,7 +213,7 @@ public class SewerLevel extends RegularLevel {
 
             speed.set( Random.Float( -2, +2 ), 0 );
 
-            left = lifespan = 0.5f;
+            setLeft( setLifespan( 0.5f ) );
         }
     }
 }

@@ -40,7 +40,7 @@ public class SacrificialParticle extends PixelParticle.Shrinking {
         super();
 
         color( 0x4488EE );
-        lifespan = 0.6f;
+        setLifespan( 0.6f );
 
         acc.set( 0, -100 );
     }
@@ -51,16 +51,16 @@ public class SacrificialParticle extends PixelParticle.Shrinking {
         this.x = x;
         this.y = y - 4;
 
-        left = lifespan;
+        setLeft( getLifespan() );
 
-        size = 4;
+        setSize( 4 );
         speed.set( 0 );
     }
 
     @Override
     public void update () {
         super.update();
-        float p = left / lifespan;
+        float p = getLeft() / getLifespan();
         am = p > 0.75f ? ( 1 - p ) * 4 : 1;
     }
 }
