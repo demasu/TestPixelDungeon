@@ -55,6 +55,8 @@ abstract public class Tweener extends Gizmo {
 
     abstract protected void updateValues ( float progress );
 
+    // TODO: Move to own file
+    @SuppressWarnings ( "PublicInnerClass" )
     public interface Listener {
         void onComplete ( Tweener tweener );
     }
