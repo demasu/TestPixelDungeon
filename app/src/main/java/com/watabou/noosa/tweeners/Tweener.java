@@ -25,7 +25,7 @@ abstract public class Tweener extends Gizmo {
     private final float interval;
     private float elapsed;
 
-    public Listener listener;
+    private Listener listener;
 
     public Tweener ( float interval ) {
         super();
@@ -48,12 +48,20 @@ abstract public class Tweener extends Gizmo {
     }
 
     protected void onComplete () {
-        if ( listener != null ) {
-            listener.onComplete( this );
+        if ( getListener() != null ) {
+            getListener().onComplete( this );
         }
     }
 
     abstract protected void updateValues ( float progress );
+
+    public Listener getListener () {
+        return listener;
+    }
+
+    public void setListener ( Listener listener ) {
+        this.listener = listener;
+    }
 
     // TODO: Move to own file
     @SuppressWarnings ( "PublicInnerClass" )

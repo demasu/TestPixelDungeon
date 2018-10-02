@@ -129,7 +129,7 @@ public class Stab extends ItemSprite implements Tweener.Listener {
         //    y -= 2 * SIZE / 3;
 
         PosTweener tweener = new PosTweener( this, dest, 0.6f );
-        tweener.listener = this;
+        tweener.setListener( this );
         source.sprite.parent.add( tweener );
     }
 
