@@ -30,7 +30,6 @@ abstract public class Tweener extends Gizmo {
     public Tweener ( Gizmo target, float interval ) {
         super();
 
-        Gizmo target1 = target;
         this.interval = interval;
 
         elapsed = 0;
