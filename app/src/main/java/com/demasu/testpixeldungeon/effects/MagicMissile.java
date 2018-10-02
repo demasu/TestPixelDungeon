@@ -160,7 +160,8 @@ public class MagicMissile extends Emitter {
     public void size ( float size ) {
         setX( getX() - size / 2 );
         setY( getY() - size / 2 );
-        setWidth( setHeight( size ) );
+        setWidth( size );
+        setHeight( size );
     }
 
     @Override

@@ -270,7 +270,8 @@ public class CavesLevel extends RegularLevel {
             this.x = x;
             this.y = y;
 
-            setLeft( setLifespan( 0.5f ) );
+            setLeft( 0.5f );
+            setLifespan( 0.5f );
         }
 
         @Override

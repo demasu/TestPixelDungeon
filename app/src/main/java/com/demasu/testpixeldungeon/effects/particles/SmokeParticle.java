@@ -45,7 +45,8 @@ public class SmokeParticle extends PixelParticle {
         this.x = x;
         this.y = y;
 
-        setLeft( setLifespan( Random.Float( 0.6f, 1f ) ) );
+        setLeft( Random.Float( 0.6f, 1f ) );
+        setLifespan( Random.Float( 0.6f, 1f ) );
         speed.set( Random.Float( -4, +4 ), Random.Float( -8, +8 ) );
     }
 

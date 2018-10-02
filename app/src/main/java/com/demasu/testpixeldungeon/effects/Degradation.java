@@ -141,7 +141,8 @@ public class Degradation extends Group {
             speed.set( dx, dy );
             acc.set( -dx / 4, -dy / 4 );
 
-            setLeft( setLifespan( 2f ) );
+            setLeft( 2f );
+            setLifespan( 2f );
         }
 
         @Override

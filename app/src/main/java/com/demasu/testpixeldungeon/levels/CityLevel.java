@@ -185,7 +185,8 @@ public class CityLevel extends RegularLevel {
             this.x = x;
             this.y = y;
 
-            setLeft( setLifespan( 2f ) );
+            setLeft( 2f );
+            setLifespan( 2f );
         }
 
         @Override

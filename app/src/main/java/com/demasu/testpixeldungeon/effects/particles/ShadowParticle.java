@@ -56,14 +56,16 @@ public class ShadowParticle extends PixelParticle.Shrinking {
         speed.set( Random.Float( -5, +5 ), Random.Float( -5, +5 ) );
 
         setSize( 6 );
-        setLeft( setLifespan( 0.5f ) );
+        setLeft( 0.5f );
+        setLifespan( 0.5f );
     }
 
     public void resetCurse ( float x, float y ) {
         revive();
 
         setSize( 8 );
-        setLeft( setLifespan( 0.5f ) );
+        setLeft( 0.5f );
+        setLifespan( 0.5f );
 
         speed.polar( Random.Float( PointF.PI2 ), Random.Float( 16, 32 ) );
         this.x = x - speed.x * getLifespan();
@@ -78,7 +80,8 @@ public class ShadowParticle extends PixelParticle.Shrinking {
         this.y = y;
 
         setSize( 6 );
-        setLeft( setLifespan( 1f ) );
+        setLeft( 1f );
+        setLifespan( 1f );
     }
 
     @Override
