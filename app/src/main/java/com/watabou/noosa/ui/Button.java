@@ -75,7 +75,8 @@ public class Button extends Component {
                     processed = true;
                     onTouchUp();
 
-                    Game.vibrate( 50 );
+                    final int VIBRATE_TIME = 50;
+                    Game.vibrate( VIBRATE_TIME );
                 }
             }
         }
