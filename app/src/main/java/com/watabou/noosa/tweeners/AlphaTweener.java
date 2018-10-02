@@ -27,7 +27,7 @@ public class AlphaTweener extends Tweener {
     private final float delta;
 
     public AlphaTweener ( Visual image, float alpha, float time ) {
-        super( image, time );
+        super( time );
 
         this.image = image;
         start = image.alpha();

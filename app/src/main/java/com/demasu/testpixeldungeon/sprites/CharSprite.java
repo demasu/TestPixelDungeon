@@ -473,7 +473,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
         public float height;
 
         public JumpTweener ( Visual visual, PointF pos, float height, float time ) {
-            super( visual, time );
+            super( time );
 
             this.visual = visual;
             start = visual.point();
