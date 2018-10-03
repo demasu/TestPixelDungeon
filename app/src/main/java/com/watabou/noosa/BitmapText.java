@@ -51,7 +51,6 @@ public class BitmapText extends Visual {
         this.setFont( font );
     }
 
-    @SuppressWarnings ( "AssignmentToNull" )
     @Override
     public void destroy () {
         setText( null );
@@ -222,6 +221,7 @@ public class BitmapText extends Visual {
         return vertices;
     }
 
+    @SuppressWarnings ( "AssignmentToNull" )
     private void setVertices () {
         this.vertices = null;
     }
