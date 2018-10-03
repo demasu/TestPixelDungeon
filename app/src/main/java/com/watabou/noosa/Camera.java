@@ -104,6 +104,7 @@ public class Camera extends Gizmo {
         }
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     public static Camera createFullscreen ( float zoom ) {
         int w = (int) Math.ceil( Game.getWidth() / zoom );
         int h = (int) Math.ceil( Game.getHeight() / zoom );
