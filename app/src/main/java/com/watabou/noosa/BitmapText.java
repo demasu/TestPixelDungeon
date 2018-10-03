@@ -29,10 +29,12 @@ import java.nio.FloatBuffer;
 
 public class BitmapText extends Visual {
 
+    private final int VERTICIES_SIZE = 16;
+
     private int realLength;
     private String text;
     private Font font;
-    private float[] vertices = new float[16];
+    private float[] vertices = new float[VERTICIES_SIZE];
     private FloatBuffer quads;
     private boolean dirty = true;
 
@@ -94,6 +96,7 @@ public class BitmapText extends Visual {
 
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     protected void updateVertices () {
 
         width = 0;
