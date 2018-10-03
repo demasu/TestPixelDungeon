@@ -27,12 +27,12 @@ import java.util.regex.Pattern;
 
 public class BitmapTextMultiline extends BitmapText {
 
-    protected static final Pattern PARAGRAPH = Pattern.compile( "\n" );
-    protected static final Pattern WORD = Pattern.compile( "\\s+" );
+    private static final Pattern PARAGRAPH = Pattern.compile( "\n" );
+    private static final Pattern WORD = Pattern.compile( "\\s+" );
     public int maxWidth = Integer.MAX_VALUE;
     public int nLines = 0;
     public boolean[] mask;
-    protected float spaceSize;
+    private final float spaceSize;
 
     public BitmapTextMultiline ( Font font ) {
         this( "", font );
@@ -193,18 +193,18 @@ public class BitmapTextMultiline extends BitmapText {
 
     private class SymbolWriter {
 
-        public float width = 0;
-        public float height = 0;
+        float width = 0;
+        float height = 0;
 
-        public int nLines = 0;
+        int nLines = 0;
 
-        public float lineWidth = 0;
-        public float lineHeight = 0;
+        float lineWidth = 0;
+        float lineHeight = 0;
 
-        public float x = 0;
-        public float y = 0;
+        float x = 0;
+        float y = 0;
 
-        public void addSymbol ( float w, float h ) {
+        void addSymbol ( float w, float h ) {
             if ( lineWidth > 0 && lineWidth + getFont().getTracking() + w > maxWidth / scale.x ) {
                 newLine( w, h );
             } else {
@@ -218,7 +218,7 @@ public class BitmapTextMultiline extends BitmapText {
             }
         }
 
-        public void addSpace ( float w ) {
+        void addSpace ( float w ) {
             if ( lineWidth > 0 && lineWidth + getFont().getTracking() + w > maxWidth / scale.x ) {
                 newLine( 0, 0 );
             } else {
@@ -228,7 +228,7 @@ public class BitmapTextMultiline extends BitmapText {
             }
         }
 
-        public void newLine ( float w, float h ) {
+        void newLine ( float w, float h ) {
 
             height += lineHeight;
             if ( width < lineWidth ) {
@@ -244,7 +244,7 @@ public class BitmapTextMultiline extends BitmapText {
             nLines++;
         }
 
-        public int nLines () {
+        int nLines () {
             return x == 0 ? nLines : nLines + 1;
         }
     }
@@ -256,7 +256,7 @@ public class BitmapTextMultiline extends BitmapText {
         private StringBuilder curLine;
         private float curLineWidth;
 
-        private PointF metrics = new PointF();
+        private final PointF metrics = new PointF();
 
         private void newLine ( String str, float width ) {
             BitmapText txt = new BitmapText( curLine.toString(), getFont() );
@@ -309,6 +309,7 @@ public class BitmapTextMultiline extends BitmapText {
                 newLine( "", 0 );
             }
 
+            //noinspection AssignmentOrReturnOfFieldWithMutableType
             return lines;
         }
     }
