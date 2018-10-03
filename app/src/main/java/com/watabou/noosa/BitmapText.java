@@ -108,9 +108,6 @@ public class BitmapText extends Visual {
         for ( int i = 0; i < length; i++ ) {
             RectF rect = font.get( text.charAt( i ) );
 
-            if ( rect == null ) {
-                rect = null;
-            }
             float w = font.width( rect );
             float h = font.height( rect );
 
@@ -274,7 +271,6 @@ public class BitmapText extends Visual {
         protected void splitBy ( Bitmap bitmap, int height, int color, String chars ) {
 
             autoUppercase = chars.equals( LATIN_UPPER );
-            int length = chars.length();
 
             int width = bitmap.getWidth();
             float vHeight = (float) height / bitmap.getHeight();
@@ -291,12 +287,11 @@ public class BitmapText extends Visual {
             }
             add( ' ', new RectF( 0, 0, (float) pos / width, vHeight ) );
 
+            int length = chars.length();
             for ( int i = 0; i < length; i++ ) {
 
                 char ch = chars.charAt( i );
-                if ( ch == ' ' ) {
-                } else {
-
+                if ( ch != ' ' ) {
                     boolean found;
                     int separator = pos;
 
