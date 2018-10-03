@@ -112,6 +112,7 @@ public class Camera extends Gizmo {
                 w, h, zoom );
     }
 
+    @SuppressWarnings ( "AssignmentToNull" )
     @Override
     public void destroy () {
         target = null;
