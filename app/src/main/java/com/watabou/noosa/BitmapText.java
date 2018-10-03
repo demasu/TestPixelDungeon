@@ -203,22 +203,22 @@ public class BitmapText extends Visual {
 
     public static class Font extends TextureFilm {
 
-        public static final String LATIN_UPPER =
+        static final String LATIN_UPPER =
                 " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         public static final String LATIN_FULL =
                 " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u007F";
 
-        public SmartTexture texture;
+        final SmartTexture texture;
 
         public float tracking = 0;
         public float baseLine;
 
-        public boolean autoUppercase = false;
+        boolean autoUppercase = false;
 
         public float lineHeight;
 
-        protected Font ( SmartTexture tx ) {
+        Font ( SmartTexture tx ) {
             super( tx );
 
             texture = tx;
@@ -228,7 +228,7 @@ public class BitmapText extends Visual {
             this( tx, width, tx.getHeight(), chars );
         }
 
-        public Font ( SmartTexture tx, int width, int height, String chars ) {
+        Font ( SmartTexture tx, int width, int height, String chars ) {
             super( tx );
 
             texture = tx;
@@ -272,7 +272,7 @@ public class BitmapText extends Visual {
             return font;
         }
 
-        protected void splitBy ( Bitmap bitmap, int height, int color, String chars ) {
+        void splitBy ( Bitmap bitmap, int height, int color, String chars ) {
 
             autoUppercase = chars.equals( LATIN_UPPER );
 
