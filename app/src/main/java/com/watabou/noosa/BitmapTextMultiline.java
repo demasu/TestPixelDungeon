@@ -90,26 +90,26 @@ public class BitmapTextMultiline extends BitmapText {
                     float h = getFont().height( rect );
 
                     if ( getMask() == null || getMask()[pos] ) {
-                        getVertices()[0] = writer.x + shift;
-                        getVertices()[1] = writer.y;
+                        getVertices()[0] = writer.getX() + shift;
+                        getVertices()[1] = writer.getY();
 
                         getVertices()[2] = rect.left;
                         getVertices()[3] = rect.top;
 
-                        getVertices()[4] = writer.x + shift + w;
-                        getVertices()[5] = writer.y;
+                        getVertices()[4] = writer.getX() + shift + w;
+                        getVertices()[5] = writer.getY();
 
                         getVertices()[6] = rect.right;
                         getVertices()[7] = rect.top;
 
-                        getVertices()[8] = writer.x + shift + w;
-                        getVertices()[9] = writer.y + h;
+                        getVertices()[8] = writer.getX() + shift + w;
+                        getVertices()[9] = writer.getY() + h;
 
                         getVertices()[10] = rect.right;
                         getVertices()[11] = rect.bottom;
 
-                        getVertices()[12] = writer.x + shift;
-                        getVertices()[13] = writer.y + h;
+                        getVertices()[12] = writer.getX() + shift;
+                        getVertices()[13] = writer.getY() + h;
 
                         getVertices()[14] = rect.left;
                         getVertices()[15] = rect.bottom;
@@ -180,8 +180,8 @@ public class BitmapTextMultiline extends BitmapText {
             writer.newLine( 0, getFont().getLineHeight() );
         }
 
-        width = writer.width;
-        height = writer.height;
+        width = writer.getWidth();
+        height = writer.getHeight();
 
         setnLines( writer.nLines() );
     }
@@ -218,59 +218,115 @@ public class BitmapTextMultiline extends BitmapText {
 
     private class SymbolWriter {
 
-        float width = 0;
-        float height = 0;
+        private float width = 0;
+        private float height = 0;
 
-        int nLines = 0;
+        private int nLines = 0;
 
-        float lineWidth = 0;
-        float lineHeight = 0;
+        private float lineWidth = 0;
+        private float lineHeight = 0;
 
-        float x = 0;
-        float y = 0;
+        private float x = 0;
+        private float y = 0;
 
         void addSymbol ( float w, float h ) {
-            if ( lineWidth > 0 && lineWidth + getFont().getTracking() + w > getMaxWidth() / scale.x ) {
+            if ( getLineWidth() > 0 && getLineWidth() + getFont().getTracking() + w > getMaxWidth() / scale.x ) {
                 newLine( w, h );
             } else {
 
-                x = lineWidth;
+                setX( getLineWidth() );
 
-                lineWidth += ( lineWidth > 0 ? getFont().getTracking() : 0 ) + w;
-                if ( h > lineHeight ) {
-                    lineHeight = h;
+                setLineWidth( getLineWidth() + ( getLineWidth() > 0 ? getFont().getTracking() : 0 ) + w );
+                if ( h > getLineHeight() ) {
+                    setLineHeight( h );
                 }
             }
         }
 
         void addSpace ( float w ) {
-            if ( lineWidth > 0 && lineWidth + getFont().getTracking() + w > getMaxWidth() / scale.x ) {
+            if ( getLineWidth() > 0 && getLineWidth() + getFont().getTracking() + w > getMaxWidth() / scale.x ) {
                 newLine( 0, 0 );
             } else {
 
-                x = lineWidth;
-                lineWidth += ( lineWidth > 0 ? getFont().getTracking() : 0 ) + w;
+                setX( getLineWidth() );
+                setLineWidth( getLineWidth() + ( getLineWidth() > 0 ? getFont().getTracking() : 0 ) + w );
             }
         }
 
         void newLine ( float w, float h ) {
 
-            height += lineHeight;
-            if ( width < lineWidth ) {
-                width = lineWidth;
+            setHeight( getHeight() + getLineHeight() );
+            if ( getWidth() < getLineWidth() ) {
+                setWidth( getLineWidth() );
             }
 
-            lineWidth = w;
-            lineHeight = h;
+            setLineWidth( w );
+            setLineHeight( h );
 
-            x = 0;
-            y = height;
+            setX( 0 );
+            setY( getHeight() );
 
-            nLines++;
+            setnLines( getnLines() + 1 );
         }
 
         int nLines () {
-            return x == 0 ? nLines : nLines + 1;
+            return getX() == 0 ? getnLines() : getnLines() + 1;
+        }
+
+        public float getWidth () {
+            return width;
+        }
+
+        public void setWidth ( float width ) {
+            this.width = width;
+        }
+
+        public float getHeight () {
+            return height;
+        }
+
+        public void setHeight ( float height ) {
+            this.height = height;
+        }
+
+        public int getnLines () {
+            return nLines;
+        }
+
+        public void setnLines ( int nLines ) {
+            this.nLines = nLines;
+        }
+
+        public float getLineWidth () {
+            return lineWidth;
+        }
+
+        public void setLineWidth ( float lineWidth ) {
+            this.lineWidth = lineWidth;
+        }
+
+        public float getLineHeight () {
+            return lineHeight;
+        }
+
+        public void setLineHeight ( float lineHeight ) {
+            this.lineHeight = lineHeight;
+        }
+
+        public float getX () {
+            return x;
+        }
+
+        public void setX ( float x ) {
+            this.x = x;
+        }
+
+        public float getY () {
+            return y;
+        }
+
+        public void setY ( float y ) {
+            this.y = y;
         }
     }
 
