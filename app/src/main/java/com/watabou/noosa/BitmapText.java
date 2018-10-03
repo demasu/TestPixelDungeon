@@ -56,7 +56,7 @@ public class BitmapText extends Visual {
     public void destroy () {
         setText( null );
         setFont( null );
-        setVertices( null );
+        setVertices();
         setQuads( null );
         super.destroy();
     }
@@ -222,8 +222,8 @@ public class BitmapText extends Visual {
         return vertices;
     }
 
-    private void setVertices ( float[] vertices ) {
-        this.vertices = vertices;
+    private void setVertices () {
+        this.vertices = null;
     }
 
     public FloatBuffer getQuads () {
