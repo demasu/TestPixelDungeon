@@ -193,6 +193,8 @@ public class BitmapText extends Visual {
         dirty = true;
     }
 
+    // TODO: Move in to own file
+    @SuppressWarnings ( "PublicInnerClass" )
     public static class Font extends TextureFilm {
 
         static final String LATIN_UPPER =
