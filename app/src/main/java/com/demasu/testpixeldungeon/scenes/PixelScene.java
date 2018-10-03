@@ -221,32 +221,32 @@ public class PixelScene extends Scene {
             // 3x5 (6)
             font1x = Font.colorMarked(
                     BitmapCache.get( Assets.FONTS1X ), 0x00000000, BitmapText.Font.LATIN_FULL );
-            font1x.baseLine = 6;
-            font1x.tracking = -1;
+            font1x.setBaseLine( 6 );
+            font1x.setTracking( -1 );
 
             // 5x8 (10)
             font15x = Font.colorMarked(
                     BitmapCache.get( Assets.FONTS15X ), 12, 0x00000000, BitmapText.Font.LATIN_FULL );
-            font15x.baseLine = 9;
-            font15x.tracking = -1;
+            font15x.setBaseLine( 9 );
+            font15x.setTracking( -1 );
 
             // 6x10 (12)
             font2x = Font.colorMarked(
                     BitmapCache.get( Assets.FONTS2X ), 14, 0x00000000, BitmapText.Font.LATIN_FULL );
-            font2x.baseLine = 11;
-            font2x.tracking = -1;
+            font2x.setBaseLine( 11 );
+            font2x.setTracking( -1 );
 
             // 7x12 (15)
             font25x = Font.colorMarked(
                     BitmapCache.get( Assets.FONTS25X ), 17, 0x00000000, BitmapText.Font.LATIN_FULL );
-            font25x.baseLine = 13;
-            font25x.tracking = -1;
+            font25x.setBaseLine( 13 );
+            font25x.setTracking( -1 );
 
             // 9x15 (18)
             font3x = Font.colorMarked(
                     BitmapCache.get( Assets.FONTS3X ), 22, 0x00000000, BitmapText.Font.LATIN_FULL );
-            font3x.baseLine = 17;
-            font3x.tracking = -2;
+            font3x.setBaseLine( 17 );
+            font3x.setTracking( -2 );
         }
     }
 

@@ -118,7 +118,7 @@ public class FloatingText extends BitmapText {
         if ( cameraZoom != Camera.main.zoom ) {
             cameraZoom = Camera.main.zoom;
             PixelScene.chooseFont( 9, cameraZoom );
-            font = PixelScene.font;
+            setFont( PixelScene.font );
             scale.set( PixelScene.scale );
         }
 

@@ -29,12 +29,12 @@ import java.nio.FloatBuffer;
 
 public class BitmapText extends Visual {
 
-    public int realLength;
-    protected String text;
-    protected Font font;
-    protected float[] vertices = new float[16];
-    protected FloatBuffer quads;
-    protected boolean dirty = true;
+    private int realLength;
+    private String text;
+    private Font font;
+    private float[] vertices = new float[16];
+    private FloatBuffer quads;
+    private boolean dirty = true;
 
     public BitmapText () {
         this( "", null );
@@ -47,17 +47,17 @@ public class BitmapText extends Visual {
     public BitmapText ( String text, Font font ) {
         super( 0, 0, 0, 0 );
 
-        this.text = text;
-        this.font = font;
+        this.setText( text );
+        this.setFont( font );
     }
 
     @SuppressWarnings ( "AssignmentToNull" )
     @Override
     public void destroy () {
-        text = null;
-        font = null;
-        vertices = null;
-        quads = null;
+        setText( null );
+        setFont( null );
+        setVertices( null );
+        setQuads( null );
         super.destroy();
     }
 
@@ -77,9 +77,9 @@ public class BitmapText extends Visual {
 
         NoosaScript script = NoosaScript.get();
 
-        font.texture.bind();
+        getFont().getTexture().bind();
 
-        if ( dirty ) {
+        if ( isDirty() ) {
             updateVertices();
         }
 
@@ -89,7 +89,7 @@ public class BitmapText extends Visual {
         script.lighting(
                 rm, gm, bm, am,
                 ra, ga, ba, aa );
-        script.drawQuadSet( quads, realLength );
+        script.drawQuadSet( getQuads(), getRealLength() );
 
     }
 
@@ -98,58 +98,58 @@ public class BitmapText extends Visual {
         width = 0;
         height = 0;
 
-        if ( text == null ) {
-            text = "";
+        if ( getText() == null ) {
+            setText( "" );
         }
 
-        quads = Quad.createSet( text.length() );
-        realLength = 0;
+        setQuads( Quad.createSet( getText().length() ) );
+        setRealLength( 0 );
 
-        int length = text.length();
+        int length = getText().length();
         for ( int i = 0; i < length; i++ ) {
-            RectF rect = font.get( text.charAt( i ) );
+            RectF rect = getFont().get( getText().charAt( i ) );
 
-            float w = font.width( rect );
-            float h = font.height( rect );
+            float w = getFont().width( rect );
+            float h = getFont().height( rect );
 
-            vertices[0] = width;
-            vertices[1] = 0;
+            getVertices()[0] = width;
+            getVertices()[1] = 0;
 
-            vertices[2] = rect.left;
-            vertices[3] = rect.top;
+            getVertices()[2] = rect.left;
+            getVertices()[3] = rect.top;
 
-            vertices[4] = width + w;
-            vertices[5] = 0;
+            getVertices()[4] = width + w;
+            getVertices()[5] = 0;
 
-            vertices[6] = rect.right;
-            vertices[7] = rect.top;
+            getVertices()[6] = rect.right;
+            getVertices()[7] = rect.top;
 
-            vertices[8] = width + w;
-            vertices[9] = h;
+            getVertices()[8] = width + w;
+            getVertices()[9] = h;
 
-            vertices[10] = rect.right;
-            vertices[11] = rect.bottom;
+            getVertices()[10] = rect.right;
+            getVertices()[11] = rect.bottom;
 
-            vertices[12] = width;
-            vertices[13] = h;
+            getVertices()[12] = width;
+            getVertices()[13] = h;
 
-            vertices[14] = rect.left;
-            vertices[15] = rect.bottom;
+            getVertices()[14] = rect.left;
+            getVertices()[15] = rect.bottom;
 
-            quads.put( vertices );
-            realLength++;
+            getQuads().put( getVertices() );
+            setRealLength( getRealLength() + 1 );
 
-            width += w + font.tracking;
+            width += w + getFont().getTracking();
             if ( h > height ) {
                 height = h;
             }
         }
 
         if ( length > 0 ) {
-            width -= font.tracking;
+            width -= getFont().getTracking();
         }
 
-        dirty = false;
+        setDirty( false );
 
     }
 
@@ -158,39 +158,88 @@ public class BitmapText extends Visual {
         width = 0;
         height = 0;
 
-        if ( text == null ) {
-            text = "";
+        if ( getText() == null ) {
+            setText( "" );
         }
 
-        int length = text.length();
+        int length = getText().length();
         for ( int i = 0; i < length; i++ ) {
-            RectF rect = font.get( text.charAt( i ) );
+            RectF rect = getFont().get( getText().charAt( i ) );
 
-            float w = font.width( rect );
-            float h = font.height( rect );
+            float w = getFont().width( rect );
+            float h = getFont().height( rect );
 
-            width += w + font.tracking;
+            width += w + getFont().getTracking();
             if ( h > height ) {
                 height = h;
             }
         }
 
         if ( length > 0 ) {
-            width -= font.tracking;
+            width -= getFont().getTracking();
         }
     }
 
     public float baseLine () {
-        return font.baseLine * scale.y;
+        return getFont().getBaseLine() * scale.y;
     }
 
     public String text () {
-        return text;
+        return getText();
     }
 
     public void text ( String str ) {
-        text = str;
-        dirty = true;
+        setText( str );
+        setDirty( true );
+    }
+
+    public int getRealLength () {
+        return realLength;
+    }
+
+    public void setRealLength ( int realLength ) {
+        this.realLength = realLength;
+    }
+
+    public String getText () {
+        return text;
+    }
+
+    public void setText ( String text ) {
+        this.text = text;
+    }
+
+    public Font getFont () {
+        return font;
+    }
+
+    public void setFont ( Font font ) {
+        this.font = font;
+    }
+
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
+    public float[] getVertices () {
+        return vertices;
+    }
+
+    private void setVertices ( float[] vertices ) {
+        this.vertices = vertices;
+    }
+
+    public FloatBuffer getQuads () {
+        return quads;
+    }
+
+    public void setQuads ( FloatBuffer quads ) {
+        this.quads = quads;
+    }
+
+    private boolean isDirty () {
+        return dirty;
+    }
+
+    public void setDirty ( boolean dirty ) {
+        this.dirty = dirty;
     }
 
     // TODO: Move in to own file
@@ -203,14 +252,14 @@ public class BitmapText extends Visual {
         public static final String LATIN_FULL =
                 " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u007F";
 
-        final SmartTexture texture;
+        private final SmartTexture texture;
 
-        public float tracking = 0;
-        public float baseLine;
+        private float tracking = 0;
+        private float baseLine;
 
-        boolean autoUppercase = false;
+        private boolean autoUppercase = false;
 
-        public float lineHeight;
+        private float lineHeight;
 
         Font ( SmartTexture tx ) {
             super( tx );
@@ -232,7 +281,7 @@ public class BitmapText extends Visual {
 
         void splitBy ( Bitmap bitmap, int height, int color, String chars ) {
 
-            autoUppercase = chars.equals( LATIN_UPPER );
+            setAutoUppercase( chars.equals( LATIN_UPPER ) );
 
             int width = bitmap.getWidth();
             float vHeight = (float) height / bitmap.getHeight();
@@ -276,12 +325,48 @@ public class BitmapText extends Visual {
                 }
             }
 
-            lineHeight = height( frames.get( chars.charAt( 0 ) ) );
-            baseLine = height( frames.get( chars.charAt( 0 ) ) );
+            setLineHeight( height( frames.get( chars.charAt( 0 ) ) ) );
+            setBaseLine( height( frames.get( chars.charAt( 0 ) ) ) );
         }
 
         public RectF get ( char ch ) {
-            return super.get( autoUppercase ? Character.toUpperCase( ch ) : ch );
+            return super.get( isAutoUppercase() ? Character.toUpperCase( ch ) : ch );
+        }
+
+        SmartTexture getTexture () {
+            return texture;
+        }
+
+        public float getTracking () {
+            return tracking;
+        }
+
+        public void setTracking ( float tracking ) {
+            this.tracking = tracking;
+        }
+
+        public float getBaseLine () {
+            return baseLine;
+        }
+
+        public void setBaseLine ( float baseLine ) {
+            this.baseLine = baseLine;
+        }
+
+        boolean isAutoUppercase () {
+            return autoUppercase;
+        }
+
+        void setAutoUppercase ( boolean autoUppercase ) {
+            this.autoUppercase = autoUppercase;
+        }
+
+        public float getLineHeight () {
+            return lineHeight;
+        }
+
+        void setLineHeight ( float lineHeight ) {
+            this.lineHeight = lineHeight;
         }
     }
 }

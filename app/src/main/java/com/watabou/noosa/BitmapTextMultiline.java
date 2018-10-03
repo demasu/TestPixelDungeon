@@ -46,12 +46,12 @@ public class BitmapTextMultiline extends BitmapText {
     @Override
     protected void updateVertices () {
 
-        if ( text == null ) {
-            text = "";
+        if ( getText() == null ) {
+            setText( "" );
         }
 
-        quads = Quad.createSet( text.length() );
-        realLength = 0;
+        setQuads( Quad.createSet( getText().length() ) );
+        setRealLength( 0 );
 
         // This object controls lines breaking
         SymbolWriter writer = new SymbolWriter();
@@ -59,7 +59,7 @@ public class BitmapTextMultiline extends BitmapText {
         // Word size
         PointF metrics = new PointF();
 
-        String paragraphs[] = PARAGRAPH.split( text );
+        String paragraphs[] = PARAGRAPH.split( getText() );
 
         // Current character (used in masking)
         int pos = 0;
@@ -85,41 +85,41 @@ public class BitmapTextMultiline extends BitmapText {
                 float shift = 0;    // Position in pixels relative to the beginning of the word
 
                 for ( int k = 0; k < length; k++ ) {
-                    RectF rect = font.get( word.charAt( k ) );
+                    RectF rect = getFont().get( word.charAt( k ) );
 
-                    float w = font.width( rect );
-                    float h = font.height( rect );
+                    float w = getFont().width( rect );
+                    float h = getFont().height( rect );
 
                     if ( mask == null || mask[pos] ) {
-                        vertices[0] = writer.x + shift;
-                        vertices[1] = writer.y;
+                        getVertices()[0] = writer.x + shift;
+                        getVertices()[1] = writer.y;
 
-                        vertices[2] = rect.left;
-                        vertices[3] = rect.top;
+                        getVertices()[2] = rect.left;
+                        getVertices()[3] = rect.top;
 
-                        vertices[4] = writer.x + shift + w;
-                        vertices[5] = writer.y;
+                        getVertices()[4] = writer.x + shift + w;
+                        getVertices()[5] = writer.y;
 
-                        vertices[6] = rect.right;
-                        vertices[7] = rect.top;
+                        getVertices()[6] = rect.right;
+                        getVertices()[7] = rect.top;
 
-                        vertices[8] = writer.x + shift + w;
-                        vertices[9] = writer.y + h;
+                        getVertices()[8] = writer.x + shift + w;
+                        getVertices()[9] = writer.y + h;
 
-                        vertices[10] = rect.right;
-                        vertices[11] = rect.bottom;
+                        getVertices()[10] = rect.right;
+                        getVertices()[11] = rect.bottom;
 
-                        vertices[12] = writer.x + shift;
-                        vertices[13] = writer.y + h;
+                        getVertices()[12] = writer.x + shift;
+                        getVertices()[13] = writer.y + h;
 
-                        vertices[14] = rect.left;
-                        vertices[15] = rect.bottom;
+                        getVertices()[14] = rect.left;
+                        getVertices()[15] = rect.bottom;
 
-                        quads.put( vertices );
-                        realLength++;
+                        getQuads().put( getVertices() );
+                        setRealLength( getRealLength() + 1 );
                     }
 
-                    shift += w + font.tracking;
+                    shift += w + getFont().getTracking();
 
                     pos++;
                 }
@@ -127,12 +127,12 @@ public class BitmapTextMultiline extends BitmapText {
                 writer.addSpace( spaceSize );
             }
 
-            writer.newLine( 0, font.lineHeight );
+            writer.newLine( 0, getFont().getLineHeight() );
         }
 
         nLines = writer.nLines();
 
-        dirty = false;
+        setDirty( false );
     }
 
     private void getWordMetrics ( String word, PointF metrics ) {
@@ -143,9 +143,9 @@ public class BitmapTextMultiline extends BitmapText {
         int length = word.length();
         for ( int i = 0; i < length; i++ ) {
 
-            RectF rect = font.get( word.charAt( i ) );
-            w += font.width( rect ) + ( w > 0 ? font.tracking : 0 );
-            h = Math.max( h, font.height( rect ) );
+            RectF rect = getFont().get( word.charAt( i ) );
+            w += getFont().width( rect ) + ( w > 0 ? getFont().getTracking() : 0 );
+            h = Math.max( h, getFont().height( rect ) );
         }
 
         metrics.set( w, h );
@@ -158,7 +158,7 @@ public class BitmapTextMultiline extends BitmapText {
 
         PointF metrics = new PointF();
 
-        String paragraphs[] = PARAGRAPH.split( text );
+        String paragraphs[] = PARAGRAPH.split( getText() );
 
         for ( int i = 0; i < paragraphs.length; i++ ) {
 
@@ -178,7 +178,7 @@ public class BitmapTextMultiline extends BitmapText {
                 writer.addSymbol( metrics.x, metrics.y );
             }
 
-            writer.newLine( 0, font.lineHeight );
+            writer.newLine( 0, getFont().getLineHeight() );
         }
 
         width = writer.width;
@@ -189,7 +189,7 @@ public class BitmapTextMultiline extends BitmapText {
 
     @Override
     public float baseLine () {
-        return ( height - font.lineHeight + font.baseLine ) * scale.y;
+        return ( height - getFont().getLineHeight() + getFont().getBaseLine() ) * scale.y;
     }
 
     private class SymbolWriter {
@@ -206,13 +206,13 @@ public class BitmapTextMultiline extends BitmapText {
         public float y = 0;
 
         public void addSymbol ( float w, float h ) {
-            if ( lineWidth > 0 && lineWidth + font.tracking + w > maxWidth / scale.x ) {
+            if ( lineWidth > 0 && lineWidth + getFont().getTracking() + w > maxWidth / scale.x ) {
                 newLine( w, h );
             } else {
 
                 x = lineWidth;
 
-                lineWidth += ( lineWidth > 0 ? font.tracking : 0 ) + w;
+                lineWidth += ( lineWidth > 0 ? getFont().getTracking() : 0 ) + w;
                 if ( h > lineHeight ) {
                     lineHeight = h;
                 }
@@ -220,12 +220,12 @@ public class BitmapTextMultiline extends BitmapText {
         }
 
         public void addSpace ( float w ) {
-            if ( lineWidth > 0 && lineWidth + font.tracking + w > maxWidth / scale.x ) {
+            if ( lineWidth > 0 && lineWidth + getFont().getTracking() + w > maxWidth / scale.x ) {
                 newLine( 0, 0 );
             } else {
 
                 x = lineWidth;
-                lineWidth += ( lineWidth > 0 ? font.tracking : 0 ) + w;
+                lineWidth += ( lineWidth > 0 ? getFont().getTracking() : 0 ) + w;
             }
         }
 
@@ -260,7 +260,7 @@ public class BitmapTextMultiline extends BitmapText {
         private PointF metrics = new PointF();
 
         private void newLine ( String str, float width ) {
-            BitmapText txt = new BitmapText( curLine.toString(), font );
+            BitmapText txt = new BitmapText( curLine.toString(), getFont() );
             txt.scale.set( scale.x );
             lines.add( txt );
 
@@ -269,7 +269,7 @@ public class BitmapTextMultiline extends BitmapText {
         }
 
         private void append ( String str, float width ) {
-            curLineWidth += ( curLineWidth > 0 ? font.tracking : 0 ) + width;
+            curLineWidth += ( curLineWidth > 0 ? getFont().getTracking() : 0 ) + width;
             curLine.append( str );
         }
 
@@ -280,7 +280,7 @@ public class BitmapTextMultiline extends BitmapText {
             curLine = new StringBuilder();
             curLineWidth = 0;
 
-            String paragraphs[] = PARAGRAPH.split( text );
+            String paragraphs[] = PARAGRAPH.split( getText() );
 
             for ( int i = 0; i < paragraphs.length; i++ ) {
 
@@ -295,13 +295,13 @@ public class BitmapTextMultiline extends BitmapText {
 
                     getWordMetrics( word, metrics );
 
-                    if ( curLineWidth > 0 && curLineWidth + font.tracking + metrics.x > maxWidth / scale.x ) {
+                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + metrics.x > maxWidth / scale.x ) {
                         newLine( word, metrics.x );
                     } else {
                         append( word, metrics.x );
                     }
 
-                    if ( curLineWidth > 0 && curLineWidth + font.tracking + spaceSize > maxWidth / scale.x ) {
+                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + spaceSize > maxWidth / scale.x ) {
                         newLine( "", 0 );
                     } else {
                         append( " ", spaceSize );
