@@ -80,7 +80,8 @@ public class Camera extends Gizmo {
         }
         all.clear();
 
-        return main = add( newCamera );
+        main = add( newCamera );
+        return main;
     }
 
     public static Camera add ( Camera camera ) {
@@ -149,7 +150,8 @@ public class Camera extends Gizmo {
             focusOn( target );
         }
 
-        if ( ( shakeTime -= Game.getElapsed() ) > 0 ) {
+        shakeTime -= Game.getElapsed();
+        if ( ( shakeTime ) > 0 ) {
             float damping = shakeTime / shakeDuration;
             shakeX = Random.Float( -shakeMagX, +shakeMagX ) * damping;
             shakeY = Random.Float( -shakeMagY, +shakeMagY ) * damping;
@@ -221,7 +223,9 @@ public class Camera extends Gizmo {
     }
 
     public void shake ( float magnitude, float duration ) {
-        shakeMagX = shakeMagY = magnitude;
-        shakeTime = shakeDuration = duration;
+        shakeMagX = magnitude;
+        shakeMagY = magnitude;
+        shakeTime = duration;
+        shakeDuration = duration;
     }
 }
