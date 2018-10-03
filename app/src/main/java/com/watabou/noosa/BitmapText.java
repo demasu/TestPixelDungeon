@@ -243,9 +243,11 @@ public class BitmapText extends Visual {
             float left = 0;
             float top = 0;
             float bottom = vh;
+            float right = left + uw;
 
             for ( int i = 0; i < length; i++ ) {
-                RectF rect = new RectF( left, top, left += uw, bottom );
+                RectF rect = new RectF( left, top, right, bottom );
+                left = right;
                 add( chars.charAt( i ), rect );
                 if ( left >= 1 ) {
                     left = 0;
