@@ -184,14 +184,6 @@ public class BitmapText extends Visual {
         return font.baseLine * scale.y;
     }
 
-    public Font font () {
-        return font;
-    }
-
-    public void font ( Font value ) {
-        font = value;
-    }
-
     public String text () {
         return text;
     }
@@ -222,42 +214,6 @@ public class BitmapText extends Visual {
             super( tx );
 
             texture = tx;
-        }
-
-        public Font ( SmartTexture tx, int width, String chars ) {
-            this( tx, width, tx.getHeight(), chars );
-        }
-
-        Font ( SmartTexture tx, int width, int height, String chars ) {
-            super( tx );
-
-            texture = tx;
-
-            autoUppercase = chars.equals( LATIN_UPPER );
-
-            int length = chars.length();
-
-            float uw = (float) width / tx.getWidth();
-            float vh = (float) height / tx.getHeight();
-
-            float left = 0;
-            float top = 0;
-            float bottom = vh;
-            float right = left + uw;
-
-            for ( int i = 0; i < length; i++ ) {
-                RectF rect = new RectF( left, top, right, bottom );
-                left = right;
-                add( chars.charAt( i ), rect );
-                if ( left >= 1 ) {
-                    left = 0;
-                    top = bottom;
-                    bottom += vh;
-                }
-            }
-
-            lineHeight = height;
-            baseLine = height;
         }
 
         public static Font colorMarked ( Bitmap bmp, int color, String chars ) {
