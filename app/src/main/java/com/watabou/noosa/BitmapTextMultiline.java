@@ -203,11 +203,11 @@ public class BitmapTextMultiline extends BitmapText {
         return nLines;
     }
 
-    public void setnLines ( int nLines ) {
+    private void setnLines ( int nLines ) {
         this.nLines = nLines;
     }
 
-    public boolean[] getMask () {
+    private boolean[] getMask () {
         return mask;
     }
 
