@@ -202,7 +202,7 @@ public class MissionStartScene extends PixelScene {
         if ( !( huntressUnlocked = Badges.isUnlocked( Badges.Badge.BOSS_SLAIN_3 ) ) ) {
 
             BitmapTextMultiline text = PixelScene.createMultiline( TXT_UNLOCK, 9 );
-            text.maxWidth = (int) width;
+            text.setMaxWidth( (int) width );
             text.measure();
 
             float pos = ( bottom - BUTTON_HEIGHT ) + ( BUTTON_HEIGHT - text.height() ) / 2;

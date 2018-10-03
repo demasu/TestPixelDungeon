@@ -230,7 +230,7 @@ public class RankingsScene extends PixelScene {
             classIcon.y = shield.y;
 
             desc.x = shield.x + shield.width + GAP;
-            desc.maxWidth = (int) ( classIcon.x - desc.x );
+            desc.setMaxWidth( (int) ( classIcon.x - desc.x ) );
             desc.measure();
             desc.y = position.y + position.baseLine() - desc.baseLine();
         }

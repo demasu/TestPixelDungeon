@@ -78,7 +78,7 @@ public class IconTitle extends Component {
         imIcon.y = getY();
 
         tfLabel.x = PixelScene.align( PixelScene.uiCamera, imIcon.x + imIcon.width() + GAP );
-        tfLabel.maxWidth = (int) ( getWidth() - tfLabel.x );
+        tfLabel.setMaxWidth( (int) ( getWidth() - tfLabel.x ) );
         tfLabel.measure();
         tfLabel.y = PixelScene.align( PixelScene.uiCamera,
                 imIcon.height > tfLabel.height() ?
@@ -86,7 +86,7 @@ public class IconTitle extends Component {
                         imIcon.y );
 
         if ( health.visible ) {
-            health.setRect( tfLabel.x, Math.max( tfLabel.y + tfLabel.height(), imIcon.y + imIcon.height() - health.height() ), tfLabel.maxWidth, 0 );
+            health.setRect( tfLabel.x, Math.max( tfLabel.y + tfLabel.height(), imIcon.y + imIcon.height() - health.height() ), tfLabel.getMaxWidth(), 0 );
             setHeight( health.bottom() );
         } else {
             setHeight( Math.max( imIcon.y + imIcon.height(), tfLabel.y + tfLabel.height() ) );

@@ -68,7 +68,7 @@ public class WndRatKing extends WndTabbed {
                     + "The inhabitants of this dungeon, all of them.. rodents or not so blessed... even you follow my command and can be molded by my will.\n"
                     + "\n \nNow tell me what to do...";
             BitmapTextMultiline txtInfo = PixelScene.createMultiline( description, 6 );
-            txtInfo.maxWidth = WIDTH;
+            txtInfo.setMaxWidth( WIDTH );
             txtInfo.measure();
             txtInfo.x = titlebar.left();
             txtInfo.y = titlebar.bottom() + GAP;
@@ -408,7 +408,7 @@ public class WndRatKing extends WndTabbed {
             add( titlebar );
 
             BitmapTextMultiline txtInfo = PixelScene.createMultiline( description, 6 );
-            txtInfo.maxWidth = WIDTH - GAP * 2;
+            txtInfo.setMaxWidth( WIDTH - GAP * 2 );
             txtInfo.measure();
             txtInfo.x = titlebar.left();
             txtInfo.y = titlebar.bottom() + GAP;

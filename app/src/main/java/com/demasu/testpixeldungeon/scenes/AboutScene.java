@@ -59,7 +59,7 @@ public class AboutScene extends PixelScene {
 
         BitmapTextMultiline textfirst = createMultiline( "SkillFull Pixel Dungeon", 8 );
         textfirst.hardlight( Window.TITLE_COLOR );
-        textfirst.maxWidth = Math.min( Camera.main.width, 120 );
+        textfirst.setMaxWidth( Math.min( Camera.main.width, 120 ) );
         textfirst.measure();
         add( textfirst );
 
@@ -69,7 +69,7 @@ public class AboutScene extends PixelScene {
         pos = textfirst.y + textfirst.height() + GAP;
 
         textfirst = createMultiline( "Code & graphics: BilbolDev", 8 );
-        textfirst.maxWidth = Math.min( Camera.main.width, 120 );
+        textfirst.setMaxWidth( Math.min( Camera.main.width, 120 ) );
         textfirst.measure();
         add( textfirst );
 
@@ -79,7 +79,7 @@ public class AboutScene extends PixelScene {
         pos = textfirst.y + textfirst.height() + GAP;
 
         textfirst = createMultiline( "Source code is available on GitHub", 8 );
-        textfirst.maxWidth = Math.min( Camera.main.width, 120 );
+        textfirst.setMaxWidth( Math.min( Camera.main.width, 120 ) );
         textfirst.measure();
         add( textfirst );
 
@@ -89,7 +89,7 @@ public class AboutScene extends PixelScene {
         pos = textfirst.y + textfirst.height() + GAP;
 
         BitmapTextMultiline link_SPD = createMultiline( LNK_SPD, 8 );
-        link_SPD.maxWidth = Math.min( Camera.main.width, 120 );
+        link_SPD.setMaxWidth( Math.min( Camera.main.width, 120 ) );
         link_SPD.measure();
         link_SPD.hardlight( Window.TITLE_COLOR );
         add( link_SPD );
@@ -110,7 +110,7 @@ public class AboutScene extends PixelScene {
         pos = link_SPD.y + link_SPD.height() + GAP;
 
         BitmapTextMultiline link_SPD_Wiki = createMultiline( LNK_SPD_WIKI, 8 );
-        link_SPD_Wiki.maxWidth = Math.min( Camera.main.width, 120 );
+        link_SPD_Wiki.setMaxWidth( Math.min( Camera.main.width, 120 ) );
         link_SPD_Wiki.measure();
         link_SPD_Wiki.hardlight( Window.TITLE_COLOR );
         add( link_SPD_Wiki );
@@ -131,7 +131,7 @@ public class AboutScene extends PixelScene {
 
 
         BitmapTextMultiline textOther = createMultiline( "Some ice art: Nels Dachel & Sarius", 8 );
-        textOther.maxWidth = Math.min( Camera.main.width, 120 );
+        textOther.setMaxWidth( Math.min( Camera.main.width, 120 ) );
         textOther.measure();
         add( textOther );
 
@@ -141,7 +141,7 @@ public class AboutScene extends PixelScene {
         pos = textOther.y + textOther.height() + 4 * GAP;
 
         textOther = createMultiline( "Alternative Sound Track: Jivz & YAPD", 8 );
-        textOther.maxWidth = Math.min( Camera.main.width, 120 );
+        textOther.setMaxWidth( Math.min( Camera.main.width, 120 ) );
         textOther.measure();
         add( textOther );
 
@@ -151,7 +151,7 @@ public class AboutScene extends PixelScene {
         pos = textOther.y + textOther.height() + 4 * GAP;
 
         BitmapTextMultiline text = createMultiline( "Based on Pixel Dungeon", 8 );
-        text.maxWidth = Math.min( Camera.main.width, 120 );
+        text.setMaxWidth( Math.min( Camera.main.width, 120 ) );
         text.measure();
         add( text );
 
@@ -161,7 +161,7 @@ public class AboutScene extends PixelScene {
         pos = text.y + text.height() + GAP;
 
         text = createMultiline( "Code & graphics: Watabou", 8 );
-        text.maxWidth = Math.min( Camera.main.width, 120 );
+        text.setMaxWidth( Math.min( Camera.main.width, 120 ) );
         text.measure();
         add( text );
 
@@ -171,7 +171,7 @@ public class AboutScene extends PixelScene {
         pos = text.y + text.height() + GAP;
 
         text = createMultiline( "Music: Cube_Code", 8 );
-        text.maxWidth = Math.min( Camera.main.width, 120 );
+        text.setMaxWidth( Math.min( Camera.main.width, 120 ) );
         text.measure();
         add( text );
 
@@ -181,7 +181,7 @@ public class AboutScene extends PixelScene {
         pos = text.y + text.height() + GAP;
 
         BitmapTextMultiline link = createMultiline( LNK, 8 );
-        link.maxWidth = Math.min( Camera.main.width, 120 );
+        link.setMaxWidth( Math.min( Camera.main.width, 120 ) );
         link.measure();
         link.hardlight( Window.TITLE_COLOR );
         add( link );

@@ -34,7 +34,7 @@ public class WndMessage extends Window {
         super();
 
         BitmapTextMultiline info = PixelScene.createMultiline( text, 6 );
-        info.maxWidth = ( PixelDungeon.landscape() ? WIDTH_L : WIDTH_P ) - MARGIN * 2;
+        info.setMaxWidth( ( PixelDungeon.landscape() ? WIDTH_L : WIDTH_P ) - MARGIN * 2 );
         info.measure();
         info.x = info.y = MARGIN;
         add( info );

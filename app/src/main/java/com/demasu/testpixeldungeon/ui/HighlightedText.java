@@ -33,17 +33,17 @@ public class HighlightedText extends Component {
         Highlighter hl = new Highlighter( value );
 
         normal.text( hl.text );
-        normal.maxWidth = maxWidth;
+        normal.setMaxWidth( maxWidth );
         normal.measure();
 
         if ( hl.isHighlighted() ) {
-            normal.mask = hl.inverted();
+            normal.setMask( hl.inverted() );
 
             highlighted.text( hl.text );
-            highlighted.maxWidth = maxWidth;
+            highlighted.setMaxWidth( maxWidth );
             highlighted.measure();
 
-            highlighted.mask = hl.mask;
+            highlighted.setMask( hl.mask );
             highlighted.visible = true;
         } else {
             highlighted.visible = false;

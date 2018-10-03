@@ -118,7 +118,7 @@ public class WndInfoItem extends Window {
         add( titlebar );
 
         BitmapTextMultiline txtInfo = PixelScene.createMultiline( info, 6 );
-        txtInfo.maxWidth = WIDTH;
+        txtInfo.setMaxWidth( WIDTH );
         txtInfo.measure();
         txtInfo.x = titlebar.left();
         txtInfo.y = titlebar.bottom() + GAP;

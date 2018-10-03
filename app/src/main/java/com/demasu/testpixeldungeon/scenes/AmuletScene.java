@@ -57,7 +57,7 @@ public class AmuletScene extends PixelScene {
         BitmapTextMultiline text = null;
         if ( !noText ) {
             text = createMultiline( TXT, 8 );
-            text.maxWidth = WIDTH;
+            text.setMaxWidth( WIDTH );
             text.measure();
             add( text );
         }

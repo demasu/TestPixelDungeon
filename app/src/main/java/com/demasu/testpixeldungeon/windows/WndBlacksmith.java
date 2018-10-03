@@ -80,7 +80,7 @@ public class WndBlacksmith extends Window {
         add( titlebar );
 
         BitmapTextMultiline message = PixelScene.createMultiline( TXT_PROMPT, 6 );
-        message.maxWidth = WIDTH;
+        message.setMaxWidth( WIDTH );
         message.measure();
         message.y = titlebar.bottom() + GAP;
         add( message );

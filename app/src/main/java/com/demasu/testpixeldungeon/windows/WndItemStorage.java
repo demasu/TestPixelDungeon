@@ -56,7 +56,7 @@ public class WndItemStorage extends Window {
         }
 
         BitmapTextMultiline info = PixelScene.createMultiline( item.info(), 6 );
-        info.maxWidth = WIDTH;
+        info.setMaxWidth( WIDTH );
         info.measure();
         info.x = titlebar.left();
         info.y = titlebar.bottom() + GAP;

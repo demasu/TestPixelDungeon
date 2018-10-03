@@ -81,7 +81,7 @@ public class GameLog extends Component implements Signal.Listener<String> {
         text = Utils.capitalize( text ) +
                 ( PUNCTUATION.matcher( text ).matches() ? "" : "." );
 
-        if ( lastEntry != null && color == lastColor && lastEntry.nLines < MAX_LINES ) {
+        if ( lastEntry != null && color == lastColor && lastEntry.getnLines() < MAX_LINES ) {
 
             String lastMessage = lastEntry.text();
             lastEntry.text( lastMessage.length() == 0 ? text : lastMessage + " " + text );
@@ -105,7 +105,7 @@ public class GameLog extends Component implements Signal.Listener<String> {
             do {
                 nLines = 0;
                 for ( int i = 0; i < length; i++ ) {
-                    nLines += ( (BitmapTextMultiline) members.get( i ) ).nLines;
+                    nLines += ( (BitmapTextMultiline) members.get( i ) ).getnLines();
                 }
 
                 if ( nLines > MAX_LINES ) {
@@ -127,7 +127,7 @@ public class GameLog extends Component implements Signal.Listener<String> {
         float pos = getY();
         for ( int i = length - 1; i >= 0; i-- ) {
             BitmapTextMultiline entry = (BitmapTextMultiline) members.get( i );
-            entry.maxWidth = (int) getWidth();
+            entry.setMaxWidth( (int) getWidth() );
             entry.measure();
             entry.x = getX();
             entry.y = pos - entry.height();

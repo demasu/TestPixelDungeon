@@ -29,9 +29,9 @@ public class BitmapTextMultiline extends BitmapText {
 
     private static final Pattern PARAGRAPH = Pattern.compile( "\n" );
     private static final Pattern WORD = Pattern.compile( "\\s+" );
-    public int maxWidth = Integer.MAX_VALUE;
-    public int nLines = 0;
-    public boolean[] mask;
+    private int maxWidth = Integer.MAX_VALUE;
+    private int nLines = 0;
+    private boolean[] mask;
     private final float spaceSize;
 
     public BitmapTextMultiline ( Font font ) {
@@ -89,7 +89,7 @@ public class BitmapTextMultiline extends BitmapText {
                     float w = getFont().width( rect );
                     float h = getFont().height( rect );
 
-                    if ( mask == null || mask[pos] ) {
+                    if ( getMask() == null || getMask()[pos] ) {
                         getVertices()[0] = writer.x + shift;
                         getVertices()[1] = writer.y;
 
@@ -129,7 +129,7 @@ public class BitmapTextMultiline extends BitmapText {
             writer.newLine( 0, getFont().getLineHeight() );
         }
 
-        nLines = writer.nLines();
+        setnLines( writer.nLines() );
 
         setDirty( false );
     }
@@ -183,12 +183,36 @@ public class BitmapTextMultiline extends BitmapText {
         width = writer.width;
         height = writer.height;
 
-        nLines = writer.nLines();
+        setnLines( writer.nLines() );
     }
 
     @Override
     public float baseLine () {
         return ( height - getFont().getLineHeight() + getFont().getBaseLine() ) * scale.y;
+    }
+
+    public int getMaxWidth () {
+        return maxWidth;
+    }
+
+    public void setMaxWidth ( int maxWidth ) {
+        this.maxWidth = maxWidth;
+    }
+
+    public int getnLines () {
+        return nLines;
+    }
+
+    public void setnLines ( int nLines ) {
+        this.nLines = nLines;
+    }
+
+    public boolean[] getMask () {
+        return mask;
+    }
+
+    public void setMask ( boolean[] mask ) {
+        this.mask = mask;
     }
 
     private class SymbolWriter {
@@ -205,7 +229,7 @@ public class BitmapTextMultiline extends BitmapText {
         float y = 0;
 
         void addSymbol ( float w, float h ) {
-            if ( lineWidth > 0 && lineWidth + getFont().getTracking() + w > maxWidth / scale.x ) {
+            if ( lineWidth > 0 && lineWidth + getFont().getTracking() + w > getMaxWidth() / scale.x ) {
                 newLine( w, h );
             } else {
 
@@ -219,7 +243,7 @@ public class BitmapTextMultiline extends BitmapText {
         }
 
         void addSpace ( float w ) {
-            if ( lineWidth > 0 && lineWidth + getFont().getTracking() + w > maxWidth / scale.x ) {
+            if ( lineWidth > 0 && lineWidth + getFont().getTracking() + w > getMaxWidth() / scale.x ) {
                 newLine( 0, 0 );
             } else {
 
@@ -249,6 +273,8 @@ public class BitmapTextMultiline extends BitmapText {
         }
     }
 
+    //TODO: Split into its own file
+    @SuppressWarnings ( "PublicInnerClass" )
     public class LineSplitter {
 
         private ArrayList<BitmapText> lines;
@@ -293,13 +319,13 @@ public class BitmapTextMultiline extends BitmapText {
 
                     getWordMetrics( word, metrics );
 
-                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + metrics.x > maxWidth / scale.x ) {
+                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + metrics.x > getMaxWidth() / scale.x ) {
                         newLine( word, metrics.x );
                     } else {
                         append( word, metrics.x );
                     }
 
-                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + spaceSize > maxWidth / scale.x ) {
+                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + spaceSize > getMaxWidth() / scale.x ) {
                         newLine( "", 0 );
                     } else {
                         append( " ", spaceSize );

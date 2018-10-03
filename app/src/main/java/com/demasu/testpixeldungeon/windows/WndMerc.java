@@ -103,7 +103,7 @@ public class WndMerc extends WndTabbed {
 
 
         BitmapTextMultiline info = PixelScene.createMultiline( Dungeon.getHero().hiredMerc.mercType.getDescription(), 6 );
-        info.maxWidth = WIDTH;
+        info.setMaxWidth( WIDTH );
         info.measure();
         info.x = titlebar.left();
         info.y = titlebar.bottom() + GAP;

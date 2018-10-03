@@ -92,7 +92,7 @@ public class WndMercs extends WndTabbed {
             add( info );
 
             info.text( TXT_MERCENARIES_DETAIL );
-            info.maxWidth = width;
+            info.setMaxWidth( width );
             info.measure();
             info.y = pos;
 
@@ -118,7 +118,7 @@ public class WndMercs extends WndTabbed {
             add( info );
 
             info.text( getMercDetails( mode ) );
-            info.maxWidth = width;
+            info.setMaxWidth( width );
             info.measure();
             info.y = pos;
 
@@ -137,7 +137,7 @@ public class WndMercs extends WndTabbed {
             add( infoStats );
 
             infoStats.text( getMercStats( mode ) );
-            infoStats.maxWidth = width;
+            infoStats.setMaxWidth( width );
             infoStats.measure();
             infoStats.y = pos;
 
@@ -846,7 +846,7 @@ public class WndMercs extends WndTabbed {
             add( titlebar );
 
             BitmapTextMultiline txtInfo = PixelScene.createMultiline( description, 6 );
-            txtInfo.maxWidth = 100;
+            txtInfo.setMaxWidth( 100 );
             txtInfo.measure();
             txtInfo.x = titlebar.left();
             txtInfo.y = titlebar.bottom() + GAP;

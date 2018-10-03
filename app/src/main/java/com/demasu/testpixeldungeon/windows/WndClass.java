@@ -125,7 +125,7 @@ public class WndClass extends WndTabbed {
                 BitmapTextMultiline item = PixelScene.createMultiline( items[i], 6 );
                 item.x = dot.x + dotWidth;
                 item.y = pos;
-                item.maxWidth = (int) ( WIDTH - MARGIN * 2 - dotWidth );
+                item.setMaxWidth( (int) ( WIDTH - MARGIN * 2 - dotWidth ) );
                 item.measure();
                 add( item );
 
