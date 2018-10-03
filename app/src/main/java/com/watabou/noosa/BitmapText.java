@@ -60,6 +60,7 @@ public class BitmapText extends Visual {
         super.destroy();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     protected void updateMatrix () {
         // "origin" field is ignored
@@ -69,6 +70,7 @@ public class BitmapText extends Visual {
         Matrix.rotate( matrix, angle );
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public void draw () {
 
