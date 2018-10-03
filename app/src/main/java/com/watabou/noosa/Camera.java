@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class Camera extends Gizmo {
 
     public static Camera main;
-    protected static ArrayList<Camera> all = new ArrayList<>();
+    private static final ArrayList<Camera> all = new ArrayList<>();
     protected static float invW2;
     protected static float invH2;
     public float zoom;
@@ -37,7 +37,7 @@ public class Camera extends Gizmo {
     public int width;
     public int height;
     public float[] matrix;
-    public PointF scroll;
+    public final PointF scroll;
     public Visual target;
     protected float shakeX;
     protected float shakeY;
@@ -126,7 +126,7 @@ public class Camera extends Gizmo {
                 scroll.y + height / 2 );
     }
 
-    public void zoom ( float value, float fx, float fy ) {
+    private void zoom ( float value, float fx, float fy ) {
 
         zoom = value;
         width = (int) ( screenWidth / zoom );
@@ -167,15 +167,11 @@ public class Camera extends Gizmo {
         return new PointF( width / 2, height / 2 );
     }
 
-    public boolean hitTest ( float x, float y ) {
-        return x >= this.x && y >= this.y && x < this.x + screenWidth && y < this.y + screenHeight;
-    }
-
-    public void focusOn ( float x, float y ) {
+    private void focusOn ( float x, float y ) {
         scroll.set( x - width / 2, y - height / 2 );
     }
 
-    public void focusOn ( PointF point ) {
+    private void focusOn ( PointF point ) {
         focusOn( point.x, point.y );
     }
 
