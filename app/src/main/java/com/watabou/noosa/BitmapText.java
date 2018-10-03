@@ -256,7 +256,8 @@ public class BitmapText extends Visual {
                 }
             }
 
-            lineHeight = baseLine = height;
+            lineHeight = height;
+            baseLine = height;
         }
 
         public static Font colorMarked ( Bitmap bmp, int color, String chars ) {
@@ -317,7 +318,8 @@ public class BitmapText extends Visual {
                 }
             }
 
-            lineHeight = baseLine = height( frames.get( chars.charAt( 0 ) ) );
+            lineHeight = height( frames.get( chars.charAt( 0 ) ) );
+            baseLine = height( frames.get( chars.charAt( 0 ) ) );
         }
 
         public RectF get ( char ch ) {
