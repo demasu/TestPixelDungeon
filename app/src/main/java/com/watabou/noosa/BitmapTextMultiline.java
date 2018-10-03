@@ -59,7 +59,7 @@ public class BitmapTextMultiline extends BitmapText {
         // Word size
         PointF metrics = new PointF();
 
-        String paragraphs[] = PARAGRAPH.split( getText() );
+        String[] paragraphs = PARAGRAPH.split( getText() );
 
         // Current character (used in masking)
         int pos = 0;
@@ -157,7 +157,7 @@ public class BitmapTextMultiline extends BitmapText {
 
         PointF metrics = new PointF();
 
-        String paragraphs[] = PARAGRAPH.split( getText() );
+        String[] paragraphs = PARAGRAPH.split( getText() );
 
         for ( String paragraph : paragraphs ) {
 
@@ -279,7 +279,7 @@ public class BitmapTextMultiline extends BitmapText {
             curLine = new StringBuilder();
             curLineWidth = 0;
 
-            String paragraphs[] = PARAGRAPH.split( getText() );
+            String[] paragraphs = PARAGRAPH.split( getText() );
 
             for ( String paragraph : paragraphs ) {
 
