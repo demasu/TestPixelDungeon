@@ -43,7 +43,7 @@ public class BitmapTextMultiline extends BitmapText {
         spaceSize = font.width( font.get( ' ' ) );
     }
 
-    @SuppressWarnings ( "FeatureEnvy" )
+    @SuppressWarnings ( { "FeatureEnvy", "MagicNumber" } )
     @Override
     protected void updateVertices () {
 
