@@ -297,7 +297,8 @@ public class BitmapText extends Visual {
                     int separator = pos;
 
                     do {
-                        if ( ++separator >= width ) {
+                        ++separator;
+                        if ( separator >= width ) {
                             break;
                         }
                         found = true;
