@@ -79,7 +79,7 @@ public class WarriorArmor extends ClassArmor {
                         }
 
                         CellEmitter.center( dest ).burst( Speck.factory( Speck.DUST ), 10 );
-                        Camera.main.shake( 2, 0.5f );
+                        Camera.getMain().shake( 2, 0.5f );
 
                         curUser.spendAndNext( LEAP_TIME );
                     }

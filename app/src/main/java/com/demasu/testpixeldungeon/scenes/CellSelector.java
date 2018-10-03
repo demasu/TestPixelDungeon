@@ -86,7 +86,7 @@ public class CellSelector extends TouchArea {
 
             another = t;
             startSpan = PointF.distance( touch.getCurrent(), another.getCurrent() );
-            startZoom = camera.zoom;
+            startZoom = camera.getZoom();
 
             dragging = false;
         }
@@ -98,7 +98,7 @@ public class CellSelector extends TouchArea {
 
             pinching = false;
 
-            int zoom = Math.round( camera.zoom );
+            int zoom = Math.round( camera.getZoom() );
             camera.zoom( zoom );
             PixelDungeon.zoom( (int) ( zoom - PixelScene.defaultZoom ) );
 
@@ -114,7 +114,7 @@ public class CellSelector extends TouchArea {
     @Override
     protected void onDrag ( Touch t ) {
 
-        camera.target = null;
+        camera.setTarget( null );
 
         if ( pinching ) {
 
@@ -132,7 +132,7 @@ public class CellSelector extends TouchArea {
                 lastPos.set( t.getCurrent() );
 
             } else if ( dragging ) {
-                camera.scroll.offset( PointF.diff( lastPos, t.getCurrent() ).invScale( camera.zoom ) );
+                camera.getScroll().offset( PointF.diff( lastPos, t.getCurrent() ).invScale( camera.getZoom() ) );
                 lastPos.set( t.getCurrent() );
             }
         }

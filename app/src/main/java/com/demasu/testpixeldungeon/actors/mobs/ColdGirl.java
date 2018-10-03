@@ -385,7 +385,7 @@ public class ColdGirl extends Mob {
             defenseSkill = 11;
             ( (ColdGirlAI) state ).aiStatus = SUPER_HUNTING;
             GameScene.flash( 0x0042ff );
-            Camera.main.shake( 3, 0.07f * ( 20 ) );
+            Camera.getMain().shake( 3, 0.07f * ( 20 ) );
             int[] cells = {
                     pos - 1, pos + 1, pos - Level.WIDTH, pos + Level.WIDTH,
                     pos - 1 - Level.WIDTH,
@@ -464,7 +464,7 @@ public class ColdGirl extends Mob {
             speak( "What is your malfunction?!" );
 
             GameScene.flash( 0x0042ff );
-            Camera.main.shake( 5, 0.07f * ( 30 ) );
+            Camera.getMain().shake( 5, 0.07f * ( 30 ) );
             spend( 1f );
             return;
         }
@@ -553,7 +553,7 @@ public class ColdGirl extends Mob {
             if ( enemy == Dungeon.getHero() ) {
                 Dungeon.getHero().interrupt();
                 if ( effectiveDamage > enemy.getHT() / 4 ) {
-                    Camera.main.shake( GameMath.gate( 1, effectiveDamage / ( enemy.getHT() / 4 ), 5 ), 0.3f );
+                    Camera.getMain().shake( GameMath.gate( 1, effectiveDamage / ( enemy.getHT() / 4 ), 5 ), 0.3f );
                 }
             }
 

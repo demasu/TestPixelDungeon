@@ -60,7 +60,7 @@ public class ScrollPane extends Component {
     }
 
     public void scrollTo ( float x, float y ) {
-        content.camera.scroll.set( x, y );
+        content.camera.getScroll().set( x, y );
     }
 
     @Override
@@ -84,8 +84,8 @@ public class ScrollPane extends Component {
 
         Point p = camera().cameraToScreen( getX(), getY() );
         Camera cs = content.camera;
-        cs.x = p.x;
-        cs.y = p.y;
+        cs.setX( p.x );
+        cs.setY( p.y );
         cs.resize( (int) getWidth(), (int) getHeight() );
 
         thumb.visible = getHeight() < content.height();
@@ -135,21 +135,21 @@ public class ScrollPane extends Component {
 
                 Camera c = content.camera;
 
-                c.scroll.offset( PointF.diff( lastPos, t.getCurrent() ).invScale( c.zoom ) );
-                if ( c.scroll.x + width > content.width() ) {
-                    c.scroll.x = content.width() - width;
+                c.getScroll().offset( PointF.diff( lastPos, t.getCurrent() ).invScale( c.getZoom() ) );
+                if ( c.getScroll().x + width > content.width() ) {
+                    c.getScroll().x = content.width() - width;
                 }
-                if ( c.scroll.x < 0 ) {
-                    c.scroll.x = 0;
+                if ( c.getScroll().x < 0 ) {
+                    c.getScroll().x = 0;
                 }
-                if ( c.scroll.y + height > content.height() ) {
-                    c.scroll.y = content.height() - height;
+                if ( c.getScroll().y + height > content.height() ) {
+                    c.getScroll().y = content.height() - height;
                 }
-                if ( c.scroll.y < 0 ) {
-                    c.scroll.y = 0;
+                if ( c.getScroll().y < 0 ) {
+                    c.getScroll().y = 0;
                 }
 
-                thumb.y = y + height * c.scroll.y / content.height();
+                thumb.y = y + height * c.getScroll().y / content.height();
 
                 lastPos.set( t.getCurrent() );
 

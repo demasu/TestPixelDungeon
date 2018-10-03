@@ -26,23 +26,23 @@ import java.util.ArrayList;
 
 public class Camera extends Gizmo {
 
-    public static Camera main;
+    private static Camera main;
     private static final ArrayList<Camera> all = new ArrayList<>();
-    protected static float invW2;
-    protected static float invH2;
-    public float zoom;
+    private static float invW2;
+    private static float invH2;
+    private float zoom;
 
-    public int x;
-    public int y;
-    public int width;
-    public int height;
-    public float[] matrix;
-    public final PointF scroll;
-    public Visual target;
-    protected float shakeX;
-    protected float shakeY;
-    int screenWidth;
-    int screenHeight;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    private float[] matrix;
+    private final PointF scroll;
+    private Visual target;
+    private float shakeX;
+    private float shakeY;
+    private int screenWidth;
+    private int screenHeight;
     private float shakeMagX = 10f;
     private float shakeMagY = 10f;
     private float shakeTime = 0f;
@@ -50,19 +50,19 @@ public class Camera extends Gizmo {
 
     public Camera ( int x, int y, int width, int height, float zoom ) {
 
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.zoom = zoom;
+        this.setX( x );
+        this.setY( y );
+        this.setWidth( width );
+        this.setHeight( height );
+        this.setZoom( zoom );
 
-        screenWidth = (int) ( width * zoom );
-        screenHeight = (int) ( height * zoom );
+        setScreenWidth( (int) ( width * zoom ) );
+        setScreenHeight( (int) ( height * zoom ) );
 
         scroll = new PointF();
 
-        matrix = new float[16];
-        Matrix.setIdentity( matrix );
+        setMatrix( new float[16] );
+        Matrix.setIdentity( getMatrix() );
     }
 
     public static Camera reset () {
@@ -71,8 +71,8 @@ public class Camera extends Gizmo {
 
     public static Camera reset ( Camera newCamera ) {
 
-        invW2 = 2f / Game.getWidth();
-        invH2 = 2f / Game.getHeight();
+        setInvW2( 2f / Game.getWidth() );
+        setInvH2( 2f / Game.getHeight() );
 
         int length = all.size();
         for ( int i = 0; i < length; i++ ) {
@@ -80,8 +80,8 @@ public class Camera extends Gizmo {
         }
         all.clear();
 
-        main = add( newCamera );
-        return main;
+        setMain( add( newCamera ) );
+        return getMain();
     }
 
     public static Camera add ( Camera camera ) {
@@ -113,62 +113,85 @@ public class Camera extends Gizmo {
                 w, h, zoom );
     }
 
-    @SuppressWarnings ( "AssignmentToNull" )
+    public static Camera getMain () {
+        return main;
+    }
+
+    private static void setMain ( Camera main ) {
+        Camera.main = main;
+    }
+
+    public static float getInvW2 () {
+        return invW2;
+    }
+
+    private static void setInvW2 ( float invW2 ) {
+        Camera.invW2 = invW2;
+    }
+
+    public static float getInvH2 () {
+        return invH2;
+    }
+
+    private static void setInvH2 ( float invH2 ) {
+        Camera.invH2 = invH2;
+    }
+
     @Override
     public void destroy () {
-        target = null;
-        matrix = null;
+        setTarget( null );
+        setMatrix( null );
     }
 
     public void zoom ( float value ) {
         zoom( value,
-                scroll.x + width / 2,
-                scroll.y + height / 2 );
+                getScroll().x + getWidth() / 2,
+                getScroll().y + getHeight() / 2 );
     }
 
     private void zoom ( float value, float fx, float fy ) {
 
-        zoom = value;
-        width = (int) ( screenWidth / zoom );
-        height = (int) ( screenHeight / zoom );
+        setZoom( value );
+        setWidth( (int) ( getScreenWidth() / getZoom() ) );
+        setHeight( (int) ( getScreenHeight() / getZoom() ) );
 
         focusOn( fx, fy );
     }
 
     public void resize ( int width, int height ) {
-        this.width = width;
-        this.height = height;
-        screenWidth = (int) ( width * zoom );
-        screenHeight = (int) ( height * zoom );
+        this.setWidth( width );
+        this.setHeight( height );
+        setScreenWidth( (int) ( width * getZoom() ) );
+        setScreenHeight( (int) ( height * getZoom() ) );
     }
 
     @Override
     public void update () {
         super.update();
 
-        if ( target != null ) {
-            focusOn( target );
+        if ( getTarget() != null ) {
+            focusOn( getTarget() );
         }
 
         shakeTime -= Game.getElapsed();
         if ( ( shakeTime ) > 0 ) {
             float damping = shakeTime / shakeDuration;
-            shakeX = Random.Float( -shakeMagX, +shakeMagX ) * damping;
-            shakeY = Random.Float( -shakeMagY, +shakeMagY ) * damping;
+            setShakeX( Random.Float( -shakeMagX, +shakeMagX ) * damping );
+            setShakeY( Random.Float( -shakeMagY, +shakeMagY ) * damping );
         } else {
-            shakeX = 0;
-            shakeY = 0;
+            setShakeX( 0 );
+            setShakeY( 0 );
         }
 
         updateMatrix();
     }
 
     public PointF center () {
-        return new PointF( width / 2, height / 2 );
+        return new PointF( getWidth() / 2, getHeight() / 2 );
     }
 
     private void focusOn ( float x, float y ) {
-        scroll.set( x - width / 2, y - height / 2 );
+        getScroll().set( x - getWidth() / 2, y - getHeight() / 2 );
     }
 
     private void focusOn ( PointF point ) {
@@ -182,22 +205,22 @@ public class Camera extends Gizmo {
 
     public PointF screenToCamera ( int x, int y ) {
         return new PointF(
-                ( x - this.x ) / zoom + scroll.x,
-                ( y - this.y ) / zoom + scroll.y );
+                ( x - this.getX() ) / getZoom() + getScroll().x,
+                ( y - this.getY() ) / getZoom() + getScroll().y );
     }
 
     public Point cameraToScreen ( float x, float y ) {
         return new Point(
-                (int) ( ( x - scroll.x ) * zoom + this.x ),
-                (int) ( ( y - scroll.y ) * zoom + this.y ) );
+                (int) ( ( x - getScroll().x ) * getZoom() + this.getX() ),
+                (int) ( ( y - getScroll().y ) * getZoom() + this.getY() ) );
     }
 
     public float screenWidth () {
-        return width * zoom;
+        return getWidth() * getZoom();
     }
 
     public float screenHeight () {
-        return height * zoom;
+        return getHeight() * getZoom();
     }
 
 
@@ -210,11 +233,11 @@ public class Camera extends Gizmo {
         Matrix.scale( matrix, zoom, zoom );
         Matrix.translate( matrix, scroll.x, scroll.y );*/
 
-        matrix[0] = +zoom * invW2;
-        matrix[5] = -zoom * invH2;
+        getMatrix()[0] = +getZoom() * getInvW2();
+        getMatrix()[5] = -getZoom() * getInvH2();
 
-        matrix[12] = -1 + x * invW2 - ( scroll.x + shakeX ) * matrix[0];
-        matrix[13] = +1 - y * invH2 - ( scroll.y + shakeY ) * matrix[5];
+        getMatrix()[12] = -1 + getX() * getInvW2() - ( getScroll().x + getShakeX() ) * getMatrix()[0];
+        getMatrix()[13] = +1 - getY() * getInvH2() - ( getScroll().y + getShakeY() ) * getMatrix()[5];
 
     }
 
@@ -223,5 +246,98 @@ public class Camera extends Gizmo {
         shakeMagY = magnitude;
         shakeTime = duration;
         shakeDuration = duration;
+    }
+
+    public int getScreenWidth () {
+        return screenWidth;
+    }
+
+    private void setScreenWidth ( int screenWidth ) {
+        this.screenWidth = screenWidth;
+    }
+
+    public int getScreenHeight () {
+        return screenHeight;
+    }
+
+    private void setScreenHeight ( int screenHeight ) {
+        this.screenHeight = screenHeight;
+    }
+
+    public float getZoom () {
+        return zoom;
+    }
+
+    private void setZoom ( float zoom ) {
+        this.zoom = zoom;
+    }
+
+    public int getX () {
+        return x;
+    }
+
+    public void setX ( int x ) {
+        this.x = x;
+    }
+
+    public int getY () {
+        return y;
+    }
+
+    public void setY ( int y ) {
+        this.y = y;
+    }
+
+    public int getWidth () {
+        return width;
+    }
+
+    private void setWidth ( int width ) {
+        this.width = width;
+    }
+
+    public int getHeight () {
+        return height;
+    }
+
+    private void setHeight ( int height ) {
+        this.height = height;
+    }
+
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
+    public float[] getMatrix () {
+        return matrix;
+    }
+
+    private void setMatrix ( float[] matrix ) {
+        this.matrix = matrix;
+    }
+
+    public PointF getScroll () {
+        return scroll;
+    }
+
+    private Visual getTarget () {
+        return target;
+    }
+
+    public void setTarget ( Visual target ) {
+        this.target = target;
+    }
+
+    public float getShakeX () {
+        return shakeX;
+    }
+
+    private void setShakeX ( float shakeX ) {
+        this.shakeX = shakeX;
+    }
+
+    public float getShakeY () {
+        return shakeY;
+    }
+
+    private void setShakeY ( float shakeY ) {
+        this.shakeY = shakeY;
     }
 }

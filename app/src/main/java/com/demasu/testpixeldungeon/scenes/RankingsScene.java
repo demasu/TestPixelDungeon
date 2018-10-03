@@ -65,8 +65,8 @@ public class RankingsScene extends PixelScene {
 
         uiCamera.visible = false;
 
-        int w = Camera.main.width;
-        int h = Camera.main.height;
+        int w = Camera.getMain().getWidth();
+        int h = Camera.getMain().getHeight();
 
         archs = new Archs();
         archs.setSize( w, h );
@@ -135,7 +135,7 @@ public class RankingsScene extends PixelScene {
         }
 
         ExitButton btnExit = new ExitButton();
-        btnExit.setPos( Camera.main.width - btnExit.width(), 0 );
+        btnExit.setPos( Camera.getMain().getWidth() - btnExit.width(), 0 );
         add( btnExit );
 
         fadeIn();

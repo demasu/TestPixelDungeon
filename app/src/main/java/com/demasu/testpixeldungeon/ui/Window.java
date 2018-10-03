@@ -51,7 +51,7 @@ public class Window extends Group implements Signal.Listener<Key> {
     public Window ( int width, int height, NinePatch chrome ) {
         super();
 
-        blocker = new TouchArea( 0, 0, PixelScene.uiCamera.width, PixelScene.uiCamera.height ) {
+        blocker = new TouchArea( 0, 0, PixelScene.uiCamera.getWidth(), PixelScene.uiCamera.getHeight() ) {
             @Override
             protected void onClick ( Touch touch ) {
                 if ( !Window.this.chrome.overlapsScreenPoint(
@@ -73,7 +73,7 @@ public class Window extends Group implements Signal.Listener<Key> {
         shadow = new ShadowBox();
         shadow.am = 0.5f;
         shadow.camera = PixelScene.uiCamera.visible ?
-                PixelScene.uiCamera : Camera.main;
+                PixelScene.uiCamera : Camera.getMain();
         add( shadow );
 
         chrome.x = -chrome.marginLeft();
@@ -87,14 +87,14 @@ public class Window extends Group implements Signal.Listener<Key> {
                 (int) chrome.width,
                 (int) chrome.height,
                 PixelScene.defaultZoom );
-        camera.x = (int) ( Game.getWidth() - camera.width * camera.zoom ) / 2;
-        camera.y = (int) ( Game.getHeight() - camera.height * camera.zoom ) / 2;
-        camera.scroll.set( chrome.x, chrome.y );
+        camera.setX( (int) ( Game.getWidth() - camera.getWidth() * camera.getZoom() ) / 2 );
+        camera.setY( (int) ( Game.getHeight() - camera.getHeight() * camera.getZoom() ) / 2 );
+        camera.getScroll().set( chrome.x, chrome.y );
         Camera.add( camera );
 
         shadow.boxRect(
-                camera.x / camera.zoom,
-                camera.y / camera.zoom,
+                camera.getX() / camera.getZoom(),
+                camera.getY() / camera.getZoom(),
                 chrome.width(), chrome.height );
 
         Keys.event.add( this );
@@ -109,10 +109,10 @@ public class Window extends Group implements Signal.Listener<Key> {
                 height + chrome.marginVer() );
 
         camera.resize( (int) chrome.width, (int) chrome.height );
-        camera.x = (int) ( Game.getWidth() - camera.screenWidth() ) / 2;
-        camera.y = (int) ( Game.getHeight() - camera.screenHeight() ) / 2;
+        camera.setX( (int) ( Game.getWidth() - camera.screenWidth() ) / 2 );
+        camera.setY( (int) ( Game.getHeight() - camera.screenHeight() ) / 2 );
 
-        shadow.boxRect( camera.x / camera.zoom, camera.y / camera.zoom, chrome.width(), chrome.height );
+        shadow.boxRect( camera.getX() / camera.getZoom(), camera.getY() / camera.getZoom(), chrome.width(), chrome.height );
     }
 
     public void hide () {

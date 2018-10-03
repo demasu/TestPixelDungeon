@@ -62,7 +62,7 @@ public class WandOfLightning extends Wand {
         }
 
         if ( ch == Dungeon.getHero() ) {
-            Camera.main.shake( 2, 0.3f );
+            Camera.getMain().shake( 2, 0.3f );
         } else if ( ch instanceof Mob ) {
             damage *= Dungeon.getHero().heroSkills.passiveB2.wandDamageBonus(); // <---- Mage Sorcerer if present
         }

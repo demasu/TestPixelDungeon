@@ -795,7 +795,7 @@ public class Hero extends Char {
                 switch ( heap.type ) {
                     case TOMB:
                         Sample.INSTANCE.play( Assets.SND_TOMB );
-                        Camera.main.shake( 1, 0.5f );
+                        Camera.getMain().shake( 1, 0.5f );
                         break;
                     case SKELETON:
                         break;
@@ -1149,7 +1149,7 @@ public class Hero extends Char {
     private boolean getCloser ( final int target ) {
 
         if ( rooted ) {
-            Camera.main.shake( 1, 1f );
+            Camera.getMain().shake( 1, 1f );
             return false;
         }
 

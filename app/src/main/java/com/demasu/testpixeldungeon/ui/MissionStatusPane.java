@@ -79,7 +79,7 @@ public class MissionStatusPane extends Component {
             protected void onClick ( Touch touch ) {
                 Image sprite = Dungeon.getHero().sprite;
                 if ( !sprite.isVisible() ) {
-                    Camera.main.focusOn( sprite );
+                    Camera.getMain().focusOn( sprite );
                 }
                 GameScene.show( new WndHero() );
             }

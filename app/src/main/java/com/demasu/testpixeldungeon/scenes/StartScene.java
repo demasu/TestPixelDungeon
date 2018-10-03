@@ -95,8 +95,8 @@ public class StartScene extends PixelScene {
 
         uiCamera.visible = false;
 
-        int w = Camera.main.width;
-        int h = Camera.main.height;
+        int w = Camera.getMain().getWidth();
+        int h = Camera.getMain().getHeight();
 
         float width, height;
         if ( PixelDungeon.landscape() ) {
@@ -140,7 +140,7 @@ public class StartScene extends PixelScene {
 
         };
 
-        btnResume.setPos( Camera.main.width - btnResume.width(), Camera.main.height / 2 - btnResume.height() / 2 );
+        btnResume.setPos( Camera.getMain().getWidth() - btnResume.width(), Camera.getMain().getHeight() / 2 - btnResume.height() / 2 );
         btnResume.visible = true;
         add( btnResume );
 
@@ -240,7 +240,7 @@ public class StartScene extends PixelScene {
         }
         huntressUnlocked = true; // Just let it go... let it go... bla bla bla
         ExitButton btnExit = new ExitButton();
-        btnExit.setPos( Camera.main.width - btnExit.width(), 0 );
+        btnExit.setPos( Camera.getMain().getWidth() - btnExit.width(), 0 );
         add( btnExit );
 
         curClass = null;
@@ -328,7 +328,7 @@ public class StartScene extends PixelScene {
                 btnNewGame.visible = true;
                 btnNewGame.secondary( TXT_ERASE, false );
 
-                float w = ( Camera.main.width - GAP ) / 2 - buttonX;
+                float w = ( Camera.getMain().getWidth() - GAP ) / 2 - buttonX;
 
                 btnLoad.setRect(
                         buttonX, buttonY, w, BUTTON_HEIGHT );
@@ -340,7 +340,7 @@ public class StartScene extends PixelScene {
 
                 btnNewGame.visible = true;
                 btnNewGame.secondary( null, false );
-                btnNewGame.setRect( buttonX, buttonY, Camera.main.width - buttonX * 2, BUTTON_HEIGHT );
+                btnNewGame.setRect( buttonX, buttonY, Camera.getMain().getWidth() - buttonX * 2, BUTTON_HEIGHT );
             }
 
         } else {

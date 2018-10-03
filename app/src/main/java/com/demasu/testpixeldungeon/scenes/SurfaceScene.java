@@ -72,8 +72,8 @@ public class SurfaceScene extends PixelScene {
 
         uiCamera.visible = false;
 
-        int w = Camera.main.width;
-        int h = Camera.main.height;
+        int w = Camera.getMain().getWidth();
+        int h = Camera.getMain().getHeight();
 
         Archs archs = new Archs();
         archs.reversed = true;
@@ -83,7 +83,7 @@ public class SurfaceScene extends PixelScene {
         float vx = align( ( w - SKY_WIDTH ) / 2 );
         float vy = align( ( h - SKY_HEIGHT - BUTTON_HEIGHT ) / 2 );
 
-        Point s = Camera.main.cameraToScreen( vx, vy );
+        Point s = Camera.getMain().cameraToScreen( vx, vy );
         viewport = new Camera( s.x, s.y, SKY_WIDTH, SKY_HEIGHT, defaultZoom );
         Camera.add( viewport );
 

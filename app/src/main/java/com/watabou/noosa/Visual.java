@@ -222,10 +222,10 @@ public class Visual extends Gizmo {
     // true if its bounding box intersects its camera's bounds
     public boolean isVisible () {
         Camera c = camera();
-        float cx = c.scroll.x;
-        float cy = c.scroll.y;
+        float cx = c.getScroll().x;
+        float cy = c.getScroll().y;
         float w = width();
         float h = height();
-        return x + w >= cx && y + h >= cy && x < cx + c.width && y < cy + c.height;
+        return x + w >= cx && y + h >= cy && x < cx + c.getWidth() && y < cy + c.getHeight();
     }
 }

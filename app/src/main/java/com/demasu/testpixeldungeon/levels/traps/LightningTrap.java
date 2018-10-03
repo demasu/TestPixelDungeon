@@ -43,7 +43,7 @@ public class LightningTrap {
             ch.damage( Math.max( 1, Random.Int( ch.getHP() / 3, 2 * ch.getHP() / 3 ) ), LIGHTNING );
             if ( ch == Dungeon.getHero() ) {
 
-                Camera.main.shake( 2, 0.3f );
+                Camera.getMain().shake( 2, 0.3f );
 
                 if ( !ch.isAlive() ) {
                     Dungeon.fail( Utils.format( ResultDescriptions.TRAP, name, Dungeon.getDepth() ) );

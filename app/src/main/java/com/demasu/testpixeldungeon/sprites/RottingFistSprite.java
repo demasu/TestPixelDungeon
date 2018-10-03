@@ -63,7 +63,7 @@ public class RottingFistSprite extends MobSprite {
             acc.set( 0 );
             place( ch.pos );
 
-            Camera.main.shake( 4, 0.2f );
+            Camera.getMain().shake( 4, 0.2f );
         }
     }
 }

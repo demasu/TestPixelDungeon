@@ -113,7 +113,7 @@ public class Shaman extends Mob implements Callback {
 
                 if ( enemy == Dungeon.getHero() ) {
 
-                    Camera.main.shake( 2, 0.3f );
+                    Camera.getMain().shake( 2, 0.3f );
 
                     if ( !enemy.isAlive() ) {
                         Dungeon.fail( Utils.format( ResultDescriptions.MOB,

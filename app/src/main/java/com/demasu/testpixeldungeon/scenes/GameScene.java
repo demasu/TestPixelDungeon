@@ -323,7 +323,7 @@ public class GameScene extends PixelScene {
         PixelDungeon.lastClass( Dungeon.getHero().getHeroClass().ordinal() );
 
         super.create();
-        Camera.main.zoom( defaultZoom + PixelDungeon.zoom() );
+        Camera.getMain().zoom( defaultZoom + PixelDungeon.zoom() );
 
         scene = this;
 
@@ -411,18 +411,18 @@ public class GameScene extends PixelScene {
 
         StatusPane sb = new StatusPane();
         sb.camera = uiCamera;
-        sb.setSize( uiCamera.width, 0 );
+        sb.setSize( uiCamera.getWidth(), 0 );
         add( sb );
 
         toolbar = new Toolbar();
         toolbar.camera = uiCamera;
-        toolbar.setRect( 0, uiCamera.height - toolbar.height(), uiCamera.width, toolbar.height() );
+        toolbar.setRect( 0, uiCamera.getHeight() - toolbar.height(), uiCamera.getWidth(), toolbar.height() );
         add( toolbar );
 
         AttackIndicator attack = new AttackIndicator();
         attack.camera = uiCamera;
         attack.setPos(
-                uiCamera.width - attack.width(),
+                uiCamera.getWidth() - attack.width(),
                 toolbar.top() - attack.height() );
         add( attack );
 
@@ -491,7 +491,7 @@ public class GameScene extends PixelScene {
             Dungeon.getDroppedItems().remove( Dungeon.getDepth() );
         }
 
-        Camera.main.target = hero;
+        Camera.getMain().setTarget( hero );
 
         if ( InterlevelScene.mode != InterlevelScene.Mode.NONE && Dungeon.getDepth() != 0 ) {
             if ( Dungeon.getDepth() < Statistics.deepestFloor ) {
@@ -646,15 +646,15 @@ public class GameScene extends PixelScene {
                 }
             };
             prompt.camera = uiCamera;
-            prompt.setPos( ( uiCamera.width - prompt.width() ) / 2, uiCamera.height - 60 );
+            prompt.setPos( ( uiCamera.getWidth() - prompt.width() ) / 2, uiCamera.getHeight() - 60 );
             add( prompt );
         }
     }
 
     protected void showBanner ( Banner banner ) {
         banner.camera = uiCamera;
-        banner.x = align( uiCamera, ( uiCamera.width - banner.width ) / 2 );
-        banner.y = align( uiCamera, ( uiCamera.height - banner.height ) / 3 );
+        banner.x = align( uiCamera, ( uiCamera.getWidth() - banner.width ) / 2 );
+        banner.y = align( uiCamera, ( uiCamera.getHeight() - banner.height ) / 3 );
         add( banner );
     }
 }

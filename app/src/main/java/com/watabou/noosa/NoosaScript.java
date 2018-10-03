@@ -144,17 +144,17 @@ public class NoosaScript extends Script {
 
     public void camera ( Camera camera ) {
         if ( camera == null ) {
-            camera = Camera.main;
+            camera = Camera.getMain();
         }
         if ( camera != lastCamera ) {
             lastCamera = camera;
-            uCamera.valueM4( camera.matrix );
+            uCamera.valueM4( camera.getMatrix() );
 
             GLES20.glScissor(
-                    camera.x,
-                    Game.getHeight() - camera.screenHeight - camera.y,
-                    camera.screenWidth,
-                    camera.screenHeight );
+                    camera.getX(),
+                    Game.getHeight() - camera.getScreenHeight() - camera.getY(),
+                    camera.getScreenWidth(),
+                    camera.getScreenHeight() );
         }
     }
 

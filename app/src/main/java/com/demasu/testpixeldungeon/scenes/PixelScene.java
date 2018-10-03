@@ -152,7 +152,7 @@ public class PixelScene extends Scene {
     }
 
     public static float align ( Camera camera, float pos ) {
-        return ( (int) ( pos * camera.zoom ) ) / camera.zoom;
+        return ( (int) ( pos * camera.getZoom() ) ) / camera.getZoom();
     }
 
     // This one should be used for UI elements
@@ -169,8 +169,8 @@ public class PixelScene extends Scene {
     public static void showBadge ( Badges.Badge badge ) {
         BadgeBanner banner = BadgeBanner.show( badge.image );
         banner.camera = uiCamera;
-        banner.x = align( banner.camera, ( banner.camera.width - banner.width ) / 2 );
-        banner.y = align( banner.camera, ( banner.camera.height - banner.height ) / 3 );
+        banner.x = align( banner.camera, ( banner.camera.getWidth() - banner.width ) / 2 );
+        banner.y = align( banner.camera, ( banner.camera.getHeight() - banner.height ) / 3 );
         Game.scene().add( banner );
     }
 
@@ -277,7 +277,7 @@ public class PixelScene extends Scene {
         private float time;
 
         public Fader ( int color, boolean light ) {
-            super( uiCamera.width, uiCamera.height, color );
+            super( uiCamera.getWidth(), uiCamera.getHeight(), color );
 
             this.light = light;
 
@@ -324,14 +324,14 @@ public class PixelScene extends Scene {
 
         @Override
         protected void updateMatrix () {
-            float sx = align( this, scroll.x + shakeX );
-            float sy = align( this, scroll.y + shakeY );
+            float sx = align( this, getScroll().x + getShakeX() );
+            float sy = align( this, getScroll().y + getShakeY() );
 
-            matrix[0] = +zoom * invW2;
-            matrix[5] = -zoom * invH2;
+            getMatrix()[0] = +getZoom() * getInvW2();
+            getMatrix()[5] = -getZoom() * getInvH2();
 
-            matrix[12] = -1 + x * invW2 - sx * matrix[0];
-            matrix[13] = +1 - y * invH2 - sy * matrix[5];
+            getMatrix()[12] = -1 + getX() * getInvW2() - sx * getMatrix()[0];
+            getMatrix()[13] = +1 - getY() * getInvH2() - sy * getMatrix()[5];
 
         }
     }

@@ -287,7 +287,7 @@ public abstract class Char extends Actor {
             if ( enemy == Dungeon.getHero() ) {
                 Dungeon.getHero().interrupt();
                 if ( effectiveDamage > enemy.getHT() / 4 ) {
-                    Camera.main.shake( GameMath.gate( 1, effectiveDamage / ( enemy.getHT() / 4 ), 5 ), 0.3f );
+                    Camera.getMain().shake( GameMath.gate( 1, effectiveDamage / ( enemy.getHT() / 4 ), 5 ), 0.3f );
                 }
             }
 

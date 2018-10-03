@@ -55,8 +55,8 @@ public class TitleScene extends PixelScene {
 
         uiCamera.visible = false;
 
-        int w = Camera.main.width;
-        int h = Camera.main.height;
+        int w = Camera.getMain().getWidth();
+        int h = Camera.getMain().getHeight();
 
         Archs archs = new Archs();
         archs.setSize( w, h );

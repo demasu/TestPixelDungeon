@@ -53,10 +53,10 @@ public class Compass extends Image {
         }
 
         if ( visible ) {
-            PointF scroll = Camera.main.scroll;
+            PointF scroll = Camera.getMain().getScroll();
             if ( !scroll.equals( lastScroll ) ) {
                 lastScroll.set( scroll );
-                PointF center = Camera.main.center().offset( scroll );
+                PointF center = Camera.getMain().center().offset( scroll );
                 angle = (float) Math.atan2( cellCenter.x - center.x, center.y - cellCenter.y ) * RAD_2_G;
             }
         }

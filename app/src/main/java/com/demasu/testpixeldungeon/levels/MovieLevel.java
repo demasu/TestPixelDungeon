@@ -478,7 +478,7 @@ public class MovieLevel extends Level {
                 sprite.visible = false;
                 Music.INSTANCE.enable( true );
             } else {
-                Camera.main.focusOn( vanguard.sprite );
+                Camera.getMain().focusOn( vanguard.sprite );
             }
 
 
@@ -622,7 +622,7 @@ public class MovieLevel extends Level {
                 vanguard.sprite.showStatus( CharSprite.NEUTRAL, "There's too man.." );
             }
             if ( counter == 490 ) {
-                Camera.main.shake( 5, 0.07f * ( 30 ) );
+                Camera.getMain().shake( 5, 0.07f * ( 30 ) );
                 //   GameScene.flash( 0x0042ff );
                 ( (ColdGirlSisterSprite) actress.sprite ).haloUp();
                 for ( int i = 0; i < listWraiths.size(); i++ ) {

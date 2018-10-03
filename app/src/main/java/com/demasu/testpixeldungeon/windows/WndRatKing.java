@@ -334,7 +334,7 @@ public class WndRatKing extends WndTabbed {
     }
 
     private void updateEnabled () {
-        float zoom = Camera.main.zoom;
+        float zoom = Camera.getMain().getZoom();
         btnZoomIn.enable( zoom < PixelScene.maxZoom );
         btnZoomOut.enable( zoom > PixelScene.minZoom );
         btnChamps.text( String.format( TXT_CHAMPION_CHANCE, ( Dungeon.getCurrentDifficulty().championChance() * 10 + "%" ) ) );

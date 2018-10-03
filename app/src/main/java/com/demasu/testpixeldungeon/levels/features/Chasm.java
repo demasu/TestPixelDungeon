@@ -89,7 +89,7 @@ public class Chasm {
         Hero hero = Dungeon.getHero();
 
         hero.sprite.burst( hero.sprite.blood(), 10 );
-        Camera.main.shake( 4, 0.2f );
+        Camera.getMain().shake( 4, 0.2f );
 
         Buff.prolong( hero, Cripple.class, Cripple.DURATION );
         hero.damage( Random.IntRange( hero.getHT() / 3, hero.getHT() / 2 ), new Hero.Doom() {

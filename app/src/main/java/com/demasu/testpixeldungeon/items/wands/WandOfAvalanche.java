@@ -100,7 +100,7 @@ public class WandOfAvalanche extends Wand {
                 }
             }
 
-            Camera.main.shake( 3, 0.07f * ( 3 + shake ) );
+            Camera.getMain().shake( 3, 0.07f * ( 3 + shake ) );
         }
 
         if ( !curUser.isAlive() ) {

@@ -80,12 +80,12 @@ public class WndTabbed extends Window {
                 height + chrome.marginVer() );
 
         camera.resize( (int) chrome.width, (int) ( chrome.marginTop() + height + tabHeight() ) );
-        camera.x = (int) ( Game.getWidth() - camera.screenWidth() ) / 2;
-        camera.y = (int) ( Game.getHeight() - camera.screenHeight() ) / 2;
+        camera.setX( (int) ( Game.getWidth() - camera.screenWidth() ) / 2 );
+        camera.setY( (int) ( Game.getHeight() - camera.screenHeight() ) / 2 );
 
         shadow.boxRect(
-                camera.x / camera.zoom,
-                camera.y / camera.zoom,
+                camera.getX() / camera.getZoom(),
+                camera.getY() / camera.getZoom(),
                 chrome.width(), chrome.height );
         // <- super.resize(...)
 

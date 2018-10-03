@@ -67,7 +67,7 @@ public class WndSettings extends Window {
             btnZoomOut = new RedButton( TXT_ZOOM_OUT ) {
                 @Override
                 protected void onClick () {
-                    zoom( Camera.main.zoom - 1 );
+                    zoom( Camera.getMain().getZoom() - 1 );
                 }
             };
             add( btnZoomOut.setRect( 0, 0, w, BTN_HEIGHT ) );
@@ -75,7 +75,7 @@ public class WndSettings extends Window {
             btnZoomIn = new RedButton( TXT_ZOOM_IN ) {
                 @Override
                 protected void onClick () {
-                    zoom( Camera.main.zoom + 1 );
+                    zoom( Camera.getMain().getZoom() + 1 );
                 }
             };
             add( btnZoomIn.setRect( WIDTH - w, 0, w, BTN_HEIGHT ) );
@@ -212,14 +212,14 @@ public class WndSettings extends Window {
 
     private void zoom ( float value ) {
 
-        Camera.main.zoom( value );
+        Camera.getMain().zoom( value );
         PixelDungeon.zoom( (int) ( value - PixelScene.defaultZoom ) );
 
         updateEnabled();
     }
 
     private void updateEnabled () {
-        float zoom = Camera.main.zoom;
+        float zoom = Camera.getMain().getZoom();
         btnZoomIn.enable( zoom < PixelScene.maxZoom );
         btnZoomOut.enable( zoom > PixelScene.minZoom );
     }

@@ -122,7 +122,7 @@ public class DM300 extends Mob {
 
         if ( Dungeon.getVisible()[cell] ) {
             CellEmitter.get( cell ).start( Speck.factory( Speck.ROCK ), 0.07f, 10 );
-            Camera.main.shake( 3, 0.7f );
+            Camera.getMain().shake( 3, 0.7f );
             Sample.INSTANCE.play( Assets.SND_ROCKS );
 
             if ( Level.water[cell] ) {

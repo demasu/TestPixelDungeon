@@ -49,7 +49,7 @@ public class Potential extends Glyph {
 
             checkOwner( defender );
             if ( defender == Dungeon.getHero() ) {
-                Camera.main.shake( 2, 0.3f );
+                Camera.getMain().shake( 2, 0.3f );
             }
 
             int[] points = { attacker.pos, defender.pos };

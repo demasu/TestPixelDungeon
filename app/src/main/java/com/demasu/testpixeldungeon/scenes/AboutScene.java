@@ -59,37 +59,37 @@ public class AboutScene extends PixelScene {
 
         BitmapTextMultiline textfirst = createMultiline( "SkillFull Pixel Dungeon", 8 );
         textfirst.hardlight( Window.TITLE_COLOR );
-        textfirst.setMaxWidth( Math.min( Camera.main.width, 120 ) );
+        textfirst.setMaxWidth( Math.min( Camera.getMain().getWidth(), 120 ) );
         textfirst.measure();
         add( textfirst );
 
-        textfirst.x = align( ( Camera.main.width - textfirst.width() ) / 2 );
-        textfirst.y = align( ( ( Camera.main.height / 2 ) - textfirst.height() ) / 2 );
+        textfirst.x = align( ( Camera.getMain().getWidth() - textfirst.width() ) / 2 );
+        textfirst.y = align( ( ( Camera.getMain().getHeight() / 2 ) - textfirst.height() ) / 2 );
 
         pos = textfirst.y + textfirst.height() + GAP;
 
         textfirst = createMultiline( "Code & graphics: BilbolDev", 8 );
-        textfirst.setMaxWidth( Math.min( Camera.main.width, 120 ) );
+        textfirst.setMaxWidth( Math.min( Camera.getMain().getWidth(), 120 ) );
         textfirst.measure();
         add( textfirst );
 
-        textfirst.x = align( ( Camera.main.width - textfirst.width() ) / 2 );
+        textfirst.x = align( ( Camera.getMain().getWidth() - textfirst.width() ) / 2 );
         textfirst.y = pos;
 
         pos = textfirst.y + textfirst.height() + GAP;
 
         textfirst = createMultiline( "Source code is available on GitHub", 8 );
-        textfirst.setMaxWidth( Math.min( Camera.main.width, 120 ) );
+        textfirst.setMaxWidth( Math.min( Camera.getMain().getWidth(), 120 ) );
         textfirst.measure();
         add( textfirst );
 
-        textfirst.x = align( ( Camera.main.width - textfirst.width() ) / 2 );
+        textfirst.x = align( ( Camera.getMain().getWidth() - textfirst.width() ) / 2 );
         textfirst.y = pos;
 
         pos = textfirst.y + textfirst.height() + GAP;
 
         BitmapTextMultiline link_SPD = createMultiline( LNK_SPD, 8 );
-        link_SPD.setMaxWidth( Math.min( Camera.main.width, 120 ) );
+        link_SPD.setMaxWidth( Math.min( Camera.getMain().getWidth(), 120 ) );
         link_SPD.measure();
         link_SPD.hardlight( Window.TITLE_COLOR );
         add( link_SPD );
@@ -104,18 +104,18 @@ public class AboutScene extends PixelScene {
         };
         add( hotArea_SPD );
 
-        link_SPD.x = align( ( Camera.main.width - link_SPD.width() ) / 2 );
+        link_SPD.x = align( ( Camera.getMain().getWidth() - link_SPD.width() ) / 2 );
         link_SPD.y = pos;
 
         pos = link_SPD.y + link_SPD.height() + GAP;
 
         BitmapTextMultiline link_SPD_Wiki = createMultiline( LNK_SPD_WIKI, 8 );
-        link_SPD_Wiki.setMaxWidth( Math.min( Camera.main.width, 120 ) );
+        link_SPD_Wiki.setMaxWidth( Math.min( Camera.getMain().getWidth(), 120 ) );
         link_SPD_Wiki.measure();
         link_SPD_Wiki.hardlight( Window.TITLE_COLOR );
         add( link_SPD_Wiki );
 
-        link_SPD_Wiki.x = align( ( Camera.main.width - link_SPD_Wiki.width() ) / 2 );
+        link_SPD_Wiki.x = align( ( Camera.getMain().getWidth() - link_SPD_Wiki.width() ) / 2 );
         link_SPD_Wiki.y = pos;
 
         pos = link_SPD_Wiki.y + link_SPD_Wiki.height() + 4 * GAP;
@@ -131,62 +131,62 @@ public class AboutScene extends PixelScene {
 
 
         BitmapTextMultiline textOther = createMultiline( "Some ice art: Nels Dachel & Sarius", 8 );
-        textOther.setMaxWidth( Math.min( Camera.main.width, 120 ) );
+        textOther.setMaxWidth( Math.min( Camera.getMain().getWidth(), 120 ) );
         textOther.measure();
         add( textOther );
 
-        textOther.x = align( ( Camera.main.width - textOther.width() ) / 2 );
+        textOther.x = align( ( Camera.getMain().getWidth() - textOther.width() ) / 2 );
         textOther.y = pos;
 
         pos = textOther.y + textOther.height() + 4 * GAP;
 
         textOther = createMultiline( "Alternative Sound Track: Jivz & YAPD", 8 );
-        textOther.setMaxWidth( Math.min( Camera.main.width, 120 ) );
+        textOther.setMaxWidth( Math.min( Camera.getMain().getWidth(), 120 ) );
         textOther.measure();
         add( textOther );
 
-        textOther.x = align( ( Camera.main.width - textOther.width() ) / 2 );
+        textOther.x = align( ( Camera.getMain().getWidth() - textOther.width() ) / 2 );
         textOther.y = pos;
 
         pos = textOther.y + textOther.height() + 4 * GAP;
 
         BitmapTextMultiline text = createMultiline( "Based on Pixel Dungeon", 8 );
-        text.setMaxWidth( Math.min( Camera.main.width, 120 ) );
+        text.setMaxWidth( Math.min( Camera.getMain().getWidth(), 120 ) );
         text.measure();
         add( text );
 
-        text.x = align( ( Camera.main.width - text.width() ) / 2 );
+        text.x = align( ( Camera.getMain().getWidth() - text.width() ) / 2 );
         text.y = pos;
 
         pos = text.y + text.height() + GAP;
 
         text = createMultiline( "Code & graphics: Watabou", 8 );
-        text.setMaxWidth( Math.min( Camera.main.width, 120 ) );
+        text.setMaxWidth( Math.min( Camera.getMain().getWidth(), 120 ) );
         text.measure();
         add( text );
 
-        text.x = align( ( Camera.main.width - text.width() ) / 2 );
+        text.x = align( ( Camera.getMain().getWidth() - text.width() ) / 2 );
         text.y = pos;
 
         pos = text.y + text.height() + GAP;
 
         text = createMultiline( "Music: Cube_Code", 8 );
-        text.setMaxWidth( Math.min( Camera.main.width, 120 ) );
+        text.setMaxWidth( Math.min( Camera.getMain().getWidth(), 120 ) );
         text.measure();
         add( text );
 
-        text.x = align( ( Camera.main.width - text.width() ) / 2 );
+        text.x = align( ( Camera.getMain().getWidth() - text.width() ) / 2 );
         text.y = pos;
 
         pos = text.y + text.height() + GAP;
 
         BitmapTextMultiline link = createMultiline( LNK, 8 );
-        link.setMaxWidth( Math.min( Camera.main.width, 120 ) );
+        link.setMaxWidth( Math.min( Camera.getMain().getWidth(), 120 ) );
         link.measure();
         link.hardlight( Window.TITLE_COLOR );
         add( link );
 
-        link.x = align( ( Camera.main.width - link.width() ) / 2 );
+        link.x = align( ( Camera.getMain().getWidth() - link.width() ) / 2 );
         link.y = pos;
 
         TouchArea hotArea = new TouchArea( link ) {
@@ -199,18 +199,18 @@ public class AboutScene extends PixelScene {
         add( hotArea );
 
         Image wata = Icons.WATA.get();
-        wata.x = align( ( Camera.main.width - wata.width ) / 2 );
+        wata.x = align( ( Camera.getMain().getWidth() - wata.width ) / 2 );
         wata.y = text.y + text.height() + wata.height + 8;
         add( wata );
 
         new Flare( 7, 64 ).color( 0x112233, true ).show( wata, 0 ).angularSpeed = +20;
 
         Archs archs = new Archs();
-        archs.setSize( Camera.main.width, Camera.main.height );
+        archs.setSize( Camera.getMain().getWidth(), Camera.getMain().getHeight() );
         addToBack( archs );
 
         ExitButton btnExit = new ExitButton();
-        btnExit.setPos( Camera.main.width - btnExit.width(), 0 );
+        btnExit.setPos( Camera.getMain().getWidth() - btnExit.width(), 0 );
         add( btnExit );
 
         fadeIn();

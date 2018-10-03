@@ -63,7 +63,7 @@ public class Scene extends Group {
 
     @Override
     public Camera camera () {
-        return Camera.main;
+        return Camera.getMain();
     }
 
     protected void onBackPressed () {

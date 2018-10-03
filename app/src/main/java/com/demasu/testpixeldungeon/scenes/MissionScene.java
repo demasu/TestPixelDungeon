@@ -79,7 +79,7 @@ public class MissionScene extends GameScene {
         PixelDungeon.lastClass( Dungeon.getHero().getHeroClass().ordinal() );
 
         super.originalCreate();
-        Camera.main.zoom( defaultZoom + PixelDungeon.zoom() );
+        Camera.getMain().zoom( defaultZoom + PixelDungeon.zoom() );
 
         scene = this;
 
@@ -167,18 +167,18 @@ public class MissionScene extends GameScene {
 
         MissionStatusPane sb = new MissionStatusPane();
         sb.camera = uiCamera;
-        sb.setSize( uiCamera.width, 0 );
+        sb.setSize( uiCamera.getWidth(), 0 );
         add( sb );
 
         toolbar = new MissionToolbar();
         toolbar.camera = uiCamera;
-        toolbar.setRect( 0, uiCamera.height - toolbar.height(), uiCamera.width, toolbar.height() );
+        toolbar.setRect( 0, uiCamera.getHeight() - toolbar.height(), uiCamera.getWidth(), toolbar.height() );
         add( toolbar );
 
         AttackIndicator attack = new AttackIndicator();
         attack.camera = uiCamera;
         attack.setPos(
-                uiCamera.width - attack.width(),
+                uiCamera.getWidth() - attack.width(),
                 toolbar.top() - attack.height() );
         add( attack );
 
@@ -247,7 +247,7 @@ public class MissionScene extends GameScene {
             Dungeon.getDroppedItems().remove( Dungeon.getDepth() );
         }
 
-        Camera.main.target = hero;
+        Camera.getMain().setTarget( hero );
 
         if ( InterlevelScene.mode != InterlevelScene.Mode.NONE && Dungeon.getDepth() != 0 ) {
             if ( Dungeon.getDepth() < Statistics.deepestFloor ) {
