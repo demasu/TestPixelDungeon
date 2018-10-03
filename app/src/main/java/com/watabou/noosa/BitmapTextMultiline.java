@@ -273,59 +273,59 @@ public class BitmapTextMultiline extends BitmapText {
             return getX() == 0 ? getnLines() : getnLines() + 1;
         }
 
-        public float getWidth () {
+        float getWidth () {
             return width;
         }
 
-        public void setWidth ( float width ) {
+        void setWidth ( float width ) {
             this.width = width;
         }
 
-        public float getHeight () {
+        float getHeight () {
             return height;
         }
 
-        public void setHeight ( float height ) {
+        void setHeight ( float height ) {
             this.height = height;
         }
 
-        public int getnLines () {
+        int getnLines () {
             return nLines;
         }
 
-        public void setnLines ( int nLines ) {
+        void setnLines ( int nLines ) {
             this.nLines = nLines;
         }
 
-        public float getLineWidth () {
+        float getLineWidth () {
             return lineWidth;
         }
 
-        public void setLineWidth ( float lineWidth ) {
+        void setLineWidth ( float lineWidth ) {
             this.lineWidth = lineWidth;
         }
 
-        public float getLineHeight () {
+        float getLineHeight () {
             return lineHeight;
         }
 
-        public void setLineHeight ( float lineHeight ) {
+        void setLineHeight ( float lineHeight ) {
             this.lineHeight = lineHeight;
         }
 
-        public float getX () {
+        float getX () {
             return x;
         }
 
-        public void setX ( float x ) {
+        void setX ( float x ) {
             this.x = x;
         }
 
-        public float getY () {
+        float getY () {
             return y;
         }
 
-        public void setY ( float y ) {
+        void setY ( float y ) {
             this.y = y;
         }
     }
