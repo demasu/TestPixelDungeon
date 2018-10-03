@@ -235,7 +235,8 @@ public class WndSkills extends WndTabbed {
             this.skill = skill;
 
 
-            setWidth( setHeight( SLOT_SIZE ) );
+            setWidth( SLOT_SIZE );
+            setHeight( SLOT_SIZE );
 
             durability = new ColorBlock[Skill.MAX_LEVEL];
 

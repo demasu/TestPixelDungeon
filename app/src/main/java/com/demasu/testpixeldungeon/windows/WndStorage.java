@@ -270,7 +270,8 @@ public class WndStorage extends WndTabbed {
                 bg.visible = false;
             }
 
-            setWidth( setHeight( SLOT_SIZE ) );
+            setWidth( SLOT_SIZE );
+            setHeight( SLOT_SIZE );
         }
 
         @Override
