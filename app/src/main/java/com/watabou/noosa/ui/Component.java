@@ -107,7 +107,7 @@ public class Component extends Group {
         return x;
     }
 
-    public void setX ( float x ) {
+    private void setX ( float x ) {
         this.x = x;
     }
 
@@ -115,7 +115,7 @@ public class Component extends Group {
         return y;
     }
 
-    public void setY ( float y ) {
+    private void setY ( float y ) {
         this.y = y;
     }
 
