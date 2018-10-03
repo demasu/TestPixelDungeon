@@ -211,6 +211,7 @@ public class BitmapTextMultiline extends BitmapText {
         return mask;
     }
 
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     public void setMask ( boolean[] mask ) {
         this.mask = mask;
     }
