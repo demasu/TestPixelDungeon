@@ -98,9 +98,9 @@ public class Button extends Component {
 
     @Override
     protected void layout () {
-        hotArea.x = x;
-        hotArea.y = y;
-        hotArea.width = width;
-        hotArea.height = height;
+        hotArea.x = getX();
+        hotArea.y = getY();
+        hotArea.width = getWidth();
+        hotArea.height = getHeight();
     }
 }

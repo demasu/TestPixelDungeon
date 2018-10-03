@@ -46,8 +46,8 @@ public class ScrollPane extends Component {
         this.content = content;
         addToBack( content );
 
-        width = content.width();
-        height = content.height();
+        setWidth( content.width() );
+        setHeight( content.height() );
 
         content.camera = new Camera( 0, 0, 1, 1, PixelScene.defaultZoom );
         Camera.add( content.camera );
@@ -77,22 +77,22 @@ public class ScrollPane extends Component {
     protected void layout () {
 
         content.setPos( 0, 0 );
-        controller.x = x;
-        controller.y = y;
-        controller.width = width;
-        controller.height = height;
+        controller.x = getX();
+        controller.y = getY();
+        controller.width = getWidth();
+        controller.height = getHeight();
 
-        Point p = camera().cameraToScreen( x, y );
+        Point p = camera().cameraToScreen( getX(), getY() );
         Camera cs = content.camera;
         cs.x = p.x;
         cs.y = p.y;
-        cs.resize( (int) width, (int) height );
+        cs.resize( (int) getWidth(), (int) getHeight() );
 
-        thumb.visible = height < content.height();
+        thumb.visible = getHeight() < content.height();
         if ( thumb.visible ) {
-            thumb.scale.set( 2, height * height / content.height() );
+            thumb.scale.set( 2, getHeight() * getHeight() / content.height() );
             thumb.x = right() - thumb.width();
-            thumb.y = y;
+            thumb.y = getY();
         }
     }
 

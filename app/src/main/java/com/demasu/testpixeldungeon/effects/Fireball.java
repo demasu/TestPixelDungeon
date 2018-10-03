@@ -83,17 +83,17 @@ public class Fireball extends Component {
     @Override
     protected void layout () {
 
-        bLight.x = x - bLight.width / 2;
-        bLight.y = y - bLight.height / 2;
+        bLight.x = getX() - bLight.width / 2;
+        bLight.y = getY() - bLight.height / 2;
 
         emitter.pos(
-                x - bLight.width / 4,
-                y - bLight.height / 4,
+                getX() - bLight.width / 4,
+                getY() - bLight.height / 4,
                 bLight.width / 2,
                 bLight.height / 2 );
 
-        fLight.x = x - fLight.width / 2;
-        fLight.y = y - fLight.height / 2;
+        fLight.x = getX() - fLight.width / 2;
+        fLight.y = getY() - fLight.height / 2;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class Fireball extends Component {
 
         if ( Random.Float() < Game.getElapsed() ) {
             PixelParticle spark = (PixelParticle) sparks.recycle( PixelParticle.Shrinking.class );
-            spark.reset( x, y, ColorMath.random( COLOR, 0x66FF66 ), 2, Random.Float( 0.5f, 1.0f ) );
+            spark.reset( getX(), getY(), ColorMath.random( COLOR, 0x66FF66 ), 2, Random.Float( 0.5f, 1.0f ) );
             spark.speed.set(
                     Random.Float( -40, +40 ),
                     Random.Float( -60, +20 ) );

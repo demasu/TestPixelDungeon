@@ -216,8 +216,8 @@ public class RankingsScene extends PixelScene {
 
             super.layout();
 
-            shield.x = x;
-            shield.y = y + ( height - shield.height ) / 2;
+            shield.x = getX();
+            shield.y = getY() + ( getHeight() - shield.height ) / 2;
 
             position.x = align( shield.x + ( shield.width - position.width() ) / 2 );
             position.y = align( shield.y + ( shield.height - position.height() ) / 2 + 1 );
@@ -226,7 +226,7 @@ public class RankingsScene extends PixelScene {
                 flare.point( shield.center() );
             }
 
-            classIcon.x = align( x + width - classIcon.width );
+            classIcon.x = align( getX() + getWidth() - classIcon.width );
             classIcon.y = shield.y;
 
             desc.x = shield.x + shield.width + GAP;

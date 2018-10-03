@@ -30,8 +30,8 @@ public class PrefsButton extends Button {
     public PrefsButton () {
         super();
 
-        width = image.width;
-        height = image.height;
+        setWidth( image.width );
+        setHeight( image.height );
     }
 
     @Override
@@ -46,8 +46,8 @@ public class PrefsButton extends Button {
     protected void layout () {
         super.layout();
 
-        image.x = x;
-        image.y = y;
+        image.x = getX();
+        image.y = getY();
     }
 
     @Override

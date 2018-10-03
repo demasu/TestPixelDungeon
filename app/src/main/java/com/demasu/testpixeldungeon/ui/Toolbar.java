@@ -128,7 +128,7 @@ public class Toolbar extends Component {
 
         instance = this;
 
-        height = btnInventory.height();
+        setHeight( btnInventory.height() );
     }
 
     public static boolean secondQuickslot () {
@@ -288,19 +288,19 @@ public class Toolbar extends Component {
 
     @Override
     protected void layout () {
-        btnWait.setPos( x, y );
+        btnWait.setPos( getX(), getY() );
         //btnSearch.setPos( btnWait.right(), y );
         btnInfoSearch.setPos( 0, 70 );
         btnMerc.setPos( 0, 40 );
-        btnSkill.setPos( btnWait.right(), y );
+        btnSkill.setPos( btnWait.right(), getY() );
         btnKing.setPos( 0, 100 );
-        btnLastUsed.setPos( btnSkill.right(), y );
-        btnQuick1.setPos( width - btnQuick1.width(), y );
+        btnLastUsed.setPos( btnSkill.right(), getY() );
+        btnQuick1.setPos( getWidth() - btnQuick1.width(), getY() );
         if ( btnQuick2.visible ) {
-            btnQuick2.setPos( btnQuick1.left() - btnQuick2.width(), y );
-            btnInventory.setPos( btnQuick2.left() - btnInventory.width(), y );
+            btnQuick2.setPos( btnQuick1.left() - btnQuick2.width(), getY() );
+            btnInventory.setPos( btnQuick2.left() - btnInventory.width(), getY() );
         } else {
-            btnInventory.setPos( btnQuick1.left() - btnInventory.width(), y );
+            btnInventory.setPos( btnQuick1.left() - btnInventory.width(), getY() );
         }
     }
 
@@ -347,8 +347,8 @@ public class Toolbar extends Component {
 
             base.frame( x, y, width, height );
 
-            this.width = width;
-            this.height = height;
+            this.setWidth( width );
+            this.setHeight( height );
         }
 
         @Override
@@ -363,8 +363,8 @@ public class Toolbar extends Component {
         protected void layout () {
             super.layout();
 
-            base.x = x;
-            base.y = y;
+            base.x = getX();
+            base.y = getY();
         }
 
         @Override
@@ -417,7 +417,7 @@ public class Toolbar extends Component {
         @Override
         protected void layout () {
             super.layout();
-            slot.setRect( x + 1, y + 2, width - 2, height - 2 );
+            slot.setRect( getX() + 1, getY() + 2, getWidth() - 2, getHeight() - 2 );
         }
 
         @Override

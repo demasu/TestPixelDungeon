@@ -82,12 +82,12 @@ public class SkillSlot extends Button {
     protected void layout () {
         super.layout();
 
-        icon.x = x + ( width - icon.width ) / 2;
-        icon.y = y + ( height - icon.height ) / 2;
+        icon.x = getX() + ( getWidth() - icon.width ) / 2;
+        icon.y = getY() + ( getHeight() - icon.height ) / 2;
 
         if ( activeText != null ) {
-            activeText.x = x + 3;
-            activeText.y = y + 11;
+            activeText.x = getX() + 3;
+            activeText.y = getY() + 11;
         }
     }
 

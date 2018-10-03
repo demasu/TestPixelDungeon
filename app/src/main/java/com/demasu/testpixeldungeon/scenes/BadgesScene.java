@@ -143,8 +143,8 @@ public class BadgesScene extends PixelScene {
         protected void layout () {
             super.layout();
 
-            icon.x = align( x + ( width - icon.width() ) / 2 );
-            icon.y = align( y + ( height - icon.height() ) / 2 );
+            icon.x = align( getX() + ( getWidth() - icon.width() ) / 2 );
+            icon.y = align( getY() + ( getHeight() - icon.height() ) / 2 );
         }
 
         @Override

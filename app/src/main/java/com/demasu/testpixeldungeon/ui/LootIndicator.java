@@ -54,7 +54,7 @@ public class LootIndicator extends Tag {
     protected void layout () {
         super.layout();
 
-        slot.setRect( x + 2, y + 3, width - 2, height - 6 );
+        slot.setRect( getX() + 2, getY() + 3, getWidth() - 2, getHeight() - 6 );
     }
 
     @Override

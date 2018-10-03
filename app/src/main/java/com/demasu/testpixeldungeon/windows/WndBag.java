@@ -288,13 +288,13 @@ public class WndBag extends WndTabbed {
             super.layout();
 
             icon.copy( icon() );
-            icon.x = x + ( width - icon.width ) / 2;
-            icon.y = y + ( height - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
-            if ( !selected && icon.y < y + CUT ) {
+            icon.x = getX() + ( getWidth() - icon.width ) / 2;
+            icon.y = getY() + ( getHeight() - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
+            if ( !selected && icon.y < getY() + CUT ) {
                 RectF frame = icon.frame();
-                frame.top += ( y + CUT - icon.y ) / icon.texture.getHeight();
+                frame.top += ( getY() + CUT - icon.y ) / icon.texture.getHeight();
                 icon.frame( frame );
-                icon.y = y + CUT;
+                icon.y = getY() + CUT;
             }
         }
 
@@ -336,8 +336,8 @@ public class WndBag extends WndTabbed {
                 bg.visible = false;
             }
 
-            width = SLOT_WIDTH;
-            height = SLOT_HEIGHT;
+            setWidth( SLOT_WIDTH );
+            setHeight( SLOT_HEIGHT );
         }
 
         @Override
@@ -350,8 +350,8 @@ public class WndBag extends WndTabbed {
 
         @Override
         protected void layout () {
-            bg.x = x;
-            bg.y = y;
+            bg.x = getX();
+            bg.y = getY();
 
             if ( noDegrade ) {
                 durability = null; // no durability
@@ -359,8 +359,8 @@ public class WndBag extends WndTabbed {
 
             if ( durability != null ) {
                 for ( int i = 0; i < NBARS; i++ ) {
-                    durability[i].x = x + 1 + i * 3;
-                    durability[i].y = y + height - 3;
+                    durability[i].x = getX() + 1 + i * 3;
+                    durability[i].y = getY() + getHeight() - 3;
                 }
             }
 

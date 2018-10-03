@@ -102,22 +102,22 @@ public class ItemSlot extends Button {
     protected void layout () {
         super.layout();
 
-        icon.x = x + ( width - icon.width ) / 2;
-        icon.y = y + ( height - icon.height ) / 2;
+        icon.x = getX() + ( getWidth() - icon.width ) / 2;
+        icon.y = getY() + ( getHeight() - icon.height ) / 2;
 
         if ( topLeft != null ) {
-            topLeft.x = x;
-            topLeft.y = y;
+            topLeft.x = getX();
+            topLeft.y = getY();
         }
 
         if ( topRight != null ) {
-            topRight.x = x + ( width - topRight.width() );
-            topRight.y = y;
+            topRight.x = getX() + ( getWidth() - topRight.width() );
+            topRight.y = getY();
         }
 
         if ( bottomRight != null ) {
-            bottomRight.x = x + ( width - bottomRight.width() );
-            bottomRight.y = y + ( height - bottomRight.height() );
+            bottomRight.x = getX() + ( getWidth() - bottomRight.width() );
+            bottomRight.y = getY() + ( getHeight() - bottomRight.height() );
         }
     }
 

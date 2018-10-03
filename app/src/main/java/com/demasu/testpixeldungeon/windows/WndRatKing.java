@@ -387,13 +387,13 @@ public class WndRatKing extends WndTabbed {
             super.layout();
 
             icon.copy( icon );
-            icon.x = x + ( width - icon.width ) / 2;
-            icon.y = y + ( height - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
-            if ( !selected && icon.y < y + CUT ) {
+            icon.x = getX() + ( getWidth() - icon.width ) / 2;
+            icon.y = getY() + ( getHeight() - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
+            if ( !selected && icon.y < getY() + CUT ) {
                 RectF frame = icon.frame();
-                frame.top += ( y - icon.y ) / icon.texture.getHeight();
+                frame.top += ( getY() - icon.y ) / icon.texture.getHeight();
                 icon.frame( frame );
-                icon.y = y;
+                icon.y = getY();
             }
         }
     }

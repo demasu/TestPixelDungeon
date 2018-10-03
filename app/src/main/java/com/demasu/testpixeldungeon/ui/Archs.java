@@ -46,11 +46,11 @@ public class Archs extends Component {
 
     @Override
     protected void layout () {
-        arcsBg.size( width, height );
-        arcsBg.offset( arcsBg.texture.getWidth() / 4 - ( width % arcsBg.texture.getWidth() ) / 2, 0 );
+        arcsBg.size( getWidth(), getHeight() );
+        arcsBg.offset( arcsBg.texture.getWidth() / 4 - ( getWidth() % arcsBg.texture.getWidth() ) / 2, 0 );
 
-        arcsFg.size( width, height );
-        arcsFg.offset( arcsFg.texture.getWidth() / 4 - ( width % arcsFg.texture.getWidth() ) / 2, 0 );
+        arcsFg.size( getWidth(), getHeight() );
+        arcsFg.offset( arcsFg.texture.getWidth() / 4 - ( getWidth() % arcsFg.texture.getWidth() ) / 2, 0 );
     }
 
     @Override

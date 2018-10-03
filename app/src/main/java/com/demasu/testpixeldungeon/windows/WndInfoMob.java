@@ -79,7 +79,7 @@ public class WndInfoMob extends WndTitledMessage {
             name.x = image.width + GAP;
             name.y = image.height - health.height() - GAP - name.baseLine();
 
-            float w = width - image.width - GAP;
+            float w = getWidth() - image.width - GAP;
 
             health.setRect( image.width + GAP, image.height - health.height(), w, health.height() );
 
@@ -87,7 +87,7 @@ public class WndInfoMob extends WndTitledMessage {
                     name.x + name.width() + GAP,
                     name.y + name.baseLine() - BuffIndicator.SIZE );
 
-            height = health.bottom();
+            setHeight( health.bottom() );
         }
     }
 }

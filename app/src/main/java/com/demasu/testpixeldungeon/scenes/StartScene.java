@@ -400,12 +400,12 @@ public class StartScene extends PixelScene {
             super.layout();
 
             if ( secondary.text().length() > 0 ) {
-                text.y = align( y + ( height - text.height() - secondary.baseLine() ) / 2 );
+                text.y = align( getY() + ( getHeight() - text.height() - secondary.baseLine() ) / 2 );
 
-                secondary.x = align( x + ( width - secondary.width() ) / 2 );
+                secondary.x = align( getX() + ( getWidth() - secondary.width() ) / 2 );
                 secondary.y = align( text.y + text.height() );
             } else {
-                text.y = align( y + ( height - text.baseLine() ) / 2 );
+                text.y = align( getY() + ( getHeight() - text.baseLine() ) / 2 );
             }
         }
 
@@ -486,10 +486,10 @@ public class StartScene extends PixelScene {
 
             super.layout();
 
-            avatar.x = align( x + ( width - avatar.width() ) / 2 );
-            avatar.y = align( y + ( height - avatar.height() - name.height() ) / 2 );
+            avatar.x = align( getX() + ( getWidth() - avatar.width() ) / 2 );
+            avatar.y = align( getY() + ( getHeight() - avatar.height() - name.height() ) / 2 );
 
-            name.x = align( x + ( width - name.width() ) / 2 );
+            name.x = align( getX() + ( getWidth() - name.width() ) / 2 );
             name.y = avatar.y + avatar.height() + SCALE;
         }
 
@@ -539,8 +539,8 @@ public class StartScene extends PixelScene {
         public ChallengeButton () {
             super();
 
-            width = image.width;
-            height = image.height;
+            setWidth( image.width );
+            setHeight( image.height );
 
             image.am = Badges.isUnlocked( Badges.Badge.VICTORY ) ? 1.0f : 0.5f;
         }
@@ -559,8 +559,8 @@ public class StartScene extends PixelScene {
 
             super.layout();
 
-            image.x = align( x );
-            image.y = align( y );
+            image.x = align( getX() );
+            image.y = align( getY() );
         }
 
         @Override

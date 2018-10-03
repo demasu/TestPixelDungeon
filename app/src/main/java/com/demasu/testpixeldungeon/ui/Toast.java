@@ -36,8 +36,8 @@ public class Toast extends Component {
         super();
         text( text );
 
-        width = this.text.width() + close.width() + bg.marginHor() + MARGIN_HOR * 3;
-        height = Math.max( this.text.height(), close.height() ) + bg.marginVer() + MARGIN_VER * 2;
+        setWidth( this.text.width() + close.width() + bg.marginHor() + MARGIN_HOR * 3 );
+        setHeight( Math.max( this.text.height(), close.height() ) + bg.marginVer() + MARGIN_VER * 2 );
     }
 
     @Override
@@ -62,16 +62,16 @@ public class Toast extends Component {
     protected void layout () {
         super.layout();
 
-        bg.x = x;
-        bg.y = y;
-        bg.size( width, height );
+        bg.x = getX();
+        bg.y = getY();
+        bg.size( getWidth(), getHeight() );
 
         close.setPos(
                 bg.x + bg.width() - bg.marginHor() / 2 - MARGIN_HOR - close.width(),
-                y + ( height - close.height() ) / 2 );
+                getY() + ( getHeight() - close.height() ) / 2 );
 
         text.x = close.left() - MARGIN_HOR - text.width();
-        text.y = y + ( height - text.height() ) / 2;
+        text.y = getY() + ( getHeight() - text.height() ) / 2;
         PixelScene.align( text );
     }
 

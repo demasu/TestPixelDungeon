@@ -124,12 +124,12 @@ public class GameLog extends Component implements Signal.Listener<String> {
 
     @Override
     protected void layout () {
-        float pos = y;
+        float pos = getY();
         for ( int i = length - 1; i >= 0; i-- ) {
             BitmapTextMultiline entry = (BitmapTextMultiline) members.get( i );
-            entry.maxWidth = (int) width;
+            entry.maxWidth = (int) getWidth();
             entry.measure();
-            entry.x = x;
+            entry.x = getX();
             entry.y = pos - entry.height();
             pos -= entry.height();
         }

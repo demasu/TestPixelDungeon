@@ -52,9 +52,9 @@ public class Tag extends Button {
 
         super.layout();
 
-        bg.x = x;
-        bg.y = y;
-        bg.size( width, height );
+        bg.x = getX();
+        bg.y = getY();
+        bg.size( getWidth(), getHeight() );
     }
 
     public void flash () {

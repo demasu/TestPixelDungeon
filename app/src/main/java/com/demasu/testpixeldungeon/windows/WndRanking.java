@@ -383,10 +383,10 @@ public class WndRanking extends WndTabbed {
 
         @Override
         protected void layout () {
-            bg.x = x;
-            bg.y = y;
+            bg.x = getX();
+            bg.y = getY();
 
-            slot.setRect( x, y, SIZE, SIZE );
+            slot.setRect( getX(), getY(), SIZE, SIZE );
 
             super.layout();
         }
@@ -428,17 +428,17 @@ public class WndRanking extends WndTabbed {
             super.layout();
 
             name.x = slot.right() + 2;
-            name.y = y + ( height - name.baseLine() ) / 2;
+            name.y = getY() + ( getHeight() - name.baseLine() ) / 2;
 
             String str = Utils.capitalize( item.name() );
             name.text( str );
             name.measure();
-            if ( name.width() > width - name.x ) {
+            if ( name.width() > getWidth() - name.x ) {
                 do {
                     str = str.substring( 0, str.length() - 1 );
                     name.text( str + "..." );
                     name.measure();
-                } while ( name.width() > width - name.x );
+                } while ( name.width() > getWidth() - name.x );
             }
         }
     }

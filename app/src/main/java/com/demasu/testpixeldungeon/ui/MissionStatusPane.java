@@ -134,9 +134,9 @@ public class MissionStatusPane extends Component {
     @Override
     protected void layout () {
 
-        height = 32;
+        setHeight( 32 );
 
-        shield.size( width, shield.height );
+        shield.size( getWidth(), shield.height );
 
         avatar.x = PixelScene.align( camera(), shield.x + 15 - avatar.width / 2 );
         avatar.y = PixelScene.align( camera(), shield.y + 16 - avatar.height / 2 );
@@ -156,7 +156,7 @@ public class MissionStatusPane extends Component {
 
         buffs.setPos( 36, 16 );
 
-        btnMenu.setPos( width - btnMenu.width(), 1 );
+        btnMenu.setPos( getWidth() - btnMenu.width(), 1 );
     }
 
     private void layoutTags () {
@@ -164,17 +164,17 @@ public class MissionStatusPane extends Component {
         float pos = 18;
 
         if ( tagDanger ) {
-            danger.setPos( width - danger.width(), pos );
+            danger.setPos( getWidth() - danger.width(), pos );
             pos = danger.bottom() + 1;
         }
 
         if ( tagLoot ) {
-            loot.setPos( width - loot.width(), pos );
+            loot.setPos( getWidth() - loot.width(), pos );
             pos = loot.bottom() + 1;
         }
 
         if ( tagResume ) {
-            resume.setPos( width - resume.width(), pos );
+            resume.setPos( getWidth() - resume.width(), pos );
         }
     }
 
@@ -222,7 +222,7 @@ public class MissionStatusPane extends Component {
         hp_dropping.x = hp.x + hp.width() - 20 * health;
         hp_dropping.scale.x = health_drop;
 
-        exp.scale.x = ( width / exp.width ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp();
+        exp.scale.x = ( getWidth() / exp.width ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp();
 
         float mana = (float) Dungeon.getHero().getMP() / Dungeon.getHero().getMMP();
 
@@ -266,8 +266,8 @@ public class MissionStatusPane extends Component {
         public MenuButton () {
             super();
 
-            width = image.width + 4;
-            height = image.height + 4;
+            setWidth( image.width + 4 );
+            setHeight( image.height + 4 );
         }
 
         @Override
@@ -282,8 +282,8 @@ public class MissionStatusPane extends Component {
         protected void layout () {
             super.layout();
 
-            image.x = x + 2;
-            image.y = y + 2;
+            image.x = getX() + 2;
+            image.y = getY() + 2;
         }
 
         @Override

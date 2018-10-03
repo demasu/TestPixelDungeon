@@ -74,11 +74,11 @@ public class IconTitle extends Component {
 
         health.visible = !Float.isNaN( healthLvl );
 
-        imIcon.x = x;
-        imIcon.y = y;
+        imIcon.x = getX();
+        imIcon.y = getY();
 
         tfLabel.x = PixelScene.align( PixelScene.uiCamera, imIcon.x + imIcon.width() + GAP );
-        tfLabel.maxWidth = (int) ( width - tfLabel.x );
+        tfLabel.maxWidth = (int) ( getWidth() - tfLabel.x );
         tfLabel.measure();
         tfLabel.y = PixelScene.align( PixelScene.uiCamera,
                 imIcon.height > tfLabel.height() ?
@@ -87,9 +87,9 @@ public class IconTitle extends Component {
 
         if ( health.visible ) {
             health.setRect( tfLabel.x, Math.max( tfLabel.y + tfLabel.height(), imIcon.y + imIcon.height() - health.height() ), tfLabel.maxWidth, 0 );
-            height = health.bottom();
+            setHeight( health.bottom() );
         } else {
-            height = Math.max( imIcon.y + imIcon.height(), tfLabel.y + tfLabel.height() );
+            setHeight( Math.max( imIcon.y + imIcon.height(), tfLabel.y + tfLabel.height() ) );
         }
     }
 

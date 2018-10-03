@@ -55,11 +55,11 @@ public class BadgesList extends ScrollPane {
 
         int size = items.size();
         for ( int i = 0; i < size; i++ ) {
-            items.get( i ).setRect( 0, pos, width, ListItem.HEIGHT );
+            items.get( i ).setRect( 0, pos, getWidth(), ListItem.HEIGHT );
             pos += ListItem.HEIGHT;
         }
 
-        content.setSize( width, pos );
+        content.setSize( getWidth(), pos );
 
         super.layout();
     }
@@ -102,11 +102,11 @@ public class BadgesList extends ScrollPane {
 
         @Override
         protected void layout () {
-            icon.x = x;
-            icon.y = PixelScene.align( y + ( height - icon.height ) / 2 );
+            icon.x = getX();
+            icon.y = PixelScene.align( getY() + ( getHeight() - icon.height ) / 2 );
 
             label.x = icon.x + icon.width + 2;
-            label.y = PixelScene.align( y + ( height - label.baseLine() ) / 2 );
+            label.y = PixelScene.align( getY() + ( getHeight() - label.baseLine() ) / 2 );
         }
 
         public boolean onClick ( float x, float y ) {

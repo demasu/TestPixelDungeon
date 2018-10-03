@@ -40,19 +40,19 @@ public class HealthBar extends Component {
         hpLvl = new ColorBlock( 1, 1, COLOR_LVL );
         add( hpLvl );
 
-        height = HEIGHT;
+        setHeight( HEIGHT );
     }
 
     @Override
     protected void layout () {
 
-        hpBg.x = hpLvl.x = x;
-        hpBg.y = hpLvl.y = y;
+        hpBg.x = hpLvl.x = getX();
+        hpBg.y = hpLvl.y = getY();
 
-        hpBg.size( width, HEIGHT );
-        hpLvl.size( width * level, HEIGHT );
+        hpBg.size( getWidth(), HEIGHT );
+        hpLvl.size( getWidth() * level, HEIGHT );
 
-        height = HEIGHT;
+        setHeight( HEIGHT );
     }
 
     public void level ( float value ) {

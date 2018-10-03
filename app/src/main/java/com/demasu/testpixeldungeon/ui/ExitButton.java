@@ -32,8 +32,8 @@ public class ExitButton extends Button {
     public ExitButton () {
         super();
 
-        width = image.width;
-        height = image.height;
+        setWidth( image.width );
+        setHeight( image.height );
     }
 
     @Override
@@ -48,8 +48,8 @@ public class ExitButton extends Button {
     protected void layout () {
         super.layout();
 
-        image.x = x;
-        image.y = y;
+        image.x = getX();
+        image.y = getY();
     }
 
     @Override

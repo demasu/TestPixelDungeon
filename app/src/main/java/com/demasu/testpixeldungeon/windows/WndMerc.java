@@ -224,13 +224,13 @@ public class WndMerc extends WndTabbed {
             super.layout();
 
             icon.copy( icon() );
-            icon.x = x + ( width - icon.width ) / 2;
-            icon.y = y + ( height - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
-            if ( !selected && icon.y < y + CUT ) {
+            icon.x = getX() + ( getWidth() - icon.width ) / 2;
+            icon.y = getY() + ( getHeight() - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
+            if ( !selected && icon.y < getY() + CUT ) {
                 RectF frame = icon.frame();
-                frame.top += ( y + CUT - icon.y ) / icon.texture.getHeight();
+                frame.top += ( getY() + CUT - icon.y ) / icon.texture.getHeight();
                 icon.frame( frame );
-                icon.y = y + CUT;
+                icon.y = getY() + CUT;
             }
         }
 
@@ -273,7 +273,7 @@ public class WndMerc extends WndTabbed {
                 bg.visible = false;
             }
 
-            width = height = SLOT_SIZE;
+            setWidth( setHeight( SLOT_SIZE ) );
         }
 
         @Override
@@ -286,8 +286,8 @@ public class WndMerc extends WndTabbed {
 
         @Override
         protected void layout () {
-            bg.x = x;
-            bg.y = y;
+            bg.x = getX();
+            bg.y = getY();
 
 
             super.layout();
@@ -404,7 +404,7 @@ public class WndMerc extends WndTabbed {
             this.skill = skill;
 
 
-            width = height = SLOT_SIZE;
+            setWidth( setHeight( SLOT_SIZE ) );
 
             durability = new ColorBlock[Skill.MAX_LEVEL];
 
@@ -434,14 +434,14 @@ public class WndMerc extends WndTabbed {
 
         @Override
         protected void layout () {
-            bg.x = x;
-            bg.y = y;
+            bg.x = getX();
+            bg.y = getY();
 
 
             if ( skill != null && skill.name != null && skill.level > 0 && skill.level <= Skill.MAX_LEVEL ) {
                 for ( int i = 0; i < Skill.MAX_LEVEL; i++ ) {
-                    durability[i].x = x + width - 9 + i * 3;
-                    durability[i].y = y + 3;
+                    durability[i].x = getX() + getWidth() - 9 + i * 3;
+                    durability[i].y = getY() + 3;
 
                 }
             }

@@ -160,11 +160,11 @@ public class WndBlacksmith extends Window {
         protected void layout () {
             super.layout();
 
-            bg.x = x;
-            bg.y = y;
-            bg.size( width, height );
+            bg.x = getX();
+            bg.y = getY();
+            bg.size( getWidth(), getHeight() );
 
-            slot.setRect( x + 2, y + 2, width - 4, height - 4 );
+            slot.setRect( getX() + 2, getY() + 2, getWidth() - 4, getHeight() - 4 );
         }
 
         public void item ( Item item ) {

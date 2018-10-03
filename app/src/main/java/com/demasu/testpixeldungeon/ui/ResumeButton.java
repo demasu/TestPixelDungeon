@@ -45,8 +45,8 @@ public class ResumeButton extends Tag {
     protected void layout () {
         super.layout();
 
-        icon.x = PixelScene.align( PixelScene.uiCamera, x + 1 + ( width - icon.width ) / 2 );
-        icon.y = PixelScene.align( PixelScene.uiCamera, y + ( height - icon.height ) / 2 );
+        icon.x = PixelScene.align( PixelScene.uiCamera, getX() + 1 + ( getWidth() - icon.width ) / 2 );
+        icon.y = PixelScene.align( PixelScene.uiCamera, getY() + ( getHeight() - icon.height ) / 2 );
     }
 
     @Override

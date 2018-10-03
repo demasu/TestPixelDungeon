@@ -112,10 +112,10 @@ public class WndJournal extends Window {
         @Override
         protected void layout () {
 
-            icon.x = width - icon.width;
+            icon.x = getWidth() - icon.width;
 
             depth.x = icon.x - 1 - depth.width();
-            depth.y = PixelScene.align( y + ( height - depth.height() ) / 2 );
+            depth.y = PixelScene.align( getY() + ( getHeight() - depth.height() ) / 2 );
 
             icon.y = depth.y - 1;
 

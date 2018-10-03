@@ -21,10 +21,10 @@ import com.watabou.noosa.Group;
 
 public class Component extends Group {
 
-    protected float x;
-    protected float y;
-    protected float width;
-    protected float height;
+    private float x;
+    private float y;
+    private float width;
+    private float height;
 
     public Component () {
         super();
@@ -32,74 +32,106 @@ public class Component extends Group {
     }
 
     public Component setPos ( float x, float y ) {
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
         layout();
 
         return this;
     }
 
     public Component setSize ( float width, float height ) {
-        this.width = width;
-        this.height = height;
+        this.setWidth( width );
+        this.setHeight( height );
         layout();
 
         return this;
     }
 
     public Component setRect ( float x, float y, float width, float height ) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.setX( x );
+        this.setY( y );
+        this.setWidth( width );
+        this.setHeight( height );
         layout();
 
         return this;
     }
 
     public boolean inside ( float x, float y ) {
-        return x >= this.x && y >= this.y && x < this.x + width && y < this.y + height;
+        return x >= this.getX() && y >= this.getY() && x < this.getX() + getWidth() && y < this.getY() + getHeight();
     }
 
     public void fill ( Component c ) {
-        setRect( c.x, c.y, c.width, c.height );
+        setRect( c.getX(), c.getY(), c.getWidth(), c.getHeight() );
     }
 
     public float left () {
-        return x;
+        return getX();
     }
 
     public float right () {
-        return x + width;
+        return getX() + getWidth();
     }
 
     public float centerX () {
-        return x + width / 2;
+        return getX() + getWidth() / 2;
     }
 
     public float top () {
-        return y;
+        return getY();
     }
 
     public float bottom () {
-        return y + height;
+        return getY() + getHeight();
     }
 
     public float centerY () {
-        return y + height / 2;
+        return getY() + getHeight() / 2;
     }
 
     public float width () {
-        return width;
+        return getWidth();
     }
 
     public float height () {
-        return height;
+        return getHeight();
     }
 
     protected void createChildren () {
     }
 
     protected void layout () {
+    }
+
+    public float getX () {
+        return x;
+    }
+
+    public void setX ( float x ) {
+        this.x = x;
+    }
+
+    public float getY () {
+        return y;
+    }
+
+    public void setY ( float y ) {
+        this.y = y;
+    }
+
+    public float getHeight () {
+        return height;
+    }
+
+    public void setHeight ( float height ) {
+        this.height = height;
+    }
+
+    public float getWidth () {
+        return width;
+    }
+
+    public void setWidth ( float width ) {
+        this.width = width;
     }
 }

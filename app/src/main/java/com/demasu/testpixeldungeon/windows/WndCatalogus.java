@@ -180,10 +180,10 @@ public class WndCatalogus extends WndTabbed {
 
         @Override
         protected void layout () {
-            sprite.y = PixelScene.align( y + ( height - sprite.height ) / 2 );
+            sprite.y = PixelScene.align( getY() + ( getHeight() - sprite.height ) / 2 );
 
             label.x = sprite.x + sprite.width;
-            label.y = PixelScene.align( y + ( height - label.baseLine() ) / 2 );
+            label.y = PixelScene.align( getY() + ( getHeight() - label.baseLine() ) / 2 );
         }
 
         public boolean onClick ( float x, float y ) {

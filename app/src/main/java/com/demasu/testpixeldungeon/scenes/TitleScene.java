@@ -208,10 +208,10 @@ public class TitleScene extends PixelScene {
         protected void layout () {
             super.layout();
 
-            image.x = align( x + ( width - image.width() ) / 2 );
-            image.y = align( y );
+            image.x = align( getX() + ( getWidth() - image.width() ) / 2 );
+            image.y = align( getY() );
 
-            label.x = align( x + ( width - label.width() ) / 2 );
+            label.x = align( getX() + ( getWidth() - label.width() ) / 2 );
             label.y = align( image.y + image.height() + 2 );
         }
 

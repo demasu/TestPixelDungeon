@@ -118,8 +118,8 @@ public class BuffIndicator extends Component {
             if ( icon != NONE ) {
                 Image img = new Image( texture );
                 img.frame( film.get( icon ) );
-                img.x = x + members.size() * ( SIZE + 2 );
-                img.y = y;
+                img.x = getX() + members.size() * ( SIZE + 2 );
+                img.y = getY();
                 add( img );
 
                 newIcons.put( icon, img );
