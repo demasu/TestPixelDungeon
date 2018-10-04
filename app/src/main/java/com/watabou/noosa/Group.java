@@ -41,6 +41,7 @@ public class Group extends Gizmo {
         }
 
         members.clear();
+        //noinspection AssignmentToNull
         members = null;
         length = 0;
     }
