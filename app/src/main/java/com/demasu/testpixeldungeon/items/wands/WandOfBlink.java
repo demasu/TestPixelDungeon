@@ -43,7 +43,7 @@ public class WandOfBlink extends Wand {
 
         if ( ch.invisible == 0 ) {
             ch.sprite.alpha( 0 );
-            ch.sprite.parent.add( new AlphaTweener( ch.sprite, 1, 0.4f ) );
+            ch.sprite.getParent().add( new AlphaTweener( ch.sprite, 1, 0.4f ) );
         }
 
         ch.sprite.emitter().start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
@@ -68,7 +68,7 @@ public class WandOfBlink extends Wand {
 
     @Override
     protected void fx ( int cell, Callback callback ) {
-        MagicMissile.whiteLight( curUser.sprite.parent, curUser.pos, cell, callback );
+        MagicMissile.whiteLight( curUser.sprite.getParent(), curUser.pos, cell, callback );
         Sample.INSTANCE.play( Assets.SND_ZAP );
         curUser.sprite.setVisible( false );
     }

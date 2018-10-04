@@ -189,10 +189,10 @@ public class Ghost extends NPC {
         final float FADE_TIME = 0.5f;
 
         a.destroy();
-        a.sprite.parent.add( new AlphaTweener( a.sprite, 0, FADE_TIME ) {
+        a.sprite.getParent().add( new AlphaTweener( a.sprite, 0, FADE_TIME ) {
             protected void onComplete () {
                 a.sprite.killAndErase();
-                parent.erase( this );
+                getParent().erase( this );
             }
 
         } );
@@ -202,7 +202,7 @@ public class Ghost extends NPC {
 
         b.sprite.flipHorizontal = a.sprite.flipHorizontal;
         b.sprite.alpha( 0 );
-        b.sprite.parent.add( new AlphaTweener( b.sprite, 1, FADE_TIME ) );
+        b.sprite.getParent().add( new AlphaTweener( b.sprite, 1, FADE_TIME ) );
     }
 
     @Override

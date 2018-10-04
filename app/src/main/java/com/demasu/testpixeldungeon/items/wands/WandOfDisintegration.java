@@ -102,7 +102,7 @@ public class WandOfDisintegration extends Wand {
     protected void fx ( int cell, Callback callback ) {
 
         cell = Ballistica.trace[Math.min( Ballistica.distance, distance() ) - 1];
-        curUser.sprite.parent.add( new DeathRay( curUser.sprite.center(), DungeonTilemap.tileCenterToWorld( cell ) ) );
+        curUser.sprite.getParent().add( new DeathRay( curUser.sprite.center(), DungeonTilemap.tileCenterToWorld( cell ) ) );
         callback.call();
     }
 

@@ -53,7 +53,7 @@ public class Shock extends Weapon.Enchantment {
 
             hit( defender, Random.Int( 1, damage / 2 ) );
 
-            attacker.sprite.parent.add( new Lightning( points, nPoints, null ) );
+            attacker.sprite.getParent().add( new Lightning( points, nPoints, null ) );
 
             return true;
 

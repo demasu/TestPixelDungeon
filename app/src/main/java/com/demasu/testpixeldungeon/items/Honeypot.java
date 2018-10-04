@@ -107,7 +107,7 @@ public class Honeypot extends Item {
             Actor.addDelayed( new Pushing( bee, pos, newPos ), -1 );
 
             bee.sprite.alpha( 0 );
-            bee.sprite.parent.add( new AlphaTweener( bee.sprite, 1, 0.15f ) );
+            bee.sprite.getParent().add( new AlphaTweener( bee.sprite, 1, 0.15f ) );
 
             Sample.INSTANCE.play( Assets.SND_BEE );
         }

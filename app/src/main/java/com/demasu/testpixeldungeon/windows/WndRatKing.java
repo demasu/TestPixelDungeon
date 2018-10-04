@@ -107,7 +107,7 @@ public class WndRatKing extends WndTabbed {
                 @Override
                 protected void onClick () {
                     if ( !Difficulties.canDisableChampions ) {
-                        parent.add( new previewInformation( Icons.get( Icons.CHAMP_HALO ), "Disable Champions", "Please consider donating to unlock disabling specific types of champions." ) );
+                        getParent().add( new previewInformation( Icons.get( Icons.CHAMP_HALO ), "Disable Champions", "Please consider donating to unlock disabling specific types of champions." ) );
                     }
                 }
             };
@@ -329,7 +329,7 @@ public class WndRatKing extends WndTabbed {
 
     @Override
     protected void onClick ( Tab tab ) {
-        parent.add( new WndRatKing( ( (StatsControl) tab ).mode ) );
+        getParent().add( new WndRatKing( ( (StatsControl) tab ).mode ) );
         hide();
     }
 

@@ -294,7 +294,7 @@ public class PixelScene extends Scene {
 
             if ( ( time -= Game.getElapsed() ) <= 0 ) {
                 alpha( 0f );
-                parent.remove( this );
+                getParent().remove( this );
             } else {
                 alpha( time / FADE_TIME );
             }

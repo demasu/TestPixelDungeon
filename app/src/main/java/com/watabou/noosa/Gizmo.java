@@ -24,7 +24,7 @@ public class Gizmo {
     private boolean active;
     private boolean visible;
 
-    public Group parent;
+    private Group parent;
 
     public Camera camera;
 
@@ -37,7 +37,7 @@ public class Gizmo {
 
     @SuppressWarnings ( "AssignmentToNull" )
     public void destroy () {
-        parent = null;
+        setParent( null );
     }
 
     public void update () {
@@ -60,39 +60,39 @@ public class Gizmo {
     public Camera camera () {
         if ( camera != null ) {
             return camera;
-        } else if ( parent != null ) {
-            return parent.camera();
+        } else if ( getParent() != null ) {
+            return getParent().camera();
         } else {
             return null;
         }
     }
 
     public boolean isVisible () {
-        if ( parent == null ) {
+        if ( getParent() == null ) {
             return getVisible();
         } else {
-            return getVisible() && parent.isVisible();
+            return getVisible() && getParent().isVisible();
         }
     }
 
     public boolean isActive () {
-        if ( parent == null ) {
+        if ( getParent() == null ) {
             return active;
         } else {
-            return active && parent.isActive();
+            return active && getParent().isActive();
         }
     }
 
     public void killAndErase () {
         kill();
-        if ( parent != null ) {
-            parent.erase( this );
+        if ( getParent() != null ) {
+            getParent().erase( this );
         }
     }
 
     public void remove () {
-        if ( parent != null ) {
-            parent.remove( this );
+        if ( getParent() != null ) {
+            getParent().remove( this );
         }
     }
 
@@ -122,5 +122,13 @@ public class Gizmo {
 
     public void setVisible ( boolean visible ) {
         this.visible = visible;
+    }
+
+    public Group getParent () {
+        return parent;
+    }
+
+    public void setParent ( Group parent ) {
+        this.parent = parent;
     }
 }

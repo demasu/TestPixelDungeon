@@ -165,7 +165,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageWeapon );
-                        parent.add( new previewInformation( tmp, "Mace", "A Brute favorite.." ) );
+                        getParent().add( new previewInformation( tmp, "Mace", "A Brute favorite.." ) );
                     }
                 };
                 add( hotArea_imageWeapon );
@@ -182,7 +182,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageArmor );
-                        parent.add( new previewInformation( tmp, "Leather Armor", "Leather Armor provides basic protection" ) );
+                        getParent().add( new previewInformation( tmp, "Leather Armor", "Leather Armor provides basic protection" ) );
                     }
                 };
                 add( hotArea_imageArmo );
@@ -198,7 +198,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( image );
-                        parent.add( new previewInformation( tmp, "Meat", "These Brutes are always hungry..." ) );
+                        getParent().add( new previewInformation( tmp, "Meat", "These Brutes are always hungry..." ) );
                     }
                 };
                 add( hotArea_image );
@@ -214,7 +214,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageSkill );
-                        parent.add( new previewInformation( tmp, "Toughness", "Brutes are physically strong. They take less damage than what others would have." ) );
+                        getParent().add( new previewInformation( tmp, "Toughness", "Brutes are physically strong. They take less damage than what others would have." ) );
                     }
                 };
                 add( hotArea_imageSkill );
@@ -232,7 +232,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageWeapon );
-                        parent.add( new previewInformation( tmp, "Knuckles", "A weak weapon." ) );
+                        getParent().add( new previewInformation( tmp, "Knuckles", "A weak weapon." ) );
                     }
                 };
                 add( hotArea_imageWeapon );
@@ -249,7 +249,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageArmor );
-                        parent.add( new previewInformation( tmp, "Cloths", "Basic cloths." ) );
+                        getParent().add( new previewInformation( tmp, "Cloths", "Basic cloths." ) );
                     }
                 };
                 add( hotArea_imageArmo );
@@ -265,7 +265,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( image );
-                        parent.add( new previewInformation( tmp, "Healing Potion", "A Healing Potion." ) );
+                        getParent().add( new previewInformation( tmp, "Healing Potion", "A Healing Potion." ) );
                     }
                 };
                 add( hotArea_image );
@@ -281,7 +281,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageSkill );
-                        parent.add( new previewInformation( tmp, "Summon Rat", "The wizard summons rats to fight for him." ) );
+                        getParent().add( new previewInformation( tmp, "Summon Rat", "The wizard summons rats to fight for him." ) );
                     }
                 };
                 add( hotArea_imageSkill );
@@ -299,7 +299,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageWeapon );
-                        parent.add( new previewInformation( tmp, "Dagger", "A basic dagger." ) );
+                        getParent().add( new previewInformation( tmp, "Dagger", "A basic dagger." ) );
                     }
                 };
                 add( hotArea_imageWeapon );
@@ -316,7 +316,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageArmor );
-                        parent.add( new previewInformation( tmp, "Cloths", "Basic cloths." ) );
+                        getParent().add( new previewInformation( tmp, "Cloths", "Basic cloths." ) );
                     }
                 };
                 add( hotArea_imageArmo );
@@ -332,7 +332,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( image );
-                        parent.add( new previewInformation( tmp, "Healing Potion", "A Healing Potion." ) );
+                        getParent().add( new previewInformation( tmp, "Healing Potion", "A Healing Potion." ) );
                     }
                 };
                 add( hotArea_image );
@@ -348,7 +348,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageSkill );
-                        parent.add( new previewInformation( tmp, "Venom", "Thieves have a small chance of poisoning enemies in combat." ) );
+                        getParent().add( new previewInformation( tmp, "Venom", "Thieves have a small chance of poisoning enemies in combat." ) );
                     }
                 };
                 add( hotArea_imageSkill );
@@ -366,7 +366,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageWeapon );
-                        parent.add( new previewInformation( tmp, "Bow", "A basic bow." ) );
+                        getParent().add( new previewInformation( tmp, "Bow", "A basic bow." ) );
                     }
                 };
                 add( hotArea_imageWeapon );
@@ -383,7 +383,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageArmor );
-                        parent.add( new previewInformation( tmp, "Cloths", "Basic cloths." ) );
+                        getParent().add( new previewInformation( tmp, "Cloths", "Basic cloths." ) );
                     }
                 };
                 add( hotArea_imageArmo );
@@ -399,7 +399,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( image );
-                        parent.add( new previewInformation( tmp, "Healing Potion", "A Healing Potion." ) );
+                        getParent().add( new previewInformation( tmp, "Healing Potion", "A Healing Potion." ) );
                     }
                 };
                 add( hotArea_image );
@@ -415,7 +415,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageSkill );
-                        parent.add( new previewInformation( tmp, "Knee Shot", "High accuracy and knowledge in body anatomy allow the archer to hit weak spots crippling targets." ) );
+                        getParent().add( new previewInformation( tmp, "Knee Shot", "High accuracy and knowledge in body anatomy allow the archer to hit weak spots crippling targets." ) );
                     }
                 };
                 add( hotArea_imageSkill );
@@ -433,7 +433,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageWeapon );
-                        parent.add( new previewInformation( tmp, "FrostBow", "A bow imbued with magic. It can freeze targets on occasion." ) );
+                        getParent().add( new previewInformation( tmp, "FrostBow", "A bow imbued with magic. It can freeze targets on occasion." ) );
                     }
                 };
                 add( hotArea_imageWeapon );
@@ -450,7 +450,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( image );
-                        parent.add( new previewInformation( tmp, "Healing Potion", "A Healing Potion." ) );
+                        getParent().add( new previewInformation( tmp, "Healing Potion", "A Healing Potion." ) );
                     }
                 };
                 add( hotArea_image );
@@ -466,7 +466,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageSkill );
-                        parent.add( new previewInformation( tmp, "Knee Shot", "High accuracy and knowledge in body anatomy allow the archer maiden to hit weak spots crippling targets." ) );
+                        getParent().add( new previewInformation( tmp, "Knee Shot", "High accuracy and knowledge in body anatomy allow the archer maiden to hit weak spots crippling targets." ) );
                     }
                 };
                 add( hotArea_imageSkill );
@@ -482,7 +482,7 @@ public class WndMercs extends WndTabbed {
                     protected void onClick ( Touchscreen.Touch touch ) {
                         Image tmp = new Image();
                         tmp.copy( imageSkillB );
-                        parent.add( new previewInformation( tmp, "Keen Eye", "Can shoot through friendly units without harming them." ) );
+                        getParent().add( new previewInformation( tmp, "Keen Eye", "Can shoot through friendly units without harming them." ) );
                     }
                 };
                 add( hotArea_imageSkillB );
@@ -536,7 +536,7 @@ public class WndMercs extends WndTabbed {
                     @Override
                     protected void onClick () {
                         Image tmp = new SkillSprite( 104 );
-                        parent.add( new previewInformation( tmp, "Archer Maiden", HiredMerc.MAIDEN_UNLOCK_BY ) );
+                        getParent().add( new previewInformation( tmp, "Archer Maiden", HiredMerc.MAIDEN_UNLOCK_BY ) );
                     }
                 };
 
@@ -730,7 +730,7 @@ public class WndMercs extends WndTabbed {
     @Override
     protected void onClick ( Tab tab ) {
 
-        parent.add( new WndMercs( ( (MercenaryTab) tab ).mode ) );
+        getParent().add( new WndMercs( ( (MercenaryTab) tab ).mode ) );
         hide();
     }
 

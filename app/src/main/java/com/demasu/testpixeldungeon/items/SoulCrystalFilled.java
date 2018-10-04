@@ -103,7 +103,7 @@ public class SoulCrystalFilled extends Item {
             Actor.addDelayed( new Pushing( minion, pos, newPos ), -1 );
 
             minion.sprite.alpha( 0 );
-            minion.sprite.parent.add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
+            minion.sprite.getParent().add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
         }
     }
 

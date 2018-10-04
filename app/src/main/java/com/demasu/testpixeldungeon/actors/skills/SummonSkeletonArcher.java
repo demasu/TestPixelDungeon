@@ -66,7 +66,7 @@ public class SummonSkeletonArcher extends ActiveSkill3 {
                         GameScene.add( skeleton );
                         Actor.addDelayed( new Pushing( skeleton, hero.pos, newPos ), -1 );
                         skeleton.sprite.alpha( 0 );
-                        skeleton.sprite.parent.add( new AlphaTweener( skeleton.sprite, 1, 0.15f ) );
+                        skeleton.sprite.getParent().add( new AlphaTweener( skeleton.sprite, 1, 0.15f ) );
                     }
                 }
             }

@@ -68,7 +68,7 @@ public class Echo extends ActiveSkill3 {
                 GameScene.add( minion );
                 WandOfBlink.appear( minion, respawnPoints.get( index ) );
                 minion.sprite.alpha( 0 );
-                minion.sprite.parent.add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
+                minion.sprite.getParent().add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
                 CellEmitter.get( minion.pos ).burst( ElmoParticle.FACTORY, 4 );
 
                 nImages--;
