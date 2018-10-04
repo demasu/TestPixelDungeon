@@ -92,6 +92,7 @@ public class Image extends Visual {
         updateVertices();
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     protected void updateFrame () {
 
         if ( isFlipHorizontal() ) {
@@ -114,6 +115,7 @@ public class Image extends Visual {
         setDirty( true );
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     protected void updateVertices () {
 
         getVertices()[0] = 0;
