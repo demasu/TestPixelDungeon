@@ -26,7 +26,7 @@ public class BanditSprite extends MobSprite {
         super();
 
         texture( Assets.THIEF );
-        TextureFilm film = new TextureFilm( texture, 12, 13 );
+        TextureFilm film = new TextureFilm( getTexture(), 12, 13 );
 
         idle = new Animation( 1, true );
         idle.frames( film, 21, 21, 21, 22, 21, 21, 21, 21, 22 );

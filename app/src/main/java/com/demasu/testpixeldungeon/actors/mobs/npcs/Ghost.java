@@ -200,7 +200,7 @@ public class Ghost extends NPC {
         b.pos = a.pos;
         GameScene.add( b );
 
-        b.sprite.flipHorizontal = a.sprite.flipHorizontal;
+        b.sprite.setFlipHorizontal( a.sprite.isFlipHorizontal() );
         b.sprite.alpha( 0 );
         b.sprite.getParent().add( new AlphaTweener( b.sprite, 1, FADE_TIME ) );
     }

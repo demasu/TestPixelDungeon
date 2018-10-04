@@ -36,7 +36,7 @@ public class BitmaskEmitter extends Emitter {
 
         this.setTarget( target );
 
-        map = target.texture;
+        map = target.getTexture();
         //noinspection CaughtExceptionImmediatelyRethrown
         try {
             // TODO: Figure out more appropriate way of handling the potential NPE

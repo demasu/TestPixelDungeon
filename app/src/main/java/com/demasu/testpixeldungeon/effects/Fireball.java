@@ -77,7 +77,7 @@ public class Fireball extends Component {
         fLight.angularSpeed = 360;
         add( fLight );
 
-        bLight.texture.filter( Texture.LINEAR, Texture.LINEAR );
+        bLight.getTexture().filter( Texture.LINEAR, Texture.LINEAR );
     }
 
     @Override

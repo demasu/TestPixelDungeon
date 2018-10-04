@@ -39,7 +39,7 @@ public class VanguardWarriorSprite extends MobSprite {
 
         texture( Assets.VANGUARD_WARRIOR );
 
-        TextureFilm frames = new TextureFilm( texture, FRAME_WIDTH, FRAME_HEIGHT );
+        TextureFilm frames = new TextureFilm( getTexture(), FRAME_WIDTH, FRAME_HEIGHT );
 
 
         idle = new Animation( 1, true );

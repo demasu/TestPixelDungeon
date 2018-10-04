@@ -49,7 +49,7 @@ public class SpellSprite extends Image {
         super( Assets.SPELL_ICONS );
 
         if ( film == null ) {
-            film = new TextureFilm( texture, SIZE );
+            film = new TextureFilm( getTexture(), SIZE );
         }
     }
 

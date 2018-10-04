@@ -27,13 +27,13 @@ import java.nio.FloatBuffer;
 
 public class Image extends Visual {
 
-    public SmartTexture texture;
-    public boolean flipHorizontal;
+    private SmartTexture texture;
+    private boolean flipHorizontal;
     private RectF frame;
-    protected final float[] vertices;
+    private final float[] vertices;
     private final FloatBuffer verticesBuffer;
 
-    protected boolean dirty;
+    private boolean dirty;
 
     public Image () {
         super( 0, 0, 0, 0 );
@@ -55,26 +55,26 @@ public class Image extends Visual {
 
     public Image ( Object tx, int left, int top, int width, int height ) {
         this( tx );
-        frame( texture.uvRect( left, top, left + width, top + height ) );
+        frame( getTexture().uvRect( left, top, left + width, top + height ) );
     }
 
     public void texture ( Object tx ) {
-        texture = tx instanceof SmartTexture ? (SmartTexture) tx : TextureCache.get( tx );
+        setTexture( tx instanceof SmartTexture ? (SmartTexture) tx : TextureCache.get( tx ) );
         frame( new RectF( 0, 0, 1, 1 ) );
     }
 
     public void frame ( RectF frame ) {
         this.setFrame( frame );
 
-        width = frame.width() * texture.getWidth();
-        height = frame.height() * texture.getHeight();
+        width = frame.width() * getTexture().getWidth();
+        height = frame.height() * getTexture().getHeight();
 
         updateFrame();
         updateVertices();
     }
 
     public void frame ( int left, int top, int width, int height ) {
-        frame( texture.uvRect( left, top, left + width, top + height ) );
+        frame( getTexture().uvRect( left, top, left + width, top + height ) );
     }
 
     public RectF frame () {
@@ -82,7 +82,7 @@ public class Image extends Visual {
     }
 
     public void copy ( Image other ) {
-        texture = other.texture;
+        setTexture( other.getTexture() );
         setFrame( new RectF( other.getFrame() ) );
 
         width = other.width;
@@ -94,41 +94,41 @@ public class Image extends Visual {
 
     protected void updateFrame () {
 
-        if ( flipHorizontal ) {
-            vertices[2] = getFrame().right;
-            vertices[6] = getFrame().left;
-            vertices[10] = getFrame().left;
-            vertices[14] = getFrame().right;
+        if ( isFlipHorizontal() ) {
+            getVertices()[2] = getFrame().right;
+            getVertices()[6] = getFrame().left;
+            getVertices()[10] = getFrame().left;
+            getVertices()[14] = getFrame().right;
         } else {
-            vertices[2] = getFrame().left;
-            vertices[6] = getFrame().right;
-            vertices[10] = getFrame().right;
-            vertices[14] = getFrame().left;
+            getVertices()[2] = getFrame().left;
+            getVertices()[6] = getFrame().right;
+            getVertices()[10] = getFrame().right;
+            getVertices()[14] = getFrame().left;
         }
 
-        vertices[3] = getFrame().top;
-        vertices[7] = getFrame().top;
-        vertices[11] = getFrame().bottom;
-        vertices[15] = getFrame().bottom;
+        getVertices()[3] = getFrame().top;
+        getVertices()[7] = getFrame().top;
+        getVertices()[11] = getFrame().bottom;
+        getVertices()[15] = getFrame().bottom;
 
-        dirty = true;
+        setDirty( true );
     }
 
     protected void updateVertices () {
 
-        vertices[0] = 0;
-        vertices[1] = 0;
+        getVertices()[0] = 0;
+        getVertices()[1] = 0;
 
-        vertices[4] = width;
-        vertices[5] = 0;
+        getVertices()[4] = width;
+        getVertices()[5] = 0;
 
-        vertices[8] = width;
-        vertices[9] = height;
+        getVertices()[8] = width;
+        getVertices()[9] = height;
 
-        vertices[12] = 0;
-        vertices[13] = height;
+        getVertices()[12] = 0;
+        getVertices()[13] = height;
 
-        dirty = true;
+        setDirty( true );
     }
 
     @Override
@@ -138,7 +138,7 @@ public class Image extends Visual {
 
         NoosaScript script = NoosaScript.get();
 
-        texture.bind();
+        getTexture().bind();
 
         script.camera( camera() );
 
@@ -147,10 +147,10 @@ public class Image extends Visual {
                 rm, gm, bm, am,
                 ra, ga, ba, aa );
 
-        if ( dirty ) {
+        if ( isDirty() ) {
             verticesBuffer.position( 0 );
-            verticesBuffer.put( vertices );
-            dirty = false;
+            verticesBuffer.put( getVertices() );
+            setDirty( false );
         }
         script.drawQuad( verticesBuffer );
 
@@ -162,5 +162,34 @@ public class Image extends Visual {
 
     private void setFrame ( RectF frame ) {
         this.frame = frame;
+    }
+
+    public SmartTexture getTexture () {
+        return texture;
+    }
+
+    private void setTexture ( SmartTexture texture ) {
+        this.texture = texture;
+    }
+
+    public boolean isFlipHorizontal () {
+        return flipHorizontal;
+    }
+
+    public void setFlipHorizontal ( boolean flipHorizontal ) {
+        this.flipHorizontal = flipHorizontal;
+    }
+
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
+    public float[] getVertices () {
+        return vertices;
+    }
+
+    private boolean isDirty () {
+        return dirty;
+    }
+
+    public void setDirty ( boolean dirty ) {
+        this.dirty = dirty;
     }
 }

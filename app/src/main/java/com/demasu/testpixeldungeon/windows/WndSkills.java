@@ -194,7 +194,7 @@ public class WndSkills extends WndTabbed {
             icon.y = getY() + ( getHeight() - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
             if ( !selected && icon.y < getY() + CUT ) {
                 RectF frame = icon.frame();
-                frame.top += ( getY() + CUT - icon.y ) / icon.texture.getHeight();
+                frame.top += ( getY() + CUT - icon.y ) / icon.getTexture().getHeight();
                 icon.frame( frame );
                 icon.y = getY() + CUT;
             }

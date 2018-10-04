@@ -306,7 +306,7 @@ public class SurfaceScene extends PixelScene {
 
         public Avatar ( HeroClass cl ) {
             super( Assets.AVATARS );
-            frame( new TextureFilm( texture, WIDTH, HEIGHT ).get( cl.ordinal() ) );
+            frame( new TextureFilm( getTexture(), WIDTH, HEIGHT ).get( cl.ordinal() ) );
         }
     }
 
@@ -318,7 +318,7 @@ public class SurfaceScene extends PixelScene {
         public Pet () {
             super( Assets.PET );
 
-            TextureFilm frames = new TextureFilm( texture, 16, 16 );
+            TextureFilm frames = new TextureFilm( getTexture(), 16, 16 );
 
             idle = new Animation( 2, true );
             idle.frames( frames, 0, 0, 0, 0, 0, 0, 1 );

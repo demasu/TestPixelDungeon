@@ -66,7 +66,7 @@ public class ItemSprite extends MovieClip {
         super( Assets.ITEMS );
 
         if ( film == null ) {
-            film = new TextureFilm( texture, SIZE, SIZE );
+            film = new TextureFilm( getTexture(), SIZE, SIZE );
         }
 
         view( image, glowing );

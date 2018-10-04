@@ -41,7 +41,7 @@ public class BadgeBanner extends Image {
         super( Assets.BADGES );
 
         if ( atlas == null ) {
-            atlas = new TextureFilm( texture, 16, 16 );
+            atlas = new TextureFilm( getTexture(), 16, 16 );
         }
 
         this.index = index;
@@ -221,7 +221,7 @@ public class BadgeBanner extends Image {
     public static Image image ( int index ) {
         Image image = new Image( Assets.BADGES );
         if ( atlas == null ) {
-            atlas = new TextureFilm( image.texture, 16, 16 );
+            atlas = new TextureFilm( image.getTexture(), 16, 16 );
         }
         image.frame( atlas.get( index ) );
         return image;

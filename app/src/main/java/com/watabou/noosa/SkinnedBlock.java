@@ -32,7 +32,7 @@ public class SkinnedBlock extends Image {
     public SkinnedBlock ( float width, float height, Object tx ) {
         super( tx );
 
-        texture.wrap( Texture.REPEAT, Texture.REPEAT );
+        getTexture().wrap( Texture.REPEAT, Texture.REPEAT );
 
         size( width, height );
     }
@@ -52,41 +52,41 @@ public class SkinnedBlock extends Image {
     protected void updateFrame () {
 
         if ( autoAdjust ) {
-            while ( offsetX > texture.getWidth() ) {
-                offsetX -= texture.getWidth();
+            while ( offsetX > getTexture().getWidth() ) {
+                offsetX -= getTexture().getWidth();
             }
-            while ( offsetX < -texture.getWidth() ) {
-                offsetX += texture.getWidth();
+            while ( offsetX < -getTexture().getWidth() ) {
+                offsetX += getTexture().getWidth();
             }
-            while ( offsetY > texture.getHeight() ) {
-                offsetY -= texture.getHeight();
+            while ( offsetY > getTexture().getHeight() ) {
+                offsetY -= getTexture().getHeight();
             }
-            while ( offsetY < -texture.getHeight() ) {
-                offsetY += texture.getHeight();
+            while ( offsetY < -getTexture().getHeight() ) {
+                offsetY += getTexture().getHeight();
             }
         }
 
-        float tw = 1f / texture.getWidth();
-        float th = 1f / texture.getHeight();
+        float tw = 1f / getTexture().getWidth();
+        float th = 1f / getTexture().getHeight();
 
         float u0 = offsetX * tw;
         float v0 = offsetY * th;
         float u1 = u0 + width * tw / scaleX;
         float v1 = v0 + height * th / scaleY;
 
-        vertices[2] = u0;
-        vertices[3] = v0;
+        getVertices()[2] = u0;
+        getVertices()[3] = v0;
 
-        vertices[6] = u1;
-        vertices[7] = v0;
+        getVertices()[6] = u1;
+        getVertices()[7] = v0;
 
-        vertices[10] = u1;
-        vertices[11] = v1;
+        getVertices()[10] = u1;
+        getVertices()[11] = v1;
 
-        vertices[14] = u0;
-        vertices[15] = v1;
+        getVertices()[14] = u0;
+        getVertices()[15] = v1;
 
-        dirty = true;
+        setDirty( true );
     }
 
     public void offsetTo ( float x, float y ) {

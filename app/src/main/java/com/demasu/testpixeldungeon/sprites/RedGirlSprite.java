@@ -43,7 +43,7 @@ public class RedGirlSprite extends MobSprite {
 
         texture( Assets.RED_GIRL );
 
-        TextureFilm frames = new TextureFilm( texture, FRAME_WIDTH, FRAME_HEIGHT );
+        TextureFilm frames = new TextureFilm( getTexture(), FRAME_WIDTH, FRAME_HEIGHT );
 
 
         idle = new Animation( 1, true );

@@ -34,7 +34,7 @@ public class SkeletonSprite extends MobSprite {
 
         texture( Assets.SKELETON );
 
-        TextureFilm frames = new TextureFilm( texture, 12, 15 );
+        TextureFilm frames = new TextureFilm( getTexture(), 12, 15 );
 
         idle = new Animation( 12, true );
         idle.frames( frames, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3 );

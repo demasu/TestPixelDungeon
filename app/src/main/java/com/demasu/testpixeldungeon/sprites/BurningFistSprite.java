@@ -32,7 +32,7 @@ public class BurningFistSprite extends MobSprite {
 
         texture( Assets.BURNING );
 
-        TextureFilm frames = new TextureFilm( texture, 24, 17 );
+        TextureFilm frames = new TextureFilm( getTexture(), 24, 17 );
 
         idle = new Animation( 2, true );
         idle.frames( frames, 0, 0, 1 );

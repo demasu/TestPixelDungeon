@@ -70,7 +70,7 @@ public class Speck extends Image {
 
         texture( Assets.SPECKS );
         if ( film == null ) {
-            film = new TextureFilm( texture, SIZE, SIZE );
+            film = new TextureFilm( getTexture(), SIZE, SIZE );
         }
 
         origin.set( SIZE / 2f );

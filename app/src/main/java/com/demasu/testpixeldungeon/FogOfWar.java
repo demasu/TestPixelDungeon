@@ -98,7 +98,7 @@ public class FogOfWar extends Image {
             }
         }
 
-        texture.pixels( width2, height2, pixels );
+        getTexture().pixels( width2, height2, pixels );
     }
 
     private class FogTexture extends SmartTexture {

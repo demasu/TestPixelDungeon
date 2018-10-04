@@ -192,9 +192,9 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
         int fx = from % Level.WIDTH;
         int tx = to % Level.WIDTH;
         if ( tx > fx ) {
-            flipHorizontal = false;
+            setFlipHorizontal( false );
         } else if ( tx < fx ) {
-            flipHorizontal = true;
+            setFlipHorizontal( true );
         }
     }
 

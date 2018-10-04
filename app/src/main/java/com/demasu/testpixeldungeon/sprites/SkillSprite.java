@@ -40,7 +40,7 @@ public class SkillSprite extends MovieClip {
         super( Assets.HERO_SKILL );
 
         if ( film == null ) {
-            film = new TextureFilm( texture, SIZE, SIZE );
+            film = new TextureFilm( getTexture(), SIZE, SIZE );
         }
 
         view( image );

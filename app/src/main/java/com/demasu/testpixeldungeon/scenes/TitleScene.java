@@ -186,7 +186,7 @@ public class TitleScene extends PixelScene {
         public DashboardItem ( String text, int index ) {
             super();
 
-            image.frame( image.texture.uvRect( index * IMAGE_SIZE, 0, ( index + 1 ) * IMAGE_SIZE, IMAGE_SIZE ) );
+            image.frame( image.getTexture().uvRect( index * IMAGE_SIZE, 0, ( index + 1 ) * IMAGE_SIZE, IMAGE_SIZE ) );
             this.label.text( text );
             this.label.measure();
 

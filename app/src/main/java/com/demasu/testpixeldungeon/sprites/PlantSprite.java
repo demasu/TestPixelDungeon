@@ -38,7 +38,7 @@ public class PlantSprite extends Image {
         super( Assets.PLANTS );
 
         if ( frames == null ) {
-            frames = new TextureFilm( texture, 16, 16 );
+            frames = new TextureFilm( getTexture(), 16, 16 );
         }
 
         origin.set( 8, 12 );

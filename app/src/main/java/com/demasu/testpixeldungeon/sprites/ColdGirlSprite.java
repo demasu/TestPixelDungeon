@@ -45,7 +45,7 @@ public class ColdGirlSprite extends MobSprite {
             texture( Assets.COLD_GIRL );
         }
 
-        TextureFilm frames = new TextureFilm( texture, FRAME_WIDTH, FRAME_HEIGHT );
+        TextureFilm frames = new TextureFilm( getTexture(), FRAME_WIDTH, FRAME_HEIGHT );
 
 
         idle = new Animation( 1, true );
@@ -69,7 +69,7 @@ public class ColdGirlSprite extends MobSprite {
         isSister = true;
 
         texture( Assets.COLD_GIRL_SISTER );
-        TextureFilm frames = new TextureFilm( texture, FRAME_WIDTH, FRAME_HEIGHT );
+        TextureFilm frames = new TextureFilm( getTexture(), FRAME_WIDTH, FRAME_HEIGHT );
 
 
         idle = new Animation( 1, true );
