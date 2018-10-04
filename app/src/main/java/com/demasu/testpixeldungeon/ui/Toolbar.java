@@ -310,7 +310,7 @@ public class Toolbar extends Component {
         if ( lastEnabled != Dungeon.getHero().ready ) {
             lastEnabled = Dungeon.getHero().ready;
 
-            for ( Gizmo tool : members ) {
+            for ( Gizmo tool : getMembers() ) {
                 if ( tool instanceof Tool ) {
                     ( (Tool) tool ).enable( lastEnabled );
 
