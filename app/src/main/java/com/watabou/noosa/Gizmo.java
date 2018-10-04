@@ -100,7 +100,7 @@ public class Gizmo {
         return exists;
     }
 
-    public void setExists ( boolean exists ) {
+    private void setExists ( boolean exists ) {
         this.exists = exists;
     }
 
@@ -108,7 +108,7 @@ public class Gizmo {
         return alive;
     }
 
-    public void setAlive ( boolean alive ) {
+    private void setAlive ( boolean alive ) {
         this.alive = alive;
     }
 
