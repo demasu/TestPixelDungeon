@@ -35,6 +35,7 @@ public class Gizmo {
         visible = true;
     }
 
+    @SuppressWarnings ( "AssignmentToNull" )
     public void destroy () {
         parent = null;
     }
