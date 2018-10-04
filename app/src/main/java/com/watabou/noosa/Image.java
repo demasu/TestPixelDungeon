@@ -131,6 +131,7 @@ public class Image extends Visual {
         setDirty( true );
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public void draw () {
 
