@@ -43,6 +43,7 @@ public class Image extends Visual {
         verticesBuffer = Quad.create();
     }
 
+    @SuppressWarnings ( "CopyConstructorMissesField" )
     public Image ( Image src ) {
         this();
         copy( src );
