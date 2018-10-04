@@ -388,13 +388,13 @@ public class Item implements Bundlable {
                     CharSprite sprite = Dungeon.getHero().sprite;
                     PointF point = sprite.center().offset( 0, -16 );
                     if ( this instanceof Weapon ) {
-                        sprite.parent.add( Degradation.weapon( point ) );
+                        sprite.getParent().add( Degradation.weapon( point ) );
                     } else if ( this instanceof Armor ) {
-                        sprite.parent.add( Degradation.armor( point ) );
+                        sprite.getParent().add( Degradation.armor( point ) );
                     } else if ( this instanceof Ring ) {
-                        sprite.parent.add( Degradation.ring( point ) );
+                        sprite.getParent().add( Degradation.ring( point ) );
                     } else if ( this instanceof Wand ) {
-                        sprite.parent.add( Degradation.wand( point ) );
+                        sprite.getParent().add( Degradation.wand( point ) );
                     }
                     Sample.INSTANCE.play( Assets.SND_DEGRADE );
                 }
@@ -718,7 +718,7 @@ public class Item implements Bundlable {
         }
         final float finalDelay = delay;
         final int dstFinal = dst;
-        ( (MissileSprite) user.sprite.parent.recycle( MissileSprite.class ) ).
+        ( (MissileSprite) user.sprite.getParent().recycle( MissileSprite.class ) ).
                 reset( user.pos, cell, this, new Callback() {
                     @Override
                     public void call () {
@@ -764,7 +764,7 @@ public class Item implements Bundlable {
         }
         final float finalDelay = delay;
 
-        ( (MissileSprite) user.sprite.parent.recycle( MissileSprite.class ) ).
+        ( (MissileSprite) user.sprite.getParent().recycle( MissileSprite.class ) ).
                 reset( user.pos, cell, this, new Callback() {
                     @Override
                     public void call () {
@@ -801,7 +801,7 @@ public class Item implements Bundlable {
         }
         final float finalDelay = delay;
         final int dstFinal = dst;
-        ( (MissileSprite) user.sprite.parent.recycle( MissileSprite.class ) ).
+        ( (MissileSprite) user.sprite.getParent().recycle( MissileSprite.class ) ).
                 reset( user.pos, cell, this, new Callback() {
                     @Override
                     public void call () {

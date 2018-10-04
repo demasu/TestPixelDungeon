@@ -64,7 +64,7 @@ public class Button extends Component {
     public void update () {
         super.update();
 
-        hotArea.active = visible;
+        hotArea.setActive( visible );
 
         if ( pressed ) {
             pressTime += Game.getElapsed();

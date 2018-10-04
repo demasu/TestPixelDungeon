@@ -168,9 +168,9 @@ public class PixelScene extends Scene {
 
     public static void showBadge ( Badges.Badge badge ) {
         BadgeBanner banner = BadgeBanner.show( badge.image );
-        banner.camera = uiCamera;
-        banner.x = align( banner.camera, ( banner.camera.getWidth() - banner.width ) / 2 );
-        banner.y = align( banner.camera, ( banner.camera.getHeight() - banner.height ) / 3 );
+        banner.setCamera( uiCamera );
+        banner.x = align( banner.getCamera(), ( banner.getCamera().getWidth() - banner.width ) / 2 );
+        banner.y = align( banner.getCamera(), ( banner.getCamera().getHeight() - banner.height ) / 3 );
         Game.scene().add( banner );
     }
 
@@ -281,7 +281,7 @@ public class PixelScene extends Scene {
 
             this.light = light;
 
-            camera = uiCamera;
+            setCamera( uiCamera );
 
             alpha( 1f );
             time = FADE_TIME;
@@ -294,7 +294,7 @@ public class PixelScene extends Scene {
 
             if ( ( time -= Game.getElapsed() ) <= 0 ) {
                 alpha( 0f );
-                parent.remove( this );
+                getParent().remove( this );
             } else {
                 alpha( time / FADE_TIME );
             }

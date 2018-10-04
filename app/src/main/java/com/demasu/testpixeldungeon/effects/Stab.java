@@ -65,7 +65,7 @@ public class Stab extends ItemSprite implements Tweener.Listener {
         sprite.source = ch;
         sprite.target = ch2;
         sprite.rotateEffect();
-        ch.sprite.parent.add( sprite );
+        ch.sprite.getParent().add( sprite );
     }
 
     @Override
@@ -130,7 +130,7 @@ public class Stab extends ItemSprite implements Tweener.Listener {
 
         PosTweener tweener = new PosTweener( this, dest, 0.6f );
         tweener.setListener( this );
-        source.sprite.parent.add( tweener );
+        source.sprite.getParent().add( tweener );
     }
 
     @Override

@@ -39,7 +39,7 @@ public class IceBlock extends Gizmo {
     public static IceBlock freeze ( CharSprite sprite ) {
 
         IceBlock iceBlock = new IceBlock( sprite );
-        sprite.parent.add( iceBlock );
+        sprite.getParent().add( iceBlock );
 
         return iceBlock;
     }

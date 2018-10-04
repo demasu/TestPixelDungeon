@@ -84,7 +84,7 @@ public class WndClass extends WndTabbed {
         protected void select ( boolean value ) {
             super.select( value );
             if ( page != null ) {
-                page.visible = page.active = selected;
+                page.visible = page.setActive( selected );
             }
         }
     }

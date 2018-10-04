@@ -130,7 +130,7 @@ public class WandOfMagicCasting extends Wand {
                 minion.pos = cell;
                 GameScene.add( minion );
                 minion.sprite.alpha( 0 );
-                minion.sprite.parent.add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
+                minion.sprite.getParent().add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
 
                 ch.die( null );
             } else if ( casting == CAST_TYPES.DOMINANCE ) {
@@ -145,7 +145,7 @@ public class WandOfMagicCasting extends Wand {
                 minion.pos = cell;
                 GameScene.add( minion );
                 minion.sprite.alpha( 0 );
-                minion.sprite.parent.add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
+                minion.sprite.getParent().add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
                 ch.sprite.visible = false;
                 ch.die( null );
             } else if ( casting == CAST_TYPES.SOUL_SPARK ) {
@@ -164,13 +164,13 @@ public class WandOfMagicCasting extends Wand {
 
     protected void fx ( int cell, Callback callback ) {
         if ( casting == CAST_TYPES.DARK_BOLT ) {
-            MagicMissile.shadow( curUser.sprite.parent, curUser.pos, cell, callback, 1 );
+            MagicMissile.shadow( curUser.sprite.getParent(), curUser.pos, cell, callback, 1 );
         } else if ( casting == CAST_TYPES.DOMINANCE ) {
-            MagicMissile.shadow( curUser.sprite.parent, curUser.pos, cell, callback, 3 );
+            MagicMissile.shadow( curUser.sprite.getParent(), curUser.pos, cell, callback, 3 );
         } else if ( casting == CAST_TYPES.SOUL_SPARK ) {
-            MagicMissile.whiteLight( curUser.sprite.parent, curUser.pos, cell, callback );
+            MagicMissile.whiteLight( curUser.sprite.getParent(), curUser.pos, cell, callback );
         } else if ( casting == CAST_TYPES.SPARK ) {
-            MagicMissile.blueLight( curUser.sprite.parent, curUser.pos, cell, callback );
+            MagicMissile.blueLight( curUser.sprite.getParent(), curUser.pos, cell, callback );
         }
 
         Sample.INSTANCE.play( Assets.SND_ZAP );

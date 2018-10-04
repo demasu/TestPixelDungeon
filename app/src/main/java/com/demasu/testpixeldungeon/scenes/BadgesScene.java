@@ -131,9 +131,9 @@ public class BadgesScene extends PixelScene {
             super();
 
             this.badge = badge;
-            active = ( badge != null );
+            setActive( ( badge != null ) );
 
-            icon = active ? BadgeBanner.image( badge.image ) : new Image( Assets.LOCKED );
+            icon = isActive() ? BadgeBanner.image( badge.image ) : new Image( Assets.LOCKED );
             add( icon );
 
             setSize( icon.width(), icon.height() );

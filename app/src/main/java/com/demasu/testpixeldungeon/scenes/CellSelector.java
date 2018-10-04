@@ -39,7 +39,7 @@ public class CellSelector extends TouchArea {
     private PointF lastPos = new PointF();
     public CellSelector ( DungeonTilemap map ) {
         super( map );
-        camera = map.camera();
+        setCamera( map.camera() );
 
         dragThreshold = PixelScene.defaultZoom * DungeonTilemap.SIZE / 2;
     }
@@ -86,7 +86,7 @@ public class CellSelector extends TouchArea {
 
             another = t;
             startSpan = PointF.distance( touch.getCurrent(), another.getCurrent() );
-            startZoom = camera.getZoom();
+            startZoom = getCamera().getZoom();
 
             dragging = false;
         }
@@ -98,8 +98,8 @@ public class CellSelector extends TouchArea {
 
             pinching = false;
 
-            int zoom = Math.round( camera.getZoom() );
-            camera.zoom( zoom );
+            int zoom = Math.round( getCamera().getZoom() );
+            getCamera().zoom( zoom );
             PixelDungeon.zoom( (int) ( zoom - PixelScene.defaultZoom ) );
 
             dragging = true;
@@ -114,12 +114,12 @@ public class CellSelector extends TouchArea {
     @Override
     protected void onDrag ( Touch t ) {
 
-        camera.setTarget( null );
+        getCamera().setTarget( null );
 
         if ( pinching ) {
 
             float curSpan = PointF.distance( touch.getCurrent(), another.getCurrent() );
-            camera.zoom( GameMath.gate(
+            getCamera().zoom( GameMath.gate(
                     PixelScene.minZoom,
                     startZoom * curSpan / startSpan,
                     PixelScene.maxZoom ) );
@@ -132,7 +132,7 @@ public class CellSelector extends TouchArea {
                 lastPos.set( t.getCurrent() );
 
             } else if ( dragging ) {
-                camera.getScroll().offset( PointF.diff( lastPos, t.getCurrent() ).invScale( camera.getZoom() ) );
+                getCamera().getScroll().offset( PointF.diff( lastPos, t.getCurrent() ).invScale( getCamera().getZoom() ) );
                 lastPos.set( t.getCurrent() );
             }
         }

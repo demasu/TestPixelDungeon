@@ -58,7 +58,7 @@ public class WandmakerSprite extends MobSprite {
         super.link( ch );
 
         if ( shield == null ) {
-            parent.add( shield = new Shield() );
+            getParent().add( shield = new Shield() );
         }
     }
 

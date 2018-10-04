@@ -52,7 +52,7 @@ public class Enchanting extends ItemSprite {
 
         Enchanting sprite = new Enchanting( item );
         sprite.target = ch;
-        ch.sprite.parent.add( sprite );
+        ch.sprite.getParent().add( sprite );
     }
 
     @Override

@@ -65,7 +65,7 @@ public class SummonRat extends ActiveSkill1 {
                         GameScene.add( rat );
                         Actor.addDelayed( new Pushing( rat, hero.pos, newPos ), -1 );
                         rat.sprite.alpha( 0 );
-                        rat.sprite.parent.add( new AlphaTweener( rat.sprite, 1, 0.15f ) );
+                        rat.sprite.getParent().add( new AlphaTweener( rat.sprite, 1, 0.15f ) );
                     }
                 }
             }

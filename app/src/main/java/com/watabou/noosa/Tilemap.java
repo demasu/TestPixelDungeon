@@ -145,7 +145,7 @@ public class Tilemap extends Visual {
             updateVertices();
         }
 
-        script.camera( camera );
+        script.camera( getCamera() );
         script.drawQuadSet( quads, size );
 
     }

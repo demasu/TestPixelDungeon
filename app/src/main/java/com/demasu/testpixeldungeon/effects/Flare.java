@@ -112,7 +112,7 @@ public class Flare extends Visual {
 
     public Flare show ( Visual visual, float duration ) {
         point( visual.center() );
-        visual.parent.addToBack( this );
+        visual.getParent().addToBack( this );
 
         lifespan = this.duration = duration;
 
@@ -171,7 +171,7 @@ public class Flare extends Visual {
                 rm, gm, bm, am,
                 ra, ga, ba, aa );
 
-        script.camera( camera );
+        script.camera( getCamera() );
         script.drawElements( vertices, indices, nRays * 3 );
     }
 }

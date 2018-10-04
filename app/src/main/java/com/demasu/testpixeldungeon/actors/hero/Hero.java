@@ -1564,7 +1564,7 @@ public class Hero extends Char {
                 if ( Dungeon.getVisible()[p] ) {
 
                     if ( intentional ) {
-                        sprite.parent.addToBack( new CheckedCell( p ) );
+                        sprite.getParent().addToBack( new CheckedCell( p ) );
                     }
 
                     if ( Level.secret[p] && ( intentional || Random.Float() < level ) ) {

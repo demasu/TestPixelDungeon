@@ -139,7 +139,7 @@ public class WndRanking extends WndTabbed {
         protected void select ( boolean value ) {
             super.select( value );
             if ( page != null ) {
-                page.visible = page.active = selected;
+                page.visible = page.setActive( selected );
             }
         }
     }
@@ -335,7 +335,7 @@ public class WndRanking extends WndTabbed {
                 return;
             }
 
-            camera = WndRanking.this.camera;
+            setCamera( WndRanking.this.getCamera() );
 
             ScrollPane list = new BadgesList( false );
             add( list );

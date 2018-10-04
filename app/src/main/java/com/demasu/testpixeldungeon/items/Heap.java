@@ -129,7 +129,7 @@ public class Heap implements Bundlable {
                 break;
             case HIDDEN:
                 sprite.alpha( 0 );
-                sprite.parent.add( new AlphaTweener( sprite, 1, FADE_TIME ) );
+                sprite.getParent().add( new AlphaTweener( sprite, 1, FADE_TIME ) );
                 break;
             default:
         }

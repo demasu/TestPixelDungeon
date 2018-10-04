@@ -153,7 +153,7 @@ public class MercSprite extends MobSprite {
         if ( anim == zap ) {
             idle();
 
-            ( (MissileSprite) parent.recycle( MissileSprite.class ) ).
+            ( (MissileSprite) getParent().recycle( MissileSprite.class ) ).
                     reset( ch.pos, cellToAttack, new Arrow(), new Callback() {
                         @Override
                         public void call () {

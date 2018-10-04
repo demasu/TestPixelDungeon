@@ -80,7 +80,7 @@ public class RedButton extends Button {
     }
 
     public void enable ( boolean value ) {
-        active = value;
+        setActive( value );
         text.alpha( value ? 1.0f : 0.3f );
     }
 
