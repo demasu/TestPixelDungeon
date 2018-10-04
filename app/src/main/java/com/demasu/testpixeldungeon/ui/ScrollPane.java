@@ -49,18 +49,18 @@ public class ScrollPane extends Component {
         setWidth( content.width() );
         setHeight( content.height() );
 
-        content.camera = new Camera( 0, 0, 1, 1, PixelScene.defaultZoom );
-        Camera.add( content.camera );
+        content.setCamera( new Camera( 0, 0, 1, 1, PixelScene.defaultZoom ) );
+        Camera.add( content.getCamera() );
     }
 
     @Override
     public void destroy () {
         super.destroy();
-        Camera.remove( content.camera );
+        Camera.remove( content.getCamera() );
     }
 
     public void scrollTo ( float x, float y ) {
-        content.camera.getScroll().set( x, y );
+        content.getCamera().getScroll().set( x, y );
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ScrollPane extends Component {
         controller.height = getHeight();
 
         Point p = camera().cameraToScreen( getX(), getY() );
-        Camera cs = content.camera;
+        Camera cs = content.getCamera();
         cs.setX( p.x );
         cs.setY( p.y );
         cs.resize( (int) getWidth(), (int) getHeight() );
@@ -123,7 +123,7 @@ public class ScrollPane extends Component {
 
             } else {
 
-                PointF p = content.camera.screenToCamera( (int) touch.getCurrent().x, (int) touch.getCurrent().y );
+                PointF p = content.getCamera().screenToCamera( (int) touch.getCurrent().x, (int) touch.getCurrent().y );
                 ScrollPane.this.onClick( p.x, p.y );
 
             }
@@ -133,7 +133,7 @@ public class ScrollPane extends Component {
         protected void onDrag ( Touch t ) {
             if ( dragging ) {
 
-                Camera c = content.camera;
+                Camera c = content.getCamera();
 
                 c.getScroll().offset( PointF.diff( lastPos, t.getCurrent() ).invScale( c.getZoom() ) );
                 if ( c.getScroll().x + width > content.width() ) {

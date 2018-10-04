@@ -171,7 +171,7 @@ public class Flare extends Visual {
                 rm, gm, bm, am,
                 ra, ga, ba, aa );
 
-        script.camera( camera );
+        script.camera( getCamera() );
         script.drawElements( vertices, indices, nRays * 3 );
     }
 }

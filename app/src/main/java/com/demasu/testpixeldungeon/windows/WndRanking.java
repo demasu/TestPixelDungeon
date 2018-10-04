@@ -336,7 +336,7 @@ public class WndRanking extends WndTabbed {
                 return;
             }
 
-            camera = WndRanking.this.camera;
+            setCamera( WndRanking.this.getCamera() );
 
             ScrollPane list = new BadgesList( false );
             add( list );

@@ -207,7 +207,7 @@ public class BadgeBanner extends Image {
 
         Speck star = new Speck();
         star.reset( 0, p.x, p.y, Speck.DISCOVER );
-        star.camera = image.camera();
+        star.setCamera( image.camera() );
         image.getParent().add( star );
     }
 

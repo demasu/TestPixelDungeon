@@ -26,7 +26,7 @@ public class Gizmo {
 
     private Group parent;
 
-    public Camera camera;
+    private Camera camera;
 
     public Gizmo () {
         setExists( true );
@@ -35,7 +35,6 @@ public class Gizmo {
         setVisible( true );
     }
 
-    @SuppressWarnings ( "AssignmentToNull" )
     public void destroy () {
         setParent( null );
     }
@@ -58,8 +57,8 @@ public class Gizmo {
     }
 
     public Camera camera () {
-        if ( camera != null ) {
-            return camera;
+        if ( getCamera() != null ) {
+            return getCamera();
         } else if ( getParent() != null ) {
             return getParent().camera();
         } else {
@@ -130,5 +129,13 @@ public class Gizmo {
 
     public void setParent ( Group parent ) {
         this.parent = parent;
+    }
+
+    public Camera getCamera () {
+        return camera;
+    }
+
+    public void setCamera ( Camera camera ) {
+        this.camera = camera;
     }
 }
