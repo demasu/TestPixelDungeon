@@ -80,10 +80,6 @@ public class Group extends Gizmo {
         super.kill();
     }
 
-    public int indexOf ( Gizmo g ) {
-        return members.indexOf( g );
-    }
-
     public Gizmo add ( Gizmo g ) {
 
         if ( g.getParent() == this ) {
@@ -178,18 +174,6 @@ public class Group extends Gizmo {
         }
     }
 
-    public Gizmo replace ( Gizmo oldOne, Gizmo newOne ) {
-        int index = members.indexOf( oldOne );
-        if ( index != -1 ) {
-            members.set( index, newOne );
-            newOne.setParent( this );
-            oldOne.setParent( null );
-            return newOne;
-        } else {
-            return null;
-        }
-    }
-
     private Gizmo getFirstAvailable ( Class<? extends Gizmo> c ) {
 
         for ( int i = 0; i < length; i++ ) {
@@ -214,28 +198,6 @@ public class Group extends Gizmo {
         }
 
         return count;
-    }
-
-    public int countDead () {
-
-        int count = 0;
-
-        for ( int i = 0; i < length; i++ ) {
-            Gizmo g = members.get( i );
-            if ( g != null && !g.isAlive() ) {
-                count++;
-            }
-        }
-
-        return count;
-    }
-
-    public Gizmo random () {
-        if ( length > 0 ) {
-            return members.get( (int) ( Math.random() * length ) );
-        } else {
-            return null;
-        }
     }
 
     public void clear () {
