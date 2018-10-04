@@ -43,7 +43,9 @@ public class Camera extends Gizmo {
     private float shakeY;
     private int screenWidth;
     private int screenHeight;
+    @SuppressWarnings ( "MagicNumber" )
     private float shakeMagX = 10f;
+    @SuppressWarnings ( "MagicNumber" )
     private float shakeMagY = 10f;
     private float shakeTime = 0f;
     private float shakeDuration = 1f;
@@ -61,6 +63,7 @@ public class Camera extends Gizmo {
 
         scroll = new PointF();
 
+        //noinspection MagicNumber
         setMatrix( new float[16] );
         Matrix.setIdentity( getMatrix() );
     }
@@ -69,6 +72,7 @@ public class Camera extends Gizmo {
         return reset( createFullscreen( 1 ) );
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     public static Camera reset ( Camera newCamera ) {
 
         setInvW2( 2f / Game.getWidth() );
@@ -225,6 +229,7 @@ public class Camera extends Gizmo {
     }
 
 
+    @SuppressWarnings ( "MagicNumber" )
     protected void updateMatrix () {
 
     /*	Matrix.setIdentity( matrix );
