@@ -22,7 +22,7 @@ public class Gizmo {
     private boolean exists;
     private boolean alive;
     private boolean active;
-    public boolean visible;
+    private boolean visible;
 
     public Group parent;
 
@@ -32,7 +32,7 @@ public class Gizmo {
         setExists( true );
         setAlive( true );
         setActive( true );
-        visible = true;
+        setVisible( true );
     }
 
     @SuppressWarnings ( "AssignmentToNull" )
@@ -69,9 +69,9 @@ public class Gizmo {
 
     public boolean isVisible () {
         if ( parent == null ) {
-            return visible;
+            return getVisible();
         } else {
-            return visible && parent.isVisible();
+            return getVisible() && parent.isVisible();
         }
     }
 
@@ -114,5 +114,13 @@ public class Gizmo {
 
     public void setActive ( boolean active ) {
         this.active = active;
+    }
+
+    public boolean getVisible () {
+        return visible;
+    }
+
+    public void setVisible ( boolean visible ) {
+        this.visible = visible;
     }
 }

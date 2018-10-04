@@ -41,7 +41,7 @@ public class CursePersonificationSprite extends WraithSprite {
         super.update();
 
         if ( cloud != null ) {
-            cloud.visible = visible;
+            cloud.setVisible( getVisible() );
         }
     }
 

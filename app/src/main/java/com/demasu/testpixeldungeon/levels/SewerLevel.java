@@ -181,7 +181,8 @@ public class SewerLevel extends RegularLevel {
 
         @Override
         public void update () {
-            if ( visible = Dungeon.getVisible()[pos] ) {
+            setVisible( Dungeon.getVisible()[pos] );
+            if ( getVisible() ) {
 
                 super.update();
 

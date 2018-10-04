@@ -127,7 +127,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
     }
 
     public void showStatus ( int color, String text, Object... args ) {
-        if ( visible ) {
+        if ( getVisible() ) {
             if ( args.length > 0 ) {
                 text = Utils.format( text, args );
             }
@@ -154,7 +154,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 
         turnTo( from, to );
 
-        if ( visible && Level.water[from] && !ch.flying ) {
+        if ( getVisible() && Level.water[from] && !ch.flying ) {
             GameScene.ripple( from );
         }
 
@@ -237,13 +237,13 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
     }
 
     public void burst ( final int color, int n ) {
-        if ( visible ) {
+        if ( getVisible() ) {
             Splash.at( center(), color, n );
         }
     }
 
     public void bloodBurstA ( PointF from, int damage ) {
-        if ( visible ) {
+        if ( getVisible() ) {
             PointF c = center();
             int n = (int) Math.min( 9 * Math.sqrt( (double) damage / ch.getHT() ), 9 );
             Splash.at( c, PointF.angle( from, c ), 3.1415926f / 2, blood(), n );
@@ -264,7 +264,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
             case BURNING:
                 burning = emitter();
                 burning.pour( FlameParticle.FACTORY, 0.06f );
-                if ( visible ) {
+                if ( getVisible() ) {
                     Sample.INSTANCE.play( Assets.SND_BURNING );
                 }
                 break;
@@ -352,13 +352,13 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
         }
 
         if ( burning != null ) {
-            burning.visible = visible;
+            burning.setVisible( getVisible() );
         }
         if ( levitation != null ) {
-            levitation.visible = visible;
+            levitation.setVisible( getVisible() );
         }
         if ( iceBlock != null ) {
-            iceBlock.visible = visible;
+            iceBlock.setVisible( getVisible() );
         }
         if ( sleeping ) {
             showSleep();
@@ -366,7 +366,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
             hideSleep();
         }
         if ( emo != null ) {
-            emo.visible = visible;
+            emo.setVisible( getVisible() );
         }
     }
 
@@ -420,7 +420,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
     public void onComplete ( Tweener tweener ) {
         if ( tweener == jumpTweener ) {
 
-            if ( visible && Level.water[ch.pos] && !ch.flying ) {
+            if ( getVisible() && Level.water[ch.pos] && !ch.flying ) {
                 GameScene.ripple( ch.pos );
             }
             if ( jumpCallback != null ) {

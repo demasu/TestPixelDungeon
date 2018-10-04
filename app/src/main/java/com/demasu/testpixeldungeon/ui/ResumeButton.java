@@ -30,7 +30,7 @@ public class ResumeButton extends Tag {
 
         setSize( 24, 22 );
 
-        visible = false;
+        setVisible( false );
     }
 
     @Override
@@ -51,9 +51,9 @@ public class ResumeButton extends Tag {
 
     @Override
     public void update () {
-        boolean prevVisible = visible;
-        visible = ( Dungeon.getHero().lastAction != null );
-        if ( visible && !prevVisible ) {
+        boolean prevVisible = getVisible();
+        setVisible( ( Dungeon.getHero().lastAction != null ) );
+        if ( getVisible() && !prevVisible ) {
             flash();
         }
 

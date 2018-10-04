@@ -44,7 +44,7 @@ public class EmoIcon extends Image {
     public void update () {
         super.update();
 
-        if ( visible ) {
+        if ( getVisible() ) {
             if ( growing ) {
                 scale.set( scale.x + Game.getElapsed() * timeScale );
                 if ( scale.x > maxSize ) {

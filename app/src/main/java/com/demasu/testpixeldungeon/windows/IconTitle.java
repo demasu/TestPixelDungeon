@@ -72,7 +72,7 @@ public class IconTitle extends Component {
     @Override
     protected void layout () {
 
-        health.visible = !Float.isNaN( healthLvl );
+        health.setVisible( !Float.isNaN( healthLvl ) );
 
         imIcon.x = getX();
         imIcon.y = getY();
@@ -85,7 +85,7 @@ public class IconTitle extends Component {
                         imIcon.y + ( imIcon.height() - tfLabel.baseLine() ) / 2 :
                         imIcon.y );
 
-        if ( health.visible ) {
+        if ( health.getVisible() ) {
             health.setRect( tfLabel.x, Math.max( tfLabel.y + tfLabel.height(), imIcon.y + imIcon.height() - health.height() ), tfLabel.getMaxWidth(), 0 );
             setHeight( health.bottom() );
         } else {

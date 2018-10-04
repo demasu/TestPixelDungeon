@@ -146,7 +146,7 @@ public class WandOfMagicCasting extends Wand {
                 GameScene.add( minion );
                 minion.sprite.alpha( 0 );
                 minion.sprite.parent.add( new AlphaTweener( minion.sprite, 1, 0.15f ) );
-                ch.sprite.visible = false;
+                ch.sprite.setVisible( false );
                 ch.die( null );
             } else if ( casting == CAST_TYPES.SOUL_SPARK ) {
                 ch.setHP( ch.getHT() );

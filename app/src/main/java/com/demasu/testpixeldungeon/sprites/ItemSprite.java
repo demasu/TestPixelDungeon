@@ -129,7 +129,7 @@ public class ItemSprite extends MovieClip {
         speed.set( 0, -100 );
         acc.set( 0, -speed.y / DROP_INTERVAL * 2 );
 
-        if ( visible && heap != null && heap.peek() instanceof Gold ) {
+        if ( getVisible() && heap != null && heap.peek() instanceof Gold ) {
             CellEmitter.center( heap.pos ).burst( Speck.factory( Speck.COIN ), 5 );
             Sample.INSTANCE.play( Assets.SND_GOLD, 1, 1, Random.Float( 0.9f, 1.1f ) );
         }
@@ -163,7 +163,7 @@ public class ItemSprite extends MovieClip {
     public void update () {
         super.update();
 
-        visible = ( heap == null || Dungeon.getVisible()[heap.pos] );
+        setVisible( ( heap == null || Dungeon.getVisible()[heap.pos] ) );
 
         if ( dropInterval > 0 && ( dropInterval -= Game.getElapsed() ) <= 0 ) {
 
@@ -171,7 +171,7 @@ public class ItemSprite extends MovieClip {
             acc.set( 0 );
             place( heap.pos );
 
-            if ( visible ) {
+            if ( getVisible() ) {
                 boolean water = Level.water[heap.pos];
 
                 if ( water ) {
@@ -187,7 +187,7 @@ public class ItemSprite extends MovieClip {
             }
         }
 
-        if ( visible && glowing != null ) {
+        if ( getVisible() && glowing != null ) {
             if ( glowUp && ( phase += Game.getElapsed() ) > glowing.period ) {
 
                 glowUp = false;

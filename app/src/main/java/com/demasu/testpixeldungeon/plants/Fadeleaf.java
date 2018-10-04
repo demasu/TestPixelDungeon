@@ -62,7 +62,7 @@ public class Fadeleaf extends Plant {
 
                 ch.pos = newPos;
                 ch.sprite.place( ch.pos );
-                ch.sprite.visible = Dungeon.getVisible()[pos];
+                ch.sprite.setVisible( Dungeon.getVisible()[pos] );
 
             }
 

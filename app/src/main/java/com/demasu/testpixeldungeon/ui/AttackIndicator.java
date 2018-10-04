@@ -112,13 +112,13 @@ public class AttackIndicator extends Tag {
                 flash();
             }
         } else {
-            if ( !bg.visible ) {
+            if ( !bg.getVisible() ) {
                 flash();
             }
         }
 
         visible( lastTarget != null );
-        enable( bg.visible );
+        enable( bg.getVisible() );
     }
 
     private void updateImage () {
@@ -150,9 +150,9 @@ public class AttackIndicator extends Tag {
     }
 
     private void visible ( boolean value ) {
-        bg.visible = value;
+        bg.setVisible( value );
         if ( sprite != null ) {
-            sprite.visible = value;
+            sprite.setVisible( value );
         }
     }
 

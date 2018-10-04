@@ -46,7 +46,7 @@ public class Enchanting extends ItemSprite {
 
     public static void show ( Char ch, Item item ) {
 
-        if ( !ch.sprite.visible ) {
+        if ( !ch.sprite.getVisible() ) {
             return;
         }
 

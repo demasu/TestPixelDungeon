@@ -41,18 +41,18 @@ public class Compass extends Image {
 
         this.cell = cell;
         cellCenter = DungeonTilemap.tileCenterToWorld( cell );
-        visible = false;
+        setVisible( false );
     }
 
     @Override
     public void update () {
         super.update();
 
-        if ( !visible ) {
-            visible = Dungeon.getLevel().visited[cell] || Dungeon.getLevel().mapped[cell];
+        if ( !getVisible() ) {
+            setVisible( Dungeon.getLevel().visited[cell] || Dungeon.getLevel().mapped[cell] );
         }
 
-        if ( visible ) {
+        if ( getVisible() ) {
             PointF scroll = Camera.getMain().getScroll();
             if ( !scroll.equals( lastScroll ) ) {
                 lastScroll.set( scroll );

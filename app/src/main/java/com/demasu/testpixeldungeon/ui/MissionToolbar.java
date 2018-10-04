@@ -129,11 +129,11 @@ public class MissionToolbar extends Component {
     }
 
     public static boolean secondQuickslot () {
-        return instance.btnQuick2.visible;
+        return instance.btnQuick2.getVisible();
     }
 
     public static void secondQuickslot ( boolean value ) {
-        instance.btnQuick2.visible = value;
+        instance.btnQuick2.setVisible( value );
         instance.btnQuick2.setActive( value );
         instance.layout();
     }
@@ -254,7 +254,7 @@ public class MissionToolbar extends Component {
 
         add( btnQuick1 = new QuickslotTool( 83, 7, 22, 25, true ) );
         add( btnQuick2 = new QuickslotTool( 83, 7, 22, 25, false ) );
-        btnQuick2.visible = ( QuickSlot.getSecondaryValue() != null );
+        btnQuick2.setVisible( ( QuickSlot.getSecondaryValue() != null ) );
 
         add( pickedUp = new PickedUpItem() );
     }
@@ -269,7 +269,7 @@ public class MissionToolbar extends Component {
 
         btnLastUsed.setPos( btnSkill.right(), getY() );
         btnQuick1.setPos( getWidth() - btnQuick1.width(), getY() );
-        if ( btnQuick2.visible ) {
+        if ( btnQuick2.getVisible() ) {
             btnQuick2.setPos( btnQuick1.left() - btnQuick2.width(), getY() );
             btnInventory.setPos( btnQuick2.left() - btnInventory.width(), getY() );
         } else {
@@ -281,13 +281,13 @@ public class MissionToolbar extends Component {
     public void update () {
         super.update();
 
-        visible = !MissionScene.scenePause;
+        setVisible( !MissionScene.scenePause );
 
-        btnInventory.visible = false;
+        btnInventory.setVisible( false );
         btnInventory.enable( false );
-        btnQuick1.visible = false;
+        btnQuick1.setVisible( false );
         btnQuick1.enable( false );
-        btnQuick2.visible = false;
+        btnQuick2.setVisible( false );
         btnQuick2.enable( false );
 
         if ( lastEnabled != Dungeon.getHero().ready ) {
@@ -298,7 +298,7 @@ public class MissionToolbar extends Component {
                     ( (Tool) tool ).enable( lastEnabled );
 
                     if ( tool == btnLastUsed ) {
-                        tool.visible = Dungeon.getHero().heroSkills.lastUsed != null;
+                        tool.setVisible( Dungeon.getHero().heroSkills.lastUsed != null );
                     }
                     if ( tool == btnMerc && Dungeon.getDepth() == ColdGirl.FROST_DEPTH ) {
                         ( (Tool) tool ).enable( false );
@@ -419,15 +419,15 @@ public class MissionToolbar extends Component {
 
             originToCenter();
 
-            setActive( visible =
-                    false );
+            setActive( false );
+            setVisible( false );
         }
 
         public void reset ( Item item, float dstX, float dstY ) {
             view( item.image(), item.glowing() );
 
-            setActive( visible =
-                    true );
+            setActive( true );
+            setVisible( true );
 
             this.dstX = dstX - ItemSprite.SIZE / 2;
             this.dstY = dstY - ItemSprite.SIZE / 2;
@@ -444,7 +444,7 @@ public class MissionToolbar extends Component {
 
             if ( ( left -= Game.getElapsed() ) <= 0 ) {
 
-                visible = false;
+                setVisible( false );
                 setActive( false );
 
             } else {

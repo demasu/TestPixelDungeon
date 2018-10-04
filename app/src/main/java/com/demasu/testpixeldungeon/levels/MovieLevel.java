@@ -475,7 +475,7 @@ public class MovieLevel extends Level {
                 skeleton7.pos = ( HEIGHT + 1 ) * WIDTH / 2 + 3 + 3 * WIDTH;
                 MissionScene.add( skeleton7 );
 
-                sprite.visible = false;
+                sprite.setVisible( false );
                 Music.INSTANCE.enable( true );
             } else {
                 Camera.getMain().focusOn( vanguard.sprite );

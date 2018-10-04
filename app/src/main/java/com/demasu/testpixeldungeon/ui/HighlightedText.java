@@ -44,9 +44,9 @@ public class HighlightedText extends Component {
             highlighted.measure();
 
             highlighted.setMask( hl.mask );
-            highlighted.visible = true;
+            highlighted.setVisible( true );
         } else {
-            highlighted.visible = false;
+            highlighted.setVisible( false );
         }
 
         setWidth( normal.width() );

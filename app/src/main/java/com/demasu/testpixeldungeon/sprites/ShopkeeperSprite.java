@@ -47,7 +47,7 @@ public class ShopkeeperSprite extends MobSprite {
     public void onComplete ( Animation anim ) {
         super.onComplete( anim );
 
-        if ( visible && anim == idle ) {
+        if ( getVisible() && anim == idle ) {
             if ( coin == null ) {
                 coin = new PixelParticle();
                 parent.add( coin );

@@ -45,11 +45,11 @@ public class SkillSlot extends Button {
         if ( skill == null ) {
 
             setActive( false );
-            icon.visible = false;
+            icon.setVisible( false );
 
         } else {
             setActive( true );
-            icon.visible = true;
+            icon.setVisible( true );
 
             icon.view( skill.image() );
 

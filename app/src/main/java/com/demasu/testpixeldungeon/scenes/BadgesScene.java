@@ -49,7 +49,7 @@ public class BadgesScene extends PixelScene {
         Music.INSTANCE.play( Assets.THEME, true );
         Music.INSTANCE.volume( 1f );
 
-        uiCamera.visible = false;
+        uiCamera.setVisible( false );
 
         int w = Camera.getMain().getWidth();
         int h = Camera.getMain().getHeight();

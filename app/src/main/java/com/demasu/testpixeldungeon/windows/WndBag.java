@@ -333,7 +333,7 @@ public class WndBag extends WndTabbed {
 
             this.item = item;
             if ( item instanceof Gold ) {
-                bg.visible = false;
+                bg.setVisible( false );
             }
 
             setWidth( SLOT_WIDTH );

@@ -59,7 +59,7 @@ public class Group extends Gizmo {
     public void draw () {
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && g.isExists() && g.visible ) {
+            if ( g != null && g.isExists() && g.getVisible() ) {
                 g.draw();
             }
         }

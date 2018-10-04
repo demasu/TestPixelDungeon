@@ -519,7 +519,7 @@ public class FirstWave extends Level {
         @Override
         public boolean act () {
             if ( internalClock == 0 ) {
-                sprite.visible = false;
+                sprite.setVisible( false );
             }
 
             if ( internalClock > Maestro.END_MOVIE + 50 && !MissionScene.scenePause ) {
@@ -899,8 +899,8 @@ public class FirstWave extends Level {
                     //  skeleton7.pos = (HEIGHT + 1) * WIDTH / 2 + 3 + 3 * WIDTH;
                     //  MissionScene.add(skeleton7);
 
-                    sprite.visible = false;
-                    Dungeon.getHero().sprite.visible = false;
+                    sprite.setVisible( false );
+                    Dungeon.getHero().sprite.setVisible( false );
                     centerOfAttention = vanguard;
                 } else if ( MissionScene.scenePause ) {
                     Camera.getMain().setTarget( centerOfAttention.sprite );
@@ -1037,7 +1037,7 @@ public class FirstWave extends Level {
                     //  GameScene.flash( 0x0042ff );
                     centerOfAttention = Dungeon.getHero();
                     Camera.getMain().setTarget( Dungeon.getHero().sprite );
-                    Dungeon.getHero().sprite.visible = true;
+                    Dungeon.getHero().sprite.setVisible( true );
                     Dungeon.getHero().sprite.emitter().burst( ShadowParticle.CURSE, 5 );
                     Dungeon.getHero().sprite.showStatus( CharSprite.NEUTRAL, "A bit dramatic are we not now?" );
                 }
@@ -1076,11 +1076,11 @@ public class FirstWave extends Level {
 
                 if ( counter == END_MOVIE ) {
                     MissionScene.scenePause = false;
-                    vanguard.sprite.visible = false;
+                    vanguard.sprite.setVisible( false );
                     vanguard.die( null );
-                    soldier3.sprite.visible = false;
-                    soldier4.sprite.visible = false;
-                    soldier2.sprite.visible = false;
+                    soldier3.sprite.setVisible( false );
+                    soldier4.sprite.setVisible( false );
+                    soldier2.sprite.setVisible( false );
                     soldier3.die( null );
                     soldier4.die( null );
                     soldier2.die( null );

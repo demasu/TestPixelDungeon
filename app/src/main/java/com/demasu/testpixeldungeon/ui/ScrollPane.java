@@ -88,8 +88,8 @@ public class ScrollPane extends Component {
         cs.setY( p.y );
         cs.resize( (int) getWidth(), (int) getHeight() );
 
-        thumb.visible = getHeight() < content.height();
-        if ( thumb.visible ) {
+        thumb.setVisible( getHeight() < content.height() );
+        if ( thumb.getVisible() ) {
             thumb.scale.set( 2, getHeight() * getHeight() / content.height() );
             thumb.x = right() - thumb.width();
             thumb.y = getY();

@@ -213,11 +213,11 @@ public class StatusPane extends Component {
     public void update () {
         super.update();
 
-        if ( tagDanger != danger.visible || tagLoot != loot.visible || tagResume != resume.visible ) {
+        if ( tagDanger != danger.getVisible() || tagLoot != loot.getVisible() || tagResume != resume.getVisible() ) {
 
-            tagDanger = danger.visible;
-            tagLoot = loot.visible;
-            tagResume = resume.visible;
+            tagDanger = danger.getVisible();
+            tagLoot = loot.getVisible();
+            tagResume = resume.getVisible();
 
             layoutTags();
         }

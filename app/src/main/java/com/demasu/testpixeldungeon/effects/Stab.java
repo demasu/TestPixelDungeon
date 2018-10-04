@@ -57,7 +57,7 @@ public class Stab extends ItemSprite implements Tweener.Listener {
 
     public static void show ( Char ch, Char ch2, Item item ) {
 
-        if ( !ch.sprite.visible ) {
+        if ( !ch.sprite.getVisible() ) {
             return;
         }
 

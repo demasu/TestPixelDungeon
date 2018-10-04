@@ -132,11 +132,11 @@ public class Toolbar extends Component {
     }
 
     public static boolean secondQuickslot () {
-        return instance.btnQuick2.visible;
+        return instance.btnQuick2.getVisible();
     }
 
     public static void secondQuickslot ( boolean value ) {
-        instance.btnQuick2.visible = value;
+        instance.btnQuick2.setVisible( value );
         instance.btnQuick2.setActive( value );
         instance.layout();
     }
@@ -280,7 +280,7 @@ public class Toolbar extends Component {
 
         add( btnQuick1 = new QuickslotTool( 83, 7, 22, 25, true ) );
         add( btnQuick2 = new QuickslotTool( 83, 7, 22, 25, false ) );
-        btnQuick2.visible = ( QuickSlot.getSecondaryValue() != null );
+        btnQuick2.setVisible( ( QuickSlot.getSecondaryValue() != null ) );
 
         add( pickedUp = new PickedUpItem() );
     }
@@ -295,7 +295,7 @@ public class Toolbar extends Component {
         btnKing.setPos( 0, 100 );
         btnLastUsed.setPos( btnSkill.right(), getY() );
         btnQuick1.setPos( getWidth() - btnQuick1.width(), getY() );
-        if ( btnQuick2.visible ) {
+        if ( btnQuick2.getVisible() ) {
             btnQuick2.setPos( btnQuick1.left() - btnQuick2.width(), getY() );
             btnInventory.setPos( btnQuick2.left() - btnInventory.width(), getY() );
         } else {
@@ -315,7 +315,7 @@ public class Toolbar extends Component {
                     ( (Tool) tool ).enable( lastEnabled );
 
                     if ( tool == btnLastUsed ) {
-                        tool.visible = Dungeon.getHero().heroSkills.lastUsed != null;
+                        tool.setVisible( Dungeon.getHero().heroSkills.lastUsed != null );
                     }
                     if ( tool == btnMerc && Dungeon.getDepth() == ColdGirl.FROST_DEPTH ) {
                         ( (Tool) tool ).enable( false );
@@ -440,15 +440,15 @@ public class Toolbar extends Component {
 
             originToCenter();
 
-            setActive( visible =
-                    false );
+            setActive( false );
+            setVisible( false );
         }
 
         public void reset ( Item item, float dstX, float dstY ) {
             view( item.image(), item.glowing() );
 
-            setActive( visible =
-                    true );
+            setActive( true );
+            setVisible( true );
 
             this.dstX = dstX - ItemSprite.SIZE / 2;
             this.dstY = dstY - ItemSprite.SIZE / 2;
@@ -465,7 +465,7 @@ public class Toolbar extends Component {
 
             if ( ( left -= Game.getElapsed() ) <= 0 ) {
 
-                visible = false;
+                setVisible( false );
                 setActive( false );
 
             } else {

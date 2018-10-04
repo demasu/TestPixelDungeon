@@ -80,7 +80,7 @@ public class Chasm {
             }
             Game.switchScene( InterlevelScene.class );
         } else {
-            Dungeon.getHero().sprite.visible = false;
+            Dungeon.getHero().sprite.setVisible( false );
         }
     }
 

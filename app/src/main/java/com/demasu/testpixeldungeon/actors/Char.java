@@ -670,7 +670,7 @@ public abstract class Char extends Actor {
         }
 
         if ( this != Dungeon.getHero() ) {
-            sprite.visible = Dungeon.getVisible()[pos];
+            sprite.setVisible( Dungeon.getVisible()[pos] );
         }
     }
 

@@ -72,7 +72,7 @@ public class Window extends Group implements Signal.Listener<Key> {
 
         shadow = new ShadowBox();
         shadow.am = 0.5f;
-        shadow.camera = PixelScene.uiCamera.visible ?
+        shadow.camera = PixelScene.uiCamera.getVisible() ?
                 PixelScene.uiCamera : Camera.getMain();
         add( shadow );
 

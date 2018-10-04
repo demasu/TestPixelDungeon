@@ -252,7 +252,7 @@ public class WndSkills extends WndTabbed {
             }
 
             if ( skill instanceof BranchSkill ) {
-                bg.visible = false;
+                bg.setVisible( false );
             }
         }
 

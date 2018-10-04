@@ -71,7 +71,7 @@ public class WandmakerSprite extends MobSprite {
         }
         emitter().start( ElmoParticle.FACTORY, 0.03f, 60 );
 
-        if ( visible ) {
+        if ( getVisible() ) {
             Sample.INSTANCE.play( Assets.SND_BURNING );
         }
     }
@@ -104,7 +104,8 @@ public class WandmakerSprite extends MobSprite {
                 }
             }
 
-            if ( visible = WandmakerSprite.this.visible ) {
+            setVisible( WandmakerSprite.this.getVisible() );
+            if ( getVisible() ) {
                 PointF p = WandmakerSprite.this.center();
                 point( p.x, p.y );
             }

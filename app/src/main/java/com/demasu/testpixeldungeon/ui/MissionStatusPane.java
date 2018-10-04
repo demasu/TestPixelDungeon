@@ -181,13 +181,13 @@ public class MissionStatusPane extends Component {
     @Override
     public void update () {
         super.update();
-        visible = !MissionScene.scenePause;
+        setVisible( !MissionScene.scenePause );
 
-        if ( tagDanger != danger.visible || tagLoot != loot.visible || tagResume != resume.visible ) {
+        if ( tagDanger != danger.getVisible() || tagLoot != loot.getVisible() || tagResume != resume.getVisible() ) {
 
-            tagDanger = danger.visible;
-            tagLoot = loot.visible;
-            tagResume = resume.visible;
+            tagDanger = danger.getVisible();
+            tagLoot = loot.getVisible();
+            tagResume = resume.getVisible();
 
             layoutTags();
         }

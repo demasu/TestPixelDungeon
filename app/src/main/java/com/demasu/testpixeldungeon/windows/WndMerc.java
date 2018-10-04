@@ -270,7 +270,7 @@ public class WndMerc extends WndTabbed {
 
             this.item = item;
             if ( item instanceof Gold ) {
-                bg.visible = false;
+                bg.setVisible( false );
             }
 
             setWidth( SLOT_SIZE );
@@ -293,7 +293,7 @@ public class WndMerc extends WndTabbed {
 
             super.layout();
 
-            topRight.visible = false;
+            topRight.setVisible( false );
         }
 
 
@@ -422,7 +422,7 @@ public class WndMerc extends WndTabbed {
             }
 
             if ( skill instanceof BranchSkill ) {
-                bg.visible = false;
+                bg.setVisible( false );
             }
         }
 

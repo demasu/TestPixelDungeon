@@ -91,7 +91,7 @@ public class MissionStartScene extends PixelScene {
 
         Badges.loadGlobal();
 
-        uiCamera.visible = false;
+        uiCamera.setVisible( false );
 
         int w = Camera.getMain().getWidth();
         int h = Camera.getMain().getHeight();
@@ -138,7 +138,7 @@ public class MissionStartScene extends PixelScene {
         };
 
         btnResume.setPos( Camera.getMain().getWidth() - btnResume.width(), Camera.getMain().getHeight() / 2 - btnResume.height() / 2 );
-        btnResume.visible = true;
+        btnResume.setVisible( true );
         add( btnResume );
 
         btnNewGame = new GameButton( TXT_NEW ) {
@@ -303,10 +303,10 @@ public class MissionStartScene extends PixelScene {
         }
         shields.get( curClass = cl ).highlight( true );
 
-        unlock.visible = false;
+        unlock.setVisible( false );
 
 
-        btnNewGame.visible = true;
+        btnNewGame.setVisible( true );
         btnNewGame.secondary( null, false );
         btnNewGame.setRect( buttonX, buttonY, Camera.getMain().getWidth() - buttonX * 2, BUTTON_HEIGHT );
 
