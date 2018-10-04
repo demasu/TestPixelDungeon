@@ -64,7 +64,7 @@ public class Image extends Visual {
     }
 
     public void frame ( RectF frame ) {
-        this.frame = frame;
+        this.setFrame( frame );
 
         width = frame.width() * texture.getWidth();
         height = frame.height() * texture.getHeight();
@@ -78,12 +78,12 @@ public class Image extends Visual {
     }
 
     public RectF frame () {
-        return new RectF( frame );
+        return new RectF( getFrame() );
     }
 
     public void copy ( Image other ) {
         texture = other.texture;
-        frame = new RectF( other.frame );
+        setFrame( new RectF( other.getFrame() ) );
 
         width = other.width;
         height = other.height;
@@ -95,21 +95,21 @@ public class Image extends Visual {
     protected void updateFrame () {
 
         if ( flipHorizontal ) {
-            vertices[2] = frame.right;
-            vertices[6] = frame.left;
-            vertices[10] = frame.left;
-            vertices[14] = frame.right;
+            vertices[2] = getFrame().right;
+            vertices[6] = getFrame().left;
+            vertices[10] = getFrame().left;
+            vertices[14] = getFrame().right;
         } else {
-            vertices[2] = frame.left;
-            vertices[6] = frame.right;
-            vertices[10] = frame.right;
-            vertices[14] = frame.left;
+            vertices[2] = getFrame().left;
+            vertices[6] = getFrame().right;
+            vertices[10] = getFrame().right;
+            vertices[14] = getFrame().left;
         }
 
-        vertices[3] = frame.top;
-        vertices[7] = frame.top;
-        vertices[11] = frame.bottom;
-        vertices[15] = frame.bottom;
+        vertices[3] = getFrame().top;
+        vertices[7] = getFrame().top;
+        vertices[11] = getFrame().bottom;
+        vertices[15] = getFrame().bottom;
 
         dirty = true;
     }
@@ -154,5 +154,13 @@ public class Image extends Visual {
         }
         script.drawQuad( verticesBuffer );
 
+    }
+
+    private RectF getFrame () {
+        return frame;
+    }
+
+    private void setFrame ( RectF frame ) {
+        this.frame = frame;
     }
 }
