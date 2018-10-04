@@ -29,7 +29,6 @@ public class Image extends Visual {
 
     public SmartTexture texture;
     public boolean flipHorizontal;
-    private boolean flipVertical;
     private RectF frame;
     protected final float[] vertices;
     private final FloatBuffer verticesBuffer;
@@ -107,17 +106,10 @@ public class Image extends Visual {
             vertices[14] = frame.left;
         }
 
-        if ( flipVertical ) {
-            vertices[3] = frame.bottom;
-            vertices[7] = frame.bottom;
-            vertices[11] = frame.top;
-            vertices[15] = frame.top;
-        } else {
-            vertices[3] = frame.top;
-            vertices[7] = frame.top;
-            vertices[11] = frame.bottom;
-            vertices[15] = frame.bottom;
-        }
+        vertices[3] = frame.top;
+        vertices[7] = frame.top;
+        vertices[11] = frame.bottom;
+        vertices[15] = frame.bottom;
 
         dirty = true;
     }
