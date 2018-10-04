@@ -49,7 +49,7 @@ public class Group extends Gizmo {
     public void update () {
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && g.exists && g.active ) {
+            if ( g != null && g.isExists() && g.active ) {
                 g.update();
             }
         }
@@ -59,7 +59,7 @@ public class Group extends Gizmo {
     public void draw () {
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && g.exists && g.visible ) {
+            if ( g != null && g.isExists() && g.visible ) {
                 g.draw();
             }
         }
@@ -71,7 +71,7 @@ public class Group extends Gizmo {
         // but they get killed too
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && g.exists ) {
+            if ( g != null && g.isExists() ) {
                 g.kill();
             }
         }
@@ -193,7 +193,7 @@ public class Group extends Gizmo {
 
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && !g.exists && ( ( c == null ) || g.getClass() == c ) ) {
+            if ( g != null && !g.isExists() && ( ( c == null ) || g.getClass() == c ) ) {
                 return g;
             }
         }
@@ -207,7 +207,7 @@ public class Group extends Gizmo {
 
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && g.exists && g.alive ) {
+            if ( g != null && g.isExists() && g.alive ) {
                 count++;
             }
         }

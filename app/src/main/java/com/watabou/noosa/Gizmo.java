@@ -19,7 +19,7 @@ package com.watabou.noosa;
 
 public class Gizmo {
 
-    public boolean exists;
+    private boolean exists;
     public boolean alive;
     public boolean active;
     public boolean visible;
@@ -29,7 +29,7 @@ public class Gizmo {
     public Camera camera;
 
     public Gizmo () {
-        exists = true;
+        setExists( true );
         alive = true;
         active = true;
         visible = true;
@@ -48,13 +48,13 @@ public class Gizmo {
 
     public void kill () {
         alive = false;
-        exists = false;
+        setExists( false );
     }
 
     // Not exactly opposite to "kill" method
     public void revive () {
         alive = true;
-        exists = true;
+        setExists( true );
     }
 
     public Camera camera () {
@@ -94,5 +94,13 @@ public class Gizmo {
         if ( parent != null ) {
             parent.remove( this );
         }
+    }
+
+    public boolean isExists () {
+        return exists;
+    }
+
+    public void setExists ( boolean exists ) {
+        this.exists = exists;
     }
 }
