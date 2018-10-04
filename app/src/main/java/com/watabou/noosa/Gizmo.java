@@ -21,7 +21,7 @@ public class Gizmo {
 
     private boolean exists;
     private boolean alive;
-    public boolean active;
+    private boolean active;
     public boolean visible;
 
     public Group parent;
@@ -31,7 +31,7 @@ public class Gizmo {
     public Gizmo () {
         setExists( true );
         setAlive( true );
-        active = true;
+        setActive( true );
         visible = true;
     }
 
@@ -110,5 +110,9 @@ public class Gizmo {
 
     public void setAlive ( boolean alive ) {
         this.alive = alive;
+    }
+
+    public void setActive ( boolean active ) {
+        this.active = active;
     }
 }

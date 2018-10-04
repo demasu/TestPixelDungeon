@@ -130,7 +130,7 @@ public class WndTabbed extends Window {
 
         protected void select ( boolean value ) {
 
-            active = !( selected = value );
+            setActive( !( selected = value ) );
 
             if ( bg != null ) {
                 remove( bg );

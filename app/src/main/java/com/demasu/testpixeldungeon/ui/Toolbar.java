@@ -136,9 +136,8 @@ public class Toolbar extends Component {
     }
 
     public static void secondQuickslot ( boolean value ) {
-        instance.btnQuick2.visible =
-                instance.btnQuick2.active =
-                        value;
+        instance.btnQuick2.visible = value;
+        instance.btnQuick2.setActive( value );
         instance.layout();
     }
 
@@ -374,7 +373,7 @@ public class Toolbar extends Component {
 
         @Override
         protected void onTouchUp () {
-            if ( active ) {
+            if ( isActive() ) {
                 base.resetColor();
             } else {
                 base.tint( BGCOLOR, 0.7f );
@@ -382,13 +381,13 @@ public class Toolbar extends Component {
         }
 
         public void enable ( boolean value ) {
-            if ( value != active ) {
+            if ( value != isActive() ) {
                 if ( value ) {
                     base.resetColor();
                 } else {
                     base.tint( BGCOLOR, 0.7f );
                 }
-                active = value;
+                setActive( value );
             }
         }
     }
@@ -441,17 +440,15 @@ public class Toolbar extends Component {
 
             originToCenter();
 
-            active =
-                    visible =
-                            false;
+            setActive( visible =
+                    false );
         }
 
         public void reset ( Item item, float dstX, float dstY ) {
             view( item.image(), item.glowing() );
 
-            active =
-                    visible =
-                            true;
+            setActive( visible =
+                    true );
 
             this.dstX = dstX - ItemSprite.SIZE / 2;
             this.dstY = dstY - ItemSprite.SIZE / 2;
@@ -468,9 +465,8 @@ public class Toolbar extends Component {
 
             if ( ( left -= Game.getElapsed() ) <= 0 ) {
 
-                visible =
-                        active =
-                                false;
+                visible = false;
+                setActive( false );
 
             } else {
                 float p = left / DURATION;

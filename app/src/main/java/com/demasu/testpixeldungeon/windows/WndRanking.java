@@ -139,7 +139,8 @@ public class WndRanking extends WndTabbed {
         protected void select ( boolean value ) {
             super.select( value );
             if ( page != null ) {
-                page.visible = page.active = selected;
+                page.visible = selected;
+                page.setActive( selected );
             }
         }
     }

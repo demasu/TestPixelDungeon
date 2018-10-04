@@ -76,14 +76,16 @@ public class WndHero extends WndTabbed {
         add( new LabeledTab( TXT_STATS ) {
             protected void select ( boolean value ) {
                 super.select( value );
-                stats.visible = stats.active = selected;
+                stats.visible = selected;
+                stats.setActive( selected );
             }
 
         } );
         add( new LabeledTab( TXT_BUFFS ) {
             protected void select ( boolean value ) {
                 super.select( value );
-                buffs.visible = buffs.active = selected;
+                buffs.visible = selected;
+                buffs.setActive( selected );
             }
 
         } );

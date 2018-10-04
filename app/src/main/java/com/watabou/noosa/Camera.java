@@ -102,7 +102,7 @@ public class Camera extends Gizmo {
         int length = all.size();
         for ( int i = 0; i < length; i++ ) {
             Camera c = all.get( i );
-            if ( c.isExists() && c.active ) {
+            if ( c.isExists() && c.isActive() ) {
                 c.update();
             }
         }

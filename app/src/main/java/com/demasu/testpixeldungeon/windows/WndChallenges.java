@@ -58,7 +58,7 @@ public class WndChallenges extends Window {
 
             CheckBox cb = new CheckBox( Challenges.NAMES[i] );
             cb.checked( ( checked & Challenges.MASKS[i] ) != 0 );
-            cb.active = editable;
+            cb.setActive( editable );
 
             if ( i > 0 ) {
                 pos += GAP;

@@ -49,7 +49,7 @@ public class Group extends Gizmo {
     public void update () {
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && g.isExists() && g.active ) {
+            if ( g != null && g.isExists() && g.isActive() ) {
                 g.update();
             }
         }
