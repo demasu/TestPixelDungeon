@@ -62,7 +62,7 @@ public class Window extends Group implements Signal.Listener<Key> {
                 }
             }
         };
-        blocker.setCamera( PixelScene.uiCamera );
+        blocker.camera = PixelScene.uiCamera;
         add( blocker );
 
         this.chrome = chrome;
@@ -72,8 +72,8 @@ public class Window extends Group implements Signal.Listener<Key> {
 
         shadow = new ShadowBox();
         shadow.am = 0.5f;
-        shadow.setCamera( PixelScene.uiCamera.visible ?
-                PixelScene.uiCamera : Camera.getMain() );
+        shadow.camera = PixelScene.uiCamera.visible ?
+                PixelScene.uiCamera : Camera.getMain();
         add( shadow );
 
         chrome.x = -chrome.marginLeft();
@@ -83,18 +83,18 @@ public class Window extends Group implements Signal.Listener<Key> {
                 height - chrome.y + chrome.marginBottom() );
         add( chrome );
 
-        setCamera( new Camera( 0, 0,
+        camera = new Camera( 0, 0,
                 (int) chrome.width,
                 (int) chrome.height,
-                PixelScene.defaultZoom ) );
-        getCamera().setX( (int) ( Game.getWidth() - getCamera().getWidth() * getCamera().getZoom() ) / 2 );
-        getCamera().setY( (int) ( Game.getHeight() - getCamera().getHeight() * getCamera().getZoom() ) / 2 );
-        getCamera().getScroll().set( chrome.x, chrome.y );
-        Camera.add( getCamera() );
+                PixelScene.defaultZoom );
+        camera.setX( (int) ( Game.getWidth() - camera.getWidth() * camera.getZoom() ) / 2 );
+        camera.setY( (int) ( Game.getHeight() - camera.getHeight() * camera.getZoom() ) / 2 );
+        camera.getScroll().set( chrome.x, chrome.y );
+        Camera.add( camera );
 
         shadow.boxRect(
-                getCamera().getX() / getCamera().getZoom(),
-                getCamera().getY() / getCamera().getZoom(),
+                camera.getX() / camera.getZoom(),
+                camera.getY() / camera.getZoom(),
                 chrome.width(), chrome.height );
 
         Keys.event.add( this );
@@ -108,15 +108,15 @@ public class Window extends Group implements Signal.Listener<Key> {
                 width + chrome.marginHor(),
                 height + chrome.marginVer() );
 
-        getCamera().resize( (int) chrome.width, (int) chrome.height );
-        getCamera().setX( (int) ( Game.getWidth() - getCamera().screenWidth() ) / 2 );
-        getCamera().setY( (int) ( Game.getHeight() - getCamera().screenHeight() ) / 2 );
+        camera.resize( (int) chrome.width, (int) chrome.height );
+        camera.setX( (int) ( Game.getWidth() - camera.screenWidth() ) / 2 );
+        camera.setY( (int) ( Game.getHeight() - camera.screenHeight() ) / 2 );
 
-        shadow.boxRect( getCamera().getX() / getCamera().getZoom(), getCamera().getY() / getCamera().getZoom(), chrome.width(), chrome.height );
+        shadow.boxRect( camera.getX() / camera.getZoom(), camera.getY() / camera.getZoom(), chrome.width(), chrome.height );
     }
 
     public void hide () {
-        getParent().erase( this );
+        parent.erase( this );
         destroy();
     }
 
@@ -124,7 +124,7 @@ public class Window extends Group implements Signal.Listener<Key> {
     public void destroy () {
         super.destroy();
 
-        Camera.remove( getCamera() );
+        Camera.remove( camera );
         Keys.event.remove( this );
     }
 

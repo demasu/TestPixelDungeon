@@ -86,7 +86,7 @@ public class Boomerang extends MissileWeapon {
 
     private void circleBack ( int from, Hero owner ) {
 
-        ( (MissileSprite) curUser.sprite.getParent().recycle( MissileSprite.class ) ).
+        ( (MissileSprite) curUser.sprite.parent.recycle( MissileSprite.class ) ).
                 reset( from, curUser.pos, curItem, null );
 
         if ( throwEquiped ) {

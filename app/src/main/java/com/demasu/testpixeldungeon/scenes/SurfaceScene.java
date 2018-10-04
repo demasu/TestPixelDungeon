@@ -88,7 +88,7 @@ public class SurfaceScene extends PixelScene {
         Camera.add( viewport );
 
         Group window = new Group();
-        window.setCamera( viewport );
+        window.camera = viewport;
         add( window );
 
         boolean dayTime = !Dungeon.isNightMode();

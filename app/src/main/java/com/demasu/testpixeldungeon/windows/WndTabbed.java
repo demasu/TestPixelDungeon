@@ -79,13 +79,13 @@ public class WndTabbed extends Window {
                 width + chrome.marginHor(),
                 height + chrome.marginVer() );
 
-        getCamera().resize( (int) chrome.width, (int) ( chrome.marginTop() + height + tabHeight() ) );
-        getCamera().setX( (int) ( Game.getWidth() - getCamera().screenWidth() ) / 2 );
-        getCamera().setY( (int) ( Game.getHeight() - getCamera().screenHeight() ) / 2 );
+        camera.resize( (int) chrome.width, (int) ( chrome.marginTop() + height + tabHeight() ) );
+        camera.setX( (int) ( Game.getWidth() - camera.screenWidth() ) / 2 );
+        camera.setY( (int) ( Game.getHeight() - camera.screenHeight() ) / 2 );
 
         shadow.boxRect(
-                getCamera().getX() / getCamera().getZoom(),
-                getCamera().getY() / getCamera().getZoom(),
+                camera.getX() / camera.getZoom(),
+                camera.getY() / camera.getZoom(),
                 chrome.width(), chrome.height );
         // <- super.resize(...)
 
@@ -130,7 +130,7 @@ public class WndTabbed extends Window {
 
         protected void select ( boolean value ) {
 
-            setActive( !( selected = value ) );
+            active = !( selected = value );
 
             if ( bg != null ) {
                 remove( bg );

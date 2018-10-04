@@ -49,7 +49,7 @@ public class WandOfPoison extends Wand {
     }
 
     protected void fx ( int cell, Callback callback ) {
-        MagicMissile.poison( curUser.sprite.getParent(), curUser.pos, cell, callback );
+        MagicMissile.poison( curUser.sprite.parent, curUser.pos, cell, callback );
         Sample.INSTANCE.play( Assets.SND_ZAP );
     }
 

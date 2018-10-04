@@ -326,7 +326,7 @@ public class ColdGirl extends Mob {
 
 
                 final int throwAtFinal = throwAt;
-                ( (MissileSprite) this.sprite.getParent().recycle( MissileSprite.class ) ).
+                ( (MissileSprite) this.sprite.parent.recycle( MissileSprite.class ) ).
                         reset( ColdGirl.this.pos, throwAt, Dungeon.getHero().belongings.weapon, new Callback() {
                             @Override
                             public void call () {

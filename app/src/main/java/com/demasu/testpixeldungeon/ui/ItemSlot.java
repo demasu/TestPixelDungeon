@@ -124,12 +124,12 @@ public class ItemSlot extends Button {
     public void item ( Item item ) {
         if ( item == null ) {
 
-            setActive( false );
+            active = false;
             icon.visible = topLeft.visible = topRight.visible = bottomRight.visible = false;
 
         } else {
 
-            setActive( true );
+            active = true;
             icon.visible = topLeft.visible = topRight.visible = bottomRight.visible = true;
 
             icon.view( item.image(), item.glowing() );
@@ -181,7 +181,7 @@ public class ItemSlot extends Button {
 
     public void enable ( boolean value ) {
 
-        setActive( value );
+        active = value;
 
         float alpha = value ? ENABLED : DISABLED;
         icon.alpha( alpha );

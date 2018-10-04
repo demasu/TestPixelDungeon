@@ -49,7 +49,7 @@ public class Group extends Gizmo {
     public void update () {
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && g.isExists() && g.isActive() ) {
+            if ( g != null && g.exists && g.active ) {
                 g.update();
             }
         }
@@ -59,7 +59,7 @@ public class Group extends Gizmo {
     public void draw () {
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && g.isExists() && g.visible ) {
+            if ( g != null && g.exists && g.visible ) {
                 g.draw();
             }
         }
@@ -71,7 +71,7 @@ public class Group extends Gizmo {
         // but they get killed too
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && g.isExists() ) {
+            if ( g != null && g.exists ) {
                 g.kill();
             }
         }
@@ -85,48 +85,48 @@ public class Group extends Gizmo {
 
     public Gizmo add ( Gizmo g ) {
 
-        if ( g.getParent() == this ) {
+        if ( g.parent == this ) {
             return g;
         }
 
-        if ( g.getParent() != null ) {
-            g.getParent().remove( g );
+        if ( g.parent != null ) {
+            g.parent.remove( g );
         }
 
         // Trying to find an empty space for a new member
         for ( int i = 0; i < length; i++ ) {
             if ( members.get( i ) == null ) {
                 members.set( i, g );
-                g.setParent( this );
+                g.parent = this;
                 return g;
             }
         }
 
         members.add( g );
-        g.setParent( this );
+        g.parent = this;
         length++;
         return g;
     }
 
     public Gizmo addToBack ( Gizmo g ) {
 
-        if ( g.getParent() == this ) {
+        if ( g.parent == this ) {
             sendToBack( g );
             return g;
         }
 
-        if ( g.getParent() != null ) {
-            g.getParent().remove( g );
+        if ( g.parent != null ) {
+            g.parent.remove( g );
         }
 
         if ( members.get( 0 ) == null ) {
             members.set( 0, g );
-            g.setParent( this );
+            g.parent = this;
             return g;
         }
 
         members.add( 0, g );
-        g.setParent( this );
+        g.parent = this;
         length++;
         return g;
     }
@@ -159,7 +159,7 @@ public class Group extends Gizmo {
         int index = members.indexOf( g );
         if ( index != -1 ) {
             members.set( index, null );
-            g.setParent( null );
+            g.parent = null;
             return g;
         } else {
             return null;
@@ -170,7 +170,7 @@ public class Group extends Gizmo {
     public Gizmo remove ( Gizmo g ) {
         if ( members.remove( g ) ) {
             length--;
-            g.setParent( null );
+            g.parent = null;
             return g;
         } else {
             return null;
@@ -181,8 +181,8 @@ public class Group extends Gizmo {
         int index = members.indexOf( oldOne );
         if ( index != -1 ) {
             members.set( index, newOne );
-            newOne.setParent( this );
-            oldOne.setParent( null );
+            newOne.parent = this;
+            oldOne.parent = null;
             return newOne;
         } else {
             return null;
@@ -193,7 +193,7 @@ public class Group extends Gizmo {
 
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && !g.isExists() && ( ( c == null ) || g.getClass() == c ) ) {
+            if ( g != null && !g.exists && ( ( c == null ) || g.getClass() == c ) ) {
                 return g;
             }
         }
@@ -207,7 +207,7 @@ public class Group extends Gizmo {
 
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && g.isExists() && g.isAlive() ) {
+            if ( g != null && g.exists && g.alive ) {
                 count++;
             }
         }
@@ -221,7 +221,7 @@ public class Group extends Gizmo {
 
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && !g.isAlive() ) {
+            if ( g != null && !g.alive ) {
                 count++;
             }
         }
@@ -241,7 +241,7 @@ public class Group extends Gizmo {
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
             if ( g != null ) {
-                g.setParent( null );
+                g.parent = null;
             }
         }
         members.clear();

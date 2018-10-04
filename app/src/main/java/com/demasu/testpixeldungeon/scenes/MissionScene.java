@@ -166,29 +166,29 @@ public class MissionScene extends GameScene {
         add( cellSelector = new CellSelector( tiles ) );
 
         MissionStatusPane sb = new MissionStatusPane();
-        sb.setCamera( uiCamera );
+        sb.camera = uiCamera;
         sb.setSize( uiCamera.getWidth(), 0 );
         add( sb );
 
         toolbar = new MissionToolbar();
-        toolbar.setCamera( uiCamera );
+        toolbar.camera = uiCamera;
         toolbar.setRect( 0, uiCamera.getHeight() - toolbar.height(), uiCamera.getWidth(), toolbar.height() );
         add( toolbar );
 
         AttackIndicator attack = new AttackIndicator();
-        attack.setCamera( uiCamera );
+        attack.camera = uiCamera;
         attack.setPos(
                 uiCamera.getWidth() - attack.width(),
                 toolbar.top() - attack.height() );
         add( attack );
 
         log = new GameLog();
-        log.setCamera( uiCamera );
+        log.camera = uiCamera;
         log.setRect( 0, toolbar.top(), attack.left(), 0 );
         add( log );
 
         busy = new BusyIndicator();
-        busy.setCamera( uiCamera );
+        busy.camera = uiCamera;
         busy.x = 1;
         busy.y = sb.bottom() + 1;
         add( busy );

@@ -44,11 +44,11 @@ public class SkillSlot extends Button {
         this();
         if ( skill == null ) {
 
-            setActive( false );
+            active = false;
             icon.visible = false;
 
         } else {
-            setActive( true );
+            active = true;
             icon.visible = true;
 
             icon.view( skill.image() );
@@ -94,7 +94,7 @@ public class SkillSlot extends Button {
 
     public void enable ( boolean value ) {
 
-        setActive( value );
+        active = value;
 
         float alpha = value ? ENABLED : DISABLED;
         icon.alpha( alpha );

@@ -137,7 +137,8 @@ public class Toolbar extends Component {
 
     public static void secondQuickslot ( boolean value ) {
         instance.btnQuick2.visible =
-                instance.btnQuick2.setActive( value );
+                instance.btnQuick2.active =
+                        value;
         instance.layout();
     }
 
@@ -373,7 +374,7 @@ public class Toolbar extends Component {
 
         @Override
         protected void onTouchUp () {
-            if ( isActive() ) {
+            if ( active ) {
                 base.resetColor();
             } else {
                 base.tint( BGCOLOR, 0.7f );
@@ -381,13 +382,13 @@ public class Toolbar extends Component {
         }
 
         public void enable ( boolean value ) {
-            if ( value != isActive() ) {
+            if ( value != active ) {
                 if ( value ) {
                     base.resetColor();
                 } else {
                     base.tint( BGCOLOR, 0.7f );
                 }
-                setActive( value );
+                active = value;
             }
         }
     }
@@ -440,15 +441,17 @@ public class Toolbar extends Component {
 
             originToCenter();
 
-            setActive( visible =
-                    false );
+            active =
+                    visible =
+                            false;
         }
 
         public void reset ( Item item, float dstX, float dstY ) {
             view( item.image(), item.glowing() );
 
-            setActive( visible =
-                    true );
+            active =
+                    visible =
+                            true;
 
             this.dstX = dstX - ItemSprite.SIZE / 2;
             this.dstY = dstY - ItemSprite.SIZE / 2;
@@ -466,7 +469,8 @@ public class Toolbar extends Component {
             if ( ( left -= Game.getElapsed() ) <= 0 ) {
 
                 visible =
-                        setActive( false );
+                        active =
+                                false;
 
             } else {
                 float p = left / DURATION;

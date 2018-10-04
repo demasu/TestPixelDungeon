@@ -113,7 +113,7 @@ public class NecroBlade extends MeleeWeapon {
                 Actor.addDelayed( new Pushing( skel, hero.pos, newPos ), -1 );
 
                 skel.sprite.alpha( 0 );
-                skel.sprite.getParent().add( new AlphaTweener( skel.sprite, 1, 0.15f ) );
+                skel.sprite.parent.add( new AlphaTweener( skel.sprite, 1, 0.15f ) );
                 CellEmitter.center( newPos ).burst( ShadowParticle.UP, Random.IntRange( 3, 5 ) );
                 GLog.p( "NecroBlade summoned a skeleton" );
             } else {

@@ -19,24 +19,25 @@ package com.watabou.noosa;
 
 public class Gizmo {
 
-    private boolean exists;
-    private boolean alive;
-    private boolean active;
-    private final boolean visible;
+    public boolean exists;
+    public boolean alive;
+    public boolean active;
+    public boolean visible;
 
-    private Group parent;
+    public Group parent;
 
-    private Camera camera;
+    public Camera camera;
 
     public Gizmo () {
-        setExists( true );
-        setAlive( true );
-        setActive( true );
+        exists = true;
+        alive = true;
+        active = true;
         visible = true;
     }
 
+    @SuppressWarnings ( "AssignmentToNull" )
     public void destroy () {
-        setParent( null );
+        parent = null;
     }
 
     public void update () {
@@ -46,89 +47,52 @@ public class Gizmo {
     }
 
     public void kill () {
-        setAlive( false );
-        setExists( false );
+        alive = false;
+        exists = false;
     }
 
     // Not exactly opposite to "kill" method
     public void revive () {
-        setAlive( true );
-        setExists( true );
+        alive = true;
+        exists = true;
     }
 
     public Camera camera () {
-        if ( getCamera() != null ) {
-            return getCamera();
-        } else if ( getParent() != null ) {
-            return getParent().camera();
+        if ( camera != null ) {
+            return camera;
+        } else if ( parent != null ) {
+            return parent.camera();
         } else {
             return null;
         }
     }
 
     public boolean isVisible () {
-        if ( getParent() == null ) {
+        if ( parent == null ) {
             return visible;
         } else {
-            return visible && getParent().isVisible();
+            return visible && parent.isVisible();
         }
     }
 
     public boolean isActive () {
-        if ( getParent() == null ) {
+        if ( parent == null ) {
             return active;
         } else {
-            return active && getParent().isActive();
+            return active && parent.isActive();
         }
     }
 
     public void killAndErase () {
         kill();
-        if ( getParent() != null ) {
-            getParent().erase( this );
+        if ( parent != null ) {
+            parent.erase( this );
         }
     }
 
     public void remove () {
-        if ( getParent() != null ) {
-            getParent().remove( this );
+        if ( parent != null ) {
+            parent.remove( this );
         }
     }
-
-    public boolean isExists () {
-        return exists;
-    }
-
-    private void setExists ( boolean exists ) {
-        this.exists = exists;
-    }
-
-    public boolean isAlive () {
-        return alive;
-    }
-
-    private void setAlive ( boolean alive ) {
-        this.alive = alive;
-    }
-
-    public void setActive ( boolean active ) {
-        this.active = active;
-    }
-
-    public Group getParent () {
-        return parent;
-    }
-
-    public void setParent ( Group parent ) {
-        this.parent = parent;
-    }
-
-    public Camera getCamera () {
-        return camera;
-    }
-
-    public void setCamera ( Camera camera ) {
-        this.camera = camera;
-    }
-
 }

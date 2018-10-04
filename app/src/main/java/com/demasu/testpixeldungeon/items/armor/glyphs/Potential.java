@@ -53,7 +53,7 @@ public class Potential extends Glyph {
             }
 
             int[] points = { attacker.pos, defender.pos };
-            attacker.sprite.getParent().add( new Lightning( points, 2, null ) );
+            attacker.sprite.parent.add( new Lightning( points, 2, null ) );
 
         }
 

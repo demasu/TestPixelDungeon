@@ -65,7 +65,7 @@ public class SummonCrab extends ActiveSkill2 {
                         GameScene.add( crab );
                         Actor.addDelayed( new Pushing( crab, hero.pos, newPos ), -1 );
                         crab.sprite.alpha( 0 );
-                        crab.sprite.getParent().add( new AlphaTweener( crab.sprite, 1, 0.15f ) );
+                        crab.sprite.parent.add( new AlphaTweener( crab.sprite, 1, 0.15f ) );
                     }
                 }
             }

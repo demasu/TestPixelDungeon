@@ -393,7 +393,7 @@ public abstract class Wand extends KindOfWeapon {
     }
 
     protected void fx ( int cell, Callback callback ) {
-        MagicMissile.blueLight( curUser.sprite.getParent(), curUser.pos, cell, callback );
+        MagicMissile.blueLight( curUser.sprite.parent, curUser.pos, cell, callback );
         Sample.INSTANCE.play( Assets.SND_ZAP );
     }
 

@@ -57,7 +57,7 @@ public class MercWizardSkillA extends SummonRat {
                     GameScene.add( rat );
                     Actor.addDelayed( new Pushing( rat, Dungeon.getHero().hiredMerc.pos, newPos ), -1 );
                     rat.sprite.alpha( 0 );
-                    rat.sprite.getParent().add( new AlphaTweener( rat.sprite, 1, 0.15f ) );
+                    rat.sprite.parent.add( new AlphaTweener( rat.sprite, 1, 0.15f ) );
                 }
             }
         }

@@ -112,7 +112,7 @@ public class Swap extends Actor {
 
             passed = 0;
 
-            sprite.getParent().add( this );
+            sprite.parent.add( this );
         }
 
         @Override

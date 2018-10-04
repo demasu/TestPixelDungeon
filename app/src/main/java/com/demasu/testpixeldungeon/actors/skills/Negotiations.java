@@ -93,7 +93,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                         GameScene.add( hero.hiredMerc );
                         Actor.addDelayed( new Pushing( hero.hiredMerc, hero.pos, newPos ), -1 );
                         hero.hiredMerc.sprite.alpha( 0 );
-                        hero.hiredMerc.sprite.getParent().add( new AlphaTweener( hero.hiredMerc.sprite, 1, 0.15f ) );
+                        hero.hiredMerc.sprite.parent.add( new AlphaTweener( hero.hiredMerc.sprite, 1, 0.15f ) );
                         ( (MercSprite) hero.hiredMerc.sprite ).updateArmor();
                     }
                 }
@@ -117,7 +117,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
                 GameScene.add( tmp );
                 Actor.addDelayed( new Pushing( tmp, hero.pos, newPos ), -1 );
                 tmp.sprite.alpha( 0 );
-                tmp.sprite.getParent().add( new AlphaTweener( tmp.sprite, 1, 0.15f ) );
+                tmp.sprite.parent.add( new AlphaTweener( tmp.sprite, 1, 0.15f ) );
                 tmp.weapon = hero.hiredMerc.weapon;
                 tmp.armor = hero.hiredMerc.armor;
                 ( (MercSprite) tmp.sprite ).updateArmor();
