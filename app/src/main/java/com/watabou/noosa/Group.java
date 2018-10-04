@@ -190,7 +190,7 @@ public class Group extends Gizmo {
         }
     }
 
-    public Gizmo getFirstAvailable ( Class<? extends Gizmo> c ) {
+    private Gizmo getFirstAvailable ( Class<? extends Gizmo> c ) {
 
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
@@ -259,7 +259,7 @@ public class Group extends Gizmo {
         }
     }
 
-    public void sendToBack ( Gizmo g ) {
+    private void sendToBack ( Gizmo g ) {
         if ( members.contains( g ) ) {
             members.remove( g );
             members.add( 0, g );
