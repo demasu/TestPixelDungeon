@@ -207,7 +207,7 @@ public class Group extends Gizmo {
 
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && g.isExists() && g.alive ) {
+            if ( g != null && g.isExists() && g.isAlive() ) {
                 count++;
             }
         }
@@ -221,7 +221,7 @@ public class Group extends Gizmo {
 
         for ( int i = 0; i < length; i++ ) {
             Gizmo g = members.get( i );
-            if ( g != null && !g.alive ) {
+            if ( g != null && !g.isAlive() ) {
                 count++;
             }
         }

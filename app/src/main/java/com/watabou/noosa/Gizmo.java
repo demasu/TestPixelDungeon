@@ -20,7 +20,7 @@ package com.watabou.noosa;
 public class Gizmo {
 
     private boolean exists;
-    public boolean alive;
+    private boolean alive;
     public boolean active;
     public boolean visible;
 
@@ -30,7 +30,7 @@ public class Gizmo {
 
     public Gizmo () {
         setExists( true );
-        alive = true;
+        setAlive( true );
         active = true;
         visible = true;
     }
@@ -47,13 +47,13 @@ public class Gizmo {
     }
 
     public void kill () {
-        alive = false;
+        setAlive( false );
         setExists( false );
     }
 
     // Not exactly opposite to "kill" method
     public void revive () {
-        alive = true;
+        setAlive( true );
         setExists( true );
     }
 
@@ -102,5 +102,13 @@ public class Gizmo {
 
     public void setExists ( boolean exists ) {
         this.exists = exists;
+    }
+
+    public boolean isAlive () {
+        return alive;
+    }
+
+    public void setAlive ( boolean alive ) {
+        this.alive = alive;
     }
 }
