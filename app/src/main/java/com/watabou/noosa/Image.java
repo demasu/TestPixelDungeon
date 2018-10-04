@@ -29,10 +29,10 @@ public class Image extends Visual {
 
     public SmartTexture texture;
     public boolean flipHorizontal;
-    public boolean flipVertical;
-    protected RectF frame;
-    protected float[] vertices;
-    protected FloatBuffer verticesBuffer;
+    private boolean flipVertical;
+    private RectF frame;
+    protected final float[] vertices;
+    private final FloatBuffer verticesBuffer;
 
     protected boolean dirty;
 
