@@ -41,7 +41,6 @@ public class Group extends Gizmo {
         }
 
         getMembers().clear();
-        //noinspection AssignmentToNull
         setMembers( null );
         setLength( 0 );
     }
@@ -232,7 +231,7 @@ public class Group extends Gizmo {
         return length;
     }
 
-    public void setLength ( int length ) {
+    private void setLength ( int length ) {
         this.length = length;
     }
 
@@ -240,7 +239,7 @@ public class Group extends Gizmo {
         return members;
     }
 
-    public void setMembers ( ArrayList<Gizmo> members ) {
+    private void setMembers ( ArrayList<Gizmo> members ) {
         this.members = members;
     }
 }
