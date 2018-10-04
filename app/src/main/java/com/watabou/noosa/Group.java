@@ -235,6 +235,7 @@ public class Group extends Gizmo {
         this.length = length;
     }
 
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     public ArrayList<Gizmo> getMembers () {
         return members;
     }
