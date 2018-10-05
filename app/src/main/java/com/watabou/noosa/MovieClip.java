@@ -25,8 +25,8 @@ public class MovieClip extends Image {
     public Listener listener;
     protected Animation curAnim;
     protected int curFrame;
-    protected float frameTimer;
-    protected boolean finished;
+    private float frameTimer;
+    private boolean finished;
 
     public MovieClip () {
         super();
@@ -44,7 +44,7 @@ public class MovieClip extends Image {
         }
     }
 
-    protected void updateAnimation () {
+    private void updateAnimation () {
         if ( curAnim != null && curAnim.delay > 0 && ( curAnim.looped || !finished ) ) {
 
             int lastFrame = curFrame;
@@ -106,14 +106,14 @@ public class MovieClip extends Image {
 
         public float delay;
         public RectF[] frames;
-        public boolean looped;
+        final boolean looped;
 
         public Animation ( int fps, boolean looped ) {
             this.delay = 1f / fps;
             this.looped = looped;
         }
 
-        public Animation frames ( RectF... frames ) {
+        Animation frames ( RectF... frames ) {
             this.frames = frames;
             return this;
         }
