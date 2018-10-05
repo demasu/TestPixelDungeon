@@ -53,6 +53,7 @@ public class NoosaScript extends Script {
                     "}";
     private final Uniform uCamera;
     public final Uniform uModel;
+    @SuppressWarnings ( "unused" )
     private final Uniform uTex;
     private final Uniform uColorM;
     private final Uniform uColorA;
