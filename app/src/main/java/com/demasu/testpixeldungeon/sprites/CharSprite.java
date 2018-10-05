@@ -84,7 +84,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 
     public CharSprite () {
         super();
-        listener = this;
+        setListener( this );
     }
 
     public void link ( Char ch ) {
@@ -276,11 +276,11 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
                 PotionOfInvisibility.melt( ch );
                 break;
             case PARALYSED:
-                paused = true;
+                setPaused( true );
                 break;
             case FROZEN:
                 iceBlock = IceBlock.freeze( this );
-                paused = true;
+                setPaused( true );
                 break;
             case ILLUMINATED:
                 GameScene.effect( halo = new TorchHalo( this ) );
@@ -321,14 +321,14 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
                 alpha( 1f );
                 break;
             case PARALYSED:
-                paused = false;
+                setPaused( false );
                 break;
             case FROZEN:
                 if ( iceBlock != null ) {
                     iceBlock.melt();
                     iceBlock = null;
                 }
-                paused = false;
+                setPaused( false );
                 break;
             case ILLUMINATED:
                 if ( halo != null ) {
@@ -343,8 +343,8 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 
         super.update();
 
-        if ( paused && listener != null ) {
-            listener.onComplete( curAnim );
+        if ( isPaused() && getListener() != null ) {
+            getListener().onComplete( getCurAnim() );
         }
 
         if ( flashTime > 0 && ( flashTime -= Game.getElapsed() ) <= 0 ) {

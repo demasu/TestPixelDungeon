@@ -21,10 +21,10 @@ import android.graphics.RectF;
 
 public class MovieClip extends Image {
 
-    public boolean paused = false;
-    public Listener listener;
-    protected Animation curAnim;
-    protected int curFrame;
+    private boolean paused = false;
+    private Listener listener;
+    private Animation curAnim;
+    private int curFrame;
     private float frameTimer;
     private boolean finished;
 
@@ -39,39 +39,39 @@ public class MovieClip extends Image {
     @Override
     public void update () {
         super.update();
-        if ( !paused ) {
+        if ( !isPaused() ) {
             updateAnimation();
         }
     }
 
     private void updateAnimation () {
-        if ( curAnim != null && curAnim.getDelay() > 0 && ( curAnim.isLooped() || !finished ) ) {
+        if ( getCurAnim() != null && getCurAnim().getDelay() > 0 && ( getCurAnim().isLooped() || !finished ) ) {
 
-            int lastFrame = curFrame;
+            int lastFrame = getCurFrame();
 
             frameTimer += Game.getElapsed();
-            while ( frameTimer > curAnim.getDelay() ) {
-                frameTimer -= curAnim.getDelay();
-                if ( curFrame == curAnim.getFrames().length - 1 ) {
-                    if ( curAnim.isLooped() ) {
-                        curFrame = 0;
+            while ( frameTimer > getCurAnim().getDelay() ) {
+                frameTimer -= getCurAnim().getDelay();
+                if ( getCurFrame() == getCurAnim().getFrames().length - 1 ) {
+                    if ( getCurAnim().isLooped() ) {
+                        setCurFrame( 0 );
                     }
                     finished = true;
-                    if ( listener != null ) {
-                        listener.onComplete( curAnim );
+                    if ( getListener() != null ) {
+                        getListener().onComplete( getCurAnim() );
                         // This check can probably be removed
-                        if ( curAnim == null ) {
+                        if ( getCurAnim() == null ) {
                             return;
                         }
                     }
 
                 } else {
-                    curFrame++;
+                    setCurFrame( getCurFrame() + 1 );
                 }
             }
 
-            if ( curFrame != lastFrame ) {
-                frame( curAnim.getFrames()[curFrame] );
+            if ( getCurFrame() != lastFrame ) {
+                frame( getCurAnim().getFrames()[getCurFrame()] );
             }
 
         }
@@ -83,19 +83,51 @@ public class MovieClip extends Image {
 
     public void play ( Animation anim, boolean force ) {
 
-        if ( !force && ( curAnim != null ) && ( curAnim == anim ) && ( curAnim.isLooped() || !finished ) ) {
+        if ( !force && ( getCurAnim() != null ) && ( getCurAnim() == anim ) && ( getCurAnim().isLooped() || !finished ) ) {
             return;
         }
 
-        curAnim = anim;
-        curFrame = 0;
+        setCurAnim( anim );
+        setCurFrame( 0 );
         finished = false;
 
         frameTimer = 0;
 
         if ( anim != null ) {
-            frame( anim.getFrames()[curFrame] );
+            frame( anim.getFrames()[getCurFrame()] );
         }
+    }
+
+    public boolean isPaused () {
+        return paused;
+    }
+
+    public void setPaused ( boolean paused ) {
+        this.paused = paused;
+    }
+
+    public Listener getListener () {
+        return listener;
+    }
+
+    public void setListener ( Listener listener ) {
+        this.listener = listener;
+    }
+
+    public Animation getCurAnim () {
+        return curAnim;
+    }
+
+    private void setCurAnim ( Animation curAnim ) {
+        this.curAnim = curAnim;
+    }
+
+    private int getCurFrame () {
+        return curFrame;
+    }
+
+    public void setCurFrame ( int curFrame ) {
+        this.curFrame = curFrame;
     }
 
     // TODO: Move in to its own file

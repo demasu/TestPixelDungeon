@@ -326,7 +326,7 @@ public class SurfaceScene extends PixelScene {
             jump = new Animation( 10, false );
             jump.frames( frames, 2, 3, 4, 5, 6 );
 
-            listener = this;
+            setListener( this );
 
             play( idle );
         }
