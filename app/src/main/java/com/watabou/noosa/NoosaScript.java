@@ -53,7 +53,7 @@ public class NoosaScript extends Script {
                     "}";
     private final Uniform uCamera;
     public final Uniform uModel;
-    @SuppressWarnings ( "unused" )
+    @SuppressWarnings ( { "unused", "FieldCanBeLocal" } )
     private final Uniform uTex;
     private final Uniform uColorM;
     private final Uniform uColorA;
@@ -139,6 +139,7 @@ public class NoosaScript extends Script {
         uColorA.value4f( ra, ga, ba, aa );
     }
 
+    @SuppressWarnings ( "AssignmentToNull" )
     public void resetCamera () {
         lastCamera = null;
     }
