@@ -63,7 +63,7 @@ public class NoosaScript extends Script {
     private NoosaScript () {
 
         super();
-        compile( shader() );
+        compile( SHADER );
 
         uCamera = uniform( "uCamera" );
         uModel = uniform( "uModel" );
@@ -156,9 +156,5 @@ public class NoosaScript extends Script {
                     camera.getScreenWidth(),
                     camera.getScreenHeight() );
         }
-    }
-
-    private String shader () {
-        return SHADER;
     }
 }
