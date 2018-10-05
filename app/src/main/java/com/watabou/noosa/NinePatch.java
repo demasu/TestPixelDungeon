@@ -62,8 +62,10 @@ public class NinePatch extends Visual {
         int w1 = w == 0 ? texture.getWidth() : w;
         int h1 = h == 0 ? texture.getHeight() : h;
 
-        nWidth = width = w1;
-        nHeight = height = h1;
+        nWidth = w1;
+        width = w1;
+        nHeight = h1;
+        height = h1;
 
         vertices = new float[16];
         verticesBuffer = Quad.createSet( 9 );
