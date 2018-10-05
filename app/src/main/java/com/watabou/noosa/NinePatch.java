@@ -59,11 +59,11 @@ public class NinePatch extends Visual {
         super( 0, 0, 0, 0 );
 
         texture = TextureCache.get( tx );
-        w = w == 0 ? texture.getWidth() : w;
-        h = h == 0 ? texture.getHeight() : h;
+        int w1 = w == 0 ? texture.getWidth() : w;
+        int h1 = h == 0 ? texture.getHeight() : h;
 
-        nWidth = width = w;
-        nHeight = height = h;
+        nWidth = width = w1;
+        nHeight = height = h1;
 
         vertices = new float[16];
         verticesBuffer = Quad.createSet( 9 );
@@ -73,8 +73,8 @@ public class NinePatch extends Visual {
         marginTop = top;
         marginBottom = bottom;
 
-        outterF = texture.uvRect( x, y, x + w, y + h );
-        innerF = texture.uvRect( x + left, y + top, x + w - right, y + h - bottom );
+        outterF = texture.uvRect( x, y, x + w1, y + h1 );
+        innerF = texture.uvRect( x + left, y + top, x + w1 - right, y + h1 - bottom );
 
         updateVertices();
     }
