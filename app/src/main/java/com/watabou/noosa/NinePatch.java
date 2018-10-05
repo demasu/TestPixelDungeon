@@ -52,6 +52,7 @@ public class NinePatch extends Visual {
         this( tx, x, y, w, h, margin, margin, margin, margin );
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     public NinePatch ( Object tx, int x, int y, int w, int h, int left, int top, int right, int bottom ) {
         super( 0, 0, 0, 0 );
 
@@ -76,6 +77,7 @@ public class NinePatch extends Visual {
         updateVertices();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private void updateVertices () {
 
         verticesBuffer.position( 0 );
@@ -144,6 +146,7 @@ public class NinePatch extends Visual {
         updateVertices();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public void draw () {
 
