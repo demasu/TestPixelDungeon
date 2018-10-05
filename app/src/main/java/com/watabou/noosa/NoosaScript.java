@@ -52,7 +52,7 @@ public class NoosaScript extends Script {
                     "  gl_FragColor = texture2D( uTex, vUV ) * uColorM + uColorA;" +
                     "}";
     private final Uniform uCamera;
-    public final Uniform uModel;
+    private final Uniform uModel;
     @SuppressWarnings ( { "unused", "FieldCanBeLocal" } )
     private final Uniform uTex;
     private final Uniform uColorM;
@@ -144,6 +144,7 @@ public class NoosaScript extends Script {
         lastCamera = null;
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     public void camera ( Camera camera ) {
         Camera camera1 = camera;
         if ( camera1 == null ) {
@@ -159,5 +160,9 @@ public class NoosaScript extends Script {
                     camera1.getScreenWidth(),
                     camera1.getScreenHeight() );
         }
+    }
+
+    public Uniform getuModel () {
+        return uModel;
     }
 }

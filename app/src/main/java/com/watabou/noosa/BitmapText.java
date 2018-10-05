@@ -88,7 +88,7 @@ public class BitmapText extends Visual {
 
         script.camera( camera() );
 
-        script.uModel.valueM4( matrix );
+        script.getuModel().valueM4( matrix );
         script.lighting(
                 rm, gm, bm, am,
                 ra, ga, ba, aa );
