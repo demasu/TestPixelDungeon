@@ -28,7 +28,7 @@ public class ShadowBox extends NinePatch {
     public ShadowBox () {
         super( Assets.SHADOW, 1 );
 
-        texture.filter( SmartTexture.LINEAR, SmartTexture.LINEAR );
+        getTexture().filter( SmartTexture.LINEAR, SmartTexture.LINEAR );
 
         scale.set( SIZE, SIZE );
     }

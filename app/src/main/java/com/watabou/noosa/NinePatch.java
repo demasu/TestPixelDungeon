@@ -27,7 +27,7 @@ import java.nio.FloatBuffer;
 
 public class NinePatch extends Visual {
 
-    public final SmartTexture texture;
+    private final SmartTexture texture;
 
     private final float[] vertices;
     private final FloatBuffer verticesBuffer;
@@ -56,8 +56,8 @@ public class NinePatch extends Visual {
         super( 0, 0, 0, 0 );
 
         texture = TextureCache.get( tx );
-        int w1 = w == 0 ? texture.getWidth() : w;
-        int h1 = h == 0 ? texture.getHeight() : h;
+        int w1 = w == 0 ? getTexture().getWidth() : w;
+        int h1 = h == 0 ? getTexture().getHeight() : h;
 
         width = w1;
         height = h1;
@@ -70,8 +70,8 @@ public class NinePatch extends Visual {
         marginTop = top;
         marginBottom = bottom;
 
-        outterF = texture.uvRect( x, y, x + w1, y + h1 );
-        innerF = texture.uvRect( x + left, y + top, x + w1 - right, y + h1 - bottom );
+        outterF = getTexture().uvRect( x, y, x + w1, y + h1 );
+        innerF = getTexture().uvRect( x + left, y + top, x + w1 - right, y + h1 - bottom );
 
         updateVertices();
     }
@@ -151,7 +151,7 @@ public class NinePatch extends Visual {
 
         NoosaScript script = NoosaScript.get();
 
-        texture.bind();
+        getTexture().bind();
 
         script.camera( camera() );
 
@@ -162,5 +162,9 @@ public class NinePatch extends Visual {
 
         script.drawQuadSet( verticesBuffer, 9 );
 
+    }
+
+    public SmartTexture getTexture () {
+        return texture;
     }
 }
