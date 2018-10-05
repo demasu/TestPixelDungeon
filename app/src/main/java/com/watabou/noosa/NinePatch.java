@@ -40,9 +40,6 @@ public class NinePatch extends Visual {
     private final int marginTop;
     private final int marginBottom;
 
-    private final float nWidth;
-    private final float nHeight;
-
     public NinePatch ( Object tx, int margin ) {
         this( tx, margin, margin, margin, margin );
     }
@@ -62,9 +59,7 @@ public class NinePatch extends Visual {
         int w1 = w == 0 ? texture.getWidth() : w;
         int h1 = h == 0 ? texture.getHeight() : h;
 
-        nWidth = w1;
         width = w1;
-        nHeight = h1;
         height = h1;
 
         vertices = new float[16];
@@ -141,22 +136,6 @@ public class NinePatch extends Visual {
 
     public int marginVer () {
         return marginTop + marginBottom;
-    }
-
-    public float innerWidth () {
-        return width - marginLeft - marginRight;
-    }
-
-    public float innerHeight () {
-        return height - marginTop - marginBottom;
-    }
-
-    public float innerRight () {
-        return width - marginRight;
-    }
-
-    public float innerBottom () {
-        return height - marginBottom;
     }
 
     public void size ( float width, float height ) {
