@@ -98,10 +98,14 @@ public class MovieClip extends Image {
         }
     }
 
+    // TODO: Move in to its own file
+    @SuppressWarnings ( "PublicInnerClass" )
     public interface Listener {
         void onComplete ( Animation anim );
     }
 
+    // TODO: Move in to its own file
+    @SuppressWarnings ( "PublicInnerClass" )
     public static class Animation {
 
         public float delay;
