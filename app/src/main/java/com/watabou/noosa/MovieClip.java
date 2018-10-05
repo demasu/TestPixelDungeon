@@ -113,6 +113,7 @@ public class MovieClip extends Image {
             this.looped = looped;
         }
 
+        @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
         Animation frames ( RectF... frames ) {
             this.frames = frames;
             return this;
