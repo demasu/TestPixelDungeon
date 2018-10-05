@@ -45,15 +45,15 @@ public class MovieClip extends Image {
     }
 
     private void updateAnimation () {
-        if ( curAnim != null && curAnim.delay > 0 && ( curAnim.looped || !finished ) ) {
+        if ( curAnim != null && curAnim.getDelay() > 0 && ( curAnim.isLooped() || !finished ) ) {
 
             int lastFrame = curFrame;
 
             frameTimer += Game.getElapsed();
-            while ( frameTimer > curAnim.delay ) {
-                frameTimer -= curAnim.delay;
-                if ( curFrame == curAnim.frames.length - 1 ) {
-                    if ( curAnim.looped ) {
+            while ( frameTimer > curAnim.getDelay() ) {
+                frameTimer -= curAnim.getDelay();
+                if ( curFrame == curAnim.getFrames().length - 1 ) {
+                    if ( curAnim.isLooped() ) {
                         curFrame = 0;
                     }
                     finished = true;
@@ -71,7 +71,7 @@ public class MovieClip extends Image {
             }
 
             if ( curFrame != lastFrame ) {
-                frame( curAnim.frames[curFrame] );
+                frame( curAnim.getFrames()[curFrame] );
             }
 
         }
@@ -83,7 +83,7 @@ public class MovieClip extends Image {
 
     public void play ( Animation anim, boolean force ) {
 
-        if ( !force && ( curAnim != null ) && ( curAnim == anim ) && ( curAnim.looped || !finished ) ) {
+        if ( !force && ( curAnim != null ) && ( curAnim == anim ) && ( curAnim.isLooped() || !finished ) ) {
             return;
         }
 
@@ -94,7 +94,7 @@ public class MovieClip extends Image {
         frameTimer = 0;
 
         if ( anim != null ) {
-            frame( anim.frames[curFrame] );
+            frame( anim.getFrames()[curFrame] );
         }
     }
 
@@ -108,32 +108,52 @@ public class MovieClip extends Image {
     @SuppressWarnings ( "PublicInnerClass" )
     public static class Animation {
 
-        public float delay;
-        public RectF[] frames;
-        final boolean looped;
+        private float delay;
+        private RectF[] frames;
+        private final boolean looped;
 
         public Animation ( int fps, boolean looped ) {
-            this.delay = 1f / fps;
+            this.setDelay( 1f / fps );
             this.looped = looped;
         }
 
         @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
         Animation frames ( RectF... frames ) {
-            this.frames = frames;
+            this.setFrames( frames );
             return this;
         }
 
         public Animation frames ( TextureFilm film, Object... frames ) {
-            this.frames = new RectF[frames.length];
+            this.setFrames( new RectF[frames.length] );
             for ( int i = 0; i < frames.length; i++ ) {
-                this.frames[i] = film.get( frames[i] );
+                this.getFrames()[i] = film.get( frames[i] );
             }
             return this;
         }
 
         @SuppressWarnings ( { "MethodDoesntCallSuperMethod", "override" } )
         public Animation clone () {
-            return new Animation( Math.round( 1 / delay ), looped ).frames( frames );
+            return new Animation( Math.round( 1 / getDelay() ), isLooped() ).frames( getFrames() );
+        }
+
+        float getDelay () {
+            return delay;
+        }
+
+        public void setDelay ( float delay ) {
+            this.delay = delay;
+        }
+
+        public RectF[] getFrames () {
+            return frames;
+        }
+
+        void setFrames ( RectF[] frames ) {
+            this.frames = frames;
+        }
+
+        boolean isLooped () {
+            return looped;
         }
     }
 }

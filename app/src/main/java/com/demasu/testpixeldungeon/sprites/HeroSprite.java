@@ -141,7 +141,7 @@ public class HeroSprite extends CharSprite {
     }
 
     public boolean sprint ( boolean on ) {
-        run.delay = on ? 0.625f / RUN_FRAMERATE : 1f / RUN_FRAMERATE;
+        run.setDelay( on ? 0.625f / RUN_FRAMERATE : 1f / RUN_FRAMERATE );
         return on;
     }
 }

@@ -40,6 +40,6 @@ public class SheepSprite extends MobSprite {
         die.frames( frames, 0 );
 
         play( idle );
-        curFrame = Random.Int( curAnim.frames.length );
+        curFrame = Random.Int( curAnim.getFrames().length );
     }
 }
