@@ -126,7 +126,7 @@ public class MovieClip extends Image {
             return this;
         }
 
-        @SuppressWarnings ( "MethodDoesntCallSuperMethod" )
+        @SuppressWarnings ( { "MethodDoesntCallSuperMethod", "override" } )
         public Animation clone () {
             return new Animation( Math.round( 1 / delay ), looped ).frames( frames );
         }
