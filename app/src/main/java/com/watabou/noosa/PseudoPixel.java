@@ -21,8 +21,9 @@ import com.watabou.gltextures.TextureCache;
 
 public class PseudoPixel extends Image {
 
+    private static final int COLOR = 0xFFFFFFFF;
     public PseudoPixel () {
-        super( TextureCache.createSolid( 0xFFFFFFFF ) );
+        super( TextureCache.createSolid( COLOR ) );
     }
 
     public PseudoPixel ( float x, float y, int color ) {
