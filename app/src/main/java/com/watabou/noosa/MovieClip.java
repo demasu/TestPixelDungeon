@@ -149,7 +149,6 @@ public class MovieClip extends Image {
             this.looped = looped;
         }
 
-        @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
         Animation frames ( RectF... frames ) {
             this.setFrames( frames );
             return this;
@@ -176,10 +175,12 @@ public class MovieClip extends Image {
             this.delay = delay;
         }
 
+        @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
         public RectF[] getFrames () {
             return frames;
         }
 
+        @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
         void setFrames ( RectF[] frames ) {
             this.frames = frames;
         }
