@@ -24,9 +24,9 @@ import com.watabou.utils.Signal;
 public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Touch> {
 
     // Its target can be toucharea itself
-    public final Visual target;
+    private final Visual target;
 
-    protected Touchscreen.Touch touch = null;
+    private Touchscreen.Touch touch = null;
 
     public TouchArea ( Visual target ) {
         super( 0, 0, 0, 0 );
@@ -44,7 +44,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
         Touchscreen.getEvent().add( this );
     }
 
-    @SuppressWarnings ( { "AssignmentToNull", "FeatureEnvy" } )
+    @SuppressWarnings ( { "FeatureEnvy" } )
     @Override
     public void onSignal ( Touch touch ) {
 
@@ -52,7 +52,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
             return;
         }
 
-        boolean hit = touch != null && target.overlapsScreenPoint( (int) touch.getStart().x, (int) touch.getStart().y );
+        boolean hit = touch != null && getTarget().overlapsScreenPoint( (int) touch.getStart().x, (int) touch.getStart().y );
 
         if ( hit ) {
 
@@ -60,8 +60,8 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
 
             if ( touch.isDown() ) {
 
-                if ( this.touch == null ) {
-                    this.touch = touch;
+                if ( this.getTouch() == null ) {
+                    this.setTouch( touch );
                 }
                 onTouchDown( touch );
 
@@ -69,8 +69,8 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
 
                 onTouchUp( touch );
 
-                if ( this.touch == touch ) {
-                    this.touch = null;
+                if ( this.getTouch() == touch ) {
+                    this.setTouch( null );
                     onClick( touch );
                 }
 
@@ -78,11 +78,11 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
 
         } else {
 
-            if ( touch == null && this.touch != null ) {
-                onDrag( this.touch );
-            } else if ( this.touch != null && !touch.isDown() ) {
+            if ( touch == null && this.getTouch() != null ) {
+                onDrag( this.getTouch() );
+            } else if ( this.getTouch() != null && !touch.isDown() ) {
                 onTouchUp( touch );
-                this.touch = null;
+                this.setTouch( null );
             }
 
         }
@@ -100,14 +100,25 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
     protected void onDrag ( Touch touch ) {
     }
 
-    @SuppressWarnings ( "AssignmentToNull" )
     public void reset () {
-        touch = null;
+        setTouch( null );
     }
 
     @Override
     public void destroy () {
         Touchscreen.getEvent().remove( this );
         super.destroy();
+    }
+
+    public Visual getTarget () {
+        return target;
+    }
+
+    public Touch getTouch () {
+        return touch;
+    }
+
+    public void setTouch ( Touch touch ) {
+        this.touch = touch;
     }
 }

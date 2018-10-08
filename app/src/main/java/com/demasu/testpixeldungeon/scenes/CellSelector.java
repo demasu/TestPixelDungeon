@@ -52,7 +52,7 @@ public class CellSelector extends TouchArea {
 
         } else {
 
-            select( ( (DungeonTilemap) target ).screenToTile(
+            select( ( (DungeonTilemap) getTarget() ).screenToTile(
                     (int) touch.getCurrent().x,
                     (int) touch.getCurrent().y ) );
         }
@@ -74,10 +74,10 @@ public class CellSelector extends TouchArea {
     @Override
     protected void onTouchDown ( Touch t ) {
 
-        if ( t != touch && another == null ) {
+        if ( t != getTouch() && another == null ) {
 
-            if ( !touch.isDown() ) {
-                touch = t;
+            if ( !getTouch().isDown() ) {
+                setTouch( t );
                 onTouchDown( t );
                 return;
             }
@@ -85,7 +85,7 @@ public class CellSelector extends TouchArea {
             pinching = true;
 
             another = t;
-            startSpan = PointF.distance( touch.getCurrent(), another.getCurrent() );
+            startSpan = PointF.distance( getTouch().getCurrent(), another.getCurrent() );
             startZoom = getCamera().getZoom();
 
             dragging = false;
@@ -94,7 +94,7 @@ public class CellSelector extends TouchArea {
 
     @Override
     protected void onTouchUp ( Touch t ) {
-        if ( pinching && ( t == touch || t == another ) ) {
+        if ( pinching && ( t == getTouch() || t == another ) ) {
 
             pinching = false;
 
@@ -103,11 +103,11 @@ public class CellSelector extends TouchArea {
             PixelDungeon.zoom( (int) ( zoom - PixelScene.defaultZoom ) );
 
             dragging = true;
-            if ( t == touch ) {
-                touch = another;
+            if ( t == getTouch() ) {
+                setTouch( another );
             }
             another = null;
-            lastPos.set( touch.getCurrent() );
+            lastPos.set( getTouch().getCurrent() );
         }
     }
 
@@ -118,7 +118,7 @@ public class CellSelector extends TouchArea {
 
         if ( pinching ) {
 
-            float curSpan = PointF.distance( touch.getCurrent(), another.getCurrent() );
+            float curSpan = PointF.distance( getTouch().getCurrent(), another.getCurrent() );
             getCamera().zoom( GameMath.gate(
                     PixelScene.minZoom,
                     startZoom * curSpan / startSpan,
