@@ -71,6 +71,7 @@ public class Tilemap extends Visual {
         updated.set( 0, 0, mapWidth, mapHeight );
     }
 
+    @SuppressWarnings ( "MagicNumber" )
     private void updateVertices () {
 
         float y1 = cellH * updated.top;
@@ -82,7 +83,8 @@ public class Tilemap extends Visual {
             float x2 = x1 + cellW;
 
             int pos = i * mapWidth + updated.left;
-            quads.position( 16 * pos );
+            final int POS_MODIFIER = 16;
+            quads.position( POS_MODIFIER * pos );
 
             for ( int j = updated.left; j < updated.right; j++ ) {
 
