@@ -171,9 +171,12 @@ public class Visual extends Gizmo {
         rm = 1f - strength;
         gm = 1f - strength;
         bm = 1f - strength;
-        ra = ( ( color >> 16 ) & 0xFF ) / 255f * strength;
-        ga = ( ( color >> 8 ) & 0xFF ) / 255f * strength;
-        ba = ( color & 0xFF ) / 255f * strength;
+        final int BITSHIFT  = 16;
+        final int BIT_MASK  = 0xFF;
+        final float STR_MOD = 255f;
+        ra = ( ( color >> BITSHIFT ) & BIT_MASK ) / STR_MOD * strength;
+        ga = ( ( color >> 8 ) & BIT_MASK ) / STR_MOD * strength;
+        ba = ( color & BIT_MASK ) / STR_MOD * strength;
     }
 
     private void color ( float r, float g, float b ) {
@@ -186,7 +189,10 @@ public class Visual extends Gizmo {
     }
 
     public void color ( int color ) {
-        color( ( ( color >> 16 ) & 0xFF ) / 255f, ( ( color >> 8 ) & 0xFF ) / 255f, ( color & 0xFF ) / 255f );
+        final int BITSHIFT = 16;
+        final int BIT_MASK = 0xFF;
+        final float DENOM  = 255f;
+        color( ( ( color >> BITSHIFT ) & BIT_MASK ) / DENOM, ( ( color >> 8 ) & BIT_MASK ) / DENOM, ( color & BIT_MASK ) / DENOM );
     }
 
     public void hardlight ( float r, float g, float b ) {
@@ -199,7 +205,10 @@ public class Visual extends Gizmo {
     }
 
     public void hardlight ( int color ) {
-        hardlight( ( color >> 16 ) / 255f, ( ( color >> 8 ) & 0xFF ) / 255f, ( color & 0xFF ) / 255f );
+        final int BITSHIFT = 16;
+        final int BIT_MASK = 0xFF;
+        final float DENOM  = 255f;
+        hardlight( ( color >> BITSHIFT ) / DENOM, ( ( color >> 8 ) & BIT_MASK ) / DENOM, ( color & BIT_MASK ) / DENOM );
     }
 
     public void resetColor () {
