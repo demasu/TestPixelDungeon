@@ -56,6 +56,7 @@ public class Tilemap extends Visual {
         updated = new Rect();
     }
 
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
     public void map ( int[] data, int cols ) {
 
         this.data = data;
