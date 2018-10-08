@@ -31,8 +31,8 @@ public class BitmapCache {
     private static final String DEFAULT = "__default";
     @SuppressLint ( "StaticFieldLeak" )
     private static Context context;
-    private static HashMap<String, Layer> layers = new HashMap<String, BitmapCache.Layer>();
-    private static BitmapFactory.Options opts = new BitmapFactory.Options();
+    private static final HashMap<String, Layer> layers = new HashMap<String, BitmapCache.Layer>();
+    private static final BitmapFactory.Options opts = new BitmapFactory.Options();
 
     static {
         opts.inDither = false;
@@ -42,7 +42,7 @@ public class BitmapCache {
         return get( DEFAULT, assetName );
     }
 
-    public static Bitmap get ( String layerName, String assetName ) {
+    private static Bitmap get ( String layerName, String assetName ) {
 
         Layer layer;
         if ( !layers.containsKey( layerName ) ) {
@@ -72,7 +72,7 @@ public class BitmapCache {
         return get( DEFAULT, resID );
     }
 
-    public static Bitmap get ( String layerName, int resID ) {
+    private static Bitmap get ( String layerName, int resID ) {
 
         Layer layer;
         if ( !layers.containsKey( layerName ) ) {
@@ -107,7 +107,7 @@ public class BitmapCache {
         layers.clear();
     }
 
-    public static Context getContext () {
+    private static Context getContext () {
         return context;
     }
 
