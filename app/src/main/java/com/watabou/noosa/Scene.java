@@ -25,7 +25,7 @@ public class Scene extends Group {
     private Signal.Listener<Keys.Key> keyListener;
 
     public void create () {
-        Keys.event.add( keyListener = new Signal.Listener<Keys.Key>() {
+        keyListener = new Signal.Listener<Keys.Key>() {
             @Override
             public void onSignal ( Keys.Key key ) {
                 if ( Game.getInstance() != null && key.pressed ) {
@@ -39,7 +39,8 @@ public class Scene extends Group {
                     }
                 }
             }
-        } );
+        };
+        Keys.event.add( keyListener );
     }
 
     @Override
