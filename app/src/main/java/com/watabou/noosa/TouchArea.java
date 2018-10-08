@@ -44,6 +44,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
         Touchscreen.getEvent().add( this );
     }
 
+    @SuppressWarnings ( "AssignmentToNull" )
     @Override
     public void onSignal ( Touch touch ) {
 
@@ -99,6 +100,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
     protected void onDrag ( Touch touch ) {
     }
 
+    @SuppressWarnings ( "AssignmentToNull" )
     public void reset () {
         touch = null;
     }
