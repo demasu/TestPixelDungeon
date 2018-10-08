@@ -39,6 +39,7 @@ public class Tilemap extends Visual {
     private final float cellW;
     private final float cellH;
 
+    @SuppressWarnings ( "FeatureEnvy" )
     public Tilemap ( Object tx, TextureFilm tileset ) {
 
         super( 0, 0, 0, 0 );
@@ -129,6 +130,7 @@ public class Tilemap extends Visual {
         updated.setEmpty();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public void draw () {
 
