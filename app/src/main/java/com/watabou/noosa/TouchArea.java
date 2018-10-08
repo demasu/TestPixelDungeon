@@ -44,7 +44,7 @@ public class TouchArea extends Visual implements Signal.Listener<Touchscreen.Tou
         Touchscreen.getEvent().add( this );
     }
 
-    @SuppressWarnings ( "AssignmentToNull" )
+    @SuppressWarnings ( { "AssignmentToNull", "FeatureEnvy" } )
     @Override
     public void onSignal ( Touch touch ) {
 
