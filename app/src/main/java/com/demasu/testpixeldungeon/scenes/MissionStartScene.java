@@ -114,8 +114,8 @@ public class MissionStartScene extends PixelScene {
         add( archs );
 
         Image title = BannerSprites.get( Type.SELECT_YOUR_HERO );
-        title.x = align( ( w - title.width() ) / 2 );
-        title.y = align( top );
+        title.setX( align( ( w - title.width() ) / 2 ) );
+        title.setY( align( top ) );
         add( title );
 
         buttonX = left;
@@ -152,7 +152,7 @@ public class MissionStartScene extends PixelScene {
         add( btnNewGame );
 
 
-        float centralHeight = buttonY - title.y - title.height();
+        float centralHeight = buttonY - title.getY() - title.height();
 
         HeroClass[] classes = {
                 HeroClass.HATSUNE
@@ -165,7 +165,7 @@ public class MissionStartScene extends PixelScene {
         if ( PixelDungeon.landscape() ) {
             float shieldW = width / 4;
             float shieldH = Math.min( centralHeight, shieldW );
-            top = title.y + title.height + ( centralHeight - shieldH ) / 2;
+            top = title.getY() + title.getHeight() + ( centralHeight - shieldH ) / 2;
             for ( int i = 0; i < classes.length; i++ ) {
                 ClassShield shield = shields.get( classes[i] );
                 shield.setRect( left + i * shieldW, top, shieldW, shieldH );
@@ -180,7 +180,7 @@ public class MissionStartScene extends PixelScene {
         } else {
             float shieldW = width / 2;
             float shieldH = Math.min( centralHeight / 2, shieldW * 1.2f );
-            top = title.y + title.height() + centralHeight / 2 - shieldH;
+            top = title.getY() + title.height() + centralHeight / 2 - shieldH;
             for ( int i = 0; i < classes.length; i++ ) {
                 ClassShield shield = shields.get( classes[i] );
                 shield.setRect(
@@ -209,8 +209,8 @@ public class MissionStartScene extends PixelScene {
             for ( BitmapText line : text.new LineSplitter().split() ) {
                 line.measure();
                 line.hardlight( 0xFFFF00 );
-                line.x = PixelScene.align( w / 2 - line.width() / 2 );
-                line.y = PixelScene.align( pos );
+                line.setX( PixelScene.align( w / 2 - line.width() / 2 ) );
+                line.setY( PixelScene.align( pos ) );
                 unlock.add( line );
 
                 pos += line.height();
@@ -361,12 +361,12 @@ public class MissionStartScene extends PixelScene {
             super.layout();
 
             if ( secondary.text().length() > 0 ) {
-                text.y = align( getY() + ( getHeight() - text.height() - secondary.baseLine() ) / 2 );
+                text.setY( align( getY() + ( getHeight() - text.height() - secondary.baseLine() ) / 2 ) );
 
-                secondary.x = align( getX() + ( getWidth() - secondary.width() ) / 2 );
-                secondary.y = align( text.y + text.height() );
+                secondary.setX( align( getX() + ( getWidth() - secondary.width() ) / 2 ) );
+                secondary.setY( align( text.getY() + text.height() ) );
             } else {
-                text.y = align( getY() + ( getHeight() - text.baseLine() ) / 2 );
+                text.setY( align( getY() + ( getHeight() - text.baseLine() ) / 2 ) );
             }
         }
 
@@ -409,7 +409,7 @@ public class MissionStartScene extends PixelScene {
             this.cl = cl;
 
             avatar.frame( ( cl.ordinal() - 4 ) * WIDTH, 0, WIDTH, HEIGHT );
-            avatar.scale.set( SCALE );
+            avatar.getScale().set( SCALE );
 
 
             normal = BASIC_NORMAL;
@@ -444,11 +444,11 @@ public class MissionStartScene extends PixelScene {
 
             super.layout();
 
-            avatar.x = align( getX() + ( getWidth() - avatar.width() ) / 2 );
-            avatar.y = align( getY() + ( getHeight() - avatar.height() - name.height() ) / 2 );
+            avatar.setX( align( getX() + ( getWidth() - avatar.width() ) / 2 ) );
+            avatar.setY( align( getY() + ( getHeight() - avatar.height() - name.height() ) / 2 ) );
 
-            name.x = align( getX() + ( getWidth() - name.width() ) / 2 );
-            name.y = avatar.y + avatar.height() + SCALE;
+            name.setX( align( getX() + ( getWidth() - name.width() ) / 2 ) );
+            name.setY( avatar.getY() + avatar.height() + SCALE );
         }
 
         @Override
@@ -486,7 +486,10 @@ public class MissionStartScene extends PixelScene {
         }
 
         private void updateBrightness () {
-            avatar.gm = avatar.bm = avatar.rm = avatar.am = brightness;
+            avatar.setGm( brightness );
+            avatar.setBm( brightness );
+            avatar.setRm( brightness );
+            avatar.setAm( brightness );
         }
     }
 
@@ -497,10 +500,10 @@ public class MissionStartScene extends PixelScene {
         public ChallengeButton () {
             super();
 
-            setWidth( image.width );
-            setHeight( image.height );
+            setWidth( image.getWidth() );
+            setHeight( image.getHeight() );
 
-            image.am = Badges.isUnlocked( Badges.Badge.VICTORY ) ? 1.0f : 0.5f;
+            image.setAm( Badges.isUnlocked( Badges.Badge.VICTORY ) ? 1.0f : 0.5f );
         }
 
         @Override
@@ -517,8 +520,8 @@ public class MissionStartScene extends PixelScene {
 
             super.layout();
 
-            image.x = align( getX() );
-            image.y = align( getY() );
+            image.setX( align( getX() ) );
+            image.setY( align( getY() ) );
         }
 
         @Override

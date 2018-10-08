@@ -56,37 +56,38 @@ public class PoisonParticle extends PixelParticle {
 
         setLifespan( 0.6f );
 
-        acc.set( 0, +30 );
+        getAcc().set( 0, +30 );
     }
 
     public void resetMissile ( float x, float y ) {
         revive();
 
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
 
         setLeft( getLifespan() );
 
-        speed.polar( -Random.Float( 3.1415926f ), Random.Float( 6 ) );
+        getSpeed().polar( -Random.Float( 3.1415926f ), Random.Float( 6 ) );
     }
 
     public void resetSplash ( float x, float y ) {
         revive();
 
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
 
         setLeft( getLifespan() );
 
-        speed.polar( Random.Float( 3.1415926f ), Random.Float( 10, 20 ) );
+        getSpeed().polar( Random.Float( 3.1415926f ), Random.Float( 10, 20 ) );
     }
 
     @Override
     public void update () {
         super.update();
         // alpha: 1 -> 0; size: 1 -> 4
-        size( 4 - ( am = getLeft() / getLifespan() ) * 3 );
+        setAm( getLeft() / getLifespan() );
+        size( 4 - ( getAm() ) * 3 );
         // color: 0x8844FF -> 0x00FF00
-        color( ColorMath.interpolate( 0x00FF00, 0x8844FF, am ) );
+        color( ColorMath.interpolate( 0x00FF00, 0x8844FF, getAm() ) );
     }
 }

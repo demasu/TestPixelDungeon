@@ -199,14 +199,14 @@ public class MagicMissile extends Emitter {
             color( 0x88CCFF );
             setLifespan( 0.5f );
 
-            speed.set( Random.Float( -10, +10 ), Random.Float( -10, +10 ) );
+            getSpeed().set( Random.Float( -10, +10 ), Random.Float( -10, +10 ) );
         }
 
         public void reset ( float x, float y ) {
             revive();
 
-            this.x = x;
-            this.y = y;
+            this.setX( x );
+            this.setY( y );
 
             setLeft( getLifespan() );
         }
@@ -215,7 +215,8 @@ public class MagicMissile extends Emitter {
         public void update () {
             super.update();
             // alpha: 1 -> 0; size: 1 -> 4
-            size( 4 - ( am = getLeft() / getLifespan() ) * 3 );
+            setAm( getLeft() / getLifespan() );
+            size( 4 - ( getAm() ) * 3 );
         }
     }
 
@@ -235,19 +236,19 @@ public class MagicMissile extends Emitter {
 
             color( ColorMath.random( 0x555555, 0x777766 ) );
 
-            acc.set( 0, +40 );
+            getAcc().set( 0, +40 );
         }
 
         public void reset ( float x, float y ) {
             revive();
 
-            this.x = x;
-            this.y = y;
+            this.setX( x );
+            this.setY( y );
 
             setLeft( getLifespan() );
             setSize( 4 );
 
-            speed.set( Random.Float( -10, +10 ), Random.Float( -10, +10 ) );
+            getSpeed().set( Random.Float( -10, +10 ), Random.Float( -10, +10 ) );
         }
     }
 
@@ -271,14 +272,14 @@ public class MagicMissile extends Emitter {
 
             setLifespan( 0.4f );
 
-            am = 0.5f;
+            setAm( 0.5f );
         }
 
         public void reset ( float x, float y ) {
             revive();
 
-            this.x = x;
-            this.y = y;
+            this.setX( x );
+            this.setY( y );
 
             setLeft( getLifespan() );
         }
@@ -319,22 +320,22 @@ public class MagicMissile extends Emitter {
         public void reset ( float x, float y, Emitter emitter ) {
             revive();
 
-            this.x = x;
-            this.y = y;
+            this.setX( x );
+            this.setY( y );
             this.emitter = emitter;
 
             setLeft( getLifespan() );
 
-            acc.set( 0 );
-            speed.set( Random.Float( -20, +20 ), Random.Float( -20, +20 ) );
+            getAcc().set( 0 );
+            getSpeed().set( Random.Float( -20, +20 ), Random.Float( -20, +20 ) );
         }
 
         @Override
         public void update () {
             super.update();
 
-            am = getLeft() / getLifespan();
-            acc.set( ( emitter.getX() - x ) * 10, ( emitter.getY() - y ) * 10 );
+            setAm( getLeft() / getLifespan() );
+            getAcc().set( ( emitter.getX() - getX() ) * 10, ( emitter.getY() - getY() ) * 10 );
         }
     }
 
@@ -350,16 +351,16 @@ public class MagicMissile extends Emitter {
         public void reset ( int index, float x, float y ) {
             super.reset( x, y, 0xFFFFFF, 8, 0.5f );
 
-            speed.polar( PointF.PI2 / 8 * index, 12 );
-            this.x -= speed.x * getLifespan();
-            this.y -= speed.y * getLifespan();
+            getSpeed().polar( PointF.PI2 / 8 * index, 12 );
+            this.setX( this.getX() - getSpeed().x * getLifespan() );
+            this.setY( this.getY() - getSpeed().y * getLifespan() );
         }
 
         @Override
         public void update () {
             super.update();
 
-            am = ( 1 - getLeft() / getLifespan() ) / 2;
+            setAm( ( 1 - getLeft() / getLifespan() ) / 2 );
         }
     }
 
@@ -389,8 +390,8 @@ public class MagicMissile extends Emitter {
         public void reset ( float x, float y ) {
             revive();
 
-            this.x = x;
-            this.y = y;
+            this.setX( x );
+            this.setY( y );
 
             setLeft( getLifespan() );
             setSize( 8 );
@@ -400,7 +401,7 @@ public class MagicMissile extends Emitter {
         public void update () {
             super.update();
 
-            am = 1 - getLeft() / getLifespan();
+            setAm( 1 - getLeft() / getLifespan() );
         }
     }
 }

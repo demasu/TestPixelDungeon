@@ -38,7 +38,7 @@ public class FloatingText extends BitmapText {
 
     public FloatingText () {
         super();
-        speed.y = -DISTANCE / LIFESPAN;
+        getSpeed().y = -DISTANCE / LIFESPAN;
     }
 
     public static void show ( float x, float y, String text, int color ) {
@@ -66,8 +66,8 @@ public class FloatingText extends BitmapText {
             int aboveIndex = stack.size() - 1;
             while ( aboveIndex >= 0 ) {
                 FloatingText above = stack.get( aboveIndex );
-                if ( above.y + above.height() > below.y ) {
-                    above.y = below.y - above.height();
+                if ( above.getY() + above.height() > below.getY() ) {
+                    above.setY( below.getY() - above.height() );
 
                     below = above;
                     aboveIndex--;
@@ -119,15 +119,15 @@ public class FloatingText extends BitmapText {
             cameraZoom = Camera.getMain().getZoom();
             PixelScene.chooseFont( 9, cameraZoom );
             setFont( PixelScene.font );
-            scale.set( PixelScene.scale );
+            getScale().set( PixelScene.scale );
         }
 
         text( text );
         hardlight( color );
 
         measure();
-        this.x = PixelScene.align( x - width() / 2 );
-        this.y = y - height();
+        this.setX( PixelScene.align( x - width() / 2 ) );
+        this.setY( y - height() );
 
         timeLeft = LIFESPAN;
     }

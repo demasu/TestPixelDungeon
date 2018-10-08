@@ -118,8 +118,8 @@ public class Emitter extends Group {
             getFactory().emit(
                     this,
                     index,
-                    getTarget().x + Random.Float( getTarget().width ),
-                    getTarget().y + Random.Float( getTarget().height ) );
+                    getTarget().getX() + Random.Float( getTarget().getWidth() ),
+                    getTarget().getY() + Random.Float( getTarget().getHeight() ) );
         }
     }
 

@@ -189,8 +189,8 @@ public class MissionScene extends GameScene {
 
         busy = new BusyIndicator();
         busy.setCamera( uiCamera );
-        busy.x = 1;
-        busy.y = sb.bottom() + 1;
+        busy.setX( 1 );
+        busy.setY( sb.bottom() + 1 );
         add( busy );
 
         switch ( InterlevelScene.mode ) {

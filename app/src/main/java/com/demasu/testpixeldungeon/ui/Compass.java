@@ -37,7 +37,7 @@ public class Compass extends Image {
 
         super();
         copy( Icons.COMPASS.get() );
-        origin.set( width / 2, RADIUS );
+        getOrigin().set( getWidth() / 2, RADIUS );
 
         this.cell = cell;
         cellCenter = DungeonTilemap.tileCenterToWorld( cell );
@@ -57,7 +57,7 @@ public class Compass extends Image {
             if ( !scroll.equals( lastScroll ) ) {
                 lastScroll.set( scroll );
                 PointF center = Camera.getMain().center().offset( scroll );
-                angle = (float) Math.atan2( cellCenter.x - center.x, center.y - cellCenter.y ) * RAD_2_G;
+                setAngle( (float) Math.atan2( cellCenter.x - center.x, center.y - cellCenter.y ) * RAD_2_G );
             }
         }
     }

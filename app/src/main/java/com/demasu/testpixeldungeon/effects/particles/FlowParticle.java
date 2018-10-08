@@ -40,8 +40,8 @@ public class FlowParticle extends PixelParticle {
         super();
 
         setLifespan( 0.6f );
-        acc.set( 0, 32 );
-        angularSpeed = Random.Float( -360, +360 );
+        getAcc().set( 0, 32 );
+        setAngularSpeed( Random.Float( -360, +360 ) );
     }
 
     public void reset ( float x, float y ) {
@@ -49,12 +49,12 @@ public class FlowParticle extends PixelParticle {
 
         setLeft( getLifespan() );
 
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
 
-        am = 0;
+        setAm( 0 );
         size( 0 );
-        speed.set( 0 );
+        getSpeed().set( 0 );
     }
 
     @Override
@@ -62,7 +62,7 @@ public class FlowParticle extends PixelParticle {
         super.update();
 
         float p = getLeft() / getLifespan();
-        am = ( p < 0.5f ? p : 1 - p ) * 0.6f;
+        setAm( ( p < 0.5f ? p : 1 - p ) * 0.6f );
         size( ( 1 - p ) * 4 );
     }
 

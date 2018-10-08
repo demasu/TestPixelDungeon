@@ -69,7 +69,7 @@ public class ScrollPane extends Component {
         add( controller );
 
         thumb = new ColorBlock( 1, 1, THUMB_COLOR );
-        thumb.am = THUMB_ALPHA;
+        thumb.setAm( THUMB_ALPHA );
         add( thumb );
     }
 
@@ -77,10 +77,10 @@ public class ScrollPane extends Component {
     protected void layout () {
 
         content.setPos( 0, 0 );
-        controller.x = getX();
-        controller.y = getY();
-        controller.width = getWidth();
-        controller.height = getHeight();
+        controller.setX( getX() );
+        controller.setY( getY() );
+        controller.setWidth( getWidth() );
+        controller.setHeight( getHeight() );
 
         Point p = camera().cameraToScreen( getX(), getY() );
         Camera cs = content.getCamera();
@@ -90,9 +90,9 @@ public class ScrollPane extends Component {
 
         thumb.setVisible( getHeight() < content.height() );
         if ( thumb.getVisible() ) {
-            thumb.scale.set( 2, getHeight() * getHeight() / content.height() );
-            thumb.x = right() - thumb.width();
-            thumb.y = getY();
+            thumb.getScale().set( 2, getHeight() * getHeight() / content.height() );
+            thumb.setX( right() - thumb.width() );
+            thumb.setY( getY() );
         }
     }
 
@@ -119,7 +119,7 @@ public class ScrollPane extends Component {
             if ( dragging ) {
 
                 dragging = false;
-                thumb.am = THUMB_ALPHA;
+                thumb.setAm( THUMB_ALPHA );
 
             } else {
 
@@ -136,20 +136,20 @@ public class ScrollPane extends Component {
                 Camera c = content.getCamera();
 
                 c.getScroll().offset( PointF.diff( lastPos, t.getCurrent() ).invScale( c.getZoom() ) );
-                if ( c.getScroll().x + width > content.width() ) {
-                    c.getScroll().x = content.width() - width;
+                if ( c.getScroll().x + getWidth() > content.width() ) {
+                    c.getScroll().x = content.width() - getWidth();
                 }
                 if ( c.getScroll().x < 0 ) {
                     c.getScroll().x = 0;
                 }
-                if ( c.getScroll().y + height > content.height() ) {
-                    c.getScroll().y = content.height() - height;
+                if ( c.getScroll().y + getHeight() > content.height() ) {
+                    c.getScroll().y = content.height() - getHeight();
                 }
                 if ( c.getScroll().y < 0 ) {
                     c.getScroll().y = 0;
                 }
 
-                thumb.y = y + height * c.getScroll().y / content.height();
+                thumb.setY( getY() + getHeight() * c.getScroll().y / content.height() );
 
                 lastPos.set( t.getCurrent() );
 
@@ -157,7 +157,7 @@ public class ScrollPane extends Component {
 
                 dragging = true;
                 lastPos.set( t.getCurrent() );
-                thumb.am = 1;
+                thumb.setAm( 1 );
 
             }
         }

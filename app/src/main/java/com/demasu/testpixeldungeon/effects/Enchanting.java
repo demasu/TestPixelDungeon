@@ -59,20 +59,20 @@ public class Enchanting extends ItemSprite {
     public void update () {
         super.update();
 
-        x = target.sprite.center().x - SIZE / 2;
-        y = target.sprite.y - SIZE;
+        setX( target.sprite.center().x - SIZE / 2 );
+        setY( target.sprite.getY() - SIZE );
 
         switch ( phase ) {
             case FADE_IN:
                 alpha( passed / duration * ALPHA );
-                scale.set( passed / duration );
+                getScale().set( passed / duration );
                 break;
             case STATIC:
                 tint( color, passed / duration * 0.8f );
                 break;
             case FADE_OUT:
                 alpha( ( 1 - passed / duration ) * ALPHA );
-                scale.set( 1 + passed / duration );
+                getScale().set( 1 + passed / duration );
                 break;
         }
 

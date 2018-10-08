@@ -55,16 +55,16 @@ public class RedButton extends Button {
 
         super.layout();
 
-        bg.x = getX();
-        bg.y = getY();
+        bg.setX( getX() );
+        bg.setY( getY() );
         bg.size( getWidth(), getHeight() );
 
-        text.x = getX() + (int) ( getWidth() - text.width() ) / 2;
-        text.y = getY() + (int) ( getHeight() - text.baseLine() ) / 2;
+        text.setX( getX() + (int) ( getWidth() - text.width() ) / 2 );
+        text.setY( getY() + (int) ( getHeight() - text.baseLine() ) / 2 );
 
         if ( icon != null ) {
-            icon.x = getX() + text.x - icon.width() - 2;
-            icon.y = getY() + ( getHeight() - icon.height() ) / 2;
+            icon.setX( getX() + text.getX() - icon.width() - 2 );
+            icon.setY( getY() + ( getHeight() - icon.height() ) / 2 );
         }
     }
 

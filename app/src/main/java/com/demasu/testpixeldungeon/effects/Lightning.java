@@ -51,7 +51,7 @@ public class Lightning extends Group {
 
         Image proto = Effects.get( Effects.Type.LIGHTNING );
         float ox = 0;
-        float oy = proto.height / 2;
+        float oy = proto.getHeight() / 2;
 
         this.length = length;
         cx = new float[length];
@@ -69,13 +69,13 @@ public class Lightning extends Group {
 
             Image arc = arcsS[i] = new Image( proto );
 
-            arc.x = cx[i] - arc.origin.x;
-            arc.y = cy[i] - arc.origin.y;
-            arc.origin.set( ox, oy );
+            arc.setX( cx[i] - arc.getOrigin().x );
+            arc.setY( cy[i] - arc.getOrigin().y );
+            arc.getOrigin().set( ox, oy );
             add( arc );
 
             arc = arcsE[i] = new Image( proto );
-            arc.origin.set( ox, oy );
+            arc.getOrigin().set( ox, oy );
             add( arc );
         }
 
@@ -112,18 +112,18 @@ public class Lightning extends Group {
                 float dx = x2 - sx;
                 float dy = y2 - sy;
                 Image arc = arcsS[i];
-                arc.am = alpha;
-                arc.angle = (float) ( Math.atan2( dy, dx ) * A );
-                arc.scale.x = (float) Math.sqrt( dx * dx + dy * dy ) / arc.width;
+                arc.setAm( alpha );
+                arc.setAngle( (float) ( Math.atan2( dy, dx ) * A ) );
+                arc.getScale().x = (float) Math.sqrt( dx * dx + dy * dy ) / arc.getWidth();
 
                 dx = ex - x2;
                 dy = ey - y2;
                 arc = arcsE[i];
-                arc.am = alpha;
-                arc.angle = (float) ( Math.atan2( dy, dx ) * A );
-                arc.scale.x = (float) Math.sqrt( dx * dx + dy * dy ) / arc.width;
-                arc.x = x2 - arc.origin.x;
-                arc.y = y2 - arc.origin.x;
+                arc.setAm( alpha );
+                arc.setAngle( (float) ( Math.atan2( dy, dx ) * A ) );
+                arc.getScale().x = (float) Math.sqrt( dx * dx + dy * dy ) / arc.getWidth();
+                arc.setX( x2 - arc.getOrigin().x );
+                arc.setY( y2 - arc.getOrigin().x );
             }
         }
     }

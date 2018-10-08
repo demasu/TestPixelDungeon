@@ -268,8 +268,8 @@ public class CavesLevel extends RegularLevel {
         public void reset ( float x, float y ) {
             revive();
 
-            this.x = x;
-            this.y = y;
+            this.setX( x );
+            this.setY( y );
 
             setLeft( 0.5f );
             setLifespan( 0.5f );
@@ -280,7 +280,8 @@ public class CavesLevel extends RegularLevel {
             super.update();
 
             float p = getLeft() / getLifespan();
-            size( ( am = p < 0.5f ? p * 2 : ( 1 - p ) * 2 ) * 2 );
+            setAm( p < 0.5f ? p * 2 : ( 1 - p ) * 2 );
+            size( ( getAm() ) * 2 );
         }
     }
 }

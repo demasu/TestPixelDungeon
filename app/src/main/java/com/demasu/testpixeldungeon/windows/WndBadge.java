@@ -35,7 +35,7 @@ public class WndBadge extends Window {
         super();
 
         Image icon = BadgeBanner.image( badge.image );
-        icon.scale.set( 2 );
+        icon.getScale().set( 2 );
         add( icon );
 
         BitmapTextMultiline info = PixelScene.createMultiline( badge.description, 8 );
@@ -44,14 +44,14 @@ public class WndBadge extends Window {
 
         float w = Math.max( icon.width(), info.width() ) + MARGIN * 2;
 
-        icon.x = ( w - icon.width() ) / 2;
-        icon.y = MARGIN;
+        icon.setX( ( w - icon.width() ) / 2 );
+        icon.setY( MARGIN );
 
-        float pos = icon.y + icon.height() + MARGIN;
+        float pos = icon.getY() + icon.height() + MARGIN;
         for ( BitmapText line : info.new LineSplitter().split() ) {
             line.measure();
-            line.x = PixelScene.align( ( w - line.width() ) / 2 );
-            line.y = PixelScene.align( pos );
+            line.setX( PixelScene.align( ( w - line.width() ) / 2 ) );
+            line.setY( PixelScene.align( pos ) );
             add( line );
 
             pos += line.height();

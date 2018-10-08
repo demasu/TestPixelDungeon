@@ -65,14 +65,14 @@ public class TitleScene extends PixelScene {
         Image title = BannerSprites.get( BannerSprites.Type.PIXEL_DUNGEON );
         add( title );
 
-        float height = title.height +
+        float height = title.getHeight() +
                 ( PixelDungeon.landscape() ? DashboardItem.SIZE : DashboardItem.SIZE * 2 );
 
-        title.x = ( w - title.width() ) / 2;
-        title.y = ( h - height ) / 2;
+        title.setX( ( w - title.width() ) / 2 );
+        title.setY( ( h - height ) / 2 );
 
-        placeTorch( title.x + 18, title.y + 20 );
-        placeTorch( title.x + title.width - 18, title.y + 20 );
+        placeTorch( title.getX() + 18, title.getY() + 20 );
+        placeTorch( title.getX() + title.getWidth() - 18, title.getY() + 20 );
 
         Image signs = new Image( BannerSprites.get( BannerSprites.Type.PIXEL_DUNGEON_SIGNS ) ) {
             private float time = 0;
@@ -80,7 +80,7 @@ public class TitleScene extends PixelScene {
             @Override
             public void update () {
                 super.update();
-                am = (float) Math.sin( -( time += Game.getElapsed() ) );
+                setAm( (float) Math.sin( -( time += Game.getElapsed() ) ) );
             }
 
             @Override
@@ -90,8 +90,8 @@ public class TitleScene extends PixelScene {
                 GLES20.glBlendFunc( GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA );
             }
         };
-        signs.x = title.x;
-        signs.y = title.y;
+        signs.setX( title.getX() );
+        signs.setY( title.getY() );
         add( signs );
 
         DashboardItem btnBadges = new DashboardItem( TXT_BADGES, 3 ) {
@@ -142,15 +142,15 @@ public class TitleScene extends PixelScene {
         BitmapText version = new BitmapText( "v " + Game.getVersion() + " (Build " + Game.getVersionBuild() + ")", font1x );
         version.measure();
         version.hardlight( 0xFFFFFF );
-        version.x = w - version.width();
-        version.y = h - version.height() - 9;
+        version.setX( w - version.width() );
+        version.setY( h - version.height() - 9 );
         add( version );
 
         BitmapText versionPD = new BitmapText( Game.getVanillaVersion(), font1x );
         versionPD.measure();
         versionPD.hardlight( 0x666666 );
-        versionPD.x = w - versionPD.width();
-        versionPD.y = h - versionPD.height();
+        versionPD.setX( w - versionPD.width() );
+        versionPD.setY( h - versionPD.height() );
         add( versionPD );
 
         PrefsButton btnPrefs = new PrefsButton();
@@ -208,11 +208,11 @@ public class TitleScene extends PixelScene {
         protected void layout () {
             super.layout();
 
-            image.x = align( getX() + ( getWidth() - image.width() ) / 2 );
-            image.y = align( getY() );
+            image.setX( align( getX() + ( getWidth() - image.width() ) / 2 ) );
+            image.setY( align( getY() ) );
 
-            label.x = align( getX() + ( getWidth() - label.width() ) / 2 );
-            label.y = align( image.y + image.height() + 2 );
+            label.setX( align( getX() + ( getWidth() - label.width() ) / 2 ) );
+            label.setY( align( image.getY() + image.height() + 2 ) );
         }
 
         @Override

@@ -41,7 +41,7 @@ public class PlantSprite extends Image {
             frames = new TextureFilm( getTexture(), 16, 16 );
         }
 
-        origin.set( 8, 12 );
+        getOrigin().set( 8, 12 );
     }
 
     public PlantSprite ( int image ) {
@@ -57,8 +57,8 @@ public class PlantSprite extends Image {
         alpha( 1f );
 
         pos = plant.pos;
-        x = ( pos % Level.WIDTH ) * DungeonTilemap.SIZE;
-        y = ( pos / Level.WIDTH ) * DungeonTilemap.SIZE;
+        setX( ( pos % Level.WIDTH ) * DungeonTilemap.SIZE );
+        setY( ( pos / Level.WIDTH ) * DungeonTilemap.SIZE );
 
         state = State.GROWING;
         time = DELAY;
@@ -78,9 +78,9 @@ public class PlantSprite extends Image {
             case GROWING:
                 if ( ( time -= Game.getElapsed() ) <= 0 ) {
                     state = State.NORMAL;
-                    scale.set( 1 );
+                    getScale().set( 1 );
                 } else {
-                    scale.set( 1 - time / DELAY );
+                    getScale().set( 1 - time / DELAY );
                 }
                 break;
             case WITHERING:

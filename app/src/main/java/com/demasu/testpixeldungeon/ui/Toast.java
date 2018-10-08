@@ -62,16 +62,16 @@ public class Toast extends Component {
     protected void layout () {
         super.layout();
 
-        bg.x = getX();
-        bg.y = getY();
+        bg.setX( getX() );
+        bg.setY( getY() );
         bg.size( getWidth(), getHeight() );
 
         close.setPos(
-                bg.x + bg.width() - bg.marginHor() / 2 - MARGIN_HOR - close.width(),
+                bg.getX() + bg.width() - bg.marginHor() / 2 - MARGIN_HOR - close.width(),
                 getY() + ( getHeight() - close.height() ) / 2 );
 
-        text.x = close.left() - MARGIN_HOR - text.width();
-        text.y = getY() + ( getHeight() - text.height() ) / 2;
+        text.setX( close.left() - MARGIN_HOR - text.width() );
+        text.setY( getY() + ( getHeight() - text.height() ) / 2 );
         PixelScene.align( text );
     }
 

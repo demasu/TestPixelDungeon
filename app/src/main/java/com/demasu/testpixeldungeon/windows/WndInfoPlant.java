@@ -45,9 +45,9 @@ public class WndInfoPlant extends Window {
         info.text( plant.desc() );
         info.setMaxWidth( WIDTH );
         info.measure();
-        info.x = titlebar.left();
-        info.y = titlebar.bottom() + GAP;
+        info.setX( titlebar.left() );
+        info.setY( titlebar.bottom() + GAP );
 
-        resize( WIDTH, (int) ( info.y + info.height() ) );
+        resize( WIDTH, (int) ( info.getY() + info.height() ) );
     }
 }

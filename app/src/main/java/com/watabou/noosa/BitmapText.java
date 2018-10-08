@@ -66,10 +66,10 @@ public class BitmapText extends Visual {
     @Override
     protected void updateMatrix () {
         // "origin" field is ignored
-        Matrix.setIdentity( matrix );
-        Matrix.translate( matrix, x, y );
-        Matrix.scale( matrix, scale.x, scale.y );
-        Matrix.rotate( matrix, angle );
+        Matrix.setIdentity( getMatrix() );
+        Matrix.translate( getMatrix(), getX(), getY() );
+        Matrix.scale( getMatrix(), getScale().x, getScale().y );
+        Matrix.rotate( getMatrix(), getAngle() );
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
@@ -88,10 +88,10 @@ public class BitmapText extends Visual {
 
         script.camera( camera() );
 
-        script.getuModel().valueM4( matrix );
+        script.getuModel().valueM4( getMatrix() );
         script.lighting(
-                rm, gm, bm, am,
-                ra, ga, ba, aa );
+                getRm(), getGm(), getBm(), getAm(),
+                getRa(), getGa(), getBa(), getAa() );
         script.drawQuadSet( getQuads(), getRealLength() );
 
     }
@@ -99,8 +99,8 @@ public class BitmapText extends Visual {
     @SuppressWarnings ( "MagicNumber" )
     protected void updateVertices () {
 
-        width = 0;
-        height = 0;
+        setWidth( 0 );
+        setHeight( 0 );
 
         if ( getText() == null ) {
             setText( "" );
@@ -116,25 +116,25 @@ public class BitmapText extends Visual {
             float w = getFont().width( rect );
             float h = getFont().height( rect );
 
-            getVertices()[0] = width;
+            getVertices()[0] = getWidth();
             getVertices()[1] = 0;
 
             getVertices()[2] = rect.left;
             getVertices()[3] = rect.top;
 
-            getVertices()[4] = width + w;
+            getVertices()[4] = getWidth() + w;
             getVertices()[5] = 0;
 
             getVertices()[6] = rect.right;
             getVertices()[7] = rect.top;
 
-            getVertices()[8] = width + w;
+            getVertices()[8] = getWidth() + w;
             getVertices()[9] = h;
 
             getVertices()[10] = rect.right;
             getVertices()[11] = rect.bottom;
 
-            getVertices()[12] = width;
+            getVertices()[12] = getWidth();
             getVertices()[13] = h;
 
             getVertices()[14] = rect.left;
@@ -143,14 +143,14 @@ public class BitmapText extends Visual {
             getQuads().put( getVertices() );
             setRealLength( getRealLength() + 1 );
 
-            width += w + getFont().getTracking();
-            if ( h > height ) {
-                height = h;
+            setWidth( getWidth() + w + getFont().getTracking() );
+            if ( h > getHeight() ) {
+                setHeight( h );
             }
         }
 
         if ( length > 0 ) {
-            width -= getFont().getTracking();
+            setWidth( getWidth() - getFont().getTracking() );
         }
 
         setDirty( false );
@@ -159,8 +159,8 @@ public class BitmapText extends Visual {
 
     public void measure () {
 
-        width = 0;
-        height = 0;
+        setWidth( 0 );
+        setHeight( 0 );
 
         if ( getText() == null ) {
             setText( "" );
@@ -173,19 +173,19 @@ public class BitmapText extends Visual {
             float w = getFont().width( rect );
             float h = getFont().height( rect );
 
-            width += w + getFont().getTracking();
-            if ( h > height ) {
-                height = h;
+            setWidth( getWidth() + w + getFont().getTracking() );
+            if ( h > getHeight() ) {
+                setHeight( h );
             }
         }
 
         if ( length > 0 ) {
-            width -= getFont().getTracking();
+            setWidth( getWidth() - getFont().getTracking() );
         }
     }
 
     public float baseLine () {
-        return getFont().getBaseLine() * scale.y;
+        return getFont().getBaseLine() * getScale().y;
     }
 
     public String text () {

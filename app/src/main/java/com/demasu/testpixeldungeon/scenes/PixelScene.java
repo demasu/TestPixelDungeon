@@ -132,7 +132,7 @@ public class PixelScene extends Scene {
         chooseFont( size );
 
         BitmapText result = new BitmapText( text, font );
-        result.scale.set( scale );
+        result.getScale().set( scale );
 
         return result;
     }
@@ -146,7 +146,7 @@ public class PixelScene extends Scene {
         chooseFont( size );
 
         BitmapTextMultiline result = new BitmapTextMultiline( text, font );
-        result.scale.set( scale );
+        result.getScale().set( scale );
 
         return result;
     }
@@ -162,15 +162,15 @@ public class PixelScene extends Scene {
 
     public static void align ( Visual v ) {
         Camera c = v.camera();
-        v.x = align( c, v.x );
-        v.y = align( c, v.y );
+        v.setX( align( c, v.getX() ) );
+        v.setY( align( c, v.getY() ) );
     }
 
     public static void showBadge ( Badges.Badge badge ) {
         BadgeBanner banner = BadgeBanner.show( badge.image );
         banner.setCamera( uiCamera );
-        banner.x = align( banner.getCamera(), ( banner.getCamera().getWidth() - banner.width ) / 2 );
-        banner.y = align( banner.getCamera(), ( banner.getCamera().getHeight() - banner.height ) / 3 );
+        banner.setX( align( banner.getCamera(), ( banner.getCamera().getWidth() - banner.getWidth() ) / 2 ) );
+        banner.setY( align( banner.getCamera(), ( banner.getCamera().getHeight() - banner.getHeight() ) / 3 ) );
         Game.scene().add( banner );
     }
 

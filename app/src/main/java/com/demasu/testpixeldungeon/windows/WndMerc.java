@@ -105,33 +105,33 @@ public class WndMerc extends WndTabbed {
         BitmapTextMultiline info = PixelScene.createMultiline( Dungeon.getHero().hiredMerc.mercType.getDescription(), 6 );
         info.setMaxWidth( WIDTH );
         info.measure();
-        info.x = titlebar.left();
-        info.y = titlebar.bottom() + GAP;
+        info.setX( titlebar.left() );
+        info.setY( titlebar.bottom() + GAP );
         add( info );
 
         //if(Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.ArcherMaiden && Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.Archer)
-        add( new ItemButton( Dungeon.getHero().hiredMerc.weapon == null ? new Placeholder( Dungeon.getHero().hiredMerc.mercType.getWeaponPlaceHolder() ) : Dungeon.getHero().hiredMerc.weapon, false ).setPos( SLOT_MARGIN, info.y + info.height() + GAP ) );
+        add( new ItemButton( Dungeon.getHero().hiredMerc.weapon == null ? new Placeholder( Dungeon.getHero().hiredMerc.mercType.getWeaponPlaceHolder() ) : Dungeon.getHero().hiredMerc.weapon, false ).setPos( SLOT_MARGIN, info.getY() + info.height() + GAP ) );
 
         if ( Dungeon.getHero().hiredMerc.mercType != HiredMerc.MERC_TYPES.ArcherMaiden ) {
-            add( new ItemButton( Dungeon.getHero().hiredMerc.armor == null ? new Placeholder( Dungeon.getHero().hiredMerc.mercType.getArmorPlaceHolder() ) : Dungeon.getHero().hiredMerc.armor, false ).setPos( SLOT_SIZE + 2 * SLOT_MARGIN, info.y + info.height() + GAP ) );
+            add( new ItemButton( Dungeon.getHero().hiredMerc.armor == null ? new Placeholder( Dungeon.getHero().hiredMerc.mercType.getArmorPlaceHolder() ) : Dungeon.getHero().hiredMerc.armor, false ).setPos( SLOT_SIZE + 2 * SLOT_MARGIN, info.getY() + info.height() + GAP ) );
             if ( Dungeon.getHero().hiredMerc.mercType != HiredMerc.MERC_TYPES.Brute ) {
-                add( new ItemButton( Dungeon.getHero().hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.getHero().hiredMerc.carrying, false ).setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.y + info.height() + GAP ) );
+                add( new ItemButton( Dungeon.getHero().hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.getHero().hiredMerc.carrying, false ).setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.getY() + info.height() + GAP ) );
             } else {
-                add( new ItemButton( Dungeon.getHero().hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.SMTH ) : Dungeon.getHero().hiredMerc.carrying, true ).setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.y + info.height() + GAP ) );
+                add( new ItemButton( Dungeon.getHero().hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.SMTH ) : Dungeon.getHero().hiredMerc.carrying, true ).setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.getY() + info.height() + GAP ) );
             }
         } else {
-            add( new ItemButton( Dungeon.getHero().hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.getHero().hiredMerc.carrying, false ).setPos( SLOT_SIZE + 2 * SLOT_MARGIN, info.y + info.height() + GAP ) );
+            add( new ItemButton( Dungeon.getHero().hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.getHero().hiredMerc.carrying, false ).setPos( SLOT_SIZE + 2 * SLOT_MARGIN, info.getY() + info.height() + GAP ) );
         }
 
 
         if ( Dungeon.getHero().hiredMerc.mercType != HiredMerc.MERC_TYPES.ArcherMaiden ) {
-            add( new SkillButton( Dungeon.getHero().hiredMerc.skill ).setPos( WIDTH - SLOT_SIZE - SLOT_MARGIN, info.y + info.height() + GAP ) );
+            add( new SkillButton( Dungeon.getHero().hiredMerc.skill ).setPos( WIDTH - SLOT_SIZE - SLOT_MARGIN, info.getY() + info.height() + GAP ) );
         } else {
-            add( new SkillButton( Dungeon.getHero().hiredMerc.skill ).setPos( WIDTH - 2 * ( SLOT_SIZE + SLOT_MARGIN ), info.y + info.height() + GAP ) );
-            add( new SkillButton( Dungeon.getHero().hiredMerc.skillb ).setPos( WIDTH - SLOT_SIZE - SLOT_MARGIN, info.y + info.height() + GAP ) );
+            add( new SkillButton( Dungeon.getHero().hiredMerc.skill ).setPos( WIDTH - 2 * ( SLOT_SIZE + SLOT_MARGIN ), info.getY() + info.height() + GAP ) );
+            add( new SkillButton( Dungeon.getHero().hiredMerc.skillb ).setPos( WIDTH - SLOT_SIZE - SLOT_MARGIN, info.getY() + info.height() + GAP ) );
         }
 
-        resize( WIDTH, (int) info.y + (int) info.height() + SLOT_SIZE + (int) GAP );
+        resize( WIDTH, (int) info.getY() + (int) info.height() + SLOT_SIZE + (int) GAP );
 
     }
 
@@ -216,7 +216,7 @@ public class WndMerc extends WndTabbed {
         @Override
         protected void select ( boolean value ) {
             super.select( value );
-            icon.am = selected ? 1.0f : 0.6f;
+            icon.setAm( selected ? 1.0f : 0.6f );
         }
 
         @Override
@@ -224,13 +224,13 @@ public class WndMerc extends WndTabbed {
             super.layout();
 
             icon.copy( icon() );
-            icon.x = getX() + ( getWidth() - icon.width ) / 2;
-            icon.y = getY() + ( getHeight() - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
-            if ( !selected && icon.y < getY() + CUT ) {
+            icon.setX( getX() + ( getWidth() - icon.getWidth() ) / 2 );
+            icon.setY( getY() + ( getHeight() - icon.getHeight() ) / 2 - 2 - ( selected ? 0 : 1 ) );
+            if ( !selected && icon.getY() < getY() + CUT ) {
                 RectF frame = icon.frame();
-                frame.top += ( getY() + CUT - icon.y ) / icon.getTexture().getHeight();
+                frame.top += ( getY() + CUT - icon.getY() ) / icon.getTexture().getHeight();
                 icon.frame( frame );
-                icon.y = getY() + CUT;
+                icon.setY( getY() + CUT );
             }
         }
 
@@ -287,8 +287,8 @@ public class WndMerc extends WndTabbed {
 
         @Override
         protected void layout () {
-            bg.x = getX();
-            bg.y = getY();
+            bg.setX( getX() );
+            bg.setY( getY() );
 
 
             super.layout();
@@ -436,14 +436,14 @@ public class WndMerc extends WndTabbed {
 
         @Override
         protected void layout () {
-            bg.x = getX();
-            bg.y = getY();
+            bg.setX( getX() );
+            bg.setY( getY() );
 
 
             if ( skill != null && skill.name != null && skill.level > 0 && skill.level <= Skill.MAX_LEVEL ) {
                 for ( int i = 0; i < Skill.MAX_LEVEL; i++ ) {
-                    durability[i].x = getX() + getWidth() - 9 + i * 3;
-                    durability[i].y = getY() + 3;
+                    durability[i].setX( getX() + getWidth() - 9 + i * 3 );
+                    durability[i].setY( getY() + 3 );
 
                 }
             }

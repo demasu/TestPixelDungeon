@@ -187,7 +187,7 @@ public class SewerLevel extends RegularLevel {
                 super.update();
 
                 if ( ( rippleDelay -= Game.getElapsed() ) <= 0 ) {
-                    GameScene.ripple( pos + WIDTH ).y -= DungeonTilemap.SIZE / 2;
+                    GameScene.ripple( pos + WIDTH ).setY( GameScene.ripple( pos + WIDTH ).getY() - DungeonTilemap.SIZE / 2 );
                     rippleDelay = Random.Float( 0.2f, 0.3f );
                 }
             }
@@ -199,8 +199,8 @@ public class SewerLevel extends RegularLevel {
         public WaterParticle () {
             super();
 
-            acc.y = 50;
-            am = 0.5f;
+            getAcc().y = 50;
+            setAm( 0.5f );
 
             color( ColorMath.random( 0xb6ccc2, 0x3b6653 ) );
             size( 2 );
@@ -209,10 +209,10 @@ public class SewerLevel extends RegularLevel {
         public void reset ( float x, float y ) {
             revive();
 
-            this.x = x;
-            this.y = y;
+            this.setX( x );
+            this.setY( y );
 
-            speed.set( Random.Float( -2, +2 ), 0 );
+            getSpeed().set( Random.Float( -2, +2 ), 0 );
 
             setLeft( 0.5f );
             setLifespan( 0.5f );

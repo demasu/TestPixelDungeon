@@ -44,7 +44,7 @@ public class EnergyParticle extends PixelParticle {
         setLifespan( 1f );
         color( 0xFFFFAA );
 
-        speed.polar( Random.Float( PointF.PI2 ), Random.Float( 24, 32 ) );
+        getSpeed().polar( Random.Float( PointF.PI2 ), Random.Float( 24, 32 ) );
     }
 
     public void reset ( float x, float y ) {
@@ -52,8 +52,8 @@ public class EnergyParticle extends PixelParticle {
 
         setLeft( getLifespan() );
 
-        this.x = x - speed.x * getLifespan();
-        this.y = y - speed.y * getLifespan();
+        this.setX( x - getSpeed().x * getLifespan() );
+        this.setY( y - getSpeed().y * getLifespan() );
     }
 
     @Override
@@ -61,7 +61,7 @@ public class EnergyParticle extends PixelParticle {
         super.update();
 
         float p = getLeft() / getLifespan();
-        am = p < 0.5f ? p * p * 4 : ( 1 - p ) * 2;
+        setAm( p < 0.5f ? p * p * 4 : ( 1 - p ) * 2 );
         size( Random.Float( 5 * getLeft() / getLifespan() ) );
     }
 }

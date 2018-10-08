@@ -84,8 +84,8 @@ public class WandmakerSprite extends MobSprite {
 
             super( 14, 0xBBAACC, 1f );
 
-            am = -1;
-            aa = +1;
+            setAm( -1 );
+            setAa( +1 );
 
             phase = 1;
         }
@@ -98,9 +98,9 @@ public class WandmakerSprite extends MobSprite {
                 if ( ( phase -= Game.getElapsed() ) <= 0 ) {
                     killAndErase();
                 } else {
-                    scale.set( ( 2 - phase ) * radius / RADIUS );
-                    am = phase * ( -1 );
-                    aa = phase * ( +1 );
+                    getScale().set( ( 2 - phase ) * radius / RADIUS );
+                    setAm( phase * ( -1 ) );
+                    setAa( phase * ( +1 ) );
                 }
             }
 

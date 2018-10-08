@@ -86,8 +86,8 @@ public class WndStorage extends WndTabbed {
         BitmapText txtTitle = PixelScene.createText( title != null ? title : Utils.capitalize( "Storage" ), 9 );
         txtTitle.hardlight( TITLE_COLOR );
         txtTitle.measure();
-        txtTitle.x = (int) ( slotsWidth - txtTitle.width() ) / 2;
-        txtTitle.y = (int) ( TITLE_HEIGHT - txtTitle.height() ) / 2;
+        txtTitle.setX( (int) ( slotsWidth - txtTitle.width() ) / 2 );
+        txtTitle.setY( (int) ( TITLE_HEIGHT - txtTitle.height() ) / 2 );
         add( txtTitle );
 
         placeItems( bag );
@@ -214,7 +214,7 @@ public class WndStorage extends WndTabbed {
         @Override
         protected void select ( boolean value ) {
             super.select( value );
-            icon.am = selected ? 1.0f : 0.6f;
+            icon.setAm( selected ? 1.0f : 0.6f );
         }
 
         @Override
@@ -222,13 +222,13 @@ public class WndStorage extends WndTabbed {
             super.layout();
 
             icon.copy( icon() );
-            icon.x = getX() + ( getWidth() - icon.width ) / 2;
-            icon.y = getY() + ( getHeight() - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
-            if ( !selected && icon.y < getY() + CUT ) {
+            icon.setX( getX() + ( getWidth() - icon.getWidth() ) / 2 );
+            icon.setY( getY() + ( getHeight() - icon.getHeight() ) / 2 - 2 - ( selected ? 0 : 1 ) );
+            if ( !selected && icon.getY() < getY() + CUT ) {
                 RectF frame = icon.frame();
-                frame.top += ( getY() + CUT - icon.y ) / icon.getTexture().getHeight();
+                frame.top += ( getY() + CUT - icon.getY() ) / icon.getTexture().getHeight();
                 icon.frame( frame );
-                icon.y = getY() + CUT;
+                icon.setY( getY() + CUT );
             }
         }
 
@@ -284,8 +284,8 @@ public class WndStorage extends WndTabbed {
 
         @Override
         protected void layout () {
-            bg.x = getX();
-            bg.y = getY();
+            bg.setX( getX() );
+            bg.setY( getY() );
 
             if ( noDegrade ) {
                 durability = null; // no durability
@@ -293,8 +293,8 @@ public class WndStorage extends WndTabbed {
 
             if ( durability != null ) {
                 for ( int i = 0; i < NBARS; i++ ) {
-                    durability[i].x = getX() + 1 + i * 3;
-                    durability[i].y = getY() + getHeight() - 3;
+                    durability[i].setX( getX() + 1 + i * 3 );
+                    durability[i].setY( getY() + getHeight() - 3 );
                 }
             }
 
@@ -309,11 +309,11 @@ public class WndStorage extends WndTabbed {
 
                 bg.texture( TextureCache.createSolid( item.isEquipped( Dungeon.getHero() ) ? EQUIPPED : NORMAL ) );
                 if ( item.cursed && item.cursedKnown ) {
-                    bg.ra = +0.2f;
-                    bg.ga = -0.1f;
+                    bg.setRa( +0.2f );
+                    bg.setGa( -0.1f );
                 } else if ( !item.isIdentified() ) {
-                    bg.ra = 0.1f;
-                    bg.ba = 0.1f;
+                    bg.setRa( 0.1f );
+                    bg.setBa( 0.1f );
                 }
 
 

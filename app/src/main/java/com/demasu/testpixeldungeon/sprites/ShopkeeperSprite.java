@@ -52,9 +52,9 @@ public class ShopkeeperSprite extends MobSprite {
                 coin = new PixelParticle();
                 getParent().add( coin );
             }
-            coin.reset( x + ( isFlipHorizontal() ? 0 : 13 ), y + 7, 0xFFFF00, 1, 0.5f );
-            coin.speed.y = -40;
-            coin.acc.y = +160;
+            coin.reset( getX() + ( isFlipHorizontal() ? 0 : 13 ), getY() + 7, 0xFFFF00, 1, 0.5f );
+            coin.getSpeed().y = -40;
+            coin.getAcc().y = +160;
         }
     }
 }

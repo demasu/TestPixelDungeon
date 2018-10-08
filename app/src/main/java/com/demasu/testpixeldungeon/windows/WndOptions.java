@@ -33,7 +33,8 @@ public class WndOptions extends Window {
 
         BitmapTextMultiline tfTitle = PixelScene.createMultiline( title, 9 );
         tfTitle.hardlight( TITLE_COLOR );
-        tfTitle.x = tfTitle.y = MARGIN;
+        tfTitle.setX( MARGIN );
+        tfTitle.setY( MARGIN );
         tfTitle.setMaxWidth( WIDTH - MARGIN * 2 );
         tfTitle.measure();
         add( tfTitle );
@@ -41,11 +42,11 @@ public class WndOptions extends Window {
         BitmapTextMultiline tfMesage = PixelScene.createMultiline( message, 8 );
         tfMesage.setMaxWidth( WIDTH - MARGIN * 2 );
         tfMesage.measure();
-        tfMesage.x = MARGIN;
-        tfMesage.y = tfTitle.y + tfTitle.height() + MARGIN;
+        tfMesage.setX( MARGIN );
+        tfMesage.setY( tfTitle.getY() + tfTitle.height() + MARGIN );
         add( tfMesage );
 
-        float pos = tfMesage.y + tfMesage.height() + MARGIN;
+        float pos = tfMesage.getY() + tfMesage.height() + MARGIN;
 
         for ( int i = 0; i < options.length; i++ ) {
             final int index = i;

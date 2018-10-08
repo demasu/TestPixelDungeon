@@ -79,14 +79,14 @@ public class WndTabbed extends Window {
                 width + chrome.marginHor(),
                 height + chrome.marginVer() );
 
-        getCamera().resize( (int) chrome.width, (int) ( chrome.marginTop() + height + tabHeight() ) );
+        getCamera().resize( (int) chrome.getWidth(), (int) ( chrome.marginTop() + height + tabHeight() ) );
         getCamera().setX( (int) ( Game.getWidth() - getCamera().screenWidth() ) / 2 );
         getCamera().setY( (int) ( Game.getHeight() - getCamera().screenHeight() ) / 2 );
 
         shadow.boxRect(
                 getCamera().getX() / getCamera().getZoom(),
                 getCamera().getY() / getCamera().getZoom(),
-                chrome.width(), chrome.height );
+                chrome.width(), chrome.getHeight() );
         // <- super.resize(...)
 
         for ( Tab tab : tabs ) {
@@ -122,8 +122,8 @@ public class WndTabbed extends Window {
             super.layout();
 
             if ( bg != null ) {
-                bg.x = getX();
-                bg.y = getY();
+                bg.setX( getX() );
+                bg.setY( getY() );
                 bg.size( getWidth(), getHeight() );
             }
         }
@@ -175,17 +175,17 @@ public class WndTabbed extends Window {
         protected void layout () {
             super.layout();
 
-            btLabel.x = PixelScene.align( getX() + ( getWidth() - btLabel.width() ) / 2 );
-            btLabel.y = PixelScene.align( getY() + ( getHeight() - btLabel.baseLine() ) / 2 ) - 1;
+            btLabel.setX( PixelScene.align( getX() + ( getWidth() - btLabel.width() ) / 2 ) );
+            btLabel.setY( PixelScene.align( getY() + ( getHeight() - btLabel.baseLine() ) / 2 ) - 1 );
             if ( !selected ) {
-                btLabel.y -= 2;
+                btLabel.setY( btLabel.getY() - 2 );
             }
         }
 
         @Override
         protected void select ( boolean value ) {
             super.select( value );
-            btLabel.am = selected ? 1.0f : 0.6f;
+            btLabel.setAm( selected ? 1.0f : 0.6f );
         }
     }
 

@@ -72,8 +72,8 @@ public class SkinnedBlock extends Image {
 
         float u0 = offsetX * tw;
         float v0 = offsetY * th;
-        float u1 = u0 + width * tw / scaleX;
-        float v1 = v0 + height * th / scaleY;
+        float u1 = u0 + getWidth() * tw / scaleX;
+        float v1 = v0 + getHeight() * th / scaleY;
 
         getVertices()[2] = u0;
         getVertices()[3] = v0;
@@ -107,8 +107,8 @@ public class SkinnedBlock extends Image {
     }
 
     public void size ( float w, float h ) {
-        this.width = w;
-        this.height = h;
+        this.setWidth( w );
+        this.setHeight( h );
         updateFrame();
         updateVertices();
     }

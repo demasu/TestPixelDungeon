@@ -30,7 +30,7 @@ public class ShadowBox extends NinePatch {
 
         getTexture().filter( SmartTexture.LINEAR, SmartTexture.LINEAR );
 
-        scale.set( SIZE, SIZE );
+        getScale().set( SIZE, SIZE );
     }
 
     @Override
@@ -39,8 +39,8 @@ public class ShadowBox extends NinePatch {
     }
 
     public void boxRect ( float x, float y, float width, float height ) {
-        this.x = x - SIZE;
-        this.y = y - SIZE;
+        this.setX( x - SIZE );
+        this.setY( y - SIZE );
         size( width + SIZE * 2, height + SIZE * 2 );
     }
 }

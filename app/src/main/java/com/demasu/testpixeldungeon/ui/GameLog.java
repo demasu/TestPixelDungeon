@@ -129,8 +129,8 @@ public class GameLog extends Component implements Signal.Listener<String> {
             BitmapTextMultiline entry = (BitmapTextMultiline) getMembers().get( i );
             entry.setMaxWidth( (int) getWidth() );
             entry.measure();
-            entry.x = getX();
-            entry.y = pos - entry.height();
+            entry.setX( getX() );
+            entry.setY( pos - entry.height() );
             pos -= entry.height();
         }
     }

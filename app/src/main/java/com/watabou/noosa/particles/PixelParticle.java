@@ -31,14 +31,14 @@ public class PixelParticle extends PseudoPixel {
         super();
 
         final float OFFSET = +0.5f;
-        origin.set( OFFSET );
+        getOrigin().set( OFFSET );
     }
 
     public void reset ( float x, float y, int color, float size, float lifespan ) {
         revive();
 
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
 
         color( color );
         this.setSize( size );

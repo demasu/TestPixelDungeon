@@ -73,8 +73,8 @@ public class Splash {
             PixelParticle p = (PixelParticle) emitter.recycle( PixelParticle.Shrinking.class );
 
             p.reset( x, y, color, 4, Random.Float( 0.5f, 1.0f ) );
-            p.speed.polar( Random.Float( dir - cone / 2, dir + cone / 2 ), Random.Float( 40, 80 ) );
-            p.acc.set( 0, +100 );
+            p.getSpeed().polar( Random.Float( dir - cone / 2, dir + cone / 2 ), Random.Float( 40, 80 ) );
+            p.getAcc().set( 0, +100 );
         }
     }
 }

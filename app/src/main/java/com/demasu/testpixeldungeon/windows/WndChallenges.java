@@ -47,8 +47,8 @@ public class WndChallenges extends Window {
         BitmapText title = PixelScene.createText( TITLE, 9 );
         title.hardlight( TITLE_COLOR );
         title.measure();
-        title.x = PixelScene.align( getCamera(), ( WIDTH - title.width() ) / 2 );
-        title.y = PixelScene.align( getCamera(), ( TTL_HEIGHT - title.height() ) / 2 );
+        title.setX( PixelScene.align( getCamera(), ( WIDTH - title.width() ) / 2 ) );
+        title.setY( PixelScene.align( getCamera(), ( TTL_HEIGHT - title.height() ) / 2 ) );
         add( title );
 
         boxes = new ArrayList<CheckBox>();

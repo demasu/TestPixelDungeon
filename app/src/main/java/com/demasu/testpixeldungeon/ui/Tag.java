@@ -52,8 +52,8 @@ public class Tag extends Button {
 
         super.layout();
 
-        bg.x = getX();
-        bg.y = getY();
+        bg.setX( getX() );
+        bg.setY( getY() );
         bg.size( getWidth(), getHeight() );
     }
 
@@ -67,10 +67,12 @@ public class Tag extends Button {
 
         if ( getVisible() && lightness > 0.5 ) {
             if ( ( lightness -= Game.getElapsed() ) > 0.5 ) {
-                bg.ra = bg.ga = bg.ba = 2 * lightness - 1;
-                bg.rm = 2 * r * ( 1 - lightness );
-                bg.gm = 2 * g * ( 1 - lightness );
-                bg.bm = 2 * b * ( 1 - lightness );
+                bg.setRa( 2 * lightness - 1 );
+                bg.setGa( 2 * lightness - 1 );
+                bg.setBa( 2 * lightness - 1 );
+                bg.setRm( 2 * r * ( 1 - lightness ) );
+                bg.setGm( 2 * g * ( 1 - lightness ) );
+                bg.setBm( 2 * b * ( 1 - lightness ) );
             } else {
                 bg.hardlight( r, g, b );
             }

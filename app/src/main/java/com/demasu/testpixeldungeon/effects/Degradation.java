@@ -136,10 +136,10 @@ public class Degradation extends Group {
             float dx = x1 - x0;
             float dy = y1 - y0;
 
-            x = x0;
-            y = y0;
-            speed.set( dx, dy );
-            acc.set( -dx / 4, -dy / 4 );
+            setX( x0 );
+            setY( y0 );
+            getSpeed().set( dx, dy );
+            getAcc().set( -dx / 4, -dy / 4 );
 
             setLeft( 2f );
             setLifespan( 2f );
@@ -149,9 +149,9 @@ public class Degradation extends Group {
         public void update () {
             super.update();
 
-            am = 1 - Math.abs( getLeft() / getLifespan() - 0.5f ) * 2;
-            am *= am;
-            size( am * SIZE );
+            setAm( 1 - Math.abs( getLeft() / getLifespan() - 0.5f ) * 2 );
+            setAm( getAm() * getAm() );
+            size( getAm() * SIZE );
         }
     }
 }

@@ -23,22 +23,22 @@ public class ColorBlock extends Image implements Resizable {
 
     public ColorBlock ( float width, float height, int color ) {
         super( TextureCache.createSolid( color ) );
-        scale.set( width, height );
-        origin.set( 0, 0 );
+        getScale().set( width, height );
+        getOrigin().set( 0, 0 );
     }
 
     @Override
     public void size ( float width, float height ) {
-        scale.set( width, height );
+        getScale().set( width, height );
     }
 
     @Override
     public float width () {
-        return scale.x;
+        return getScale().x;
     }
 
     @Override
     public float height () {
-        return scale.y;
+        return getScale().y;
     }
 }

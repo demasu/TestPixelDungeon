@@ -102,8 +102,8 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
         final int csize = DungeonTilemap.SIZE;
 
         return new PointF(
-                ( ( cell % Level.WIDTH ) + 0.5f ) * csize - width * 0.5f,
-                ( ( cell / Level.WIDTH ) + 1.0f ) * csize - height
+                ( ( cell % Level.WIDTH ) + 0.5f ) * csize - getWidth() * 0.5f,
+                ( ( cell / Level.WIDTH ) + 1.0f ) * csize - getHeight()
         );
     }
 
@@ -132,9 +132,9 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
                 text = Utils.format( text, args );
             }
             if ( ch != null ) {
-                FloatingText.show( x + width * 0.5f, y, ch.pos, text, color );
+                FloatingText.show( getX() + getWidth() * 0.5f, getY(), ch.pos, text, color );
             } else {
-                FloatingText.show( x + width * 0.5f, y, text, color );
+                FloatingText.show( getX() + getWidth() * 0.5f, getY(), text, color );
             }
         }
     }
@@ -232,7 +232,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 
     public Emitter bottomEmitter () {
         Emitter emitter = GameScene.emitter();
-        emitter.pos( x, y + height, width, 0 );
+        emitter.pos( getX(), getY() + getHeight(), getWidth(), 0 );
         return emitter;
     }
 
@@ -255,7 +255,9 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
     }
 
     public void flash () {
-        ra = ba = ga = 1f;
+        setRa( 1f );
+        setBa( 1f );
+        setGa( 1f );
         flashTime = FLASH_INTERVAL;
     }
 

@@ -118,8 +118,8 @@ public class BuffIndicator extends Component {
             if ( icon != NONE ) {
                 Image img = new Image( texture );
                 img.frame( film.get( icon ) );
-                img.x = getX() + getMembers().size() * ( SIZE + 2 );
-                img.y = getY();
+                img.setX( getX() + getMembers().size() * ( SIZE + 2 ) );
+                img.setY( getY() );
                 add( img );
 
                 newIcons.put( icon, img );
@@ -129,13 +129,13 @@ public class BuffIndicator extends Component {
         for ( Integer key : icons.keyArray() ) {
             if ( newIcons.get( key ) == null ) {
                 Image icon = icons.get( key );
-                icon.origin.set( SIZE / 2 );
+                icon.getOrigin().set( SIZE / 2 );
                 add( icon );
                 add( new AlphaTweener( icon, 0, 0.6f ) {
                     @Override
                     protected void updateValues ( float progress ) {
                         super.updateValues( progress );
-                        getImage().scale.set( 1 + 5 * progress );
+                        getImage().getScale().set( 1 + 5 * progress );
                     }
 
                 } );

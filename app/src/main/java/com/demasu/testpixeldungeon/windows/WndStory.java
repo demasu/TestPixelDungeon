@@ -81,13 +81,13 @@ public class WndStory extends Window {
         tf = PixelScene.createMultiline( text, 7 );
         tf.setMaxWidth( WIDTH - MARGIN * 2 );
         tf.measure();
-        tf.ra = bgR;
-        tf.ga = bgG;
-        tf.ba = bgB;
-        tf.rm = -bgR;
-        tf.gm = -bgG;
-        tf.bm = -bgB;
-        tf.x = MARGIN;
+        tf.setRa( bgR );
+        tf.setGa( bgG );
+        tf.setBa( bgB );
+        tf.setRm( -bgR );
+        tf.setGm( -bgG );
+        tf.setBm( -bgB );
+        tf.setX( MARGIN );
         add( tf );
 
         add( new TouchArea( chrome ) {

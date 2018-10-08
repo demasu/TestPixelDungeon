@@ -41,25 +41,25 @@ public class BlastParticle extends PixelParticle.Shrinking {
         super();
 
         color( 0xEE7722 );
-        acc.set( 0, +50 );
+        getAcc().set( 0, +50 );
     }
 
     public void reset ( float x, float y ) {
         revive();
 
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
 
         setLeft( Random.Float() );
         setLifespan( Random.Float() );
 
         setSize( 8 );
-        speed.polar( -Random.Float( 3.1415926f ), Random.Float( 32, 64 ) );
+        getSpeed().polar( -Random.Float( 3.1415926f ), Random.Float( 32, 64 ) );
     }
 
     @Override
     public void update () {
         super.update();
-        am = getLeft() > 0.8f ? ( 1 - getLeft() ) * 5 : 1;
+        setAm( getLeft() > 0.8f ? ( 1 - getLeft() ) * 5 : 1 );
     }
 }

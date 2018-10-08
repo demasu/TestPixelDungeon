@@ -181,15 +181,15 @@ public class BitmapTextMultiline extends BitmapText {
             writer.newLine( 0, getFont().getLineHeight() );
         }
 
-        width = writer.getWidth();
-        height = writer.getHeight();
+        setWidth( writer.getWidth() );
+        setHeight( writer.getHeight() );
 
         setnLines( writer.nLines() );
     }
 
     @Override
     public float baseLine () {
-        return ( height - getFont().getLineHeight() + getFont().getBaseLine() ) * scale.y;
+        return ( getHeight() - getFont().getLineHeight() + getFont().getBaseLine() ) * getScale().y;
     }
 
     public int getMaxWidth () {
@@ -231,7 +231,7 @@ public class BitmapTextMultiline extends BitmapText {
         private float y = 0;
 
         void addSymbol ( float w, float h ) {
-            if ( getLineWidth() > 0 && getLineWidth() + getFont().getTracking() + w > getMaxWidth() / scale.x ) {
+            if ( getLineWidth() > 0 && getLineWidth() + getFont().getTracking() + w > getMaxWidth() / getScale().x ) {
                 newLine( w, h );
             } else {
 
@@ -245,7 +245,7 @@ public class BitmapTextMultiline extends BitmapText {
         }
 
         void addSpace ( float w ) {
-            if ( getLineWidth() > 0 && getLineWidth() + getFont().getTracking() + w > getMaxWidth() / scale.x ) {
+            if ( getLineWidth() > 0 && getLineWidth() + getFont().getTracking() + w > getMaxWidth() / getScale().x ) {
                 newLine( 0, 0 );
             } else {
 
@@ -344,7 +344,7 @@ public class BitmapTextMultiline extends BitmapText {
 
         private void newLine ( String str, float width ) {
             BitmapText txt = new BitmapText( curLine.toString(), getFont() );
-            txt.scale.set( scale.x );
+            txt.getScale().set( getScale().x );
             lines.add( txt );
 
             curLine = new StringBuilder( str );
@@ -377,13 +377,13 @@ public class BitmapTextMultiline extends BitmapText {
 
                     getWordMetrics( word, metrics );
 
-                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + metrics.x > getMaxWidth() / scale.x ) {
+                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + metrics.x > getMaxWidth() / getScale().x ) {
                         newLine( word, metrics.x );
                     } else {
                         append( word, metrics.x );
                     }
 
-                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + spaceSize > getMaxWidth() / scale.x ) {
+                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + spaceSize > getMaxWidth() / getScale().x ) {
                         newLine( "", 0 );
                     } else {
                         append( " ", spaceSize );

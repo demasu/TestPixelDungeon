@@ -47,7 +47,7 @@ public class SkillSprite extends MovieClip {
     }
 
     public void originToCenter () {
-        origin.set( SIZE / 2 );
+        getOrigin().set( SIZE / 2 );
     }
 
 

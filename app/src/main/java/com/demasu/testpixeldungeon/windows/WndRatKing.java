@@ -70,12 +70,12 @@ public class WndRatKing extends WndTabbed {
             BitmapTextMultiline txtInfo = PixelScene.createMultiline( description, 6 );
             txtInfo.setMaxWidth( WIDTH );
             txtInfo.measure();
-            txtInfo.x = titlebar.left();
-            txtInfo.y = titlebar.bottom() + GAP;
+            txtInfo.setX( titlebar.left() );
+            txtInfo.setY( titlebar.bottom() + GAP );
             add( txtInfo );
 
-            if ( maxHeight < (int) txtInfo.y + (int) txtInfo.height() ) {
-                maxHeight = (int) txtInfo.y + (int) txtInfo.height();
+            if ( maxHeight < (int) txtInfo.getY() + (int) txtInfo.height() ) {
+                maxHeight = (int) txtInfo.getY() + (int) txtInfo.height();
             }
 
             resize( WIDTH, maxHeight );
@@ -379,7 +379,7 @@ public class WndRatKing extends WndTabbed {
         @Override
         protected void select ( boolean value ) {
             super.select( value );
-            icon.am = selected ? 1.0f : 0.6f;
+            icon.setAm( selected ? 1.0f : 0.6f );
         }
 
         @Override
@@ -387,13 +387,13 @@ public class WndRatKing extends WndTabbed {
             super.layout();
 
             icon.copy( icon );
-            icon.x = getX() + ( getWidth() - icon.width ) / 2;
-            icon.y = getY() + ( getHeight() - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
-            if ( !selected && icon.y < getY() + CUT ) {
+            icon.setX( getX() + ( getWidth() - icon.getWidth() ) / 2 );
+            icon.setY( getY() + ( getHeight() - icon.getHeight() ) / 2 - 2 - ( selected ? 0 : 1 ) );
+            if ( !selected && icon.getY() < getY() + CUT ) {
                 RectF frame = icon.frame();
-                frame.top += ( getY() - icon.y ) / icon.getTexture().getHeight();
+                frame.top += ( getY() - icon.getY() ) / icon.getTexture().getHeight();
                 icon.frame( frame );
-                icon.y = getY();
+                icon.setY( getY() );
             }
         }
     }
@@ -410,11 +410,11 @@ public class WndRatKing extends WndTabbed {
             BitmapTextMultiline txtInfo = PixelScene.createMultiline( description, 6 );
             txtInfo.setMaxWidth( WIDTH - GAP * 2 );
             txtInfo.measure();
-            txtInfo.x = titlebar.left();
-            txtInfo.y = titlebar.bottom() + GAP;
+            txtInfo.setX( titlebar.left() );
+            txtInfo.setY( titlebar.bottom() + GAP );
             add( txtInfo );
 
-            resize( 100, (int) txtInfo.y + (int) txtInfo.height() + (int) GAP );
+            resize( 100, (int) txtInfo.getY() + (int) txtInfo.height() + (int) GAP );
         }
     }
 }

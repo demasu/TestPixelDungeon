@@ -72,8 +72,8 @@ public class BadgesScene extends PixelScene {
         BitmapText title = PixelScene.createText( TXT_TITLE, 9 );
         title.hardlight( Window.TITLE_COLOR );
         title.measure();
-        title.x = align( ( w - title.width() ) / 2 );
-        title.y = align( ( top - title.baseLine() ) / 2 );
+        title.setX( align( ( w - title.width() ) / 2 ) );
+        title.setY( align( ( top - title.baseLine() ) / 2 ) );
         add( title );
 
         Badges.loadGlobal();
@@ -143,8 +143,8 @@ public class BadgesScene extends PixelScene {
         protected void layout () {
             super.layout();
 
-            icon.x = align( getX() + ( getWidth() - icon.width() ) / 2 );
-            icon.y = align( getY() + ( getHeight() - icon.height() ) / 2 );
+            icon.setX( align( getX() + ( getWidth() - icon.width() ) / 2 ) );
+            icon.setY( align( getY() + ( getHeight() - icon.height() ) / 2 ) );
         }
 
         @Override

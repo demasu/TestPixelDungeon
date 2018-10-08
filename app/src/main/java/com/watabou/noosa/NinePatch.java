@@ -60,8 +60,8 @@ public class NinePatch extends Visual {
         int w1 = w == 0 ? getTexture().getWidth() : w;
         int h1 = h == 0 ? getTexture().getHeight() : h;
 
-        width = w1;
-        height = h1;
+        setWidth( w1 );
+        setHeight( h1 );
 
         vertices = new float[16];
         verticesBuffer = Quad.createSet( 9 );
@@ -82,8 +82,8 @@ public class NinePatch extends Visual {
 
         verticesBuffer.position( 0 );
 
-        float right = width - marginRight;
-        float bottom = height - marginBottom;
+        float right = getWidth() - marginRight;
+        float bottom = getHeight() - marginBottom;
 
         Quad.fill( vertices,
                 0, marginLeft, 0, marginTop, outterF.left, innerF.left, outterF.top, innerF.top );
@@ -92,7 +92,7 @@ public class NinePatch extends Visual {
                 marginLeft, right, 0, marginTop, innerF.left, innerF.right, outterF.top, innerF.top );
         verticesBuffer.put( vertices );
         Quad.fill( vertices,
-                right, width, 0, marginTop, innerF.right, outterF.right, outterF.top, innerF.top );
+                right, getWidth(), 0, marginTop, innerF.right, outterF.right, outterF.top, innerF.top );
         verticesBuffer.put( vertices );
 
         Quad.fill( vertices,
@@ -102,17 +102,17 @@ public class NinePatch extends Visual {
                 marginLeft, right, marginTop, bottom, innerF.left, innerF.right, innerF.top, innerF.bottom );
         verticesBuffer.put( vertices );
         Quad.fill( vertices,
-                right, width, marginTop, bottom, innerF.right, outterF.right, innerF.top, innerF.bottom );
+                right, getWidth(), marginTop, bottom, innerF.right, outterF.right, innerF.top, innerF.bottom );
         verticesBuffer.put( vertices );
 
         Quad.fill( vertices,
-                0, marginLeft, bottom, height, outterF.left, innerF.left, innerF.bottom, outterF.bottom );
+                0, marginLeft, bottom, getHeight(), outterF.left, innerF.left, innerF.bottom, outterF.bottom );
         verticesBuffer.put( vertices );
         Quad.fill( vertices,
-                marginLeft, right, bottom, height, innerF.left, innerF.right, innerF.bottom, outterF.bottom );
+                marginLeft, right, bottom, getHeight(), innerF.left, innerF.right, innerF.bottom, outterF.bottom );
         verticesBuffer.put( vertices );
         Quad.fill( vertices,
-                right, width, bottom, height, innerF.right, outterF.right, innerF.bottom, outterF.bottom );
+                right, getWidth(), bottom, getHeight(), innerF.right, outterF.right, innerF.bottom, outterF.bottom );
         verticesBuffer.put( vertices );
     }
 
@@ -141,8 +141,8 @@ public class NinePatch extends Visual {
     }
 
     public void size ( float width, float height ) {
-        this.width = width;
-        this.height = height;
+        this.setWidth( width );
+        this.setHeight( height );
         updateVertices();
     }
 
@@ -158,10 +158,10 @@ public class NinePatch extends Visual {
 
         script.camera( camera() );
 
-        script.getuModel().valueM4( matrix );
+        script.getuModel().valueM4( getMatrix() );
         script.lighting(
-                rm, gm, bm, am,
-                ra, ga, ba, aa );
+                getRm(), getGm(), getBm(), getAm(),
+                getRa(), getGa(), getBa(), getAa() );
 
         script.drawQuadSet( verticesBuffer, 9 );
 

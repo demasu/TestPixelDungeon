@@ -104,8 +104,8 @@ public class InterlevelScene extends PixelScene {
 
         message = PixelScene.createText( text, 9 );
         message.measure();
-        message.x = ( Camera.getMain().getWidth() - message.width() ) / 2;
-        message.y = ( Camera.getMain().getHeight() - message.height() ) / 2;
+        message.setX( ( Camera.getMain().getWidth() - message.width() ) / 2 );
+        message.setY( ( Camera.getMain().getHeight() - message.height() ) / 2 );
         add( message );
 
         phase = Phase.FADE_IN;

@@ -25,8 +25,12 @@ public class HighlightedText extends Component {
 
     @Override
     protected void layout () {
-        normal.x = highlighted.x = getX();
-        normal.y = highlighted.y = getY();
+        float x = getX();
+        float y = getY();
+        normal.setX( x );
+        highlighted.setX( x );
+        normal.setY( y );
+        highlighted.setY( y );
     }
 
     public void text ( String value, int maxWidth ) {

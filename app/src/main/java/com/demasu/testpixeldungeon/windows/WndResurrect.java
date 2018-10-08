@@ -58,7 +58,7 @@ public class WndResurrect extends Window {
         BitmapTextMultiline message = PixelScene.createMultiline( TXT_MESSAGE, 6 );
         message.setMaxWidth( WIDTH );
         message.measure();
-        message.y = titlebar.bottom() + GAP;
+        message.setY( titlebar.bottom() + GAP );
         add( message );
 
         RedButton btnYes = new RedButton( TXT_YES ) {
@@ -72,7 +72,7 @@ public class WndResurrect extends Window {
                 Game.switchScene( InterlevelScene.class );
             }
         };
-        btnYes.setRect( 0, message.y + message.height() + GAP, WIDTH, BTN_HEIGHT );
+        btnYes.setRect( 0, message.getY() + message.height() + GAP, WIDTH, BTN_HEIGHT );
         add( btnYes );
 
         RedButton btnNo = new RedButton( TXT_NO ) {

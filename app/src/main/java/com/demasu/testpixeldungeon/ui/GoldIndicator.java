@@ -44,8 +44,8 @@ public class GoldIndicator extends Component {
 
     @Override
     protected void layout () {
-        tf.x = getX() + ( getWidth() - tf.width() ) / 2;
-        tf.y = bottom() - tf.height();
+        tf.setX( getX() + ( getWidth() - tf.width() ) / 2 );
+        tf.setY( bottom() - tf.height() );
     }
 
     @Override

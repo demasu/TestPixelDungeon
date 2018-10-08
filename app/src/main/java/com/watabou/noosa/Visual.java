@@ -23,34 +23,34 @@ import com.watabou.utils.PointF;
 
 public class Visual extends Gizmo {
 
-    public float x;
-    public float y;
-    public float width;
-    public float height;
+    private float x;
+    private float y;
+    private float width;
+    private float height;
 
-    public PointF scale;
-    public final PointF origin;
-    public float rm;
-    public float gm;
-    public float bm;
-    public float am;
-    public float ra;
-    public float ga;
-    public float ba;
-    public float aa;
-    public final PointF speed;
-    public final PointF acc;
-    public float angle;
-    public float angularSpeed;
-    protected final float[] matrix;
+    private PointF scale;
+    private final PointF origin;
+    private float rm;
+    private float gm;
+    private float bm;
+    private float am;
+    private float ra;
+    private float ga;
+    private float ba;
+    private float aa;
+    private final PointF speed;
+    private final PointF acc;
+    private float angle;
+    private float angularSpeed;
+    private final float[] matrix;
 
     public Visual ( float x, float y, float width, float height ) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.setX( x );
+        this.setY( y );
+        this.setWidth( width );
+        this.setHeight( height );
 
-        scale = new PointF( 1, 1 );
+        setScale( new PointF( 1, 1 ) );
         origin = new PointF();
 
         matrix = new float[16];
@@ -73,120 +73,120 @@ public class Visual extends Gizmo {
 
     @SuppressWarnings ( "FeatureEnvy" )
     protected void updateMatrix () {
-        Matrix.setIdentity( matrix );
-        Matrix.translate( matrix, x, y );
-        Matrix.translate( matrix, origin.x, origin.y );
-        if ( angle != 0 ) {
-            Matrix.rotate( matrix, angle );
+        Matrix.setIdentity( getMatrix() );
+        Matrix.translate( getMatrix(), getX(), getY() );
+        Matrix.translate( getMatrix(), getOrigin().x, getOrigin().y );
+        if ( getAngle() != 0 ) {
+            Matrix.rotate( getMatrix(), getAngle() );
         }
-        if ( scale.x != 1 || scale.y != 1 ) {
-            Matrix.scale( matrix, scale.x, scale.y );
+        if ( getScale().x != 1 || getScale().y != 1 ) {
+            Matrix.scale( getMatrix(), getScale().x, getScale().y );
         }
-        Matrix.translate( matrix, -origin.x, -origin.y );
+        Matrix.translate( getMatrix(), -getOrigin().x, -getOrigin().y );
     }
 
     public PointF point () {
-        return new PointF( x, y );
+        return new PointF( getX(), getY() );
     }
 
     public PointF point ( PointF p ) {
-        x = p.x;
-        y = p.y;
+        setX( p.x );
+        setY( p.y );
         return p;
     }
 
     public PointF center () {
-        return new PointF( x + width / 2, y + height / 2 );
+        return new PointF( getX() + getWidth() / 2, getY() + getHeight() / 2 );
     }
 
     public float width () {
-        return width * scale.x;
+        return getWidth() * getScale().x;
     }
 
     public float height () {
-        return height * scale.y;
+        return getHeight() * getScale().y;
     }
 
     private void updateMotion () {
 
         float elapsed = Game.getElapsed();
 
-        float d = ( GameMath.speed( speed.x, acc.x ) - speed.x ) / 2;
-        speed.x += d;
-        x += speed.x * elapsed;
-        speed.x += d;
+        float d = ( GameMath.speed( getSpeed().x, getAcc().x ) - getSpeed().x ) / 2;
+        getSpeed().x += d;
+        setX( getX() + getSpeed().x * elapsed );
+        getSpeed().x += d;
 
-        d = ( GameMath.speed( speed.y, acc.y ) - speed.y ) / 2;
-        speed.y += d;
-        y += speed.y * elapsed;
-        speed.y += d;
+        d = ( GameMath.speed( getSpeed().y, getAcc().y ) - getSpeed().y ) / 2;
+        getSpeed().y += d;
+        setY( getY() + getSpeed().y * elapsed );
+        getSpeed().y += d;
 
-        angle += angularSpeed * elapsed;
+        setAngle( getAngle() + getAngularSpeed() * elapsed );
     }
 
     public void alpha ( float value ) {
-        am = value;
-        aa = 0;
+        setAm( value );
+        setAa( 0 );
     }
 
     public float alpha () {
-        return am + aa;
+        return getAm() + getAa();
     }
 
     public void lightness ( float value ) {
         final float HALF  = 0.5f;
         final float TWICE = 2f;
         if ( value < HALF ) {
-            rm = value * TWICE;
-            gm = value * TWICE;
-            bm = value * TWICE;
-            ra = 0;
-            ga = 0;
-            ba = 0;
+            setRm( value * TWICE );
+            setGm( value * TWICE );
+            setBm( value * TWICE );
+            setRa( 0 );
+            setGa( 0 );
+            setBa( 0 );
         } else {
-            rm = TWICE - value * TWICE;
-            gm = TWICE - value * TWICE;
-            bm = TWICE - value * TWICE;
-            ra = value * TWICE - 1f;
-            ga = value * TWICE - 1f;
-            ba = value * TWICE - 1f;
+            setRm( TWICE - value * TWICE );
+            setGm( TWICE - value * TWICE );
+            setBm( TWICE - value * TWICE );
+            setRa( value * TWICE - 1f );
+            setGa( value * TWICE - 1f );
+            setBa( value * TWICE - 1f );
         }
     }
 
     public void brightness ( float value ) {
-        rm = value;
-        gm = value;
-        bm = value;
+        setRm( value );
+        setGm( value );
+        setBm( value );
     }
 
     public void tint ( float r, float g, float b, float strength ) {
-        rm = 1f - strength;
-        gm = 1f - strength;
-        bm = 1f - strength;
-        ra = r * strength;
-        ga = g * strength;
-        ba = b * strength;
+        setRm( 1f - strength );
+        setGm( 1f - strength );
+        setBm( 1f - strength );
+        setRa( r * strength );
+        setGa( g * strength );
+        setBa( b * strength );
     }
 
     public void tint ( int color, float strength ) {
-        rm = 1f - strength;
-        gm = 1f - strength;
-        bm = 1f - strength;
+        setRm( 1f - strength );
+        setGm( 1f - strength );
+        setBm( 1f - strength );
         final int BITSHIFT  = 16;
         final int BIT_MASK  = 0xFF;
         final float STR_MOD = 255f;
-        ra = ( ( color >> BITSHIFT ) & BIT_MASK ) / STR_MOD * strength;
-        ga = ( ( color >> 8 ) & BIT_MASK ) / STR_MOD * strength;
-        ba = ( color & BIT_MASK ) / STR_MOD * strength;
+        setRa( ( ( color >> BITSHIFT ) & BIT_MASK ) / STR_MOD * strength );
+        setGa( ( ( color >> 8 ) & BIT_MASK ) / STR_MOD * strength );
+        setBa( ( color & BIT_MASK ) / STR_MOD * strength );
     }
 
     private void color ( float r, float g, float b ) {
-        rm = 0;
-        gm = 0;
-        bm = 0;
-        ra = r;
-        ga = g;
-        ba = b;
+        setRm( 0 );
+        setGm( 0 );
+        setBm( 0 );
+        setRa( r );
+        setGa( g );
+        setBa( b );
     }
 
     public void color ( int color ) {
@@ -197,12 +197,12 @@ public class Visual extends Gizmo {
     }
 
     public void hardlight ( float r, float g, float b ) {
-        ra = 0;
-        ga = 0;
-        ba = 0;
-        rm = r;
-        gm = g;
-        bm = b;
+        setRa( 0 );
+        setGa( 0 );
+        setBa( 0 );
+        setRm( r );
+        setGm( g );
+        setBm( b );
     }
 
     public void hardlight ( int color ) {
@@ -213,18 +213,18 @@ public class Visual extends Gizmo {
     }
 
     public void resetColor () {
-        rm = 1;
-        gm = 1;
-        bm = 1;
-        am = 1;
-        ra = 0;
-        ga = 0;
-        ba = 0;
-        aa = 0;
+        setRm( 1 );
+        setGm( 1 );
+        setBm( 1 );
+        setAm( 1 );
+        setRa( 0 );
+        setGa( 0 );
+        setBa( 0 );
+        setAa( 0 );
     }
 
     public boolean overlapsPoint ( float x, float y ) {
-        return x >= this.x && x < this.x + width * scale.x && y >= this.y && y < this.y + height * scale.y;
+        return x >= this.getX() && x < this.getX() + getWidth() * getScale().x && y >= this.getY() && y < this.getY() + getHeight() * getScale().y;
     }
 
     public boolean overlapsScreenPoint ( int x, int y ) {
@@ -245,6 +245,143 @@ public class Visual extends Gizmo {
         float cy = c.getScroll().y;
         float w = width();
         float h = height();
-        return x + w >= cx && y + h >= cy && x < cx + c.getWidth() && y < cy + c.getHeight();
+        return getX() + w >= cx && getY() + h >= cy && getX() < cx + c.getWidth() && getY() < cy + c.getHeight();
+    }
+
+    public float getX () {
+        return x;
+    }
+
+    public void setX ( float x ) {
+        this.x = x;
+    }
+
+    public float getY () {
+        return y;
+    }
+
+    public void setY ( float y ) {
+        this.y = y;
+    }
+
+    public float getWidth () {
+        return width;
+    }
+
+    public void setWidth ( float width ) {
+        this.width = width;
+    }
+
+    public float getHeight () {
+        return height;
+    }
+
+    public void setHeight ( float height ) {
+        this.height = height;
+    }
+
+    public PointF getScale () {
+        return scale;
+    }
+
+    public void setScale ( PointF scale ) {
+        this.scale = scale;
+    }
+
+    public PointF getOrigin () {
+        return origin;
+    }
+
+    public float getRm () {
+        return rm;
+    }
+
+    public void setRm ( float rm ) {
+        this.rm = rm;
+    }
+
+    public float getGm () {
+        return gm;
+    }
+
+    public void setGm ( float gm ) {
+        this.gm = gm;
+    }
+
+    public float getBm () {
+        return bm;
+    }
+
+    public void setBm ( float bm ) {
+        this.bm = bm;
+    }
+
+    public float getAm () {
+        return am;
+    }
+
+    public void setAm ( float am ) {
+        this.am = am;
+    }
+
+    public float getRa () {
+        return ra;
+    }
+
+    public void setRa ( float ra ) {
+        this.ra = ra;
+    }
+
+    public float getGa () {
+        return ga;
+    }
+
+    public void setGa ( float ga ) {
+        this.ga = ga;
+    }
+
+    public float getBa () {
+        return ba;
+    }
+
+    public void setBa ( float ba ) {
+        this.ba = ba;
+    }
+
+    public float getAa () {
+        return aa;
+    }
+
+    public void setAa ( float aa ) {
+        this.aa = aa;
+    }
+
+    public PointF getSpeed () {
+        return speed;
+    }
+
+    public PointF getAcc () {
+        return acc;
+    }
+
+    public float getAngle () {
+        return angle;
+    }
+
+    public void setAngle ( float angle ) {
+        this.angle = angle;
+    }
+
+    public float getAngularSpeed () {
+        return angularSpeed;
+    }
+
+    public void setAngularSpeed ( float angularSpeed ) {
+        this.angularSpeed = angularSpeed;
+    }
+
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
+    public float[] getMatrix () {
+        return matrix;
     }
 }

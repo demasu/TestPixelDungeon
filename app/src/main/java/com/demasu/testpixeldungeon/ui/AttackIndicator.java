@@ -69,8 +69,8 @@ public class AttackIndicator extends Tag {
         super.layout();
 
         if ( sprite != null ) {
-            sprite.x = getX() + ( getWidth() - sprite.width() ) / 2;
-            sprite.y = getY() + ( getHeight() - sprite.height() ) / 2;
+            sprite.setX( getX() + ( getWidth() - sprite.width() ) / 2 );
+            sprite.setY( getY() + ( getHeight() - sprite.height() ) / 2 );
             PixelScene.align( sprite );
         }
     }
@@ -134,8 +134,8 @@ public class AttackIndicator extends Tag {
             sprite.setPaused( true );
             add( sprite );
 
-            sprite.x = getX() + ( getWidth() - sprite.width() ) / 2 + 1;
-            sprite.y = getY() + ( getHeight() - sprite.height() ) / 2;
+            sprite.setX( getX() + ( getWidth() - sprite.width() ) / 2 + 1 );
+            sprite.setY( getY() + ( getHeight() - sprite.height() ) / 2 );
             PixelScene.align( sprite );
 
         } catch ( Exception e ) {

@@ -94,9 +94,9 @@ public class WndMercs extends WndTabbed {
             info.text( TXT_MERCENARIES_DETAIL );
             info.setMaxWidth( width );
             info.measure();
-            info.y = pos;
+            info.setY( pos );
 
-            pos = (int) info.y + (int) info.height() + GAP * 2;
+            pos = (int) info.getY() + (int) info.height() + GAP * 2;
 
             if ( maxHeight < pos ) {
                 maxHeight = (int) pos;
@@ -120,18 +120,18 @@ public class WndMercs extends WndTabbed {
             info.text( getMercDetails( mode ) );
             info.setMaxWidth( width );
             info.measure();
-            info.y = pos;
+            info.setY( pos );
 
-            pos = (int) info.y + (int) info.height() + GAP * 2;
+            pos = (int) info.getY() + (int) info.height() + GAP * 2;
 
             BitmapText stats = PixelScene.createText( Utils.capitalize( getName( mode ) + " Stats" ), 9 );
             stats.hardlight( TITLE_COLOR );
             stats.measure();
             add( stats );
 
-            stats.y = pos;
+            stats.setY( pos );
 
-            pos = stats.y + stats.height() + GAP;
+            pos = stats.getY() + stats.height() + GAP;
 
             BitmapTextMultiline infoStats = PixelScene.createMultiline( 6 );
             add( infoStats );
@@ -139,26 +139,26 @@ public class WndMercs extends WndTabbed {
             infoStats.text( getMercStats( mode ) );
             infoStats.setMaxWidth( width );
             infoStats.measure();
-            infoStats.y = pos;
+            infoStats.setY( pos );
 
-            pos = infoStats.y + infoStats.height() + 2 * GAP;
+            pos = infoStats.getY() + infoStats.height() + 2 * GAP;
 
             BitmapText equipment = PixelScene.createText( Utils.capitalize( "Standard Layout" ), 9 );
             equipment.hardlight( TITLE_COLOR );
             equipment.measure();
             add( equipment );
 
-            equipment.y = pos;
+            equipment.setY( pos );
 
-            pos = equipment.y + equipment.height() + GAP;
+            pos = equipment.getY() + equipment.height() + GAP;
 
 
             if ( mode == Mode.BRUTE ) {
                 final Image imageWeapon = new ItemSprite( new Mace() );
                 add( imageWeapon );
 
-                imageWeapon.x = 0;
-                imageWeapon.y = pos;
+                imageWeapon.setX( 0 );
+                imageWeapon.setY( pos );
 
                 TouchArea hotArea_imageWeapon = new TouchArea( imageWeapon ) {
                     @Override
@@ -174,8 +174,8 @@ public class WndMercs extends WndTabbed {
                 final Image imageArmor = new ItemSprite( new LeatherArmor() );
                 add( imageArmor );
 
-                imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
-                imageArmor.y = pos;
+                imageArmor.setX( imageWeapon.getX() + imageWeapon.width() + GAP );
+                imageArmor.setY( pos );
 
                 TouchArea hotArea_imageArmo = new TouchArea( imageArmor ) {
                     @Override
@@ -190,8 +190,8 @@ public class WndMercs extends WndTabbed {
                 final Image image = new ItemSprite( new ChargrilledMeat() );
                 add( image );
 
-                image.x = imageArmor.x + imageArmor.width() + GAP;
-                image.y = pos + 2;
+                image.setX( imageArmor.getX() + imageArmor.width() + GAP );
+                image.setY( pos + 2 );
 
                 TouchArea hotArea_image = new TouchArea( image ) {
                     @Override
@@ -206,8 +206,8 @@ public class WndMercs extends WndTabbed {
                 final Image imageSkill = new SkillSprite( 3 );
                 add( imageSkill );
 
-                imageSkill.x = image.x + image.width() + GAP;
-                imageSkill.y = pos;
+                imageSkill.setX( image.getX() + image.width() + GAP );
+                imageSkill.setY( pos );
 
                 TouchArea hotArea_imageSkill = new TouchArea( imageSkill ) {
                     @Override
@@ -219,13 +219,13 @@ public class WndMercs extends WndTabbed {
                 };
                 add( hotArea_imageSkill );
 
-                pos = image.y + image.height() + GAP * 3;
+                pos = image.getY() + image.height() + GAP * 3;
             } else if ( mode == Mode.WIZARD ) {
                 final Image imageWeapon = new ItemSprite( new Knuckles() );
                 add( imageWeapon );
 
-                imageWeapon.x = 0;
-                imageWeapon.y = pos + 2;
+                imageWeapon.setX( 0 );
+                imageWeapon.setY( pos + 2 );
 
                 TouchArea hotArea_imageWeapon = new TouchArea( imageWeapon ) {
                     @Override
@@ -241,8 +241,8 @@ public class WndMercs extends WndTabbed {
                 final Image imageArmor = new ItemSprite( new ClothArmor() );
                 add( imageArmor );
 
-                imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
-                imageArmor.y = pos + 2;
+                imageArmor.setX( imageWeapon.getX() + imageWeapon.width() + GAP );
+                imageArmor.setY( pos + 2 );
 
                 TouchArea hotArea_imageArmo = new TouchArea( imageArmor ) {
                     @Override
@@ -257,8 +257,8 @@ public class WndMercs extends WndTabbed {
                 final Image image = new ItemSprite( new PotionOfHealing() );
                 add( image );
 
-                image.x = imageArmor.x + imageArmor.width() + GAP;
-                image.y = pos + 2;
+                image.setX( imageArmor.getX() + imageArmor.width() + GAP );
+                image.setY( pos + 2 );
 
                 TouchArea hotArea_image = new TouchArea( image ) {
                     @Override
@@ -273,8 +273,8 @@ public class WndMercs extends WndTabbed {
                 final Image imageSkill = new SkillSprite( 41 );
                 add( imageSkill );
 
-                imageSkill.x = image.x + image.width() + GAP;
-                imageSkill.y = pos;
+                imageSkill.setX( image.getX() + image.width() + GAP );
+                imageSkill.setY( pos );
 
                 TouchArea hotArea_imageSkill = new TouchArea( imageSkill ) {
                     @Override
@@ -286,13 +286,13 @@ public class WndMercs extends WndTabbed {
                 };
                 add( hotArea_imageSkill );
 
-                pos = image.y + image.height() + GAP * 3;
+                pos = image.getY() + image.height() + GAP * 3;
             } else if ( mode == Mode.THIEF ) {
                 final Image imageWeapon = new ItemSprite( new Dagger() );
                 add( imageWeapon );
 
-                imageWeapon.x = 0;
-                imageWeapon.y = pos + 1;
+                imageWeapon.setX( 0 );
+                imageWeapon.setY( pos + 1 );
 
                 TouchArea hotArea_imageWeapon = new TouchArea( imageWeapon ) {
                     @Override
@@ -308,8 +308,8 @@ public class WndMercs extends WndTabbed {
                 final Image imageArmor = new ItemSprite( new ClothArmor() );
                 add( imageArmor );
 
-                imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
-                imageArmor.y = pos + 2;
+                imageArmor.setX( imageWeapon.getX() + imageWeapon.width() + GAP );
+                imageArmor.setY( pos + 2 );
 
                 TouchArea hotArea_imageArmo = new TouchArea( imageArmor ) {
                     @Override
@@ -324,8 +324,8 @@ public class WndMercs extends WndTabbed {
                 final Image image = new ItemSprite( new PotionOfHealing() );
                 add( image );
 
-                image.x = imageArmor.x + imageArmor.width() + GAP;
-                image.y = pos + 2;
+                image.setX( imageArmor.getX() + imageArmor.width() + GAP );
+                image.setY( pos + 2 );
 
                 TouchArea hotArea_image = new TouchArea( image ) {
                     @Override
@@ -340,8 +340,8 @@ public class WndMercs extends WndTabbed {
                 final Image imageSkill = new SkillSprite( 57 );
                 add( imageSkill );
 
-                imageSkill.x = image.x + image.width() + GAP;
-                imageSkill.y = pos;
+                imageSkill.setX( image.getX() + image.width() + GAP );
+                imageSkill.setY( pos );
 
                 TouchArea hotArea_imageSkill = new TouchArea( imageSkill ) {
                     @Override
@@ -353,13 +353,13 @@ public class WndMercs extends WndTabbed {
                 };
                 add( hotArea_imageSkill );
 
-                pos = image.y + image.height() + GAP * 3;
+                pos = image.getY() + image.height() + GAP * 3;
             } else if ( mode == Mode.ARCHER ) {
                 final Image imageWeapon = new ItemSprite( new Bow() );
                 add( imageWeapon );
 
-                imageWeapon.x = 0;
-                imageWeapon.y = pos + 1;
+                imageWeapon.setX( 0 );
+                imageWeapon.setY( pos + 1 );
 
                 TouchArea hotArea_imageWeapon = new TouchArea( imageWeapon ) {
                     @Override
@@ -375,8 +375,8 @@ public class WndMercs extends WndTabbed {
                 final Image imageArmor = new ItemSprite( new ClothArmor() );
                 add( imageArmor );
 
-                imageArmor.x = imageWeapon.x + imageWeapon.width() + GAP;
-                imageArmor.y = pos + 2;
+                imageArmor.setX( imageWeapon.getX() + imageWeapon.width() + GAP );
+                imageArmor.setY( pos + 2 );
 
                 TouchArea hotArea_imageArmo = new TouchArea( imageArmor ) {
                     @Override
@@ -391,8 +391,8 @@ public class WndMercs extends WndTabbed {
                 final Image image = new ItemSprite( new PotionOfHealing() );
                 add( image );
 
-                image.x = imageArmor.x + imageArmor.width() + GAP;
-                image.y = pos + 2;
+                image.setX( imageArmor.getX() + imageArmor.width() + GAP );
+                image.setY( pos + 2 );
 
                 TouchArea hotArea_image = new TouchArea( image ) {
                     @Override
@@ -407,8 +407,8 @@ public class WndMercs extends WndTabbed {
                 final Image imageSkill = new SkillSprite( 82 );
                 add( imageSkill );
 
-                imageSkill.x = image.x + image.width();
-                imageSkill.y = pos + 1;
+                imageSkill.setX( image.getX() + image.width() );
+                imageSkill.setY( pos + 1 );
 
                 TouchArea hotArea_imageSkill = new TouchArea( imageSkill ) {
                     @Override
@@ -420,13 +420,13 @@ public class WndMercs extends WndTabbed {
                 };
                 add( hotArea_imageSkill );
 
-                pos = image.y + image.height() + GAP * 3;
+                pos = image.getY() + image.height() + GAP * 3;
             } else if ( mode == Mode.ARCHERMAIDEN ) {
                 final Image imageWeapon = new ItemSprite( new FrostBow() );
                 add( imageWeapon );
 
-                imageWeapon.x = 0;
-                imageWeapon.y = pos + 1;
+                imageWeapon.setX( 0 );
+                imageWeapon.setY( pos + 1 );
 
                 TouchArea hotArea_imageWeapon = new TouchArea( imageWeapon ) {
                     @Override
@@ -442,8 +442,8 @@ public class WndMercs extends WndTabbed {
                 final Image image = new ItemSprite( new PotionOfHealing() );
                 add( image );
 
-                image.x = imageWeapon.x + imageWeapon.width() + GAP;
-                image.y = pos + 2;
+                image.setX( imageWeapon.getX() + imageWeapon.width() + GAP );
+                image.setY( pos + 2 );
 
                 TouchArea hotArea_image = new TouchArea( image ) {
                     @Override
@@ -458,8 +458,8 @@ public class WndMercs extends WndTabbed {
                 final Image imageSkill = new SkillSprite( 82 );
                 add( imageSkill );
 
-                imageSkill.x = image.x + image.width();
-                imageSkill.y = pos + 1;
+                imageSkill.setX( image.getX() + image.width() );
+                imageSkill.setY( pos + 1 );
 
                 TouchArea hotArea_imageSkill = new TouchArea( imageSkill ) {
                     @Override
@@ -474,8 +474,8 @@ public class WndMercs extends WndTabbed {
                 final Image imageSkillB = new SkillSprite( 106 );
                 add( imageSkillB );
 
-                imageSkillB.x = imageSkill.x + imageSkill.width() + GAP;
-                imageSkillB.y = pos + 1;
+                imageSkillB.setX( imageSkill.getX() + imageSkill.width() + GAP );
+                imageSkillB.setY( pos + 1 );
 
                 TouchArea hotArea_imageSkillB = new TouchArea( imageSkillB ) {
                     @Override
@@ -487,7 +487,7 @@ public class WndMercs extends WndTabbed {
                 };
                 add( hotArea_imageSkillB );
 
-                pos = image.y + image.height() + GAP * 3;
+                pos = image.getY() + image.height() + GAP * 3;
             }
 
             if ( mode != Mode.ARCHERMAIDEN || HiredMerc.archerMaidenUnlocked ) {
@@ -768,14 +768,14 @@ public class WndMercs extends WndTabbed {
         @Override
         protected void layout () {
 
-            image.x = 0;
-            image.y = Math.max( 0, title.height() + GAP - image.height );
+            image.setX( 0 );
+            image.setY( Math.max( 0, title.height() + GAP - image.getHeight() ) );
 
-            title.x = image.width + GAP;
-            title.y = image.height - GAP - title.baseLine();
+            title.setX( image.getWidth() + GAP );
+            title.setY( image.getHeight() - GAP - title.baseLine() );
 
 
-            setHeight( image.y + image.height() );
+            setHeight( image.getY() + image.height() );
         }
     }
 
@@ -817,7 +817,7 @@ public class WndMercs extends WndTabbed {
         @Override
         protected void select ( boolean value ) {
             super.select( value );
-            icon.am = selected ? 1.0f : 0.6f;
+            icon.setAm( selected ? 1.0f : 0.6f );
         }
 
         @Override
@@ -825,13 +825,13 @@ public class WndMercs extends WndTabbed {
             super.layout();
 
             icon.copy( icon );
-            icon.x = getX() + ( getWidth() - icon.width ) / 2;
-            icon.y = getY() + ( getHeight() - icon.height ) / 2 - 2 - ( selected ? 0 : 1 );
-            if ( !selected && icon.y < getY() + CUT ) {
+            icon.setX( getX() + ( getWidth() - icon.getWidth() ) / 2 );
+            icon.setY( getY() + ( getHeight() - icon.getHeight() ) / 2 - 2 - ( selected ? 0 : 1 ) );
+            if ( !selected && icon.getY() < getY() + CUT ) {
                 RectF frame = icon.frame();
-                frame.top += ( getY() - icon.y ) / icon.getTexture().getHeight();
+                frame.top += ( getY() - icon.getY() ) / icon.getTexture().getHeight();
                 icon.frame( frame );
-                icon.y = getY();
+                icon.setY( getY() );
             }
         }
     }
@@ -848,11 +848,11 @@ public class WndMercs extends WndTabbed {
             BitmapTextMultiline txtInfo = PixelScene.createMultiline( description, 6 );
             txtInfo.setMaxWidth( 100 );
             txtInfo.measure();
-            txtInfo.x = titlebar.left();
-            txtInfo.y = titlebar.bottom() + GAP;
+            txtInfo.setX( titlebar.left() );
+            txtInfo.setY( titlebar.bottom() + GAP );
             add( txtInfo );
 
-            resize( 100, (int) txtInfo.y + (int) txtInfo.height() + (int) GAP );
+            resize( 100, (int) txtInfo.getY() + (int) txtInfo.height() + (int) GAP );
         }
     }
 

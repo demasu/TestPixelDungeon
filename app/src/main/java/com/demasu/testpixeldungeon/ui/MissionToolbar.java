@@ -341,8 +341,8 @@ public class MissionToolbar extends Component {
         protected void layout () {
             super.layout();
 
-            base.x = getX();
-            base.y = getY();
+            base.setX( getX() );
+            base.setY( getY() );
         }
 
         @Override
@@ -433,8 +433,8 @@ public class MissionToolbar extends Component {
             this.dstY = dstY - ItemSprite.SIZE / 2;
             left = DURATION;
 
-            x = this.dstX - DISTANCE;
-            y = this.dstY - DISTANCE;
+            setX( this.dstX - DISTANCE );
+            setY( this.dstY - DISTANCE );
             alpha( 1 );
         }
 
@@ -449,10 +449,10 @@ public class MissionToolbar extends Component {
 
             } else {
                 float p = left / DURATION;
-                scale.set( (float) Math.sqrt( p ) );
+                getScale().set( (float) Math.sqrt( p ) );
                 float offset = DISTANCE * p;
-                x = dstX - offset;
-                y = dstY - offset;
+                setX( dstX - offset );
+                setY( dstY - offset );
             }
         }
     }

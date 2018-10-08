@@ -68,8 +68,8 @@ public class Pushing extends Actor {
             point( sprite.worldToCamera( from ) );
             end = sprite.worldToCamera( to );
 
-            speed.set( 2 * ( end.x - x ) / DELAY, 2 * ( end.y - y ) / DELAY );
-            acc.set( -speed.x / DELAY, -speed.y / DELAY );
+            getSpeed().set( 2 * ( end.x - getX() ) / DELAY, 2 * ( end.y - getY() ) / DELAY );
+            getAcc().set( -getSpeed().x / DELAY, -getSpeed().y / DELAY );
 
             delay = 0;
 
@@ -82,8 +82,8 @@ public class Pushing extends Actor {
 
             if ( ( delay += Game.getElapsed() ) < DELAY ) {
 
-                sprite.x = x;
-                sprite.y = y;
+                sprite.setX( getX() );
+                sprite.setY( getY() );
 
             } else {
 

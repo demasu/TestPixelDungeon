@@ -73,7 +73,7 @@ public class Speck extends Image {
             film = new TextureFilm( getTexture(), SIZE, SIZE );
         }
 
-        origin.set( SIZE / 2f );
+        getOrigin().set( SIZE / 2f );
     }
 
     public static Emitter.Factory factory ( final int type ) {
@@ -131,73 +131,73 @@ public class Speck extends Image {
                 frame( film.get( type ) );
         }
 
-        this.x = x - origin.x;
-        this.y = y - origin.y;
+        this.setX( x - getOrigin().x );
+        this.setY( y - getOrigin().y );
 
         resetColor();
-        scale.set( 1 );
-        speed.set( 0 );
-        acc.set( 0 );
-        angle = 0;
-        angularSpeed = 0;
+        getScale().set( 1 );
+        getSpeed().set( 0 );
+        getAcc().set( 0 );
+        setAngle( 0 );
+        setAngularSpeed( 0 );
 
         switch ( type ) {
 
             case HEALING:
-                speed.set( 0, -20 );
+                getSpeed().set( 0, -20 );
                 lifespan = 1f;
                 break;
 
             case STAR:
-                speed.polar( Random.Float( 2 * 3.1415926f ), Random.Float( 128 ) );
-                acc.set( 0, 128 );
-                angle = Random.Float( 360 );
-                angularSpeed = Random.Float( -360, +360 );
+                getSpeed().polar( Random.Float( 2 * 3.1415926f ), Random.Float( 128 ) );
+                getAcc().set( 0, 128 );
+                setAngle( Random.Float( 360 ) );
+                setAngularSpeed( Random.Float( -360, +360 ) );
                 lifespan = 1f;
                 break;
 
             case FORGE:
-                speed.polar( -Random.Float( 3.1415926f ), Random.Float( 64 ) );
-                acc.set( 0, 128 );
-                angle = Random.Float( 360 );
-                angularSpeed = Random.Float( -360, +360 );
+                getSpeed().polar( -Random.Float( 3.1415926f ), Random.Float( 64 ) );
+                getAcc().set( 0, 128 );
+                setAngle( Random.Float( 360 ) );
+                setAngularSpeed( Random.Float( -360, +360 ) );
                 lifespan = 0.51f;
                 break;
 
             case EVOKE:
-                speed.polar( -Random.Float( 3.1415926f ), 50 );
-                acc.set( 0, 50 );
-                angle = Random.Float( 360 );
-                angularSpeed = Random.Float( -180, +180 );
+                getSpeed().polar( -Random.Float( 3.1415926f ), 50 );
+                getAcc().set( 0, 50 );
+                setAngle( Random.Float( 360 ) );
+                setAngularSpeed( Random.Float( -180, +180 ) );
                 lifespan = 1f;
                 break;
 
             case KIT:
-                speed.polar( index * 3.1415926f / 5, 50 );
-                acc.set( -speed.x, -speed.y );
-                angle = index * 36;
-                angularSpeed = 360;
+                getSpeed().polar( index * 3.1415926f / 5, 50 );
+                getAcc().set( -getSpeed().x, -getSpeed().y );
+                setAngle( index * 36 );
+                setAngularSpeed( 360 );
                 lifespan = 1f;
                 break;
 
             case MASTERY:
-                speed.set( Random.Int( 2 ) == 0 ? Random.Float( -128, -64 ) : Random.Float( +64, +128 ), 0 );
-                angularSpeed = speed.x < 0 ? -180 : +180;
-                acc.set( -speed.x, 0 );
+                getSpeed().set( Random.Int( 2 ) == 0 ? Random.Float( -128, -64 ) : Random.Float( +64, +128 ), 0 );
+                setAngularSpeed( getSpeed().x < 0 ? -180 : +180 );
+                getAcc().set( -getSpeed().x, 0 );
                 lifespan = 0.5f;
                 break;
 
             case LIGHT:
-                angle = Random.Float( 360 );
-                angularSpeed = 90;
+                setAngle( Random.Float( 360 ) );
+                setAngularSpeed( 90 );
                 lifespan = 1f;
                 break;
 
             case DISCOVER:
-                angle = Random.Float( 360 );
-                angularSpeed = 90;
+                setAngle( Random.Float( 360 ) );
+                setAngularSpeed( 90 );
                 lifespan = 0.5f;
-                am = 0;
+                setAm( 0 );
                 break;
 
             case QUESTION:
@@ -205,7 +205,7 @@ public class Speck extends Image {
                 break;
 
             case UP:
-                speed.set( 0, -20 );
+                getSpeed().set( 0, -20 );
                 lifespan = 1f;
                 break;
 
@@ -215,107 +215,107 @@ public class Speck extends Image {
 
             case BONE:
                 lifespan = 0.2f;
-                speed.polar( Random.Float( 2 * 3.1415926f ), 24 / lifespan );
-                acc.set( 0, 128 );
-                angle = Random.Float( 360 );
-                angularSpeed = 360;
+                getSpeed().polar( Random.Float( 2 * 3.1415926f ), 24 / lifespan );
+                getAcc().set( 0, 128 );
+                setAngle( Random.Float( 360 ) );
+                setAngularSpeed( 360 );
                 break;
 
             case RATTLE:
                 lifespan = 0.5f;
-                speed.set( 0, -200 );
-                acc.set( 0, -2 * speed.y / lifespan );
-                angle = Random.Float( 360 );
-                angularSpeed = 360;
+                getSpeed().set( 0, -200 );
+                getAcc().set( 0, -2 * getSpeed().y / lifespan );
+                setAngle( Random.Float( 360 ) );
+                setAngularSpeed( 360 );
                 break;
 
             case WOOL:
                 lifespan = 0.5f;
-                speed.set( 0, -50 );
-                angle = Random.Float( 360 );
-                angularSpeed = Random.Float( -360, +360 );
+                getSpeed().set( 0, -50 );
+                setAngle( Random.Float( 360 ) );
+                setAngularSpeed( Random.Float( -360, +360 ) );
                 break;
 
             case ROCK:
-                angle = Random.Float( 360 );
-                angularSpeed = Random.Float( -360, +360 );
-                scale.set( Random.Float( 1, 2 ) );
-                speed.set( 0, 64 );
+                setAngle( Random.Float( 360 ) );
+                setAngularSpeed( Random.Float( -360, +360 ) );
+                getScale().set( Random.Float( 1, 2 ) );
+                getSpeed().set( 0, 64 );
                 lifespan = 0.2f;
-                y -= speed.y * lifespan;
+                y -= getSpeed().y * lifespan;
                 break;
 
             case NOTE:
-                angularSpeed = Random.Float( -30, +30 );
-                speed.polar( ( angularSpeed - 90 ) * PointF.G2R, 30 );
+                setAngularSpeed( Random.Float( -30, +30 ) );
+                getSpeed().polar( ( getAngularSpeed() - 90 ) * PointF.G2R, 30 );
                 lifespan = 1f;
                 break;
 
             case CHANGE:
-                angle = Random.Float( 360 );
-                speed.polar( ( angle - 90 ) * PointF.G2R, Random.Float( 4, 12 ) );
+                setAngle( Random.Float( 360 ) );
+                getSpeed().polar( ( getAngle() - 90 ) * PointF.G2R, Random.Float( 4, 12 ) );
                 lifespan = 1.5f;
                 break;
 
             case HEART:
-                speed.set( Random.Int( -10, +10 ), -40 );
-                angularSpeed = Random.Float( -45, +45 );
+                getSpeed().set( Random.Int( -10, +10 ), -40 );
+                setAngularSpeed( Random.Float( -45, +45 ) );
                 lifespan = 1f;
                 break;
 
             case BUBBLE:
-                speed.set( 0, -15 );
-                scale.set( Random.Float( 0.8f, 1 ) );
+                getSpeed().set( 0, -15 );
+                getScale().set( Random.Float( 0.8f, 1 ) );
                 lifespan = Random.Float( 0.8f, 1.5f );
                 break;
 
             case STEAM:
-                speed.y = -Random.Float( 20, 30 );
-                angularSpeed = Random.Float( +180 );
-                angle = Random.Float( 360 );
+                getSpeed().y = -Random.Float( 20, 30 );
+                setAngularSpeed( Random.Float( +180 ) );
+                setAngle( Random.Float( 360 ) );
                 lifespan = 1f;
                 break;
 
             case JET:
-                speed.y = +32;
-                acc.y = -64;
-                angularSpeed = Random.Float( 180, 360 );
-                angle = Random.Float( 360 );
+                getSpeed().y = +32;
+                getAcc().y = -64;
+                setAngularSpeed( Random.Float( 180, 360 ) );
+                setAngle( Random.Float( 360 ) );
                 lifespan = 0.5f;
                 break;
 
             case TOXIC:
                 hardlight( 0x50FF60 );
-                angularSpeed = 30;
-                angle = Random.Float( 360 );
+                setAngularSpeed( 30 );
+                setAngle( Random.Float( 360 ) );
                 lifespan = Random.Float( 1f, 3f );
                 break;
 
             case PARALYSIS:
                 hardlight( 0xFFFF66 );
-                angularSpeed = -30;
-                angle = Random.Float( 360 );
+                setAngularSpeed( -30 );
+                setAngle( Random.Float( 360 ) );
                 lifespan = Random.Float( 1f, 3f );
                 break;
 
             case CONFUSION:
                 hardlight( Random.Int( 0x1000000 ) | 0x000080 );
-                angularSpeed = Random.Float( -20, +20 );
-                angle = Random.Float( 360 );
+                setAngularSpeed( Random.Float( -20, +20 ) );
+                setAngle( Random.Float( 360 ) );
                 lifespan = Random.Float( 1f, 3f );
                 break;
 
             case DUST:
                 hardlight( 0xFFFF66 );
-                angle = Random.Float( 360 );
-                speed.polar( Random.Float( 2 * 3.1415926f ), Random.Float( 16, 48 ) );
+                setAngle( Random.Float( 360 ) );
+                getSpeed().polar( Random.Float( 2 * 3.1415926f ), Random.Float( 16, 48 ) );
                 lifespan = 0.5f;
                 break;
 
             case COIN:
-                speed.polar( -PointF.PI * Random.Float( 0.3f, 0.7f ), Random.Float( 48, 96 ) );
-                acc.y = 256;
-                lifespan = -speed.y / acc.y * 2;
+                getSpeed().polar( -PointF.PI * Random.Float( 0.3f, 0.7f ), Random.Float( 48, 96 ) );
+                getAcc().y = 256;
+                lifespan = -getSpeed().y / getAcc().y * 2;
                 break;
         }
 
@@ -340,73 +340,73 @@ public class Speck extends Image {
 
                 case STAR:
                 case FORGE:
-                    scale.set( 1 - p );
-                    am = p < 0.2f ? p * 5f : ( 1 - p ) * 1.25f;
+                    getScale().set( 1 - p );
+                    setAm( p < 0.2f ? p * 5f : ( 1 - p ) * 1.25f );
                     break;
 
                 case KIT:
                 case MASTERY:
-                    am = 1 - p * p;
+                    setAm( 1 - p * p );
                     break;
 
                 case EVOKE:
 
                 case HEALING:
-                    am = p < 0.5f ? 1 : 2 - p * 2;
+                    setAm( p < 0.5f ? 1 : 2 - p * 2 );
                     break;
 
                 case LIGHT:
-                    am = scale.set( p < 0.2f ? p * 5f : ( 1 - p ) * 1.25f ).x;
+                    setAm( getScale().set( p < 0.2f ? p * 5f : ( 1 - p ) * 1.25f ).x );
                     break;
 
                 case DISCOVER:
-                    am = 1 - p;
-                    scale.set( ( p < 0.5f ? p : 1 - p ) * 2 );
+                    setAm( 1 - p );
+                    getScale().set( ( p < 0.5f ? p : 1 - p ) * 2 );
                     break;
 
                 case QUESTION:
-                    scale.set( (float) ( Math.sqrt( p < 0.5f ? p : 1 - p ) * 3 ) );
+                    getScale().set( (float) ( Math.sqrt( p < 0.5f ? p : 1 - p ) * 3 ) );
                     break;
 
                 case UP:
-                    scale.set( (float) ( Math.sqrt( p < 0.5f ? p : 1 - p ) * 2 ) );
+                    getScale().set( (float) ( Math.sqrt( p < 0.5f ? p : 1 - p ) * 2 ) );
                     break;
 
                 case SCREAM:
-                    am = (float) Math.sqrt( ( p < 0.5f ? p : 1 - p ) * 2f );
-                    scale.set( p * 7 );
+                    setAm( (float) Math.sqrt( ( p < 0.5f ? p : 1 - p ) * 2f ) );
+                    getScale().set( p * 7 );
                     break;
 
                 case BONE:
                 case RATTLE:
-                    am = p < 0.9f ? 1 : ( 1 - p ) * 10;
+                    setAm( p < 0.9f ? 1 : ( 1 - p ) * 10 );
                     break;
 
                 case ROCK:
-                    am = p < 0.2f ? p * 5 : 1;
+                    setAm( p < 0.2f ? p * 5 : 1 );
                     break;
 
                 case NOTE:
-                    am = 1 - p * p;
+                    setAm( 1 - p * p );
                     break;
 
                 case WOOL:
-                    scale.set( 1 - p );
+                    getScale().set( 1 - p );
                     break;
 
                 case CHANGE:
-                    am = (float) Math.sqrt( ( p < 0.5f ? p : 1 - p ) * 2 );
-                    scale.y = ( 1 + p ) * 0.5f;
-                    scale.x = scale.y * (float) Math.cos( left * 15 );
+                    setAm( (float) Math.sqrt( ( p < 0.5f ? p : 1 - p ) * 2 ) );
+                    getScale().y = ( 1 + p ) * 0.5f;
+                    getScale().x = getScale().y * (float) Math.cos( left * 15 );
                     break;
 
                 case HEART:
-                    scale.set( 1 - p );
-                    am = 1 - p * p;
+                    getScale().set( 1 - p );
+                    setAm( 1 - p * p );
                     break;
 
                 case BUBBLE:
-                    am = p < 0.2f ? p * 5 : 1;
+                    setAm( p < 0.2f ? p * 5 : 1 );
                     break;
 
                 case STEAM:
@@ -414,19 +414,22 @@ public class Speck extends Image {
                 case PARALYSIS:
                 case CONFUSION:
                 case DUST:
-                    am = p < 0.5f ? p : 1 - p;
-                    scale.set( 1 + p * 2 );
+                    setAm( p < 0.5f ? p : 1 - p );
+                    getScale().set( 1 + p * 2 );
                     break;
 
                 case JET:
-                    am = ( p < 0.5f ? p : 1 - p ) * 2;
-                    scale.set( p * 1.5f );
+                    setAm( ( p < 0.5f ? p : 1 - p ) * 2 );
+                    getScale().set( p * 1.5f );
                     break;
 
                 case COIN:
-                    scale.x = (float) Math.cos( left * 5 );
-                    rm = gm = bm = ( Math.abs( scale.x ) + 1 ) * 0.5f;
-                    am = p < 0.9f ? 1 : ( 1 - p ) * 10;
+                    getScale().x = (float) Math.cos( left * 5 );
+                    float finVal = ( Math.abs( getScale().x ) + 1 ) * 0.5f;
+                    setRm( finVal );
+                    setGm( finVal );
+                    setBm( finVal );
+                    setAm( p < 0.9f ? 1 : ( 1 - p ) * 10 );
                     break;
             }
         }

@@ -125,7 +125,7 @@ public class WndHero extends WndTabbed {
                     GameScene.show( new WndCatalogus() );
                 }
             };
-            btnCatalogus.setRect( 0, title.y + title.height(), btnCatalogus.reqWidth() + 2, btnCatalogus.reqHeight() + 2 );
+            btnCatalogus.setRect( 0, title.getY() + title.height(), btnCatalogus.reqWidth() + 2, btnCatalogus.reqHeight() + 2 );
             add( btnCatalogus );
 
             RedButton btnJournal = new RedButton( TXT_JOURNAL ) {
@@ -160,13 +160,13 @@ public class WndHero extends WndTabbed {
         private void statSlot ( String label, String value ) {
 
             BitmapText txt = PixelScene.createText( label, 8 );
-            txt.y = pos;
+            txt.setY( pos );
             add( txt );
 
             txt = PixelScene.createText( value, 8 );
             txt.measure();
-            txt.x = PixelScene.align( WIDTH * 0.65f );
-            txt.y = pos;
+            txt.setX( PixelScene.align( WIDTH * 0.65f ) );
+            txt.setY( pos );
             add( txt );
 
             pos += GAP + txt.baseLine();
@@ -201,15 +201,15 @@ public class WndHero extends WndTabbed {
 
                 Image icon = new Image( icons );
                 icon.frame( film.get( index ) );
-                icon.y = pos;
+                icon.setY( pos );
                 add( icon );
 
                 BitmapText txt = PixelScene.createText( buff.toString(), 8 );
-                txt.x = icon.width + GAP;
-                txt.y = pos + (int) ( icon.height - txt.baseLine() ) / 2;
+                txt.setX( icon.getWidth() + GAP );
+                txt.setY( pos + (int) ( icon.getHeight() - txt.baseLine() ) / 2 );
                 add( txt );
 
-                pos += GAP + icon.height;
+                pos += GAP + icon.getHeight();
             }
         }
 

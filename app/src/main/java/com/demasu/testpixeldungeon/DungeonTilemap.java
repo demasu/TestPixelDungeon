@@ -75,8 +75,14 @@ public class DungeonTilemap extends Tilemap {
         tile.point( tileToWorld( pos ) );
 
         // For bright mode
-        tile.rm = tile.gm = tile.bm = rm;
-        tile.ra = tile.ga = tile.ba = ra;
+        float rm = getRm();
+        float ra = getRa();
+        tile.setRm( rm );
+        tile.setGm( rm );
+        tile.setBm( rm );
+        tile.setRa( ra );
+        tile.setGa( ra );
+        tile.setBa( ra );
         getParent().add( tile );
 
         getParent().add( new AlphaTweener( tile, 0, 0.6f ) {

@@ -42,19 +42,19 @@ public class SparkParticle extends PixelParticle {
 
         size( 2 );
 
-        acc.set( 0, +50 );
+        getAcc().set( 0, +50 );
     }
 
     public void reset ( float x, float y ) {
         revive();
 
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
 
         setLeft( Random.Float( 0.5f, 1.0f ) );
         setLifespan( Random.Float( 0.5f, 1.0f ) );
 
-        speed.polar( -Random.Float( 3.1415926f ), Random.Float( 20, 40 ) );
+        getSpeed().polar( -Random.Float( 3.1415926f ), Random.Float( 20, 40 ) );
     }
 
     @Override

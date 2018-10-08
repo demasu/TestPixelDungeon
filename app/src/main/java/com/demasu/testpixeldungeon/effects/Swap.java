@@ -107,8 +107,8 @@ public class Swap extends Actor {
             point( sprite.worldToCamera( from ) );
             end = sprite.worldToCamera( to );
 
-            speed.set( 2 * ( end.x - x ) / delay, 2 * ( end.y - y ) / delay );
-            acc.set( -speed.x / delay, -speed.y / delay );
+            getSpeed().set( 2 * ( end.x - getX() ) / delay, 2 * ( end.y - getY() ) / delay );
+            getAcc().set( -getSpeed().x / delay, -getSpeed().y / delay );
 
             passed = 0;
 
@@ -120,8 +120,8 @@ public class Swap extends Actor {
             super.update();
 
             if ( ( passed += Game.getElapsed() ) < delay ) {
-                sprite.x = x;
-                sprite.y = y;
+                sprite.setX( getX() );
+                sprite.setY( getY() );
 
             } else {
 

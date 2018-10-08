@@ -185,11 +185,11 @@ public class WndTradeItem extends Window {
         BitmapTextMultiline info = PixelScene.createMultiline( item.info(), 6 );
         info.setMaxWidth( WIDTH );
         info.measure();
-        info.x = titlebar.left();
-        info.y = titlebar.bottom() + GAP;
+        info.setX( titlebar.left() );
+        info.setY( titlebar.bottom() + GAP );
         add( info );
 
-        return info.y + info.height();
+        return info.getY() + info.height();
     }
 
     private void sell ( Item item ) {

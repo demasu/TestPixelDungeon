@@ -177,14 +177,14 @@ public class CityLevel extends RegularLevel {
             super();
 
             color( 0x000000 );
-            speed.set( Random.Float( 8 ), -Random.Float( 8 ) );
+            getSpeed().set( Random.Float( 8 ), -Random.Float( 8 ) );
         }
 
         public void reset ( float x, float y ) {
             revive();
 
-            this.x = x;
-            this.y = y;
+            this.setX( x );
+            this.setY( y );
 
             setLeft( 2f );
             setLifespan( 2f );
@@ -194,7 +194,7 @@ public class CityLevel extends RegularLevel {
         public void update () {
             super.update();
             float p = getLeft() / getLifespan();
-            am = p > 0.8f ? 1 - p : p * 0.25f;
+            setAm( p > 0.8f ? 1 - p : p * 0.25f );
             size( 8 - p * 4 );
         }
     }

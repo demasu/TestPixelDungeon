@@ -47,10 +47,10 @@ public class BadgeBanner extends Image {
         this.index = index;
 
         frame( atlas.get( index ) );
-        origin.set( width / 2, height / 2 );
+        getOrigin().set( getWidth() / 2, getHeight() / 2 );
 
         alpha( 0 );
-        scale.set( 2 * DEFAULT_SCALE );
+        getScale().set( 2 * DEFAULT_SCALE );
 
         state = State.FADE_IN;
         time = FADE_IN_TIME;
@@ -198,11 +198,11 @@ public class BadgeBanner extends Image {
                 break;
         }
 
-        p.x *= image.scale.x;
-        p.y *= image.scale.y;
+        p.x *= image.getScale().x;
+        p.y *= image.getScale().y;
         p.offset(
-                -image.origin.x * ( image.scale.x - 1 ),
-                -image.origin.y * ( image.scale.y - 1 ) );
+                -image.getOrigin().x * ( image.getScale().x - 1 ),
+                -image.getOrigin().y * ( image.getScale().y - 1 ) );
         p.offset( image.point() );
 
         Speck star = new Speck();
@@ -237,7 +237,7 @@ public class BadgeBanner extends Image {
             switch ( state ) {
                 case FADE_IN:
                     float p = time / FADE_IN_TIME;
-                    scale.set( ( 1 + p ) * DEFAULT_SCALE );
+                    getScale().set( ( 1 + p ) * DEFAULT_SCALE );
                     alpha( 1 - p );
                     break;
                 case STATIC:
@@ -253,7 +253,7 @@ public class BadgeBanner extends Image {
                 case FADE_IN:
                     time = STATIC_TIME;
                     state = State.STATIC;
-                    scale.set( DEFAULT_SCALE );
+                    getScale().set( DEFAULT_SCALE );
                     alpha( 1 );
                     highlight( this, index );
                     break;

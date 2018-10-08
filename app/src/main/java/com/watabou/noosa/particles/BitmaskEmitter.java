@@ -74,7 +74,7 @@ public class BitmaskEmitter extends Emitter {
         }
 
         getFactory().emit( this, index,
-                getTarget().x + x * getTarget().scale.x,
-                getTarget().y + y * getTarget().scale.y );
+                getTarget().getX() + x * getTarget().getScale().x,
+                getTarget().getY() + y * getTarget().getScale().y );
     }
 }

@@ -46,8 +46,12 @@ public class HealthBar extends Component {
     @Override
     protected void layout () {
 
-        hpBg.x = hpLvl.x = getX();
-        hpBg.y = hpLvl.y = getY();
+        float x = getX();
+        float y = getY();
+        hpBg.setX( x );
+        hpLvl.setX( x );
+        hpBg.setY( y );
+        hpLvl.setY( y );
 
         hpBg.size( getWidth(), HEIGHT );
         hpLvl.size( getWidth() * level, HEIGHT );

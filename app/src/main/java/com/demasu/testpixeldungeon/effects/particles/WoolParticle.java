@@ -37,19 +37,19 @@ public class WoolParticle extends PixelParticle.Shrinking {
 
         color( ColorMath.random( 0x999999, 0xEEEEE0 ) );
 
-        acc.set( 0, -40 );
+        getAcc().set( 0, -40 );
     }
 
     public void reset ( float x, float y ) {
         revive();
 
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
 
         setLeft( Random.Float( 0.6f, 1f ) );
         setLifespan( Random.Float( 0.6f, 1f ) );
         setSize( 5 );
 
-        speed.set( Random.Float( -10, +10 ), Random.Float( -10, +10 ) );
+        getSpeed().set( Random.Float( -10, +10 ), Random.Float( -10, +10 ) );
     }
 }

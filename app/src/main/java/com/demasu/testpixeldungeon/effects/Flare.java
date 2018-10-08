@@ -59,8 +59,8 @@ public class Flare extends Visual {
 
         this.nRays = nRays;
 
-        angle = 45;
-        angularSpeed = 180;
+        setAngle( 45 );
+        setAngularSpeed( 180 );
 
         vertices = ByteBuffer.
                 allocateDirect( ( nRays * 2 + 1 ) * 4 * ( Float.SIZE / 8 ) ).
@@ -137,7 +137,7 @@ public class Flare extends Visual {
 
                 float p = 1 - lifespan / duration;    // 0 -> 1
                 p = p < 0.25f ? p * 4 : ( 1 - p ) * 1.333f;
-                scale.set( p );
+                getScale().set( p );
                 alpha( p );
 
             } else {
@@ -166,10 +166,10 @@ public class Flare extends Visual {
 
         texture.bind();
 
-        script.getuModel().valueM4( matrix );
+        script.getuModel().valueM4( getMatrix() );
         script.lighting(
-                rm, gm, bm, am,
-                ra, ga, ba, aa );
+                getRm(), getGm(), getBm(), getAm(),
+                getRa(), getGa(), getBa(), getAa() );
 
         script.camera( getCamera() );
         script.drawElements( vertices, indices, nRays * 3 );

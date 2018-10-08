@@ -433,8 +433,8 @@ public class GameScene extends PixelScene {
 
         busy = new BusyIndicator();
         busy.setCamera( uiCamera );
-        busy.x = 1;
-        busy.y = sb.bottom() + 1;
+        busy.setX( 1 );
+        busy.setY( sb.bottom() + 1 );
         add( busy );
 
         switch ( InterlevelScene.mode ) {
@@ -588,15 +588,19 @@ public class GameScene extends PixelScene {
     }
 
     public void brightness ( boolean value ) {
-        water.rm = water.gm = water.bm =
-                tiles.rm = tiles.gm = tiles.bm =
-                        value ? 1.5f : 1.0f;
+        float value1 = value ? 1.5f : 1.0f;
+        water.setRm( value1 );
+        water.setGm( value1 );
+        water.setBm( value1 );
+        tiles.setRm( value1 );
+        tiles.setGm( value1 );
+        tiles.setBm( value1 );
         if ( value ) {
-            fog.am = +2f;
-            fog.aa = -1f;
+            fog.setAm( +2f );
+            fog.setAa( -1f );
         } else {
-            fog.am = +1f;
-            fog.aa = 0f;
+            fog.setAm( +1f );
+            fog.setAa( 0f );
         }
     }
 
@@ -653,8 +657,8 @@ public class GameScene extends PixelScene {
 
     protected void showBanner ( Banner banner ) {
         banner.setCamera( uiCamera );
-        banner.x = align( uiCamera, ( uiCamera.getWidth() - banner.width ) / 2 );
-        banner.y = align( uiCamera, ( uiCamera.getHeight() - banner.height ) / 3 );
+        banner.setX( align( uiCamera, ( uiCamera.getWidth() - banner.getWidth() ) / 2 ) );
+        banner.setY( align( uiCamera, ( uiCamera.getHeight() - banner.getHeight() ) / 3 ) );
         add( banner );
     }
 }

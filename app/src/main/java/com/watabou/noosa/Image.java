@@ -66,8 +66,8 @@ public class Image extends Visual {
     public void frame ( RectF frame ) {
         this.setFrame( frame );
 
-        width = frame.width() * getTexture().getWidth();
-        height = frame.height() * getTexture().getHeight();
+        setWidth( frame.width() * getTexture().getWidth() );
+        setHeight( frame.height() * getTexture().getHeight() );
 
         updateFrame();
         updateVertices();
@@ -85,8 +85,8 @@ public class Image extends Visual {
         setTexture( other.getTexture() );
         setFrame( new RectF( other.getFrame() ) );
 
-        width = other.width;
-        height = other.height;
+        setWidth( other.getWidth() );
+        setHeight( other.getHeight() );
 
         updateFrame();
         updateVertices();
@@ -121,14 +121,14 @@ public class Image extends Visual {
         getVertices()[0] = 0;
         getVertices()[1] = 0;
 
-        getVertices()[4] = width;
+        getVertices()[4] = getWidth();
         getVertices()[5] = 0;
 
-        getVertices()[8] = width;
-        getVertices()[9] = height;
+        getVertices()[8] = getWidth();
+        getVertices()[9] = getHeight();
 
         getVertices()[12] = 0;
-        getVertices()[13] = height;
+        getVertices()[13] = getHeight();
 
         setDirty( true );
     }
@@ -145,10 +145,10 @@ public class Image extends Visual {
 
         script.camera( camera() );
 
-        script.getuModel().valueM4( matrix );
+        script.getuModel().valueM4( getMatrix() );
         script.lighting(
-                rm, gm, bm, am,
-                ra, ga, ba, aa );
+                getRm(), getGm(), getBm(), getAm(),
+                getRa(), getGa(), getBa(), getAa() );
 
         if ( isDirty() ) {
             verticesBuffer.position( 0 );

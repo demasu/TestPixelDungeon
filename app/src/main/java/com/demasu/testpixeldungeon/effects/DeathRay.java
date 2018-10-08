@@ -38,15 +38,15 @@ public class DeathRay extends Image {
     public DeathRay ( PointF s, PointF e ) {
         super( Effects.get( Effects.Type.RAY ) );
 
-        origin.set( 0, height / 2 );
+        getOrigin().set( 0, getHeight() / 2 );
 
-        x = s.x - origin.x;
-        y = s.y - origin.y;
+        setX( s.x - getOrigin().x );
+        setY( s.y - getOrigin().y );
 
         float dx = e.x - s.x;
         float dy = e.y - s.y;
-        angle = (float) ( Math.atan2( dy, dx ) * A );
-        scale.x = (float) Math.sqrt( dx * dx + dy * dy ) / width;
+        setAngle( (float) ( Math.atan2( dy, dx ) * A ) );
+        getScale().x = (float) Math.sqrt( dx * dx + dy * dy ) / getWidth();
 
         Sample.INSTANCE.play( Assets.SND_RAY );
 
@@ -59,7 +59,7 @@ public class DeathRay extends Image {
 
         float p = timeLeft / DURATION;
         alpha( p );
-        scale.set( scale.x, p );
+        getScale().set( getScale().x, p );
 
         if ( ( timeLeft -= Game.getElapsed() ) <= 0 ) {
             killAndErase();

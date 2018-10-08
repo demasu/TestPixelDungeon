@@ -81,7 +81,7 @@ public class ItemSprite extends MovieClip {
     }
 
     public void originToCenter () {
-        origin.set( SIZE / 2 );
+        getOrigin().set( SIZE / 2 );
     }
 
     public void link () {
@@ -98,8 +98,8 @@ public class ItemSprite extends MovieClip {
     public void revive () {
         super.revive();
 
-        speed.set( 0 );
-        acc.set( 0 );
+        getSpeed().set( 0 );
+        getAcc().set( 0 );
         dropInterval = 0;
 
         heap = null;
@@ -126,8 +126,8 @@ public class ItemSprite extends MovieClip {
 
         dropInterval = DROP_INTERVAL;
 
-        speed.set( 0, -100 );
-        acc.set( 0, -speed.y / DROP_INTERVAL * 2 );
+        getSpeed().set( 0, -100 );
+        getAcc().set( 0, -getSpeed().y / DROP_INTERVAL * 2 );
 
         if ( getVisible() && heap != null && heap.peek() instanceof Gold ) {
             CellEmitter.center( heap.pos ).burst( Speck.factory( Speck.COIN ), 5 );
@@ -141,13 +141,13 @@ public class ItemSprite extends MovieClip {
             drop();
         } else {
 
-            float px = x;
-            float py = y;
+            float px = getX();
+            float py = getY();
             drop();
 
             place( from );
 
-            speed.offset( ( px - x ) / DROP_INTERVAL, ( py - y ) / DROP_INTERVAL );
+            getSpeed().offset( ( px - getX() ) / DROP_INTERVAL, ( py - getY() ) / DROP_INTERVAL );
         }
     }
 
@@ -167,8 +167,8 @@ public class ItemSprite extends MovieClip {
 
         if ( dropInterval > 0 && ( dropInterval -= Game.getElapsed() ) <= 0 ) {
 
-            speed.set( 0 );
-            acc.set( 0 );
+            getSpeed().set( 0 );
+            getAcc().set( 0 );
             place( heap.pos );
 
             if ( getVisible() ) {
@@ -202,10 +202,12 @@ public class ItemSprite extends MovieClip {
 
             float value = phase / glowing.period * 0.6f;
 
-            rm = gm = bm = 1 - value;
-            ra = glowing.red * value;
-            ga = glowing.green * value;
-            ba = glowing.blue * value;
+            setRm( 1 - value );
+            setGm( 1 - value );
+            setBm( 1 - value );
+            setRa( glowing.red * value );
+            setGa( glowing.green * value );
+            setBa( glowing.blue * value );
         }
     }
 

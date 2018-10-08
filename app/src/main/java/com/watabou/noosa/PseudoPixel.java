@@ -30,12 +30,12 @@ public class PseudoPixel extends Image {
 
         this();
 
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
         color( color );
     }
 
     public void size ( float value ) {
-        scale.set( value );
+        getScale().set( value );
     }
 }

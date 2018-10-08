@@ -81,10 +81,10 @@ public class WndRanking extends WndTabbed {
 
 
         busy = Icons.BUSY.get();
-        busy.origin.set( busy.width / 2, busy.height / 2 );
-        busy.angularSpeed = 720;
-        busy.x = ( WIDTH - busy.width ) / 2;
-        busy.y = ( HEIGHT - busy.height ) / 2;
+        busy.getOrigin().set( busy.getWidth() / 2, busy.getHeight() / 2 );
+        busy.setAngularSpeed( 720 );
+        busy.setX( ( WIDTH - busy.getWidth() ) / 2 );
+        busy.setY( ( HEIGHT - busy.getHeight() ) / 2 );
         add( busy );
     }
 
@@ -229,13 +229,13 @@ public class WndRanking extends WndTabbed {
         private float statSlot ( Group parent, String label, String value, float pos ) {
 
             BitmapText txt = PixelScene.createText( label, 7 );
-            txt.y = pos;
+            txt.setY( pos );
             parent.add( txt );
 
             txt = PixelScene.createText( value, 7 );
             txt.measure();
-            txt.x = PixelScene.align( WIDTH * 0.65f );
-            txt.y = pos;
+            txt.setX( PixelScene.align( WIDTH * 0.65f ) );
+            txt.setY( pos );
             parent.add( txt );
 
             return pos + GAP + txt.baseLine();
@@ -362,11 +362,11 @@ public class WndRanking extends WndTabbed {
 
             slot.item( item );
             if ( item.cursed && item.cursedKnown ) {
-                bg.ra = +0.2f;
-                bg.ga = -0.1f;
+                bg.setRa( +0.2f );
+                bg.setGa( -0.1f );
             } else if ( !item.isIdentified() ) {
-                bg.ra = 0.1f;
-                bg.ba = 0.1f;
+                bg.setRa( 0.1f );
+                bg.setBa( 0.1f );
             }
         }
 
@@ -384,8 +384,8 @@ public class WndRanking extends WndTabbed {
 
         @Override
         protected void layout () {
-            bg.x = getX();
-            bg.y = getY();
+            bg.setX( getX() );
+            bg.setY( getY() );
 
             slot.setRect( getX(), getY(), SIZE, SIZE );
 
@@ -428,18 +428,18 @@ public class WndRanking extends WndTabbed {
 
             super.layout();
 
-            name.x = slot.right() + 2;
-            name.y = getY() + ( getHeight() - name.baseLine() ) / 2;
+            name.setX( slot.right() + 2 );
+            name.setY( getY() + ( getHeight() - name.baseLine() ) / 2 );
 
             String str = Utils.capitalize( item.name() );
             name.text( str );
             name.measure();
-            if ( name.width() > getWidth() - name.x ) {
+            if ( name.width() > getWidth() - name.getX() ) {
                 do {
                     str = str.substring( 0, str.length() - 1 );
                     name.text( str + "..." );
                     name.measure();
-                } while ( name.width() > getWidth() - name.x );
+                } while ( name.width() > getWidth() - name.getX() );
             }
         }
     }

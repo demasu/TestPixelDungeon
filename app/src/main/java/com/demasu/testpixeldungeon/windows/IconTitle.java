@@ -74,22 +74,22 @@ public class IconTitle extends Component {
 
         health.setVisible( !Float.isNaN( healthLvl ) );
 
-        imIcon.x = getX();
-        imIcon.y = getY();
+        imIcon.setX( getX() );
+        imIcon.setY( getY() );
 
-        tfLabel.x = PixelScene.align( PixelScene.uiCamera, imIcon.x + imIcon.width() + GAP );
-        tfLabel.setMaxWidth( (int) ( getWidth() - tfLabel.x ) );
+        tfLabel.setX( PixelScene.align( PixelScene.uiCamera, imIcon.getX() + imIcon.width() + GAP ) );
+        tfLabel.setMaxWidth( (int) ( getWidth() - tfLabel.getX() ) );
         tfLabel.measure();
-        tfLabel.y = PixelScene.align( PixelScene.uiCamera,
-                imIcon.height > tfLabel.height() ?
-                        imIcon.y + ( imIcon.height() - tfLabel.baseLine() ) / 2 :
-                        imIcon.y );
+        tfLabel.setY( PixelScene.align( PixelScene.uiCamera,
+                imIcon.getHeight() > tfLabel.height() ?
+                        imIcon.getY() + ( imIcon.height() - tfLabel.baseLine() ) / 2 :
+                        imIcon.getY() ) );
 
         if ( health.getVisible() ) {
-            health.setRect( tfLabel.x, Math.max( tfLabel.y + tfLabel.height(), imIcon.y + imIcon.height() - health.height() ), tfLabel.getMaxWidth(), 0 );
+            health.setRect( tfLabel.getX(), Math.max( tfLabel.getY() + tfLabel.height(), imIcon.getY() + imIcon.height() - health.height() ), tfLabel.getMaxWidth(), 0 );
             setHeight( health.bottom() );
         } else {
-            setHeight( Math.max( imIcon.y + imIcon.height(), tfLabel.y + tfLabel.height() ) );
+            setHeight( Math.max( imIcon.getY() + imIcon.height(), tfLabel.getY() + tfLabel.height() ) );
         }
     }
 

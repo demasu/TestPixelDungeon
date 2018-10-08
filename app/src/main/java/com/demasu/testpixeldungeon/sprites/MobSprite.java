@@ -54,8 +54,8 @@ public class MobSprite extends CharSprite {
 
     public void fall () {
 
-        origin.set( width / 2, height - DungeonTilemap.SIZE / 2 );
-        angularSpeed = Random.Int( 2 ) == 0 ? -720 : 720;
+        getOrigin().set( getWidth() / 2, getHeight() - DungeonTilemap.SIZE / 2 );
+        setAngularSpeed( Random.Int( 2 ) == 0 ? -720 : 720 );
 
         getParent().add( new ScaleTweener( this, new PointF( 0, 0 ), FALL_TIME ) {
             @Override
@@ -67,7 +67,7 @@ public class MobSprite extends CharSprite {
             @Override
             protected void updateValues ( float progress ) {
                 super.updateValues( progress );
-                am = 1 - progress;
+                setAm( 1 - progress );
             }
         } );
     }

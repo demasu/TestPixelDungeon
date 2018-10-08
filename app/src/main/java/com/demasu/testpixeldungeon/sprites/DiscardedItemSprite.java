@@ -26,13 +26,13 @@ public class DiscardedItemSprite extends ItemSprite {
         super();
 
         originToCenter();
-        angularSpeed = 720;
+        setAngularSpeed( 720 );
     }
 
     @Override
     public void drop () {
-        scale.set( 1 );
-        am = 1;
+        getScale().set( 1 );
+        setAm( 1 );
     }
 
     @Override
@@ -40,8 +40,9 @@ public class DiscardedItemSprite extends ItemSprite {
 
         super.update();
 
-        scale.set( scale.x * 0.9f );
-        if ( ( am -= Game.getElapsed() ) <= 0 ) {
+        getScale().set( getScale().x * 0.9f );
+        setAm( getAm() - Game.getElapsed() );
+        if ( ( getAm() ) <= 0 ) {
             remove();
         }
     }

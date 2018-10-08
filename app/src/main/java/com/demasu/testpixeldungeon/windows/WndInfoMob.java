@@ -73,19 +73,19 @@ public class WndInfoMob extends WndTitledMessage {
         @Override
         protected void layout () {
 
-            image.x = 0;
-            image.y = Math.max( 0, name.height() + GAP + health.height() - image.height );
+            image.setX( 0 );
+            image.setY( Math.max( 0, name.height() + GAP + health.height() - image.getHeight() ) );
 
-            name.x = image.width + GAP;
-            name.y = image.height - health.height() - GAP - name.baseLine();
+            name.setX( image.getWidth() + GAP );
+            name.setY( image.getHeight() - health.height() - GAP - name.baseLine() );
 
-            float w = getWidth() - image.width - GAP;
+            float w = getWidth() - image.getWidth() - GAP;
 
-            health.setRect( image.width + GAP, image.height - health.height(), w, health.height() );
+            health.setRect( image.getWidth() + GAP, image.getHeight() - health.height(), w, health.height() );
 
             buffs.setPos(
-                    name.x + name.width() + GAP,
-                    name.y + name.baseLine() - BuffIndicator.SIZE );
+                    name.getX() + name.width() + GAP,
+                    name.getY() + name.baseLine() - BuffIndicator.SIZE );
 
             setHeight( health.bottom() );
         }

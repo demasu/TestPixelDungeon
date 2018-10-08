@@ -84,8 +84,8 @@ public class RankingsScene extends PixelScene {
             BitmapText title = PixelScene.createText( TXT_TITLE, 9 );
             title.hardlight( Window.TITLE_COLOR );
             title.measure();
-            title.x = align( ( w - title.width() ) / 2 );
-            title.y = align( top - title.height() - GAP );
+            title.setX( align( ( w - title.width() ) / 2 ) );
+            title.setY( align( top - title.height() - GAP ) );
             add( title );
 
             int pos = 0;
@@ -112,15 +112,17 @@ public class RankingsScene extends PixelScene {
                 BitmapText total = PixelScene.createText( "/" + Rankings.INSTANCE.totalNumber, 8 );
                 total.hardlight( DEFAULT_COLOR );
                 total.measure();
-                total.x = align( ( w - total.width() ) / 2 );
-                total.y = align( top + pos * rowHeight + GAP );
+                total.setX( align( ( w - total.width() ) / 2 ) );
+                total.setY( align( top + pos * rowHeight + GAP ) );
                 add( total );
 
                 float tw = label.width() + won.width() + total.width();
-                label.x = align( ( w - tw ) / 2 );
-                won.x = label.x + label.width();
-                total.x = won.x + won.width();
-                label.y = won.y = total.y = align( top + pos * rowHeight + GAP );
+                label.setX( align( ( w - tw ) / 2 ) );
+                won.setX( label.getX() + label.width() );
+                total.setX( won.getX() + won.width() );
+                label.setY( align( top + pos * rowHeight + GAP ) );
+                won.setY( align( top + pos * rowHeight + GAP ) );
+                total.setY( align( top + pos * rowHeight + GAP ) );
             }
 
         } else {
@@ -128,8 +130,8 @@ public class RankingsScene extends PixelScene {
             BitmapText title = PixelScene.createText( TXT_NO_GAMES, 8 );
             title.hardlight( DEFAULT_COLOR );
             title.measure();
-            title.x = align( ( w - title.width() ) / 2 );
-            title.y = align( ( h - title.height() ) / 2 );
+            title.setX( align( ( w - title.width() ) / 2 ) );
+            title.setY( align( ( h - title.height() ) / 2 ) );
             add( title );
 
         }
@@ -170,7 +172,7 @@ public class RankingsScene extends PixelScene {
 
             if ( latest ) {
                 flare = new Flare( 6, 24 );
-                flare.angularSpeed = 90;
+                flare.setAngularSpeed( 90 );
                 flare.color( rec.win ? FLARE_WIN : FLARE_LOSE );
                 addToBack( flare );
             }
@@ -216,23 +218,23 @@ public class RankingsScene extends PixelScene {
 
             super.layout();
 
-            shield.x = getX();
-            shield.y = getY() + ( getHeight() - shield.height ) / 2;
+            shield.setX( getX() );
+            shield.setY( getY() + ( getHeight() - shield.getHeight() ) / 2 );
 
-            position.x = align( shield.x + ( shield.width - position.width() ) / 2 );
-            position.y = align( shield.y + ( shield.height - position.height() ) / 2 + 1 );
+            position.setX( align( shield.getX() + ( shield.getWidth() - position.width() ) / 2 ) );
+            position.setY( align( shield.getY() + ( shield.getHeight() - position.height() ) / 2 + 1 ) );
 
             if ( flare != null ) {
                 flare.point( shield.center() );
             }
 
-            classIcon.x = align( getX() + getWidth() - classIcon.width );
-            classIcon.y = shield.y;
+            classIcon.setX( align( getX() + getWidth() - classIcon.getWidth() ) );
+            classIcon.setY( shield.getY() );
 
-            desc.x = shield.x + shield.width + GAP;
-            desc.setMaxWidth( (int) ( classIcon.x - desc.x ) );
+            desc.setX( shield.getX() + shield.getWidth() + GAP );
+            desc.setMaxWidth( (int) ( classIcon.getX() - desc.getX() ) );
             desc.measure();
-            desc.y = position.y + position.baseLine() - desc.baseLine();
+            desc.setY( position.getY() + position.baseLine() - desc.baseLine() );
         }
 
         @Override

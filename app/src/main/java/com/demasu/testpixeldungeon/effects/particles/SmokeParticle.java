@@ -36,18 +36,18 @@ public class SmokeParticle extends PixelParticle {
 
         color( 0x222222 );
 
-        acc.set( 0, -40 );
+        getAcc().set( 0, -40 );
     }
 
     public void reset ( float x, float y ) {
         revive();
 
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
 
         setLeft( Random.Float( 0.6f, 1f ) );
         setLifespan( Random.Float( 0.6f, 1f ) );
-        speed.set( Random.Float( -4, +4 ), Random.Float( -8, +8 ) );
+        getSpeed().set( Random.Float( -4, +4 ), Random.Float( -8, +8 ) );
     }
 
     @Override
@@ -55,7 +55,7 @@ public class SmokeParticle extends PixelParticle {
         super.update();
 
         float p = getLeft() / getLifespan();
-        am = p > 0.8f ? 2 - 2 * p : p * 0.5f;
+        setAm( p > 0.8f ? 2 - 2 * p : p * 0.5f );
         size( 16 - p * 8 );
     }
 }

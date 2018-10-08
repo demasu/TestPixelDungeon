@@ -51,7 +51,7 @@ public class WndJournal extends Window {
         txtTitle = PixelScene.createText( TXT_TITLE, 9 );
         txtTitle.hardlight( Window.TITLE_COLOR );
         txtTitle.measure();
-        txtTitle.x = PixelScene.align( PixelScene.uiCamera, ( WIDTH - txtTitle.width() ) / 2 );
+        txtTitle.setX( PixelScene.align( PixelScene.uiCamera, ( WIDTH - txtTitle.width() ) / 2 ) );
         add( txtTitle );
 
         Component content = new Component();
@@ -112,14 +112,14 @@ public class WndJournal extends Window {
         @Override
         protected void layout () {
 
-            icon.x = getWidth() - icon.width;
+            icon.setX( getWidth() - icon.getWidth() );
 
-            depth.x = icon.x - 1 - depth.width();
-            depth.y = PixelScene.align( getY() + ( getHeight() - depth.height() ) / 2 );
+            depth.setX( icon.getX() - 1 - depth.width() );
+            depth.setY( PixelScene.align( getY() + ( getHeight() - depth.height() ) / 2 ) );
 
-            icon.y = depth.y - 1;
+            icon.setY( depth.getY() - 1 );
 
-            feature.y = PixelScene.align( depth.y + depth.baseLine() - feature.baseLine() );
+            feature.setY( PixelScene.align( depth.getY() + depth.baseLine() - feature.baseLine() ) );
         }
     }
 }

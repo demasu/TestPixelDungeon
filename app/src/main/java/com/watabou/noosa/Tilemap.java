@@ -65,8 +65,8 @@ public class Tilemap extends Visual {
         int mapHeight = data.length / cols;
         size = mapWidth * mapHeight;
 
-        width = cellW * mapWidth;
-        height = cellH * mapHeight;
+        setWidth( cellW * mapWidth );
+        setHeight( cellH * mapHeight );
 
         quads = Quad.createSet( size );
 
@@ -141,10 +141,10 @@ public class Tilemap extends Visual {
 
         getTexture().bind();
 
-        script.getuModel().valueM4( matrix );
+        script.getuModel().valueM4( getMatrix() );
         script.lighting(
-                rm, gm, bm, am,
-                ra, ga, ba, aa );
+                getRm(), getGm(), getBm(), getAm(),
+                getRa(), getGa(), getBa(), getAa() );
 
         if ( !getUpdated().isEmpty() ) {
             updateVertices();

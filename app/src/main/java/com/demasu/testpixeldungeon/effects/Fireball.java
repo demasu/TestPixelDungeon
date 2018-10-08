@@ -55,8 +55,8 @@ public class Fireball extends Component {
 
         bLight = new Image( Assets.FIREBALL );
         bLight.frame( BLIGHT );
-        bLight.origin.set( bLight.width / 2 );
-        bLight.angularSpeed = -90;
+        bLight.getOrigin().set( bLight.getWidth() / 2 );
+        bLight.setAngularSpeed( -90 );
         add( bLight );
 
         emitter = new Emitter();
@@ -65,16 +65,16 @@ public class Fireball extends Component {
             public void emit ( Emitter emitter, int index, float x, float y ) {
                 Flame p = (Flame) emitter.recycle( Flame.class );
                 p.reset();
-                p.x = x - p.width / 2;
-                p.y = y - p.height / 2;
+                p.setX( x - p.getWidth() / 2 );
+                p.setY( y - p.getHeight() / 2 );
             }
         }, 0.1f );
         add( emitter );
 
         fLight = new Image( Assets.FIREBALL );
         fLight.frame( FLIGHT );
-        fLight.origin.set( fLight.width / 2 );
-        fLight.angularSpeed = 360;
+        fLight.getOrigin().set( fLight.getWidth() / 2 );
+        fLight.setAngularSpeed( 360 );
         add( fLight );
 
         bLight.getTexture().filter( Texture.LINEAR, Texture.LINEAR );
@@ -83,17 +83,17 @@ public class Fireball extends Component {
     @Override
     protected void layout () {
 
-        bLight.x = getX() - bLight.width / 2;
-        bLight.y = getY() - bLight.height / 2;
+        bLight.setX( getX() - bLight.getWidth() / 2 );
+        bLight.setY( getY() - bLight.getHeight() / 2 );
 
         emitter.pos(
-                getX() - bLight.width / 4,
-                getY() - bLight.height / 4,
-                bLight.width / 2,
-                bLight.height / 2 );
+                getX() - bLight.getWidth() / 4,
+                getY() - bLight.getHeight() / 4,
+                bLight.getWidth() / 2,
+                bLight.getHeight() / 2 );
 
-        fLight.x = getX() - fLight.width / 2;
-        fLight.y = getY() - fLight.height / 2;
+        fLight.setX( getX() - fLight.getWidth() / 2 );
+        fLight.setY( getY() - fLight.getHeight() / 2 );
     }
 
     @Override
@@ -104,10 +104,10 @@ public class Fireball extends Component {
         if ( Random.Float() < Game.getElapsed() ) {
             PixelParticle spark = (PixelParticle) sparks.recycle( PixelParticle.Shrinking.class );
             spark.reset( getX(), getY(), ColorMath.random( COLOR, 0x66FF66 ), 2, Random.Float( 0.5f, 1.0f ) );
-            spark.speed.set(
+            spark.getSpeed().set(
                     Random.Float( -40, +40 ),
                     Random.Float( -60, +20 ) );
-            spark.acc.set( 0, +80 );
+            spark.getAcc().set( 0, +80 );
             sparks.add( spark );
         }
     }
@@ -133,14 +133,14 @@ public class Fireball extends Component {
             super( Assets.FIREBALL );
 
             frame( Random.Int( 2 ) == 0 ? FLAME1 : FLAME2 );
-            origin.set( width / 2, height / 2 );
-            acc.set( 0, ACC );
+            getOrigin().set( getWidth() / 2, getHeight() / 2 );
+            getAcc().set( 0, ACC );
         }
 
         public void reset () {
             revive();
             timeLeft = LIFESPAN;
-            speed.set( 0, SPEED );
+            getSpeed().set( 0, SPEED );
         }
 
         @Override
@@ -155,7 +155,7 @@ public class Fireball extends Component {
             } else {
 
                 float p = timeLeft / LIFESPAN;
-                scale.set( p );
+                getScale().set( p );
                 alpha( p > 0.8f ? ( 1 - p ) * 5f : p * 1.25f );
 
             }

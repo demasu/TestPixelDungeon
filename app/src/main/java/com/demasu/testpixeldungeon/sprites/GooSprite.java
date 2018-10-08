@@ -97,26 +97,26 @@ public class GooSprite extends MobSprite {
             color( 0x000000 );
             setLifespan( 0.3f );
 
-            acc.set( 0, +50 );
+            getAcc().set( 0, +50 );
         }
 
         public void reset ( float x, float y ) {
             revive();
 
-            this.x = x;
-            this.y = y;
+            this.setX( x );
+            this.setY( y );
 
             setLeft( getLifespan() );
 
             setSize( 4 );
-            speed.polar( -Random.Float( PointF.PI ), Random.Float( 32, 48 ) );
+            getSpeed().polar( -Random.Float( PointF.PI ), Random.Float( 32, 48 ) );
         }
 
         @Override
         public void update () {
             super.update();
             float p = getLeft() / getLifespan();
-            am = p > 0.5f ? ( 1 - p ) * 2f : 1;
+            setAm( p > 0.5f ? ( 1 - p ) * 2f : 1 );
         }
     }
 }

@@ -198,18 +198,18 @@ public class HallsLevel extends RegularLevel {
             color( 0xEE7722 );
             setLifespan( 1f );
 
-            acc.set( 0, +80 );
+            getAcc().set( 0, +80 );
         }
 
         public void reset ( float x, float y ) {
             revive();
 
-            this.x = x;
-            this.y = y;
+            this.setX( x );
+            this.setY( y );
 
             setLeft( getLifespan() );
 
-            speed.set( 0, -40 );
+            getSpeed().set( 0, -40 );
             setSize( 4 );
         }
 
@@ -217,7 +217,7 @@ public class HallsLevel extends RegularLevel {
         public void update () {
             super.update();
             float p = getLeft() / getLifespan();
-            am = p > 0.8f ? ( 1 - p ) * 5 : 1;
+            setAm( p > 0.8f ? ( 1 - p ) * 5 : 1 );
         }
     }
 }

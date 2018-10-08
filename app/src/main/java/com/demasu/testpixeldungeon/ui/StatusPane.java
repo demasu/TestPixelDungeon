@@ -161,27 +161,27 @@ public class StatusPane extends Component {
 
         setHeight( 32 );
 
-        shield.size( getWidth(), shield.height );
+        shield.size( getWidth(), shield.getHeight() );
 
-        avatar.x = PixelScene.align( camera(), shield.x + 15 - avatar.width / 2 );
-        avatar.y = PixelScene.align( camera(), shield.y + 16 - avatar.height / 2 );
+        avatar.setX( PixelScene.align( camera(), shield.getX() + 15 - avatar.getWidth() / 2 ) );
+        avatar.setY( PixelScene.align( camera(), shield.getY() + 16 - avatar.getHeight() / 2 ) );
 
-        compass.x = avatar.x + avatar.width / 2 - compass.origin.x;
-        compass.y = avatar.y + avatar.height / 2 - compass.origin.y;
+        compass.setX( avatar.getX() + avatar.getWidth() / 2 - compass.getOrigin().x );
+        compass.setY( avatar.getY() + avatar.getHeight() / 2 - compass.getOrigin().y );
 
-        hp.x = 30;
-        hp.y = 3;
-        hp_dropping.x = 30;
-        hp_dropping.y = 3;
-        mp.x = 30;
-        mp.y = 8;
-        mp_dropping.x = 30;
-        mp_dropping.y = 8;
+        hp.setX( 30 );
+        hp.setY( 3 );
+        hp_dropping.setX( 30 );
+        hp_dropping.setY( 3 );
+        mp.setX( 30 );
+        mp.setY( 8 );
+        mp_dropping.setX( 30 );
+        mp_dropping.setY( 8 );
 
-        depth.x = getWidth() - 24 - depth.width() - 18;
-        depth.y = 6;
+        depth.setX( getWidth() - 24 - depth.width() - 18 );
+        depth.setY( 6 );
 
-        keys.y = 6;
+        keys.setY( 6 );
 
         layoutTags();
 
@@ -248,19 +248,19 @@ public class StatusPane extends Component {
             blood.setOn( false );
         }
 
-        hp.scale.x = health;
-        hp_dropping.x = hp.x + hp.width() - 20 * health;
-        hp_dropping.scale.x = health_drop;
+        hp.getScale().x = health;
+        hp_dropping.setX( hp.getX() + hp.width() - 20 * health );
+        hp_dropping.getScale().x = health_drop;
 
-        exp.scale.x = ( getWidth() / exp.width ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp();
+        exp.getScale().x = ( getWidth() / exp.getWidth() ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp();
 
         float mana = (float) Dungeon.getHero().getMP() / Dungeon.getHero().getMMP();
 
         float mana_drop = manaDropping / Dungeon.getHero().getMMP();
 
-        mp.scale.x = mana;
-        mp_dropping.x = mp.x + mp.width() - 20 * mana;
-        mp_dropping.scale.x = mana_drop;
+        mp.getScale().x = mana;
+        mp_dropping.setX( mp.getX() + mp.width() - 20 * mana );
+        mp_dropping.getScale().x = mana_drop;
 
         if ( Dungeon.getHero().getMP() == 0 ) {
             manaDropping = 0;
@@ -285,8 +285,8 @@ public class StatusPane extends Component {
             lastLvl = Dungeon.getHero().getLvl();
             level.text( Integer.toString( lastLvl ) );
             level.measure();
-            level.x = PixelScene.align( 27.5f - level.width() / 2 );
-            level.y = PixelScene.align( 28.0f - level.baseLine() / 2 );
+            level.setX( PixelScene.align( 27.5f - level.width() / 2 ) );
+            level.setY( PixelScene.align( 28.0f - level.baseLine() / 2 ) );
         }
 
         int k = IronKey.curDepthQuantity;
@@ -294,7 +294,7 @@ public class StatusPane extends Component {
             lastKeys = k;
             keys.text( Integer.toString( lastKeys ) );
             keys.measure();
-            keys.x = getWidth() - 8 - keys.width() - 18;
+            keys.setX( getWidth() - 8 - keys.width() - 18 );
         }
 
         int tier = Dungeon.getHero().tier();
@@ -311,8 +311,8 @@ public class StatusPane extends Component {
         public MenuButton () {
             super();
 
-            setWidth( image.width + 4 );
-            setHeight( image.height + 4 );
+            setWidth( image.getWidth() + 4 );
+            setHeight( image.getHeight() + 4 );
         }
 
         @Override
@@ -327,8 +327,8 @@ public class StatusPane extends Component {
         protected void layout () {
             super.layout();
 
-            image.x = getX() + 2;
-            image.y = getY() + 2;
+            image.setX( getX() + 2 );
+            image.setY( getY() + 2 );
         }
 
         @Override

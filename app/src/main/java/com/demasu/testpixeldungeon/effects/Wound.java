@@ -33,7 +33,7 @@ public class Wound extends Image {
 
     public Wound () {
         super( Effects.get( Effects.Type.WOUND ) );
-        origin.set( width / 2, height / 2 );
+        getOrigin().set( getWidth() / 2, getHeight() / 2 );
     }
 
     public static void hit ( Char ch ) {
@@ -44,7 +44,7 @@ public class Wound extends Image {
         Wound w = (Wound) ch.sprite.getParent().recycle( Wound.class );
         ch.sprite.getParent().bringToFront( w );
         w.reset( ch.pos );
-        w.angle = angle;
+        w.setAngle( angle );
     }
 
     public static void hit ( int pos ) {
@@ -56,14 +56,14 @@ public class Wound extends Image {
         Wound w = (Wound) parent.recycle( Wound.class );
         parent.bringToFront( w );
         w.reset( pos );
-        w.angle = angle;
+        w.setAngle( angle );
     }
 
     public void reset ( int p ) {
         revive();
 
-        x = ( p % Level.WIDTH ) * DungeonTilemap.SIZE + ( DungeonTilemap.SIZE - width ) / 2;
-        y = ( p / Level.WIDTH ) * DungeonTilemap.SIZE + ( DungeonTilemap.SIZE - height ) / 2;
+        setX( ( p % Level.WIDTH ) * DungeonTilemap.SIZE + ( DungeonTilemap.SIZE - getWidth() ) / 2 );
+        setY( ( p / Level.WIDTH ) * DungeonTilemap.SIZE + ( DungeonTilemap.SIZE - getHeight() ) / 2 );
 
         time = TIME_TO_FADE;
     }
@@ -77,7 +77,7 @@ public class Wound extends Image {
         } else {
             float p = time / TIME_TO_FADE;
             alpha( p );
-            scale.x = 1 + p;
+            getScale().x = 1 + p;
         }
     }
 }

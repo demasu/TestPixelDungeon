@@ -102,11 +102,11 @@ public class BadgesList extends ScrollPane {
 
         @Override
         protected void layout () {
-            icon.x = getX();
-            icon.y = PixelScene.align( getY() + ( getHeight() - icon.height ) / 2 );
+            icon.setX( getX() );
+            icon.setY( PixelScene.align( getY() + ( getHeight() - icon.getHeight() ) / 2 ) );
 
-            label.x = icon.x + icon.width + 2;
-            label.y = PixelScene.align( getY() + ( getHeight() - label.baseLine() ) / 2 );
+            label.setX( icon.getX() + icon.getWidth() + 2 );
+            label.setY( PixelScene.align( getY() + ( getHeight() - label.baseLine() ) / 2 ) );
         }
 
         public boolean onClick ( float x, float y ) {

@@ -77,15 +77,15 @@ public class Stab extends ItemSprite implements Tweener.Listener {
             case FADE_IN:
 
                 alpha( passed / duration * ALPHA );
-                scale.set( 0.2f );
+                getScale().set( 0.2f );
                 break;
             case STATIC:
                 tint( color, passed / duration * 0.8f );
-                scale.set( 0.8f );
+                getScale().set( 0.8f );
                 break;
             case FADE_OUT:
                 alpha( ( 1 - passed / duration ) * ALPHA );
-                scale.set( 0.2f );
+                getScale().set( 0.2f );
                 break;
         }
 
@@ -112,11 +112,11 @@ public class Stab extends ItemSprite implements Tweener.Listener {
         PointF src = DungeonTilemap.tileToWorld( source.pos );
         PointF dest = DungeonTilemap.tileToWorld( target.pos );
         PointF d = PointF.diff( dest, src );
-        angle = 135 - (float) ( Math.atan2( d.x, d.y ) / 3.1415926 * 180 );
+        setAngle( 135 - (float) ( Math.atan2( d.x, d.y ) / 3.1415926 * 180 ) );
         //angularSpeed = 70;
 
-        x = source.sprite.x;
-        y = source.sprite.y;
+        setX( source.sprite.getX() );
+        setY( source.sprite.getY() );
 
         //  if(d.x > 0)
         //      x += 2 * SIZE / 3;
