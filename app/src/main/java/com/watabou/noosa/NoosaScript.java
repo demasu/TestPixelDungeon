@@ -61,7 +61,7 @@ public class NoosaScript extends Script {
     private final Attribute aUV;
     private Camera lastCamera;
 
-    private NoosaScript () {
+    public NoosaScript () {
 
         super();
         compile( SHADER );
