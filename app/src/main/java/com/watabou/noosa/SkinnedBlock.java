@@ -23,7 +23,7 @@ import com.watabou.glwrap.Texture;
 
 public class SkinnedBlock extends Image {
 
-    public boolean autoAdjust = false;
+    private boolean autoAdjust = false;
     private float scaleX;
     private float scaleY;
     private float offsetX;
@@ -51,7 +51,7 @@ public class SkinnedBlock extends Image {
     @Override
     protected void updateFrame () {
 
-        if ( autoAdjust ) {
+        if ( isAutoAdjust() ) {
             while ( offsetX > getTexture().getWidth() ) {
                 offsetX -= getTexture().getWidth();
             }
@@ -110,5 +110,13 @@ public class SkinnedBlock extends Image {
         this.height = h;
         updateFrame();
         updateVertices();
+    }
+
+    private boolean isAutoAdjust () {
+        return autoAdjust;
+    }
+
+    public void setAutoAdjust ( boolean autoAdjust ) {
+        this.autoAdjust = autoAdjust;
     }
 }

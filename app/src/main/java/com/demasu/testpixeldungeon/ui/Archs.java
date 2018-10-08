@@ -34,12 +34,12 @@ public class Archs extends Component {
     @Override
     protected void createChildren () {
         arcsBg = new SkinnedBlock( 1, 1, Assets.ARCS_BG );
-        arcsBg.autoAdjust = true;
+        arcsBg.setAutoAdjust( true );
         arcsBg.offsetTo( 0, offsB );
         add( arcsBg );
 
         arcsFg = new SkinnedBlock( 1, 1, Assets.ARCS_FG );
-        arcsFg.autoAdjust = true;
+        arcsFg.setAutoAdjust( true );
         arcsFg.offsetTo( 0, offsF );
         add( arcsFg );
     }
