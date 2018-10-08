@@ -95,20 +95,8 @@ public class Visual extends Gizmo {
         return p;
     }
 
-    public Point point ( Point p ) {
-        x = p.x;
-        y = p.y;
-        return p;
-    }
-
     public PointF center () {
         return new PointF( x + width / 2, y + height / 2 );
-    }
-
-    public PointF center ( PointF p ) {
-        x = p.x - width / 2;
-        y = p.y - height / 2;
-        return p;
     }
 
     public float width () {
@@ -143,11 +131,6 @@ public class Visual extends Gizmo {
 
     public float alpha () {
         return am + aa;
-    }
-
-    public void invert () {
-        rm = gm = bm = -1f;
-        ra = ga = ba = +1f;
     }
 
     public void lightness ( float value ) {
