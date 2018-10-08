@@ -239,6 +239,7 @@ public class Visual extends Gizmo {
 
     // true if its bounding box intersects its camera's bounds
     @SuppressWarnings ( "FeatureEnvy" )
+    @Override
     public boolean isVisible () {
         Camera c = camera();
         float cx = c.getScroll().x;
