@@ -51,8 +51,8 @@ public class DungeonTilemap extends Tilemap {
     }
 
     public static Image tile ( int index ) {
-        Image img = new Image( instance.texture );
-        img.frame( instance.tileset.get( index ) );
+        Image img = new Image( instance.getTexture() );
+        img.frame( instance.getTileset().get( index ) );
         return img;
     }
 

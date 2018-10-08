@@ -203,7 +203,7 @@ public class GameScene extends PixelScene {
 
     public static void updateMap () {
         if ( scene != null ) {
-            scene.tiles.updated.set( 0, 0, Level.WIDTH, Level.HEIGHT );
+            scene.tiles.getUpdated().set( 0, 0, Level.WIDTH, Level.HEIGHT );
         }
     }
 
@@ -211,7 +211,7 @@ public class GameScene extends PixelScene {
 
     public static void updateMap ( int cell ) {
         if ( scene != null ) {
-            scene.tiles.updated.union( cell % Level.WIDTH, cell / Level.WIDTH );
+            scene.tiles.getUpdated().union( cell % Level.WIDTH, cell / Level.WIDTH );
         }
     }
 

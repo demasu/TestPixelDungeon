@@ -28,9 +28,9 @@ import java.nio.FloatBuffer;
 
 public class Tilemap extends Visual {
 
-    public final Rect updated;
-    protected final SmartTexture texture;
-    protected final TextureFilm tileset;
+    private final Rect updated;
+    private final SmartTexture texture;
+    private final TextureFilm tileset;
     private int[] data;
     private int mapWidth;
     private int size;
@@ -70,27 +70,27 @@ public class Tilemap extends Visual {
 
         quads = Quad.createSet( size );
 
-        updated.set( 0, 0, mapWidth, mapHeight );
+        getUpdated().set( 0, 0, mapWidth, mapHeight );
     }
 
     @SuppressWarnings ( "MagicNumber" )
     private void updateVertices () {
 
-        float y1 = cellH * updated.top;
+        float y1 = cellH * getUpdated().top;
         float y2 = y1 + cellH;
 
-        for ( int i = updated.top; i < updated.bottom; i++ ) {
+        for ( int i = getUpdated().top; i < getUpdated().bottom; i++ ) {
 
-            float x1 = cellW * updated.left;
+            float x1 = cellW * getUpdated().left;
             float x2 = x1 + cellW;
 
-            int pos = i * mapWidth + updated.left;
+            int pos = i * mapWidth + getUpdated().left;
             final int POS_MODIFIER = 16;
             quads.position( POS_MODIFIER * pos );
 
-            for ( int j = updated.left; j < updated.right; j++ ) {
+            for ( int j = getUpdated().left; j < getUpdated().right; j++ ) {
 
-                RectF uv = tileset.get( data[pos] );
+                RectF uv = getTileset().get( data[pos] );
                 pos++;
 
                 vertices[0] = x1;
@@ -128,7 +128,7 @@ public class Tilemap extends Visual {
             y2 += cellH;
         }
 
-        updated.setEmpty();
+        getUpdated().setEmpty();
     }
 
     @SuppressWarnings ( "FeatureEnvy" )
@@ -139,19 +139,31 @@ public class Tilemap extends Visual {
 
         NoosaScript script = NoosaScript.get();
 
-        texture.bind();
+        getTexture().bind();
 
         script.getuModel().valueM4( matrix );
         script.lighting(
                 rm, gm, bm, am,
                 ra, ga, ba, aa );
 
-        if ( !updated.isEmpty() ) {
+        if ( !getUpdated().isEmpty() ) {
             updateVertices();
         }
 
         script.camera( getCamera() );
         script.drawQuadSet( quads, size );
 
+    }
+
+    public Rect getUpdated () {
+        return updated;
+    }
+
+    public SmartTexture getTexture () {
+        return texture;
+    }
+
+    public TextureFilm getTileset () {
+        return tileset;
     }
 }
