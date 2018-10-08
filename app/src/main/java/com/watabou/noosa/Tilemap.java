@@ -28,17 +28,17 @@ import java.nio.FloatBuffer;
 
 public class Tilemap extends Visual {
 
-    public Rect updated;
-    protected SmartTexture texture;
-    protected TextureFilm tileset;
-    protected int[] data;
-    protected int mapWidth;
-    protected int mapHeight;
-    protected int size;
-    protected float[] vertices;
-    protected FloatBuffer quads;
-    private float cellW;
-    private float cellH;
+    public final Rect updated;
+    protected final SmartTexture texture;
+    protected final TextureFilm tileset;
+    private int[] data;
+    private int mapWidth;
+    private int mapHeight;
+    private int size;
+    private final float[] vertices;
+    private FloatBuffer quads;
+    private final float cellW;
+    private final float cellH;
 
     public Tilemap ( Object tx, TextureFilm tileset ) {
 
@@ -72,7 +72,7 @@ public class Tilemap extends Visual {
         updated.set( 0, 0, mapWidth, mapHeight );
     }
 
-    protected void updateVertices () {
+    private void updateVertices () {
 
         float y1 = cellH * updated.top;
         float y2 = y1 + cellH;
