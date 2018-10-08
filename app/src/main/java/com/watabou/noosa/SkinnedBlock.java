@@ -48,7 +48,7 @@ public class SkinnedBlock extends Image {
         super.frame( new RectF( 0, 0, 1, 1 ) );
     }
 
-    @SuppressWarnings ( "MagicNumber" )
+    @SuppressWarnings ( { "MagicNumber", "FeatureEnvy" } )
     @Override
     protected void updateFrame () {
 
