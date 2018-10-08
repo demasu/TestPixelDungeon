@@ -23,6 +23,4 @@ public interface Resizable {
 
     float width ();
 
-    float height ();
-
 }
