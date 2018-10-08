@@ -30,7 +30,7 @@ public class Visual extends Gizmo {
     public float height;
 
     public PointF scale;
-    public PointF origin;
+    public final PointF origin;
     public float rm;
     public float gm;
     public float bm;
@@ -39,11 +39,11 @@ public class Visual extends Gizmo {
     public float ga;
     public float ba;
     public float aa;
-    public PointF speed;
-    public PointF acc;
+    public final PointF speed;
+    public final PointF acc;
     public float angle;
     public float angularSpeed;
-    protected float[] matrix;
+    protected final float[] matrix;
 
     public Visual ( float x, float y, float width, float height ) {
         this.x = x;
@@ -119,7 +119,7 @@ public class Visual extends Gizmo {
         return height * scale.y;
     }
 
-    protected void updateMotion () {
+    private void updateMotion () {
 
         float elapsed = Game.getElapsed();
 
@@ -178,7 +178,7 @@ public class Visual extends Gizmo {
         ba = ( color & 0xFF ) / 255f * strength;
     }
 
-    public void color ( float r, float g, float b ) {
+    private void color ( float r, float g, float b ) {
         rm = gm = bm = 0;
         ra = r;
         ga = g;
