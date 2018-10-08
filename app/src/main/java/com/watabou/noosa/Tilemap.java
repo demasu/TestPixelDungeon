@@ -87,7 +87,8 @@ public class Tilemap extends Visual {
 
             for ( int j = updated.left; j < updated.right; j++ ) {
 
-                RectF uv = tileset.get( data[pos++] );
+                RectF uv = tileset.get( data[pos] );
+                pos++;
 
                 vertices[0] = x1;
                 vertices[1] = y1;
