@@ -31,7 +31,7 @@ public class BitmapCache {
     private static final String DEFAULT = "__default";
     @SuppressLint ( "StaticFieldLeak" )
     private static Context context;
-    private static final HashMap<String, Layer> layers = new HashMap<String, BitmapCache.Layer>();
+    private static final HashMap<String, Layer> layers = new HashMap<>();
     private static final BitmapFactory.Options opts = new BitmapFactory.Options();
 
     static {
