@@ -35,10 +35,6 @@ public class PseudoPixel extends Image {
         color( color );
     }
 
-    public void size ( float w, float h ) {
-        scale.set( w, h );
-    }
-
     public void size ( float value ) {
         scale.set( value );
     }
