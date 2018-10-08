@@ -19,7 +19,6 @@ package com.watabou.noosa;
 
 import com.watabou.glwrap.Matrix;
 import com.watabou.utils.GameMath;
-import com.watabou.utils.Point;
 import com.watabou.utils.PointF;
 
 public class Visual extends Gizmo {
