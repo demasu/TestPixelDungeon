@@ -71,6 +71,7 @@ public class Visual extends Gizmo {
         updateMatrix();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     protected void updateMatrix () {
         Matrix.setIdentity( matrix );
         Matrix.translate( matrix, x, y );
@@ -237,6 +238,7 @@ public class Visual extends Gizmo {
     }
 
     // true if its bounding box intersects its camera's bounds
+    @SuppressWarnings ( "FeatureEnvy" )
     public boolean isVisible () {
         Camera c = camera();
         float cx = c.getScroll().x;
