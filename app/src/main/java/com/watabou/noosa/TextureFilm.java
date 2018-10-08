@@ -27,7 +27,7 @@ import java.util.HashMap;
 public class TextureFilm {
 
     private static final RectF FULL = new RectF( 0, 0, 1, 1 );
-    protected HashMap<Object, RectF> frames = new HashMap<Object, RectF>();
+    protected HashMap<Object, RectF> frames = new HashMap<>();
     private int texWidth;
     private int texHeight;
 
