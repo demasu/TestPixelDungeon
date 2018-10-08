@@ -24,10 +24,10 @@ import com.watabou.glwrap.Texture;
 public class SkinnedBlock extends Image {
 
     public boolean autoAdjust = false;
-    protected float scaleX;
-    protected float scaleY;
-    protected float offsetX;
-    protected float offsetY;
+    private float scaleX;
+    private float scaleY;
+    private float offsetX;
+    private float offsetY;
 
     public SkinnedBlock ( float width, float height, Object tx ) {
         super( tx );
