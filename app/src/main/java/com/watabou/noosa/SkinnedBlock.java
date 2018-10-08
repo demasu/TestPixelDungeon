@@ -101,18 +101,8 @@ public class SkinnedBlock extends Image {
         updateFrame();
     }
 
-    public float offsetX () {
-        return offsetX;
-    }
-
     public float offsetY () {
         return offsetY;
-    }
-
-    public void scale ( float x, float y ) {
-        scaleX = x;
-        scaleY = y;
-        updateFrame();
     }
 
     public void size ( float w, float h ) {
