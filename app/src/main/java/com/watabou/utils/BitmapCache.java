@@ -64,41 +64,6 @@ public class BitmapCache {
         }
     }
 
-    public static Bitmap get ( int resID ) {
-
-        Layer layer;
-        if ( !layers.containsKey( DEFAULT ) ) {
-            layer = new Layer();
-            layers.put( DEFAULT, layer );
-        } else {
-            layer = layers.get( DEFAULT );
-        }
-
-        if ( layer.containsKey( resID ) ) {
-            return layer.get( resID );
-        } else {
-
-            Bitmap bmp = BitmapFactory.decodeResource( getContext().getResources(), resID );
-            layer.put( resID, bmp );
-            return bmp;
-
-        }
-    }
-
-    public static void clear ( String layerName ) {
-        if ( layers.containsKey( layerName ) ) {
-            layers.get( layerName ).clear();
-            layers.remove( layerName );
-        }
-    }
-
-    public static void clear () {
-        for ( Layer layer : layers.values() ) {
-            layer.clear();
-        }
-        layers.clear();
-    }
-
     private static Context getContext () {
         return context;
     }
