@@ -26,7 +26,7 @@ class BitmapFilm {
 
     private final Bitmap bitmap;
 
-    private final HashMap<Object, Rect> frames = new HashMap<Object, Rect>();
+    private final HashMap<Object, Rect> frames = new HashMap<>();
 
     public BitmapFilm ( Bitmap bitmap ) {
         this.bitmap = bitmap;
