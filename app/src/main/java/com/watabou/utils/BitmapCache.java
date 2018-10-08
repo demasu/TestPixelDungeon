@@ -39,17 +39,13 @@ public class BitmapCache {
     }
 
     public static Bitmap get ( String assetName ) {
-        return get( DEFAULT, assetName );
-    }
-
-    private static Bitmap get ( String layerName, String assetName ) {
 
         Layer layer;
-        if ( !layers.containsKey( layerName ) ) {
+        if ( !layers.containsKey( DEFAULT ) ) {
             layer = new Layer();
-            layers.put( layerName, layer );
+            layers.put( DEFAULT, layer );
         } else {
-            layer = layers.get( layerName );
+            layer = layers.get( DEFAULT );
         }
 
         if ( layer.containsKey( assetName ) ) {
@@ -69,17 +65,13 @@ public class BitmapCache {
     }
 
     public static Bitmap get ( int resID ) {
-        return get( DEFAULT, resID );
-    }
-
-    private static Bitmap get ( String layerName, int resID ) {
 
         Layer layer;
-        if ( !layers.containsKey( layerName ) ) {
+        if ( !layers.containsKey( DEFAULT ) ) {
             layer = new Layer();
-            layers.put( layerName, layer );
+            layers.put( DEFAULT, layer );
         } else {
-            layer = layers.get( layerName );
+            layer = layers.get( DEFAULT );
         }
 
         if ( layer.containsKey( resID ) ) {
