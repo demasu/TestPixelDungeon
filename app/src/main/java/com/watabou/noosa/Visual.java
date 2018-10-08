@@ -153,25 +153,33 @@ public class Visual extends Gizmo {
     }
 
     public void brightness ( float value ) {
-        rm = gm = bm = value;
+        rm = value;
+        gm = value;
+        bm = value;
     }
 
     public void tint ( float r, float g, float b, float strength ) {
-        rm = gm = bm = 1f - strength;
+        rm = 1f - strength;
+        gm = 1f - strength;
+        bm = 1f - strength;
         ra = r * strength;
         ga = g * strength;
         ba = b * strength;
     }
 
     public void tint ( int color, float strength ) {
-        rm = gm = bm = 1f - strength;
+        rm = 1f - strength;
+        gm = 1f - strength;
+        bm = 1f - strength;
         ra = ( ( color >> 16 ) & 0xFF ) / 255f * strength;
         ga = ( ( color >> 8 ) & 0xFF ) / 255f * strength;
         ba = ( color & 0xFF ) / 255f * strength;
     }
 
     private void color ( float r, float g, float b ) {
-        rm = gm = bm = 0;
+        rm = 0;
+        gm = 0;
+        bm = 0;
         ra = r;
         ga = g;
         ba = b;
@@ -182,7 +190,9 @@ public class Visual extends Gizmo {
     }
 
     public void hardlight ( float r, float g, float b ) {
-        ra = ga = ba = 0;
+        ra = 0;
+        ga = 0;
+        ba = 0;
         rm = r;
         gm = g;
         bm = b;
@@ -193,8 +203,14 @@ public class Visual extends Gizmo {
     }
 
     public void resetColor () {
-        rm = gm = bm = am = 1;
-        ra = ga = ba = aa = 0;
+        rm = 1;
+        gm = 1;
+        bm = 1;
+        am = 1;
+        ra = 0;
+        ga = 0;
+        ba = 0;
+        aa = 0;
     }
 
     public boolean overlapsPoint ( float x, float y ) {
