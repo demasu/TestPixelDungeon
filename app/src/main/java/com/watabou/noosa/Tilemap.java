@@ -33,7 +33,6 @@ public class Tilemap extends Visual {
     protected final TextureFilm tileset;
     private int[] data;
     private int mapWidth;
-    private int mapHeight;
     private int size;
     private final float[] vertices;
     private FloatBuffer quads;
@@ -61,7 +60,7 @@ public class Tilemap extends Visual {
         this.data = data;
 
         mapWidth = cols;
-        mapHeight = data.length / cols;
+        int mapHeight = data.length / cols;
         size = mapWidth * mapHeight;
 
         width = cellW * mapWidth;
