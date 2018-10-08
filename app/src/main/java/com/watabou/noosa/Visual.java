@@ -133,12 +133,22 @@ public class Visual extends Gizmo {
     }
 
     public void lightness ( float value ) {
-        if ( value < 0.5f ) {
-            rm = gm = bm = value * 2f;
-            ra = ga = ba = 0;
+        final float HALF  = 0.5f;
+        final float TWICE = 2f;
+        if ( value < HALF ) {
+            rm = value * TWICE;
+            gm = value * TWICE;
+            bm = value * TWICE;
+            ra = 0;
+            ga = 0;
+            ba = 0;
         } else {
-            rm = gm = bm = 2f - value * 2f;
-            ra = ga = ba = value * 2f - 1f;
+            rm = TWICE - value * TWICE;
+            gm = TWICE - value * TWICE;
+            bm = TWICE - value * TWICE;
+            ra = value * TWICE - 1f;
+            ga = value * TWICE - 1f;
+            ba = value * TWICE - 1f;
         }
     }
 
