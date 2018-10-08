@@ -330,8 +330,8 @@ public class BitmapText extends Visual {
                 }
             }
 
-            setLineHeight( height( frames.get( chars.charAt( 0 ) ) ) );
-            setBaseLine( height( frames.get( chars.charAt( 0 ) ) ) );
+            setLineHeight( height( getFrames().get( chars.charAt( 0 ) ) ) );
+            setBaseLine( height( getFrames().get( chars.charAt( 0 ) ) ) );
         }
 
         public RectF get ( char ch ) {

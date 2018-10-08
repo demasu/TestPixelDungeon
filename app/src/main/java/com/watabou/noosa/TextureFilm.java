@@ -27,7 +27,7 @@ import java.util.HashMap;
 public class TextureFilm {
 
     private static final RectF FULL = new RectF( 0, 0, 1, 1 );
-    protected final HashMap<Object, RectF> frames = new HashMap<>();
+    private final HashMap<Object, RectF> frames = new HashMap<>();
     private final int texWidth;
     private final int texHeight;
 
@@ -52,10 +52,10 @@ public class TextureFilm {
         texWidth = texture.getWidth();
         texHeight = texture.getHeight();
 
-        float uw = (float) width / texWidth;
-        float vh = (float) height / texHeight;
-        int cols = texWidth / width;
-        int rows = texHeight / height;
+        float uw = (float) width / getTexWidth();
+        float vh = (float) height / getTexHeight();
+        int cols = getTexWidth() / width;
+        int rows = getTexHeight() / height;
 
         for ( int i = 0; i < rows; i++ ) {
             for ( int j = 0; j < cols; j++ ) {
@@ -67,13 +67,13 @@ public class TextureFilm {
 
     public TextureFilm ( TextureFilm atlas, Object key, int width, int height ) {
 
-        texWidth = atlas.texWidth;
-        texHeight = atlas.texHeight;
+        texWidth = atlas.getTexWidth();
+        texHeight = atlas.getTexHeight();
 
         RectF patch = atlas.get( key );
 
-        float uw = (float) width / texWidth;
-        float vh = (float) height / texHeight;
+        float uw = (float) width / getTexWidth();
+        float vh = (float) height / getTexHeight();
         int cols = (int) ( width( patch ) / width );
         int rows = (int) ( height( patch ) / height );
 
@@ -87,18 +87,31 @@ public class TextureFilm {
     }
 
     public void add ( Object id, RectF rect ) {
-        frames.put( id, rect );
+        getFrames().put( id, rect );
     }
 
     public RectF get ( Object id ) {
-        return frames.get( id );
+        return getFrames().get( id );
     }
 
     public float width ( RectF frame ) {
-        return frame.width() * texWidth;
+        return frame.width() * getTexWidth();
     }
 
     public float height ( RectF frame ) {
-        return frame.height() * texHeight;
+        return frame.height() * getTexHeight();
+    }
+
+    private int getTexWidth () {
+        return texWidth;
+    }
+
+    private int getTexHeight () {
+        return texHeight;
+    }
+
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
+    public HashMap<Object, RectF> getFrames () {
+        return frames;
     }
 }
