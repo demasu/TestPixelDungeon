@@ -27,13 +27,15 @@ public class ColorMath {
             return B;
         }
 
-        int ra = A >> 16;
-        int ga = ( A >> 8 ) & 0xFF;
-        int ba = A & 0xFF;
+        final int BITSHIFT = 16;
+        final int BIT_MASK = 0xFF;
+        int ra = A >> BITSHIFT;
+        int ga = ( A >> 8 ) & BIT_MASK;
+        int ba = A & BIT_MASK;
 
-        int rb = B >> 16;
-        int gb = ( B >> 8 ) & 0xFF;
-        int bb = B & 0xFF;
+        int rb = B >> BITSHIFT;
+        int gb = ( B >> 8 ) & BIT_MASK;
+        int bb = B & BIT_MASK;
 
         float p1 = 1 - p;
 
@@ -41,17 +43,7 @@ public class ColorMath {
         int g = (int) ( p1 * ga + p * gb );
         int b = (int) ( p1 * ba + p * bb );
 
-        return ( r << 16 ) + ( g << 8 ) + b;
-    }
-
-    public static int interpolate ( float p, int... colors ) {
-        if ( p <= 0 ) {
-            return colors[0];
-        } else if ( p >= 1 ) {
-            return colors[colors.length - 1];
-        }
-        int segment = (int) ( colors.length * p );
-        return interpolate( colors[segment], colors[segment + 1], ( p * ( colors.length - 1 ) ) % 1 );
+        return ( r << BITSHIFT ) + ( g << 8 ) + b;
     }
 
     public static int random ( int a, int b ) {
