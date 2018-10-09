@@ -32,6 +32,8 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Bundle {
 
@@ -203,6 +205,11 @@ public class Bundle {
             }
         } catch ( JSONException e ) {
 
+            Pattern p = Pattern.compile( "(dropped[2-9]|dropped[1][0-7])" );
+            Matcher m = p.matcher( e.getMessage() );
+            if ( !m.find() ) {
+                e.printStackTrace();
+            }
         }
 
         return list;
@@ -212,7 +219,7 @@ public class Bundle {
         try {
             getData().put( key, value );
         } catch ( JSONException e ) {
-
+            e.printStackTrace();
         }
     }
 
@@ -220,7 +227,7 @@ public class Bundle {
         try {
             getData().put( key, value );
         } catch ( JSONException e ) {
-
+            e.printStackTrace();
         }
     }
 
@@ -228,7 +235,7 @@ public class Bundle {
         try {
             getData().put( key, value );
         } catch ( JSONException e ) {
-
+            e.printStackTrace();
         }
     }
 
@@ -236,7 +243,7 @@ public class Bundle {
         try {
             getData().put( key, value );
         } catch ( JSONException e ) {
-
+            e.printStackTrace();
         }
     }
 
@@ -244,7 +251,7 @@ public class Bundle {
         try {
             getData().put( key, bundle.getData() );
         } catch ( JSONException e ) {
-
+            e.printStackTrace();
         }
     }
 
@@ -256,6 +263,7 @@ public class Bundle {
                 object.storeInBundle( bundle );
                 getData().put( key, bundle.getData() );
             } catch ( JSONException e ) {
+                e.printStackTrace();
             }
         }
     }
@@ -265,6 +273,7 @@ public class Bundle {
             try {
                 getData().put( key, value.name() );
             } catch ( JSONException e ) {
+                e.printStackTrace();
             }
         }
     }
@@ -277,7 +286,7 @@ public class Bundle {
             }
             getData().put( key, jsonArray );
         } catch ( JSONException e ) {
-
+            e.printStackTrace();
         }
     }
 
@@ -289,7 +298,7 @@ public class Bundle {
             }
             getData().put( key, jsonArray );
         } catch ( JSONException e ) {
-
+            e.printStackTrace();
         }
     }
 
@@ -301,7 +310,7 @@ public class Bundle {
             }
             getData().put( key, jsonArray );
         } catch ( JSONException e ) {
-
+            e.printStackTrace();
         }
     }
 
@@ -316,7 +325,7 @@ public class Bundle {
         try {
             getData().put( key, array );
         } catch ( JSONException e ) {
-
+            e.printStackTrace();
         }
     }
 
