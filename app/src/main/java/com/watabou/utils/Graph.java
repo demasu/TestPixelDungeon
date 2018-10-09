@@ -36,9 +36,8 @@ public class Graph {
             node.distance( Integer.MAX_VALUE );
         }
 
-        LinkedList<Node> queue = new LinkedList<Node>();
-
         focus.distance( 0 );
+        LinkedList<Node> queue = new LinkedList<Node>();
         queue.add( focus );
 
         while ( !queue.isEmpty() ) {
