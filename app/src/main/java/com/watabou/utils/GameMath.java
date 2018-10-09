@@ -23,11 +23,12 @@ public class GameMath {
 
     public static float speed ( float speed, float acc ) {
 
+        float speed1 = speed;
         if ( acc != 0 ) {
-            speed += acc * Game.getElapsed();
+            speed1 += acc * Game.getElapsed();
         }
 
-        return speed;
+        return speed1;
     }
 
     public static float gate ( float min, float value, float max ) {
