@@ -43,7 +43,7 @@ public class Graph {
         while ( !queue.isEmpty() ) {
 
             Node node = queue.poll();
-            int distance = node.distance();
+            @SuppressWarnings ( "ConstantConditions" ) int distance = node.distance();
             int price = node.price();
 
             for ( Node edge : node.edges() ) {
