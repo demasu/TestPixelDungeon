@@ -32,7 +32,6 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class Bundle {
 
@@ -71,17 +70,6 @@ public class Bundle {
         }
     }
 
-    public static Bundle read ( byte[] bytes ) {
-        try {
-
-            JSONObject json = (JSONObject) new JSONTokener( new String( bytes ) ).nextValue();
-            return new Bundle( json );
-
-        } catch ( JSONException e ) {
-            return null;
-        }
-    }
-
     public static boolean write ( Bundle bundle, OutputStream stream ) {
         try {
             BufferedWriter writer = new BufferedWriter( new OutputStreamWriter( stream ) );
@@ -104,17 +92,6 @@ public class Bundle {
 
     public boolean isNull () {
         return data == null;
-    }
-
-    public ArrayList<String> fields () {
-        ArrayList<String> result = new ArrayList<>();
-
-        Iterator<String> iterator = data.keys();
-        while ( iterator.hasNext() ) {
-            result.add( iterator.next() );
-        }
-
-        return result;
     }
 
     public boolean contains ( String key ) {
