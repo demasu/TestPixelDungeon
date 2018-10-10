@@ -33,21 +33,21 @@ public class WeakFloorPainter extends Painter {
         Room.Door door = room.entrance();
         door.set( Room.Door.Type.REGULAR );
 
-        if ( door.getX() == room.left ) {
-            for ( int i = room.top + 1; i < room.bottom; i++ ) {
-                drawInside( level, room, new Point( room.left, i ), Random.IntRange( 1, room.width() - 2 ), Terrain.EMPTY_SP );
+        if ( door.getX() == room.getLeft() ) {
+            for ( int i = room.getTop() + 1; i < room.getBottom(); i++ ) {
+                drawInside( level, room, new Point( room.getLeft(), i ), Random.IntRange( 1, room.width() - 2 ), Terrain.EMPTY_SP );
             }
-        } else if ( door.getX() == room.right ) {
-            for ( int i = room.top + 1; i < room.bottom; i++ ) {
-                drawInside( level, room, new Point( room.right, i ), Random.IntRange( 1, room.width() - 2 ), Terrain.EMPTY_SP );
+        } else if ( door.getX() == room.getRight() ) {
+            for ( int i = room.getTop() + 1; i < room.getBottom(); i++ ) {
+                drawInside( level, room, new Point( room.getRight(), i ), Random.IntRange( 1, room.width() - 2 ), Terrain.EMPTY_SP );
             }
-        } else if ( door.getY() == room.top ) {
-            for ( int i = room.left + 1; i < room.right; i++ ) {
-                drawInside( level, room, new Point( i, room.top ), Random.IntRange( 1, room.height() - 2 ), Terrain.EMPTY_SP );
+        } else if ( door.getY() == room.getTop() ) {
+            for ( int i = room.getLeft() + 1; i < room.getRight(); i++ ) {
+                drawInside( level, room, new Point( i, room.getTop() ), Random.IntRange( 1, room.height() - 2 ), Terrain.EMPTY_SP );
             }
-        } else if ( door.getY() == room.bottom ) {
-            for ( int i = room.left + 1; i < room.right; i++ ) {
-                drawInside( level, room, new Point( i, room.bottom ), Random.IntRange( 1, room.height() - 2 ), Terrain.EMPTY_SP );
+        } else if ( door.getY() == room.getBottom() ) {
+            for ( int i = room.getLeft() + 1; i < room.getRight(); i++ ) {
+                drawInside( level, room, new Point( i, room.getBottom() ), Random.IntRange( 1, room.height() - 2 ), Terrain.EMPTY_SP );
             }
         }
     }

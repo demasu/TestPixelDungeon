@@ -32,7 +32,7 @@ public class BossExitPainter extends Painter {
             door.set( Room.Door.Type.REGULAR );
         }
 
-        level.exit = room.top * Level.WIDTH + ( room.left + room.right ) / 2;
+        level.exit = room.getTop() * Level.WIDTH + ( room.getLeft() + room.getRight() ) / 2;
         set( level, level.exit, Terrain.LOCKED_EXIT );
     }
 

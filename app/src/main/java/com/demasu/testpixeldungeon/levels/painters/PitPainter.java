@@ -38,14 +38,14 @@ public class PitPainter extends Painter {
         entrance.set( Room.Door.Type.LOCKED );
 
         Point well = null;
-        if ( entrance.getX() == room.left ) {
-            well = new Point( room.right - 1, Random.Int( 2 ) == 0 ? room.top + 1 : room.bottom - 1 );
-        } else if ( entrance.getX() == room.right ) {
-            well = new Point( room.left + 1, Random.Int( 2 ) == 0 ? room.top + 1 : room.bottom - 1 );
-        } else if ( entrance.getY() == room.top ) {
-            well = new Point( Random.Int( 2 ) == 0 ? room.left + 1 : room.right - 1, room.bottom - 1 );
-        } else if ( entrance.getY() == room.bottom ) {
-            well = new Point( Random.Int( 2 ) == 0 ? room.left + 1 : room.right - 1, room.top + 1 );
+        if ( entrance.getX() == room.getLeft() ) {
+            well = new Point( room.getRight() - 1, Random.Int( 2 ) == 0 ? room.getTop() + 1 : room.getBottom() - 1 );
+        } else if ( entrance.getX() == room.getRight() ) {
+            well = new Point( room.getLeft() + 1, Random.Int( 2 ) == 0 ? room.getTop() + 1 : room.getBottom() - 1 );
+        } else if ( entrance.getY() == room.getTop() ) {
+            well = new Point( Random.Int( 2 ) == 0 ? room.getLeft() + 1 : room.getRight() - 1, room.getBottom() - 1 );
+        } else if ( entrance.getY() == room.getBottom() ) {
+            well = new Point( Random.Int( 2 ) == 0 ? room.getLeft() + 1 : room.getRight() - 1, room.getTop() + 1 );
         }
         set( level, well, Terrain.EMPTY_WELL );
 

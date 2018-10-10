@@ -36,14 +36,14 @@ public class ArmoryPainter extends Painter {
 
         Room.Door entrance = room.entrance();
         Point statue = null;
-        if ( entrance.getX() == room.left ) {
-            statue = new Point( room.right - 1, Random.Int( 2 ) == 0 ? room.top + 1 : room.bottom - 1 );
-        } else if ( entrance.getX() == room.right ) {
-            statue = new Point( room.left + 1, Random.Int( 2 ) == 0 ? room.top + 1 : room.bottom - 1 );
-        } else if ( entrance.getY() == room.top ) {
-            statue = new Point( Random.Int( 2 ) == 0 ? room.left + 1 : room.right - 1, room.bottom - 1 );
-        } else if ( entrance.getY() == room.bottom ) {
-            statue = new Point( Random.Int( 2 ) == 0 ? room.left + 1 : room.right - 1, room.top + 1 );
+        if ( entrance.getX() == room.getLeft() ) {
+            statue = new Point( room.getRight() - 1, Random.Int( 2 ) == 0 ? room.getTop() + 1 : room.getBottom() - 1 );
+        } else if ( entrance.getX() == room.getRight() ) {
+            statue = new Point( room.getLeft() + 1, Random.Int( 2 ) == 0 ? room.getTop() + 1 : room.getBottom() - 1 );
+        } else if ( entrance.getY() == room.getTop() ) {
+            statue = new Point( Random.Int( 2 ) == 0 ? room.getLeft() + 1 : room.getRight() - 1, room.getBottom() - 1 );
+        } else if ( entrance.getY() == room.getBottom() ) {
+            statue = new Point( Random.Int( 2 ) == 0 ? room.getLeft() + 1 : room.getRight() - 1, room.getTop() + 1 );
         }
         if ( statue != null ) {
             set( level, statue, Terrain.STATUE );

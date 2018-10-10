@@ -268,10 +268,10 @@ public abstract class RegularLevel extends Level {
 
             for ( Room room : rooms ) {
                 if ( room.type != Type.NULL && room.type != Type.PASSAGE && room.type != Type.TUNNEL ) {
-                    grass[( room.left + 1 ) + ( room.top + 1 ) * WIDTH] = true;
-                    grass[( room.right - 1 ) + ( room.top + 1 ) * WIDTH] = true;
-                    grass[( room.left + 1 ) + ( room.bottom - 1 ) * WIDTH] = true;
-                    grass[( room.right - 1 ) + ( room.bottom - 1 ) * WIDTH] = true;
+                    grass[( room.getLeft() + 1 ) + ( room.getTop() + 1 ) * WIDTH] = true;
+                    grass[( room.getRight() - 1 ) + ( room.getTop() + 1 ) * WIDTH] = true;
+                    grass[( room.getLeft() + 1 ) + ( room.getBottom() - 1 ) * WIDTH] = true;
+                    grass[( room.getRight() - 1 ) + ( room.getBottom() - 1 ) * WIDTH] = true;
                 }
             }
         }
@@ -349,15 +349,15 @@ public abstract class RegularLevel extends Level {
 
         if ( w > maxRoomSize && h < minRoomSize ) {
 
-            int vw = Random.Int( rect.left + 3, rect.right - 3 );
-            split( new Rect( rect.left, rect.top, vw, rect.bottom ) );
-            split( new Rect( vw, rect.top, rect.right, rect.bottom ) );
+            int vw = Random.Int( rect.getLeft() + 3, rect.getRight() - 3 );
+            split( new Rect( rect.getLeft(), rect.getTop(), vw, rect.getBottom() ) );
+            split( new Rect( vw, rect.getTop(), rect.getRight(), rect.getBottom() ) );
 
         } else if ( h > maxRoomSize && w < minRoomSize ) {
 
-            int vh = Random.Int( rect.top + 3, rect.bottom - 3 );
-            split( new Rect( rect.left, rect.top, rect.right, vh ) );
-            split( new Rect( rect.left, vh, rect.right, rect.bottom ) );
+            int vh = Random.Int( rect.getTop() + 3, rect.getBottom() - 3 );
+            split( new Rect( rect.getLeft(), rect.getTop(), rect.getRight(), vh ) );
+            split( new Rect( rect.getLeft(), vh, rect.getRight(), rect.getBottom() ) );
 
         } else if ( ( Math.random() <= ( minRoomSize * minRoomSize / rect.square() ) && w <= maxRoomSize && h <= maxRoomSize ) || w < minRoomSize || h < minRoomSize ) {
 
@@ -366,13 +366,13 @@ public abstract class RegularLevel extends Level {
         } else {
 
             if ( Random.Float() < (float) ( w - 2 ) / ( w + h - 4 ) ) {
-                int vw = Random.Int( rect.left + 3, rect.right - 3 );
-                split( new Rect( rect.left, rect.top, vw, rect.bottom ) );
-                split( new Rect( vw, rect.top, rect.right, rect.bottom ) );
+                int vw = Random.Int( rect.getLeft() + 3, rect.getRight() - 3 );
+                split( new Rect( rect.getLeft(), rect.getTop(), vw, rect.getBottom() ) );
+                split( new Rect( vw, rect.getTop(), rect.getRight(), rect.getBottom() ) );
             } else {
-                int vh = Random.Int( rect.top + 3, rect.bottom - 3 );
-                split( new Rect( rect.left, rect.top, rect.right, vh ) );
-                split( new Rect( rect.left, vh, rect.right, rect.bottom ) );
+                int vh = Random.Int( rect.getTop() + 3, rect.getBottom() - 3 );
+                split( new Rect( rect.getLeft(), rect.getTop(), rect.getRight(), vh ) );
+                split( new Rect( rect.getLeft(), vh, rect.getRight(), rect.getBottom() ) );
             }
 
         }
@@ -404,12 +404,12 @@ public abstract class RegularLevel extends Level {
                 Rect i = r.intersect( n );
                 if ( i.width() == 0 ) {
                     door = new Room.Door(
-                            i.left,
-                            Random.Int( i.top + 1, i.bottom ) );
+                            i.getLeft(),
+                            Random.Int( i.getTop() + 1, i.getBottom() ) );
                 } else {
                     door = new Room.Door(
-                            Random.Int( i.left + 1, i.right ),
-                            i.top );
+                            Random.Int( i.getLeft() + 1, i.getRight() ),
+                            i.getTop() );
                 }
 
                 r.connected.put( n, door );
@@ -470,9 +470,9 @@ public abstract class RegularLevel extends Level {
         }
 
         Rect w = r.intersect( n );
-        if ( w.left == w.right ) {
+        if ( w.getLeft() == w.getRight() ) {
 
-            if ( w.bottom - w.top < 3 ) {
+            if ( w.getBottom() - w.getTop() < 3 ) {
                 return false;
             }
 
@@ -484,16 +484,16 @@ public abstract class RegularLevel extends Level {
                 return false;
             }
 
-            w.top += 1;
-            w.bottom -= 0;
+            w.setTop( w.getTop() + 1 );
+            w.setBottom( w.getBottom() - 0 );
 
-            w.right++;
+            w.setRight( w.getRight() + 1 );
 
-            Painter.fill( this, w.left, w.top, 1, w.height(), Terrain.EMPTY );
+            Painter.fill( this, w.getLeft(), w.getTop(), 1, w.height(), Terrain.EMPTY );
 
         } else {
 
-            if ( w.right - w.left < 3 ) {
+            if ( w.getRight() - w.getLeft() < 3 ) {
                 return false;
             }
 
@@ -505,12 +505,12 @@ public abstract class RegularLevel extends Level {
                 return false;
             }
 
-            w.left += 1;
-            w.right -= 0;
+            w.setLeft( w.getLeft() + 1 );
+            w.setRight( w.getRight() - 0 );
 
-            w.bottom++;
+            w.setBottom( w.getBottom() + 1 );
 
-            Painter.fill( this, w.left, w.top, w.width(), 1, Terrain.EMPTY );
+            Painter.fill( this, w.getLeft(), w.getTop(), w.width(), 1, Terrain.EMPTY );
         }
 
         return true;

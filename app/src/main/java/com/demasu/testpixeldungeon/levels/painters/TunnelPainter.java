@@ -32,23 +32,23 @@ public class TunnelPainter extends Painter {
 
         if ( room.width() > room.height() || ( room.width() == room.height() && Random.Int( 2 ) == 0 ) ) {
 
-            int from = room.right - 1;
-            int to = room.left + 1;
+            int from = room.getRight() - 1;
+            int to = room.getLeft() + 1;
 
             for ( Room.Door door : room.connected.values() ) {
 
                 int step = door.getY() < c.getY() ? +1 : -1;
 
-                if ( door.getX() == room.left ) {
+                if ( door.getX() == room.getLeft() ) {
 
-                    from = room.left + 1;
+                    from = room.getLeft() + 1;
                     for ( int i = door.getY(); i != c.getY(); i += step ) {
                         set( level, from, i, floor );
                     }
 
-                } else if ( door.getX() == room.right ) {
+                } else if ( door.getX() == room.getRight() ) {
 
-                    to = room.right - 1;
+                    to = room.getRight() - 1;
                     for ( int i = door.getY(); i != c.getY(); i += step ) {
                         set( level, to, i, floor );
                     }
@@ -73,23 +73,23 @@ public class TunnelPainter extends Painter {
 
         } else {
 
-            int from = room.bottom - 1;
-            int to = room.top + 1;
+            int from = room.getBottom() - 1;
+            int to = room.getTop() + 1;
 
             for ( Room.Door door : room.connected.values() ) {
 
                 int step = door.getX() < c.getX() ? +1 : -1;
 
-                if ( door.getY() == room.top ) {
+                if ( door.getY() == room.getTop() ) {
 
-                    from = room.top + 1;
+                    from = room.getTop() + 1;
                     for ( int i = door.getX(); i != c.getX(); i += step ) {
                         set( level, i, from, floor );
                     }
 
-                } else if ( door.getY() == room.bottom ) {
+                } else if ( door.getY() == room.getBottom() ) {
 
-                    to = room.bottom - 1;
+                    to = room.getBottom() - 1;
                     for ( int i = door.getX(); i != c.getX(); i += step ) {
                         set( level, i, to, floor );
                     }

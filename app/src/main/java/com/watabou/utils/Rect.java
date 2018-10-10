@@ -19,68 +19,68 @@ package com.watabou.utils;
 
 public class Rect {
 
-    public int left;
-    public int top;
-    public int right;
-    public int bottom;
+    private int left;
+    private int top;
+    private int right;
+    private int bottom;
 
     public Rect () {
         this( 0, 0, 0, 0 );
     }
 
     public Rect ( Rect rect ) {
-        this( rect.left, rect.top, rect.right, rect.bottom );
+        this( rect.getLeft(), rect.getTop(), rect.getRight(), rect.getBottom() );
     }
 
     public Rect ( int left, int top, int right, int bottom ) {
-        this.left = left;
-        this.top = top;
-        this.right = right;
-        this.bottom = bottom;
+        this.setLeft( left );
+        this.setTop( top );
+        this.setRight( right );
+        this.setBottom( bottom );
     }
 
     public int width () {
-        return right - left;
+        return getRight() - getLeft();
     }
 
     public int height () {
-        return bottom - top;
+        return getBottom() - getTop();
     }
 
     public int square () {
-        return ( right - left ) * ( bottom - top );
+        return ( getRight() - getLeft() ) * ( getBottom() - getTop() );
     }
 
     public Rect set ( int left, int top, int right, int bottom ) {
-        this.left = left;
-        this.top = top;
-        this.right = right;
-        this.bottom = bottom;
+        this.setLeft( left );
+        this.setTop( top );
+        this.setRight( right );
+        this.setBottom( bottom );
         return this;
     }
 
     public Rect set ( Rect rect ) {
-        return set( rect.left, rect.top, rect.right, rect.bottom );
+        return set( rect.getLeft(), rect.getTop(), rect.getRight(), rect.getBottom() );
     }
 
     public boolean isEmpty () {
-        return right <= left || bottom <= top;
+        return getRight() <= getLeft() || getBottom() <= getTop();
     }
 
     public Rect setEmpty () {
-        left = 0;
-        right = 0;
-        top = 0;
-        bottom = 0;
+        setLeft( 0 );
+        setRight( 0 );
+        setTop( 0 );
+        setBottom( 0 );
         return this;
     }
 
     public Rect intersect ( Rect other ) {
         Rect result = new Rect();
-        result.left = Math.max( left, other.left );
-        result.right = Math.min( right, other.right );
-        result.top = Math.max( top, other.top );
-        result.bottom = Math.min( bottom, other.bottom );
+        result.setLeft( Math.max( getLeft(), other.getLeft() ) );
+        result.setRight( Math.min( getRight(), other.getRight() ) );
+        result.setTop( Math.max( getTop(), other.getTop() ) );
+        result.setBottom( Math.min( getBottom(), other.getBottom() ) );
         return result;
     }
 
@@ -88,18 +88,49 @@ public class Rect {
         if ( isEmpty() ) {
             return set( x, y, x + 1, y + 1 );
         } else {
-            if ( x < left ) {
-                left = x;
-            } else if ( x >= right ) {
-                right = x + 1;
+            if ( x < getLeft() ) {
+                setLeft( x );
+            } else if ( x >= getRight() ) {
+                setRight( x + 1 );
             }
-            if ( y < top ) {
-                top = y;
-            } else if ( y >= bottom ) {
-                bottom = y + 1;
+            if ( y < getTop() ) {
+                setTop( y );
+            } else if ( y >= getBottom() ) {
+                setBottom( y + 1 );
             }
             return this;
         }
     }
 
+    public int getLeft () {
+        return left;
+    }
+
+    public void setLeft ( int left ) {
+        this.left = left;
+    }
+
+    public int getTop () {
+        return top;
+    }
+
+    public void setTop ( int top ) {
+        this.top = top;
+    }
+
+    public int getRight () {
+        return right;
+    }
+
+    public void setRight ( int right ) {
+        this.right = right;
+    }
+
+    public int getBottom () {
+        return bottom;
+    }
+
+    public void setBottom ( int bottom ) {
+        this.bottom = bottom;
+    }
 }

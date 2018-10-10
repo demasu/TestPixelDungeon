@@ -42,25 +42,25 @@ public class PoolPainter extends Painter {
 
         int x = -1;
         int y = -1;
-        if ( door.getX() == room.left ) {
+        if ( door.getX() == room.getLeft() ) {
 
-            x = room.right - 1;
-            y = room.top + room.height() / 2;
+            x = room.getRight() - 1;
+            y = room.getTop() + room.height() / 2;
 
-        } else if ( door.getX() == room.right ) {
+        } else if ( door.getX() == room.getRight() ) {
 
-            x = room.left + 1;
-            y = room.top + room.height() / 2;
+            x = room.getLeft() + 1;
+            y = room.getTop() + room.height() / 2;
 
-        } else if ( door.getY() == room.top ) {
+        } else if ( door.getY() == room.getTop() ) {
 
-            x = room.left + room.width() / 2;
-            y = room.bottom - 1;
+            x = room.getLeft() + room.width() / 2;
+            y = room.getBottom() - 1;
 
-        } else if ( door.getY() == room.bottom ) {
+        } else if ( door.getY() == room.getBottom() ) {
 
-            x = room.left + room.width() / 2;
-            y = room.top + 1;
+            x = room.getLeft() + room.width() / 2;
+            y = room.getTop() + 1;
 
         }
 

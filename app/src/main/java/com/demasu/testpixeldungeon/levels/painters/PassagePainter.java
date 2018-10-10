@@ -71,24 +71,24 @@ public class PassagePainter extends Painter {
     }
 
     private static int xy2p ( Room room, Point xy ) {
-        if ( xy.getY() == room.top ) {
+        if ( xy.getY() == room.getTop() ) {
 
-            return ( xy.getX() - room.left - 1 );
+            return ( xy.getX() - room.getLeft() - 1 );
 
-        } else if ( xy.getX() == room.right ) {
+        } else if ( xy.getX() == room.getRight() ) {
 
-            return ( xy.getY() - room.top - 1 ) + pasWidth;
+            return ( xy.getY() - room.getTop() - 1 ) + pasWidth;
 
-        } else if ( xy.getY() == room.bottom ) {
+        } else if ( xy.getY() == room.getBottom() ) {
 
-            return ( room.right - xy.getX() - 1 ) + pasWidth + pasHeight;
+            return ( room.getRight() - xy.getX() - 1 ) + pasWidth + pasHeight;
 
         } else /*if (xy.x == room.left)*/ {
 
-            if ( xy.getY() == room.top + 1 ) {
+            if ( xy.getY() == room.getTop() + 1 ) {
                 return 0;
             } else {
-                return ( room.bottom - xy.getY() - 1 ) + pasWidth * 2 + pasHeight;
+                return ( room.getBottom() - xy.getY() - 1 ) + pasWidth * 2 + pasHeight;
             }
 
         }
@@ -97,19 +97,19 @@ public class PassagePainter extends Painter {
     private static Point p2xy ( Room room, int p ) {
         if ( p < pasWidth ) {
 
-            return new Point( room.left + 1 + p, room.top + 1 );
+            return new Point( room.getLeft() + 1 + p, room.getTop() + 1 );
 
         } else if ( p < pasWidth + pasHeight ) {
 
-            return new Point( room.right - 1, room.top + 1 + ( p - pasWidth ) );
+            return new Point( room.getRight() - 1, room.getTop() + 1 + ( p - pasWidth ) );
 
         } else if ( p < pasWidth * 2 + pasHeight ) {
 
-            return new Point( room.right - 1 - ( p - ( pasWidth + pasHeight ) ), room.bottom - 1 );
+            return new Point( room.getRight() - 1 - ( p - ( pasWidth + pasHeight ) ), room.getBottom() - 1 );
 
         } else {
 
-            return new Point( room.left + 1, room.bottom - 1 - ( p - ( pasWidth * 2 + pasHeight ) ) );
+            return new Point( room.getLeft() + 1, room.getBottom() - 1 - ( p - ( pasWidth * 2 + pasHeight ) ) );
 
         }
     }

@@ -41,25 +41,25 @@ public class StatuePainter extends Painter {
         door.set( Room.Door.Type.LOCKED );
         level.addItemToSpawn( new IronKey() );
 
-        if ( door.getX() == room.left ) {
+        if ( door.getX() == room.getLeft() ) {
 
-            fill( level, room.right - 1, room.top + 1, 1, room.height() - 1, Terrain.STATUE );
-            cx = room.right - 2;
+            fill( level, room.getRight() - 1, room.getTop() + 1, 1, room.height() - 1, Terrain.STATUE );
+            cx = room.getRight() - 2;
 
-        } else if ( door.getX() == room.right ) {
+        } else if ( door.getX() == room.getRight() ) {
 
-            fill( level, room.left + 1, room.top + 1, 1, room.height() - 1, Terrain.STATUE );
-            cx = room.left + 2;
+            fill( level, room.getLeft() + 1, room.getTop() + 1, 1, room.height() - 1, Terrain.STATUE );
+            cx = room.getLeft() + 2;
 
-        } else if ( door.getY() == room.top ) {
+        } else if ( door.getY() == room.getTop() ) {
 
-            fill( level, room.left + 1, room.bottom - 1, room.width() - 1, 1, Terrain.STATUE );
-            cy = room.bottom - 2;
+            fill( level, room.getLeft() + 1, room.getBottom() - 1, room.width() - 1, 1, Terrain.STATUE );
+            cy = room.getBottom() - 2;
 
-        } else if ( door.getY() == room.bottom ) {
+        } else if ( door.getY() == room.getBottom() ) {
 
-            fill( level, room.left + 1, room.top + 1, room.width() - 1, 1, Terrain.STATUE );
-            cy = room.top + 2;
+            fill( level, room.getLeft() + 1, room.getTop() + 1, room.width() - 1, 1, Terrain.STATUE );
+            cy = room.getTop() + 2;
 
         }
 

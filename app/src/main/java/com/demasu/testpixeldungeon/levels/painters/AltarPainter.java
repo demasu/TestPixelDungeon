@@ -33,7 +33,7 @@ public class AltarPainter extends Painter {
 
         Point c = room.center();
         Room.Door door = room.entrance();
-        if ( door.getX() == room.left || door.getX() == room.right ) {
+        if ( door.getX() == room.getLeft() || door.getX() == room.getRight() ) {
             Point p = drawInside( level, room, door, Math.abs( door.getX() - c.getX() ) - 2, Terrain.EMPTY_SP );
             for ( ; p.getY() != c.getY(); p.setY( p.getY() + (p.getY() < c.getY() ? +1 : -1) ) ) {
                 set( level, p, Terrain.EMPTY_SP );

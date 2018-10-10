@@ -88,28 +88,28 @@ public class CavesLevel extends RegularLevel {
             int s = room.square();
 
             if ( Random.Int( s ) > 8 ) {
-                int corner = ( room.left + 1 ) + ( room.top + 1 ) * WIDTH;
+                int corner = ( room.getLeft() + 1 ) + ( room.getTop() + 1 ) * WIDTH;
                 if ( map[corner - 1] == Terrain.WALL && map[corner - WIDTH] == Terrain.WALL ) {
                     map[corner] = Terrain.WALL;
                 }
             }
 
             if ( Random.Int( s ) > 8 ) {
-                int corner = ( room.right - 1 ) + ( room.top + 1 ) * WIDTH;
+                int corner = ( room.getRight() - 1 ) + ( room.getTop() + 1 ) * WIDTH;
                 if ( map[corner + 1] == Terrain.WALL && map[corner - WIDTH] == Terrain.WALL ) {
                     map[corner] = Terrain.WALL;
                 }
             }
 
             if ( Random.Int( s ) > 8 ) {
-                int corner = ( room.left + 1 ) + ( room.bottom - 1 ) * WIDTH;
+                int corner = ( room.getLeft() + 1 ) + ( room.getBottom() - 1 ) * WIDTH;
                 if ( map[corner - 1] == Terrain.WALL && map[corner + WIDTH] == Terrain.WALL ) {
                     map[corner] = Terrain.WALL;
                 }
             }
 
             if ( Random.Int( s ) > 8 ) {
-                int corner = ( room.right - 1 ) + ( room.bottom - 1 ) * WIDTH;
+                int corner = ( room.getRight() - 1 ) + ( room.getBottom() - 1 ) * WIDTH;
                 if ( map[corner + 1] == Terrain.WALL && map[corner + WIDTH] == Terrain.WALL ) {
                     map[corner] = Terrain.WALL;
                 }
@@ -166,23 +166,23 @@ public class CavesLevel extends RegularLevel {
                 for ( Room n : r.neigbours ) {
                     if ( n.type == Type.STANDARD && !r.connected.containsKey( n ) ) {
                         Rect w = r.intersect( n );
-                        if ( w.left == w.right && w.bottom - w.top >= 5 ) {
+                        if ( w.getLeft() == w.getRight() && w.getBottom() - w.getTop() >= 5 ) {
 
-                            w.top += 2;
-                            w.bottom -= 1;
+                            w.setTop( w.getTop() + 2 );
+                            w.setBottom( w.getBottom() - 1 );
 
-                            w.right++;
+                            w.setRight( w.getRight() + 1 );
 
-                            Painter.fill( this, w.left, w.top, 1, w.height(), Terrain.CHASM );
+                            Painter.fill( this, w.getLeft(), w.getTop(), 1, w.height(), Terrain.CHASM );
 
-                        } else if ( w.top == w.bottom && w.right - w.left >= 5 ) {
+                        } else if ( w.getTop() == w.getBottom() && w.getRight() - w.getLeft() >= 5 ) {
 
-                            w.left += 2;
-                            w.right -= 1;
+                            w.setLeft( w.getLeft() + 2 );
+                            w.setRight( w.getRight() - 1 );
 
-                            w.bottom++;
+                            w.setBottom( w.getBottom() + 1 );
 
-                            Painter.fill( this, w.left, w.top, w.width(), 1, Terrain.CHASM );
+                            Painter.fill( this, w.getLeft(), w.getTop(), w.width(), 1, Terrain.CHASM );
                         }
                     }
                 }

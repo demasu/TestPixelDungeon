@@ -90,8 +90,8 @@ public class StandardPainter extends Painter {
     }
 
     private static void paintBurned ( Level level, Room room ) {
-        for ( int i = room.top + 1; i < room.bottom; i++ ) {
-            for ( int j = room.left + 1; j < room.right; j++ ) {
+        for ( int i = room.getTop() + 1; i < room.getBottom(); i++ ) {
+            for ( int j = room.getLeft() + 1; j < room.getRight(); j++ ) {
                 int t = Terrain.EMBERS;
                 switch ( Random.Int( 5 ) ) {
                     case 0:
@@ -113,7 +113,7 @@ public class StandardPainter extends Painter {
     }
 
     private static void paintGraveyard ( Level level, Room room ) {
-        fill( level, room.left + 1, room.top + 1, room.width() - 1, room.height() - 1, Terrain.GRASS );
+        fill( level, room.getLeft() + 1, room.getTop() + 1, room.width() - 1, room.height() - 1, Terrain.GRASS );
 
         int w = room.width() - 1;
         int h = room.height() - 1;
@@ -124,38 +124,38 @@ public class StandardPainter extends Painter {
         int shift = Random.Int( 2 );
         for ( int i = 0; i < nGraves; i++ ) {
             int pos = w > h ?
-                    room.left + 1 + shift + i * 2 + ( room.top + 2 + Random.Int( h - 2 ) ) * Level.WIDTH :
-                    ( room.left + 2 + Random.Int( w - 2 ) ) + ( room.top + 1 + shift + i * 2 ) * Level.WIDTH;
+                    room.getLeft() + 1 + shift + i * 2 + ( room.getTop() + 2 + Random.Int( h - 2 ) ) * Level.WIDTH :
+                    ( room.getLeft() + 2 + Random.Int( w - 2 ) ) + ( room.getTop() + 1 + shift + i * 2 ) * Level.WIDTH;
             level.drop( i == index ? Generator.random() : new Gold(), pos ).type = Heap.Type.TOMB;
         }
     }
 
     private static void paintStriped ( Level level, Room room ) {
-        fill( level, room.left + 1, room.top + 1, room.width() - 1, room.height() - 1, Terrain.EMPTY_SP );
+        fill( level, room.getLeft() + 1, room.getTop() + 1, room.width() - 1, room.height() - 1, Terrain.EMPTY_SP );
 
         if ( room.width() > room.height() ) {
-            for ( int i = room.left + 2; i < room.right; i += 2 ) {
-                fill( level, i, room.top + 1, 1, room.height() - 1, Terrain.HIGH_GRASS );
+            for ( int i = room.getLeft() + 2; i < room.getRight(); i += 2 ) {
+                fill( level, i, room.getTop() + 1, 1, room.height() - 1, Terrain.HIGH_GRASS );
             }
         } else {
-            for ( int i = room.top + 2; i < room.bottom; i += 2 ) {
-                fill( level, room.left + 1, i, room.width() - 1, 1, Terrain.HIGH_GRASS );
+            for ( int i = room.getTop() + 2; i < room.getBottom(); i += 2 ) {
+                fill( level, room.getLeft() + 1, i, room.width() - 1, 1, Terrain.HIGH_GRASS );
             }
         }
     }
 
     private static void paintStudy ( Level level, Room room ) {
-        fill( level, room.left + 1, room.top + 1, room.width() - 1, room.height() - 1, Terrain.BOOKSHELF );
-        fill( level, room.left + 2, room.top + 2, room.width() - 3, room.height() - 3, Terrain.EMPTY_SP );
+        fill( level, room.getLeft() + 1, room.getTop() + 1, room.width() - 1, room.height() - 1, Terrain.BOOKSHELF );
+        fill( level, room.getLeft() + 2, room.getTop() + 2, room.width() - 3, room.height() - 3, Terrain.EMPTY_SP );
 
         for ( Point door : room.connected.values() ) {
-            if ( door.getX() == room.left ) {
+            if ( door.getX() == room.getLeft() ) {
                 set( level, door.getX() + 1, door.getY(), Terrain.EMPTY );
-            } else if ( door.getX() == room.right ) {
+            } else if ( door.getX() == room.getRight() ) {
                 set( level, door.getX() - 1, door.getY(), Terrain.EMPTY );
-            } else if ( door.getY() == room.top ) {
+            } else if ( door.getY() == room.getTop() ) {
                 set( level, door.getX(), door.getY() + 1, Terrain.EMPTY );
-            } else if ( door.getY() == room.bottom ) {
+            } else if ( door.getY() == room.getBottom() ) {
                 set( level, door.getX(), door.getY() - 1, Terrain.EMPTY );
             }
         }
@@ -165,7 +165,7 @@ public class StandardPainter extends Painter {
 
     private static void paintBridge ( Level level, Room room ) {
 
-        fill( level, room.left + 1, room.top + 1, room.width() - 1, room.height() - 1,
+        fill( level, room.getLeft() + 1, room.getTop() + 1, room.width() - 1, room.height() - 1,
                 !Dungeon.bossLevel() && !Dungeon.bossLevel( Dungeon.getDepth() + 1 ) && Random.Int( 3 ) == 0 ?
                         Terrain.CHASM :
                         Terrain.WATER );
@@ -180,8 +180,8 @@ public class StandardPainter extends Painter {
             }
         }
 
-        if ( ( door1.getX() == room.left && door2.getX() == room.right ) ||
-                ( door1.getX() == room.right && door2.getX() == room.left ) ) {
+        if ( ( door1.getX() == room.getLeft() && door2.getX() == room.getRight() ) ||
+                ( door1.getX() == room.getRight() && door2.getX() == room.getLeft() ) ) {
 
             int s = room.width() / 2;
 
@@ -189,8 +189,8 @@ public class StandardPainter extends Painter {
             drawInside( level, room, door2, s, Terrain.EMPTY_SP );
             fill( level, room.center().getX(), Math.min( door1.getY(), door2.getY() ), 1, Math.abs( door1.getY() - door2.getY() ) + 1, Terrain.EMPTY_SP );
 
-        } else if ( ( door1.getY() == room.top && door2.getY() == room.bottom ) ||
-                ( door1.getY() == room.bottom && door2.getY() == room.top ) ) {
+        } else if ( ( door1.getY() == room.getTop() && door2.getY() == room.getBottom() ) ||
+                ( door1.getY() == room.getBottom() && door2.getY() == room.getTop() ) ) {
 
             int s = room.height() / 2;
 
@@ -200,18 +200,18 @@ public class StandardPainter extends Painter {
 
         } else if ( door1.getX() == door2.getX() ) {
 
-            fill( level, door1.getX() == room.left ? room.left + 1 : room.right - 1, Math.min( door1.getY(), door2.getY() ), 1, Math.abs( door1.getY() - door2.getY() ) + 1, Terrain.EMPTY_SP );
+            fill( level, door1.getX() == room.getLeft() ? room.getLeft() + 1 : room.getRight() - 1, Math.min( door1.getY(), door2.getY() ), 1, Math.abs( door1.getY() - door2.getY() ) + 1, Terrain.EMPTY_SP );
 
         } else if ( door1.getY() == door2.getY() ) {
 
-            fill( level, Math.min( door1.getX(), door2.getX() ), door1.getY() == room.top ? room.top + 1 : room.bottom - 1, Math.abs( door1.getX() - door2.getX() ) + 1, 1, Terrain.EMPTY_SP );
+            fill( level, Math.min( door1.getX(), door2.getX() ), door1.getY() == room.getTop() ? room.getTop() + 1 : room.getBottom() - 1, Math.abs( door1.getX() - door2.getX() ) + 1, 1, Terrain.EMPTY_SP );
 
-        } else if ( door1.getY() == room.top || door1.getY() == room.bottom ) {
+        } else if ( door1.getY() == room.getTop() || door1.getY() == room.getBottom() ) {
 
             drawInside( level, room, door1, Math.abs( door1.getY() - door2.getY() ), Terrain.EMPTY_SP );
             drawInside( level, room, door2, Math.abs( door1.getX() - door2.getX() ), Terrain.EMPTY_SP );
 
-        } else if ( door1.getX() == room.left || door1.getX() == room.right ) {
+        } else if ( door1.getX() == room.getLeft() || door1.getX() == room.getRight() ) {
 
             drawInside( level, room, door1, Math.abs( door1.getX() - door2.getX() ), Terrain.EMPTY_SP );
             drawInside( level, room, door2, Math.abs( door1.getY() - door2.getY() ), Terrain.EMPTY_SP );
@@ -220,12 +220,12 @@ public class StandardPainter extends Painter {
     }
 
     private static void paintFissure ( Level level, Room room ) {
-        fill( level, room.left + 1, room.top + 1, room.width() - 1, room.height() - 1, Terrain.EMPTY );
+        fill( level, room.getLeft() + 1, room.getTop() + 1, room.width() - 1, room.height() - 1, Terrain.EMPTY );
 
-        for ( int i = room.top + 2; i < room.bottom - 1; i++ ) {
-            for ( int j = room.left + 2; j < room.right - 1; j++ ) {
-                int v = Math.min( i - room.top, room.bottom - i );
-                int h = Math.min( j - room.left, room.right - j );
+        for ( int i = room.getTop() + 2; i < room.getBottom() - 1; i++ ) {
+            for ( int j = room.getLeft() + 2; j < room.getRight() - 1; j++ ) {
+                int v = Math.min( i - room.getTop(), room.getBottom() - i );
+                int h = Math.min( j - room.getLeft(), room.getRight() - j );
                 if ( Math.min( v, h ) > 2 || Random.Int( 2 ) == 0 ) {
                     set( level, j, i, Terrain.CHASM );
                 }

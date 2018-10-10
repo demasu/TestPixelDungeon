@@ -38,22 +38,22 @@ public class LibraryPainter extends Painter {
         Point a = null;
         Point b = null;
 
-        if ( entrance.getX() == room.left ) {
-            a = new Point( room.left + 1, entrance.getY() - 1 );
-            b = new Point( room.left + 1, entrance.getY() + 1 );
-            fill( level, room.right - 1, room.top + 1, 1, room.height() - 1, Terrain.BOOKSHELF );
-        } else if ( entrance.getX() == room.right ) {
-            a = new Point( room.right - 1, entrance.getY() - 1 );
-            b = new Point( room.right - 1, entrance.getY() + 1 );
-            fill( level, room.left + 1, room.top + 1, 1, room.height() - 1, Terrain.BOOKSHELF );
-        } else if ( entrance.getY() == room.top ) {
-            a = new Point( entrance.getX() + 1, room.top + 1 );
-            b = new Point( entrance.getX() - 1, room.top + 1 );
-            fill( level, room.left + 1, room.bottom - 1, room.width() - 1, 1, Terrain.BOOKSHELF );
-        } else if ( entrance.getY() == room.bottom ) {
-            a = new Point( entrance.getX() + 1, room.bottom - 1 );
-            b = new Point( entrance.getX() - 1, room.bottom - 1 );
-            fill( level, room.left + 1, room.top + 1, room.width() - 1, 1, Terrain.BOOKSHELF );
+        if ( entrance.getX() == room.getLeft() ) {
+            a = new Point( room.getLeft() + 1, entrance.getY() - 1 );
+            b = new Point( room.getLeft() + 1, entrance.getY() + 1 );
+            fill( level, room.getRight() - 1, room.getTop() + 1, 1, room.height() - 1, Terrain.BOOKSHELF );
+        } else if ( entrance.getX() == room.getRight() ) {
+            a = new Point( room.getRight() - 1, entrance.getY() - 1 );
+            b = new Point( room.getRight() - 1, entrance.getY() + 1 );
+            fill( level, room.getLeft() + 1, room.getTop() + 1, 1, room.height() - 1, Terrain.BOOKSHELF );
+        } else if ( entrance.getY() == room.getTop() ) {
+            a = new Point( entrance.getX() + 1, room.getTop() + 1 );
+            b = new Point( entrance.getX() - 1, room.getTop() + 1 );
+            fill( level, room.getLeft() + 1, room.getBottom() - 1, room.width() - 1, 1, Terrain.BOOKSHELF );
+        } else if ( entrance.getY() == room.getBottom() ) {
+            a = new Point( entrance.getX() + 1, room.getBottom() - 1 );
+            b = new Point( entrance.getX() - 1, room.getBottom() - 1 );
+            fill( level, room.getLeft() + 1, room.getTop() + 1, room.width() - 1, 1, Terrain.BOOKSHELF );
         }
         if ( a != null && level.map[a.getX() + a.getY() * Level.WIDTH] == Terrain.EMPTY ) {
             set( level, a, Terrain.STATUE );

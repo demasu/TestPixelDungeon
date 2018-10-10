@@ -42,22 +42,22 @@ public class CryptPainter extends Painter {
         entrance.set( Room.Door.Type.LOCKED );
         level.addItemToSpawn( new IronKey() );
 
-        if ( entrance.getX() == room.left ) {
-            set( level, new Point( room.right - 1, room.top + 1 ), Terrain.STATUE );
-            set( level, new Point( room.right - 1, room.bottom - 1 ), Terrain.STATUE );
-            cx = room.right - 2;
-        } else if ( entrance.getX() == room.right ) {
-            set( level, new Point( room.left + 1, room.top + 1 ), Terrain.STATUE );
-            set( level, new Point( room.left + 1, room.bottom - 1 ), Terrain.STATUE );
-            cx = room.left + 2;
-        } else if ( entrance.getY() == room.top ) {
-            set( level, new Point( room.left + 1, room.bottom - 1 ), Terrain.STATUE );
-            set( level, new Point( room.right - 1, room.bottom - 1 ), Terrain.STATUE );
-            cy = room.bottom - 2;
-        } else if ( entrance.getY() == room.bottom ) {
-            set( level, new Point( room.left + 1, room.top + 1 ), Terrain.STATUE );
-            set( level, new Point( room.right - 1, room.top + 1 ), Terrain.STATUE );
-            cy = room.top + 2;
+        if ( entrance.getX() == room.getLeft() ) {
+            set( level, new Point( room.getRight() - 1, room.getTop() + 1 ), Terrain.STATUE );
+            set( level, new Point( room.getRight() - 1, room.getBottom() - 1 ), Terrain.STATUE );
+            cx = room.getRight() - 2;
+        } else if ( entrance.getX() == room.getRight() ) {
+            set( level, new Point( room.getLeft() + 1, room.getTop() + 1 ), Terrain.STATUE );
+            set( level, new Point( room.getLeft() + 1, room.getBottom() - 1 ), Terrain.STATUE );
+            cx = room.getLeft() + 2;
+        } else if ( entrance.getY() == room.getTop() ) {
+            set( level, new Point( room.getLeft() + 1, room.getBottom() - 1 ), Terrain.STATUE );
+            set( level, new Point( room.getRight() - 1, room.getBottom() - 1 ), Terrain.STATUE );
+            cy = room.getBottom() - 2;
+        } else if ( entrance.getY() == room.getBottom() ) {
+            set( level, new Point( room.getLeft() + 1, room.getTop() + 1 ), Terrain.STATUE );
+            set( level, new Point( room.getRight() - 1, room.getTop() + 1 ), Terrain.STATUE );
+            cy = room.getTop() + 2;
         }
 
         level.drop( prize( level ), cx + cy * Level.WIDTH ).type = Type.TOMB;

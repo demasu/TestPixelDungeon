@@ -49,27 +49,27 @@ public class Painter {
     }
 
     public static void fill ( Level level, Rect rect, int value ) {
-        fill( level, rect.left, rect.top, rect.width() + 1, rect.height() + 1, value );
+        fill( level, rect.getLeft(), rect.getTop(), rect.width() + 1, rect.height() + 1, value );
     }
 
     public static void fill ( Level level, Rect rect, int m, int value ) {
-        fill( level, rect.left + m, rect.top + m, rect.width() + 1 - m * 2, rect.height() + 1 - m * 2, value );
+        fill( level, rect.getLeft() + m, rect.getTop() + m, rect.width() + 1 - m * 2, rect.height() + 1 - m * 2, value );
     }
 
     public static void fill ( Level level, Rect rect, int l, int t, int r, int b, int value ) {
-        fill( level, rect.left + l, rect.top + t, rect.width() + 1 - ( l + r ), rect.height() + 1 - ( t + b ), value );
+        fill( level, rect.getLeft() + l, rect.getTop() + t, rect.width() + 1 - ( l + r ), rect.height() + 1 - ( t + b ), value );
     }
 
     public static Point drawInside ( Level level, Room room, Point from, int n, int value ) {
 
         Point step = new Point();
-        if ( from.getX() == room.left ) {
+        if ( from.getX() == room.getLeft() ) {
             step.set( +1, 0 );
-        } else if ( from.getX() == room.right ) {
+        } else if ( from.getX() == room.getRight() ) {
             step.set( -1, 0 );
-        } else if ( from.getY() == room.top ) {
+        } else if ( from.getY() == room.getTop() ) {
             step.set( 0, +1 );
-        } else if ( from.getY() == room.bottom ) {
+        } else if ( from.getY() == room.getBottom() ) {
             step.set( 0, -1 );
         }
 

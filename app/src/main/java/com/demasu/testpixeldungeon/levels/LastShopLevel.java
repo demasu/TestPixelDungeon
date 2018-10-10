@@ -71,7 +71,7 @@ public class LastShopLevel extends RegularLevel {
                 }
                 roomExit = Random.element( rooms );
             }
-            while ( roomExit == roomEntrance || roomExit.width() < 6 || roomExit.height() < 6 || roomExit.top == 0 );
+            while ( roomExit == roomEntrance || roomExit.width() < 6 || roomExit.height() < 6 || roomExit.getTop() == 0 );
 
             Graph.buildDistanceMap( rooms, roomExit );
             distance = Graph.buildPath( rooms, roomEntrance, roomExit ).size();

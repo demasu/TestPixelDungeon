@@ -39,14 +39,14 @@ public class RatKingPainter extends Painter {
         entrance.set( Room.Door.Type.HIDDEN );
         int door = entrance.getX() + entrance.getY() * Level.WIDTH;
 
-        for ( int i = room.left + 1; i < room.right; i++ ) {
-            addChest( level, ( room.top + 1 ) * Level.WIDTH + i, door );
-            addChest( level, ( room.bottom - 1 ) * Level.WIDTH + i, door );
+        for ( int i = room.getLeft() + 1; i < room.getRight(); i++ ) {
+            addChest( level, ( room.getTop() + 1 ) * Level.WIDTH + i, door );
+            addChest( level, ( room.getBottom() - 1 ) * Level.WIDTH + i, door );
         }
 
-        for ( int i = room.top + 2; i < room.bottom - 1; i++ ) {
-            addChest( level, i * Level.WIDTH + room.left + 1, door );
-            addChest( level, i * Level.WIDTH + room.right - 1, door );
+        for ( int i = room.getTop() + 2; i < room.getBottom() - 1; i++ ) {
+            addChest( level, i * Level.WIDTH + room.getLeft() + 1, door );
+            addChest( level, i * Level.WIDTH + room.getRight() - 1, door );
         }
 
         while ( true ) {

@@ -112,8 +112,8 @@ public class Room extends Rect implements Graph.Node, Bundlable {
     }
 
     public int random ( int m ) {
-        int x = Random.Int( left + 1 + m, right - m );
-        int y = Random.Int( top + 1 + m, bottom - m );
+        int x = Random.Int( getLeft() + 1 + m, getRight() - m );
+        int y = Random.Int( getTop() + 1 + m, getBottom() - m );
         return x + y * Level.WIDTH;
     }
 
@@ -144,13 +144,13 @@ public class Room extends Rect implements Graph.Node, Bundlable {
     public boolean inside ( int p ) {
         int x = p % Level.WIDTH;
         int y = p / Level.WIDTH;
-        return x > left && y > top && x < right && y < bottom;
+        return x > getLeft() && y > getTop() && x < getRight() && y < getBottom();
     }
 
     public Point center () {
         return new Point(
-                ( left + right ) / 2 + ( ( ( right - left ) & 1 ) == 1 ? Random.Int( 2 ) : 0 ),
-                ( top + bottom ) / 2 + ( ( ( bottom - top ) & 1 ) == 1 ? Random.Int( 2 ) : 0 ) );
+                ( getLeft() + getRight() ) / 2 + ( ( ( getRight() - getLeft() ) & 1 ) == 1 ? Random.Int( 2 ) : 0 ),
+                ( getTop() + getBottom() ) / 2 + ( ( ( getBottom() - getTop() ) & 1 ) == 1 ? Random.Int( 2 ) : 0 ) );
     }
 
     @Override
@@ -182,19 +182,19 @@ public class Room extends Rect implements Graph.Node, Bundlable {
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
-        bundle.put( "left", left );
-        bundle.put( "top", top );
-        bundle.put( "right", right );
-        bundle.put( "bottom", bottom );
+        bundle.put( "left", getLeft() );
+        bundle.put( "top", getTop() );
+        bundle.put( "right", getRight() );
+        bundle.put( "bottom", getBottom() );
         bundle.put( "type", type.toString() );
     }
 
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
-        left = bundle.getInt( "left" );
-        top = bundle.getInt( "top" );
-        right = bundle.getInt( "right" );
-        bottom = bundle.getInt( "bottom" );
+        setLeft( bundle.getInt( "left" ) );
+        setTop( bundle.getInt( "top" ) );
+        setRight( bundle.getInt( "right" ) );
+        setBottom( bundle.getInt( "bottom" ) );
         type = Type.valueOf( bundle.getString( "type" ) );
     }
 

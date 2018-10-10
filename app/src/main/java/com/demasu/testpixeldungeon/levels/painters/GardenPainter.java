@@ -50,8 +50,8 @@ public class GardenPainter extends Painter {
         if ( light == null ) {
             light = new Foliage();
         }
-        for ( int i = room.top + 1; i < room.bottom; i++ ) {
-            for ( int j = room.left + 1; j < room.right; j++ ) {
+        for ( int i = room.getTop() + 1; i < room.getBottom(); i++ ) {
+            for ( int j = room.getLeft() + 1; j < room.getRight(); j++ ) {
                 light.seed( j + Level.WIDTH * i, 1 );
             }
         }

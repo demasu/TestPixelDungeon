@@ -79,7 +79,7 @@ public class SewerBossLevel extends RegularLevel {
                 }
                 roomExit = Random.element( rooms );
             }
-            while ( roomExit == roomEntrance || roomExit.width() < 6 || roomExit.height() < 6 || roomExit.top == 0 );
+            while ( roomExit == roomEntrance || roomExit.width() < 6 || roomExit.height() < 6 || roomExit.getTop() == 0 );
 
             Graph.buildDistanceMap( rooms, roomExit );
             distance = roomEntrance.distance();
@@ -108,7 +108,7 @@ public class SewerBossLevel extends RegularLevel {
         }
 
         room = (Room) roomExit.connected.keySet().toArray()[0];
-        if ( roomExit.top == room.bottom ) {
+        if ( roomExit.getTop() == room.getBottom() ) {
             return false;
         }
 
@@ -121,7 +121,7 @@ public class SewerBossLevel extends RegularLevel {
         ArrayList<Room> candidates = new ArrayList<Room>();
         for ( Room r : roomExit.neigbours ) {
             if ( !roomExit.connected.containsKey( r ) &&
-                    ( roomExit.left == r.right || roomExit.right == r.left || roomExit.bottom == r.top ) ) {
+                    ( roomExit.getLeft() == r.getRight() || roomExit.getRight() == r.getLeft() || roomExit.getBottom() == r.getTop() ) ) {
                 candidates.add( r );
             }
         }
@@ -151,7 +151,7 @@ public class SewerBossLevel extends RegularLevel {
 
     @Override
     protected void decorate () {
-        int start = roomExit.top * WIDTH + roomExit.left + 1;
+        int start = roomExit.getTop() * WIDTH + roomExit.getLeft() + 1;
         int end = start + roomExit.width() - 1;
         for ( int i = start; i < end; i++ ) {
             if ( i != exit ) {

@@ -115,7 +115,7 @@ public class PrisonBossLevel extends RegularLevel {
                     roomExit == roomEntrance ||
                             roomExit.width() < 7 ||
                             roomExit.height() < 7 ||
-                            roomExit.top == 0 );
+                            roomExit.getTop() == 0 );
 
             Graph.buildDistanceMap( rooms, roomExit );
             distance = Graph.buildPath( rooms, roomEntrance, roomExit ).size();
@@ -149,7 +149,7 @@ public class PrisonBossLevel extends RegularLevel {
         paint();
 
         Room r = (Room) roomExit.connected.keySet().toArray()[0];
-        if ( roomExit.connected.get( r ).getY() == roomExit.top ) {
+        if ( roomExit.connected.get( r ).getY() == roomExit.getTop() ) {
             return false;
         }
 
@@ -264,8 +264,8 @@ public class PrisonBossLevel extends RegularLevel {
         Painter.set( this, arenaDoor, Terrain.LOCKED_DOOR );
 
         Painter.fill( this,
-                roomExit.left + 2,
-                roomExit.top + 2,
+                roomExit.getLeft() + 2,
+                roomExit.getTop() + 2,
                 roomExit.width() - 3,
                 roomExit.height() - 3,
                 Terrain.INACTIVE_TRAP );

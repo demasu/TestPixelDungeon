@@ -76,19 +76,19 @@ public class Tilemap extends Visual {
     @SuppressWarnings ( "MagicNumber" )
     private void updateVertices () {
 
-        float y1 = cellH * getUpdated().top;
+        float y1 = cellH * getUpdated().getTop();
         float y2 = y1 + cellH;
 
-        for ( int i = getUpdated().top; i < getUpdated().bottom; i++ ) {
+        for ( int i = getUpdated().getTop(); i < getUpdated().getBottom(); i++ ) {
 
-            float x1 = cellW * getUpdated().left;
+            float x1 = cellW * getUpdated().getLeft();
             float x2 = x1 + cellW;
 
-            int pos = i * mapWidth + getUpdated().left;
+            int pos = i * mapWidth + getUpdated().getLeft();
             final int POS_MODIFIER = 16;
             quads.position( POS_MODIFIER * pos );
 
-            for ( int j = getUpdated().left; j < getUpdated().right; j++ ) {
+            for ( int j = getUpdated().getLeft(); j < getUpdated().getRight(); j++ ) {
 
                 RectF uv = getTileset().get( data[pos] );
                 pos++;

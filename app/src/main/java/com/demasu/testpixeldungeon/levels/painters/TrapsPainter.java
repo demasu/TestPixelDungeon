@@ -41,26 +41,26 @@ public class TrapsPainter extends Painter {
         Room.Door door = room.entrance();
         door.set( Room.Door.Type.REGULAR );
 
-        int lastRow = level.map[room.left + 1 + ( room.top + 1 ) * Level.WIDTH] == Terrain.CHASM ? Terrain.CHASM : Terrain.EMPTY;
+        int lastRow = level.map[room.getLeft() + 1 + ( room.getTop() + 1 ) * Level.WIDTH] == Terrain.CHASM ? Terrain.CHASM : Terrain.EMPTY;
 
         int x = -1;
         int y = -1;
-        if ( door.getX() == room.left ) {
-            x = room.right - 1;
-            y = room.top + room.height() / 2;
-            fill( level, x, room.top + 1, 1, room.height() - 1, lastRow );
-        } else if ( door.getX() == room.right ) {
-            x = room.left + 1;
-            y = room.top + room.height() / 2;
-            fill( level, x, room.top + 1, 1, room.height() - 1, lastRow );
-        } else if ( door.getY() == room.top ) {
-            x = room.left + room.width() / 2;
-            y = room.bottom - 1;
-            fill( level, room.left + 1, y, room.width() - 1, 1, lastRow );
-        } else if ( door.getY() == room.bottom ) {
-            x = room.left + room.width() / 2;
-            y = room.top + 1;
-            fill( level, room.left + 1, y, room.width() - 1, 1, lastRow );
+        if ( door.getX() == room.getLeft() ) {
+            x = room.getRight() - 1;
+            y = room.getTop() + room.height() / 2;
+            fill( level, x, room.getTop() + 1, 1, room.height() - 1, lastRow );
+        } else if ( door.getX() == room.getRight() ) {
+            x = room.getLeft() + 1;
+            y = room.getTop() + room.height() / 2;
+            fill( level, x, room.getTop() + 1, 1, room.height() - 1, lastRow );
+        } else if ( door.getY() == room.getTop() ) {
+            x = room.getLeft() + room.width() / 2;
+            y = room.getBottom() - 1;
+            fill( level, room.getLeft() + 1, y, room.width() - 1, 1, lastRow );
+        } else if ( door.getY() == room.getBottom() ) {
+            x = room.getLeft() + room.width() / 2;
+            y = room.getTop() + 1;
+            fill( level, room.getLeft() + 1, y, room.width() - 1, 1, lastRow );
         }
 
         int pos = x + y * Level.WIDTH;

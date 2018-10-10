@@ -35,8 +35,8 @@ public class VaultPainter extends Painter {
         fill( level, room, 1, Terrain.EMPTY_SP );
         fill( level, room, 2, Terrain.EMPTY );
 
-        int cx = ( room.left + room.right ) / 2;
-        int cy = ( room.top + room.bottom ) / 2;
+        int cx = ( room.getLeft() + room.getRight() ) / 2;
+        int cy = ( room.getTop() + room.getBottom() ) / 2;
         int c = cx + cy * Level.WIDTH;
 
         switch ( Random.Int( 3 ) ) {

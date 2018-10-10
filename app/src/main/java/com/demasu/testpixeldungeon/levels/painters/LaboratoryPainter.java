@@ -38,14 +38,14 @@ public class LaboratoryPainter extends Painter {
         Room.Door entrance = room.entrance();
 
         Point pot = null;
-        if ( entrance.getX() == room.left ) {
-            pot = new Point( room.right - 1, Random.Int( 2 ) == 0 ? room.top + 1 : room.bottom - 1 );
-        } else if ( entrance.getX() == room.right ) {
-            pot = new Point( room.left + 1, Random.Int( 2 ) == 0 ? room.top + 1 : room.bottom - 1 );
-        } else if ( entrance.getY() == room.top ) {
-            pot = new Point( Random.Int( 2 ) == 0 ? room.left + 1 : room.right - 1, room.bottom - 1 );
-        } else if ( entrance.getY() == room.bottom ) {
-            pot = new Point( Random.Int( 2 ) == 0 ? room.left + 1 : room.right - 1, room.top + 1 );
+        if ( entrance.getX() == room.getLeft() ) {
+            pot = new Point( room.getRight() - 1, Random.Int( 2 ) == 0 ? room.getTop() + 1 : room.getBottom() - 1 );
+        } else if ( entrance.getX() == room.getRight() ) {
+            pot = new Point( room.getLeft() + 1, Random.Int( 2 ) == 0 ? room.getTop() + 1 : room.getBottom() - 1 );
+        } else if ( entrance.getY() == room.getTop() ) {
+            pot = new Point( Random.Int( 2 ) == 0 ? room.getLeft() + 1 : room.getRight() - 1, room.getBottom() - 1 );
+        } else if ( entrance.getY() == room.getBottom() ) {
+            pot = new Point( Random.Int( 2 ) == 0 ? room.getLeft() + 1 : room.getRight() - 1, room.getTop() + 1 );
         }
         set( level, pot, Terrain.ALCHEMY );
 
