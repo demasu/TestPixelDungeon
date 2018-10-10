@@ -31,7 +31,7 @@ public class TextureFilm {
     private final int texWidth;
     private final int texHeight;
 
-    public TextureFilm ( Object tx ) {
+    TextureFilm ( Object tx ) {
 
         SmartTexture texture = TextureCache.get( tx );
 
@@ -86,7 +86,7 @@ public class TextureFilm {
         }
     }
 
-    public void add ( Object id, RectF rect ) {
+    void add ( Object id, RectF rect ) {
         getFrames().put( id, rect );
     }
 
@@ -111,7 +111,7 @@ public class TextureFilm {
     }
 
     @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
-    public HashMap<Object, RectF> getFrames () {
+    HashMap<Object, RectF> getFrames () {
         return frames;
     }
 }
