@@ -99,20 +99,4 @@ public class Rect {
         }
     }
 
-    public Rect union ( Point p ) {
-        return union( p.getX(), p.getY() );
-    }
-
-    public boolean inside ( Point p ) {
-        return p.getX() >= left && p.getX() < right && p.getY() >= top && p.getY() < bottom;
-    }
-
-    private Rect shrink ( int d ) {
-        return new Rect( left + d, top + d, right - d, bottom - d );
-    }
-
-    public Rect shrink () {
-        return shrink( 1 );
-    }
-
 }
