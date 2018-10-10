@@ -41,28 +41,10 @@ public class Point {
         return this;
     }
 
-    public Point set ( Point p ) {
-        x = p.x;
-        y = p.y;
-        return this;
-    }
-
     @SuppressWarnings ( "MethodDoesntCallSuperMethod" )
     @Override
     public Point clone () {
         return new Point( this );
-    }
-
-    public Point scale ( float f ) {
-        this.x *= f;
-        this.y *= f;
-        return this;
-    }
-
-    public Point offset ( int dx, int dy ) {
-        x += dx;
-        y += dy;
-        return this;
     }
 
     public Point offset ( Point d ) {
