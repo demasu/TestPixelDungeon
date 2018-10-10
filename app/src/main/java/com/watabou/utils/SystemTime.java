@@ -19,10 +19,18 @@ package com.watabou.utils;
 
 public class SystemTime {
 
-    public static long now;
+    private static long now;
 
     public static void tick () {
-        now = System.currentTimeMillis();
+        setNow( System.currentTimeMillis() );
+    }
+
+    public static long getNow () {
+        return now;
+    }
+
+    public static void setNow ( long now ) {
+        SystemTime.now = now;
     }
 }
 

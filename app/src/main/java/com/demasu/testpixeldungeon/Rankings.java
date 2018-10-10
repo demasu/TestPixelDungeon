@@ -65,7 +65,7 @@ public enum Rankings {
         rec.armorTier = Dungeon.getHero().tier();
         rec.score = score( win );
 
-        String gameFile = Utils.format( DETAILS_FILE, SystemTime.now );
+        String gameFile = Utils.format( DETAILS_FILE, SystemTime.getNow() );
         Dungeon.saveGame( gameFile );
         rec.gameFile = gameFile;
 

@@ -309,7 +309,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
         }
 
         SystemTime.tick();
-        long rightNow = SystemTime.now;
+        long rightNow = SystemTime.getNow();
         setStep( ( getNow() == 0 ? 0 : rightNow - getNow() ) );
         setNow( rightNow );
 
