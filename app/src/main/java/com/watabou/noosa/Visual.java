@@ -107,6 +107,7 @@ public class Visual extends Gizmo {
         return getHeight() * getScale().getY();
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private void updateMotion () {
 
         float elapsed = Game.getElapsed();

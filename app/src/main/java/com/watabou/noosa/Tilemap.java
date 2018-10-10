@@ -73,7 +73,7 @@ public class Tilemap extends Visual {
         getUpdated().set( 0, 0, mapWidth, mapHeight );
     }
 
-    @SuppressWarnings ( "MagicNumber" )
+    @SuppressWarnings ( { "MagicNumber", "FeatureEnvy" } )
     private void updateVertices () {
 
         float y1 = cellH * getUpdated().getTop();

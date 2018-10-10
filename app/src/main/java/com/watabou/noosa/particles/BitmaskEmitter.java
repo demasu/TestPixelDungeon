@@ -49,6 +49,7 @@ public class BitmaskEmitter extends Emitter {
         }
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     protected void emit ( int index ) {
 

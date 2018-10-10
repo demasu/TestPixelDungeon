@@ -96,6 +96,7 @@ public class Button extends Component {
         return false;
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     protected void layout () {
         hotArea.setX( getX() );

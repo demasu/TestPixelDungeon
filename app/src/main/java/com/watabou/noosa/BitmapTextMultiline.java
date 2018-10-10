@@ -356,6 +356,7 @@ public class BitmapTextMultiline extends BitmapText {
             curLine.append( str );
         }
 
+        @SuppressWarnings ( "FeatureEnvy" )
         public ArrayList<BitmapText> split () {
 
             lines = new ArrayList<>();
