@@ -280,10 +280,10 @@ public class SurfaceScene extends PixelScene {
 
             getScale().set( 1 - y / SKY_HEIGHT );
             setX( Random.Float( SKY_WIDTH + width() ) - width() );
-            getSpeed().x = getScale().x * ( dayTime ? +8 : -8 );
+            getSpeed().setX( getScale().getX() * ( dayTime ? +8 : -8 ) );
 
             if ( dayTime ) {
-                tint( 0xCCEEFF, 1 - getScale().y );
+                tint( 0xCCEEFF, 1 - getScale().getY() );
             } else {
                 setRm( +3.0f );
                 setGm( +3.0f );
@@ -297,9 +297,9 @@ public class SurfaceScene extends PixelScene {
         @Override
         public void update () {
             super.update();
-            if ( getSpeed().x > 0 && getX() > SKY_WIDTH ) {
+            if ( getSpeed().getX() > 0 && getX() > SKY_WIDTH ) {
                 setX( -width() );
-            } else if ( getSpeed().x < 0 && getX() < -width() ) {
+            } else if ( getSpeed().getX() < 0 && getX() < -width() ) {
                 setX( SKY_WIDTH );
             }
         }
@@ -380,10 +380,10 @@ public class SurfaceScene extends PixelScene {
             a += Random.Float( Game.getElapsed() * 5 );
             angle = ( 2 + Math.cos( a ) ) * ( forward ? +0.2 : -0.2 );
 
-            getScale().y = (float) Math.cos( angle );
+            getScale().setY( (float) Math.cos( angle ) );
 
             setX( tx + (float) Math.tan( angle ) * getWidth() );
-            setY( ty - getScale().y * getHeight() );
+            setY( ty - getScale().getY() * getHeight() );
         }
 
         @Override

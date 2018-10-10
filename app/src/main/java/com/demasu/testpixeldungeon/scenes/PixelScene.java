@@ -324,8 +324,8 @@ public class PixelScene extends Scene {
 
         @Override
         protected void updateMatrix () {
-            float sx = align( this, getScroll().x + getShakeX() );
-            float sy = align( this, getScroll().y + getShakeY() );
+            float sx = align( this, getScroll().getX() + getShakeX() );
+            float sy = align( this, getScroll().getY() + getShakeY() );
 
             getMatrix()[0] = +getZoom() * getInvW2();
             getMatrix()[5] = -getZoom() * getInvH2();

@@ -166,8 +166,8 @@ public class StatusPane extends Component {
         avatar.setX( PixelScene.align( camera(), shield.getX() + 15 - avatar.getWidth() / 2 ) );
         avatar.setY( PixelScene.align( camera(), shield.getY() + 16 - avatar.getHeight() / 2 ) );
 
-        compass.setX( avatar.getX() + avatar.getWidth() / 2 - compass.getOrigin().x );
-        compass.setY( avatar.getY() + avatar.getHeight() / 2 - compass.getOrigin().y );
+        compass.setX( avatar.getX() + avatar.getWidth() / 2 - compass.getOrigin().getX() );
+        compass.setY( avatar.getY() + avatar.getHeight() / 2 - compass.getOrigin().getY() );
 
         hp.setX( 30 );
         hp.setY( 3 );
@@ -248,19 +248,19 @@ public class StatusPane extends Component {
             blood.setOn( false );
         }
 
-        hp.getScale().x = health;
+        hp.getScale().setX( health );
         hp_dropping.setX( hp.getX() + hp.width() - 20 * health );
-        hp_dropping.getScale().x = health_drop;
+        hp_dropping.getScale().setX( health_drop );
 
-        exp.getScale().x = ( getWidth() / exp.getWidth() ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp();
+        exp.getScale().setX( ( getWidth() / exp.getWidth() ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp() );
 
         float mana = (float) Dungeon.getHero().getMP() / Dungeon.getHero().getMMP();
 
         float mana_drop = manaDropping / Dungeon.getHero().getMMP();
 
-        mp.getScale().x = mana;
+        mp.getScale().setX( mana );
         mp_dropping.setX( mp.getX() + mp.width() - 20 * mana );
-        mp_dropping.getScale().x = mana_drop;
+        mp_dropping.getScale().setX( mana_drop );
 
         if ( Dungeon.getHero().getMP() == 0 ) {
             manaDropping = 0;

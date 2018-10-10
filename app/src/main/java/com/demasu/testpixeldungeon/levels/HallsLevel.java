@@ -176,8 +176,8 @@ public class HallsLevel extends RegularLevel {
 
                     PointF p = DungeonTilemap.tileToWorld( pos );
                     ( (FireParticle) recycle( FireParticle.class ) ).reset(
-                            p.x + Random.Float( DungeonTilemap.SIZE ),
-                            p.y + Random.Float( DungeonTilemap.SIZE ) );
+                            p.getX() + Random.Float( DungeonTilemap.SIZE ),
+                            p.getY() + Random.Float( DungeonTilemap.SIZE ) );
                 }
             }
         }

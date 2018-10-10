@@ -75,14 +75,14 @@ public class Visual extends Gizmo {
     protected void updateMatrix () {
         Matrix.setIdentity( getMatrix() );
         Matrix.translate( getMatrix(), getX(), getY() );
-        Matrix.translate( getMatrix(), getOrigin().x, getOrigin().y );
+        Matrix.translate( getMatrix(), getOrigin().getX(), getOrigin().getY() );
         if ( getAngle() != 0 ) {
             Matrix.rotate( getMatrix(), getAngle() );
         }
-        if ( getScale().x != 1 || getScale().y != 1 ) {
-            Matrix.scale( getMatrix(), getScale().x, getScale().y );
+        if ( getScale().getX() != 1 || getScale().getY() != 1 ) {
+            Matrix.scale( getMatrix(), getScale().getX(), getScale().getY() );
         }
-        Matrix.translate( getMatrix(), -getOrigin().x, -getOrigin().y );
+        Matrix.translate( getMatrix(), -getOrigin().getX(), -getOrigin().getY() );
     }
 
     public PointF point () {
@@ -90,8 +90,8 @@ public class Visual extends Gizmo {
     }
 
     public PointF point ( PointF p ) {
-        setX( p.x );
-        setY( p.y );
+        setX( p.getX() );
+        setY( p.getY() );
         return p;
     }
 
@@ -100,26 +100,26 @@ public class Visual extends Gizmo {
     }
 
     public float width () {
-        return getWidth() * getScale().x;
+        return getWidth() * getScale().getX();
     }
 
     public float height () {
-        return getHeight() * getScale().y;
+        return getHeight() * getScale().getY();
     }
 
     private void updateMotion () {
 
         float elapsed = Game.getElapsed();
 
-        float d = ( GameMath.speed( getSpeed().x, getAcc().x ) - getSpeed().x ) / 2;
-        getSpeed().x += d;
-        setX( getX() + getSpeed().x * elapsed );
-        getSpeed().x += d;
+        float d = ( GameMath.speed( getSpeed().getX(), getAcc().getX() ) - getSpeed().getX() ) / 2;
+        getSpeed().setX( getSpeed().getX() + d );
+        setX( getX() + getSpeed().getX() * elapsed );
+        getSpeed().setX( getSpeed().getX() + d );
 
-        d = ( GameMath.speed( getSpeed().y, getAcc().y ) - getSpeed().y ) / 2;
-        getSpeed().y += d;
-        setY( getY() + getSpeed().y * elapsed );
-        getSpeed().y += d;
+        d = ( GameMath.speed( getSpeed().getY(), getAcc().getY() ) - getSpeed().getY() ) / 2;
+        getSpeed().setY( getSpeed().getY() + d );
+        setY( getY() + getSpeed().getY() * elapsed );
+        getSpeed().setY( getSpeed().getY() + d );
 
         setAngle( getAngle() + getAngularSpeed() * elapsed );
     }
@@ -224,14 +224,14 @@ public class Visual extends Gizmo {
     }
 
     public boolean overlapsPoint ( float x, float y ) {
-        return x >= this.getX() && x < this.getX() + getWidth() * getScale().x && y >= this.getY() && y < this.getY() + getHeight() * getScale().y;
+        return x >= this.getX() && x < this.getX() + getWidth() * getScale().getX() && y >= this.getY() && y < this.getY() + getHeight() * getScale().getY();
     }
 
     public boolean overlapsScreenPoint ( int x, int y ) {
         Camera c = camera();
         if ( c != null ) {
             PointF p = c.screenToCamera( x, y );
-            return overlapsPoint( p.x, p.y );
+            return overlapsPoint( p.getX(), p.getY() );
         } else {
             return false;
         }
@@ -242,8 +242,8 @@ public class Visual extends Gizmo {
     @Override
     public boolean isVisible () {
         Camera c = camera();
-        float cx = c.getScroll().x;
-        float cy = c.getScroll().y;
+        float cx = c.getScroll().getX();
+        float cy = c.getScroll().getY();
         float w = width();
         float h = height();
         return getX() + w >= cx && getY() + h >= cy && getX() < cx + c.getWidth() && getY() < cy + c.getHeight();

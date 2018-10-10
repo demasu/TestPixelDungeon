@@ -172,11 +172,11 @@ public class PrisonLevel extends RegularLevel {
             this.pos = pos;
 
             PointF p = DungeonTilemap.tileCenterToWorld( pos );
-            pos( p.x - 1, p.y + 3, 2, 0 );
+            pos( p.getX() - 1, p.getY() + 3, 2, 0 );
 
             pour( FlameParticle.FACTORY, 0.15f );
 
-            add( new Halo( 16, 0xFFFFCC, 0.2f ).point( p.x, p.y ) );
+            add( new Halo( 16, 0xFFFFCC, 0.2f ).point( p.getX(), p.getY() ) );
         }
 
         @Override

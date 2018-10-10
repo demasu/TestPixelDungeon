@@ -59,7 +59,7 @@ public class Enchanting extends ItemSprite {
     public void update () {
         super.update();
 
-        setX( target.sprite.center().x - SIZE / 2 );
+        setX( target.sprite.center().getX() - SIZE / 2 );
         setY( target.sprite.getY() - SIZE );
 
         switch ( phase ) {

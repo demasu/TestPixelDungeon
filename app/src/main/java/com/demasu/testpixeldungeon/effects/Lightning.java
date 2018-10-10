@@ -69,8 +69,8 @@ public class Lightning extends Group {
 
             Image arc = arcsS[i] = new Image( proto );
 
-            arc.setX( cx[i] - arc.getOrigin().x );
-            arc.setY( cy[i] - arc.getOrigin().y );
+            arc.setX( cx[i] - arc.getOrigin().getX() );
+            arc.setY( cy[i] - arc.getOrigin().getY() );
             arc.getOrigin().set( ox, oy );
             add( arc );
 
@@ -114,16 +114,16 @@ public class Lightning extends Group {
                 Image arc = arcsS[i];
                 arc.setAm( alpha );
                 arc.setAngle( (float) ( Math.atan2( dy, dx ) * A ) );
-                arc.getScale().x = (float) Math.sqrt( dx * dx + dy * dy ) / arc.getWidth();
+                arc.getScale().setX( (float) Math.sqrt( dx * dx + dy * dy ) / arc.getWidth() );
 
                 dx = ex - x2;
                 dy = ey - y2;
                 arc = arcsE[i];
                 arc.setAm( alpha );
                 arc.setAngle( (float) ( Math.atan2( dy, dx ) * A ) );
-                arc.getScale().x = (float) Math.sqrt( dx * dx + dy * dy ) / arc.getWidth();
-                arc.setX( x2 - arc.getOrigin().x );
-                arc.setY( y2 - arc.getOrigin().x );
+                arc.getScale().setX( (float) Math.sqrt( dx * dx + dy * dy ) / arc.getWidth() );
+                arc.setX( x2 - arc.getOrigin().getX() );
+                arc.setY( y2 - arc.getOrigin().getX() );
             }
         }
     }

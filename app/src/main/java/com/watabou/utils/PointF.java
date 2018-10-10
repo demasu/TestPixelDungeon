@@ -26,38 +26,38 @@ public class PointF {
     public static final float PI2 = PI * 2;
     public static final float G2R = PI / 180;
 
-    public float x;
-    public float y;
+    private float x;
+    private float y;
 
     public PointF () {
     }
 
     public PointF ( float x, float y ) {
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
     }
 
     public PointF ( PointF p ) {
-        this.x = p.x;
-        this.y = p.y;
+        this.setX( p.getX() );
+        this.setY( p.getY() );
     }
 
     public static PointF diff ( PointF a, PointF b ) {
-        return new PointF( a.x - b.x, a.y - b.y );
+        return new PointF( a.getX() - b.getX(), a.getY() - b.getY() );
     }
 
     public static PointF inter ( PointF a, PointF b, float d ) {
-        return new PointF( a.x + ( b.x - a.x ) * d, a.y + ( b.y - a.y ) * d );
+        return new PointF( a.getX() + ( b.getX() - a.getX() ) * d, a.getY() + ( b.getY() - a.getY() ) * d );
     }
 
     public static float distance ( PointF a, PointF b ) {
-        float dx = a.x - b.x;
-        float dy = a.y - b.y;
+        float dx = a.getX() - b.getX();
+        float dy = a.getY() - b.getY();
         return (float) Math.sqrt( dx * dx + dy * dy );
     }
 
     public static float angle ( PointF start, PointF end ) {
-        return (float) Math.atan2( end.y - start.y, end.x - start.x );
+        return (float) Math.atan2( end.getY() - start.getY(), end.getX() - start.getX() );
     }
 
     @Override
@@ -67,76 +67,92 @@ public class PointF {
     }
 
     public PointF scale ( float f ) {
-        this.x *= f;
-        this.y *= f;
+        this.setX( this.getX() * f );
+        this.setY( this.getY() * f );
         return this;
     }
 
     public PointF invScale ( float f ) {
-        this.x /= f;
-        this.y /= f;
+        this.setX( this.getX() / f );
+        this.setY( this.getY() / f );
         return this;
     }
 
     public PointF set ( float x, float y ) {
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
         return this;
     }
 
     public PointF set ( PointF p ) {
-        this.x = p.x;
-        this.y = p.y;
+        this.setX( p.getX() );
+        this.setY( p.getY() );
         return this;
     }
 
     public PointF set ( float v ) {
-        this.x = v;
-        this.y = v;
+        this.setX( v );
+        this.setY( v );
         return this;
     }
 
     public PointF polar ( float a, float l ) {
-        this.x = l * (float) Math.cos( a );
-        this.y = l * (float) Math.sin( a );
+        this.setX( l * (float) Math.cos( a ) );
+        this.setY( l * (float) Math.sin( a ) );
         return this;
     }
 
     public PointF offset ( float dx, float dy ) {
-        x += dx;
-        y += dy;
+        setX( getX() + dx );
+        setY( getY() + dy );
         return this;
     }
 
     public PointF offset ( PointF p ) {
-        x += p.x;
-        y += p.y;
+        setX( getX() + p.getX() );
+        setY( getY() + p.getY() );
         return this;
     }
 
     public PointF negate () {
-        x = -x;
-        y = -y;
+        setX( -getX() );
+        setY( -getY() );
         return this;
     }
 
     public PointF normalize () {
         float l = length();
-        x /= l;
-        y /= l;
+        setX( getX() / l );
+        setY( getY() / l );
         return this;
     }
 
     public Point floor () {
-        return new Point( (int) x, (int) y );
+        return new Point( (int) getX(), (int) getY() );
     }
 
     public float length () {
-        return (float) Math.sqrt( x * x + y * y );
+        return (float) Math.sqrt( getX() * getX() + getY() * getY() );
     }
 
     @Override
     public String toString () {
-        return "" + x + ", " + y;
+        return "" + getX() + ", " + getY();
+    }
+
+    public float getX () {
+        return x;
+    }
+
+    public void setX ( float x ) {
+        this.x = x;
+    }
+
+    public float getY () {
+        return y;
+    }
+
+    public void setY ( float y ) {
+        this.y = y;
     }
 }

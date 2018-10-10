@@ -68,7 +68,7 @@ public class BitmapText extends Visual {
         // "origin" field is ignored
         Matrix.setIdentity( getMatrix() );
         Matrix.translate( getMatrix(), getX(), getY() );
-        Matrix.scale( getMatrix(), getScale().x, getScale().y );
+        Matrix.scale( getMatrix(), getScale().getX(), getScale().getY() );
         Matrix.rotate( getMatrix(), getAngle() );
     }
 
@@ -185,7 +185,7 @@ public class BitmapText extends Visual {
     }
 
     public float baseLine () {
-        return getFont().getBaseLine() * getScale().y;
+        return getFont().getBaseLine() * getScale().getY();
     }
 
     public String text () {

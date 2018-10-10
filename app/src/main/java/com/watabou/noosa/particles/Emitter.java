@@ -49,7 +49,7 @@ public class Emitter extends Group {
     }
 
     public void pos ( PointF p ) {
-        pos( p.x, p.y, 0, 0 );
+        pos( p.getX(), p.getY(), 0, 0 );
     }
 
     public void pos ( float x, float y, float width, float height ) {

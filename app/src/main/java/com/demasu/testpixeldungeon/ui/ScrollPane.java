@@ -123,8 +123,8 @@ public class ScrollPane extends Component {
 
             } else {
 
-                PointF p = content.getCamera().screenToCamera( (int) touch.getCurrent().x, (int) touch.getCurrent().y );
-                ScrollPane.this.onClick( p.x, p.y );
+                PointF p = content.getCamera().screenToCamera( (int) touch.getCurrent().getX(), (int) touch.getCurrent().getY() );
+                ScrollPane.this.onClick( p.getX(), p.getY() );
 
             }
         }
@@ -136,20 +136,20 @@ public class ScrollPane extends Component {
                 Camera c = content.getCamera();
 
                 c.getScroll().offset( PointF.diff( lastPos, t.getCurrent() ).invScale( c.getZoom() ) );
-                if ( c.getScroll().x + getWidth() > content.width() ) {
-                    c.getScroll().x = content.width() - getWidth();
+                if ( c.getScroll().getX() + getWidth() > content.width() ) {
+                    c.getScroll().setX( content.width() - getWidth() );
                 }
-                if ( c.getScroll().x < 0 ) {
-                    c.getScroll().x = 0;
+                if ( c.getScroll().getX() < 0 ) {
+                    c.getScroll().setX( 0 );
                 }
-                if ( c.getScroll().y + getHeight() > content.height() ) {
-                    c.getScroll().y = content.height() - getHeight();
+                if ( c.getScroll().getY() + getHeight() > content.height() ) {
+                    c.getScroll().setY( content.height() - getHeight() );
                 }
-                if ( c.getScroll().y < 0 ) {
-                    c.getScroll().y = 0;
+                if ( c.getScroll().getY() < 0 ) {
+                    c.getScroll().setY( 0 );
                 }
 
-                thumb.setY( getY() + getHeight() * c.getScroll().y / content.height() );
+                thumb.setY( getY() + getHeight() * c.getScroll().getY() / content.height() );
 
                 lastPos.set( t.getCurrent() );
 

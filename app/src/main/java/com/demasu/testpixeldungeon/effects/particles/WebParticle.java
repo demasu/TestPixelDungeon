@@ -56,6 +56,6 @@ public class WebParticle extends PixelParticle {
 
         float p = getLeft() / getLifespan();
         setAm( p < 0.5f ? p : 1 - p );
-        getScale().y = 16 + p * 8;
+        getScale().setY( 16 + p * 8 );
     }
 }

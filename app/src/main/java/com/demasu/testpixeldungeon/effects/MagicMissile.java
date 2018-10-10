@@ -145,15 +145,15 @@ public class MagicMissile extends Emitter {
         PointF pf = DungeonTilemap.tileCenterToWorld( from );
         PointF pt = DungeonTilemap.tileCenterToWorld( to );
 
-        setX( pf.x );
-        setY( pf.y );
+        setX( pf.getX() );
+        setY( pf.getY() );
         setWidth( 0 );
         setHeight( 0 );
 
         PointF d = PointF.diff( pt, pf );
         PointF speed = new PointF( d ).normalize().scale( velocity );
-        sx = speed.x;
-        sy = speed.y;
+        sx = speed.getX();
+        sy = speed.getY();
         time = d.length() / velocity;
     }
 
@@ -352,8 +352,8 @@ public class MagicMissile extends Emitter {
             super.reset( x, y, 0xFFFFFF, 8, 0.5f );
 
             getSpeed().polar( PointF.PI2 / 8 * index, 12 );
-            this.setX( this.getX() - getSpeed().x * getLifespan() );
-            this.setY( this.getY() - getSpeed().y * getLifespan() );
+            this.setX( this.getX() - getSpeed().getX() * getLifespan() );
+            this.setY( this.getY() - getSpeed().getY() * getLifespan() );
         }
 
         @Override

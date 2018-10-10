@@ -54,8 +54,8 @@ public class WindParticle extends PixelParticle {
         super.getSpeed().set( WindParticle.speed );
         super.getSpeed().scale( size );
 
-        this.setX( x - super.getSpeed().x * getLifespan() / 2 );
-        this.setY( y - super.getSpeed().y * getLifespan() / 2 );
+        this.setX( x - super.getSpeed().getX() * getLifespan() / 2 );
+        this.setY( y - super.getSpeed().getY() * getLifespan() / 2 );
 
         angle += Random.Float( -0.1f, +0.1f );
         speed = new PointF().polar( angle, 5 );
@@ -85,8 +85,8 @@ public class WindParticle extends PixelParticle {
 
             this.pos = pos;
             PointF p = DungeonTilemap.tileToWorld( pos );
-            x = p.x;
-            y = p.y;
+            x = p.getX();
+            y = p.getY();
 
             delay = Random.Float( 5 );
         }

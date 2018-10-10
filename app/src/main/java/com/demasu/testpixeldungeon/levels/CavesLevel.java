@@ -256,8 +256,8 @@ public class CavesLevel extends RegularLevel {
 
                     PointF p = DungeonTilemap.tileToWorld( pos );
                     ( (Sparkle) recycle( Sparkle.class ) ).reset(
-                            p.x + Random.Float( DungeonTilemap.SIZE ),
-                            p.y + Random.Float( DungeonTilemap.SIZE ) );
+                            p.getX() + Random.Float( DungeonTilemap.SIZE ),
+                            p.getY() + Random.Float( DungeonTilemap.SIZE ) );
                 }
             }
         }

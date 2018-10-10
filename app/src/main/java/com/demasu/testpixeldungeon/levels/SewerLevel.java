@@ -174,7 +174,7 @@ public class SewerLevel extends RegularLevel {
             this.pos = pos;
 
             PointF p = DungeonTilemap.tileCenterToWorld( pos );
-            pos( p.x - 2, p.y + 1, 4, 0 );
+            pos( p.getX() - 2, p.getY() + 1, 4, 0 );
 
             pour( factory, 0.05f );
         }
@@ -199,7 +199,7 @@ public class SewerLevel extends RegularLevel {
         public WaterParticle () {
             super();
 
-            getAcc().y = 50;
+            getAcc().setY( 50 );
             setAm( 0.5f );
 
             color( ColorMath.random( 0xb6ccc2, 0x3b6653 ) );

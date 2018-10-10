@@ -40,7 +40,7 @@ public class DiscardedItemSprite extends ItemSprite {
 
         super.update();
 
-        getScale().set( getScale().x * 0.9f );
+        getScale().set( getScale().getX() * 0.9f );
         setAm( getAm() - Game.getElapsed() );
         if ( ( getAm() ) <= 0 ) {
             remove();

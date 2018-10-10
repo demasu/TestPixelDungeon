@@ -80,8 +80,8 @@ public class Degradation extends Group {
     private Degradation ( PointF p, int[] matrix ) {
 
         for ( int i = 0; i < matrix.length; i += 2 ) {
-            add( new Speck( p.x, p.y, matrix[i], matrix[i + 1] ) );
-            add( new Speck( p.x, p.y, matrix[i], matrix[i + 1] ) );
+            add( new Speck( p.getX(), p.getY(), matrix[i], matrix[i + 1] ) );
+            add( new Speck( p.getX(), p.getY(), matrix[i], matrix[i + 1] ) );
         }
     }
 
@@ -130,8 +130,8 @@ public class Degradation extends Group {
             float y1 = y0 + my * SIZE;
 
             PointF p = new PointF().polar( Random.Float( 2 * PointF.PI ), 8 );
-            x0 += p.x;
-            y0 += p.y;
+            x0 += p.getX();
+            y0 += p.getY();
 
             float dx = x1 - x0;
             float dy = y1 - y0;

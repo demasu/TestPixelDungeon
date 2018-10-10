@@ -46,13 +46,13 @@ public class EmoIcon extends Image {
 
         if ( getVisible() ) {
             if ( growing ) {
-                getScale().set( getScale().x + Game.getElapsed() * timeScale );
-                if ( getScale().x > maxSize ) {
+                getScale().set( getScale().getX() + Game.getElapsed() * timeScale );
+                if ( getScale().getX() > maxSize ) {
                     growing = false;
                 }
             } else {
-                getScale().set( getScale().x - Game.getElapsed() * timeScale );
-                if ( getScale().x < 1 ) {
+                getScale().set( getScale().getX() - Game.getElapsed() * timeScale );
+                if ( getScale().getX() < 1 ) {
                     growing = true;
                 }
             }

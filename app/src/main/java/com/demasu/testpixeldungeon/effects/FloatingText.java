@@ -38,7 +38,7 @@ public class FloatingText extends BitmapText {
 
     public FloatingText () {
         super();
-        getSpeed().y = -DISTANCE / LIFESPAN;
+        getSpeed().setY( -DISTANCE / LIFESPAN );
     }
 
     public static void show ( float x, float y, String text, int color ) {

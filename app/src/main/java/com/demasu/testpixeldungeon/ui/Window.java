@@ -55,8 +55,8 @@ public class Window extends Group implements Signal.Listener<Key> {
             @Override
             protected void onClick ( Touch touch ) {
                 if ( !Window.this.chrome.overlapsScreenPoint(
-                        (int) touch.getCurrent().x,
-                        (int) touch.getCurrent().y ) ) {
+                        (int) touch.getCurrent().getX(),
+                        (int) touch.getCurrent().getY() ) ) {
 
                     onBackPressed();
                 }

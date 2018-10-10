@@ -53,8 +53,8 @@ public class CellSelector extends TouchArea {
         } else {
 
             select( ( (DungeonTilemap) getTarget() ).screenToTile(
-                    (int) touch.getCurrent().x,
-                    (int) touch.getCurrent().y ) );
+                    (int) touch.getCurrent().getX(),
+                    (int) touch.getCurrent().getY() ) );
         }
     }
 

@@ -41,7 +41,7 @@ public class SnowParticle extends PixelParticle {
         revive();
 
         this.setX( x );
-        this.setY( y - getSpeed().y * getLifespan() );
+        this.setY( y - getSpeed().getY() * getLifespan() );
 
         setLeft( getLifespan() );
     }

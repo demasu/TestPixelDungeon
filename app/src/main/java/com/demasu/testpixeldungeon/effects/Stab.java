@@ -112,7 +112,7 @@ public class Stab extends ItemSprite implements Tweener.Listener {
         PointF src = DungeonTilemap.tileToWorld( source.pos );
         PointF dest = DungeonTilemap.tileToWorld( target.pos );
         PointF d = PointF.diff( dest, src );
-        setAngle( 135 - (float) ( Math.atan2( d.x, d.y ) / 3.1415926 * 180 ) );
+        setAngle( 135 - (float) ( Math.atan2( d.getX(), d.getY() ) / 3.1415926 * 180 ) );
         //angularSpeed = 70;
 
         setX( source.sprite.getX() );

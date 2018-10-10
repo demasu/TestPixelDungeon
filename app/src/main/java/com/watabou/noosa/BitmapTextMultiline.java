@@ -79,7 +79,7 @@ public class BitmapTextMultiline extends BitmapText {
 
 
                 getWordMetrics( word, metrics );
-                writer.addSymbol( metrics.x, metrics.y );
+                writer.addSymbol( metrics.getX(), metrics.getY() );
 
                 int length = word.length();
                 float shift = 0;    // Position in pixels relative to the beginning of the word
@@ -175,7 +175,7 @@ public class BitmapTextMultiline extends BitmapText {
                 }
 
                 getWordMetrics( word, metrics );
-                writer.addSymbol( metrics.x, metrics.y );
+                writer.addSymbol( metrics.getX(), metrics.getY() );
             }
 
             writer.newLine( 0, getFont().getLineHeight() );
@@ -189,7 +189,7 @@ public class BitmapTextMultiline extends BitmapText {
 
     @Override
     public float baseLine () {
-        return ( getHeight() - getFont().getLineHeight() + getFont().getBaseLine() ) * getScale().y;
+        return ( getHeight() - getFont().getLineHeight() + getFont().getBaseLine() ) * getScale().getY();
     }
 
     public int getMaxWidth () {
@@ -231,7 +231,7 @@ public class BitmapTextMultiline extends BitmapText {
         private float y = 0;
 
         void addSymbol ( float w, float h ) {
-            if ( getLineWidth() > 0 && getLineWidth() + getFont().getTracking() + w > getMaxWidth() / getScale().x ) {
+            if ( getLineWidth() > 0 && getLineWidth() + getFont().getTracking() + w > getMaxWidth() / getScale().getX() ) {
                 newLine( w, h );
             } else {
 
@@ -245,7 +245,7 @@ public class BitmapTextMultiline extends BitmapText {
         }
 
         void addSpace ( float w ) {
-            if ( getLineWidth() > 0 && getLineWidth() + getFont().getTracking() + w > getMaxWidth() / getScale().x ) {
+            if ( getLineWidth() > 0 && getLineWidth() + getFont().getTracking() + w > getMaxWidth() / getScale().getX() ) {
                 newLine( 0, 0 );
             } else {
 
@@ -344,7 +344,7 @@ public class BitmapTextMultiline extends BitmapText {
 
         private void newLine ( String str, float width ) {
             BitmapText txt = new BitmapText( curLine.toString(), getFont() );
-            txt.getScale().set( getScale().x );
+            txt.getScale().set( getScale().getX() );
             lines.add( txt );
 
             curLine = new StringBuilder( str );
@@ -377,13 +377,13 @@ public class BitmapTextMultiline extends BitmapText {
 
                     getWordMetrics( word, metrics );
 
-                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + metrics.x > getMaxWidth() / getScale().x ) {
-                        newLine( word, metrics.x );
+                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + metrics.getX() > getMaxWidth() / getScale().getX() ) {
+                        newLine( word, metrics.getX() );
                     } else {
-                        append( word, metrics.x );
+                        append( word, metrics.getX() );
                     }
 
-                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + spaceSize > getMaxWidth() / getScale().x ) {
+                    if ( curLineWidth > 0 && curLineWidth + getFont().getTracking() + spaceSize > getMaxWidth() / getScale().getX() ) {
                         newLine( "", 0 );
                     } else {
                         append( " ", spaceSize );

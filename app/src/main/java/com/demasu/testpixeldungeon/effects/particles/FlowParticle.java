@@ -83,8 +83,8 @@ public class FlowParticle extends PixelParticle {
             this.pos = pos;
 
             PointF p = DungeonTilemap.tileToWorld( pos );
-            x = p.x;
-            y = p.y + DungeonTilemap.SIZE - 1;
+            x = p.getX();
+            y = p.getY() + DungeonTilemap.SIZE - 1;
 
             delay = Random.Float( DELAY );
         }

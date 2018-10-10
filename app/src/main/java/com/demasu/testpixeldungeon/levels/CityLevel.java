@@ -157,7 +157,7 @@ public class CityLevel extends RegularLevel {
             this.pos = pos;
 
             PointF p = DungeonTilemap.tileCenterToWorld( pos );
-            pos( p.x - 4, p.y - 2, 4, 0 );
+            pos( p.getX() - 4, p.getY() - 2, 4, 0 );
 
             pour( factory, 0.2f );
         }

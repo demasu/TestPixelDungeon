@@ -44,8 +44,8 @@ public class Identification extends Group {
     public Identification ( PointF p ) {
 
         for ( int i = 0; i < DOTS.length; i += 2 ) {
-            add( new Speck( p.x, p.y, DOTS[i], DOTS[i + 1] ) );
-            add( new Speck( p.x, p.y, DOTS[i], DOTS[i + 1] ) );
+            add( new Speck( p.getX(), p.getY(), DOTS[i], DOTS[i + 1] ) );
+            add( new Speck( p.getX(), p.getY(), DOTS[i], DOTS[i + 1] ) );
         }
     }
 
@@ -78,8 +78,8 @@ public class Identification extends Group {
             float y1 = y0 + my * SIZE;
 
             PointF p = new PointF().polar( Random.Float( 2 * PointF.PI ), 8 );
-            x0 += p.x;
-            y0 += p.y;
+            x0 += p.getX();
+            y0 += p.getY();
 
             float dx = x1 - x0;
             float dy = y1 - y0;

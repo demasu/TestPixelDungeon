@@ -218,19 +218,19 @@ public class MissionStatusPane extends Component {
             blood.setOn( false );
         }
 
-        hp.getScale().x = health;
+        hp.getScale().setX( health );
         hp_dropping.setX( hp.getX() + hp.width() - 20 * health );
-        hp_dropping.getScale().x = health_drop;
+        hp_dropping.getScale().setX( health_drop );
 
-        exp.getScale().x = ( getWidth() / exp.getWidth() ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp();
+        exp.getScale().setX( ( getWidth() / exp.getWidth() ) * Dungeon.getHero().exp / Dungeon.getHero().maxExp() );
 
         float mana = (float) Dungeon.getHero().getMP() / Dungeon.getHero().getMMP();
 
         float mana_drop = manaDropping / Dungeon.getHero().getMMP();
 
-        mp.getScale().x = mana;
+        mp.getScale().setX( mana );
         mp_dropping.setX( mp.getX() + mp.width() - 20 * mana );
-        mp_dropping.getScale().x = mana_drop;
+        mp_dropping.getScale().setX( mana_drop );
 
         if ( Dungeon.getHero().getMMP() == 0 ) {
             manaDropping = 0;

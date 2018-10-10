@@ -198,15 +198,15 @@ public class BadgeBanner extends Image {
                 break;
         }
 
-        p.x *= image.getScale().x;
-        p.y *= image.getScale().y;
+        p.setX( p.getX() * image.getScale().getX() );
+        p.setY( p.getY() * image.getScale().getY() );
         p.offset(
-                -image.getOrigin().x * ( image.getScale().x - 1 ),
-                -image.getOrigin().y * ( image.getScale().y - 1 ) );
+                -image.getOrigin().getX() * ( image.getScale().getX() - 1 ),
+                -image.getOrigin().getY() * ( image.getScale().getY() - 1 ) );
         p.offset( image.point() );
 
         Speck star = new Speck();
-        star.reset( 0, p.x, p.y, Speck.DISCOVER );
+        star.reset( 0, p.getX(), p.getY(), Speck.DISCOVER );
         star.setCamera( image.camera() );
         image.getParent().add( star );
     }

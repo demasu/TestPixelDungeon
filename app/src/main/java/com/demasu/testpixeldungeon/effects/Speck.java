@@ -131,8 +131,8 @@ public class Speck extends Image {
                 frame( film.get( type ) );
         }
 
-        this.setX( x - getOrigin().x );
-        this.setY( y - getOrigin().y );
+        this.setX( x - getOrigin().getX() );
+        this.setY( y - getOrigin().getY() );
 
         resetColor();
         getScale().set( 1 );
@@ -174,7 +174,7 @@ public class Speck extends Image {
 
             case KIT:
                 getSpeed().polar( index * 3.1415926f / 5, 50 );
-                getAcc().set( -getSpeed().x, -getSpeed().y );
+                getAcc().set( -getSpeed().getX(), -getSpeed().getY() );
                 setAngle( index * 36 );
                 setAngularSpeed( 360 );
                 lifespan = 1f;
@@ -182,8 +182,8 @@ public class Speck extends Image {
 
             case MASTERY:
                 getSpeed().set( Random.Int( 2 ) == 0 ? Random.Float( -128, -64 ) : Random.Float( +64, +128 ), 0 );
-                setAngularSpeed( getSpeed().x < 0 ? -180 : +180 );
-                getAcc().set( -getSpeed().x, 0 );
+                setAngularSpeed( getSpeed().getX() < 0 ? -180 : +180 );
+                getAcc().set( -getSpeed().getX(), 0 );
                 lifespan = 0.5f;
                 break;
 
@@ -224,7 +224,7 @@ public class Speck extends Image {
             case RATTLE:
                 lifespan = 0.5f;
                 getSpeed().set( 0, -200 );
-                getAcc().set( 0, -2 * getSpeed().y / lifespan );
+                getAcc().set( 0, -2 * getSpeed().getY() / lifespan );
                 setAngle( Random.Float( 360 ) );
                 setAngularSpeed( 360 );
                 break;
@@ -242,7 +242,7 @@ public class Speck extends Image {
                 getScale().set( Random.Float( 1, 2 ) );
                 getSpeed().set( 0, 64 );
                 lifespan = 0.2f;
-                y -= getSpeed().y * lifespan;
+                y -= getSpeed().getY() * lifespan;
                 break;
 
             case NOTE:
@@ -270,15 +270,15 @@ public class Speck extends Image {
                 break;
 
             case STEAM:
-                getSpeed().y = -Random.Float( 20, 30 );
+                getSpeed().setY( -Random.Float( 20, 30 ) );
                 setAngularSpeed( Random.Float( +180 ) );
                 setAngle( Random.Float( 360 ) );
                 lifespan = 1f;
                 break;
 
             case JET:
-                getSpeed().y = +32;
-                getAcc().y = -64;
+                getSpeed().setY( +32 );
+                getAcc().setY( -64 );
                 setAngularSpeed( Random.Float( 180, 360 ) );
                 setAngle( Random.Float( 360 ) );
                 lifespan = 0.5f;
@@ -314,8 +314,8 @@ public class Speck extends Image {
 
             case COIN:
                 getSpeed().polar( -PointF.PI * Random.Float( 0.3f, 0.7f ), Random.Float( 48, 96 ) );
-                getAcc().y = 256;
-                lifespan = -getSpeed().y / getAcc().y * 2;
+                getAcc().setY( 256 );
+                lifespan = -getSpeed().getY() / getAcc().getY() * 2;
                 break;
         }
 
@@ -356,7 +356,7 @@ public class Speck extends Image {
                     break;
 
                 case LIGHT:
-                    setAm( getScale().set( p < 0.2f ? p * 5f : ( 1 - p ) * 1.25f ).x );
+                    setAm( getScale().set( p < 0.2f ? p * 5f : ( 1 - p ) * 1.25f ).getX() );
                     break;
 
                 case DISCOVER:
@@ -396,8 +396,8 @@ public class Speck extends Image {
 
                 case CHANGE:
                     setAm( (float) Math.sqrt( ( p < 0.5f ? p : 1 - p ) * 2 ) );
-                    getScale().y = ( 1 + p ) * 0.5f;
-                    getScale().x = getScale().y * (float) Math.cos( left * 15 );
+                    getScale().setY( ( 1 + p ) * 0.5f );
+                    getScale().setX( getScale().getY() * (float) Math.cos( left * 15 ) );
                     break;
 
                 case HEART:
@@ -424,8 +424,8 @@ public class Speck extends Image {
                     break;
 
                 case COIN:
-                    getScale().x = (float) Math.cos( left * 5 );
-                    float finVal = ( Math.abs( getScale().x ) + 1 ) * 0.5f;
+                    getScale().setX( (float) Math.cos( left * 5 ) );
+                    float finVal = ( Math.abs( getScale().getX() ) + 1 ) * 0.5f;
                     setRm( finVal );
                     setGm( finVal );
                     setBm( finVal );

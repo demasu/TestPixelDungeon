@@ -150,8 +150,8 @@ public class Camera extends Gizmo {
 
     public void zoom ( float value ) {
         zoom( value,
-                getScroll().x + getWidth() / 2,
-                getScroll().y + getHeight() / 2 );
+                getScroll().getX() + getWidth() / 2,
+                getScroll().getY() + getHeight() / 2 );
     }
 
     private void zoom ( float value, float fx, float fy ) {
@@ -200,7 +200,7 @@ public class Camera extends Gizmo {
     }
 
     private void focusOn ( PointF point ) {
-        focusOn( point.x, point.y );
+        focusOn( point.getX(), point.getY() );
     }
 
 
@@ -210,14 +210,14 @@ public class Camera extends Gizmo {
 
     public PointF screenToCamera ( int x, int y ) {
         return new PointF(
-                ( x - this.getX() ) / getZoom() + getScroll().x,
-                ( y - this.getY() ) / getZoom() + getScroll().y );
+                ( x - this.getX() ) / getZoom() + getScroll().getX(),
+                ( y - this.getY() ) / getZoom() + getScroll().getY() );
     }
 
     public Point cameraToScreen ( float x, float y ) {
         return new Point(
-                (int) ( ( x - getScroll().x ) * getZoom() + this.getX() ),
-                (int) ( ( y - getScroll().y ) * getZoom() + this.getY() ) );
+                (int) ( ( x - getScroll().getX() ) * getZoom() + this.getX() ),
+                (int) ( ( y - getScroll().getY() ) * getZoom() + this.getY() ) );
     }
 
     public float screenWidth () {
@@ -242,8 +242,8 @@ public class Camera extends Gizmo {
         getMatrix()[0] = +getZoom() * getInvW2();
         getMatrix()[5] = -getZoom() * getInvH2();
 
-        getMatrix()[12] = -1 + getX() * getInvW2() - ( getScroll().x + getShakeX() ) * getMatrix()[0];
-        getMatrix()[13] = +1 - getY() * getInvH2() - ( getScroll().y + getShakeY() ) * getMatrix()[5];
+        getMatrix()[12] = -1 + getX() * getInvW2() - ( getScroll().getX() + getShakeX() ) * getMatrix()[0];
+        getMatrix()[13] = +1 - getY() * getInvH2() - ( getScroll().getY() + getShakeY() ) * getMatrix()[5];
 
     }
 

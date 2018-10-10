@@ -59,7 +59,7 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
         if ( image == 31 || image == 108 || image == 109 || image == 110 || image == ItemSpriteSheet.Arrow || image == ItemSpriteSheet.BombArrow || image == ItemSpriteSheet.CupidArrow ) {
 
             setAngularSpeed( 0 );
-            setAngle( 135 - (float) ( Math.atan2( d.x, d.y ) / 3.1415926 * 180 ) );
+            setAngle( 135 - (float) ( Math.atan2( d.getX(), d.getY() ) / 3.1415926 * 180 ) );
 
         } else {
 

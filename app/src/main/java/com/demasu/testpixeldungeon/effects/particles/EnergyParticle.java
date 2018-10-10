@@ -52,8 +52,8 @@ public class EnergyParticle extends PixelParticle {
 
         setLeft( getLifespan() );
 
-        this.setX( x - getSpeed().x * getLifespan() );
-        this.setY( y - getSpeed().y * getLifespan() );
+        this.setX( x - getSpeed().getX() * getLifespan() );
+        this.setY( y - getSpeed().getY() * getLifespan() );
     }
 
     @Override

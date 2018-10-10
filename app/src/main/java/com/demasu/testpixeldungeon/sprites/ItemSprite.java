@@ -127,7 +127,7 @@ public class ItemSprite extends MovieClip {
         dropInterval = DROP_INTERVAL;
 
         getSpeed().set( 0, -100 );
-        getAcc().set( 0, -getSpeed().y / DROP_INTERVAL * 2 );
+        getAcc().set( 0, -getSpeed().getY() / DROP_INTERVAL * 2 );
 
         if ( getVisible() && heap != null && heap.peek() instanceof Gold ) {
             CellEmitter.center( heap.pos ).burst( Speck.factory( Speck.COIN ), 5 );
