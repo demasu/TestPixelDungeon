@@ -35,7 +35,7 @@ public class Texture {
 
     private int id;
 
-    public Texture () {
+    protected Texture () {
         int[] ids = new int[1];
         GLES20.glGenTextures( 1, ids, 0 );
         setId( ids[0] );
@@ -121,7 +121,7 @@ public class Texture {
         return id;
     }
 
-    public void setId ( int id ) {
+    protected void setId ( int id ) {
         this.id = id;
     }
 }
