@@ -134,11 +134,11 @@ public class Emitter extends Group {
         }
     }
 
-    public Visual getTarget () {
+    Visual getTarget () {
         return target;
     }
 
-    public void setTarget ( Visual target ) {
+    void setTarget ( Visual target ) {
         this.target = target;
     }
 
