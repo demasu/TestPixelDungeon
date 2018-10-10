@@ -95,7 +95,7 @@ public class Gizmo {
         }
     }
 
-    public boolean isExists () {
+    boolean isExists () {
         return exists;
     }
 
@@ -103,7 +103,7 @@ public class Gizmo {
         this.exists = exists;
     }
 
-    public boolean isAlive () {
+    boolean isAlive () {
         return alive;
     }
 
@@ -127,7 +127,7 @@ public class Gizmo {
         return parent;
     }
 
-    public void setParent ( Group parent ) {
+    void setParent ( Group parent ) {
         this.parent = parent;
     }
 
