@@ -71,7 +71,7 @@ public class Random {
         return 0;
     }
 
-    @SuppressWarnings ( "unchecked" )
+    @SuppressWarnings ( { "unchecked", "SuspiciousMethodCalls" } )
     public static <K> K chances ( HashMap<K, Float> chances ) {
 
         int size = chances.size();
