@@ -58,11 +58,6 @@ public class Scene extends Group {
         super.update();
     }
 
-    @Override
-    public Camera camera () {
-        return Camera.getMain();
-    }
-
     protected void onBackPressed () {
         Game.getInstance().finish();
     }
