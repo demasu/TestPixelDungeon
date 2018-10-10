@@ -93,7 +93,7 @@ public class Image extends Visual {
     }
 
     @SuppressWarnings ( "MagicNumber" )
-    protected void updateFrame () {
+    void updateFrame () {
 
         if ( isFlipHorizontal() ) {
             getVertices()[2] = getFrame().right;
@@ -116,7 +116,7 @@ public class Image extends Visual {
     }
 
     @SuppressWarnings ( "MagicNumber" )
-    protected void updateVertices () {
+    void updateVertices () {
 
         getVertices()[0] = 0;
         getVertices()[1] = 0;
@@ -184,7 +184,7 @@ public class Image extends Visual {
     }
 
     @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
-    public float[] getVertices () {
+    float[] getVertices () {
         return vertices;
     }
 
@@ -192,7 +192,7 @@ public class Image extends Visual {
         return dirty;
     }
 
-    public void setDirty ( boolean dirty ) {
+    void setDirty ( boolean dirty ) {
         this.dirty = dirty;
     }
 }
