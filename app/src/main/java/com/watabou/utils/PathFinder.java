@@ -90,9 +90,9 @@ public class PathFinder {
 
         for ( int aDir : dir ) {
 
-            int stepD;
-            int step;
-            if ( ( stepD = distance[step = from + aDir] ) < minD ) {
+            int step = from + aDir;
+            int stepD = distance[step];
+            if ( stepD < minD ) {
                 minD = stepD;
                 best = step;
             }
