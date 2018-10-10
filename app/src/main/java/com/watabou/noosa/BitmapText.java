@@ -97,7 +97,7 @@ public class BitmapText extends Visual {
     }
 
     @SuppressWarnings ( "MagicNumber" )
-    protected void updateVertices () {
+    void updateVertices () {
 
         setWidth( 0 );
         setHeight( 0 );
@@ -197,23 +197,23 @@ public class BitmapText extends Visual {
         setDirty( true );
     }
 
-    public int getRealLength () {
+    int getRealLength () {
         return realLength;
     }
 
-    public void setRealLength ( int realLength ) {
+    void setRealLength ( int realLength ) {
         this.realLength = realLength;
     }
 
-    public String getText () {
+    String getText () {
         return text;
     }
 
-    public void setText ( String text ) {
+    void setText ( String text ) {
         this.text = text;
     }
 
-    public Font getFont () {
+    Font getFont () {
         return font;
     }
 
@@ -222,7 +222,7 @@ public class BitmapText extends Visual {
     }
 
     @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
-    public float[] getVertices () {
+    float[] getVertices () {
         return vertices;
     }
 
@@ -231,11 +231,11 @@ public class BitmapText extends Visual {
         this.vertices = null;
     }
 
-    public FloatBuffer getQuads () {
+    FloatBuffer getQuads () {
         return quads;
     }
 
-    public void setQuads ( FloatBuffer quads ) {
+    void setQuads ( FloatBuffer quads ) {
         this.quads = quads;
     }
 
@@ -243,7 +243,7 @@ public class BitmapText extends Visual {
         return dirty;
     }
 
-    public void setDirty ( boolean dirty ) {
+    void setDirty ( boolean dirty ) {
         this.dirty = dirty;
     }
 
@@ -334,7 +334,7 @@ public class BitmapText extends Visual {
             setBaseLine( height( getFrames().get( chars.charAt( 0 ) ) ) );
         }
 
-        public RectF get ( char ch ) {
+        RectF get ( char ch ) {
             return super.get( isAutoUppercase() ? Character.toUpperCase( ch ) : ch );
         }
 
@@ -350,7 +350,7 @@ public class BitmapText extends Visual {
             this.tracking = tracking;
         }
 
-        public float getBaseLine () {
+        float getBaseLine () {
             return baseLine;
         }
 
@@ -366,7 +366,7 @@ public class BitmapText extends Visual {
             this.autoUppercase = autoUppercase;
         }
 
-        public float getLineHeight () {
+        float getLineHeight () {
             return lineHeight;
         }
 
