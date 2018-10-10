@@ -29,7 +29,7 @@ public class SystemTime {
         return now;
     }
 
-    public static void setNow ( long now ) {
+    private static void setNow ( long now ) {
         SystemTime.now = now;
     }
 }
