@@ -47,7 +47,8 @@ public class Random {
     }
 
     public static int NormalIntRange ( int min, int max ) {
-        return min + (int) ( ( Math.random() + Math.random() ) * ( max - min + 1 ) / 2f );
+        final float TWO = 2f;
+        return min + (int) ( ( Math.random() + Math.random() ) * ( max - min + 1 ) / TWO );
     }
 
     public static int chances ( float[] chances ) {
