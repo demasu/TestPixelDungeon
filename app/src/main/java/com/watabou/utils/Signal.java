@@ -75,6 +75,8 @@ public class Signal<T> {
         canceled = true;
     }
 
+    //TODO: Move into its own file
+    @SuppressWarnings ( "PublicInnerClass" )
     public interface Listener<T> {
         void onSignal ( T t );
     }
