@@ -68,8 +68,8 @@ public class Camera extends Gizmo {
         Matrix.setIdentity( getMatrix() );
     }
 
-    public static Camera reset () {
-        return reset( createFullscreen( 1 ) );
+    public static void reset () {
+        reset( createFullscreen( 1 ) );
     }
 
     @SuppressWarnings ( "MagicNumber" )
