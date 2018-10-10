@@ -63,7 +63,7 @@ public class WandOfFlock extends Wand {
         int dist = 0;
 
         if ( Actor.findChar( cell ) != null ) {
-            PathFinder.distance[cell] = Integer.MAX_VALUE;
+            PathFinder.getDistance()[cell] = Integer.MAX_VALUE;
             dist = 1;
         }
 
@@ -73,7 +73,7 @@ public class WandOfFlock extends Wand {
         for ( int i = 0; i < n; i++ ) {
             do {
                 for ( int j = 0; j < Level.LENGTH; j++ ) {
-                    if ( PathFinder.distance[j] == dist ) {
+                    if ( PathFinder.getDistance()[j] == dist ) {
 
                         Sheep sheep = new Sheep();
                         sheep.lifespan = lifespan;
@@ -83,7 +83,7 @@ public class WandOfFlock extends Wand {
 
                         CellEmitter.get( j ).burst( Speck.factory( Speck.WOOL ), 4 );
 
-                        PathFinder.distance[j] = Integer.MAX_VALUE;
+                        PathFinder.getDistance()[j] = Integer.MAX_VALUE;
 
                         continue sheepLabel;
                     }

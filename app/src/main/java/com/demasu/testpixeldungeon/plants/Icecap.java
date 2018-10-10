@@ -45,7 +45,7 @@ public class Icecap extends Plant {
         Fire fire = (Fire) Dungeon.getLevel().blobs.get( Fire.class );
 
         for ( int i = 0; i < Level.LENGTH; i++ ) {
-            if ( PathFinder.distance[i] < Integer.MAX_VALUE ) {
+            if ( PathFinder.getDistance()[i] < Integer.MAX_VALUE ) {
                 Freezing.affect( i, fire );
             }
         }

@@ -64,7 +64,7 @@ public class PotionOfPurity extends Potion {
             }
 
             for ( int i = 0; i < Level.LENGTH; i++ ) {
-                if ( PathFinder.distance[i] < Integer.MAX_VALUE ) {
+                if ( PathFinder.getDistance()[i] < Integer.MAX_VALUE ) {
 
                     int value = blob.cur[i];
                     if ( value > 0 ) {
@@ -82,7 +82,7 @@ public class PotionOfPurity extends Potion {
             }
         }
 
-        boolean heroAffected = PathFinder.distance[Dungeon.getHero().pos] < Integer.MAX_VALUE;
+        boolean heroAffected = PathFinder.getDistance()[Dungeon.getHero().pos] < Integer.MAX_VALUE;
 
         if ( procd ) {
 

@@ -185,14 +185,14 @@ public class King extends Mob {
 
         int undeadsToSummon = maxArmySize() - Undead.count;
         PathFinder.buildDistanceMap( pos, passable, undeadsToSummon );
-        PathFinder.distance[pos] = Integer.MAX_VALUE;
+        PathFinder.getDistance()[pos] = Integer.MAX_VALUE;
         int dist = 1;
 
         undeadLabel:
         for ( int i = 0; i < undeadsToSummon; i++ ) {
             do {
                 for ( int j = 0; j < Level.LENGTH; j++ ) {
-                    if ( PathFinder.distance[j] == dist ) {
+                    if ( PathFinder.getDistance()[j] == dist ) {
 
                         Undead undead = new Undead();
                         undead.pos = j;
@@ -201,7 +201,7 @@ public class King extends Mob {
                         WandOfBlink.appear( undead, j );
                         new Flare( 3, 32 ).color( 0x000000, false ).show( undead.sprite, 2f );
 
-                        PathFinder.distance[j] = Integer.MAX_VALUE;
+                        PathFinder.getDistance()[j] = Integer.MAX_VALUE;
 
                         continue undeadLabel;
                     }

@@ -43,7 +43,7 @@ public class PotionOfFrost extends Potion {
 
         boolean visible = false;
         for ( int i = 0; i < Level.LENGTH; i++ ) {
-            if ( PathFinder.distance[i] < Integer.MAX_VALUE ) {
+            if ( PathFinder.getDistance()[i] < Integer.MAX_VALUE ) {
                 visible = Freezing.affect( i, fire ) || visible;
             }
         }

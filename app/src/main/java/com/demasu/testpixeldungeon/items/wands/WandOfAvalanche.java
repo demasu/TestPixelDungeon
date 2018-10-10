@@ -62,7 +62,7 @@ public class WandOfAvalanche extends Wand {
         int shake = 0;
         for ( int i = 0; i < Level.LENGTH; i++ ) {
 
-            int d = PathFinder.distance[i];
+            int d = PathFinder.getDistance()[i];
 
             if ( d < Integer.MAX_VALUE ) {
 
