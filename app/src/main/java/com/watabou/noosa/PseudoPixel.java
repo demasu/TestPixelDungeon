@@ -26,15 +26,6 @@ public class PseudoPixel extends Image {
         super( TextureCache.createSolid( COLOR ) );
     }
 
-    public PseudoPixel ( float x, float y, int color ) {
-
-        this();
-
-        this.setX( x );
-        this.setY( y );
-        color( color );
-    }
-
     public void size ( float value ) {
         getScale().set( value );
     }
