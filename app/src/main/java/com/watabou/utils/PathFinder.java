@@ -111,15 +111,13 @@ public class PathFinder {
             return -1;
         }
 
-        int s = cur;
-
         // From the starting position we are making one step downwards
-        int minD = distance[s];
-        int mins = s;
+        int minD = distance[cur];
+        int mins = cur;
 
         for ( int aDir : dir ) {
 
-            int n = s + aDir;
+            int n = cur + aDir;
             int thisD = distance[n];
 
             if ( thisD < minD ) {
