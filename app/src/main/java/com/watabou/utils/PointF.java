@@ -69,6 +69,7 @@ public class PointF {
         return (float) Math.atan2( end.y - start.y, end.x - start.x );
     }
 
+    @Override
     @SuppressWarnings ( "MethodDoesntCallSuperMethod" )
     public PointF clone () {
         return new PointF( this );
