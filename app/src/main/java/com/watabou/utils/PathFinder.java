@@ -48,7 +48,7 @@ public class PathFinder {
 
     public static Path find ( int from, int to, boolean[] passable ) {
 
-        if ( !buildDistanceMap( from, to, passable ) ) {
+        if ( buildDistanceMap( from, to, passable ) ) {
             return null;
         }
 
@@ -80,7 +80,7 @@ public class PathFinder {
 
     public static int getStep ( int from, int to, boolean[] passable ) {
 
-        if ( !buildDistanceMap( from, to, passable ) ) {
+        if ( buildDistanceMap( from, to, passable ) ) {
             return -1;
         }
 
@@ -132,7 +132,7 @@ public class PathFinder {
     private static boolean buildDistanceMap ( int from, int to, boolean[] passable ) {
 
         if ( from == to ) {
-            return false;
+            return true;
         }
 
         Arrays.fill( distance, Integer.MAX_VALUE );
@@ -167,7 +167,7 @@ public class PathFinder {
             }
         }
 
-        return pathFound;
+        return !pathFound;
     }
 
     public static void buildDistanceMap ( int to, boolean[] passable, int limit ) {
