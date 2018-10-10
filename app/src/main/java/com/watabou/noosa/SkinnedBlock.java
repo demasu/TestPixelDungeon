@@ -50,7 +50,7 @@ public class SkinnedBlock extends Image {
 
     @SuppressWarnings ( { "MagicNumber", "FeatureEnvy" } )
     @Override
-    protected void updateFrame () {
+    void updateFrame () {
 
         if ( isAutoAdjust() ) {
             while ( offsetX > getTexture().getWidth() ) {
