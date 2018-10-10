@@ -47,7 +47,7 @@ public class HighlightedText extends Component {
             highlighted.setMaxWidth( maxWidth );
             highlighted.measure();
 
-            highlighted.setMask( hl.mask );
+            highlighted.setMask( hl.getMask() );
             highlighted.setVisible( true );
         } else {
             highlighted.setVisible( false );

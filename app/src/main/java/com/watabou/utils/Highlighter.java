@@ -10,7 +10,7 @@ public class Highlighter {
 
     public final String text;
 
-    public final boolean[] mask;
+    private final boolean[] mask;
 
     public Highlighter ( String text ) {
 
@@ -26,7 +26,7 @@ public class Highlighter {
             pos += ( m.start() - lastMatch );
             int groupLen = m.group( 1 ).length();
             for ( int i = pos; i < pos + groupLen; i++ ) {
-                mask[i] = true;
+                getMask()[i] = true;
             }
             pos += groupLen;
             lastMatch = m.end();
@@ -43,19 +43,24 @@ public class Highlighter {
     }
 
     public boolean[] inverted () {
-        boolean[] result = new boolean[mask.length];
+        boolean[] result = new boolean[getMask().length];
         for ( int i = 0; i < result.length; i++ ) {
-            result[i] = !mask[i];
+            result[i] = !getMask()[i];
         }
         return result;
     }
 
     public boolean isHighlighted () {
-        for ( boolean aMask : mask ) {
+        for ( boolean aMask : getMask() ) {
             if ( aMask ) {
                 return true;
             }
         }
         return false;
+    }
+
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
+    public boolean[] getMask () {
+        return mask;
     }
 }
