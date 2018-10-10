@@ -88,6 +88,8 @@ public class Graph {
         return path;
     }
 
+    // TODO: Move in to it's own file
+    @SuppressWarnings ( "PublicInnerClass" )
     public interface Node {
 
         int distance ();
