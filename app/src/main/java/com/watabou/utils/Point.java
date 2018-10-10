@@ -48,6 +48,7 @@ public class Point {
     }
 
     @SuppressWarnings ( "MethodDoesntCallSuperMethod" )
+    @Override
     public Point clone () {
         return new Point( this );
     }
