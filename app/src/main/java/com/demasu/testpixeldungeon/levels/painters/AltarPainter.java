@@ -33,26 +33,26 @@ public class AltarPainter extends Painter {
 
         Point c = room.center();
         Room.Door door = room.entrance();
-        if ( door.x == room.left || door.x == room.right ) {
-            Point p = drawInside( level, room, door, Math.abs( door.x - c.x ) - 2, Terrain.EMPTY_SP );
-            for ( ; p.y != c.y; p.y += p.y < c.y ? +1 : -1 ) {
+        if ( door.getX() == room.left || door.getX() == room.right ) {
+            Point p = drawInside( level, room, door, Math.abs( door.getX() - c.getX() ) - 2, Terrain.EMPTY_SP );
+            for ( ; p.getY() != c.getY(); p.setY( p.getY() + (p.getY() < c.getY() ? +1 : -1) ) ) {
                 set( level, p, Terrain.EMPTY_SP );
             }
         } else {
-            Point p = drawInside( level, room, door, Math.abs( door.y - c.y ) - 2, Terrain.EMPTY_SP );
-            for ( ; p.x != c.x; p.x += p.x < c.x ? +1 : -1 ) {
+            Point p = drawInside( level, room, door, Math.abs( door.getY() - c.getY() ) - 2, Terrain.EMPTY_SP );
+            for ( ; p.getX() != c.getX(); p.setX( p.getX() + (p.getX() < c.getX() ? +1 : -1) ) ) {
                 set( level, p, Terrain.EMPTY_SP );
             }
         }
 
-        fill( level, c.x - 1, c.y - 1, 3, 3, Terrain.EMBERS );
+        fill( level, c.getX() - 1, c.getY() - 1, 3, 3, Terrain.EMBERS );
         set( level, c, Terrain.PEDESTAL );
 
         SacrificialFire fire = (SacrificialFire) level.blobs.get( SacrificialFire.class );
         if ( fire == null ) {
             fire = new SacrificialFire();
         }
-        fire.seed( c.x + c.y * Level.WIDTH, 5 + Dungeon.getDepth() * 5 );
+        fire.seed( c.getX() + c.getY() * Level.WIDTH, 5 + Dungeon.getDepth() * 5 );
         level.blobs.put( SacrificialFire.class, fire );
 
         door.set( Room.Door.Type.EMPTY );

@@ -426,7 +426,7 @@ public abstract class RegularLevel extends Level {
             }
 
             Room.Door d = r.connected.get( n );
-            int door = d.x + d.y * WIDTH;
+            int door = d.getX() + d.getY() * WIDTH;
 
             switch ( d.type ) {
                 case EMPTY:

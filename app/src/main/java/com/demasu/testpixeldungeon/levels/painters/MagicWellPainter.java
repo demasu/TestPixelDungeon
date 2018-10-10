@@ -38,7 +38,7 @@ public class MagicWellPainter extends Painter {
         fill( level, room, 1, Terrain.EMPTY );
 
         Point c = room.center();
-        set( level, c.x, c.y, Terrain.WELL );
+        set( level, c.getX(), c.getY(), Terrain.WELL );
 
         @SuppressWarnings ( "unchecked" )
         Class<? extends WellWater> waterClass =
@@ -52,7 +52,7 @@ public class MagicWellPainter extends Painter {
                 water = null;
             }
         }
-        water.seed( c.x + Level.WIDTH * c.y, 1 );
+        water.seed( c.getX() + Level.WIDTH * c.getY(), 1 );
         level.blobs.put( waterClass, water );
 
         room.entrance().set( Room.Door.Type.REGULAR );

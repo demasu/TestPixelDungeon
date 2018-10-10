@@ -84,7 +84,7 @@ public class SurfaceScene extends PixelScene {
         float vy = align( ( h - SKY_HEIGHT - BUTTON_HEIGHT ) / 2 );
 
         Point s = Camera.getMain().cameraToScreen( vx, vy );
-        viewport = new Camera( s.x, s.y, SKY_WIDTH, SKY_HEIGHT, defaultZoom );
+        viewport = new Camera( s.getX(), s.getY(), SKY_WIDTH, SKY_HEIGHT, defaultZoom );
         Camera.add( viewport );
 
         Group window = new Group();

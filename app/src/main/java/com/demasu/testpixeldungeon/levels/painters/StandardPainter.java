@@ -149,14 +149,14 @@ public class StandardPainter extends Painter {
         fill( level, room.left + 2, room.top + 2, room.width() - 3, room.height() - 3, Terrain.EMPTY_SP );
 
         for ( Point door : room.connected.values() ) {
-            if ( door.x == room.left ) {
-                set( level, door.x + 1, door.y, Terrain.EMPTY );
-            } else if ( door.x == room.right ) {
-                set( level, door.x - 1, door.y, Terrain.EMPTY );
-            } else if ( door.y == room.top ) {
-                set( level, door.x, door.y + 1, Terrain.EMPTY );
-            } else if ( door.y == room.bottom ) {
-                set( level, door.x, door.y - 1, Terrain.EMPTY );
+            if ( door.getX() == room.left ) {
+                set( level, door.getX() + 1, door.getY(), Terrain.EMPTY );
+            } else if ( door.getX() == room.right ) {
+                set( level, door.getX() - 1, door.getY(), Terrain.EMPTY );
+            } else if ( door.getY() == room.top ) {
+                set( level, door.getX(), door.getY() + 1, Terrain.EMPTY );
+            } else if ( door.getY() == room.bottom ) {
+                set( level, door.getX(), door.getY() - 1, Terrain.EMPTY );
             }
         }
 
@@ -180,41 +180,41 @@ public class StandardPainter extends Painter {
             }
         }
 
-        if ( ( door1.x == room.left && door2.x == room.right ) ||
-                ( door1.x == room.right && door2.x == room.left ) ) {
+        if ( ( door1.getX() == room.left && door2.getX() == room.right ) ||
+                ( door1.getX() == room.right && door2.getX() == room.left ) ) {
 
             int s = room.width() / 2;
 
             drawInside( level, room, door1, s, Terrain.EMPTY_SP );
             drawInside( level, room, door2, s, Terrain.EMPTY_SP );
-            fill( level, room.center().x, Math.min( door1.y, door2.y ), 1, Math.abs( door1.y - door2.y ) + 1, Terrain.EMPTY_SP );
+            fill( level, room.center().getX(), Math.min( door1.getY(), door2.getY() ), 1, Math.abs( door1.getY() - door2.getY() ) + 1, Terrain.EMPTY_SP );
 
-        } else if ( ( door1.y == room.top && door2.y == room.bottom ) ||
-                ( door1.y == room.bottom && door2.y == room.top ) ) {
+        } else if ( ( door1.getY() == room.top && door2.getY() == room.bottom ) ||
+                ( door1.getY() == room.bottom && door2.getY() == room.top ) ) {
 
             int s = room.height() / 2;
 
             drawInside( level, room, door1, s, Terrain.EMPTY_SP );
             drawInside( level, room, door2, s, Terrain.EMPTY_SP );
-            fill( level, Math.min( door1.x, door2.x ), room.center().y, Math.abs( door1.x - door2.x ) + 1, 1, Terrain.EMPTY_SP );
+            fill( level, Math.min( door1.getX(), door2.getX() ), room.center().getY(), Math.abs( door1.getX() - door2.getX() ) + 1, 1, Terrain.EMPTY_SP );
 
-        } else if ( door1.x == door2.x ) {
+        } else if ( door1.getX() == door2.getX() ) {
 
-            fill( level, door1.x == room.left ? room.left + 1 : room.right - 1, Math.min( door1.y, door2.y ), 1, Math.abs( door1.y - door2.y ) + 1, Terrain.EMPTY_SP );
+            fill( level, door1.getX() == room.left ? room.left + 1 : room.right - 1, Math.min( door1.getY(), door2.getY() ), 1, Math.abs( door1.getY() - door2.getY() ) + 1, Terrain.EMPTY_SP );
 
-        } else if ( door1.y == door2.y ) {
+        } else if ( door1.getY() == door2.getY() ) {
 
-            fill( level, Math.min( door1.x, door2.x ), door1.y == room.top ? room.top + 1 : room.bottom - 1, Math.abs( door1.x - door2.x ) + 1, 1, Terrain.EMPTY_SP );
+            fill( level, Math.min( door1.getX(), door2.getX() ), door1.getY() == room.top ? room.top + 1 : room.bottom - 1, Math.abs( door1.getX() - door2.getX() ) + 1, 1, Terrain.EMPTY_SP );
 
-        } else if ( door1.y == room.top || door1.y == room.bottom ) {
+        } else if ( door1.getY() == room.top || door1.getY() == room.bottom ) {
 
-            drawInside( level, room, door1, Math.abs( door1.y - door2.y ), Terrain.EMPTY_SP );
-            drawInside( level, room, door2, Math.abs( door1.x - door2.x ), Terrain.EMPTY_SP );
+            drawInside( level, room, door1, Math.abs( door1.getY() - door2.getY() ), Terrain.EMPTY_SP );
+            drawInside( level, room, door2, Math.abs( door1.getX() - door2.getX() ), Terrain.EMPTY_SP );
 
-        } else if ( door1.x == room.left || door1.x == room.right ) {
+        } else if ( door1.getX() == room.left || door1.getX() == room.right ) {
 
-            drawInside( level, room, door1, Math.abs( door1.x - door2.x ), Terrain.EMPTY_SP );
-            drawInside( level, room, door2, Math.abs( door1.y - door2.y ), Terrain.EMPTY_SP );
+            drawInside( level, room, door1, Math.abs( door1.getX() - door2.getX() ), Terrain.EMPTY_SP );
+            drawInside( level, room, door2, Math.abs( door1.getY() - door2.getY() ), Terrain.EMPTY_SP );
 
         }
     }

@@ -149,7 +149,7 @@ public class PrisonBossLevel extends RegularLevel {
         paint();
 
         Room r = (Room) roomExit.connected.keySet().toArray()[0];
-        if ( roomExit.connected.get( r ).y == roomExit.top ) {
+        if ( roomExit.connected.get( r ).getY() == roomExit.top ) {
             return false;
         }
 
@@ -260,7 +260,7 @@ public class PrisonBossLevel extends RegularLevel {
         }
 
         Point door = roomExit.entrance();
-        arenaDoor = door.x + door.y * WIDTH;
+        arenaDoor = door.getX() + door.getY() * WIDTH;
         Painter.set( this, arenaDoor, Terrain.LOCKED_DOOR );
 
         Painter.fill( this,

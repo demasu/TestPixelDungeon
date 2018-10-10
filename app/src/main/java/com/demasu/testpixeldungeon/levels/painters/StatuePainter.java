@@ -33,30 +33,30 @@ public class StatuePainter extends Painter {
         fill( level, room, 1, Terrain.EMPTY );
 
         Point c = room.center();
-        int cx = c.x;
-        int cy = c.y;
+        int cx = c.getX();
+        int cy = c.getY();
 
         Room.Door door = room.entrance();
 
         door.set( Room.Door.Type.LOCKED );
         level.addItemToSpawn( new IronKey() );
 
-        if ( door.x == room.left ) {
+        if ( door.getX() == room.left ) {
 
             fill( level, room.right - 1, room.top + 1, 1, room.height() - 1, Terrain.STATUE );
             cx = room.right - 2;
 
-        } else if ( door.x == room.right ) {
+        } else if ( door.getX() == room.right ) {
 
             fill( level, room.left + 1, room.top + 1, 1, room.height() - 1, Terrain.STATUE );
             cx = room.left + 2;
 
-        } else if ( door.y == room.top ) {
+        } else if ( door.getY() == room.top ) {
 
             fill( level, room.left + 1, room.bottom - 1, room.width() - 1, 1, Terrain.STATUE );
             cy = room.bottom - 2;
 
-        } else if ( door.y == room.bottom ) {
+        } else if ( door.getY() == room.bottom ) {
 
             fill( level, room.left + 1, room.top + 1, room.width() - 1, 1, Terrain.STATUE );
             cy = room.top + 2;

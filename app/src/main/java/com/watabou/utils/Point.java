@@ -19,25 +19,25 @@ package com.watabou.utils;
 
 public class Point {
 
-    public int x;
-    public int y;
+    private int x;
+    private int y;
 
     public Point () {
     }
 
     public Point ( int x, int y ) {
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
     }
 
     public Point ( Point p ) {
-        this.x = p.x;
-        this.y = p.y;
+        this.setX( p.getX() );
+        this.setY( p.getY() );
     }
 
     public Point set ( int x, int y ) {
-        this.x = x;
-        this.y = y;
+        this.setX( x );
+        this.setY( y );
         return this;
     }
 
@@ -48,8 +48,8 @@ public class Point {
     }
 
     public Point offset ( Point d ) {
-        x += d.x;
-        y += d.y;
+        setX( getX() + d.getX() );
+        setY( getY() + d.getY() );
         return this;
     }
 
@@ -57,9 +57,25 @@ public class Point {
     public boolean equals ( Object obj ) {
         if ( obj instanceof Point ) {
             Point p = (Point) obj;
-            return p.x == x && p.y == y;
+            return p.getX() == getX() && p.getY() == getY();
         } else {
             return false;
         }
+    }
+
+    public int getX () {
+        return x;
+    }
+
+    public void setX ( int x ) {
+        this.x = x;
+    }
+
+    public int getY () {
+        return y;
+    }
+
+    public void setY ( int y ) {
+        this.y = y;
     }
 }

@@ -38,13 +38,13 @@ public class PitPainter extends Painter {
         entrance.set( Room.Door.Type.LOCKED );
 
         Point well = null;
-        if ( entrance.x == room.left ) {
+        if ( entrance.getX() == room.left ) {
             well = new Point( room.right - 1, Random.Int( 2 ) == 0 ? room.top + 1 : room.bottom - 1 );
-        } else if ( entrance.x == room.right ) {
+        } else if ( entrance.getX() == room.right ) {
             well = new Point( room.left + 1, Random.Int( 2 ) == 0 ? room.top + 1 : room.bottom - 1 );
-        } else if ( entrance.y == room.top ) {
+        } else if ( entrance.getY() == room.top ) {
             well = new Point( Random.Int( 2 ) == 0 ? room.left + 1 : room.right - 1, room.bottom - 1 );
-        } else if ( entrance.y == room.bottom ) {
+        } else if ( entrance.getY() == room.bottom ) {
             well = new Point( Random.Int( 2 ) == 0 ? room.left + 1 : room.right - 1, room.top + 1 );
         }
         set( level, well, Terrain.EMPTY_WELL );

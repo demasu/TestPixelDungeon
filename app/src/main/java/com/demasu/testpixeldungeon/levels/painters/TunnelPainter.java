@@ -37,38 +37,38 @@ public class TunnelPainter extends Painter {
 
             for ( Room.Door door : room.connected.values() ) {
 
-                int step = door.y < c.y ? +1 : -1;
+                int step = door.getY() < c.getY() ? +1 : -1;
 
-                if ( door.x == room.left ) {
+                if ( door.getX() == room.left ) {
 
                     from = room.left + 1;
-                    for ( int i = door.y; i != c.y; i += step ) {
+                    for ( int i = door.getY(); i != c.getY(); i += step ) {
                         set( level, from, i, floor );
                     }
 
-                } else if ( door.x == room.right ) {
+                } else if ( door.getX() == room.right ) {
 
                     to = room.right - 1;
-                    for ( int i = door.y; i != c.y; i += step ) {
+                    for ( int i = door.getY(); i != c.getY(); i += step ) {
                         set( level, to, i, floor );
                     }
 
                 } else {
-                    if ( door.x < from ) {
-                        from = door.x;
+                    if ( door.getX() < from ) {
+                        from = door.getX();
                     }
-                    if ( door.x > to ) {
-                        to = door.x;
+                    if ( door.getX() > to ) {
+                        to = door.getX();
                     }
 
-                    for ( int i = door.y + step; i != c.y; i += step ) {
-                        set( level, door.x, i, floor );
+                    for ( int i = door.getY() + step; i != c.getY(); i += step ) {
+                        set( level, door.getX(), i, floor );
                     }
                 }
             }
 
             for ( int i = from; i <= to; i++ ) {
-                set( level, i, c.y, floor );
+                set( level, i, c.getY(), floor );
             }
 
         } else {
@@ -78,38 +78,38 @@ public class TunnelPainter extends Painter {
 
             for ( Room.Door door : room.connected.values() ) {
 
-                int step = door.x < c.x ? +1 : -1;
+                int step = door.getX() < c.getX() ? +1 : -1;
 
-                if ( door.y == room.top ) {
+                if ( door.getY() == room.top ) {
 
                     from = room.top + 1;
-                    for ( int i = door.x; i != c.x; i += step ) {
+                    for ( int i = door.getX(); i != c.getX(); i += step ) {
                         set( level, i, from, floor );
                     }
 
-                } else if ( door.y == room.bottom ) {
+                } else if ( door.getY() == room.bottom ) {
 
                     to = room.bottom - 1;
-                    for ( int i = door.x; i != c.x; i += step ) {
+                    for ( int i = door.getX(); i != c.getX(); i += step ) {
                         set( level, i, to, floor );
                     }
 
                 } else {
-                    if ( door.y < from ) {
-                        from = door.y;
+                    if ( door.getY() < from ) {
+                        from = door.getY();
                     }
-                    if ( door.y > to ) {
-                        to = door.y;
+                    if ( door.getY() > to ) {
+                        to = door.getY();
                     }
 
-                    for ( int i = door.x + step; i != c.x; i += step ) {
-                        set( level, i, door.y, floor );
+                    for ( int i = door.getX() + step; i != c.getX(); i += step ) {
+                        set( level, i, door.getY(), floor );
                     }
                 }
             }
 
             for ( int i = from; i <= to; i++ ) {
-                set( level, c.x, i, floor );
+                set( level, c.getX(), i, floor );
             }
         }
 

@@ -43,8 +43,8 @@ public class PointF {
     }
 
     public PointF ( Point p ) {
-        this.x = p.x;
-        this.y = p.y;
+        this.x = p.getX();
+        this.y = p.getY();
     }
 
     public static PointF sum ( PointF a, PointF b ) {

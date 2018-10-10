@@ -61,7 +61,7 @@ public class DungeonTilemap extends Tilemap {
                 offset( this.point().negate() ).
                 invScale( SIZE ).
                 floor();
-        return p.x >= 0 && p.x < Level.WIDTH && p.y >= 0 && p.y < Level.HEIGHT ? p.x + p.y * Level.WIDTH : -1;
+        return p.getX() >= 0 && p.getX() < Level.WIDTH && p.getY() >= 0 && p.getY() < Level.HEIGHT ? p.getX() + p.getY() * Level.WIDTH : -1;
     }
 
     @Override

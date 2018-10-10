@@ -34,27 +34,27 @@ public class CryptPainter extends Painter {
         fill( level, room, 1, Terrain.EMPTY );
 
         Point c = room.center();
-        int cx = c.x;
-        int cy = c.y;
+        int cx = c.getX();
+        int cy = c.getY();
 
         Room.Door entrance = room.entrance();
 
         entrance.set( Room.Door.Type.LOCKED );
         level.addItemToSpawn( new IronKey() );
 
-        if ( entrance.x == room.left ) {
+        if ( entrance.getX() == room.left ) {
             set( level, new Point( room.right - 1, room.top + 1 ), Terrain.STATUE );
             set( level, new Point( room.right - 1, room.bottom - 1 ), Terrain.STATUE );
             cx = room.right - 2;
-        } else if ( entrance.x == room.right ) {
+        } else if ( entrance.getX() == room.right ) {
             set( level, new Point( room.left + 1, room.top + 1 ), Terrain.STATUE );
             set( level, new Point( room.left + 1, room.bottom - 1 ), Terrain.STATUE );
             cx = room.left + 2;
-        } else if ( entrance.y == room.top ) {
+        } else if ( entrance.getY() == room.top ) {
             set( level, new Point( room.left + 1, room.bottom - 1 ), Terrain.STATUE );
             set( level, new Point( room.right - 1, room.bottom - 1 ), Terrain.STATUE );
             cy = room.bottom - 2;
-        } else if ( entrance.y == room.bottom ) {
+        } else if ( entrance.getY() == room.bottom ) {
             set( level, new Point( room.left + 1, room.top + 1 ), Terrain.STATUE );
             set( level, new Point( room.right - 1, room.top + 1 ), Terrain.STATUE );
             cy = room.top + 2;

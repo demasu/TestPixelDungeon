@@ -84,8 +84,8 @@ public class ScrollPane extends Component {
 
         Point p = camera().cameraToScreen( getX(), getY() );
         Camera cs = content.getCamera();
-        cs.setX( p.x );
-        cs.setY( p.y );
+        cs.setX( p.getX() );
+        cs.setY( p.getY() );
         cs.resize( (int) getWidth(), (int) getHeight() );
 
         thumb.setVisible( getHeight() < content.height() );

@@ -71,24 +71,24 @@ public class PassagePainter extends Painter {
     }
 
     private static int xy2p ( Room room, Point xy ) {
-        if ( xy.y == room.top ) {
+        if ( xy.getY() == room.top ) {
 
-            return ( xy.x - room.left - 1 );
+            return ( xy.getX() - room.left - 1 );
 
-        } else if ( xy.x == room.right ) {
+        } else if ( xy.getX() == room.right ) {
 
-            return ( xy.y - room.top - 1 ) + pasWidth;
+            return ( xy.getY() - room.top - 1 ) + pasWidth;
 
-        } else if ( xy.y == room.bottom ) {
+        } else if ( xy.getY() == room.bottom ) {
 
-            return ( room.right - xy.x - 1 ) + pasWidth + pasHeight;
+            return ( room.right - xy.getX() - 1 ) + pasWidth + pasHeight;
 
         } else /*if (xy.x == room.left)*/ {
 
-            if ( xy.y == room.top + 1 ) {
+            if ( xy.getY() == room.top + 1 ) {
                 return 0;
             } else {
-                return ( room.bottom - xy.y - 1 ) + pasWidth * 2 + pasHeight;
+                return ( room.bottom - xy.getY() - 1 ) + pasWidth * 2 + pasHeight;
             }
 
         }

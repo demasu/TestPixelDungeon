@@ -35,7 +35,7 @@ public class Painter {
     }
 
     public static void set ( Level level, Point p, int value ) {
-        set( level, p.x, p.y, value );
+        set( level, p.getX(), p.getY(), value );
     }
 
     public static void fill ( Level level, int x, int y, int w, int h, int value ) {
@@ -63,13 +63,13 @@ public class Painter {
     public static Point drawInside ( Level level, Room room, Point from, int n, int value ) {
 
         Point step = new Point();
-        if ( from.x == room.left ) {
+        if ( from.getX() == room.left ) {
             step.set( +1, 0 );
-        } else if ( from.x == room.right ) {
+        } else if ( from.getX() == room.right ) {
             step.set( -1, 0 );
-        } else if ( from.y == room.top ) {
+        } else if ( from.getY() == room.top ) {
             step.set( 0, +1 );
-        } else if ( from.y == room.bottom ) {
+        } else if ( from.getY() == room.bottom ) {
             step.set( 0, -1 );
         }
 
