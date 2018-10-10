@@ -88,10 +88,10 @@ public class PathFinder {
         int minD = distance[from];
         int best = from;
 
-        int step, stepD;
-
         for ( int aDir : dir ) {
 
+            int stepD;
+            int step;
             if ( ( stepD = distance[step = from + aDir] ) < minD ) {
                 minD = stepD;
                 best = step;
@@ -137,15 +137,14 @@ public class PathFinder {
 
         Arrays.fill( distance, Integer.MAX_VALUE );
 
-        boolean pathFound = false;
-
-        int head = 0;
         int tail = 0;
 
         // Add to queue
         queue[tail++] = to;
         distance[to] = 0;
 
+        int head = 0;
+        boolean pathFound = false;
         while ( head < tail ) {
 
             // Remove from queue
@@ -175,13 +174,13 @@ public class PathFinder {
 
         Arrays.fill( distance, Integer.MAX_VALUE );
 
-        int head = 0;
         int tail = 0;
 
         // Add to queue
         queue[tail++] = to;
         distance[to] = 0;
 
+        int head = 0;
         while ( head < tail ) {
 
             // Remove from queue
@@ -213,9 +212,6 @@ public class PathFinder {
 
         Arrays.fill( distance, Integer.MAX_VALUE );
 
-        boolean pathFound = false;
-
-        int head = 0;
         int tail = 0;
 
         // Add to queue
@@ -226,6 +222,8 @@ public class PathFinder {
             }
         }
 
+        int head = 0;
+        boolean pathFound = false;
         while ( head < tail ) {
 
             // Remove from queue
@@ -255,9 +253,6 @@ public class PathFinder {
 
         Arrays.fill( distance, Integer.MAX_VALUE );
 
-        int destDist = Integer.MAX_VALUE;
-
-        int head = 0;
         int tail = 0;
 
         // Add to queue
@@ -266,6 +261,8 @@ public class PathFinder {
 
         int dist = 0;
 
+        int head = 0;
+        int destDist = Integer.MAX_VALUE;
         while ( head < tail ) {
 
             // Remove from queue
@@ -302,13 +299,13 @@ public class PathFinder {
 
         Arrays.fill( distance, Integer.MAX_VALUE );
 
-        int head = 0;
         int tail = 0;
 
         // Add to queue
         queue[tail++] = to;
         distance[to] = 0;
 
+        int head = 0;
         while ( head < tail ) {
 
             // Remove from queue
