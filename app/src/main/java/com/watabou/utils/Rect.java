@@ -107,7 +107,7 @@ public class Rect {
         return p.getX() >= left && p.getX() < right && p.getY() >= top && p.getY() < bottom;
     }
 
-    public Rect shrink ( int d ) {
+    private Rect shrink ( int d ) {
         return new Rect( left + d, top + d, right - d, bottom - d );
     }
 
