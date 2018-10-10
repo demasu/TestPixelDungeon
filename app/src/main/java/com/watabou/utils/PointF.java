@@ -42,15 +42,6 @@ public class PointF {
         this.y = p.y;
     }
 
-    public PointF ( Point p ) {
-        this.x = p.getX();
-        this.y = p.getY();
-    }
-
-    public static PointF sum ( PointF a, PointF b ) {
-        return new PointF( a.x + b.x, a.y + b.y );
-    }
-
     public static PointF diff ( PointF a, PointF b ) {
         return new PointF( a.x - b.x, a.y - b.y );
     }
