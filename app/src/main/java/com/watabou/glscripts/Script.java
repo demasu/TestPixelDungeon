@@ -69,7 +69,7 @@ public class Script extends Program {
         curScriptClass = null;
     }
 
-    public void compile ( String src ) {
+    protected void compile ( String src ) {
 
         String[] srcShaders = src.split( "//\n" );
         attach( Shader.createCompiled( Shader.VERTEX, srcShaders[0] ) );
