@@ -67,12 +67,11 @@ public class Rect {
         return getRight() <= getLeft() || getBottom() <= getTop();
     }
 
-    public Rect setEmpty () {
+    public void setEmpty () {
         setLeft( 0 );
         setRight( 0 );
         setTop( 0 );
         setBottom( 0 );
-        return this;
     }
 
     public Rect intersect ( Rect other ) {
