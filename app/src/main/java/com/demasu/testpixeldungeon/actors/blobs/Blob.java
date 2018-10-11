@@ -34,7 +34,7 @@ public class Blob extends Actor {
     public static final int LENGTH = Level.LENGTH;
     private static final String CUR = "cur";
     private static final String START = "start";
-    public int volume = 0;
+    public int volume;
     public int[] cur;
     public BlobEmitter emitter;
     protected int[] off;
