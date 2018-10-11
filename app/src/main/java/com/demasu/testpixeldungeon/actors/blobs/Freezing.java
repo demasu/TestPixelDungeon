@@ -34,7 +34,8 @@ public class Freezing {
 
         Char ch = Actor.findChar( cell );
         if ( ch != null ) {
-            Buff.prolong( ch, Frost.class, Frost.duration( ch ) * Random.Float( 1.0f, 1.5f ) );
+            final float UPPER = 1.5f;
+            Buff.prolong( ch, Frost.class, Frost.duration( ch ) * Random.Float( 1.0f, UPPER ) );
         }
 
         if ( fire != null ) {
@@ -47,7 +48,8 @@ public class Freezing {
         }
 
         if ( Dungeon.getVisible()[cell] ) {
-            CellEmitter.get( cell ).start( SnowParticle.FACTORY, 0.2f, 6 );
+            final float INTERVAL = 0.2f;
+            CellEmitter.get( cell ).start( SnowParticle.FACTORY, INTERVAL, 6 );
             return true;
         } else {
             return false;
