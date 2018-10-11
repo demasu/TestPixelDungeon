@@ -31,8 +31,8 @@ public class ConfusionGas extends Blob {
         super.evolve();
 
         for ( int i = 0; i < LENGTH; i++ ) {
-            Char ch;
-            if ( getCur()[i] > 0 && ( ch = Actor.findChar( i ) ) != null ) {
+            Char ch = Actor.findChar( i );
+            if ( getCur()[i] > 0 && ch != null ) {
                 Buff.prolong( ch, Vertigo.class, Vertigo.duration( ch ) );
             }
         }
@@ -42,7 +42,8 @@ public class ConfusionGas extends Blob {
     public void use ( BlobEmitter emitter ) {
         super.use( emitter );
 
-        emitter.pour( Speck.factory( Speck.CONFUSION, true ), 0.6f );
+        final float INTERVAL = 0.6f;
+        emitter.pour( Speck.factory( Speck.CONFUSION, true ), INTERVAL );
     }
 
     @Override
