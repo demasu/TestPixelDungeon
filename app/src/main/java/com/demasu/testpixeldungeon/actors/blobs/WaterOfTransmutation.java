@@ -78,9 +78,11 @@ public class WaterOfTransmutation extends WellWater {
     @Override
     public void use ( BlobEmitter emitter ) {
         super.use( emitter );
-        emitter.start( Speck.factory( Speck.CHANGE ), 0.2f, 0 );
+        final float INTERVAL = 0.2f;
+        emitter.start( Speck.factory( Speck.CHANGE ), INTERVAL, 0 );
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private MeleeWeapon changeWeapon ( MeleeWeapon w ) {
 
         MeleeWeapon n = null;
@@ -132,6 +134,7 @@ public class WaterOfTransmutation extends WellWater {
         }
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private Ring changeRing ( Ring r ) {
         Ring n;
         //noinspection ConstantConditions
@@ -155,6 +158,7 @@ public class WaterOfTransmutation extends WellWater {
         return n;
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private Wand changeWand ( Wand w ) {
 
         Wand n;
