@@ -54,7 +54,8 @@ public class Alchemy extends Blob {
 
     @Override
     protected void evolve () {
-        volume = off[pos] = cur[pos];
+        volume = cur[pos];
+        off[pos] = cur[pos];
 
         if ( Dungeon.getVisible()[pos] ) {
             Journal.add( Journal.Feature.ALCHEMY );
@@ -65,13 +66,14 @@ public class Alchemy extends Blob {
     public void seed ( int cell, int amount ) {
         cur[pos] = 0;
         pos = cell;
-        volume = cur[pos] = amount;
+        volume = amount;
+        cur[pos] = amount;
     }
 
     @Override
     public void use ( BlobEmitter emitter ) {
         super.use( emitter );
-        final float INTERVAL = 0.4f
+        final float INTERVAL = 0.4f;
         emitter.start( Speck.factory( Speck.BUBBLE ), INTERVAL, 0 );
     }
 }
