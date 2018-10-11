@@ -38,7 +38,7 @@ public class ToxicGas extends Blob implements Hero.Doom {
         int levelDamage = 5 + Dungeon.getDepth() * 5;
 
         for ( int i = 0; i < LENGTH; i++ ) {
-            Char ch Actor.findChar( i );
+            Char ch = Actor.findChar( i );
             if ( getCur()[i] > 0 && ch != null ) {
 
                 int damage = ( ch.getHT() + levelDamage ) / 40;
