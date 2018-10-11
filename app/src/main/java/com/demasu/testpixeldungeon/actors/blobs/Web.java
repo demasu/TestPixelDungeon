@@ -50,9 +50,11 @@ public class Web extends Blob {
     public void use ( BlobEmitter emitter ) {
         super.use( emitter );
 
-        emitter.pour( WebParticle.FACTORY, 0.4f );
+        final float INTERVAL = 0.4f;
+        emitter.pour( WebParticle.FACTORY, INTERVAL );
     }
 
+    @Override
     public void seed ( int cell, int amount ) {
         int diff = amount - getCur()[cell];
         if ( diff > 0 ) {
