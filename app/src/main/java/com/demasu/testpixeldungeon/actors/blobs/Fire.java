@@ -72,7 +72,8 @@ public class Fire extends Blob {
 
             }
 
-            setVolume( getVolume() + ( getOff()[pos] = fire ) );
+            getOff()[pos] = fire;
+            setVolume( getVolume() + ( getOff()[pos] ) );
 
         }
 
