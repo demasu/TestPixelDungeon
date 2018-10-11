@@ -41,26 +41,10 @@ public class Point {
         return this;
     }
 
-    @SuppressWarnings ( "MethodDoesntCallSuperMethod" )
-    @Override
-    public Point clone () {
-        return new Point( this );
-    }
-
     public Point offset ( Point d ) {
         setX( getX() + d.getX() );
         setY( getY() + d.getY() );
         return this;
-    }
-
-    @Override
-    public boolean equals ( Object obj ) {
-        if ( obj instanceof Point ) {
-            Point p = (Point) obj;
-            return p.getX() == getX() && p.getY() == getY();
-        } else {
-            return false;
-        }
     }
 
     public int getX () {
