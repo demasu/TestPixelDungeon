@@ -93,6 +93,7 @@ public class Fire extends Blob {
         }
     }
 
+    @Override
     public void seed ( int cell, int amount ) {
         if ( getCur()[cell] == 0 ) {
             setVolume( getVolume() + amount );
