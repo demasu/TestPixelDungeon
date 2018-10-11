@@ -48,7 +48,7 @@ public class WaterOfHealth extends WellWater {
         hero.buff( Hunger.class ).satisfy( Hunger.STARVING );
 
         final float INTERVAL = 0.2f;
-        CellEmitter.get( pos ).start( ShaftParticle.FACTORY, INTERVAL, 3 );
+        CellEmitter.get( getPos() ).start( ShaftParticle.FACTORY, INTERVAL, 3 );
 
         Dungeon.getHero().interrupt();
 

@@ -31,7 +31,7 @@ import com.watabou.utils.Random;
 
 public class WellWater extends Blob {
 
-    protected int pos;
+    private int pos;
 
     public static void affectCell ( int cell ) {
 
@@ -41,7 +41,7 @@ public class WellWater extends Blob {
             @SuppressWarnings ( "SuspiciousMethodCalls" ) WellWater water = (WellWater) Dungeon.getLevel().blobs.get( waterClass );
             if ( water != null &&
                     water.getVolume() > 0 &&
-                    water.pos == cell &&
+                    water.getPos() == cell &&
                     water.affect() ) {
 
                 Level.set( cell, Terrain.EMPTY_WELL );
@@ -58,7 +58,7 @@ public class WellWater extends Blob {
 
         for ( int i = 0; i < LENGTH; i++ ) {
             if ( getCur()[i] > 0 ) {
-                pos = i;
+                setPos( i );
                 break;
             }
         }
@@ -66,9 +66,9 @@ public class WellWater extends Blob {
 
     @Override
     protected void evolve () {
-        setVolume( getOff()[pos] = getCur()[pos] );
+        setVolume( getOff()[getPos()] = getCur()[getPos()] );
 
-        if ( Dungeon.getVisible()[pos] ) {
+        if ( Dungeon.getVisible()[getPos()] ) {
             if ( this instanceof WaterOfAwareness ) {
                 Journal.add( Feature.WELL_OF_AWARENESS );
             } else if ( this instanceof WaterOfHealth ) {
@@ -83,12 +83,12 @@ public class WellWater extends Blob {
 
         Heap heap;
 
-        if ( pos == Dungeon.getHero().pos && affectHero( Dungeon.getHero() ) ) {
+        if ( getPos() == Dungeon.getHero().pos && affectHero( Dungeon.getHero() ) ) {
 
-            setVolume( getOff()[pos] = getCur()[pos] = 0 );
+            setVolume( getOff()[getPos()] = getCur()[getPos()] = 0 );
             return true;
 
-        } else if ( ( heap = Dungeon.getLevel().heaps.get( pos ) ) != null ) {
+        } else if ( ( heap = Dungeon.getLevel().heaps.get( getPos() ) ) != null ) {
 
             Item oldItem = heap.peek();
             Item newItem = affectItem( oldItem );
@@ -105,7 +105,7 @@ public class WellWater extends Blob {
                 }
 
                 heap.sprite.link();
-                setVolume( getOff()[pos] = getCur()[pos] = 0 );
+                setVolume( getOff()[getPos()] = getCur()[getPos()] = 0 );
 
                 return true;
 
@@ -113,9 +113,9 @@ public class WellWater extends Blob {
 
                 int newPlace;
                 do {
-                    newPlace = pos + Level.NEIGHBOURS8[Random.Int( 8 )];
+                    newPlace = getPos() + Level.NEIGHBOURS8[Random.Int( 8 )];
                 } while ( !Level.passable[newPlace] && !Level.avoid[newPlace] );
-                Dungeon.getLevel().drop( heap.pickUp(), newPlace ).sprite.drop( pos );
+                Dungeon.getLevel().drop( heap.pickUp(), newPlace ).sprite.drop( getPos() );
 
                 return false;
 
@@ -138,8 +138,16 @@ public class WellWater extends Blob {
 
     @Override
     public void seed ( int cell, int amount ) {
-        getCur()[pos] = 0;
-        pos = cell;
-        setVolume( getCur()[pos] = amount );
+        getCur()[getPos()] = 0;
+        setPos( cell );
+        setVolume( getCur()[getPos()] = amount );
+    }
+
+    public int getPos () {
+        return pos;
+    }
+
+    private void setPos ( int pos ) {
+        this.pos = pos;
     }
 }
