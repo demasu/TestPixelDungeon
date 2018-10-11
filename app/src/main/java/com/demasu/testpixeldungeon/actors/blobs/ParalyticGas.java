@@ -30,9 +30,9 @@ public class ParalyticGas extends Blob {
     protected void evolve () {
         super.evolve();
 
-        Char ch;
         for ( int i = 0; i < LENGTH; i++ ) {
-            if ( getCur()[i] > 0 && ( ch = Actor.findChar( i ) ) != null ) {
+            Char ch = Actor.findChar( i );
+            if ( getCur()[i] > 0 && ch != null ) {
                 Buff.prolong( ch, Paralysis.class, Paralysis.duration( ch ) );
             }
         }
