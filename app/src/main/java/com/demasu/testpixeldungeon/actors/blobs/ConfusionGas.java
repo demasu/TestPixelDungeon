@@ -30,8 +30,8 @@ public class ConfusionGas extends Blob {
     protected void evolve () {
         super.evolve();
 
-        Char ch;
         for ( int i = 0; i < LENGTH; i++ ) {
+            Char ch;
             if ( getCur()[i] > 0 && ( ch = Actor.findChar( i ) ) != null ) {
                 Buff.prolong( ch, Vertigo.class, Vertigo.duration( ch ) );
             }
