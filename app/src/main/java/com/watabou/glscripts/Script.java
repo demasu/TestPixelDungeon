@@ -69,9 +69,9 @@ public class Script extends Program {
         curScriptClass = null;
     }
 
-    protected void compile ( String src ) {
+    protected void compile () {
 
-        String[] srcShaders = src.split( "//\n" );
+        String[] srcShaders = com.watabou.noosa.NoosaScript.SHADER.split( "//\n" );
         attach( Shader.createCompiled( Shader.VERTEX, srcShaders[0] ) );
         attach( Shader.createCompiled( Shader.FRAGMENT, srcShaders[1] ) );
         link();

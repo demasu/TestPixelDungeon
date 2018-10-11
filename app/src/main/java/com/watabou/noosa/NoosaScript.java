@@ -29,7 +29,7 @@ import java.nio.ShortBuffer;
 
 public class NoosaScript extends Script {
 
-    private static final String SHADER =
+    public static final String SHADER =
 
             "uniform mat4 uCamera;" +
                     "uniform mat4 uModel;" +
@@ -64,7 +64,7 @@ public class NoosaScript extends Script {
     private NoosaScript () {
 
         super();
-        compile( SHADER );
+        compile();
 
         uCamera = uniform( "uCamera" );
         uModel = uniform( "uModel" );
