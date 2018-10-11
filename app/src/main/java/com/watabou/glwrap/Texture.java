@@ -59,11 +59,13 @@ public class Texture {
         GLES20.glTexParameterf( GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, t );
     }
 
+    @SuppressWarnings ( "unused" )
     public void delete () {
         int[] ids = { getId() };
         GLES20.glDeleteTextures( 1, ids, 0 );
     }
 
+    @SuppressWarnings ( "unused" )
     public void bitmap ( Bitmap bitmap ) {
         bind();
         GLUtils.texImage2D( GLES20.GL_TEXTURE_2D, 0, bitmap, 0 );
