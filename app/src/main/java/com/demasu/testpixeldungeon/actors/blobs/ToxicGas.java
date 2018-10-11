@@ -31,6 +31,7 @@ import com.watabou.utils.Random;
 
 public class ToxicGas extends Blob implements Hero.Doom {
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     protected void evolve () {
         super.evolve();
@@ -41,8 +42,9 @@ public class ToxicGas extends Blob implements Hero.Doom {
             Char ch = Actor.findChar( i );
             if ( getCur()[i] > 0 && ch != null ) {
 
-                int damage = ( ch.getHT() + levelDamage ) / 40;
-                if ( Random.Int( 40 ) < ( ch.getHT() + levelDamage ) % 40 ) {
+                final int DAMAGE_MOD = 40;
+                int damage = ( ch.getHT() + levelDamage ) / DAMAGE_MOD;
+                if ( Random.Int( DAMAGE_MOD ) < ( ch.getHT() + levelDamage ) % DAMAGE_MOD ) {
                     damage++;
                 }
 
@@ -75,7 +77,8 @@ public class ToxicGas extends Blob implements Hero.Doom {
     public void use ( BlobEmitter emitter ) {
         super.use( emitter );
 
-        emitter.pour( Speck.factory( Speck.TOXIC ), 0.6f );
+        final float INTERVAL = 0.6f;
+        emitter.pour( Speck.factory( Speck.TOXIC ), INTERVAL );
     }
 
     @Override
