@@ -65,6 +65,7 @@ public class Group extends Gizmo {
         }
     }
 
+    @SuppressWarnings ( "WeakerAccess" )
     @Override
     public void kill () {
         // A killed group keeps all its members,
