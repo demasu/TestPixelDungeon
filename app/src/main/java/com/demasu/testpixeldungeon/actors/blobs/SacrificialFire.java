@@ -46,9 +46,9 @@ public class SacrificialFire extends Blob {
     private static final String TXT_UNWORTHY = "\"Your sacrifice is unworthy...\" ";
     private static final String TXT_REWARD = "\"Your sacrifice is worthy and so you are!\" ";
 
-    protected int pos;
+    private int pos;
 
-    public static void sacrifice ( Char ch ) {
+    private static void sacrifice ( Char ch ) {
 
         Wound.hit( ch );
 
@@ -131,9 +131,9 @@ public class SacrificialFire extends Blob {
         return "Sacrificial fire burns here. Every creature touched by this fire is marked as an offering for the spirits of the dungeon.";
     }
 
-    public static class Marked extends FlavourBuff {
+    static class Marked extends FlavourBuff {
 
-        public static final float DURATION = 5f;
+        static final float DURATION = 5f;
 
         @Override
         public int icon () {
