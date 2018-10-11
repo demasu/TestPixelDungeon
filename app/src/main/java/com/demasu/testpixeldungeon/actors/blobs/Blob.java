@@ -148,7 +148,7 @@ public class Blob extends Actor {
         this.setEmitter( emitter );
     }
 
-    protected void evolve () {
+    void evolve () {
 
         boolean[] notBlocking = BArray.not( Level.solid, null );
 
@@ -231,7 +231,7 @@ public class Blob extends Actor {
     }
 
     @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
-    public int[] getOff () {
+    int[] getOff () {
         return off;
     }
 
