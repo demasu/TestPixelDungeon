@@ -38,7 +38,7 @@ public class WellWater extends Blob {
         Class<?>[] waters = { WaterOfHealth.class, WaterOfAwareness.class, WaterOfTransmutation.class };
 
         for ( Class<?> waterClass : waters ) {
-            WellWater water = (WellWater) Dungeon.getLevel().blobs.get( waterClass );
+            @SuppressWarnings ( "SuspiciousMethodCalls" ) WellWater water = (WellWater) Dungeon.getLevel().blobs.get( waterClass );
             if ( water != null &&
                     water.getVolume() > 0 &&
                     water.pos == cell &&
@@ -95,9 +95,7 @@ public class WellWater extends Blob {
 
             if ( newItem != null ) {
 
-                if ( newItem == oldItem ) {
-
-                } else if ( oldItem.quantity() > 1 ) {
+                if ( (newItem != oldItem) && oldItem.quantity() > 1 ) {
 
                     oldItem.quantity( oldItem.quantity() - 1 );
                     heap.drop( newItem );
