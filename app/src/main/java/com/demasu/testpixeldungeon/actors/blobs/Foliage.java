@@ -30,6 +30,7 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 
 public class Foliage extends Blob {
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     protected void evolve () {
 
@@ -76,7 +77,8 @@ public class Foliage extends Blob {
     @Override
     public void use ( BlobEmitter emitter ) {
         super.use( emitter );
-        emitter.start( ShaftParticle.FACTORY, 0.9f, 0 );
+        final float INTERVAL = 0.9f;
+        emitter.start( ShaftParticle.FACTORY, INTERVAL, 0 );
     }
 
     @Override
