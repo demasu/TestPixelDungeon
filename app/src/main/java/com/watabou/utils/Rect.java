@@ -28,10 +28,6 @@ public class Rect {
         this( 0, 0, 0, 0 );
     }
 
-    public Rect ( Rect rect ) {
-        this( rect.getLeft(), rect.getTop(), rect.getRight(), rect.getBottom() );
-    }
-
     public Rect ( int left, int top, int right, int bottom ) {
         this.setLeft( left );
         this.setTop( top );
