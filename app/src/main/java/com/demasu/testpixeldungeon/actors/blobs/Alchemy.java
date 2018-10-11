@@ -27,7 +27,7 @@ import com.watabou.utils.Bundle;
 
 public class Alchemy extends Blob {
 
-    protected int pos;
+    private int pos;
 
     public static void transmute ( int cell ) {
         Heap heap = Dungeon.getLevel().heaps.get( cell );
