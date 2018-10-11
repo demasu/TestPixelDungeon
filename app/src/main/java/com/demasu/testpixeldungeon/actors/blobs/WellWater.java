@@ -67,7 +67,8 @@ public class WellWater extends Blob {
     @SuppressWarnings ( "FeatureEnvy" )
     @Override
     protected void evolve () {
-        setVolume( getOff()[getPos()] = getCur()[getPos()] );
+        getOff()[getPos()] = getCur()[getPos()];
+        setVolume( getOff()[getPos()] );
 
         if ( Dungeon.getVisible()[getPos()] ) {
             if ( this instanceof WaterOfAwareness ) {
@@ -83,14 +84,15 @@ public class WellWater extends Blob {
     @SuppressWarnings ( "FeatureEnvy" )
     private boolean affect () {
 
-        Heap heap;
-
+        Heap heap = Dungeon.getLevel().heaps.get( getPos() );
         if ( getPos() == Dungeon.getHero().pos && affectHero( Dungeon.getHero() ) ) {
 
-            setVolume( getOff()[getPos()] = getCur()[getPos()] = 0 );
+            getCur()[getPos()] = 0;
+            getOff()[getPos()] = 0;
+            setVolume( 0 );
             return true;
 
-        } else if ( ( heap = Dungeon.getLevel().heaps.get( getPos() ) ) != null ) {
+        } else if ( heap != null ) {
 
             Item oldItem = heap.peek();
             Item newItem = affectItem( oldItem );
@@ -107,7 +109,9 @@ public class WellWater extends Blob {
                 }
 
                 heap.sprite.link();
-                setVolume( getOff()[getPos()] = getCur()[getPos()] = 0 );
+                getOff()[getPos()] = 0;
+                getCur()[getPos()] = 0;
+                setVolume( 0 );
 
                 return true;
 
@@ -142,7 +146,8 @@ public class WellWater extends Blob {
     public void seed ( int cell, int amount ) {
         getCur()[getPos()] = 0;
         setPos( cell );
-        setVolume( getCur()[getPos()] = amount );
+        getCur()[getPos()] = amount;
+        setVolume( amount );
     }
 
     public int getPos () {
