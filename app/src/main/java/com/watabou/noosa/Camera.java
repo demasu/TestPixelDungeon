@@ -142,6 +142,7 @@ public class Camera extends Gizmo {
         Camera.invH2 = invH2;
     }
 
+    @SuppressWarnings ( "WeakerAccess" )
     @Override
     public void destroy () {
         setTarget( null );
@@ -170,6 +171,7 @@ public class Camera extends Gizmo {
         setScreenHeight( (int) ( height * getZoom() ) );
     }
 
+    @SuppressWarnings ( "WeakerAccess" )
     @Override
     public void update () {
         super.update();
