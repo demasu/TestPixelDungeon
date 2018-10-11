@@ -40,7 +40,7 @@ public class WellWater extends Blob {
         for ( Class<?> waterClass : waters ) {
             WellWater water = (WellWater) Dungeon.getLevel().blobs.get( waterClass );
             if ( water != null &&
-                    water.volume > 0 &&
+                    water.getVolume() > 0 &&
                     water.pos == cell &&
                     water.affect() ) {
 
@@ -57,7 +57,7 @@ public class WellWater extends Blob {
         super.restoreFromBundle( bundle );
 
         for ( int i = 0; i < LENGTH; i++ ) {
-            if ( cur[i] > 0 ) {
+            if ( getCur()[i] > 0 ) {
                 pos = i;
                 break;
             }
@@ -66,7 +66,7 @@ public class WellWater extends Blob {
 
     @Override
     protected void evolve () {
-        volume = off[pos] = cur[pos];
+        setVolume( getOff()[pos] = getCur()[pos] );
 
         if ( Dungeon.getVisible()[pos] ) {
             if ( this instanceof WaterOfAwareness ) {
@@ -85,7 +85,7 @@ public class WellWater extends Blob {
 
         if ( pos == Dungeon.getHero().pos && affectHero( Dungeon.getHero() ) ) {
 
-            volume = off[pos] = cur[pos] = 0;
+            setVolume( getOff()[pos] = getCur()[pos] = 0 );
             return true;
 
         } else if ( ( heap = Dungeon.getLevel().heaps.get( pos ) ) != null ) {
@@ -107,7 +107,7 @@ public class WellWater extends Blob {
                 }
 
                 heap.sprite.link();
-                volume = off[pos] = cur[pos] = 0;
+                setVolume( getOff()[pos] = getCur()[pos] = 0 );
 
                 return true;
 
@@ -140,8 +140,8 @@ public class WellWater extends Blob {
 
     @Override
     public void seed ( int cell, int amount ) {
-        cur[pos] = 0;
+        getCur()[pos] = 0;
         pos = cell;
-        volume = cur[pos] = amount;
+        setVolume( getCur()[pos] = amount );
     }
 }

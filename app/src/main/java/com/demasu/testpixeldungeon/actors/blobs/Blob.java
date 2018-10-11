@@ -34,16 +34,16 @@ public class Blob extends Actor {
     public static final int LENGTH = Level.LENGTH;
     private static final String CUR = "cur";
     private static final String START = "start";
-    public int volume;
-    public int[] cur;
-    public BlobEmitter emitter;
-    protected int[] off;
+    private int volume;
+    private int[] cur;
+    private BlobEmitter emitter;
+    private int[] off;
     protected Blob () {
 
-        cur = new int[LENGTH];
-        off = new int[LENGTH];
+        setCur( new int[LENGTH] );
+        setOff( new int[LENGTH] );
 
-        volume = 0;
+        setVolume( 0 );
     }
 
     @SuppressWarnings ( "unchecked" )
@@ -70,17 +70,17 @@ public class Blob extends Actor {
     public void storeInBundle ( Bundle bundle ) {
         super.storeInBundle( bundle );
 
-        if ( volume > 0 ) {
+        if ( getVolume() > 0 ) {
 
             int start;
             for ( start = 0; start < LENGTH; start++ ) {
-                if ( cur[start] > 0 ) {
+                if ( getCur()[start] > 0 ) {
                     break;
                 }
             }
             int end;
             for ( end = LENGTH - 1; end > start; end-- ) {
-                if ( cur[end] > 0 ) {
+                if ( getCur()[end] > 0 ) {
                     break;
                 }
             }
@@ -94,7 +94,7 @@ public class Blob extends Actor {
     private int[] trim ( int start, int end ) {
         int len = end - start;
         int[] copy = new int[len];
-        System.arraycopy( cur, start, copy, 0, len );
+        System.arraycopy( getCur(), start, copy, 0, len );
         return copy;
     }
 
@@ -107,8 +107,8 @@ public class Blob extends Actor {
         if ( data != null ) {
             int start = bundle.getInt( START );
             for ( int i = 0; i < data.length; i++ ) {
-                cur[i + start] = data[i];
-                volume += data[i];
+                getCur()[i + start] = data[i];
+                setVolume( getVolume() + data[i] );
             }
         }
 
@@ -118,10 +118,10 @@ public class Blob extends Actor {
 
             int loadedMapSize = Level.loadedMapSize;
             for ( int i = 0; i < loadedMapSize; i++ ) {
-                System.arraycopy( this.cur, i * loadedMapSize, cur, i * Level.WIDTH, loadedMapSize );
+                System.arraycopy( this.getCur(), i * loadedMapSize, cur, i * Level.WIDTH, loadedMapSize );
             }
 
-            this.cur = cur;
+            this.setCur( cur );
         }
     }
 
@@ -130,14 +130,14 @@ public class Blob extends Actor {
 
         spend( TICK );
 
-        if ( volume > 0 ) {
+        if ( getVolume() > 0 ) {
 
-            volume = 0;
+            setVolume( 0 );
             evolve();
 
-            int[] tmp = off;
-            off = cur;
-            cur = tmp;
+            int[] tmp = getOff();
+            setOff( getCur() );
+            setCur( tmp );
 
         }
 
@@ -145,7 +145,7 @@ public class Blob extends Actor {
     }
 
     public void use ( BlobEmitter emitter ) {
-        this.emitter = emitter;
+        this.setEmitter( emitter );
     }
 
     protected void evolve () {
@@ -161,47 +161,81 @@ public class Blob extends Actor {
                 if ( notBlocking[pos] ) {
 
                     int count = 1;
-                    int sum = cur[pos];
+                    int sum = getCur()[pos];
 
                     if ( notBlocking[pos - 1] ) {
-                        sum += cur[pos - 1];
+                        sum += getCur()[pos - 1];
                         count++;
                     }
                     if ( notBlocking[pos + 1] ) {
-                        sum += cur[pos + 1];
+                        sum += getCur()[pos + 1];
                         count++;
                     }
                     if ( notBlocking[pos - WIDTH] ) {
-                        sum += cur[pos - WIDTH];
+                        sum += getCur()[pos - WIDTH];
                         count++;
                     }
                     if ( notBlocking[pos + WIDTH] ) {
-                        sum += cur[pos + WIDTH];
+                        sum += getCur()[pos + WIDTH];
                         count++;
                     }
 
                     int value = sum >= count ? ( sum / count ) - 1 : 0;
-                    off[pos] = value;
+                    getOff()[pos] = value;
 
-                    volume += value;
+                    setVolume( getVolume() + value );
                 } else {
-                    off[pos] = 0;
+                    getOff()[pos] = 0;
                 }
             }
         }
     }
 
     public void seed ( int cell, int amount ) {
-        cur[cell] += amount;
-        volume += amount;
+        getCur()[cell] += amount;
+        setVolume( getVolume() + amount );
     }
 
     public void clear ( int cell ) {
-        volume -= cur[cell];
-        cur[cell] = 0;
+        setVolume( getVolume() - getCur()[cell] );
+        getCur()[cell] = 0;
     }
 
     public String tileDesc () {
         return null;
+    }
+
+    public int getVolume () {
+        return volume;
+    }
+
+    public void setVolume ( int volume ) {
+        this.volume = volume;
+    }
+
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
+    public int[] getCur () {
+        return cur;
+    }
+
+    private void setCur ( int[] cur ) {
+        this.cur = cur;
+    }
+
+    public BlobEmitter getEmitter () {
+        return emitter;
+    }
+
+    public void setEmitter ( BlobEmitter emitter ) {
+        this.emitter = emitter;
+    }
+
+    @SuppressWarnings ( "AssignmentOrReturnOfFieldWithMutableType" )
+    public int[] getOff () {
+        return off;
+    }
+
+    private void setOff ( int[] off ) {
+        this.off = off;
     }
 }

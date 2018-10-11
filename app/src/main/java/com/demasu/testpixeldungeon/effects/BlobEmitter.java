@@ -41,11 +41,11 @@ public class BlobEmitter extends Emitter {
     @Override
     protected void emit ( int index ) {
 
-        if ( blob.volume <= 0 ) {
+        if ( blob.getVolume() <= 0 ) {
             return;
         }
 
-        int[] map = blob.cur;
+        int[] map = blob.getCur();
         float size = DungeonTilemap.SIZE;
 
         for ( int i = 0; i < LENGTH; i++ ) {

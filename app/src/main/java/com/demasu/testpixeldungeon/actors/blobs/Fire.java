@@ -44,11 +44,11 @@ public class Fire extends Blob {
 
             int fire;
 
-            if ( cur[pos] > 0 ) {
+            if ( getCur()[pos] > 0 ) {
 
                 burn( pos );
 
-                fire = cur[pos] - 1;
+                fire = getCur()[pos] - 1;
                 if ( fire <= 0 && flamable[pos] ) {
 
                     int oldTile = Dungeon.getLevel().map[pos];
@@ -63,7 +63,7 @@ public class Fire extends Blob {
 
             } else {
 
-                if ( flamable[pos] && ( cur[pos - 1] > 0 || cur[pos + 1] > 0 || cur[pos - WIDTH] > 0 || cur[pos + WIDTH] > 0 ) ) {
+                if ( flamable[pos] && ( getCur()[pos - 1] > 0 || getCur()[pos + 1] > 0 || getCur()[pos - WIDTH] > 0 || getCur()[pos + WIDTH] > 0 ) ) {
                     fire = 4;
                     burn( pos );
                 } else {
@@ -72,7 +72,7 @@ public class Fire extends Blob {
 
             }
 
-            volume += ( off[pos] = fire );
+            setVolume( getVolume() + ( getOff()[pos] = fire ) );
 
         }
 
@@ -94,9 +94,9 @@ public class Fire extends Blob {
     }
 
     public void seed ( int cell, int amount ) {
-        if ( cur[cell] == 0 ) {
-            volume += amount;
-            cur[cell] = amount;
+        if ( getCur()[cell] == 0 ) {
+            setVolume( getVolume() + amount );
+            getCur()[cell] = amount;
         }
     }
 

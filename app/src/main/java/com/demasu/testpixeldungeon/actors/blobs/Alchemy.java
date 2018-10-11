@@ -45,7 +45,7 @@ public class Alchemy extends Blob {
         super.restoreFromBundle( bundle );
 
         for ( int i = 0; i < LENGTH; i++ ) {
-            if ( cur[i] > 0 ) {
+            if ( getCur()[i] > 0 ) {
                 pos = i;
                 break;
             }
@@ -54,8 +54,8 @@ public class Alchemy extends Blob {
 
     @Override
     protected void evolve () {
-        volume = cur[pos];
-        off[pos] = cur[pos];
+        setVolume( getCur()[pos] );
+        getOff()[pos] = getCur()[pos];
 
         if ( Dungeon.getVisible()[pos] ) {
             Journal.add( Journal.Feature.ALCHEMY );
@@ -64,10 +64,10 @@ public class Alchemy extends Blob {
 
     @Override
     public void seed ( int cell, int amount ) {
-        cur[pos] = 0;
+        getCur()[pos] = 0;
         pos = cell;
-        volume = amount;
-        cur[pos] = amount;
+        setVolume( amount );
+        getCur()[pos] = amount;
     }
 
     @Override

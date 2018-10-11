@@ -64,7 +64,7 @@ public class SacrificialFire extends Blob {
 
             if ( exp > 0 ) {
 
-                int volume = fire.volume - exp;
+                int volume = fire.getVolume() - exp;
                 if ( volume > 0 ) {
                     fire.seed( fire.pos, volume );
                     GLog.w( TXT_WORTHY );
@@ -89,7 +89,7 @@ public class SacrificialFire extends Blob {
         super.restoreFromBundle( bundle );
 
         for ( int i = 0; i < LENGTH; i++ ) {
-            if ( cur[i] > 0 ) {
+            if ( getCur()[i] > 0 ) {
                 pos = i;
                 break;
             }
@@ -98,7 +98,7 @@ public class SacrificialFire extends Blob {
 
     @Override
     protected void evolve () {
-        volume = off[pos] = cur[pos];
+        setVolume( getOff()[pos] = getCur()[pos] );
         Char ch = Actor.findChar( pos );
         if ( ch != null ) {
             if ( Dungeon.getVisible()[pos] && ch.buff( Marked.class ) == null ) {
@@ -114,9 +114,9 @@ public class SacrificialFire extends Blob {
 
     @Override
     public void seed ( int cell, int amount ) {
-        cur[pos] = 0;
+        getCur()[pos] = 0;
         pos = cell;
-        volume = cur[pos] = amount;
+        setVolume( getCur()[pos] = amount );
     }
 
     @Override

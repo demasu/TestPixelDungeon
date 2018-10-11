@@ -42,10 +42,10 @@ public class Foliage extends Blob {
         boolean visible = false;
 
         for ( int pos = from; pos < to; pos++ ) {
-            if ( cur[pos] > 0 ) {
+            if ( getCur()[pos] > 0 ) {
 
-                off[pos] = cur[pos];
-                volume += off[pos];
+                getOff()[pos] = getCur()[pos];
+                setVolume( getVolume() + getOff()[pos] );
 
                 if ( map[pos] == Terrain.EMBERS ) {
                     map[pos] = Terrain.GRASS;
@@ -55,12 +55,12 @@ public class Foliage extends Blob {
                 visible = visible || Dungeon.getVisible()[pos];
 
             } else {
-                off[pos] = 0;
+                getOff()[pos] = 0;
             }
         }
 
         Hero hero = Dungeon.getHero();
-        if ( hero.isAlive() && hero.visibleEnemies() == 0 && cur[hero.pos] > 0 ) {
+        if ( hero.isAlive() && hero.visibleEnemies() == 0 && getCur()[hero.pos] > 0 ) {
             Buff.affect( hero, Shadows.class ).prolong();
         }
 

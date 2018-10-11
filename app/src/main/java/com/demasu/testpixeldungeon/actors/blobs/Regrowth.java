@@ -34,17 +34,17 @@ public class Regrowth extends Blob {
     protected void evolve () {
         super.evolve();
 
-        if ( volume > 0 ) {
+        if ( getVolume() > 0 ) {
 
             boolean mapUpdated = false;
 
             for ( int i = 0; i < LENGTH; i++ ) {
-                if ( off[i] > 0 ) {
+                if ( getOff()[i] > 0 ) {
                     int c = Dungeon.getLevel().map[i];
                     int c1 = c;
                     if ( c == Terrain.EMPTY || c == Terrain.EMBERS || c == Terrain.EMPTY_DECO ) {
-                        c1 = cur[i] > 9 ? Terrain.HIGH_GRASS : Terrain.GRASS;
-                    } else if ( c == Terrain.GRASS && cur[i] > 9 ) {
+                        c1 = getCur()[i] > 9 ? Terrain.HIGH_GRASS : Terrain.GRASS;
+                    } else if ( c == Terrain.GRASS && getCur()[i] > 9 ) {
                         c1 = Terrain.HIGH_GRASS;
                     }
 

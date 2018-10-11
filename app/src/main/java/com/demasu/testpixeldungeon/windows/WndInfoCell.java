@@ -65,7 +65,7 @@ public class WndInfoCell extends Window {
 
         final char newLine = '\n';
         for ( Blob blob : Dungeon.getLevel().blobs.values() ) {
-            if ( blob.cur[cell] > 0 && blob.tileDesc() != null ) {
+            if ( blob.getCur()[cell] > 0 && blob.tileDesc() != null ) {
                 if ( desc.length() > 0 ) {
                     desc.append( newLine );
                 }

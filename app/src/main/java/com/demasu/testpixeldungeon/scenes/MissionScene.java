@@ -137,7 +137,7 @@ public class MissionScene extends GameScene {
         add( gases );
 
         for ( Blob blob : Dungeon.getLevel().blobs.values() ) {
-            blob.emitter = null;
+            blob.setEmitter( null );
             addBlobSprite( blob );
         }
 

@@ -66,11 +66,11 @@ public class PotionOfPurity extends Potion {
             for ( int i = 0; i < Level.LENGTH; i++ ) {
                 if ( PathFinder.getDistance()[i] < Integer.MAX_VALUE ) {
 
-                    int value = blob.cur[i];
+                    int value = blob.getCur()[i];
                     if ( value > 0 ) {
 
-                        blob.cur[i] = 0;
-                        blob.volume -= value;
+                        blob.getCur()[i] = 0;
+                        blob.setVolume( blob.getVolume() - value );
                         procd = true;
 
                         if ( Dungeon.getVisible()[i] ) {

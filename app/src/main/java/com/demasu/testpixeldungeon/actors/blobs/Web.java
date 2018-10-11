@@ -31,12 +31,12 @@ public class Web extends Blob {
 
         for ( int i = 0; i < LENGTH; i++ ) {
 
-            int offv = cur[i] > 0 ? cur[i] - 1 : 0;
-            off[i] = offv;
+            int offv = getCur()[i] > 0 ? getCur()[i] - 1 : 0;
+            getOff()[i] = offv;
 
             if ( offv > 0 ) {
 
-                volume += offv;
+                setVolume( getVolume() + offv );
 
                 Char ch = Actor.findChar( i );
                 if ( ch != null ) {
@@ -54,10 +54,10 @@ public class Web extends Blob {
     }
 
     public void seed ( int cell, int amount ) {
-        int diff = amount - cur[cell];
+        int diff = amount - getCur()[cell];
         if ( diff > 0 ) {
-            cur[cell] = amount;
-            volume += diff;
+            getCur()[cell] = amount;
+            setVolume( getVolume() + diff );
         }
     }
 

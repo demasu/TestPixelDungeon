@@ -39,7 +39,7 @@ public class ToxicGas extends Blob implements Hero.Doom {
 
         Char ch;
         for ( int i = 0; i < LENGTH; i++ ) {
-            if ( cur[i] > 0 && ( ch = Actor.findChar( i ) ) != null ) {
+            if ( getCur()[i] > 0 && ( ch = Actor.findChar( i ) ) != null ) {
 
                 int damage = ( ch.getHT() + levelDamage ) / 40;
                 if ( Random.Int( 40 ) < ( ch.getHT() + levelDamage ) % 40 ) {
@@ -53,18 +53,18 @@ public class ToxicGas extends Blob implements Hero.Doom {
         Blob blob = Dungeon.getLevel().blobs.get( ParalyticGas.class );
         if ( blob != null ) {
 
-            int par[] = blob.cur;
+            int par[] = blob.getCur();
 
             for ( int i = 0; i < LENGTH; i++ ) {
 
-                int t = cur[i];
+                int t = getCur()[i];
                 int p = par[i];
 
                 if ( p >= t ) {
-                    volume -= t;
-                    cur[i] = 0;
+                    setVolume( getVolume() - t );
+                    getCur()[i] = 0;
                 } else {
-                    blob.volume -= p;
+                    blob.setVolume( blob.getVolume() - p );
                     par[i] = 0;
                 }
             }
