@@ -79,7 +79,7 @@ public class WellWater extends Blob {
         }
     }
 
-    protected boolean affect () {
+    private boolean affect () {
 
         Heap heap;
 
