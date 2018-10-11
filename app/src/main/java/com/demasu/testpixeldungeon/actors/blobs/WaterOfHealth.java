@@ -45,9 +45,10 @@ public class WaterOfHealth extends WellWater {
 
         PotionOfHealing.heal( hero );
         hero.belongings.uncurseEquipped();
-        ( (Hunger) hero.buff( Hunger.class ) ).satisfy( Hunger.STARVING );
+        hero.buff( Hunger.class ).satisfy( Hunger.STARVING );
 
-        CellEmitter.get( pos ).start( ShaftParticle.FACTORY, 0.2f, 3 );
+        final float INTERVAL = 0.2f;
+        CellEmitter.get( pos ).start( ShaftParticle.FACTORY, INTERVAL, 3 );
 
         Dungeon.getHero().interrupt();
 
@@ -72,7 +73,8 @@ public class WaterOfHealth extends WellWater {
     @Override
     public void use ( BlobEmitter emitter ) {
         super.use( emitter );
-        emitter.start( Speck.factory( Speck.HEALING ), 0.5f, 0 );
+        final float INTERVAL = 0.5f;
+        emitter.start( Speck.factory( Speck.HEALING ), INTERVAL, 0 );
     }
 
     @Override
