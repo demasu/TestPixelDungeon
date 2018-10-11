@@ -30,7 +30,7 @@ import java.util.Arrays;
 public class Blob extends Actor {
 
     public static final int WIDTH = Level.WIDTH;
-    public static final int HEIGHT = Level.HEIGHT;
+    private static final int HEIGHT = Level.HEIGHT;
     public static final int LENGTH = Level.LENGTH;
     private static final String CUR = "cur";
     private static final String START = "start";
