@@ -30,6 +30,7 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 
 public class Fire extends Blob {
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     protected void evolve () {
 
