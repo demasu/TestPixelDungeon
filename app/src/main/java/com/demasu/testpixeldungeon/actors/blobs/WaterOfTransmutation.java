@@ -50,27 +50,29 @@ public class WaterOfTransmutation extends WellWater {
     @Override
     protected Item affectItem ( Item item ) {
 
-        if ( item instanceof MeleeWeapon ) {
-            item = changeWeapon( (MeleeWeapon) item );
-        } else if ( item instanceof Scroll ) {
-            item = changeScroll( (Scroll) item );
-        } else if ( item instanceof Potion ) {
-            item = changePotion( (Potion) item );
-        } else if ( item instanceof Ring ) {
-            item = changeRing( (Ring) item );
-        } else if ( item instanceof Wand ) {
-            item = changeWand( (Wand) item );
-        } else if ( item instanceof Plant.Seed ) {
-            item = changeSeed( (Plant.Seed) item );
+        Item item1 = item;
+        if ( item1 instanceof MeleeWeapon ) {
+            item1 = changeWeapon( (MeleeWeapon) item1 );
+        } else if ( item1 instanceof Scroll ) {
+            item1 = changeScroll( (Scroll) item1 );
+        } else if ( item1 instanceof Potion ) {
+            item1 = changePotion( (Potion) item1 );
+        } else if ( item1 instanceof Ring ) {
+            item1 = changeRing( (Ring) item1 );
+        } else if ( item1 instanceof Wand ) {
+            item1 = changeWand( (Wand) item1 );
+        } else if ( item1 instanceof Plant.Seed ) {
+            item1 = changeSeed( (Plant.Seed) item1 );
         } else {
-            item = null;
+            //noinspection AssignmentToNull
+            item1 = null;
         }
 
-        if ( item != null ) {
+        if ( item1 != null ) {
             Journal.remove( Feature.WELL_OF_TRANSMUTATION );
         }
 
-        return item;
+        return item1;
     }
 
     @Override
