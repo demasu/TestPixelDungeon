@@ -67,18 +67,18 @@ public class SacrificialFire extends Blob {
 
                 int volume = fire.getVolume() - exp;
                 if ( volume > 0 ) {
-                    fire.seed( fire.pos, volume );
+                    fire.seed( fire.getPos(), volume );
                     GLog.w( TXT_WORTHY );
                 } else {
-                    fire.seed( fire.pos, 0 );
+                    fire.seed( fire.getPos(), 0 );
                     Journal.remove( Feature.SACRIFICIAL_FIRE );
 
                     GLog.w( TXT_REWARD );
                     final int RADIUS     = 32;
                     final int COLOR      = 0x66FFFF;
                     final float DURATION = 2f;
-                    GameScene.effect( new Flare( 7, RADIUS ).color( COLOR, true ).show( ch.sprite.getParent(), DungeonTilemap.tileCenterToWorld( fire.pos ), DURATION ) );
-                    Dungeon.getLevel().drop( new ScrollOfWipeOut(), fire.pos ).sprite.drop();
+                    GameScene.effect( new Flare( 7, RADIUS ).color( COLOR, true ).show( ch.sprite.getParent(), DungeonTilemap.tileCenterToWorld( fire.getPos() ), DURATION ) );
+                    Dungeon.getLevel().drop( new ScrollOfWipeOut(), fire.getPos() ).sprite.drop();
                 }
             } else {
 
@@ -94,7 +94,7 @@ public class SacrificialFire extends Blob {
 
         for ( int i = 0; i < LENGTH; i++ ) {
             if ( getCur()[i] > 0 ) {
-                pos = i;
+                setPos( i );
                 break;
             }
         }
@@ -102,28 +102,28 @@ public class SacrificialFire extends Blob {
 
     @Override
     protected void evolve () {
-        getOff()[pos] = getCur()[pos];
-        setVolume( getOff()[pos] );
-        Char ch = Actor.findChar( pos );
+        getOff()[getPos()] = getCur()[getPos()];
+        setVolume( getOff()[getPos()] );
+        Char ch = Actor.findChar( getPos() );
         if ( ch != null ) {
-            if ( Dungeon.getVisible()[pos] && ch.buff( Marked.class ) == null ) {
+            if ( Dungeon.getVisible()[getPos()] && ch.buff( Marked.class ) == null ) {
                 final int QUANTITY = 20;
                 ch.sprite.emitter().burst( SacrificialParticle.FACTORY, QUANTITY );
                 Sample.INSTANCE.play( Assets.SND_BURNING );
             }
             Buff.prolong( ch, Marked.class, Marked.DURATION );
         }
-        if ( Dungeon.getVisible()[pos] ) {
+        if ( Dungeon.getVisible()[getPos()] ) {
             Journal.add( Feature.SACRIFICIAL_FIRE );
         }
     }
 
     @Override
     public void seed ( int cell, int amount ) {
-        getCur()[pos] = 0;
-        pos = cell;
-        getCur()[pos] = amount;
-        setVolume( getCur()[pos] );
+        getCur()[getPos()] = 0;
+        setPos( cell );
+        getCur()[getPos()] = amount;
+        setVolume( getCur()[getPos()] );
     }
 
     @Override
@@ -139,6 +139,16 @@ public class SacrificialFire extends Blob {
         return "Sacrificial fire burns here. Every creature touched by this fire is marked as an offering for the spirits of the dungeon.";
     }
 
+    private int getPos () {
+        return pos;
+    }
+
+    private void setPos ( int pos ) {
+        this.pos = pos;
+    }
+
+    //TODO: Move into its own file
+    @SuppressWarnings ( "PackageVisibleInnerClass" )
     static class Marked extends FlavourBuff {
 
         static final float DURATION = 5f;
