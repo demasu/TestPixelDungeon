@@ -134,11 +134,11 @@ public class WellWater extends Blob {
         }
     }
 
-    protected boolean affectHero ( Hero hero ) {
+    boolean affectHero ( Hero hero ) {
         return false;
     }
 
-    protected Item affectItem ( Item item ) {
+    Item affectItem ( Item item ) {
         return null;
     }
 
@@ -150,7 +150,7 @@ public class WellWater extends Blob {
         setVolume( amount );
     }
 
-    public int getPos () {
+    int getPos () {
         return pos;
     }
 
