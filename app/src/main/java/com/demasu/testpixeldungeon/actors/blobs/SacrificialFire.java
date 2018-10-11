@@ -48,6 +48,7 @@ public class SacrificialFire extends Blob {
 
     private int pos;
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private static void sacrifice ( Char ch ) {
 
         Wound.hit( ch );
@@ -73,7 +74,10 @@ public class SacrificialFire extends Blob {
                     Journal.remove( Feature.SACRIFICIAL_FIRE );
 
                     GLog.w( TXT_REWARD );
-                    GameScene.effect( new Flare( 7, 32 ).color( 0x66FFFF, true ).show( ch.sprite.getParent(), DungeonTilemap.tileCenterToWorld( fire.pos ), 2f ) );
+                    final int RADIUS     = 32;
+                    final int COLOR      = 0x66FFFF;
+                    final float DURATION = 2f;
+                    GameScene.effect( new Flare( 7, RADIUS ).color( COLOR, true ).show( ch.sprite.getParent(), DungeonTilemap.tileCenterToWorld( fire.pos ), DURATION ) );
                     Dungeon.getLevel().drop( new ScrollOfWipeOut(), fire.pos ).sprite.drop();
                 }
             } else {
@@ -103,7 +107,8 @@ public class SacrificialFire extends Blob {
         Char ch = Actor.findChar( pos );
         if ( ch != null ) {
             if ( Dungeon.getVisible()[pos] && ch.buff( Marked.class ) == null ) {
-                ch.sprite.emitter().burst( SacrificialParticle.FACTORY, 20 );
+                final int QUANTITY = 20;
+                ch.sprite.emitter().burst( SacrificialParticle.FACTORY, QUANTITY );
                 Sample.INSTANCE.play( Assets.SND_BURNING );
             }
             Buff.prolong( ch, Marked.class, Marked.DURATION );
@@ -125,7 +130,8 @@ public class SacrificialFire extends Blob {
     public void use ( BlobEmitter emitter ) {
         super.use( emitter );
 
-        emitter.pour( SacrificialParticle.FACTORY, 0.04f );
+        final float INTERVAL = 0.04f;
+        emitter.pour( SacrificialParticle.FACTORY, INTERVAL );
     }
 
     @Override
