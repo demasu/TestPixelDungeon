@@ -143,7 +143,7 @@ public class Camera extends Gizmo {
     }
 
     @Override
-    private void destroy () {
+    public void destroy () {
         setTarget( null );
         setMatrix( null );
     }
@@ -171,7 +171,7 @@ public class Camera extends Gizmo {
     }
 
     @Override
-    private void update () {
+    public void update () {
         super.update();
 
         if ( getTarget() != null ) {

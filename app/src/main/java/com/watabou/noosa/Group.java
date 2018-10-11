@@ -66,7 +66,7 @@ public class Group extends Gizmo {
     }
 
     @Override
-    protected void kill () {
+    public void kill () {
         // A killed group keeps all its members,
         // but they get killed too
         for ( int i = 0; i < getLength(); i++ ) {
