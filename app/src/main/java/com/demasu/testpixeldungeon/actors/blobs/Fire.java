@@ -106,7 +106,8 @@ public class Fire extends Blob {
     @Override
     public void use ( BlobEmitter emitter ) {
         super.use( emitter );
-        emitter.start( FlameParticle.FACTORY, 0.03f, 0 );
+        final float INTERVAL = 0.03f;
+        emitter.start( FlameParticle.FACTORY, INTERVAL, 0 );
     }
 
     @Override
