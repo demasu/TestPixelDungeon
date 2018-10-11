@@ -60,12 +60,6 @@ public class PointF {
         return (float) Math.atan2( end.getY() - start.getY(), end.getX() - start.getX() );
     }
 
-    @Override
-    @SuppressWarnings ( "MethodDoesntCallSuperMethod" )
-    public PointF clone () {
-        return new PointF( this );
-    }
-
     public PointF scale ( float f ) {
         this.setX( this.getX() * f );
         this.setY( this.getY() * f );
@@ -133,11 +127,6 @@ public class PointF {
 
     public float length () {
         return (float) Math.sqrt( getX() * getX() + getY() * getY() );
-    }
-
-    @Override
-    public String toString () {
-        return "" + getX() + ", " + getY();
     }
 
     public float getX () {
