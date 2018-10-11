@@ -132,6 +132,7 @@ public class WaterOfTransmutation extends WellWater {
 
     private Ring changeRing ( Ring r ) {
         Ring n;
+        //noinspection ConstantConditions
         do {
             n = (Ring) Generator.random( Category.RING );
         } while ( n.getClass() == r.getClass() );
@@ -155,6 +156,7 @@ public class WaterOfTransmutation extends WellWater {
     private Wand changeWand ( Wand w ) {
 
         Wand n;
+        //noinspection ConstantConditions
         do {
             n = (Wand) Generator.random( Category.WAND );
         } while ( n.getClass() == w.getClass() );
@@ -173,6 +175,7 @@ public class WaterOfTransmutation extends WellWater {
 
         Plant.Seed n;
 
+        //noinspection ConstantConditions
         do {
             n = (Plant.Seed) Generator.random( Category.SEED );
         } while ( n.getClass() == s.getClass() );
@@ -192,6 +195,7 @@ public class WaterOfTransmutation extends WellWater {
         } else {
 
             Scroll n;
+            //noinspection ConstantConditions
             do {
                 n = (Scroll) Generator.random( Category.SCROLL );
             } while ( n.getClass() == s.getClass() );
@@ -211,6 +215,7 @@ public class WaterOfTransmutation extends WellWater {
         } else {
 
             Potion n;
+            //noinspection ConstantConditions
             do {
                 n = (Potion) Generator.random( Category.POTION );
             } while ( n.getClass() == p.getClass() );
