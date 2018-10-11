@@ -64,6 +64,7 @@ public class WellWater extends Blob {
         }
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     protected void evolve () {
         setVolume( getOff()[getPos()] = getCur()[getPos()] );
@@ -79,6 +80,7 @@ public class WellWater extends Blob {
         }
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     private boolean affect () {
 
         Heap heap;
