@@ -98,7 +98,8 @@ public class SacrificialFire extends Blob {
 
     @Override
     protected void evolve () {
-        setVolume( getOff()[pos] = getCur()[pos] );
+        getOff()[pos] = getCur()[pos];
+        setVolume( getOff()[pos] );
         Char ch = Actor.findChar( pos );
         if ( ch != null ) {
             if ( Dungeon.getVisible()[pos] && ch.buff( Marked.class ) == null ) {
@@ -116,7 +117,8 @@ public class SacrificialFire extends Blob {
     public void seed ( int cell, int amount ) {
         getCur()[pos] = 0;
         pos = cell;
-        setVolume( getCur()[pos] = amount );
+        getCur()[pos] = amount;
+        setVolume( getCur()[pos] );
     }
 
     @Override
