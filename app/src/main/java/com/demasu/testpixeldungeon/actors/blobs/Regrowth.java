@@ -30,6 +30,7 @@ import com.demasu.testpixeldungeon.scenes.GameScene;
 
 public class Regrowth extends Blob {
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     protected void evolve () {
         super.evolve();
@@ -75,6 +76,7 @@ public class Regrowth extends Blob {
     public void use ( BlobEmitter emitter ) {
         super.use( emitter );
 
-        emitter.start( LeafParticle.LEVEL_SPECIFIC, 0.2f, 0 );
+        final float INTERVAL = 0.2f;
+        emitter.start( LeafParticle.LEVEL_SPECIFIC, INTERVAL, 0 );
     }
 }
