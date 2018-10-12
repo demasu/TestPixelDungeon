@@ -70,12 +70,15 @@ public class Champ extends Buff {
 
             this.target.champ = type;
 
+            @SuppressWarnings ( { "TooBroadScope", "UnusedAssignment" } )
+            final double HT_MOD  = 1.5;
+            final double DEF_MOD = 1.1;
             switch ( type ) {
                 case CHAMP_VAMPERIC: //red
                     this.target.name = "Vampiric " + this.target.name;
-                    this.target.setHT( (int) (this.target.getHT() * 1.5) );
+                    this.target.setHT( (int) (this.target.getHT() * HT_MOD) );
                     this.target.setHP( this.target.getHT() );
-                    ( (Mob) this.target ).defenseSkill *= 1.1;
+                    ( (Mob) this.target ).defenseSkill *= (DEF_MOD);
                     if ( target.sprite != null ) {
                         if ( target.sprite.champRedHalo == null ) {
                             target.sprite.add( CharSprite.State.CHAMPRED );
@@ -86,7 +89,8 @@ public class Champ extends Buff {
                     this.target.name = "Chief " + this.target.name;
                     this.target.setHT( this.target.getHT() * 2 );
                     this.target.setHP( this.target.getHT() );
-                    ( (Mob) this.target ).defenseSkill *= 1.3;
+                    final double LOC_MOD = -0.2;
+                    ( (Mob) this.target ).defenseSkill *= (DEF_MOD - LOC_MOD);
                     if ( target.sprite != null ) {
                         if ( target.sprite.champWhiteHalo == null ) {
                             target.sprite.add( CharSprite.State.CHAMPWHITE );
@@ -95,9 +99,10 @@ public class Champ extends Buff {
                     break;
                 case CHAMP_CURSED: //black
                     this.target.name = "Cursed " + this.target.name;
-                    this.target.setHT( (int) (this.target.getHT() * 1.5) );
+                    this.target.setHT( (int) (this.target.getHT() * HT_MOD) );
                     this.target.setHP( this.target.getHT() );
-                    ( (Mob) this.target ).defenseSkill *= 1.15;
+                    final double DEF_SKILL_MOD = 1.15;
+                    ( (Mob) this.target ).defenseSkill *= (DEF_MOD - );
                     if ( target.sprite != null ) {
                         if ( target.sprite.champBlackHalo == null ) {
                             target.sprite.add( CharSprite.State.CHAMPBLACK );
@@ -106,7 +111,7 @@ public class Champ extends Buff {
                     break;
                 case CHAMP_FOUL: //yellow
                     this.target.name = "Foul " + this.target.name;
-                    this.target.setHT( (int) (this.target.getHT() * 1.5) );
+                    this.target.setHT( (int) (this.target.getHT() * HT_MOD) );
                     this.target.setHP( this.target.getHT() );
                     ( (Mob) this.target ).defenseSkill *= 1.2;
                     if ( target.sprite != null ) {
