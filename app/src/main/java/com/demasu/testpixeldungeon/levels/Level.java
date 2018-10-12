@@ -915,7 +915,7 @@ public abstract class Level implements Bundlable {
         int sense = 1;
         if ( c.isAlive() ) {
             for ( Buff b : c.buffs( MindVision.class ) ) {
-                sense = Math.max( ( (MindVision) b ).distance, sense );
+                sense = Math.max( ( (MindVision) b ).getDistance(), sense );
             }
         }
 
