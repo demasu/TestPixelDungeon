@@ -709,7 +709,7 @@ public class Item implements Bundlable {
             if ( enemy != null ) {
                 SnipersMark mark = user.buff( SnipersMark.class );
                 if ( mark != null ) {
-                    if ( mark.object == enemy.id() ) {
+                    if ( mark.getObject() == enemy.id() ) {
                         delay *= 0.5f;
                     }
                     user.remove( mark );
@@ -755,7 +755,7 @@ public class Item implements Bundlable {
             if ( enemy != null ) {
                 SnipersMark mark = user.buff( SnipersMark.class );
                 if ( mark != null ) {
-                    if ( mark.object == enemy.id() ) {
+                    if ( mark.getObject() == enemy.id() ) {
                         delay *= 0.5f;
                     }
                     user.remove( mark );
@@ -792,7 +792,7 @@ public class Item implements Bundlable {
             if ( enemy != null ) {
                 SnipersMark mark = user.buff( SnipersMark.class );
                 if ( mark != null ) {
-                    if ( mark.object == enemy.id() ) {
+                    if ( mark.getObject() == enemy.id() ) {
                         delay *= 0.5f;
                     }
                     user.remove( mark );

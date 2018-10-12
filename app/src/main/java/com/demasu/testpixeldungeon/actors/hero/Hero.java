@@ -1039,7 +1039,7 @@ public class Hero extends Char {
                     }
                 case SNIPER:
                     if ( rangedWeapon != null ) {
-                        Buff.prolong( this, SnipersMark.class, attackDelay() * 1.1f ).object = enemy.id();
+                        Buff.prolong( this, SnipersMark.class, attackDelay() * 1.1f ).setObject( enemy.id() );
                     }
                     break;
                 default:

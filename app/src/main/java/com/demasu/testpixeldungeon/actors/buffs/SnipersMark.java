@@ -23,19 +23,19 @@ import com.watabou.utils.Bundle;
 public class SnipersMark extends FlavourBuff {
 
     private static final String OBJECT = "object";
-    public int object = 0;
+    private int object = 0;
 
     @Override
     public void storeInBundle ( Bundle bundle ) {
         super.storeInBundle( bundle );
-        bundle.put( OBJECT, object );
+        bundle.put( OBJECT, getObject() );
 
     }
 
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
         super.restoreFromBundle( bundle );
-        object = bundle.getInt( OBJECT );
+        setObject( bundle.getInt( OBJECT ) );
     }
 
     @Override
@@ -46,5 +46,13 @@ public class SnipersMark extends FlavourBuff {
     @Override
     public String toString () {
         return "Zeroed in";
+    }
+
+    public int getObject () {
+        return object;
+    }
+
+    public void setObject ( int object ) {
+        this.object = object;
     }
 }
