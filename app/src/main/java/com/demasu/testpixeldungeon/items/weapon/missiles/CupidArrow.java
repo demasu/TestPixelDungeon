@@ -60,7 +60,7 @@ public class CupidArrow extends Arrow {
             return;
         }
         int duration = Random.IntRange( 5, 10 );
-        Buff.affect( defender, Charm.class, Charm.durationFactor( defender ) * duration ).object = attacker.id();
+        Buff.affect( defender, Charm.class, Charm.durationFactor( defender ) * duration ).setObject( attacker.id() );
         defender.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, 5 );
     }
 
