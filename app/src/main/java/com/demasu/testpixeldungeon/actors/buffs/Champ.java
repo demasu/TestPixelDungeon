@@ -70,8 +70,6 @@ public class Champ extends Buff {
             this.target.champ = type;
 
             switch ( type ) {
-                case 5:
-                    type = CHAMP_VAMPERIC;
                 case CHAMP_VAMPERIC: //red
                     this.target.name = "Vampiric " + this.target.name;
                     this.target.setHT( (int) (this.target.getHT() * 1.5) );
