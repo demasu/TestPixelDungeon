@@ -47,7 +47,7 @@ public class Frost extends FlavourBuff {
                 Item item = hero.belongings.randomUnequipped();
                 if ( item instanceof MysteryMeat ) {
 
-                    item = item.detach( hero.belongings.backpack );
+                    item.detach( hero.belongings.backpack );
                     FrozenCarpaccio carpaccio = new FrozenCarpaccio();
                     if ( !carpaccio.collect( hero.belongings.backpack ) ) {
                         Dungeon.getLevel().drop( carpaccio, target.pos ).sprite.drop();
