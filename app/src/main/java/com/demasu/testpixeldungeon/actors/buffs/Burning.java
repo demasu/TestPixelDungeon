@@ -83,6 +83,7 @@ public class Burning extends Buff implements Hero.Doom {
                 if ( item instanceof Scroll ) {
 
                     item = item.detach( ( (Hero) target ).belongings.backpack );
+                    //noinspection ConstantConditions
                     GLog.w( TXT_BURNS_UP, item.toString() );
 
                     Heap.burnFX( target.pos );
@@ -94,6 +95,7 @@ public class Burning extends Buff implements Hero.Doom {
                     if ( !steak.collect( ( (Hero) target ).belongings.backpack ) ) {
                         Dungeon.getLevel().drop( steak, target.pos ).sprite.drop();
                     }
+                    //noinspection ConstantConditions
                     GLog.w( TXT_BURNS_UP, item.toString() );
 
                     Heap.burnFX( target.pos );

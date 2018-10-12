@@ -35,6 +35,7 @@ public class Buff extends Actor {
         }
     }
 
+    @SuppressWarnings ( "ConstantConditions" )
     public static <T extends FlavourBuff> T append ( Char target, Class<T> buffClass, float duration ) {
         T buff = append( target, buffClass );
         buff.spend( duration );
