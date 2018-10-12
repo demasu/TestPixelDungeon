@@ -96,7 +96,7 @@ public class Buff extends Actor {
         return target;
     }
 
-    public void setTarget ( Char target ) {
+    private void setTarget ( Char target ) {
         this.target = target;
     }
 }
