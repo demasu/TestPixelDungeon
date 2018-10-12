@@ -73,7 +73,8 @@ public class Burning extends Buff implements Hero.Doom {
         if ( target.isAlive() ) {
 
             if ( target instanceof Hero ) {
-                Buff.prolong( target, Light.class, TICK * 1.01f );
+                final float TICK_MOD = 1.01f;
+                Buff.prolong( target, Light.class, TICK * TICK_MOD );
             }
 
             target.damage( Random.Int( 1, 5 ), this );
