@@ -46,12 +46,16 @@ public class Combo extends Buff {
 
             String TXT_COMBO = "%d hit combo!";
             GLog.p( TXT_COMBO, count );
-            postpone( 1.41f - count / 10f );
-            return (int) ( damage * ( count - 2 ) / 5f );
+            final float WAIT = 1.41f;
+            final float TEN  = 10f;
+            postpone( WAIT - count / TEN );
+            final float FIVE = 5;
+            return (int) ( damage * ( count - 2 ) / FIVE );
 
         } else {
 
-            postpone( 1.1f );
+            final float WAIT = 1.1f;
+            postpone( WAIT );
             return 0;
 
         }
