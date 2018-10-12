@@ -25,7 +25,7 @@ import java.util.HashSet;
 public class GasesImmunity extends FlavourBuff {
 
     public static final float DURATION = 5f;
-    public static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
+    public static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
 
     static {
         IMMUNITIES.add( Paralysis.class );
