@@ -28,7 +28,8 @@ public class Barkskin extends Buff {
         if ( target.isAlive() ) {
 
             spend( TICK );
-            if ( --level <= 0 ) {
+            --level;
+            if ( level <= 0 ) {
                 detach();
             }
 
