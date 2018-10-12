@@ -399,8 +399,6 @@ public abstract class Mob extends Char {
         }
     }
 
-    @SuppressWarnings ( "unchecked" )
-
     protected void dropLootGuaranteed () {
 
         Item item = Generator.random();

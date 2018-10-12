@@ -109,7 +109,6 @@ public class Mimic extends Mob {
         bundle.put( LEVEL, level );
     }
 
-    @SuppressWarnings ( "unchecked" )
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
         super.restoreFromBundle( bundle );

@@ -349,7 +349,6 @@ public class Heap implements Bundlable {
         items = null;
     }
 
-    @SuppressWarnings ( "unchecked" )
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
         pos = bundle.getInt( POS );

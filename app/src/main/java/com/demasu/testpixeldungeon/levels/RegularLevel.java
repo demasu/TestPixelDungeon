@@ -675,7 +675,6 @@ public abstract class RegularLevel extends Level {
         bundle.put( "rooms", rooms );
     }
 
-    @SuppressWarnings ( "unchecked" )
     @Override
     public void restoreFromBundle ( Bundle bundle ) {
         super.restoreFromBundle( bundle );
