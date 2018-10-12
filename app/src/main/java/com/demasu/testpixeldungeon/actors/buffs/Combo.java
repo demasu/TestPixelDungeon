@@ -24,8 +24,6 @@ import com.demasu.testpixeldungeon.utils.GLog;
 
 public class Combo extends Buff {
 
-    private static final String TXT_COMBO = "%d hit combo!";
-
     private int count = 0;
 
     @Override
@@ -46,6 +44,7 @@ public class Combo extends Buff {
 
             Badges.validateMasteryCombo( count );
 
+            String TXT_COMBO = "%d hit combo!";
             GLog.p( TXT_COMBO, count );
             postpone( 1.41f - count / 10f );
             return (int) ( damage * ( count - 2 ) / 5f );
