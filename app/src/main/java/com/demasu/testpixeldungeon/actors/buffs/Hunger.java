@@ -60,7 +60,8 @@ public class Hunger extends Buff implements Hero.Doom {
             Hero hero = (Hero) target;
 
             if ( isStarving() ) {
-                if ( Random.Float() < 0.3f && ( target.getHP() > 1 || !target.paralysed ) ) {
+                final float HUNGER_MIN = 0.3f;
+                if ( Random.Float() < HUNGER_MIN && ( target.getHP() > 1 || !target.paralysed ) ) {
 
                     GLog.n( TXT_STARVING );
                     hero.damage( 1, this );
@@ -97,8 +98,10 @@ public class Hunger extends Buff implements Hero.Doom {
 
             }
 
-            float step = ( (Hero) target ).getHeroClass() == HeroClass.ROGUE ? STEP * 1.2f : STEP;
-            spend( target.buff( Shadows.class ) == null ? step : step * 1.5f );
+            final float ROGUE_MOD = 1.2f;
+            float step = ( (Hero) target ).getHeroClass() == HeroClass.ROGUE ? STEP * ROGUE_MOD : STEP;
+            final float STEP_MOD = 1.5f;
+            spend( target.buff( Shadows.class ) == null ? step : step * STEP_MOD );
 
         } else {
 
