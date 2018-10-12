@@ -68,55 +68,55 @@ public class Champ extends Buff {
             }
             while ( Dungeon.getCurrentDifficulty().disableChampion( getType() ) );
 
-            this.target.champ = getType();
+            this.getTarget().champ = getType();
 
             final double HT_MOD  = 1.5;
             final double DEF_MOD = 1.1;
             switch ( getType() ) {
                 case CHAMP_VAMPERIC: //red
-                    this.target.name = "Vampiric " + this.target.name;
-                    this.target.setHT( (int) (this.target.getHT() * HT_MOD) );
-                    this.target.setHP( this.target.getHT() );
-                    ( (Mob) this.target ).defenseSkill *= (DEF_MOD);
-                    if ( target.sprite != null ) {
-                        if ( target.sprite.champRedHalo == null ) {
-                            target.sprite.add( CharSprite.State.CHAMPRED );
+                    this.getTarget().name = "Vampiric " + this.getTarget().name;
+                    this.getTarget().setHT( (int) ( this.getTarget().getHT() * HT_MOD) );
+                    this.getTarget().setHP( this.getTarget().getHT() );
+                    ( (Mob) this.getTarget() ).defenseSkill *= (DEF_MOD);
+                    if ( getTarget().sprite != null ) {
+                        if ( getTarget().sprite.champRedHalo == null ) {
+                            getTarget().sprite.add( CharSprite.State.CHAMPRED );
                         }
                     }
                     break;
                 case CHAMP_CHIEF: //white
-                    this.target.name = "Chief " + this.target.name;
-                    this.target.setHT( this.target.getHT() * 2 );
-                    this.target.setHP( this.target.getHT() );
+                    this.getTarget().name = "Chief " + this.getTarget().name;
+                    this.getTarget().setHT( this.getTarget().getHT() * 2 );
+                    this.getTarget().setHP( this.getTarget().getHT() );
                     final double CHIEF_MOD = 0.2;
-                    ( (Mob) this.target ).defenseSkill *= (DEF_MOD + CHIEF_MOD);
-                    if ( target.sprite != null ) {
-                        if ( target.sprite.champWhiteHalo == null ) {
-                            target.sprite.add( CharSprite.State.CHAMPWHITE );
+                    ( (Mob) this.getTarget() ).defenseSkill *= (DEF_MOD + CHIEF_MOD);
+                    if ( getTarget().sprite != null ) {
+                        if ( getTarget().sprite.champWhiteHalo == null ) {
+                            getTarget().sprite.add( CharSprite.State.CHAMPWHITE );
                         }
                     }
                     break;
                 case CHAMP_CURSED: //black
-                    this.target.name = "Cursed " + this.target.name;
-                    this.target.setHT( (int) (this.target.getHT() * HT_MOD) );
-                    this.target.setHP( this.target.getHT() );
+                    this.getTarget().name = "Cursed " + this.getTarget().name;
+                    this.getTarget().setHT( (int) ( this.getTarget().getHT() * HT_MOD) );
+                    this.getTarget().setHP( this.getTarget().getHT() );
                     final double CURSED_MOD = 0.05;
-                    ( (Mob) this.target ).defenseSkill *= (DEF_MOD + CURSED_MOD);
-                    if ( target.sprite != null ) {
-                        if ( target.sprite.champBlackHalo == null ) {
-                            target.sprite.add( CharSprite.State.CHAMPBLACK );
+                    ( (Mob) this.getTarget() ).defenseSkill *= (DEF_MOD + CURSED_MOD);
+                    if ( getTarget().sprite != null ) {
+                        if ( getTarget().sprite.champBlackHalo == null ) {
+                            getTarget().sprite.add( CharSprite.State.CHAMPBLACK );
                         }
                     }
                     break;
                 case CHAMP_FOUL: //yellow
-                    this.target.name = "Foul " + this.target.name;
-                    this.target.setHT( (int) (this.target.getHT() * HT_MOD) );
-                    this.target.setHP( this.target.getHT() );
+                    this.getTarget().name = "Foul " + this.getTarget().name;
+                    this.getTarget().setHT( (int) ( this.getTarget().getHT() * HT_MOD) );
+                    this.getTarget().setHP( this.getTarget().getHT() );
                     final double FOUL_MOD = 0.1;
-                    ( (Mob) this.target ).defenseSkill *= (DEF_MOD + FOUL_MOD);
-                    if ( target.sprite != null ) {
-                        if ( target.sprite.champYellowHalo == null ) {
-                            target.sprite.add( CharSprite.State.CHAMPYELLOW );
+                    ( (Mob) this.getTarget() ).defenseSkill *= (DEF_MOD + FOUL_MOD);
+                    if ( getTarget().sprite != null ) {
+                        if ( getTarget().sprite.champYellowHalo == null ) {
+                            getTarget().sprite.add( CharSprite.State.CHAMPYELLOW );
                         }
                     }
                     break;
@@ -127,40 +127,40 @@ public class Champ extends Buff {
             final double DEF_MOD = 1.1;
             switch ( getType() ) {
                 case CHAMP_VAMPERIC: //red
-                    this.target.name = "Vampiric " + this.target.name;
-                    ( (Mob) this.target ).defenseSkill *= DEF_MOD;
-                    if ( target.sprite != null ) {
-                        if ( target.sprite.champRedHalo == null ) {
-                            target.sprite.add( CharSprite.State.CHAMPRED );
+                    this.getTarget().name = "Vampiric " + this.getTarget().name;
+                    ( (Mob) this.getTarget() ).defenseSkill *= DEF_MOD;
+                    if ( getTarget().sprite != null ) {
+                        if ( getTarget().sprite.champRedHalo == null ) {
+                            getTarget().sprite.add( CharSprite.State.CHAMPRED );
                         }
                     }
                     break;
                 case CHAMP_CHIEF: //white
-                    this.target.name = "Chief " + this.target.name;
+                    this.getTarget().name = "Chief " + this.getTarget().name;
                     final double CHIEF_MOD = 0.2;
-                    ( (Mob) this.target ).defenseSkill *= (DEF_MOD + CHIEF_MOD);
-                    if ( target.sprite != null ) {
-                        if ( target.sprite.champWhiteHalo == null ) {
-                            target.sprite.add( CharSprite.State.CHAMPWHITE );
+                    ( (Mob) this.getTarget() ).defenseSkill *= (DEF_MOD + CHIEF_MOD);
+                    if ( getTarget().sprite != null ) {
+                        if ( getTarget().sprite.champWhiteHalo == null ) {
+                            getTarget().sprite.add( CharSprite.State.CHAMPWHITE );
                         }
                     }
                     break;
                 case CHAMP_CURSED: //black
-                    this.target.name = "Cursed " + this.target.name;
+                    this.getTarget().name = "Cursed " + this.getTarget().name;
                     final double CURSED_MOD = 0.05;
-                    ( (Mob) this.target ).defenseSkill *= (DEF_MOD + CURSED_MOD);
-                    if ( target.sprite != null ) {
-                        if ( target.sprite.champBlackHalo == null ) {
-                            target.sprite.add( CharSprite.State.CHAMPBLACK );
+                    ( (Mob) this.getTarget() ).defenseSkill *= (DEF_MOD + CURSED_MOD);
+                    if ( getTarget().sprite != null ) {
+                        if ( getTarget().sprite.champBlackHalo == null ) {
+                            getTarget().sprite.add( CharSprite.State.CHAMPBLACK );
                         }
                     }
                     break;
                 case CHAMP_FOUL: //yellow
                     final double FOUL_MOD = 0.1;
-                    ( (Mob) this.target ).defenseSkill *= (DEF_MOD + FOUL_MOD);
-                    if ( target.sprite != null ) {
-                        if ( target.sprite.champYellowHalo == null ) {
-                            target.sprite.add( CharSprite.State.CHAMPYELLOW );
+                    ( (Mob) this.getTarget() ).defenseSkill *= (DEF_MOD + FOUL_MOD);
+                    if ( getTarget().sprite != null ) {
+                        if ( getTarget().sprite.champYellowHalo == null ) {
+                            getTarget().sprite.add( CharSprite.State.CHAMPYELLOW );
                         }
                     }
                     break;
@@ -169,7 +169,7 @@ public class Champ extends Buff {
         }
 
         spend( TICK );
-        if ( !target.isAlive() ) {
+        if ( !getTarget().isAlive() ) {
             detach();
         }
 

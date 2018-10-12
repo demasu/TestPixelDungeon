@@ -165,8 +165,8 @@ public class SacrificialFire extends Blob {
 
         @Override
         public void detach () {
-            if ( !target.isAlive() ) {
-                sacrifice( target );
+            if ( !getTarget().isAlive() ) {
+                sacrifice( getTarget() );
             }
             super.detach();
         }

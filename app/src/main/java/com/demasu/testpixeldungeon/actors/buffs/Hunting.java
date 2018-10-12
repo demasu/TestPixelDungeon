@@ -27,10 +27,10 @@ public class Hunting extends Buff {
 
     @Override
     public boolean act () {
-        if ( target.isAlive() ) {
+        if ( getTarget().isAlive() ) {
 
 
-            Hero hero = (Hero) target;
+            Hero hero = (Hero) getTarget();
 
 
             if ( hero.heroSkills.passiveA2.hunting() < 1 )// Huntress Hunting if present

@@ -261,7 +261,7 @@ public abstract class Wand extends KindOfWeapon {
     public int power () {
         int eLevel = effectiveLevel();
         if ( charger != null ) {
-            Power power = charger.target.buff( Power.class );
+            Power power = charger.getTarget().buff( Power.class );
             return power == null ? eLevel : Math.max( eLevel + power.level, 0 );
         } else {
             return eLevel;
@@ -475,11 +475,11 @@ public abstract class Wand extends KindOfWeapon {
         }
 
         protected void delay () {
-            float time2charge = ( (Hero) target ).getHeroClass() == HeroClass.MAGE ?
+            float time2charge = ( (Hero) getTarget() ).getHeroClass() == HeroClass.MAGE ?
                     TIME_TO_CHARGE / (float) Math.sqrt( 1 + effectiveLevel() ) :
                     TIME_TO_CHARGE;
-            if ( ( (Hero) target ).heroSkills != null && ( (Hero) target ).heroSkills.passiveB1 != null ) {
-                time2charge *= ( (Hero) target ).heroSkills.passiveB1.wandRechargeSpeedReduction(); // <--- Mage Wizard if present
+            if ( ( (Hero) getTarget() ).heroSkills != null && ( (Hero) getTarget() ).heroSkills.passiveB1 != null ) {
+                time2charge *= ( (Hero) getTarget() ).heroSkills.passiveB1.wandRechargeSpeedReduction(); // <--- Mage Wizard if present
             }
             spend( time2charge );
         }

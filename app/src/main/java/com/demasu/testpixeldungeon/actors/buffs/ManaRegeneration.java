@@ -27,23 +27,23 @@ public class ManaRegeneration extends Buff {
     @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
-        if ( target.isAlive() ) {
+        if ( getTarget().isAlive() ) {
 
-            if ( target.getMP() < target.getMMP() ) {
-                target.setMP( target.getMP() + 1 );
+            if ( getTarget().getMP() < getTarget().getMMP() ) {
+                getTarget().setMP( getTarget().getMP() + 1 );
             }
-            if ( ( (Hero) target ).getHeroClass() == HeroClass.MAGE ) {
-                if ( target.getMP() < target.getMMP() ) {
-                    target.setMP( target.getMP() + 1 );
+            if ( ( (Hero) getTarget() ).getHeroClass() == HeroClass.MAGE ) {
+                if ( getTarget().getMP() < getTarget().getMMP() ) {
+                    getTarget().setMP( getTarget().getMP() + 1 );
                 }
             }
 
             int bonus = 0;
-            if ( ( (Hero) target ).getHeroClass() == HeroClass.MAGE ) {
+            if ( ( (Hero) getTarget() ).getHeroClass() == HeroClass.MAGE ) {
                 bonus = 1;
             }
 
-            bonus += ( (Hero) target ).heroSkills.passiveA2.manaRegenerationBonus(); // <-- Mage mdeitation if present
+            bonus += ( (Hero) getTarget() ).heroSkills.passiveA2.manaRegenerationBonus(); // <-- Mage mdeitation if present
 
             final double BASE = 1.2;
             spend( (float) ( REGENERATION_DELAY / Math.pow( BASE, bonus ) ) );

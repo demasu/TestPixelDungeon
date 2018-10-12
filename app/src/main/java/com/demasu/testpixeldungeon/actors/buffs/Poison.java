@@ -69,12 +69,12 @@ public class Poison extends Buff implements Hero.Doom {
     @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
-        if ( target.isAlive() ) {
+        if ( getTarget().isAlive() ) {
 
-            if ( target instanceof Mob && Dungeon.getHero().heroSkills.passiveB2.venomBonus() > 0 ) {
-                target.damage( (int) ( left / 3 ) + 1 + Dungeon.getHero().heroSkills.passiveB2.venomBonus(), this );
+            if ( getTarget() instanceof Mob && Dungeon.getHero().heroSkills.passiveB2.venomBonus() > 0 ) {
+                getTarget().damage( (int) ( left / 3 ) + 1 + Dungeon.getHero().heroSkills.passiveB2.venomBonus(), this );
             } else {
-                target.damage( (int) ( left / 3 ) + 1, this );
+                getTarget().damage( (int) ( left / 3 ) + 1, this );
             }
             spend( TICK );
 

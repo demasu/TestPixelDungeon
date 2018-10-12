@@ -55,13 +55,13 @@ public class Hunger extends Buff implements Hero.Doom {
     @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
-        if ( target.isAlive() ) {
+        if ( getTarget().isAlive() ) {
 
-            Hero hero = (Hero) target;
+            Hero hero = (Hero) getTarget();
 
             if ( isStarving() ) {
                 final float HUNGER_MIN = 0.3f;
-                if ( Random.Float() < HUNGER_MIN && ( target.getHP() > 1 || !target.paralysed ) ) {
+                if ( Random.Float() < HUNGER_MIN && ( getTarget().getHP() > 1 || !getTarget().paralysed ) ) {
 
                     GLog.n( TXT_STARVING );
                     hero.damage( 1, this );
@@ -71,7 +71,7 @@ public class Hunger extends Buff implements Hero.Doom {
             } else {
 
                 int bonus = 0;
-                for ( Buff buff : target.buffs( RingOfSatiety.Satiety.class ) ) {
+                for ( Buff buff : getTarget().buffs( RingOfSatiety.Satiety.class ) ) {
                     bonus += ( (RingOfSatiety.Satiety) buff ).level;
                 }
 
@@ -99,9 +99,9 @@ public class Hunger extends Buff implements Hero.Doom {
             }
 
             final float ROGUE_MOD = 1.2f;
-            float step = ( (Hero) target ).getHeroClass() == HeroClass.ROGUE ? STEP * ROGUE_MOD : STEP;
+            float step = ( (Hero) getTarget() ).getHeroClass() == HeroClass.ROGUE ? STEP * ROGUE_MOD : STEP;
             final float STEP_MOD = 1.5f;
-            spend( target.buff( Shadows.class ) == null ? step : step * STEP_MOD );
+            spend( getTarget().buff( Shadows.class ) == null ? step : step * STEP_MOD );
 
         } else {
 

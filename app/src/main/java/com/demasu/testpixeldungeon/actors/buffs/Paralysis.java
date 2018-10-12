@@ -51,7 +51,7 @@ public class Paralysis extends FlavourBuff {
     @Override
     public void detach () {
         super.detach();
-        unfreeze( target );
+        unfreeze( getTarget() );
     }
 
     @Override

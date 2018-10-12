@@ -91,7 +91,7 @@ public class Earthroot extends Plant {
 
         @Override
         public boolean act () {
-            if ( target.pos != pos ) {
+            if ( getTarget().pos != pos ) {
                 detach();
             }
             spend( STEP );

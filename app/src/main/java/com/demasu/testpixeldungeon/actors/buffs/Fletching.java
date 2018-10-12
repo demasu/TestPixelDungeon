@@ -27,10 +27,10 @@ public class Fletching extends Buff {
 
     @Override
     public boolean act () {
-        if ( target.isAlive() ) {
+        if ( getTarget().isAlive() ) {
 
 
-            Hero hero = (Hero) target;
+            Hero hero = (Hero) getTarget();
 
             if ( hero.heroSkills.passiveA1.fletching() < 1 )// Huntress fletching if present
             {

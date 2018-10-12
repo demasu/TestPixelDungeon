@@ -212,7 +212,7 @@ public class Ring extends EquipableItem {
 
     private void renewBuff () {
         if ( buff != null ) {
-            Char owner = buff.target;
+            Char owner = buff.getTarget();
             buff.detach();
             if ( ( buff = buff() ) != null ) {
                 buff.attachTo( owner );

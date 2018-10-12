@@ -41,16 +41,16 @@ public class Ooze extends Buff {
     @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
-        if ( target.isAlive() ) {
+        if ( getTarget().isAlive() ) {
             int damage = 1;
-            target.damage( damage, this );
-            if ( !target.isAlive() && target == Dungeon.getHero() ) {
+            getTarget().damage( damage, this );
+            if ( !getTarget().isAlive() && getTarget() == Dungeon.getHero() ) {
                 Dungeon.fail( Utils.format( ResultDescriptions.OOZE, Dungeon.getDepth() ) );
                 GLog.n( TXT_HERO_KILLED, toString() );
             }
             spend( TICK );
         }
-        if ( Level.water[target.pos] ) {
+        if ( Level.water[getTarget().pos] ) {
             detach();
         }
         return true;

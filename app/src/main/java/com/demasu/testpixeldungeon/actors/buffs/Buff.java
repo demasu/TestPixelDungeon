@@ -23,7 +23,7 @@ import com.demasu.testpixeldungeon.ui.BuffIndicator;
 
 public class Buff extends Actor {
 
-    public Char target;
+    private Char target;
 
     private static <T extends Buff> T append ( Char target, Class<T> buffClass ) {
         try {
@@ -72,14 +72,14 @@ public class Buff extends Actor {
             return false;
         }
 
-        this.target = target;
+        this.setTarget( target );
         target.add( this );
 
         return true;
     }
 
     public void detach () {
-        target.remove( this );
+        getTarget().remove( this );
     }
 
     @Override
@@ -90,5 +90,13 @@ public class Buff extends Actor {
 
     public int icon () {
         return BuffIndicator.NONE;
+    }
+
+    public Char getTarget () {
+        return target;
+    }
+
+    public void setTarget ( Char target ) {
+        this.target = target;
     }
 }

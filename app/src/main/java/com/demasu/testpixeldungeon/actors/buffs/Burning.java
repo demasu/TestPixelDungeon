@@ -70,61 +70,61 @@ public class Burning extends Buff implements Hero.Doom {
     @Override
     public boolean act () {
 
-        if ( target.isAlive() ) {
+        if ( getTarget().isAlive() ) {
 
-            if ( target instanceof Hero ) {
+            if ( getTarget() instanceof Hero ) {
                 final float TICK_MOD = 1.01f;
-                Buff.prolong( target, Light.class, TICK * TICK_MOD );
+                Buff.prolong( getTarget(), Light.class, TICK * TICK_MOD );
             }
 
-            target.damage( Random.Int( 1, 5 ), this );
+            getTarget().damage( Random.Int( 1, 5 ), this );
 
-            if ( target instanceof Hero ) {
+            if ( getTarget() instanceof Hero ) {
 
-                Item item = ( (Hero) target ).belongings.randomUnequipped();
+                Item item = ( (Hero) getTarget() ).belongings.randomUnequipped();
                 if ( item instanceof Scroll ) {
 
-                    item = item.detach( ( (Hero) target ).belongings.backpack );
+                    item = item.detach( ( (Hero) getTarget() ).belongings.backpack );
                     //noinspection ConstantConditions
                     GLog.w( TXT_BURNS_UP, item.toString() );
 
-                    Heap.burnFX( target.pos );
+                    Heap.burnFX( getTarget().pos );
 
                 } else if ( item instanceof MysteryMeat ) {
 
-                    item = item.detach( ( (Hero) target ).belongings.backpack );
+                    item = item.detach( ( (Hero) getTarget() ).belongings.backpack );
                     ChargrilledMeat steak = new ChargrilledMeat();
-                    if ( !steak.collect( ( (Hero) target ).belongings.backpack ) ) {
-                        Dungeon.getLevel().drop( steak, target.pos ).sprite.drop();
+                    if ( !steak.collect( ( (Hero) getTarget() ).belongings.backpack ) ) {
+                        Dungeon.getLevel().drop( steak, getTarget().pos ).sprite.drop();
                     }
                     //noinspection ConstantConditions
                     GLog.w( TXT_BURNS_UP, item.toString() );
 
-                    Heap.burnFX( target.pos );
+                    Heap.burnFX( getTarget().pos );
 
                 }
 
-            } else if ( target instanceof Thief && ( (Thief) target ).item instanceof Scroll ) {
+            } else if ( getTarget() instanceof Thief && ( (Thief) getTarget() ).item instanceof Scroll ) {
 
                 //noinspection AssignmentToNull
-                ( (Thief) target ).item = null;
-                target.sprite.emitter().burst( ElmoParticle.FACTORY, 6 );
+                ( (Thief) getTarget() ).item = null;
+                getTarget().sprite.emitter().burst( ElmoParticle.FACTORY, 6 );
             }
 
         } else {
             detach();
         }
 
-        if ( Level.flamable[target.pos] ) {
-            GameScene.add( Blob.seed( target.pos, 4, Fire.class ) );
+        if ( Level.flamable[getTarget().pos] ) {
+            GameScene.add( Blob.seed( getTarget().pos, 4, Fire.class ) );
         }
 
         spend( TICK );
         left -= TICK;
 
         if ( left <= 0 ||
-                Random.Float() > ( 2 + (float) target.getHP() / target.getHT() ) / 3 ||
-                ( Level.water[target.pos] && !target.flying ) ) {
+                Random.Float() > ( 2 + (float) getTarget().getHP() / getTarget().getHT() ) / 3 ||
+                ( Level.water[getTarget().pos] && !getTarget().flying ) ) {
 
             detach();
         }

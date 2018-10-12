@@ -34,7 +34,7 @@ public class Roots extends FlavourBuff {
 
     @Override
     public void detach () {
-        target.rooted = false;
+        getTarget().rooted = false;
         super.detach();
     }
 

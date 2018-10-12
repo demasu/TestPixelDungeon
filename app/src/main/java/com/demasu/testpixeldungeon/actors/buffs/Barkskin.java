@@ -25,7 +25,7 @@ public class Barkskin extends Buff {
 
     @Override
     public boolean act () {
-        if ( target.isAlive() ) {
+        if ( getTarget().isAlive() ) {
 
             spend( TICK );
             --level;

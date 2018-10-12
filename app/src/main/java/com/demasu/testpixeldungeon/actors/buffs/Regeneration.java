@@ -27,18 +27,18 @@ public class Regeneration extends Buff {
     @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
-        if ( target.isAlive() ) {
+        if ( getTarget().isAlive() ) {
 
-            if ( target.getHP() < target.getHT() && !( (Hero) target ).isStarving() ) {
-                target.setHP( target.getHP() + 1 );
+            if ( getTarget().getHP() < getTarget().getHT() && !( (Hero) getTarget() ).isStarving() ) {
+                getTarget().setHP( getTarget().getHP() + 1 );
             }
 
             int bonus = 0;
-            for ( Buff buff : target.buffs( RingOfMending.Rejuvenation.class ) ) {
+            for ( Buff buff : getTarget().buffs( RingOfMending.Rejuvenation.class ) ) {
                 bonus += ( (RingOfMending.Rejuvenation) buff ).level;
             }
 
-            bonus += ( (Hero) target ).heroSkills.passiveA2.healthRegenerationBonus(); // <-- Warrior regeneration if present
+            bonus += ( (Hero) getTarget() ).heroSkills.passiveA2.healthRegenerationBonus(); // <-- Warrior regeneration if present
 
             final double BASE = 1.2;
             spend( (float) ( REGENERATION_DELAY / Math.pow( BASE, bonus ) ) );

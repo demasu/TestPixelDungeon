@@ -62,18 +62,18 @@ public class Bleeding extends Buff {
     @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
-        if ( target.isAlive() ) {
+        if ( getTarget().isAlive() ) {
 
             level = Random.Int( level / 2, level );
             if ( level > 0 ) {
 
-                target.damage( level, this );
-                if ( target.sprite.getVisible() ) {
-                    Splash.at( target.sprite.center(), -PointF.PI / 2, PointF.PI / 6,
-                            target.sprite.blood(), Math.min( 10 * level / target.getHT(), 10 ) );
+                getTarget().damage( level, this );
+                if ( getTarget().sprite.getVisible() ) {
+                    Splash.at( getTarget().sprite.center(), -PointF.PI / 2, PointF.PI / 6,
+                            getTarget().sprite.blood(), Math.min( 10 * level / getTarget().getHT(), 10 ) );
                 }
 
-                if ( target == Dungeon.getHero() && !target.isAlive() ) {
+                if ( getTarget() == Dungeon.getHero() && !getTarget().isAlive() ) {
                     Dungeon.fail( Utils.format( ResultDescriptions.BLEEDING, Dungeon.getDepth() ) );
                     GLog.n( "You bled to death..." );
                 }

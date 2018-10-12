@@ -61,7 +61,7 @@ public class Shadows extends Invisibility {
 
     @Override
     public boolean act () {
-        if ( target.isAlive() ) {
+        if ( getTarget().isAlive() ) {
 
             spend( TICK * 2 );
 

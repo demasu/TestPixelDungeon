@@ -25,7 +25,7 @@ public class Fury extends Buff {
 
     @Override
     public boolean act () {
-        if ( target.getHP() > target.getHT() * LEVEL ) {
+        if ( getTarget().getHP() > getTarget().getHT() * LEVEL ) {
             detach();
         }
 
