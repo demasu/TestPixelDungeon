@@ -78,7 +78,8 @@ public class Poison extends Buff implements Hero.Doom {
             }
             spend( TICK );
 
-            if ( ( left -= TICK ) <= 0 ) {
+            left -= TICK;
+            if ( left <= 0 ) {
                 detach();
             }
 
