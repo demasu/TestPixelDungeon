@@ -46,7 +46,4 @@ public class MindVision extends FlavourBuff {
         return distance;
     }
 
-    public void setDistance ( int distance ) {
-        this.distance = distance;
-    }
 }
