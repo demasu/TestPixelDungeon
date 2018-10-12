@@ -52,6 +52,7 @@ public class Champ extends Buff {
         bonusApplied = bundle.getBoolean( BONUS_APPLIED );
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
 

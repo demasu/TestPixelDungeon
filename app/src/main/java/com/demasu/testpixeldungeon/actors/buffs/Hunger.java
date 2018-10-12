@@ -52,6 +52,7 @@ public class Hunger extends Buff implements Hero.Doom {
         level = bundle.getFloat( LEVEL );
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
         if ( target.isAlive() ) {

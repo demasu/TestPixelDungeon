@@ -40,6 +40,7 @@ public class Ooze extends Buff {
         return "Caustic ooze";
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
         if ( target.isAlive() ) {

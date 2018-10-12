@@ -66,6 +66,7 @@ public class Poison extends Buff implements Hero.Doom {
         return "Poisoned";
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
         if ( target.isAlive() ) {

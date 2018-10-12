@@ -24,6 +24,7 @@ public class Regeneration extends Buff {
 
     private static final float REGENERATION_DELAY = 10;
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
         if ( target.isAlive() ) {

@@ -59,6 +59,7 @@ public class Bleeding extends Buff {
         return "Bleeding";
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
         if ( target.isAlive() ) {

@@ -66,6 +66,7 @@ public class Burning extends Buff implements Hero.Doom {
         left = bundle.getFloat( LEFT );
     }
 
+    @SuppressWarnings ( "FeatureEnvy" )
     @Override
     public boolean act () {
 
