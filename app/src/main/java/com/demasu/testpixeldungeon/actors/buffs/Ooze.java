@@ -28,8 +28,6 @@ public class Ooze extends Buff {
 
     private static final String TXT_HERO_KILLED = "%s killed you...";
 
-    private final int damage = 1;
-
     @Override
     public int icon () {
         return BuffIndicator.OOZE;
@@ -44,6 +42,7 @@ public class Ooze extends Buff {
     @Override
     public boolean act () {
         if ( target.isAlive() ) {
+            int damage = 1;
             target.damage( damage, this );
             if ( !target.isAlive() && target == Dungeon.getHero() ) {
                 Dungeon.fail( Utils.format( ResultDescriptions.OOZE, Dungeon.getDepth() ) );
