@@ -106,6 +106,7 @@ public class Burning extends Buff implements Hero.Doom {
 
             } else if ( target instanceof Thief && ( (Thief) target ).item instanceof Scroll ) {
 
+                //noinspection AssignmentToNull
                 ( (Thief) target ).item = null;
                 target.sprite.emitter().burst( ElmoParticle.FACTORY, 6 );
             }
