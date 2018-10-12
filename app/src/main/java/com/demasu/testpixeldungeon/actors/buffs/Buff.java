@@ -25,7 +25,7 @@ public class Buff extends Actor {
 
     public Char target;
 
-    public static <T extends Buff> T append ( Char target, Class<T> buffClass ) {
+    private static <T extends Buff> T append ( Char target, Class<T> buffClass ) {
         try {
             T buff = buffClass.newInstance();
             buff.attachTo( target );
@@ -63,7 +63,7 @@ public class Buff extends Actor {
         return buff;
     }
 
-    public static void detach ( Buff buff ) {
+    private static void detach ( Buff buff ) {
         if ( buff != null ) {
             buff.detach();
         }

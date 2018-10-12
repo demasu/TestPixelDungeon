@@ -32,7 +32,7 @@ import com.watabou.utils.Bundle;
 public class Poison extends Buff implements Hero.Doom {
 
     private static final String LEFT = "left";
-    protected float left;
+    private float left;
 
     public static float durationFactor ( Char ch ) {
         Resistance r = ch.buff( Resistance.class );

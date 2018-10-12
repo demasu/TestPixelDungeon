@@ -49,7 +49,7 @@ public class Burning extends Buff implements Hero.Doom {
     private static final String LEFT = "left";
     private float left;
 
-    public static float duration ( Char ch ) {
+    private static float duration ( Char ch ) {
         Resistance r = ch.buff( Resistance.class );
         return r != null ? r.durationFactor() * DURATION : DURATION;
     }

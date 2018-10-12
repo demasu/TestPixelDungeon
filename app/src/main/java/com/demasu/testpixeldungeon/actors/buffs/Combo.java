@@ -24,9 +24,9 @@ import com.demasu.testpixeldungeon.utils.GLog;
 
 public class Combo extends Buff {
 
-    private static String TXT_COMBO = "%d hit combo!";
+    private static final String TXT_COMBO = "%d hit combo!";
 
-    public int count = 0;
+    private int count = 0;
 
     @Override
     public int icon () {

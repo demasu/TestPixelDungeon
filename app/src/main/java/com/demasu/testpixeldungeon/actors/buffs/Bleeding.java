@@ -30,7 +30,7 @@ import com.watabou.utils.Random;
 public class Bleeding extends Buff {
 
     private static final String LEVEL = "level";
-    protected int level;
+    private int level;
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

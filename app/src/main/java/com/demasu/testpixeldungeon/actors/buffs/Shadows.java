@@ -27,7 +27,7 @@ import com.watabou.utils.Bundle;
 public class Shadows extends Invisibility {
 
     private static final String LEFT = "left";
-    protected float left;
+    private float left;
 
     @Override
     public void storeInBundle ( Bundle bundle ) {

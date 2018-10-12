@@ -23,7 +23,7 @@ import com.demasu.testpixeldungeon.ui.BuffIndicator;
 
 public class Vertigo extends FlavourBuff {
 
-    public static final float DURATION = 10f;
+    private static final float DURATION = 10f;
 
     public static float duration ( Char ch ) {
         Resistance r = ch.buff( Resistance.class );
