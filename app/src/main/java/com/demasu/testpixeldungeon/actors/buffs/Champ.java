@@ -159,13 +159,8 @@ public class Champ extends Buff {
         }
 
         spend( TICK );
-        if ( target.isAlive() ) {
-
-
-        } else {
-
+        if ( !target.isAlive() ) {
             detach();
-
         }
 
         return true;
