@@ -574,7 +574,7 @@ public abstract class Char extends Actor {
             } else if ( buff instanceof Frost ) {
                 sprite.add( CharSprite.State.FROZEN );
             } else if ( buff instanceof Champ ) {
-                switch ( ( (Champ) buff ).type ) {
+                switch ( ( (Champ) buff ).getType() ) {
                     case Champ.CHAMP_VAMPERIC:
                         sprite.add( CharSprite.State.CHAMPRED );
                         break;
