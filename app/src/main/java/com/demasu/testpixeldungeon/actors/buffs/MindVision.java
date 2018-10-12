@@ -24,8 +24,6 @@ public class MindVision extends FlavourBuff {
 
     public static final float DURATION = 20f;
 
-    private int distance = 2;
-
     @Override
     public int icon () {
         return BuffIndicator.MIND_VISION;
@@ -42,8 +40,9 @@ public class MindVision extends FlavourBuff {
         Dungeon.observe();
     }
 
+    @SuppressWarnings ( "SameReturnValue" )
     public int getDistance () {
-        return distance;
+        return 2;
     }
 
 }
